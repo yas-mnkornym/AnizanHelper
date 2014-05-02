@@ -122,19 +122,19 @@ namespace AnizanHelper
 
 		#region Commands
 
-		#region AnalyzeInputCommand
-		DelegateCommand analyzeInputCommand_ = null;
-		public DelegateCommand AnalyzeInputCommand
+		#region ParseInputCommand
+		DelegateCommand parseInputCommand_ = null;
+		public DelegateCommand ParseInputCommand
 		{
 			get
 			{
-				if (analyzeInputCommand_ == null) {
-					analyzeInputCommand_ = new DelegateCommand {
+				if (parseInputCommand_ == null) {
+					parseInputCommand_ = new DelegateCommand {
 						ExecuteHandler = param => {
 						}
 					};
 				}
-				return analyzeInputCommand_;
+				return parseInputCommand_;
 			}
 		}
 		#endregion

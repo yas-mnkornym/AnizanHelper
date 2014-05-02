@@ -30,7 +30,7 @@
 					Height="50"
 					FontSize="30"
 					Margin="0,5,0,0"
-					Command="{Binding AnalyzeInputCommand}"/>
+					Command="{Binding ParseInputCommand}"/>
 			<TextBox DockPanel.Dock="Top"
 					 AcceptsTab="True"
 					 AcceptsReturn="True"
