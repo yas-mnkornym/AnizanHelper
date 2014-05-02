@@ -17,8 +17,8 @@ AnizanHelper
 ##動作環境
 
 * Windows Vista以上
-* .Net Framework 4.5が必要です  
-http://www.microsoft.com/ja-jp/download/details.aspx?id=30653
+* .Net Framework 4.0が必要です  
+http://www.microsoft.com/ja-jp/download/details.aspx?id=17851 
 
 ##使ってるライブラリ
 * Extended WPF Toolkit
