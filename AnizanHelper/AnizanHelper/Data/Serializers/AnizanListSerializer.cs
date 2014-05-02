@@ -18,7 +18,7 @@ namespace AnizanHelper.Data.Serializers
 			if (info.IsNotAnison) {
 				format = ".｢{0}｣/{1}(一般曲)";
 			}
-			else if (info.Genre != null) {
+			else if (!string.IsNullOrEmpty(info.Genre)) {
 				format = ".｢{0}｣/{1}([{2}]{3}　{4})";
 			}
 			return string.Format(
