@@ -52,6 +52,7 @@ namespace AnizanHelper
 					new ReplaceInfo("―", "-"),
 					new ReplaceInfo("＾", "^"),
 					new ReplaceInfo("　", " "),
+					new ReplaceInfo("〜", "~"),
 					// 必ず最後
 					new ReplaceInfo("&", " & "),
 				});
@@ -68,6 +69,7 @@ namespace AnizanHelper
 			Series = info.Series;
 			SongType = info.SongType;
 			IsNotAnison = info.IsNotAnison;
+			Genre = info.Genre;
 		}
 
 		void Serialize()
@@ -78,7 +80,8 @@ namespace AnizanHelper
 				Singer = Singer,
 				Series = Series,
 				SongType = SongType,
-				IsNotAnison = IsNotAnison
+				IsNotAnison = IsNotAnison,
+				Genre = Genre
 			};
 
 			ResultText = serializer_.Serialize(songInfo);
@@ -243,6 +246,22 @@ namespace AnizanHelper
 			{
 				songName_ = value;
 				RaisePropertyChanged("SongTitle");
+			}
+		}
+		#endregion
+
+		#region Genre
+		string genre_ = "";
+		public string Genre
+		{
+			get
+			{
+				return genre_;
+			}
+			set
+			{
+				genre_ = value;
+				RaisePropertyChanged("Genre");
 			}
 		}
 		#endregion
