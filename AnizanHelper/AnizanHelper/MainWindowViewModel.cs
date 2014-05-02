@@ -39,7 +39,6 @@ namespace AnizanHelper
 					new ReplaceInfo("・", "･"),
 					new ReplaceInfo("「", "｢"),
 					new ReplaceInfo("」", "｣"),
-					new ReplaceInfo("～", "~"),
 					new ReplaceInfo("￥", "\\"),
 					new ReplaceInfo("＿", "_"),
 					new ReplaceInfo("’", "'"),
