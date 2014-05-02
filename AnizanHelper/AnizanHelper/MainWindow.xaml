@@ -1,8 +1,111 @@
 ﻿<Window x:Class="AnizanHelper.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MainWindow" Height="350" Width="600"
+		Background="WhiteSmoke">
+    <Grid Margin="5">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		
+		<!-- 設定部 -->
+		<StackPanel Grid.Row="0" Grid.Column="0">
+			<CheckBox Content="常に手前に表示"
+					  IsChecked="{Binding Path=AlwaysOnTop, Mode=TwoWay}" />
+		</StackPanel>
+		<!-- 入力部 -->
+		<DockPanel Grid.Row="1" Grid.Column="0"
+				   Margin="0,0,0,2">
+			<Button DockPanel.Dock="Bottom"
+					Content="解析"
+					HorizontalAlignment="Stretch"
+					Height="50"
+					FontSize="30"
+					Margin="0,5,0,0"
+					Command="{Binding AnalyzeInputCommand}"/>
+			<TextBox DockPanel.Dock="Top"
+					 AcceptsTab="True"
+					 AcceptsReturn="True"
+					 TextWrapping="Wrap"
+					 Text="{Binding Path=InputString,Mode=TwoWay}"/>
+		</DockPanel>
+		
+		<!-- パース結果出力部 -->
+		<DockPanel Grid.Row="2" Grid.Column="0">
+			<Button DockPanel.Dock="Right"
+					HorizontalAlignment="Stretch"
+					Content="変更適用&#xa;　↓↓"
+					Margin="5,0,0,0"
+					Command="{Binding ApplyDetailsCommand}"/>
+			<StackPanel	DockPanel.Dock="Left"
+					Margin="0,2,0,2">
+				<DockPanel>
+					<TextBlock Text="　曲名："
+						   DockPanel.Dock="Left" />
+					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+						 DockPanel.Dock="Right" />
+				</DockPanel>
+				<DockPanel>
+					<TextBlock Text="歌手名："
+						   DockPanel.Dock="Left" />
+					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+						 DockPanel.Dock="Right" />
+				</DockPanel>
+				<DockPanel>
+					<TextBlock Text="作品名："
+						   DockPanel.Dock="Left" />
+					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+						 DockPanel.Dock="Right" />
+				</DockPanel>
+				<DockPanel>
+					<TextBlock Text="　曲種："
+						   DockPanel.Dock="Left" />
+					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+						 DockPanel.Dock="Right" />
+				</DockPanel>
+			</StackPanel>
+		</DockPanel>
+
+		<!-- コピー用結果出力部 -->
+		<DockPanel Grid.Row="3" Grid.Column="0"
+				   Margin="0,2,0,0">
+			<UniformGrid DockPanel.Dock="Right"
+						 Margin="5,0,0,0"
+						 Columns="1" Rows="2">
+				<Button	Content="コピー"
+						Margin="0,0,0,2"
+						Command="{Binding CopyResultCommand}" />
+				<Button Content="曲順コミコピー"
+						Margin="0,2,0,0"
+						Command="{Binding CopyResultSongNumberCommand}" />
+			</UniformGrid>
+
+			<StackPanel DockPanel.Dock="Right"
+						Margin="5,0,0,0"
+						VerticalAlignment="Top">
+				<DockPanel>
+					<TextBlock Text="曲順：" 
+							   DockPanel.Dock="Left"
+							   VerticalAlignment="Center"/>
+					<xctk:IntegerUpDown Value="{Binding Path=SongNumber, StringFormat=D4, Mode=TwoWay}"
+										DockPanel.Dock="Right"/>
+				</DockPanel>
+				<CheckBox Content="コピー時増加"
+						  IsChecked="{Binding IncrementSongNumberWhenCopied}"/>
+			</StackPanel>
+
+			<TextBox DockPanel.Dock="Left"
+					 AcceptsTab="True"
+					 AcceptsReturn="True"
+					 TextWrapping="Wrap"
+					 Text="{Binding Path=ResultText, Mode=TwoWay}"/>
+		</DockPanel>
+	</Grid>
 </Window>
