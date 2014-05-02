@@ -24,9 +24,19 @@ namespace AnizanHelper.Data
 		public string Series { get; set; }
 
 		/// <summary>
+		/// ジャンル
+		/// </summary>
+		public string Genre { get; set; }
+
+		/// <summary>
 		/// 曲種
 		/// </summary>
 		public string SongType { get; set; }
+
+		/// <summary>
+		/// アニソンじゃないよ
+		/// </summary>
+		public bool IsNotAnison { get; set; }
 
 		public override string ToString()
 		{
