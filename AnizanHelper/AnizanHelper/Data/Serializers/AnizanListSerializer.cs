@@ -14,12 +14,12 @@ namespace AnizanHelper.Data.Serializers
 		public string Serialize(SongInfo info)
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
-			string format = "｢{0}｣/{1}({3}　{4})";
+			string format = ".｢{0}｣/{1}({3}　{4})";
 			if (info.IsNotAnison) {
-				format = "｢{0}｣/{1}(一般曲)";
+				format = ".｢{0}｣/{1}(一般曲)";
 			}
 			else if (info.Genre != null) {
-				format = "｢{0}｣/{1}([{2}{3}　{4})";
+				format = ".｢{0}｣/{1}([{2}{3}　{4})";
 			}
 			return string.Format(
 				format,

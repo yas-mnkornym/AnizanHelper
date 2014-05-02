@@ -86,7 +86,7 @@ namespace AnizanHelper
 
 		void CopyToClipboard(bool appendNumber)
 		{
-			string format = (appendNumber ? "{0:D4}.{1}" : "{1}");
+			string format = (appendNumber ? "{0:D4}{1}" : "{1}");
 			var str = string.Format(format,
 				SongNumber, ResultText);
 			if (string.IsNullOrEmpty("str")) { str = " "; }
