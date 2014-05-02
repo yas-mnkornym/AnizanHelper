@@ -20,6 +20,8 @@ http://www.microsoft.com/ja-jp/download/details.aspx?id=17851
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.3
+ - ジャンルが空文字の時ジャンル表記を追加しないよう修正
 
 Version 1.0.2
  - ジャンル表記機能追加
