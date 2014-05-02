@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="MainWindow" Height="350" Width="600"
+		Topmost="{Binding Path=AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
     <Grid Margin="5">
 		<Grid.ColumnDefinitions>
@@ -55,19 +56,19 @@
 				<DockPanel>
 					<TextBlock Text="歌手名："
 						   DockPanel.Dock="Left" />
-					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+					<TextBox Text="{Binding Path=Singer, Mode=TwoWay}"
 						 DockPanel.Dock="Right" />
 				</DockPanel>
 				<DockPanel>
 					<TextBlock Text="作品名："
 						   DockPanel.Dock="Left" />
-					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+					<TextBox Text="{Binding Path=Series, Mode=TwoWay}"
 						 DockPanel.Dock="Right" />
 				</DockPanel>
 				<DockPanel>
 					<TextBlock Text="　曲種："
 						   DockPanel.Dock="Left" />
-					<TextBox Text="{Binding Path=SongName, Mode=TwoWay}"
+					<TextBox Text="{Binding Path=SongType, Mode=TwoWay}"
 						 DockPanel.Dock="Right" />
 				</DockPanel>
 			</StackPanel>
@@ -84,7 +85,7 @@
 						Command="{Binding CopyResultCommand}" />
 				<Button Content="曲順コミコピー"
 						Margin="0,2,0,0"
-						Command="{Binding CopyResultSongNumberCommand}" />
+						Command="{Binding CopyResultAndSongNumberCommand}" />
 			</UniformGrid>
 
 			<StackPanel DockPanel.Dock="Right"
