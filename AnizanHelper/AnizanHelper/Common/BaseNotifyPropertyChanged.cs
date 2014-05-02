@@ -29,7 +29,7 @@ namespace AnizanHelper
 		/// プロパティの変更を通知する
 		/// </summary>
 		/// <param name="propertyName">プロパティ名</param>
-		protected void RaisePropertyChanged([CallerMemberName]string propertyName = null)
+		protected void RaisePropertyChanged(string propertyName)
 		{
 			if (PropertyChanged != null) {
 				Dispatch(() => {

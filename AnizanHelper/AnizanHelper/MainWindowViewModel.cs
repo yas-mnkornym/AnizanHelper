@@ -112,7 +112,7 @@ namespace AnizanHelper
 			set
 			{
 				alwaysOnTop_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("AlwaysOnTop");
 			}
 		}
 		#endregion
@@ -128,7 +128,7 @@ namespace AnizanHelper
 			set
 			{
 				copyAfterParse_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("CopyAfterParse");
 			}
 		}
 		#endregion
@@ -144,7 +144,7 @@ namespace AnizanHelper
 			set
 			{
 				copyAfterApply_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("CopyAfterApply");
 			}
 		}
 		#endregion
@@ -160,7 +160,7 @@ namespace AnizanHelper
 			set
 			{
 				incrementSongNumberWhenCopied_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("IncrementSongNumberWhenCopied");
 			}
 		}
 		#endregion
@@ -178,7 +178,7 @@ namespace AnizanHelper
 			set
 			{
 				inputText_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("InputText");
 			}
 		}
 		#endregion
@@ -194,7 +194,7 @@ namespace AnizanHelper
 			set
 			{
 				resultText_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("ResultText");
 			}
 		}
 		#endregion
@@ -210,7 +210,7 @@ namespace AnizanHelper
 			set
 			{
 				songNumber_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("SongNumber");
 			}
 		}
 		#endregion
@@ -226,7 +226,7 @@ namespace AnizanHelper
 			set
 			{
 				isNotAnison_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("IsNotAnison");
 			}
 		}
 		#endregion
@@ -242,7 +242,7 @@ namespace AnizanHelper
 			set
 			{
 				songName_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("SongTitle");
 			}
 		}
 		#endregion
@@ -258,7 +258,7 @@ namespace AnizanHelper
 			set
 			{
 				singer_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("Singer");
 			}
 		}
 		#endregion
@@ -274,7 +274,7 @@ namespace AnizanHelper
 			set
 			{
 				series_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("Series");
 			}
 		}
 		#endregion
@@ -290,7 +290,7 @@ namespace AnizanHelper
 			set
 			{
 				songType_ = value;
-				RaisePropertyChanged();
+				RaisePropertyChanged("SongType");
 			}
 		}
 		#endregion
