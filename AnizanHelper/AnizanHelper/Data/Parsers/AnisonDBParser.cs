@@ -96,7 +96,7 @@ namespace AnizanHelper.Data.Parsers
 					case "TS":
 					case "VD":
 					case "MV":
-					case "MA":
+					case "WA":
 						info.Genre = null;
 						break;
 
