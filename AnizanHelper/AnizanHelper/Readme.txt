@@ -1,4 +1,4 @@
-﻿Anizan Helper Version 1.0.2
+﻿Anizan Helper Version 1.0.4
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -15,11 +15,18 @@
 ・.Net Framework 4.0が必要です
 http://www.microsoft.com/ja-jp/download/details.aspx?id=17851
 
+●最新版
+たぶんここにあります
+https://drive.google.com/folderview?id=0B3FaZr9t5dOeNG1xRTQ4TXpuejA&usp=sharing
+
 
 ●使ってるライブラリ
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.4
+ - Unicodeの-を非Unicodeへ変換するよう修正
+
 Version 1.0.3
  - ジャンルが空文字の時ジャンル表記を追加しないよう修正
 

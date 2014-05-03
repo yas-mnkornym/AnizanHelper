@@ -53,6 +53,7 @@ namespace AnizanHelper
 					new ReplaceInfo("＾", "^"),
 					new ReplaceInfo("　", " "),
 					new ReplaceInfo("〜", "~"),
+					new ReplaceInfo("−", "-"),
 					// 必ず最後
 					new ReplaceInfo("&", " & "),
 				});
@@ -356,6 +357,9 @@ namespace AnizanHelper
 						ExecuteHandler = param => {
 							try {
 								Serialize();
+								if (CopyAfterApply) {
+									CopyToClipboard(true);
+								}
 							}
 							catch (Exception ex) {
 								ErrMsg("曲情報の適用に失敗しました。", ex);
@@ -379,9 +383,6 @@ namespace AnizanHelper
 						ExecuteHandler = param => {
 							try {
 								CopyToClipboard(false);
-								if (CopyAfterApply) {
-									CopyToClipboard(true);
-								}
 							}
 							catch (Exception ex) {
 								ErrMsg("コピーに失敗しました。", ex);
