@@ -22,7 +22,14 @@ namespace AnizanHelper.Data.Parsers
 					var str = x;
 					if (Replaces != null) {
 						foreach (var rep in Replaces) {
-							str = str.Replace(rep.Original, rep.Replaced);
+							if (rep.Exact) {
+								if (str == rep.Original) {
+									str = rep.Replaced;
+								}
+							}
+							else {
+								str = str.Replace(rep.Original, rep.Replaced);
+							}
 						}
 					}
 					return str;
@@ -64,6 +71,7 @@ namespace AnizanHelper.Data.Parsers
 				SongType = songType
 			};
 
+			// ジャンルを置換
 			if (genre != null) {
 				switch (genre) {
 					case "GM":

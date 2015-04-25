@@ -58,7 +58,13 @@ namespace AnizanHelper
 					new ReplaceInfo("&", " & "),
 					new ReplaceInfo("スポット放映", "[スポット放映]"),
 					new ReplaceInfo("最終話", "[最終話]"),
-					new ReplaceInfo("最終回に放映", "[最終話]")
+					new ReplaceInfo("最終回に放映", "[最終話]"),
+
+					// アイマス対策
+					new ReplaceInfo("アイドルマスター シンデレラガールズ", "THE IDOLM@STER CINDERELLA GIRLS"),
+					new ReplaceInfo("アイドルマスター ミリオンライブ!", "THE IDOLM@STER MILLION LIVE!"),
+					new ReplaceInfo("アイドルマスター シャイニーフェスタ", "THE IDOLM@STER SHINY FESTA"),
+					new ReplaceInfo("THE iDOLM@STER", "THE IDOLM@STER")
 				});
 		}
 		#endregion
