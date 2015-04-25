@@ -72,5 +72,41 @@ namespace AnizanHelper.Models
 				SetMe(value, GetMemberName(() => IncrementSongNumberWhenCopied));
 			}
 		}
+
+		public string ServerName
+		{
+			get
+			{
+				return GetMe(Constants.DefaultServerName, GetMemberName(() => ServerName));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => ServerName));
+			}
+		}
+
+		public string BoardPath
+		{
+			get
+			{
+				return GetMe(Constants.DefaultBoardPath, GetMemberName(() => BoardPath));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => BoardPath));
+			}
+		}
+
+		public string ThreadKey
+		{
+			get
+			{
+				return GetMe("", GetMemberName(() => ThreadKey));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => ThreadKey));
+			}
+		}
 	}
 }

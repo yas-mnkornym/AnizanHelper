@@ -30,8 +30,7 @@ namespace AnizanHelper
 
 			// メインウィンドウ作成
 			MainWindow = new MainWindow() {
-				DataContext = new MainWindowViewModel(new WPFDispatcher(Dispatcher)) {
-					Settings = settings_
+				DataContext = new MainWindowViewModel(settings_, new WPFDispatcher(Dispatcher)) {
 				}
 			};
 			MainWindow.Show();

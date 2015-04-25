@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:conv="clr-namespace:AnizanHelper.Converters"
-        Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}" Height="350" Width="600"
+        Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}" Height="450" Width="600"
 		Topmost="{Binding Path=AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
 	<Window.Resources>
@@ -17,6 +17,8 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
@@ -135,5 +137,37 @@
 					 TextWrapping="Wrap"
 					 Text="{Binding Path=ResultText, Mode=TwoWay}"/>
 		</DockPanel>
+
+		<Grid Grid.Row="4" Margin="0,5,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			
+			<Grid Grid.Column="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				
+				<TextBlock Grid.Column="0" Text="鯖名:" VerticalAlignment="Center" />
+				<TextBlock Grid.Column="2" Text="板パス:" VerticalAlignment="Center" Margin="5,0,0,0" />
+				<TextBlock Grid.Column="4"  Text="スレID:" VerticalAlignment="Center" Margin="5,0,0,0" />
+
+				<TextBox Grid.Column="1" Text="{Binding Path=Settings.ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+				<TextBox Grid.Column="3" Text="{Binding Path=Settings.BoardPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+				<TextBox Grid.Column="5" Text="{Binding Path=Settings.ThreadKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			</Grid>
+			<Button Content="書き込み" Grid.Column="1" Margin="5,0,0,0"
+					Command="{Binding Path=WriteToThreadCommand}"/>
+		</Grid>
+		
+		<Border Grid.Row="5" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="Gray">
+			<TextBlock Text="{Binding Path=StatusText}" />
+		</Border>
 	</Grid>
 </Window>

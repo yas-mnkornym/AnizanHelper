@@ -7,6 +7,8 @@ using System.Windows.Threading;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.SettingComponents;
+using Twin;
+using Twin.Bbs;
 
 
 namespace AnizanHelper
@@ -23,9 +25,11 @@ namespace AnizanHelper
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="dispatcher">ディスパッチャ</param>
-		public MainWindowViewModel(IDispatcher dispatcher)
+		public MainWindowViewModel(Settings settings, IDispatcher dispatcher)
 			: base(dispatcher)
 		{
+			if (settings == null) { throw new ArgumentNullException("settings"); }
+			Settings = settings;
 			serializer_ = new Models.Serializers.AnizanListSerializer();
 			parser_ = new Models.Parsers.AnisonDBParser(
 				new ReplaceInfo[]{
@@ -71,6 +75,19 @@ namespace AnizanHelper
 					new ReplaceInfo("アイカツ!", "アイカツ!-アイドルカツドウ!-"),
 					new ReplaceInfo("from STAR☆ANIS", "")
 				});
+
+			settings.PropertyChanged += settings_PropertyChanged;
+		}
+
+		void settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == GetMemberName(() => Settings.ServerName) ||
+				e.PropertyName == GetMemberName(() => Settings.BoardPath) ||
+				e.PropertyName == GetMemberName(() => Settings.ThreadKey)) {
+					Dispatch(() => {
+						WriteToThreadCommand.RaiseCanExecuteChanged();
+					});
+			}
 		}
 		#endregion
 
@@ -114,6 +131,57 @@ namespace AnizanHelper
 				SongNumber++;
 			}
 		}
+
+		void WriteToThread()
+		{
+			var board = new BoardInfo(Settings.ServerName, Settings.BoardPath, "板名");
+			var thread = new X2chThreadHeader {
+				BoardInfo = board,
+				Key = Settings.ThreadKey
+			};
+
+			var str = string.Format("{0:D4}{1}", SongNumber, ResultText);
+
+			var res = new PostRes {
+				Body = str
+			};
+			var post = new X2chPost();
+			post.Posted += (s, e) => {
+				Console.WriteLine("Response: ", e.Response);
+				switch (e.Response) {
+					case PostResponse.Success:
+						StatusText = string.Format("書き込み成功! ( {0} )",
+							str.Length > 20 ? str.Substring(0, 20)+"..." : str);
+						break;
+
+					case PostResponse.Cookie:
+						e.Retry = true;
+						break;
+				}
+			};
+			post.Error += (s, e) => {
+				StatusText = "書き込み失敗orz";
+				MessageBox.Show(
+					string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", e.Exception),
+					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+			};
+
+			Task.Factory.StartNew(() => {
+				try {
+					CanWrite = false;
+					StatusText = "書き込んでいます...";
+					post.Post(thread, res);
+				}
+				catch (Exception ex) {
+					MessageBox.Show(
+						string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", ex),
+						"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+				}
+				finally {
+					CanWrite = true;
+				}
+			});
+		}
 		#endregion
 
 		#region Bindings
@@ -128,7 +196,7 @@ namespace AnizanHelper
 			{
 				return settings_;
 			}
-			set{
+			private set{
 				SetValue(ref settings_, value, GetMemberName(() => Settings));
 			}
 		}
@@ -136,6 +204,22 @@ namespace AnizanHelper
 
 		#endregion // 設定
 
+		#region CanWrite
+		bool canWrite_ = true;
+		public bool CanWrite
+		{
+			get
+			{
+				return canWrite_;
+			}
+			set
+			{
+				if (SetValue(ref canWrite_, value, GetMemberName(() => CanWrite))) {
+					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
+				}
+			}
+		}
+		#endregion
 
 		#region InputText
 		string inputText_ = "";
@@ -153,6 +237,21 @@ namespace AnizanHelper
 		}
 		#endregion
 
+		#region StatusText
+		string statusText_ = "";
+		public string StatusText
+		{
+			get
+			{
+				return statusText_;
+			}
+			set
+			{
+				SetValue(ref statusText_, value, GetMemberName(() => StatusText));
+			}
+		}
+		#endregion
+
 		#region ResultText
 		string resultText_ = "";
 		public string ResultText
@@ -163,8 +262,9 @@ namespace AnizanHelper
 			}
 			set
 			{
-				resultText_ = value;
-				RaisePropertyChanged("ResultText");
+				if (SetValue(ref resultText_, value, GetMemberName(() => ResultText))) {
+					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
+				}
 			}
 		}
 		#endregion
@@ -401,6 +501,29 @@ namespace AnizanHelper
 			}
 		}
 		#endregion
+
+		#region WriteToThreadCommand
+		DelegateCommand writeToThreadCommand_ = null;
+		public DelegateCommand WriteToThreadCommand
+		{
+			get
+			{
+				return writeToThreadCommand_ ?? (writeToThreadCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						WriteToThread();
+					},
+					CanExecuteHandler = param => {
+						return (
+							CanWrite &&
+							!string.IsNullOrWhiteSpace(ResultText) &&
+							!string.IsNullOrWhiteSpace(Settings.ServerName) &&
+							!string.IsNullOrWhiteSpace(Settings.BoardPath) &&
+							!string.IsNullOrWhiteSpace(Settings.ThreadKey));
+					}
+				});
+			}
+		}
+		#endregion 
 
 		#endregion // Commands
 

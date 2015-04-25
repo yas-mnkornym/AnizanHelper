@@ -24,6 +24,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.9
+ - 設定を保存するように変更。
+ - リストスレへの直接投稿機能を追加
+
 Version 1.0.8
  - アイカツ表記に対応
 	※「from STAR☆ANIS」も削除されます。
