@@ -25,15 +25,15 @@
 		<StackPanel Grid.Row="0" Grid.Column="0"
 					Orientation="Horizontal">
 			<CheckBox Content="常に手前に表示"
-					  IsChecked="{Binding Path=AlwaysOnTop, Mode=TwoWay}" />
+					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" />
 			<CheckBox Content="解析時に番号付きコピー"
-					  IsChecked="{Binding Path=CopyAfterParse, Mode=TwoWay}" 
+					  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
 					  Margin="10,0,0,0"/>
 			<CheckBox Content="適用時に番号付きコピー"
-					  IsChecked="{Binding Path=CopyAfterApply, Mode=TwoWay}" 
+					  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
 					  Margin="10,0,0,0"/>
 			<CheckBox Content="解析後入力欄をクリア"
-					  IsChecked="{Binding Path=ClearInputAutomatically, Mode=TwoWay}"
+					  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
 					  Margin="10, 0, 0, 0" />
 		</StackPanel>
 		<!-- 入力部 -->
@@ -126,7 +126,7 @@
 										DockPanel.Dock="Right"/>
 				</DockPanel>
 				<CheckBox Content="コピー時増加"
-						  IsChecked="{Binding IncrementSongNumberWhenCopied}"/>
+						  IsChecked="{Binding Settings.IncrementSongNumberWhenCopied}"/>
 			</StackPanel>
 
 			<TextBox DockPanel.Dock="Left"

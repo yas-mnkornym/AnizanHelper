@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using System.Windows;
-using AnizanHelper.Data;
+using AnizanHelper.Models;
+using AnizanHelper.Models.SettingComponents;
 
 
 namespace AnizanHelper
 {
-	internal class MainWindowViewModel : BaseNotifyPropertyChanged
+	internal class MainWindowViewModel : BindableBase
 	{
 		#region private fields
 		ISongInfoParser parser_ = null;
@@ -22,11 +23,11 @@ namespace AnizanHelper
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="dispatcher">ディスパッチャ</param>
-		public MainWindowViewModel(Dispatcher dispatcher)
+		public MainWindowViewModel(IDispatcher dispatcher)
 			: base(dispatcher)
 		{
-			serializer_ = new Data.Serializers.AnizanListSerializer();
-			parser_ = new Data.Parsers.AnisonDBParser(
+			serializer_ = new Models.Serializers.AnizanListSerializer();
+			parser_ = new Models.Parsers.AnisonDBParser(
 				new ReplaceInfo[]{
 					new ReplaceInfo("♥", "▼"),
 					new ReplaceInfo("♡", "▽"),
@@ -67,7 +68,8 @@ namespace AnizanHelper
 					new ReplaceInfo("THE iDOLM@STER", "THE IDOLM@STER"),
 
 					// アイカツ対策
-					new ReplaceInfo("アイカツ!", "アイカツ!-アイドルカツドウ!-")
+					new ReplaceInfo("アイカツ!", "アイカツ!-アイドルカツドウ!-"),
+					new ReplaceInfo("from STAR☆ANIS", "")
 				});
 		}
 		#endregion
@@ -108,7 +110,7 @@ namespace AnizanHelper
 			if (string.IsNullOrEmpty("str")) { str = " "; }
 			System.Windows.Forms.Clipboard.SetText(str);
 
-			if (IncrementSongNumberWhenCopied) {
+			if (Settings.IncrementSongNumberWhenCopied) {
 				SongNumber++;
 			}
 		}
@@ -117,87 +119,21 @@ namespace AnizanHelper
 		#region Bindings
 
 		#region 設定
-		#region AlwaysOnTop
-		bool alwaysOnTop_ = true;
-		public bool AlwaysOnTop
+
+		#region Settings
+		Settings settings_;
+		public Settings Settings
 		{
 			get
 			{
-				return alwaysOnTop_;
+				return settings_;
 			}
-			set
-			{
-				alwaysOnTop_ = value;
-				RaisePropertyChanged("AlwaysOnTop");
+			set{
+				SetValue(ref settings_, value, GetMemberName(() => Settings));
 			}
 		}
 		#endregion
 
-		#region CopyOnParse
-		bool copyAfterParse_ = true;
-		public bool CopyAfterParse
-		{
-			get
-			{
-				return copyAfterParse_;
-			}
-			set
-			{
-				copyAfterParse_ = value;
-				RaisePropertyChanged("CopyAfterParse");
-			}
-		}
-		#endregion
-
-		#region CopyAfterApply
-		bool copyAfterApply_ = false;
-		public bool CopyAfterApply
-		{
-			get
-			{
-				return copyAfterApply_;
-			}
-			set
-			{
-				copyAfterApply_ = value;
-				RaisePropertyChanged("CopyAfterApply");
-			}
-		}
-		#endregion
-
-		#region ClearInputAutomatically
-		bool clearInputAutomatically_ = false;
-		public bool ClearInputAutomatically
-		{
-			get
-			{
-				return clearInputAutomatically_;
-			}
-			set
-			{
-				if (clearInputAutomatically_ != value) {
-					clearInputAutomatically_ = value;
-					RaisePropertyChanged("clearInputAutomatically");
-				}
-			}
-		}
-		#endregion
-
-		#region IncrementSongNumberWhenCopied
-		bool incrementSongNumberWhenCopied_ = false;
-		public bool IncrementSongNumberWhenCopied
-		{
-			get
-			{
-				return incrementSongNumberWhenCopied_;
-			}
-			set
-			{
-				incrementSongNumberWhenCopied_ = value;
-				RaisePropertyChanged("IncrementSongNumberWhenCopied");
-			}
-		}
-		#endregion
 		#endregion // 設定
 
 
@@ -376,10 +312,10 @@ namespace AnizanHelper
 							try {
 								Parse();
 								Serialize();
-								if (CopyAfterParse) {
+								if (Settings.CopyAfterParse) {
 									CopyToClipboard(true);
 								}
-								if (ClearInputAutomatically) {
+								if (Settings.ClearInputAutomatically) {
 									InputText = "";
 								}
 							}
@@ -405,7 +341,7 @@ namespace AnizanHelper
 						ExecuteHandler = param => {
 							try {
 								Serialize();
-								if (CopyAfterApply) {
+								if (Settings.CopyAfterApply) {
 									CopyToClipboard(true);
 								}
 							}

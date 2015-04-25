@@ -39,6 +39,19 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net40\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net40\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net40\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net40\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,16 +96,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Common\AppInfo.cs" />
     <Compile Include="Common\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Converters\ReverseBoolConverter.cs" />
-    <Compile Include="Data\ISongInfoSerializer.cs" />
-    <Compile Include="Data\Parsers\AnisonDBParser.cs" />
-    <Compile Include="Data\ReplaceInfo.cs" />
-    <Compile Include="Data\Serializers\AnizanListSerializer.cs" />
-    <Compile Include="Data\SongInfo.cs" />
-    <Compile Include="Data\ISongInfoParser.cs" />
+    <Compile Include="Models\ISongInfoSerializer.cs" />
+    <Compile Include="Models\Parsers\AnisonDBParser.cs" />
+    <Compile Include="Models\ReplaceInfo.cs" />
+    <Compile Include="Models\Serializers\AnizanListSerializer.cs" />
+    <Compile Include="Models\SettingComponents\BindableBase.cs" />
+    <Compile Include="Models\SettingComponents\DataContractSettingsSerializer.cs" />
+    <Compile Include="Models\SettingComponents\Dispatchable.cs" />
+    <Compile Include="Models\SettingComponents\IDispatcher.cs" />
+    <Compile Include="Models\SettingComponents\ISettings.cs" />
+    <Compile Include="Models\SettingComponents\ISettingsSerializer.cs" />
+    <Compile Include="Models\SettingComponents\NotificationObject.cs" />
+    <Compile Include="Models\SettingComponents\SettingChangeEventArgs.cs" />
+    <Compile Include="Models\SettingComponents\SettingsAutoExpoter.cs" />
+    <Compile Include="Models\SettingComponents\SettingsBase.cs" />
+    <Compile Include="Models\SettingComponents\SettingsImpl.cs" />
+    <Compile Include="Models\SettingComponents\WPFDispatcher.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\SongInfo.cs" />
+    <Compile Include="Models\ISongInfoParser.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

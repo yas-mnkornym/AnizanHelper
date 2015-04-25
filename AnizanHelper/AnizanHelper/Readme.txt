@@ -1,4 +1,4 @@
-Anizan Helper Version 1.0.7
+Anizan Helper Version 1.0.8
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -17,18 +17,25 @@ http://www.microsoft.com/ja-jp/download/details.aspx?id=17851
 
 ●最新版
 たぶんここにあります
-https://drive.google.com/folderview?id=0B3FaZr9t5dOeNG1xRTQ4TXpuejA&usp=sharing
+http://www.studio-taiha.net/anizan/anizanhelper/
 
 
 ●使ってるライブラリ
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.8
+ - アイカツ表記に対応
+	※「from STAR☆ANIS」も削除されます。
+ - 曲種別「KK」に対応
+	※『([企画]作品名)』という表記になります。
+ - タイトルバーにバージョン名を表記するよう変更
+
 Version 1.0.7
  - 解析後に入力欄をクリアする機能を追加
 
 Version 1.0.6
- - アイマスルールに対応
+ - アイマス表記に対応
  - スポット放映・最終話の表記に対応
 
 Version 1.0.5

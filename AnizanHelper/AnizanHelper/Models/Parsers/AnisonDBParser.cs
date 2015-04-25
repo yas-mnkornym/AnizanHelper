@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnizanHelper.Data.Parsers
+namespace AnizanHelper.Models.Parsers
 {
 	internal class AnisonDBParser : ISongInfoParser
 	{
