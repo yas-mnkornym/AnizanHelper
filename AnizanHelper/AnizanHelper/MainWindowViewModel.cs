@@ -64,7 +64,10 @@ namespace AnizanHelper
 					new ReplaceInfo("アイドルマスター シンデレラガールズ", "THE IDOLM@STER CINDERELLA GIRLS"),
 					new ReplaceInfo("アイドルマスター ミリオンライブ!", "THE IDOLM@STER MILLION LIVE!"),
 					new ReplaceInfo("アイドルマスター シャイニーフェスタ", "THE IDOLM@STER SHINY FESTA"),
-					new ReplaceInfo("THE iDOLM@STER", "THE IDOLM@STER")
+					new ReplaceInfo("THE iDOLM@STER", "THE IDOLM@STER"),
+
+					// アイカツ対策
+					new ReplaceInfo("アイカツ!", "アイカツ!-アイドルカツドウ!-")
 				});
 		}
 		#endregion
@@ -338,6 +341,21 @@ namespace AnizanHelper
 			{
 				songType_ = value;
 				RaisePropertyChanged("SongType");
+			}
+		}
+		#endregion
+
+		#region VersionName
+		string versionName_ = null;
+		public string VersionName
+		{
+			get
+			{
+				if (versionName_ == null) {
+					var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+					versionName_ = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+				}
+				return versionName_;
 			}
 		}
 		#endregion
