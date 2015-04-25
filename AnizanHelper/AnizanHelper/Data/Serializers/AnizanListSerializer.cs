@@ -19,7 +19,12 @@ namespace AnizanHelper.Data.Serializers
 				format = ".｢{0}｣/{1}(一般曲)";
 			}
 			else if (!string.IsNullOrEmpty(info.Genre)) {
-				format = ".｢{0}｣/{1}([{2}]{3}　{4})";
+				if (string.IsNullOrWhiteSpace(info.SongType)) {
+					format = ".｢{0}｣/{1}([{2}]{3})";
+				}
+				else {
+					format = ".｢{0}｣/{1}([{2}]{3}　{4})";
+				}
 			}
 			return string.Format(
 				format,

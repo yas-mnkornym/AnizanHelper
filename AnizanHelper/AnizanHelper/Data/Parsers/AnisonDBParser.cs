@@ -115,6 +115,15 @@ namespace AnizanHelper.Data.Parsers
 				}
 			}
 
+			if (songType != null) {
+				switch (songType) {
+					case "KK":
+						info.Genre = "企画";
+						info.SongType = null;
+						break;
+				}
+			}
+
 
 			return info;
 		}
