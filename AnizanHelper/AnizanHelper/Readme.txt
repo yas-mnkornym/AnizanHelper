@@ -1,4 +1,4 @@
-﻿Anizan Helper Version 1.0.5
+Anizan Helper Version 1.0.6
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -24,6 +24,10 @@ https://drive.google.com/folderview?id=0B3FaZr9t5dOeNG1xRTQ4TXpuejA&usp=sharing
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.6
+ - アイマスルールに対応
+ - スポット放映・最終話の表記に対応
+
 Version 1.0.5
  - WAが一般曲扱いされる問題を修正
 
