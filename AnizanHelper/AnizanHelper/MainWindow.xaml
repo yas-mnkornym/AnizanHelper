@@ -32,6 +32,9 @@
 			<CheckBox Content="適用時に番号付きコピー"
 					  IsChecked="{Binding Path=CopyAfterApply, Mode=TwoWay}" 
 					  Margin="10,0,0,0"/>
+			<CheckBox Content="解析後入力欄をクリア"
+					  IsChecked="{Binding Path=ClearInputAutomatically, Mode=TwoWay}"
+					  Margin="10, 0, 0, 0" />
 		</StackPanel>
 		<!-- 入力部 -->
 		<DockPanel Grid.Row="1" Grid.Column="0"

@@ -162,6 +162,24 @@ namespace AnizanHelper
 		}
 		#endregion
 
+		#region ClearInputAutomatically
+		bool clearInputAutomatically_ = false;
+		public bool ClearInputAutomatically
+		{
+			get
+			{
+				return clearInputAutomatically_;
+			}
+			set
+			{
+				if (clearInputAutomatically_ != value) {
+					clearInputAutomatically_ = value;
+					RaisePropertyChanged("clearInputAutomatically");
+				}
+			}
+		}
+		#endregion
+
 		#region IncrementSongNumberWhenCopied
 		bool incrementSongNumberWhenCopied_ = false;
 		public bool IncrementSongNumberWhenCopied
@@ -342,6 +360,9 @@ namespace AnizanHelper
 								Serialize();
 								if (CopyAfterParse) {
 									CopyToClipboard(true);
+								}
+								if (ClearInputAutomatically) {
+									InputText = "";
 								}
 							}
 							catch (Exception ex) {
