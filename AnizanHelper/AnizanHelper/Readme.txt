@@ -1,4 +1,4 @@
-Anizan Helper Version 1.0.6
+Anizan Helper Version 1.0.7
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -24,6 +24,9 @@ https://drive.google.com/folderview?id=0B3FaZr9t5dOeNG1xRTQ4TXpuejA&usp=sharing
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.0.7
+ - 解析後に入力欄をクリアする機能を追加
+
 Version 1.0.6
  - アイマスルールに対応
  - スポット放映・最終話の表記に対応
