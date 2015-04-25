@@ -135,7 +135,7 @@
 					 AcceptsTab="True"
 					 AcceptsReturn="True"
 					 TextWrapping="Wrap"
-					 Text="{Binding Path=ResultText, Mode=TwoWay}"/>
+					 Text="{Binding Path=ResultText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		</DockPanel>
 
 		<Grid Grid.Row="4" Margin="0,5,0,0">

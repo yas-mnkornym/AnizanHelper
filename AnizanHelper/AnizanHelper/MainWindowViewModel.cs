@@ -157,6 +157,17 @@ namespace AnizanHelper
 					case PostResponse.Cookie:
 						e.Retry = true;
 						break;
+
+					case  PostResponse.Error:
+					case PostResponse.Samba:
+					case PostResponse.Timeout:
+						MessageBox.Show(e.Text, "書き込み失敗", MessageBoxButton.OK, MessageBoxImage.Warning);
+						e.Retry = false;
+						break;
+
+					default:
+						StatusText = e.Response.ToString() + "  " + e.Text;
+						break;
 				}
 			};
 			post.Error += (s, e) => {
