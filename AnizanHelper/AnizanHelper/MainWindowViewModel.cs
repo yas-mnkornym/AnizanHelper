@@ -56,6 +56,9 @@ namespace AnizanHelper
 					new ReplaceInfo("−", "-"),
 					// 必ず最後
 					new ReplaceInfo("&", " & "),
+					new ReplaceInfo("スポット放映", "[スポット放映]"),
+					new ReplaceInfo("最終話", "[最終話]"),
+					new ReplaceInfo("最終回に放映", "[最終話]")
 				});
 		}
 		#endregion
