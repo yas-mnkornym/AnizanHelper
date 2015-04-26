@@ -124,8 +124,17 @@ namespace AnizanHelper.ViewModels
 			if (string.IsNullOrEmpty("str")) { str = " "; }
 			System.Windows.Forms.Clipboard.SetText(str);
 
+			// 番号インクリメント
 			if (Settings.IncrementSongNumberWhenCopied) {
 				SongNumber++;
+			}
+
+			// 入力欄クリア
+			if (Settings.ClearInputAutomatically) {
+				Dispatch(() => {
+					SongParserVm.ClearInput();
+					SearchVm.ClearInput();
+				});
 			}
 		}
 
@@ -182,6 +191,14 @@ namespace AnizanHelper.ViewModels
 
 					if (Settings.IncrementSongNumberWhenCopied) {
 						SongNumber++;
+					}
+
+					// 入力欄クリア
+					if (Settings.ClearInputAutomatically) {
+						Dispatch(() => {
+							SongParserVm.ClearInput();
+							SearchVm.ClearInput();
+						});
 					}
 				}
 				catch (Exception ex) {
@@ -360,12 +377,6 @@ namespace AnizanHelper.ViewModels
 								// 自動コピー
 								if (Settings.CopyAfterParse) {
 									CopyToClipboard(true);
-								}
-
-								// 入力欄クリア
-								if (Settings.ClearInputAutomatically) {
-									SongParserVm.ClearInput();
-									SearchVm.ClearInput();
 								}
 							}
 							catch (Exception ex) {

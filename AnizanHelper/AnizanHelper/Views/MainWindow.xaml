@@ -4,7 +4,8 @@
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:conv="clr-namespace:AnizanHelper.Converters"
 		xmlns:views="clr-namespace:AnizanHelper.Views"
-        Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}" Height="600" Width="600"
+        Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
+		Height="600" Width="650"
 		Topmost="{Binding Path=AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
 	<Window.Resources>
@@ -32,13 +33,13 @@
 					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" />
 			<CheckBox Content="解析時に番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
-					  Margin="10,0,0,0"/>
+					  Margin="5,0,0,0"/>
 			<CheckBox Content="適用時に番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
-					  Margin="10,0,0,0"/>
-			<CheckBox Content="解析後入力欄をクリア"
+					  Margin="5,0,0,0"/>
+			<CheckBox Content="コピー・書込後入力欄をクリア"
 					  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
-					  Margin="10, 0, 0, 0" />
+					  Margin="5, 0, 0, 0" />
 		</StackPanel>
 		
 		<!-- 検索部 -->
