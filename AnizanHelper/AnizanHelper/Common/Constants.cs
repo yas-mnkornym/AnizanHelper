@@ -10,12 +10,12 @@ namespace AnizanHelper
 		/// <summary>
 		/// 設定ファイル名
 		/// </summary>
-		public static readonly string SettingsFileName = "Hanbura.xml";
+		public static readonly string SettingsFileName = "AnizanHelper.xml";
 
 		/// <summary>
 		/// 設定一時ファイル名
 		/// </summary>
-		public static readonly string SettingsTempFileName = "Hanbura.xml.tmp";
+		public static readonly string SettingsTempFileName = "AnzanHelper.xml.tmp";
 
 		/// <summary>
 		/// 初期設定鯖名
