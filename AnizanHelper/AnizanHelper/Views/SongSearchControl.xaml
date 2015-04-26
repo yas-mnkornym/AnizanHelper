@@ -16,7 +16,8 @@
 		</Grid.ColumnDefinitions>
 		
 		<TextBox Grid.Row="0" Grid.Column="0"
-				 Text="{Binding Path=SearchWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+				 Text="{Binding Path=SearchWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				 ToolTip="エンターキーでも検索できます">
 			<TextBox.InputBindings>
 				<KeyBinding Key="Enter" Command="{Binding Path=SearchCommand}" />
 			</TextBox.InputBindings>
@@ -35,6 +36,7 @@
 				  SelectionMode="Single"
 				  HorizontalScrollBarVisibility="Auto"
 				  VerticalScrollBarVisibility="Auto"
+				  ToolTip="曲情報ダブルクリックで適用します"
 				  x:Name="dataGrid_result">
 			<DataGrid.InputBindings>
 				<MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=ApplySongCommand}" CommandParameter="{Binding Path=SelectedItem, ElementName=dataGrid_result}" />

@@ -26,9 +26,9 @@ namespace AnizanHelper.Models.DbSearch
 						Singers = tds[1].Descendants("a").Any() ?
 							tds[1].Descendants("a").Select(x => x.InnerText).ToArray() : 
 							new string[] { tds[1].InnerText },
-						Genre = tds[2].InnerText,
+						Genre = tds[2].InnerText.Replace(" ", ""),
 						Series = tds[3].InnerText,
-						SongType = tds[4].InnerText
+						SongType = tds[4].InnerText.Replace(" ", "")
 					};
 				});
 

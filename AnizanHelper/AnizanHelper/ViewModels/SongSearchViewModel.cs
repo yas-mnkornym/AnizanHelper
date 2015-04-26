@@ -21,9 +21,7 @@ namespace AnizanHelper.ViewModels
 
 		void Search()
 		{
-			var words = SearchWord
-				.Replace(" ", "+")
-				.Replace("\t", "+");
+			var words = SearchWord;
 			Results= new ObservableCollection<GeneralSongInfo>(searcher_.Search(words));
 		}
 

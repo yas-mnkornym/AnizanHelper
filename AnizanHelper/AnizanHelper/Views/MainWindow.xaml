@@ -27,20 +27,21 @@
 		</Grid.RowDefinitions>
 		
 		<!-- 設定部 -->
-		<StackPanel Grid.Row="0" Grid.Column="0"
+		<WrapPanel Grid.Row="0" Grid.Column="0"
 					Orientation="Horizontal">
 			<CheckBox Content="常に手前に表示"
-					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" />
+					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" 
+					  Margin="2,0,2,0"/>
 			<CheckBox Content="解析時に番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
-					  Margin="5,0,0,0"/>
+					  Margin="2,0,2,0"/>
 			<CheckBox Content="適用時に番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
-					  Margin="5,0,0,0"/>
+					  Margin="2,0,2,0"/>
 			<CheckBox Content="コピー・書込後入力欄をクリア"
 					  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
-					  Margin="5, 0, 0, 0" />
-		</StackPanel>
+					  Margin="2,0,2,0" />
+		</WrapPanel>
 		
 		<!-- 検索部 -->
 		<GroupBox Grid.Row="1" Grid.Column="0"

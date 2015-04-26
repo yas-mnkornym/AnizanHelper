@@ -33,7 +33,8 @@ namespace AnizanHelper.Models.DbSearch
 			
 			var queryUrl = string.Format("{0}?q={1}&m={2}",
 				queryUrlBase_,
-				HttpUtility.UrlEncode(word),
+				string.Join("+", word.Split(new char[]{' ', '\t'}, StringSplitOptions.RemoveEmptyEntries)
+					.Select(x => HttpUtility.UrlEncode(x))),
 				HttpUtility.UrlEncode(type));
 			using (var client = new HttpClient()) {
 				if (!string.IsNullOrWhiteSpace(UserAgent)) {
