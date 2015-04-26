@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.SettingComponents;
+using AnizanHelper.ViewModels;
+using AnizanHelper.Views;
 
 namespace AnizanHelper
 {

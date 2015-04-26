@@ -11,23 +11,32 @@ namespace AnizanHelper.Models.Serializers
 	/// </summary>
 	internal class AnizanListSerializer : ISongInfoSerializer
 	{
-		public string Serialize(SongInfo info)
+		public string Serialize(AnizanSongInfo info)
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
-			string format = ".｢{0}｣/{1}({3}　{4})";
-			if (info.IsNotAnison) {
-				format = ".｢{0}｣/{1}(一般曲)";
-			}
-			else if (!string.IsNullOrEmpty(info.Genre)) {
-				if (string.IsNullOrWhiteSpace(info.SongType)) {
-					format = ".｢{0}｣/{1}([{2}]{3})";
+
+			// フォーマット構築
+			StringBuilder sb = new StringBuilder();
+			sb.Append(".｢{0}｣/{1}(");
+
+			// 使用作品名追加
+			if (!string.IsNullOrWhiteSpace(info.Series)) {
+				// ジャンル追加
+				if (!string.IsNullOrWhiteSpace(info.Genre)) {
+					sb.Append("[{2}]");
 				}
-				else {
-					format = ".｢{0}｣/{1}([{2}]{3}　{4})";
-				}
+				sb.Append("{3}");
 			}
+
+			// 曲種追加
+			if (!string.IsNullOrWhiteSpace(info.SongType)) {
+				sb.Append("　{4}");
+			}
+
+			sb.Append(")");
+
 			return string.Format(
-				format,
+				sb.ToString(),
 				info.Title,
 				info.Singer,
 				info.Genre,

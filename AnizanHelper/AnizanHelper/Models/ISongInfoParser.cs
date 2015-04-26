@@ -13,6 +13,6 @@ namespace AnizanHelper.Models
 		/// </summary>
 		/// <param name="inputText">入力文字列</param>
 		/// <returns>曲情報</returns>
-		SongInfo Parse(string inputText);
+		GeneralSongInfo Parse(string inputText);
 	}
 }

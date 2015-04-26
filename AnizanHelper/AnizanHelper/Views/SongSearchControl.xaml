@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="AnizanHelper.Views.SongSearchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		
+		<TextBox Grid.Row="0" Grid.Column="0"
+				 Text="{Binding Path=SearchWord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+			<TextBox.InputBindings>
+				<KeyBinding Key="Enter" Command="{Binding Path=SearchCommand}" />
+			</TextBox.InputBindings>
+		</TextBox>
+		<Button Grid.Row="0" Grid.Column="1"
+				Content="検索"
+				MinWidth="75"
+				Margin="5,0,0,0"
+				Command="{Binding SearchCommand}" />
+		
+		<DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+				  ItemsSource="{Binding Path=Results}"
+				  IsReadOnly="True"
+				  AutoGenerateColumns="False"
+				  HeadersVisibility="Column"
+				  SelectionMode="Single"
+				  HorizontalScrollBarVisibility="Auto"
+				  VerticalScrollBarVisibility="Auto"
+				  x:Name="dataGrid_result">
+			<DataGrid.InputBindings>
+				<MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=ApplySongCommand}" CommandParameter="{Binding Path=SelectedItem, ElementName=dataGrid_result}" />
+			</DataGrid.InputBindings>
+			
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="曲名" Binding="{Binding Path=Title}" />
+				<DataGridTemplateColumn Header="歌手名">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ItemsControl ItemsSource="{Binding Path=Singers}">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding}" Margin="0,0,5,0" />
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Header="ジャンル" Binding="{Binding Path=Genre}" />
+				<DataGridTextColumn Header="使用作品" Binding="{Binding Path=Series}" Width="*" />
+				<DataGridTextColumn Header="種別" Binding="{Binding Path=SongType}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

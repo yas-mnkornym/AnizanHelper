@@ -14,6 +14,6 @@ namespace AnizanHelper.Models
 		/// </summary>
 		/// <param name="info">曲情報</param>
 		/// <returns>シリアライズされた曲情報</returns>
-		string Serialize(SongInfo info);
+		string Serialize(AnizanSongInfo info);
 	}
 }
