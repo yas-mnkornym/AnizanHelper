@@ -22,6 +22,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 
 ●使ってるライブラリ
 ・Extended WPF Toolkit
+・Twintail Library
 
 ●更新履歴
 Version 1.1.0
