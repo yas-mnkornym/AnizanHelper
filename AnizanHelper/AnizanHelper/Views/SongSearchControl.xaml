@@ -13,6 +13,7 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
 		</Grid.ColumnDefinitions>
 		
 		<TextBox Grid.Row="0" Grid.Column="0"
@@ -28,7 +29,13 @@
 				Margin="5,0,0,0"
 				Command="{Binding SearchCommand}" />
 		
-		<DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+		<Button Grid.Row="0" Grid.Column="2"
+				Content="ブラウザで検索"
+				MinWidth="75"
+				Margin="5,0,0,0"
+				Command="{Binding SearchOnBrowserCommand}" />
+		
+		<DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
 				  ItemsSource="{Binding Path=Results}"
 				  IsReadOnly="True"
 				  AutoGenerateColumns="False"

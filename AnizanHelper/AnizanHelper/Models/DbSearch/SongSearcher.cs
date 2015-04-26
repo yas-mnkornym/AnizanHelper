@@ -7,7 +7,7 @@ namespace AnizanHelper.Models.DbSearch
 {
 	public class SongSearcher : DbSeacherBase<GeneralSongInfo>
 	{
-		static readonly string SearchType = "song";
+		public static readonly string SearchType = "song";
 
 		override public IEnumerable<GeneralSongInfo> Search(string searchWord)
 		{

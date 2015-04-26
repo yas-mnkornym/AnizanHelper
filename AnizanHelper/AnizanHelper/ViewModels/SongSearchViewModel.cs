@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AnizanHelper.Models;
@@ -43,6 +44,7 @@ namespace AnizanHelper.ViewModels
 			{
 				if (SetValue(ref searchWord_, value, GetMemberName(() => SearchWord))) {
 					SearchCommand.RaiseCanExecuteChanged();
+					SearchOnBrowserCommand.RaiseCanExecuteChanged();
 				}
 			}
 		}
@@ -78,6 +80,30 @@ namespace AnizanHelper.ViewModels
 						}
 						catch (Exception ex) {
 							MessageBox.Show(string.Format("検索に失敗しました。\n\n【例外情報】\n{0}", ex), "検索失敗", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Stop);
+						}
+					},
+					CanExecuteHandler = param => {
+						return !string.IsNullOrWhiteSpace(SearchWord);
+					}
+				});
+			}
+		}
+		#endregion
+
+		#region SearchOnBrowserCommand
+		DelegateCommand searchOnBrowserCommand_ = null;
+		public DelegateCommand SearchOnBrowserCommand
+		{
+			get
+			{
+				return searchOnBrowserCommand_ ?? (searchOnBrowserCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						try {
+							var url = searcher_.CreateQueryUrl(SearchWord, SongSearcher.SearchType);
+							Process.Start(url);
+						}
+						catch (Exception ex) {
+							MessageBox.Show(string.Format("検索ページのオープンに失敗しました。\n\n【例外情報】\n{0}", ex), "検索失敗", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Stop);
 						}
 					},
 					CanExecuteHandler = param => {

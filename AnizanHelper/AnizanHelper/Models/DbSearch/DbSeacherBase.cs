@@ -26,16 +26,21 @@ namespace AnizanHelper.Models.DbSearch
 
 		abstract public IEnumerable<TResult> Search(string searchWord);
 
-		protected HtmlDocument QueryDocument(string word, string type)
+		public string CreateQueryUrl(string word, string type)
 		{
 			if (word == null) { throw new ArgumentNullException("word"); }
 			if (type == null) { throw new ArgumentNullException("type"); }
-			
-			var queryUrl = string.Format("{0}?q={1}&m={2}",
+
+			return string.Format("{0}?q={1}&m={2}",
 				queryUrlBase_,
-				string.Join("+", word.Split(new char[]{' ', '\t'}, StringSplitOptions.RemoveEmptyEntries)
+				string.Join("+", word.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
 					.Select(x => HttpUtility.UrlEncode(x))),
 				HttpUtility.UrlEncode(type));
+		}
+
+		protected HtmlDocument QueryDocument(string word, string type)
+		{
+			var queryUrl = CreateQueryUrl(word, type);
 			using (var client = new HttpClient()) {
 				if (!string.IsNullOrWhiteSpace(UserAgent)) {
 					client.DefaultRequestHeaders.Add("User-Agent", UserAgent);

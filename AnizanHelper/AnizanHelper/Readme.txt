@@ -1,4 +1,4 @@
-Anizan Helper Version 1.0.9
+Anizan Helper Version 1.1.0
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -24,6 +24,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Extended WPF Toolkit
 
 ●更新履歴
+Version 1.1.0
+ - アニソンDBからの直接検索機能を追加
+ - 入力欄自動クリアのタイミングを、コピーor書き込み直後に変更
+
 Version 1.0.9
  - 設定を保存するように変更。
  - リストスレへの直接投稿機能を追加
