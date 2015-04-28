@@ -42,6 +42,11 @@ namespace AnizanHelper
 				}
 			};
 			MainWindow.Show();
+
+			// 辞書の更新を確認
+			Task.Factory.StartNew(() => {
+				UpdateDictionary();
+			});
 		}
 
 		protected override void OnExit(ExitEventArgs e)
@@ -72,6 +77,65 @@ namespace AnizanHelper
 					string.Format("置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex)
 					, "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
+		}
+
+		public void UpdateDictionary()
+		{
+			MessageService.Current.ShowMessage("新しい辞書を確認しています...");
+			try {
+				var updates = CheckForDictionaryUpdate();
+				if (!updates.Any()) {
+					MessageService.Current.ShowMessage("新しい辞書はありませんでした。");
+					return;
+				}
+
+				StringBuilder sb = new StringBuilder();
+				sb.AppendLine("新しい辞書があります。更新しますか？");
+				sb.AppendLine();
+				sb.AppendLine("*** 更新情報 ***");
+				foreach (var info in updates.OrderByDescending(x => x.Version)) {
+					sb.AppendFormat("【Version {0}】- {1}", info.Version, info.Date.ToString("yyyy年MM月dd日 HH時mm分"));
+					sb.AppendLine();
+					sb.AppendLine(info.Description);
+				}
+				var ret = MessageBox.Show(sb.ToString(), "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (ret != MessageBoxResult.Yes) {
+					MessageService.Current.ShowMessage("辞書の更新がキャンセルされました。");
+					return;
+				}
+
+				MessageService.Current.ShowMessage("最新の辞書を取得しています...");
+				var updater = new ReplaceDictionaryUpdater();
+				var newDic = updater.DownloadDictionary();
+
+				MessageService.Current.ShowMessage("辞書を更新しています...");
+				File.WriteAllText(AppInfo.Current.DictionaryFilePath, newDic, Encoding.UTF8);
+				LoadReplaceDictionary();
+
+				MessageService.Current.ShowMessage("辞書の更新が完了しました！");
+			}
+			catch (Exception ex) {
+				MessageService.Current.ShowMessage("更新に失敗しました。(" + ex.Message + ")");
+			}
+		}
+
+		public IEnumerable<ReplaceDictionaryUpdateInfo> CheckForDictionaryUpdate()
+		{
+			var currentVersion = 0;
+			var filePath = AppInfo.Current.DictionaryFilePath;
+			if (File.Exists(filePath)) {
+				var reader = new ReplaceDictionaryFileReader();
+				try{
+					currentVersion = reader.GetVersionNumber(filePath);
+				}
+				catch{}
+			}
+
+			var updater = new ReplaceDictionaryUpdater();
+			var latestVersion = updater.GetLatestVersionNumber();
+			if (latestVersion <= currentVersion) { return Enumerable.Empty<ReplaceDictionaryUpdateInfo>(); }
+
+			return updater.GetUpdateInfo().Where(x => x.Version > currentVersion);
 		}
 
 		/// <summary>

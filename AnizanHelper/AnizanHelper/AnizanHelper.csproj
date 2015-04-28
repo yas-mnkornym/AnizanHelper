@@ -96,6 +96,7 @@
     </ApplicationDefinition>
     <Compile Include="ComiketSystem\CsvMaker.cs" />
     <Compile Include="ComiketSystem\CsvSplitter.cs" />
+    <Compile Include="Common\MessageService.cs" />
     <Compile Include="Models\AnizanSongInfoConverter.cs" />
     <Compile Include="Models\GeneralSongInfo.cs" />
     <Compile Include="Models\ReplaceDictionaryFileReader.cs" />
@@ -200,6 +201,13 @@
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Dictionaries\update.php" />
+    <None Include="Resources\Dictionaries\updates.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Dictionaries\version.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Twintail\Twintail Project\ch2Solution\twin\Twintail Library.csproj">

@@ -1,4 +1,4 @@
-Anizan Helper Version 1.1.0
+Anizan Helper Version 1.1.1
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -23,8 +23,14 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●使ってるライブラリ
 ・Extended WPF Toolkit
 ・Twintail Library
+・Http Agility Pack
 
 ●更新履歴
+Version 1.1.1
+ - 置換辞書情報を外部ファイルに移行
+ - 置換辞書情報のネットワークアップデート機能を追加
+ 　※ 起動時に自動で更新を確認します。
+
 Version 1.1.0
  - アニソンDBからの直接検索機能を追加
  - 入力欄自動クリアのタイミングを、コピーor書き込み直後に変更

@@ -9,15 +9,17 @@ using AnizanHelper.Models;
 using AnizanHelper.Models.SettingComponents;
 using Twin;
 using Twin.Bbs;
+using System.Reactive.Disposables;
 
 
 namespace AnizanHelper.ViewModels
 {
-	internal class MainWindowViewModel : BindableBase
+	internal class MainWindowViewModel : BindableBase, IDisposable
 	{
 		#region private fields
 		ISongInfoSerializer serializer_ = null;
 		AnizanSongInfoConverter converter_ = null;
+		CompositeDisposable disposables_ = new CompositeDisposable();
 		#endregion
 
 		#region コンストラクタ
@@ -35,62 +37,18 @@ namespace AnizanHelper.ViewModels
 			if (converter == null) { throw new ArgumentNullException("converter"); }
 
 			Settings = settings;
-			settings.PropertyChanged += settings_PropertyChanged;
-
+			converter_ = converter;
 			serializer_ = new Models.Serializers.AnizanListSerializer();
-
+		
 			SearchVm = new SongSearchViewModel(dispatcher);
 			SongParserVm = new ViewModels.SongParserVm(dispatcher);
 
 			SearchVm.SongParsed += SongParsed;
 			songParserVm.SongParsed += SongParsed;
 
-			
-			converter_ = new AnizanSongInfoConverter(
-				new ReplaceInfo[]{
-					new ReplaceInfo("♥", "▼"),
-					new ReplaceInfo("♡", "▽"),
-					new ReplaceInfo("＆", "&"),
-					new ReplaceInfo("？", "?"),
-					new ReplaceInfo("！", "!"),
-					new ReplaceInfo("／", "/"),
-					new ReplaceInfo("、", "､"),
-					new ReplaceInfo("。", "｡"),
-					new ReplaceInfo("・", "･"),
-					new ReplaceInfo("「", "｢"),
-					new ReplaceInfo("」", "｣"),
-					new ReplaceInfo("￥", "\\"),
-					new ReplaceInfo("＿", "_"),
-					new ReplaceInfo("’", "'"),
-					new ReplaceInfo("”", "\""),
-					new ReplaceInfo("＃", "#"),
-					new ReplaceInfo("＄", "$"),
-					new ReplaceInfo("％", "%"),
-					new ReplaceInfo("（", "("),
-					new ReplaceInfo("）", ")"),
-					new ReplaceInfo("＝", "="),
-					new ReplaceInfo("―", "-"),
-					new ReplaceInfo("＾", "^"),
-					new ReplaceInfo("　", " "),
-					new ReplaceInfo("〜", "~"),
-					new ReplaceInfo("−", "-"),
-					// 必ず最後
-					new ReplaceInfo("&", " & "),
-					new ReplaceInfo("スポット放映", "[スポット放映]"),
-					new ReplaceInfo("最終話", "[最終話]"),
-					new ReplaceInfo("最終回に放映", "[最終話]"),
+			settings.PropertyChanged += settings_PropertyChanged;
 
-					// アイマス対策
-					new ReplaceInfo("アイドルマスター シンデレラガールズ", "THE IDOLM@STER CINDERELLA GIRLS"),
-					new ReplaceInfo("アイドルマスター ミリオンライブ!", "THE IDOLM@STER MILLION LIVE!"),
-					new ReplaceInfo("アイドルマスター シャイニーフェスタ", "THE IDOLM@STER SHINY FESTA"),
-					new ReplaceInfo("THE iDOLM@STER", "THE IDOLM@STER"),
-
-					// アイカツ対策
-					new ReplaceInfo("アイカツ!", "アイカツ!-アイドルカツドウ!-"),
-					new ReplaceInfo("from STAR☆ANIS", "")
-				});
-
+			disposables_.Add(MessageService.Current.MessageObservable.Subscribe(message => StatusText = message));
 		}
 
 		// 曲情報がパースされたよ！
@@ -160,8 +118,8 @@ namespace AnizanHelper.ViewModels
 				Console.WriteLine("Response: ", e.Response);
 				switch (e.Response) {
 					case PostResponse.Success:
-						StatusText = string.Format("書き込み成功! ( {0} )",
-							str.Length > 20 ? str.Substring(0, 20)+"..." : str);
+						MessageService.Current.ShowMessage(string.Format("書き込み成功! ( {0} )",
+							str.Length > 40 ? str.Substring(0, 40) + "..." : str));
 						break;
 
 					case PostResponse.Cookie:
@@ -176,12 +134,12 @@ namespace AnizanHelper.ViewModels
 						break;
 
 					default:
-						StatusText = e.Response.ToString() + "  " + e.Text;
+						MessageService.Current.ShowMessage(e.Response.ToString() + "  " + e.Text);
 						break;
 				}
 			};
 			post.Error += (s, e) => {
-				StatusText = "書き込み失敗orz";
+				MessageService.Current.ShowMessage("書き込み失敗orz");
 				MessageBox.Show(
 					string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", e.Exception),
 					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
@@ -190,7 +148,7 @@ namespace AnizanHelper.ViewModels
 			Task.Factory.StartNew(() => {
 				try {
 					CanWrite = false;
-					StatusText = "書き込んでいます...";
+					MessageService.Current.ShowMessage("書き込んでいます...");
 					post.Post(thread, res);
 
 					if (Settings.IncrementSongNumberWhenCopied) {
@@ -489,6 +447,25 @@ namespace AnizanHelper.ViewModels
 		}
 		#endregion 
 
+		#region CheckForDictionaryUpdateCommand
+		DelegateCommand checkForDictionaryUpdateCommand_ = null;
+		public DelegateCommand CheckForDictionaryUpdateCommand
+		{
+			get
+			{
+				return checkForDictionaryUpdateCommand_ ?? (checkForDictionaryUpdateCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						var app = App.Current as App;
+						if (app != null) {
+							Task.Factory.StartNew(() => {
+								app.UpdateDictionary();
+							});
+						}
+					}
+				});
+			}
+		}
+		#endregion 
 		#endregion // Commands
 
 		#region メッセージ
@@ -512,6 +489,24 @@ namespace AnizanHelper.ViewModels
 		{
 			ErrMsg(string.Format("{0}\n\n***例外情報***\n{1}",
 				message, ex.ToString()));
+		}
+		#endregion
+
+		#region IDisposable メンバ
+		bool isDisposed_ = false;
+		virtual protected void Dispose(bool disposing)
+		{
+			if (isDisposed_) { return; }
+			if (disposing) {
+				disposables_.Dispose();
+			}
+			isDisposed_ = true;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 		#endregion
 	}

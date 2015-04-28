@@ -35,17 +35,17 @@ namespace AnizanHelper
 		/// <summary>
 		/// 置換辞書URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/update.php";
+		public static readonly string ReplaceDictionaryUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
 
 		/// <summary>
 		/// 置換辞書バージョン情報URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryVersionUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/update.php?t=v";
+		public static readonly string ReplaceDictionaryVersionUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=v";
 
 		/// <summary>
 		/// 更新情報URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryUpdateInfoUrl = "@http://www.studio-taiha.net/anizan/anizanhelper/update.php?t=u";
+		public static readonly string ReplaceDictionaryUpdateInfoUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=u";
 
 	}
 }

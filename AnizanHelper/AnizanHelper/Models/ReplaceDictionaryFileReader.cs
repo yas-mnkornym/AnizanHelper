@@ -32,7 +32,7 @@ namespace AnizanHelper.Models
 			while (cs.ToNextLine()) {
 				if (cs.TokenCount < 3) { continue; }
 				if (cs.GetString(0) == "replace") {
-					var info = new ReplaceInfo(cs.GetString(1).Trim(), cs.GetString(2).Trim());
+					var info = new ReplaceInfo(cs.GetString(1), cs.GetString(2));
 					if (cs.TokenCount > 3) {
 						info.Exact = cs.GetBoolOrDeraulf(3, false);
 					}

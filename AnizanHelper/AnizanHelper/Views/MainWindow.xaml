@@ -5,14 +5,14 @@
 		xmlns:conv="clr-namespace:AnizanHelper.Converters"
 		xmlns:views="clr-namespace:AnizanHelper.Views"
         Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
-		Height="600" Width="650"
+		Height="600" Width="700"
 		Topmost="{Binding Path=AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
 	<Window.Resources>
 		<conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
 	</Window.Resources>
 	
-    <Grid Margin="5">
+    <Grid Margin="5,5,5,0">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
@@ -31,16 +31,23 @@
 					Orientation="Horizontal">
 			<CheckBox Content="常に手前に表示"
 					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" 
+					  VerticalAlignment="Center"
 					  Margin="2,0,2,0"/>
-			<CheckBox Content="解析時に番号付きコピー"
+			<CheckBox Content="解析時番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
+					  VerticalAlignment="Center"
 					  Margin="2,0,2,0"/>
-			<CheckBox Content="適用時に番号付きコピー"
+			<CheckBox Content="適用時番号付きコピー"
 					  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
+					  VerticalAlignment="Center"
 					  Margin="2,0,2,0"/>
-			<CheckBox Content="コピー・書込後入力欄をクリア"
+			<CheckBox Content="コピー/書込後入力欄クリア"
 					  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+					  VerticalAlignment="Center"
 					  Margin="2,0,2,0" />
+			<Button Content="辞書の更新を確認"
+					Margin="2,0,2,0"
+					Command="{Binding Path=CheckForDictionaryUpdateCommand}" />
 		</WrapPanel>
 		
 		<!-- 検索部 -->
