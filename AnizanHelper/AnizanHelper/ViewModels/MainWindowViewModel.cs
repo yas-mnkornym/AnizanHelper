@@ -25,10 +25,14 @@ namespace AnizanHelper.ViewModels
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="dispatcher">ディスパッチャ</param>
-		public MainWindowViewModel(Settings settings, IDispatcher dispatcher)
+		public MainWindowViewModel(
+			Settings settings,
+			AnizanSongInfoConverter converter,
+			IDispatcher dispatcher)
 			: base(dispatcher)
 		{
 			if (settings == null) { throw new ArgumentNullException("settings"); }
+			if (converter == null) { throw new ArgumentNullException("converter"); }
 
 			Settings = settings;
 			settings.PropertyChanged += settings_PropertyChanged;

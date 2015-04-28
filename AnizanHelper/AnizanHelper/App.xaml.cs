@@ -5,12 +5,14 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.SettingComponents;
 using AnizanHelper.ViewModels;
 using AnizanHelper.Views;
+using ComiketSystem.Csv;
 
 namespace AnizanHelper
 {
@@ -22,6 +24,7 @@ namespace AnizanHelper
 	{
 		Settings settings_;
 		SettingsAutoExpoter settingsAutoExpoter_;
+		AnizanSongInfoConverter converter_;
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -30,9 +33,12 @@ namespace AnizanHelper
 			// 設定初期化
 			InitializeSettinsg();
 
+			// コンバータをロード
+			LoadReplaceDictionary();
+
 			// メインウィンドウ作成
 			MainWindow = new MainWindow() {
-				DataContext = new MainWindowViewModel(settings_, new WPFDispatcher(Dispatcher)) {
+				DataContext = new MainWindowViewModel(settings_, converter_, new WPFDispatcher(Dispatcher)) {
 				}
 			};
 			MainWindow.Show();
@@ -47,6 +53,25 @@ namespace AnizanHelper
 			}
 
 			base.OnExit(e);
+		}
+
+		void LoadReplaceDictionary()
+		{
+			if (converter_ == null) {
+				converter_ = new AnizanSongInfoConverter();
+			}
+
+			try {
+				if (File.Exists(AppInfo.Current.DictionaryFilePath)) {
+					var loader = new ReplaceDictionaryFileReader();
+					converter_.Replaces = loader.Load(AppInfo.Current.DictionaryFilePath).ToArray();
+				}
+			}
+			catch (Exception ex) {
+				MessageBox.Show(
+					string.Format("置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex)
+					, "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
 		}
 
 		/// <summary>

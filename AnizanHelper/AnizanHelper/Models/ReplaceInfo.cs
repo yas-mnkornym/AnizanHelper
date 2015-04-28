@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnizanHelper.Models
 {
-	internal class ReplaceInfo
+	public class ReplaceInfo
 	{
 		public ReplaceInfo(string original, string replaced, bool exact = false)
 		{

@@ -27,5 +27,25 @@ namespace AnizanHelper
 		/// </summary>
 		public static readonly string DefaultBoardPath = "operate";
 
+		/// <summary>
+		/// 置換辞書ファイル名
+		/// </summary>
+		public static readonly string DictionaryFileName = "dictionary.txt";
+
+		/// <summary>
+		/// 置換辞書URL
+		/// </summary>
+		public static readonly string ReplaceDictionaryUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/update.php";
+
+		/// <summary>
+		/// 置換辞書バージョン情報URL
+		/// </summary>
+		public static readonly string ReplaceDictionaryVersionUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/update.php?t=v";
+
+		/// <summary>
+		/// 更新情報URL
+		/// </summary>
+		public static readonly string ReplaceDictionaryUpdateInfoUrl = "@http://www.studio-taiha.net/anizan/anizanhelper/update.php?t=u";
+
 	}
 }

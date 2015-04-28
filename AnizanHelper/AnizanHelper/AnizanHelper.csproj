@@ -94,8 +94,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ComiketSystem\CsvMaker.cs" />
+    <Compile Include="ComiketSystem\CsvSplitter.cs" />
     <Compile Include="Models\AnizanSongInfoConverter.cs" />
     <Compile Include="Models\GeneralSongInfo.cs" />
+    <Compile Include="Models\ReplaceDictionaryFileReader.cs" />
+    <Compile Include="Models\ReplaceDictionaryUpdater.cs" />
     <Compile Include="ViewModels\SongParserVm.cs" />
     <Compile Include="ViewModels\SongParserVmBase.cs" />
     <Compile Include="ViewModels\SongSearchViewModel.cs" />
@@ -190,6 +194,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dictionary.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
