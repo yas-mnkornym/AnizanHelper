@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.2
+ - DBでの楽曲検索を非同期で行うよう修正
+
 Version 1.1.1
  - 置換辞書情報を外部ファイルに移行
  - 置換辞書情報のネットワークアップデート機能を追加

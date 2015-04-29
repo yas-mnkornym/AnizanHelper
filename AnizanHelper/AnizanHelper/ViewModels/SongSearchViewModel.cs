@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using AnizanHelper.Models;
 using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.SettingComponents;
@@ -23,7 +24,27 @@ namespace AnizanHelper.ViewModels
 		void Search()
 		{
 			var words = SearchWord;
-			Results= new ObservableCollection<GeneralSongInfo>(searcher_.Search(words));
+			IsSearching = true;
+			MessageService.Current.ShowMessage("楽曲情報を検索しています...");
+			Stopwatch sw = new Stopwatch();
+			Task.Factory
+				.StartNew(() => {
+					sw.Start();
+					return searcher_.Search(words);
+				})
+				.ContinueWith(task => {
+					try {
+						sw.Stop();
+						Results = new ObservableCollection<GeneralSongInfo>(task.Result);
+						MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", Results.Count, sw.Elapsed.TotalSeconds));
+					}
+					catch (Exception ex) {
+						MessageService.Current.ShowMessage(string.Format("楽曲情報の検索に失敗しました。 ({0})", ex.Message));
+					}
+					finally {
+						IsSearching = false;
+					}
+				}, TaskScheduler.Current);
 		}
 
 		public override void ClearInput()
@@ -64,6 +85,25 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 		#endregion
+
+		#region IsSearching
+		bool isSearching_ = false;
+		public bool IsSearching
+		{
+			get
+			{
+				return isSearching_;
+			}
+			set
+			{
+				if (SetValue(ref isSearching_, value, GetMemberName(() => IsSearching))) {
+					Dispatch(() => {
+						SearchCommand.RaiseCanExecuteChanged();
+					});
+				}
+			}
+		}
+		#endregion
 		#endregion // Bindigns
 
 		#region Commands
@@ -83,7 +123,7 @@ namespace AnizanHelper.ViewModels
 						}
 					},
 					CanExecuteHandler = param => {
-						return !string.IsNullOrWhiteSpace(SearchWord);
+						return (!string.IsNullOrWhiteSpace(SearchWord) && !IsSearching);
 					}
 				});
 			}
