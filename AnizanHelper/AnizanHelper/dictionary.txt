@@ -1,7 +1,7 @@
-header,1,
+header,4,
 rem, 表記規則
-replace,"?","▼"
-replace,"?","▽"
+replace,"♥","▼"
+replace,"♡","▽"
 replace,"＆","&"
 replace,"？","?"
 replace,"！","!"
@@ -24,8 +24,8 @@ replace,"＝","="
 replace,"―","-"
 replace,"＾","^"
 replace,"　"," "
-replace,"?","~"
-replace,"?","-"
+replace,"〜","~"
+replace,"−","-"
 
 rem, &は必ず最後
 replace,"&","&"
@@ -39,6 +39,8 @@ rem,アイマス対策
 replace,"アイドルマスター シンデレラガールズ","THE IDOLM@STER CINDERELLA GIRLS"
 replace,"アイドルマスター ミリオンライブ!","THE IDOLM@STER MILLION LIVE!"
 replace,"アイドルマスター シャイニーフェスタ","THE IDOLM@STER SHINY FESTA"
+replace,"アイドルマスター ワンフォーオール","THE IDOLM@STER ONE FOR ALL"
+replace,"アイドルマスター","THE IDOLM@STER"
 replace,"THE iDOLM@STER","THE IDOLM@STER"
 
 rem,アイカツ対策
