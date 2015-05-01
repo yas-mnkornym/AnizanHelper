@@ -27,6 +27,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 
 ●更新履歴
 Version 1.1.2
+ - 「常に手前に表示」オプションが働いていなかったのを修正
  - DBでの楽曲検索を非同期で行うよう修正
 
 Version 1.1.1

@@ -6,7 +6,7 @@
 		xmlns:views="clr-namespace:AnizanHelper.Views"
         Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
 		Height="600" Width="700"
-		Topmost="{Binding Path=AlwaysOnTop, Mode=OneWay}"
+		Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
 	<Window.Resources>
 		<conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />

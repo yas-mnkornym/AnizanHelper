@@ -23,6 +23,11 @@ namespace AnizanHelper
 		public static readonly string DefaultServerName = "anizanv.ddo.jp";
 
 		/// <summary>
+		/// アニソン三昧さーちURL
+		/// </summary>
+		public static readonly string ZanmaiSearchUrl = "http://anizanv.ddo.jp/archive/list/";
+
+		/// <summary>
 		/// 初期設定板パス
 		/// </summary>
 		public static readonly string DefaultBoardPath = "operate";

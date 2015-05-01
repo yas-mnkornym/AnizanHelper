@@ -108,5 +108,17 @@ namespace AnizanHelper.Models
 				SetMe(value, GetMemberName(() => ThreadKey));
 			}
 		}
+
+		public string ZanmaiSearchUrl
+		{
+			get
+			{
+				return GetMe(Constants.ZanmaiSearchUrl, GetMemberName(() => ZanmaiSearchUrl));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => ZanmaiSearchUrl));
+			}
+		}
 	}
 }
