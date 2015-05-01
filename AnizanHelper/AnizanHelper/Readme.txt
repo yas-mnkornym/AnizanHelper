@@ -26,6 +26,11 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.3
+ - TV size支援機能追加
+ - Live ver.支援機能追加
+ - 曲情報変更時自動適用機能追加
+
 Version 1.1.2
  - 「常に手前に表示」オプションが働いていなかったのを修正
  - DBでの楽曲検索を非同期で行うよう修正

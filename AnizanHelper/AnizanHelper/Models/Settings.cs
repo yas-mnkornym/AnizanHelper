@@ -120,5 +120,17 @@ namespace AnizanHelper.Models
 				SetMe(value, GetMemberName(() => ZanmaiSearchUrl));
 			}
 		}
+
+		public bool ApplySongInfoAutomatically
+		{
+			get
+			{
+				return GetMe(false, GetMemberName(() => ApplySongInfoAutomatically));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => ApplySongInfoAutomatically));
+			}
+		}
 	}
 }

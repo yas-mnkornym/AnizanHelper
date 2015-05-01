@@ -315,7 +315,25 @@ namespace AnizanHelper.ViewModels
 			}
 			set
 			{
-				SetValue(ref songInfo_, value, GetMemberName(() => SongInfo));
+				SetValue(ref songInfo_, value,
+					actBeforeChange: oldInfo => {
+						oldInfo.PropertyChanged -= SongInfo_PropertyChanged;
+					},
+					actAfterChange: newInfo => {
+						newInfo.PropertyChanged += SongInfo_PropertyChanged;
+						Dispatch(() => {
+							ToTvSizeCommand.RaiseCanExecuteChanged();
+							ToLiveVersionCommand.RaiseCanExecuteChanged();
+						});
+					},
+					propertyName: GetMemberName(() => SongInfo));
+			}
+		}
+
+		void SongInfo_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (Settings.ApplySongInfoAutomatically) {
+				Serialize();
 			}
 		}
 		#endregion
@@ -461,6 +479,45 @@ namespace AnizanHelper.ViewModels
 								app.UpdateDictionary();
 							});
 						}
+					}
+				});
+			}
+		}
+		#endregion 
+
+		#region ToTvSizeCommand
+		DelegateCommand toTvSizeCommand_ = null;
+		public DelegateCommand ToTvSizeCommand
+		{
+			get
+			{
+				return toTvSizeCommand_ ?? (toTvSizeCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						var oldStr = SongInfo.Title ?? "";
+						SongInfo.Title = oldStr.TrimEnd() + "(TV size)";
+					},
+					CanExecuteHandler = param => {
+						return (SongInfo != null);
+					}
+				});
+			}
+		}
+		#endregion 
+
+		#region ToLiveVersionCommand
+		DelegateCommand toLiveVersionCommand_ = null;
+		public DelegateCommand ToLiveVersionCommand
+		{
+			get
+			{
+				return toLiveVersionCommand_ ?? (toLiveVersionCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						var oldStr = SongInfo.Title ?? "";
+						SongInfo.Title = oldStr.TrimEnd() + "(Live ver.)";
+						SongInfo.SongType = "AR";
+					},
+					CanExecuteHandler = param => {
+						return (SongInfo != null);
 					}
 				});
 			}
