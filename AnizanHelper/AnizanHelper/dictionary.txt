@@ -1,4 +1,4 @@
-header,5,
+header,6,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -47,3 +47,9 @@ replace,"THE iDOLM@STER","THE IDOLM@STER"
 rem,アイカツ対策
 replace,"アイカツ!","アイカツ!-アイドルカツドウ!-"
 replace,"from STAR☆ANIS",""
+
+rem,faturing -> feat.
+replace,"featuring","feat."
+replace,"Featuring","feat."
+replace,"FEATURING","feat."
+

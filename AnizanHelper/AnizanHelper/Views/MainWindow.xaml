@@ -137,6 +137,7 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 				
 				<TextBlock Grid.Column="0" Text="鯖名:" VerticalAlignment="Center" />
@@ -146,6 +147,8 @@
 				<TextBox Grid.Column="1" Text="{Binding Path=Settings.ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox Grid.Column="3" Text="{Binding Path=Settings.BoardPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 				<TextBox Grid.Column="5" Text="{Binding Path=Settings.ThreadKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+				
+				<CheckBox Grid.Column="6" Content="sage" IsChecked="{Binding Path=Settings.WriteAsSage, Mode=TwoWay}" VerticalAlignment="Center" Margin="5,0,0,0" />
 			</Grid>
 			<Button Content="書き込み" Grid.Column="1" Margin="5,0,0,0"
 					Command="{Binding Path=WriteToThreadCommand}"/>

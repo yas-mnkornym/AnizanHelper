@@ -132,5 +132,17 @@ namespace AnizanHelper.Models
 				SetMe(value, GetMemberName(() => ApplySongInfoAutomatically));
 			}
 		}
+
+		public bool WriteAsSage
+		{
+			get
+			{
+				return GetMe(true, GetMemberName(() => WriteAsSage));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => WriteAsSage));
+			}
+		}
 	}
 }

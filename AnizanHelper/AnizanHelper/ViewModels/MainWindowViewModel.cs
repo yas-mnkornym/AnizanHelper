@@ -111,8 +111,11 @@ namespace AnizanHelper.ViewModels
 			var str = string.Format("{0:D4}{1}", SongNumber, ResultText);
 
 			var res = new PostRes {
-				Body = str
+				Body = str,
 			};
+			if (Settings.WriteAsSage) {
+				res.Email = "sage";
+			}
 			var post = new X2chPost();
 			post.Posted += (s, e) => {
 				Console.WriteLine("Response: ", e.Response);
