@@ -108,6 +108,7 @@
     <Compile Include="Views\AnizanSongInfoControl.xaml.cs">
       <DependentUpon>AnizanSongInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\BoolVisibilityConverter.cs" />
     <Compile Include="Views\SongParserControl.xaml.cs">
       <DependentUpon>SongParserControl.xaml</DependentUpon>
     </Compile>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AnizanHelper.Models;
 using AnizanHelper.Models.DbSearch;
@@ -31,11 +32,12 @@ namespace AnizanHelper.ViewModels
 			var words = SearchWord;
 			IsSearching = true;
 			MessageService.Current.ShowMessage("楽曲情報を検索しています...");
+			CancellationTokenSource = new System.Threading.CancellationTokenSource();
 			Stopwatch sw = new Stopwatch();
 			Task.Factory
 				.StartNew(() => {
 					sw.Start();
-					return searcher_.Search(words);
+					return searcher_.Search(words, CancellationTokenSource.Token);
 				})
 				.ContinueWith(task => {
 					try {
@@ -43,11 +45,18 @@ namespace AnizanHelper.ViewModels
 						Results = new ObservableCollection<SongSearchResult>(task.Result);
 						MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", Results.Count, sw.Elapsed.TotalSeconds));
 					}
+					catch (OperationCanceledException) {
+						MessageService.Current.ShowMessage("検索がキャンセルされました。");
+					}
 					catch (Exception ex) {
 						MessageService.Current.ShowMessage(string.Format("楽曲情報の検索に失敗しました。 ({0})", ex.Message));
 					}
 					finally {
 						IsSearching = false;
+						if (CancellationTokenSource != null) {
+							CancellationTokenSource.Dispose();
+							CancellationTokenSource = null;
+						}
 					}
 				}, TaskScheduler.Current);
 		}
@@ -124,6 +133,25 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 		#endregion
+
+		#region CancellationTokenSource
+		CancellationTokenSource cancellationTokenSource_ = null;
+		public CancellationTokenSource CancellationTokenSource
+		{
+			get
+			{
+				return cancellationTokenSource_;
+			}
+			set
+			{
+				if (SetValue(ref cancellationTokenSource_, value, GetMemberName(() => CancellationTokenSource))) {
+					Dispatch(() => {
+						CancelSearchingCommand.RaiseCanExecuteChanged();
+					});
+				}
+			}
+		}
+		#endregion
 		#endregion // Bindigns
 
 		#region Commands
@@ -191,6 +219,25 @@ namespace AnizanHelper.ViewModels
 						catch (Exception ex) {
 							MessageBox.Show(string.Format("曲情報の適用に失敗しました。\n\n【例外情報】\n{0}", ex), "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Stop);
 						}
+					}
+				});
+			}
+		}
+		#endregion 
+
+		#region CancelSearchingCommand
+		DelegateCommand cancelSearchingCommand_ = null;
+		public DelegateCommand CancelSearchingCommand
+		{
+			get
+			{
+				return cancelSearchingCommand_ ?? (cancelSearchingCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						CancellationTokenSource.Cancel();
+						CancelSearchingCommand.RaiseCanExecuteChanged();
+					},
+					CanExecuteHandler = param => {
+						return (IsSearching && CancellationTokenSource != null && !CancellationTokenSource.IsCancellationRequested);
 					}
 				});
 			}

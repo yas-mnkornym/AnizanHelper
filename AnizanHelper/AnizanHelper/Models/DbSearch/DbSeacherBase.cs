@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Web;
 using HtmlAgilityPack;
 
@@ -24,7 +25,7 @@ namespace AnizanHelper.Models.DbSearch
 			queryUrlBase_ = queryUrl;
 		}
 
-		abstract public IEnumerable<TResult> Search(string searchWord);
+		abstract public IEnumerable<TResult> Search(string searchWord, CancellationToken cancellationToken = default(CancellationToken));
 
 		public string CreateQueryUrl(string word, string type)
 		{
@@ -41,6 +42,21 @@ namespace AnizanHelper.Models.DbSearch
 		protected HtmlDocument QueryDocument(string word, string type)
 		{
 			var queryUrl = CreateQueryUrl(word, type);
+			using (var client = new HttpClient()) {
+				if (!string.IsNullOrWhiteSpace(UserAgent)) {
+					client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+				}
+
+				using (var stream = client.GetStreamAsync(queryUrl).Result) {
+					var doc = new HtmlDocument();
+					doc.Load(stream, Encoding.UTF8);
+					return doc;
+				}
+			}
+		}
+
+		protected HtmlDocument QueryDocument(string queryUrl)
+		{
 			using (var client = new HttpClient()) {
 				if (!string.IsNullOrWhiteSpace(UserAgent)) {
 					client.DefaultRequestHeaders.Add("User-Agent", UserAgent);

@@ -26,6 +26,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.6
+ - 検索結果が複数ページに渡る場合に対応
+ - 検索のキャンセルに対応
+
 Version 1.1.5
  - 起動直後直接曲情報を編集する時、変更自動適用機能が働かない問題を修正
  - HTMLエンコードされたアニソンDBの検索結果をデコードするよう修正
