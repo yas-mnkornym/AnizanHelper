@@ -98,6 +98,7 @@
     <Compile Include="ComiketSystem\CsvSplitter.cs" />
     <Compile Include="Common\MessageService.cs" />
     <Compile Include="Models\AnizanSongInfoConverter.cs" />
+    <Compile Include="Models\DbSearch\SongSearchResult.cs" />
     <Compile Include="Models\GeneralSongInfo.cs" />
     <Compile Include="Models\ReplaceDictionaryFileReader.cs" />
     <Compile Include="Models\ReplaceDictionaryUpdater.cs" />

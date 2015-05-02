@@ -40,7 +40,7 @@ namespace AnizanHelper.ViewModels
 			converter_ = converter;
 			serializer_ = new Models.Serializers.AnizanListSerializer();
 		
-			SearchVm = new SongSearchViewModel(dispatcher);
+			SearchVm = new SongSearchViewModel(settings, dispatcher);
 			SongParserVm = new ViewModels.SongParserVm(dispatcher);
 
 			SearchVm.SongParsed += SongParsed;

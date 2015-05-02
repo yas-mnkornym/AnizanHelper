@@ -14,6 +14,7 @@
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
 		</Grid.ColumnDefinitions>
 		
 		<TextBox Grid.Row="0" Grid.Column="0"
@@ -23,19 +24,27 @@
 				<KeyBinding Key="Enter" Command="{Binding Path=SearchCommand}" />
 			</TextBox.InputBindings>
 		</TextBox>
-		<Button Grid.Row="0" Grid.Column="1"
+
+
+		<CheckBox Grid.Row="0" Grid.Column="1"
+				  Content="曲種番号自動補正"
+				  IsChecked="{Binding Path=Settings.CheckSeriesTypeNumberAutomatically, Mode=TwoWay}"
+				  VerticalAlignment="Center"
+				  Margin="5,0,0,0"/>
+		
+		<Button Grid.Row="0" Grid.Column="2"
 				Content="検索"
 				MinWidth="75"
 				Margin="5,0,0,0"
 				Command="{Binding SearchCommand}" />
 		
-		<Button Grid.Row="0" Grid.Column="2"
+		<Button Grid.Row="0" Grid.Column="3"
 				Content="ブラウザで検索"
 				MinWidth="75"
 				Margin="5,0,0,0"
 				Command="{Binding SearchOnBrowserCommand}" />
 		
-		<DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+		<DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
 				  ItemsSource="{Binding Path=Results}"
 				  IsReadOnly="True"
 				  AutoGenerateColumns="False"

@@ -144,5 +144,17 @@ namespace AnizanHelper.Models
 				SetMe(value, GetMemberName(() => WriteAsSage));
 			}
 		}
+
+		public bool CheckSeriesTypeNumberAutomatically
+		{
+			get
+			{
+				return GetMe(true, GetMemberName(() => CheckSeriesTypeNumberAutomatically));
+			}
+			set
+			{
+				SetMe(value, GetMemberName(() => CheckSeriesTypeNumberAutomatically));
+			}
+		}
 	}
 }

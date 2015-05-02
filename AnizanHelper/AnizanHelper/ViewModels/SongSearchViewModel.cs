@@ -16,9 +16,14 @@ namespace AnizanHelper.ViewModels
 	{
 		SongSearcher searcher_ = new SongSearcher();
 
-		public SongSearchViewModel(IDispatcher dispatcher)
+		public SongSearchViewModel(
+			Settings settings,
+			IDispatcher dispatcher)
 			: base(dispatcher)
-		{ }
+		{
+			if (settings == null) { throw new ArgumentNullException("settings"); }
+			Settings = settings;
+		}
 
 
 		void Search()
@@ -35,7 +40,7 @@ namespace AnizanHelper.ViewModels
 				.ContinueWith(task => {
 					try {
 						sw.Stop();
-						Results = new ObservableCollection<GeneralSongInfo>(task.Result);
+						Results = new ObservableCollection<SongSearchResult>(task.Result);
 						MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", Results.Count, sw.Elapsed.TotalSeconds));
 					}
 					catch (Exception ex) {
@@ -72,8 +77,8 @@ namespace AnizanHelper.ViewModels
 		#endregion
 
 		#region Results
-		ObservableCollection<GeneralSongInfo> results_ = new ObservableCollection<GeneralSongInfo>();
-		public ObservableCollection<GeneralSongInfo> Results
+		ObservableCollection<SongSearchResult> results_ = new ObservableCollection<SongSearchResult>();
+		public ObservableCollection<SongSearchResult> Results
 		{
 			get
 			{
@@ -101,6 +106,21 @@ namespace AnizanHelper.ViewModels
 						SearchCommand.RaiseCanExecuteChanged();
 					});
 				}
+			}
+		}
+		#endregion
+
+		#region Settings
+		Settings settings_ = null;
+		public Settings Settings
+		{
+			get
+			{
+				return settings_;
+			}
+			set
+			{
+				SetValue(ref settings_, value, GetMemberName(() => Settings));
 			}
 		}
 		#endregion
@@ -162,9 +182,15 @@ namespace AnizanHelper.ViewModels
 			{
 				return applySongCommand_ ?? (applySongCommand_ = new DelegateCommand {
 					ExecuteHandler = param => {
-						var searchResult = param as GeneralSongInfo;
+						var searchResult = param as SongSearchResult;
 						if (searchResult == null) { return; }
-						OnSongParsed(new SongParsedEventArgs(searchResult));
+
+						try {
+							OnSongParsed(new SongParsedEventArgs(SongSearchResult.ToGeneralInfo(searchResult, Settings.CheckSeriesTypeNumberAutomatically)));
+						}
+						catch (Exception ex) {
+							MessageBox.Show(string.Format("曲情報の適用に失敗しました。\n\n【例外情報】\n{0}", ex), "エラー", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Stop);
+						}
 					}
 				});
 			}

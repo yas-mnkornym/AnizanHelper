@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.4
+ - DB直接検索時不要なOP/ED番号の削除機能を追加
+
 Version 1.1.3
  - TV size支援機能追加
  - Live ver.支援機能追加
