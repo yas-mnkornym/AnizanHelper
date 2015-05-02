@@ -18,6 +18,8 @@
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto" />
@@ -25,6 +27,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
+		
 		
 		<!-- 設定部 -->
 		<WrapPanel Grid.Row="0" Grid.Column="0"
@@ -50,18 +53,26 @@
 					Command="{Binding Path=CheckForDictionaryUpdateCommand}" />
 		</WrapPanel>
 		
+		<!-- 曲表示 -->
+		<WebBrowser Grid.Row="1" Grid.Column="0"
+					Source="http://ggtea.org/sio/songzan.html"
+					/>
+		
+		<GridSplitter Grid.Row="2" Grid.Column="0"
+				   HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="2" />
+		
 		<!-- 検索部 -->
-		<GroupBox Grid.Row="1" Grid.Column="0"
+		<GroupBox Grid.Row="3" Grid.Column="0"
 				  Header="DB直接検索(曲名サーチのみ)">
 		<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}"/>
 		</GroupBox>
 		<!-- 入力部 -->
-		<GroupBox Grid.Row="2" Grid.Column="0"
+		<GroupBox Grid.Row="4" Grid.Column="0"
 				  Header="Webブラウザからの一行コピペ">
 			<views:SongParserControl DataContext="{Binding Path=SongParserVm}" />
 		</GroupBox>
 		<!-- パース結果出力部 -->
-		<Grid Grid.Row="3" Grid.Column="0">
+		<Grid Grid.Row="5" Grid.Column="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="Auto" />
@@ -87,7 +98,7 @@
 		</Grid>
 
 		<!-- コピー用結果出力部 -->
-		<DockPanel Grid.Row="4" Grid.Column="0"
+		<DockPanel Grid.Row="6" Grid.Column="0"
 				   Margin="0,2,0,0">
 			<UniformGrid DockPanel.Dock="Right"
 						 Margin="5,0,0,0"
@@ -123,7 +134,7 @@
 					 Text="{Binding Path=ResultText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		</DockPanel>
 
-		<Grid Grid.Row="5" Margin="0,5,0,0">
+		<Grid Grid.Row="7" Margin="0,5,0,0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="Auto" />
@@ -154,7 +165,7 @@
 					Command="{Binding Path=WriteToThreadCommand}"/>
 		</Grid>
 		
-		<Border Grid.Row="6" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="Gray">
+		<Border Grid.Row="8" Margin="0,5,0,0" BorderThickness="0,1,0,0" BorderBrush="Gray">
 			<TextBlock Text="{Binding Path=StatusText}" />
 		</Border>
 	</Grid>

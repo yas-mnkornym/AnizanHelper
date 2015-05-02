@@ -100,6 +100,8 @@
     <Compile Include="Models\AnizanSongInfoConverter.cs" />
     <Compile Include="Models\DbSearch\SongSearchResult.cs" />
     <Compile Include="Models\GeneralSongInfo.cs" />
+    <Compile Include="Models\Registries\IERegistryModifier.cs" />
+    <Compile Include="Models\Registries\RegistryEditor.cs" />
     <Compile Include="Models\ReplaceDictionaryFileReader.cs" />
     <Compile Include="Models\ReplaceDictionaryUpdater.cs" />
     <Compile Include="ViewModels\SongParserVm.cs" />

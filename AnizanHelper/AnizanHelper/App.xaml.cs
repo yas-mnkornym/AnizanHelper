@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
+using AnizanHelper.Models.Registries;
 using AnizanHelper.Models.SettingComponents;
 using AnizanHelper.ViewModels;
 using AnizanHelper.Views;
@@ -29,6 +30,9 @@ namespace AnizanHelper
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			base.OnStartup(e);
+
+			// レジストリを設定
+			ConfigureRegistry();
 
 			// 設定初期化
 			InitializeSettinsg();
@@ -165,6 +169,27 @@ namespace AnizanHelper
 				Path.Combine(AppInfo.Current.StartupDirectory, Constants.SettingsFileName),
 				Path.Combine(AppInfo.Current.StartupDirectory, Constants.SettingsTempFileName),
 				settingsImpl, serializer, 300);
+		}
+
+		void ConfigureRegistry()
+		{
+			var appName = AppInfo.Current.ExecutionFileName;
+			/*
+			if (System.Diagnostics.Debugger.IsAttached) {
+				appName = System.IO.Path.GetFileNameWithoutExtension(appName)
+					+ ".vshost"
+					+ System.IO.Path.GetExtension(appName);
+			}
+			 * */
+			if (IERegistryManager.ShouldResetRegistry(appName, false)) {
+				var manager = new IERegistryManager(appName, false);
+				try {
+					manager.ManageRegistry();
+				}
+				catch (Exception ex) {
+					MessageService.Current.ShowMessage("レジストリの変更に失敗しました。" + ex.Message);
+				}
+			}
 		}
 	}
 }
