@@ -52,11 +52,11 @@ namespace AnizanHelper.ViewModels
 						MessageService.Current.ShowMessage(string.Format("楽曲情報の検索に失敗しました。 ({0})", ex.Message));
 					}
 					finally {
-						IsSearching = false;
 						if (CancellationTokenSource != null) {
 							CancellationTokenSource.Dispose();
 							CancellationTokenSource = null;
 						}
+						IsSearching = false;
 					}
 				}, TaskScheduler.Current);
 		}

@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.7
+ - 【重要】検索結果なしの時ひたすら同じクエリ繰り返してしまう問題修正
+
 Version 1.1.6
  - 検索結果が複数ページに渡る場合に対応
  - 検索のキャンセルに対応

@@ -29,6 +29,7 @@ namespace AnizanHelper.Models.DbSearch
 			var doc = QueryDocument(uri);
 			var tbody = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/table[2]/tbody[1]");
 			if (tbody == null) {
+				uri = null;
 				return Enumerable.Empty<SongSearchResult>();
 			}
 
