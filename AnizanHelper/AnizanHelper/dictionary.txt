@@ -1,4 +1,4 @@
-header,8,
+header,9,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -63,3 +63,4 @@ replace,"ペルソナ2","PERSONA2"
 
 rem,その他アニメ
 replace,"Fate/stay night Unlimited Blade Works","Fate/stay night [Unlimited Blade Works]"
+replace,"Wake Up,Girls!","Wake Up, Girls!"
