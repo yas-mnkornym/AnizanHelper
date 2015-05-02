@@ -32,7 +32,7 @@ namespace AnizanHelper
 			base.OnStartup(e);
 
 			// レジストリを設定
-			ConfigureRegistry();
+			//ConfigureRegistry();
 
 			// 設定初期化
 			InitializeSettinsg();

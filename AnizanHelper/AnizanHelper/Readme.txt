@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.10
+ - 簡易曲履歴表示機能を一旦封印
+
 Version 1.1.9
  - 午後茶さんの簡易曲履歴表示機能を追加
  　※ IEの野郎のせいでぱーさー起動後実際にデータ受信開始するまで少し時間かかるかもしれません。

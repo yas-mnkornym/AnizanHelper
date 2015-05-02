@@ -54,12 +54,14 @@
 		</WrapPanel>
 		
 		<!-- 曲表示 -->
+		<!--
 		<WebBrowser Grid.Row="1" Grid.Column="0"
 					Source="http://ggtea.org/sio/songzan.html"
 					/>
 		
 		<GridSplitter Grid.Row="2" Grid.Column="0"
 				   HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="2" />
+		-->
 		
 		<!-- 検索部 -->
 		<GroupBox Grid.Row="3" Grid.Column="0"
