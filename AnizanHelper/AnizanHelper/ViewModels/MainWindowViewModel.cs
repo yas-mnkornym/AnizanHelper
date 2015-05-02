@@ -37,6 +37,7 @@ namespace AnizanHelper.ViewModels
 			if (converter == null) { throw new ArgumentNullException("converter"); }
 
 			Settings = settings;
+			SongInfo = new AnizanSongInfo();
 			converter_ = converter;
 			serializer_ = new Models.Serializers.AnizanListSerializer();
 		
@@ -309,7 +310,7 @@ namespace AnizanHelper.ViewModels
 		#endregion
 
 		#region SongInfo
-		AnizanSongInfo songInfo_ = new AnizanSongInfo();
+		AnizanSongInfo songInfo_ = null;
 		public AnizanSongInfo SongInfo
 		{
 			get
@@ -320,7 +321,9 @@ namespace AnizanHelper.ViewModels
 			{
 				SetValue(ref songInfo_, value,
 					actBeforeChange: oldInfo => {
-						oldInfo.PropertyChanged -= SongInfo_PropertyChanged;
+						if (oldInfo != null) {
+							oldInfo.PropertyChanged -= SongInfo_PropertyChanged;
+						}
 					},
 					actAfterChange: newInfo => {
 						newInfo.PropertyChanged += SongInfo_PropertyChanged;

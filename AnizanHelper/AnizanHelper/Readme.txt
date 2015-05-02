@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.5
+ - 起動直後直接曲情報を編集する時、変更自動適用機能が働かない問題を修正
+
 Version 1.1.4
  - DB直接検索時不要なOP/ED番号の削除機能を追加
 
