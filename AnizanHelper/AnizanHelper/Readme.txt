@@ -1,4 +1,4 @@
-Anizan Helper Version 1.1.6
+Anizan Helper Version 1.1.7
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -26,6 +26,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.8
+ - &の前後に必ず空白を入れるよう修正
+	※ 最終的に情報を適用した時点で&の前後にスペースが挿入されます。
 Version 1.1.7
  - 【重要】検索結果なしの時ひたすら同じクエリ繰り返してしまう問題修正
 

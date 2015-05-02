@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AnizanHelper.Models.Serializers
@@ -11,6 +12,21 @@ namespace AnizanHelper.Models.Serializers
 	/// </summary>
 	internal class AnizanListSerializer : ISongInfoSerializer
 	{
+		static readonly string[] replaceList = new string[]{
+			// 両側空白
+			@"(?<prev>[^\s])&(?<next>[^\s])",
+			@"${prev} & ${next}",
+
+			// 前側空白
+			@"(?<prev>\s)&(?<next>[^\s])",
+			@"${prev}& ${next}",
+			
+			// 後ろ側空白
+			@"(?<prev>[^\s])&(?<next>\s)",
+			@"${prev} &${next}"
+		};
+
+			
 		public string Serialize(AnizanSongInfo info)
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
@@ -35,13 +51,17 @@ namespace AnizanHelper.Models.Serializers
 
 			sb.Append(")");
 
-			return string.Format(
+			var result = string.Format(
 				sb.ToString(),
 				info.Title,
 				info.Singer,
 				info.Genre,
 				info.Series,
 				info.SongType);
+			for (int i = 0; i < replaceList.Length-1; i++) {
+				result = Regex.Replace(result, replaceList[i], replaceList[i + 1]);
+			}
+			return result;
 		}
 	}
 }
