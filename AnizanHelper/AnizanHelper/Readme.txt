@@ -28,6 +28,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.1.11
  - 歌手一覧の最後が空欄の場合末尾の,を弾くように修正
+ - DJ熱唱と放送事故が無限になった
 
 Version 1.1.10
  - 簡易曲履歴表示機能を一旦封印

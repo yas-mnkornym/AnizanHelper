@@ -541,7 +541,11 @@ namespace AnizanHelper.ViewModels
 				return setAdditionalCommand_ ?? (setAdditionalCommand_ = new DelegateCommand {
 					ExecuteHandler = param => {
 						var str = param as string;
-						if (!string.IsNullOrWhiteSpace(str)) {
+						if (string.IsNullOrWhiteSpace(str)) { return; }
+						if (!string.IsNullOrWhiteSpace(SongInfo.Additional)) {
+							SongInfo.Additional += "," + str;
+						}
+						else {
 							SongInfo.Additional = str;
 						}
 					},
