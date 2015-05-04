@@ -330,6 +330,7 @@ namespace AnizanHelper.ViewModels
 						Dispatch(() => {
 							ToTvSizeCommand.RaiseCanExecuteChanged();
 							ToLiveVersionCommand.RaiseCanExecuteChanged();
+							SetAdditionalCommand.RaiseCanExecuteChanged();
 						});
 					},
 					propertyName: GetMemberName(() => SongInfo));
@@ -530,6 +531,27 @@ namespace AnizanHelper.ViewModels
 		}
 		#endregion 
 		#endregion // Commands
+
+		#region SetAdditionalCommand
+		DelegateCommand setAdditionalCommand_ = null;
+		public DelegateCommand SetAdditionalCommand
+		{
+			get
+			{
+				return setAdditionalCommand_ ?? (setAdditionalCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						var str = param as string;
+						if (!string.IsNullOrWhiteSpace(str)) {
+							SongInfo.Additional = str;
+						}
+					},
+					CanExecuteHandler = param => {
+						return (SongInfo != null);
+					}
+				});
+			}
+		}
+		#endregion 
 
 		#region メッセージ
 		void InfoMsg(string message)
