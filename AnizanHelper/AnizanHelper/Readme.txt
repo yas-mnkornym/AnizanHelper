@@ -26,6 +26,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.12
+ - 直接書込失敗時曲番号がインクリメントされないよう修正
+ - 直接書込失敗時入力欄がクリアされないよう修正
+
 Version 1.1.11
  - 歌手一覧の最後が空欄の場合末尾の,を弾くように修正
  - DJ熱唱と放送事故が無限になった

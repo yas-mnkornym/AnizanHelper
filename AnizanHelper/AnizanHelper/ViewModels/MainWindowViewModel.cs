@@ -124,13 +124,26 @@ namespace AnizanHelper.ViewModels
 					case PostResponse.Success:
 						MessageService.Current.ShowMessage(string.Format("書き込み成功! ( {0} )",
 							str.Length > 40 ? str.Substring(0, 40) + "..." : str));
+
+						// 曲番号インクリメント
+						if (Settings.IncrementSongNumberWhenCopied) {
+							SongNumber++;
+						}
+
+						// 入力欄クリア
+						if (Settings.ClearInputAutomatically) {
+							Dispatch(() => {
+								SongParserVm.ClearInput();
+								SearchVm.ClearInput();
+							});
+						}
 						break;
 
 					case PostResponse.Cookie:
 						e.Retry = true;
 						break;
 
-					case  PostResponse.Error:
+					case PostResponse.Error:
 					case PostResponse.Samba:
 					case PostResponse.Timeout:
 						MessageBox.Show(e.Text, "書き込み失敗", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -154,18 +167,6 @@ namespace AnizanHelper.ViewModels
 					CanWrite = false;
 					MessageService.Current.ShowMessage("書き込んでいます...");
 					post.Post(thread, res);
-
-					if (Settings.IncrementSongNumberWhenCopied) {
-						SongNumber++;
-					}
-
-					// 入力欄クリア
-					if (Settings.ClearInputAutomatically) {
-						Dispatch(() => {
-							SongParserVm.ClearInput();
-							SearchVm.ClearInput();
-						});
-					}
 				}
 				catch (Exception ex) {
 					MessageBox.Show(
