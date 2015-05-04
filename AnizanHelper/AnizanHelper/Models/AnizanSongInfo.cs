@@ -99,6 +99,24 @@ namespace AnizanHelper.Models
 		}
 		#endregion
 
+		/// <summary>
+		/// 補足情報
+		/// </summary>
+		#region Additional
+		string additional_ = null;
+		public string Additional
+		{
+			get
+			{
+				return additional_;
+			}
+			set
+			{
+				SetValue(ref additional_, value, GetMemberName(() => Additional));
+			}
+		}
+		#endregion
+
 		public override string ToString()
 		{
 			return Utils.GeneralObjectToString(this);

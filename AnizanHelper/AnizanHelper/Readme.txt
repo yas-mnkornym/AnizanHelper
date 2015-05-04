@@ -28,6 +28,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.1.10
  - 簡易曲履歴表示機能を一旦封印
+ - 曲補足情報入力欄追加
 
 Version 1.1.9
  - 午後茶さんの簡易曲履歴表示機能を追加

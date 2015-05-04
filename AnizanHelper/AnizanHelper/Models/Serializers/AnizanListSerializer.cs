@@ -51,13 +51,19 @@ namespace AnizanHelper.Models.Serializers
 
 			sb.Append(")");
 
+			// 補足追加
+			if (!string.IsNullOrWhiteSpace(info.Additional)) {
+				sb.Append("※{5}");
+			}
+
 			var result = string.Format(
 				sb.ToString(),
 				info.Title,
 				info.Singer,
 				info.Genre,
 				info.Series,
-				info.SongType);
+				info.SongType,
+				info.Additional);
 			for (int i = 0; i < replaceList.Length-1; i++) {
 				result = Regex.Replace(result, replaceList[i], replaceList[i + 1]);
 			}

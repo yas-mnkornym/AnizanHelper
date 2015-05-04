@@ -1,4 +1,4 @@
-header,9,
+header,11,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -60,6 +60,19 @@ replace,"ペルソナ3 ポータブル","PERSONA3 PORTABLE"
 replace,"ペルソナ3 フェス","PERSONA3 FES"
 replace,"ペルソナ3","PERSONA3"
 replace,"ペルソナ2","PERSONA2"
+
+rem,デジキャラ
+replace,"P･K･O","鳥海浩輔,鈴木千尋,サエキトモ"
+
+rem,GA
+replace,"ギャラクシーエンジェル(第2期)(ギャラクシーエンジェルZ)","ギャラクシーエンジェル(第2期)"
+replace,"ギャラクシーエンジェル(第3期)(ギャラクシーエンジェルA/AA)","ギャラクシーエンジェル(第3期)"
+replace,"ギャラクシーエンジェル(第4期)(ギャラクシーエンジェルX)","ギャラクシーエンジェル(第4期)"
+replace,"ギャラクシーエンジェルSP(ギャラクシーエンジェルS)","ギャラクシーエンジェルSP"
+
+rem,科学ADV
+replace,"Steins;Gate","STEINS;GATE"
+replace,"Robotics;Notes","ROBOTICS;NOTES"
 
 rem,その他アニメ
 replace,"Fate/stay night Unlimited Blade Works","Fate/stay night [Unlimited Blade Works]"

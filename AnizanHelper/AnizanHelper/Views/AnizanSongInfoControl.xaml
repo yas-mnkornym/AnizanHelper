@@ -16,6 +16,7 @@
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 
 		<TextBlock Grid.Row="0" Grid.Column="0" Text="曲名:" VerticalAlignment="Center" HorizontalAlignment="Right" />
@@ -23,11 +24,13 @@
 		<TextBlock Grid.Row="2" Grid.Column="0" Text="ジャンル:" VerticalAlignment="Center" HorizontalAlignment="Right" />
 		<TextBlock Grid.Row="3" Grid.Column="0" Text="作品名:" VerticalAlignment="Center" HorizontalAlignment="Right" />
 		<TextBlock Grid.Row="4" Grid.Column="0" Text="曲種:" VerticalAlignment="Center" HorizontalAlignment="Right" />
+		<TextBlock Grid.Row="5" Grid.Column="0" Text="補足:" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
 		<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Singer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=SongType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+		<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 	</Grid>
 </UserControl>
