@@ -72,6 +72,7 @@ namespace AnizanHelper.Models.DbSearch
 							if (td1 == null) { return false; }
 							var dbMatch = Regex.Match(td1.InnerText, patternNumber);
 							if (dbMatch == null) { return false; }
+							if (match.Groups["Type"].Value != dbMatch.Groups["Type"].Value) { return false; }
 							if (string.IsNullOrWhiteSpace(dbMatch.Groups["Number"].Value)) { return false; }
 							var number = Convert.ToInt32(dbMatch.Groups["Number"].Value);
 							if (number > 1) { return true; }
