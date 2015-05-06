@@ -1,4 +1,4 @@
-header,12,
+header,16,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -48,6 +48,7 @@ rem,アイカツ対策
 replace,"アイカツ!","アイカツ!-アイドルカツドウ!-"
 replace,"from STAR☆ANIS",""
 replace,"STAR☆ANIS",""
+replace,"AIKATSU☆STARS!",""
 
 rem,faturing -> feat.
 replace,"featuring","feat."
@@ -80,6 +81,22 @@ rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
 replace,"Robotics;Notes","ROBOTICS;NOTES"
 
+rem,テイルズ
+replace,"テイルズ オブ ゼスティリア","TALES OF ZESTIRIA"
+replace,"テイルズ オブ アスタリア","TALES OF ASTERIA"
+replace,"テイルズ オブ エクシリア","TALES OF XILLIA"
+replace,"テイルズ オブ ザ ヒーローズ ツインブレイヴ","TALES OF THE HEROES TWIN BRAVE"
+replace,"テイルズ オブ ザ ワールド ダイスアドベンチャー","TALES OF THE WORLD DICEADVENTURE"
+replace,"テイルズ オブ ザ ワールド タクティクス ユニオン","TALES OF THE WORLD TACTICS UNION"
+replace,"テイルズ オブ ザ ワールド レーヴ ユナイティア","TALES OF THE WORLD REVE UNITIA"
+replace,"テイルズ オブ シンフォニア ユニゾナントパック","TALES OF SYMPHONIA UNISONANT PACK"
+replace,"テイルズ オブ シンフォニア-ラタトスクの騎士-","TALES OF SYMPHONIA:Knight of Ratatosk"
+replace,"テイルズ オブ シンフォニア","TALES OF SYMPHONIA"
+replace,"テイルズ オブ ハーツR","TALES OF HEARTS R"
+replace,"テイルズ オブ ファンタジア","TALES OF FANTASIA"
+
 rem,その他アニメ
 replace,"Fate/stay night Unlimited Blade Works","Fate/stay night [Unlimited Blade Works]"
 replace,"Wake Up,Girls!","Wake Up, Girls!"
+replace,"アルドノア･ゼロ","ALDNOAH.ZERO"
+replace,"も･ぎ･た･て?フルーツガールズ","も･ぎ･た･て▽チェリーボーイズ"
