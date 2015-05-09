@@ -3,6 +3,9 @@ AnizanHelper
 
 あにざんてつだうやつ
 
+##配布場所
+http://www.studio-taiha.net/anizan/anizanhelper/
+
 ##使い方
 
 1. アニソンDBの検索画面から一行コピー
