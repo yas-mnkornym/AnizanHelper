@@ -15,11 +15,11 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 以上
 
 コピーを押すとクリップボードにコピーされるので、それをリストスレに貼り付けて、どうぞ
-
+最新版はDBの直接検索機能もありますよ
 
 ##動作環境
 
-* Windows Vista以上
+* Windows XP以上
 * .Net Framework 4.0が必要です  
 http://www.microsoft.com/ja-jp/download/details.aspx?id=17851 
 
