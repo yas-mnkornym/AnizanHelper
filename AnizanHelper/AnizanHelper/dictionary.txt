@@ -1,4 +1,4 @@
-header,16,
+header,17,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -76,6 +76,8 @@ rem,"伸ばし～対策"
 replace,"ギャラクシーエンジェる~ん","ギャラクシーエンジェる～ん"
 replace,"あ~男一代","あ～男一代"
 replace,"あ~る","あ～る"
+replace,"あにめ~しょん","あにめ～しょん"
+replace,"爆発だも~ん","爆発だも～ん"
 
 rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
