@@ -70,10 +70,15 @@ namespace AnizanHelper
 				converter_ = new AnizanSongInfoConverter();
 			}
 
+			var replaceList = new List<ReplaceInfo>();
+
 			try {
 				if (File.Exists(AppInfo.Current.DictionaryFilePath)) {
 					var loader = new ReplaceDictionaryFileReader();
-					converter_.Replaces = loader.Load(AppInfo.Current.DictionaryFilePath).ToArray();
+					var replaces = loader.Load(AppInfo.Current.DictionaryFilePath).ToArray();
+					if (replaces?.Any() == true) {
+						replaceList.AddRange(replaces);
+					}
 				}
 			}
 			catch (Exception ex) {
@@ -81,6 +86,35 @@ namespace AnizanHelper
 					string.Format("置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex)
 					, "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
+
+			// ユーザ辞書の内容を優先
+			try {
+				if (File.Exists(AppInfo.Current.UserDictionaryfilePath)) {
+					var loader = new ReplaceDictionaryFileReader();
+					var replaces = loader.Load(AppInfo.Current.UserDictionaryfilePath).ToArray();
+					foreach (var replace in replaces) {
+						var item = replaceList.FirstOrDefault(x => x.Original == replace.Original);
+						if (item != null) {
+							replaceList.Remove(item);
+						}
+
+						replaceList.Add(replace);
+					}
+				}
+				else {
+					try {
+						File.WriteAllText(AppInfo.Current.UserDictionaryfilePath, "rem,これはユーザ定義辞書ファイルです。dictionary.txtを参考にUTF-8で記述して下さい。");
+					}
+					catch { }
+				}
+			}
+			catch (Exception ex) {
+				MessageBox.Show(
+					string.Format("ユーザ定義置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex)
+					, "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+
+			converter_.Replaces = replaceList.Where(x => !string.IsNullOrEmpty(x.Original)).ToArray();
 		}
 
 		public void UpdateDictionary()

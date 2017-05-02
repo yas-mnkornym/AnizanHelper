@@ -79,6 +79,16 @@ namespace AnizanHelper
 			}
 		}
 
+		string userDictionaryFilePath_ = null;
+		public string UserDictionaryfilePath
+		{
+			get
+			{
+				return userDictionaryFilePath_ ?? (userDictionaryFilePath_ =
+					Path.Combine(AppInfo.Current.StartupDirectory, Constants.UserDictionaryFileName));
+			}
+		}
+
 		#region Version
 		Version version_ = null;
 		public Version Version

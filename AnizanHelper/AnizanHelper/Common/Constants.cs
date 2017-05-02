@@ -38,6 +38,11 @@ namespace AnizanHelper
 		public static readonly string DictionaryFileName = "dictionary.txt";
 
 		/// <summary>
+		/// ユーザ定義置換辞書ファイル名
+		/// </summary>
+		public static readonly string UserDictionaryFileName = "dictionary.user.txt";
+
+		/// <summary>
 		/// 置換辞書URL
 		/// </summary>
 		public static readonly string ReplaceDictionaryUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
