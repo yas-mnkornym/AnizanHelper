@@ -1,7 +1,8 @@
-header,17,
+header,19,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
+replace,"♣","･"
 replace,"＆","&"
 replace,"？","?"
 replace,"！","!"
@@ -36,6 +37,7 @@ replace,"最終話","[最終話]"
 replace,"最終回に放映","[最終話]"
 
 rem,アイマス対策
+replace,"アイドルマスター シンデレラガールズ スターライトステージ","THE IDOLM@STER CINDERELLA GIRLS STARLIGHT STAGE"
 replace,"アイドルマスター シンデレラガールズ","THE IDOLM@STER CINDERELLA GIRLS"
 replace,"アイドルマスター ミリオンライブ!","THE IDOLM@STER MILLION LIVE!"
 replace,"アイドルマスター シャイニーフェスタ","THE IDOLM@STER SHINY FESTA"
@@ -78,6 +80,8 @@ replace,"あ~男一代","あ～男一代"
 replace,"あ~る","あ～る"
 replace,"あにめ~しょん","あにめ～しょん"
 replace,"爆発だも~ん","爆発だも～ん"
+replace,"かくしん的☆めたまるふぉ~ぜっ!","かくしん的☆めたまるふぉ～ぜっ!"
+
 
 rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
