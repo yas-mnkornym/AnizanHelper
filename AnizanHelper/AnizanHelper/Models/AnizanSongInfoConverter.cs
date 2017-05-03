@@ -18,7 +18,7 @@ namespace AnizanHelper.Models
 		{
 			AnizanSongInfo result = new AnizanSongInfo {
 				Title = Replace(gInfo.Title),
-				Singer = string.Join(",", gInfo.Singers.Select(x => Replace(x)).Where(x => !string.IsNullOrWhiteSpace(x))),
+				Singer = Replace(string.Join(",", gInfo.Singers.Select(x => Replace(x)).Where(x => !string.IsNullOrWhiteSpace(x)))),
 				Genre = Replace(gInfo.Genre),
 				Series = Replace(gInfo.Series),
 				SongType = Replace(gInfo.SongType)
