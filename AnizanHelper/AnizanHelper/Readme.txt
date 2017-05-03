@@ -1,4 +1,4 @@
-Anizan Helper Version 1.1.13
+Anizan Helper Version 1.1.14
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -26,6 +26,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Http Agility Pack
 
 ●更新履歴
+Version 1.1.14
+ - 辞書ファイルの再読み込み機能を追加
+ - 歌手名全体に対しても文字列の置換を行うよう修正
+
 Version 1.1.13
  - ユーザ定義辞書読み込み機能を追加 (dictionary.user.txt)
 
