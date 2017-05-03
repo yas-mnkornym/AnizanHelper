@@ -1,4 +1,4 @@
-header,19,
+header,20,
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -106,3 +106,7 @@ replace,"Fate/stay night Unlimited Blade Works","Fate/stay night [Unlimited Blad
 replace,"Wake Up,Girls!","Wake Up, Girls!"
 replace,"アルドノア･ゼロ","ALDNOAH.ZERO"
 replace,"も･ぎ･た･て?フルーツガールズ","も･ぎ･た･て▽チェリーボーイズ"
+
+rem,歌手名修正用
+replace,"AKINO,Bless4","AKINO with Bless4"
+replace,"ROUND TABLE,Nino","ROUND TABLE feat. Nino"
