@@ -81,7 +81,7 @@ replace,"あ~る","あ～る"
 replace,"あにめ~しょん","あにめ～しょん"
 replace,"爆発だも~ん","爆発だも～ん"
 replace,"かくしん的☆めたまるふぉ~ぜっ!","かくしん的☆めたまるふぉ～ぜっ!"
-
+replace,"おねだり Shall We~?","おねだり Shall We～?"
 
 rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
