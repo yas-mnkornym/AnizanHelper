@@ -491,7 +491,30 @@ namespace AnizanHelper.ViewModels
 				});
 			}
 		}
-		#endregion 
+		#endregion
+
+		#region ReloadDictionaryCommand
+		DelegateCommand reloadDictionaryCommand_ = null;
+		public DelegateCommand ReloadDictionaryCommand
+		{
+			get
+			{
+				return reloadDictionaryCommand_ ?? (reloadDictionaryCommand_ = new DelegateCommand {
+					ExecuteHandler = param => {
+						if (App.Current is App app) {
+							try {
+								app.LoadReplaceDictionary();
+								InfoMsg("辞書の読み込みを完了しました。");
+							}
+							catch (Exception ex) {
+								ErrMsg("辞書データの読み込みに失敗しました。", ex);
+							}
+						}
+					}
+				});
+			}
+		}
+		#endregion
 
 		#region ToTvSizeCommand
 		DelegateCommand toTvSizeCommand_ = null;

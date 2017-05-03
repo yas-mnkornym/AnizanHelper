@@ -64,7 +64,7 @@ namespace AnizanHelper
 			base.OnExit(e);
 		}
 
-		void LoadReplaceDictionary()
+		public void LoadReplaceDictionary()
 		{
 			if (converter_ == null) {
 				converter_ = new AnizanSongInfoConverter();

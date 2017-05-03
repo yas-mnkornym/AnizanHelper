@@ -5,7 +5,7 @@
 		xmlns:conv="clr-namespace:AnizanHelper.Converters"
 		xmlns:views="clr-namespace:AnizanHelper.Views"
         Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
-		Height="600" Width="700"
+		Height="600" Width="730"
 		Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}"
 		Background="WhiteSmoke">
 	<Window.Resources>
@@ -51,7 +51,10 @@
 			<Button Content="辞書の更新を確認"
 					Margin="2,0,2,0"
 					Command="{Binding Path=CheckForDictionaryUpdateCommand}" />
-		</WrapPanel>
+            <Button Content="辞書再読込"
+					Margin="2,0,2,0"
+					Command="{Binding Path=ReloadDictionaryCommand}" />
+        </WrapPanel>
 		
 		<!-- 曲表示 -->
 		<!--
