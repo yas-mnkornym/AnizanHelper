@@ -1,4 +1,7 @@
-header,20,
+header,21,
+
+rem,記法： replaec,[置換元],[置換先],[曲名（無特定ならなし）]
+
 rem, 表記規則
 replace,"♥","▼"
 replace,"♡","▽"
@@ -82,6 +85,7 @@ replace,"あにめ~しょん","あにめ～しょん"
 replace,"爆発だも~ん","爆発だも～ん"
 replace,"かくしん的☆めたまるふぉ~ぜっ!","かくしん的☆めたまるふぉ～ぜっ!"
 replace,"おねだり Shall We~?","おねだり Shall We～?"
+replace,"もーっと!うるさいにゃ~たんMIX","もーっと!うるさいにゃ～たんMIX"
 
 rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
@@ -110,3 +114,7 @@ replace,"も･ぎ･た･て?フルーツガールズ","も･ぎ･た･て�
 rem,歌手名修正用
 replace,"AKINO,Bless4","AKINO with Bless4"
 replace,"ROUND TABLE,Nino","ROUND TABLE feat. Nino"
+replace,"山形ユキオ,高尾直樹,佐々木久美,斉藤妙子","山形ユキオ","ガオレンジャー吼えろ!!"
+replace,"希砂未竜,EVE","希砂未竜","星獣戦隊ギンガマン",
+repalce,"日岡なつみ,安元洋貴,熊出村のみなさん","日岡なつみ,安元洋貴 feat. 熊出村のみなさん","KUMAMIKO DANCING"
+replace,"山野さと子,こおろぎ'73","山野さと子","夢見るトッポ･ジージョ"
