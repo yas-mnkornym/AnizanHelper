@@ -16,12 +16,13 @@ namespace AnizanHelper.Models
 
 		public AnizanSongInfo Convert(GeneralSongInfo gInfo)
 		{
-			AnizanSongInfo result = new AnizanSongInfo {
-				Title = Replace(gInfo.Title),
-				Singer = Replace(string.Join(",", gInfo.Singers.Select(x => Replace(x)).Where(x => !string.IsNullOrWhiteSpace(x)))),
-				Genre = Replace(gInfo.Genre),
-				Series = Replace(gInfo.Series),
-				SongType = Replace(gInfo.SongType)
+			var replacedTitle = Replace(gInfo.Title);
+			var result = new AnizanSongInfo {
+				Title = replacedTitle,
+				Singer = Replace(string.Join(",", gInfo.Singers.Select(x => Replace(x, replacedTitle)).Where(x => !string.IsNullOrWhiteSpace(x))), replacedTitle),
+				Genre = Replace(gInfo.Genre, replacedTitle),
+				Series = Replace(gInfo.Series, replacedTitle),
+				SongType = Replace(gInfo.SongType, replacedTitle)
 			};
 
 			// ジャンルを置換
@@ -82,19 +83,20 @@ namespace AnizanHelper.Models
 			return result;
 		}
 
-		string Replace(string text)
+		string Replace(string text, string songName = null)
 		{
 			if (text == null) { throw new ArgumentNullException("text"); }
 			var str = text;
 			foreach (var rep in Replaces) {
-				if (rep.Exact) {
-					if (str == rep.Original) {
-						str = rep.Replaced;
-					}
+				if (!string.IsNullOrWhiteSpace(rep.SongTitleConstraint) && songName != rep.SongTitleConstraint) {
+					continue;
 				}
-				else {
-					str = str.Replace(rep.Original, rep.Replaced);
+
+				if (rep.Exact && rep.Original != str) {
+					continue;
 				}
+
+				str = str.Replace(rep.Original, rep.Replaced);
 			}
 			
 			// 前後の空白削除して返す

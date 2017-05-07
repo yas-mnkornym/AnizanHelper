@@ -26,6 +26,11 @@ namespace AnizanHelper.Models
 		public string Replaced { get; set; }
 
 		/// <summary>
+		/// 曲名制約
+		/// </summary>
+		public string SongTitleConstraint { get; set; }
+
+		/// <summary>
 		/// trueなら完全一致の場合にのみ置換する
 		/// </summary>
 		public bool Exact { get; set; }

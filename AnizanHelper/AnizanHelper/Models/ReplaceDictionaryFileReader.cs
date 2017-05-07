@@ -33,8 +33,13 @@ namespace AnizanHelper.Models
 				if (cs.TokenCount < 3) { continue; }
 				if (cs.GetString(0) == "replace") {
 					var info = new ReplaceInfo(cs.GetString(1), cs.GetString(2));
+
 					if (cs.TokenCount > 3) {
-						info.Exact = cs.GetBoolOrDeraulf(3, false);
+						info.SongTitleConstraint = cs.GetString(3);
+					}
+
+					if (cs.TokenCount > 4) {
+						info.Exact = cs.GetBoolOrDeraulf(4, false);
 					}
 
 					yield return info;
