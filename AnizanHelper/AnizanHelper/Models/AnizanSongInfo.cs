@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AnizanHelper.Models.SettingComponents;
+﻿using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models
 {
-	internal class AnizanSongInfo : BindableBase
+	internal class AnizanSongInfo : NotificationObject
 	{
 		/// <summary>
 		/// 曲名
@@ -22,7 +17,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref title_, value, GetMemberName(() => Title));
+				SetValue(ref title_, value);
 			}
 		}
 		#endregion
@@ -40,7 +35,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref singer_, value, GetMemberName(() => Singer));
+				SetValue(ref singer_, value);
 			}
 		}
 		#endregion
@@ -58,7 +53,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref series_, value, GetMemberName(() => Series));
+				SetValue(ref series_, value);
 			}
 		}
 		#endregion
@@ -76,7 +71,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref genre_, value, GetMemberName(() => Genre));
+				SetValue(ref genre_, value);
 			}
 		}
 		#endregion
@@ -94,7 +89,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref songType_, value, GetMemberName(() => SongType));
+				SetValue(ref songType_, value);
 			}
 		}
 		#endregion
@@ -112,7 +107,7 @@ namespace AnizanHelper.Models
 			}
 			set
 			{
-				SetValue(ref additional_, value, GetMemberName(() => Additional));
+				SetValue(ref additional_, value);
 			}
 		}
 		#endregion

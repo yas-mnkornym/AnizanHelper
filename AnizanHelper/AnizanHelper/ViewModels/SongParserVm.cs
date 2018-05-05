@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
-using AnizanHelper.Models.SettingComponents;
+using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.ViewModels
 {
@@ -19,26 +16,25 @@ namespace AnizanHelper.ViewModels
 
 		public override void ClearInput()
 		{
-			InputText = "";
+			InputText = string.Empty;
 		}
 
 		#region Bindings
-		#region InputText
-		string inputText_ = "";
+
 		public string InputText
 		{
 			get
 			{
-				return inputText_;
+				return GetValue<string>(string.Empty);
 			}
 			set
 			{
-				if (SetValue(ref inputText_, value, GetMemberName(() => InputText))) {
+				if (SetValue(value)) {
 					ParseCommand.RaiseCanExecuteChanged();
 				}
 			}
 		}
-		#endregion
+
 		#endregion // Bindings
 
 		#region Commands

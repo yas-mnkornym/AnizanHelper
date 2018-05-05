@@ -7,11 +7,11 @@ using AnizanHelper.Models.SettingComponents;
 
 namespace AnizanHelper.ViewModels
 {
-	public abstract class SongParserVmBase : BindableBase
+	public abstract class SongParserVmBase : ViewModelBase
 	{
 		public SongParserVmBase() { }
 
-		public SongParserVmBase(IDispatcher dispatcher)
+		public SongParserVmBase(Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{ }
 

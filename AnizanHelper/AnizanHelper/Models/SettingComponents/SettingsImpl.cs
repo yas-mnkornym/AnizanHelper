@@ -10,14 +10,13 @@ namespace AnizanHelper.Models.SettingComponents
 	{
 		#region Private Field
 		List<Type> knownTypes_ = new List<Type>();
-		Dictionary<string, object> settingsData_ = new Dictionary<string, object>(); // 設定データ
-		Dictionary<string, SettingsImpl> settingsChildren_ = new Dictionary<string, SettingsImpl>(); // 子設定
-		ISettingsSerializer childSettingsSerializer_ = new DataContractSettingsSerializer(); // 子設定のシリアライザ 
+		internal Dictionary<string, object> SettingsData { get; } = new Dictionary<string, object>(); // 設定データ
+		Dictionary<string, SettingsImpl> ChildSettings { get; } = new Dictionary<string, SettingsImpl>(); // 子設定
+		ISettingsSerializer ChildSettingsSerializer { get; } = new DataContractSettingsSerializer(); // 子設定のシリアライザ 
 		#endregion
 
 
 		#region Properties
-		internal Dictionary<string, object> SettingsData { get { return settingsData_; } }
 
 		protected SettingsImpl ParentSettings { get; private set; }
 		#endregion
@@ -96,13 +95,9 @@ namespace AnizanHelper.Models.SettingComponents
 
 		public T Get<T>(string key, T defaultValue = default(T))
 		{
-			var actKey = key;
-			if (SettingsData.ContainsKey(actKey)) {
-				return (T)settingsData_[actKey];
-			}
-			else {
-				return defaultValue;
-			}
+			return SettingsData.TryGetValue(key, out var value) && value is T
+				? (T)value
+				: defaultValue;
 		}
 
 		public void SetCrypted<T>(string key, T value)
@@ -150,8 +145,8 @@ namespace AnizanHelper.Models.SettingComponents
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:オブジェクトを複数回破棄しない")]
 		public ISettings GetChildSettings(string tag, IEnumerable<Type> knownTypes)
 		{
-			if (settingsChildren_.ContainsKey(tag)) {
-				return settingsChildren_[tag];
+			if (ChildSettings.ContainsKey(tag)) {
+				return ChildSettings[tag];
 			}
 			else {
 				var settings = new SettingsImpl(this, tag, knownTypes);
@@ -165,13 +160,13 @@ namespace AnizanHelper.Models.SettingComponents
 						writer.Write(setStr);
 						writer.Flush();
 						ms.Seek(0, SeekOrigin.Begin);
-						childSettingsSerializer_.Deserialize(ms, settings);
+						ChildSettingsSerializer.Deserialize(ms, settings);
 					}
 				}
 
 				// 子設定に追加
 				settings.SettingChanged += settings_SettingChanged;
-				settingsChildren_[settings.Tag] = settings;
+				ChildSettings[settings.Tag] = settings;
 				return settings;
 			}
 		}
@@ -188,7 +183,7 @@ namespace AnizanHelper.Models.SettingComponents
 				var tag = GetTaggedKey(settings.Tag, true);
 				string str = null;
 				using (var ms = new MemoryStream()) {
-					childSettingsSerializer_.Serialize(ms, settings);
+					ChildSettingsSerializer.Serialize(ms, settings);
 					ms.Seek(0, SeekOrigin.Begin);
 					using (var reader = new StreamReader(ms)) {
 						str = reader.ReadToEnd();
@@ -202,9 +197,9 @@ namespace AnizanHelper.Models.SettingComponents
 
 		public void RemoveChildSettings(string tag)
 		{
-			if (settingsChildren_.ContainsKey(tag)) {
-				var settings = settingsChildren_[tag];
-				settingsChildren_[tag] = null;
+			if (ChildSettings.ContainsKey(tag)) {
+				var settings = ChildSettings[tag];
+				ChildSettings[tag] = null;
 				settings.SettingChanged -= settings_SettingChanged;
 			}
 		}
@@ -213,7 +208,7 @@ namespace AnizanHelper.Models.SettingComponents
 		{
 			get
 			{
-				return settingsChildren_.Keys;
+				return ChildSettings.Keys;
 			}
 		}
 

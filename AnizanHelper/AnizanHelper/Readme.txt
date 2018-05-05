@@ -12,8 +12,8 @@ Anizan Helper Version 1.1.14
 
 ●動作環境
 ・Windows XP以上
-・.Net Framework 4.0が必要です
-http://www.microsoft.com/ja-jp/download/details.aspx?id=17851
+・.Net Framework 4.6が必要です
+https://www.microsoft.com/ja-jp/download/details.aspx?id=48130
 
 ●最新版
 たぶんここにあります
@@ -24,6 +24,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Extended WPF Toolkit
 ・Twintail Library
 ・Http Agility Pack
+・Reactive Property
+・Reactive Extensions
+・TaihaToolkit
 
 ●更新履歴
 Version 1.1.14

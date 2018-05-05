@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
+using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models.SettingComponents
 {
 	/// <summary>
 	/// 設定の基本実装を提供するクラス
 	/// </summary>
-	public class SettingsBase : NotificationObject
+	public class SettingsBase : NotificationObjectWithNotifyChaning
 	{
 		ISettings settings_;
 
@@ -27,8 +26,7 @@ namespace AnizanHelper.Models.SettingComponents
 			IDispatcher dispatcher = null)
 			: base(dispatcher)
 		{
-			if (settings == null) { throw new ArgumentNullException("settings"); }
-			settings_ = settings;
+			settings_ = settings ?? throw new ArgumentNullException("settings");
 			settings_.SettingChanging += settings_SettingChanging;
 			settings_.SettingChanged += settings_SettingChanged;
 		}
@@ -50,7 +48,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="defaultValue">デフォルト値</param>
 		/// <param name="key">プロパティ名</param>
 		/// <returns>取得した値</returns>
-		protected T GetMe<T>(T defaultValue, string key)
+		protected T GetMe<T>(T defaultValue, [CallerMemberName]string key = null)
 		{
 			return Settings.Get(key, defaultValue);
 		}
@@ -61,7 +59,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <typeparam name="T">設定の型</typeparam>
 		/// <param name="value">値</param>
 		/// <param name="key">プロパティ名</param>
-		protected void SetMe<T>(T value, string key)
+		protected void SetMe<T>(T value, [CallerMemberName]string key = null)
 		{
 			Settings.Set(key, value);
 		}

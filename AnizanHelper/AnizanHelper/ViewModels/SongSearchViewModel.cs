@@ -19,7 +19,7 @@ namespace AnizanHelper.ViewModels
 
 		public SongSearchViewModel(
 			Settings settings,
-			IDispatcher dispatcher)
+			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
 			if (settings == null) { throw new ArgumentNullException("settings"); }
@@ -77,7 +77,7 @@ namespace AnizanHelper.ViewModels
 			}
 			set
 			{
-				if (SetValue(ref searchWord_, value, GetMemberName(() => SearchWord))) {
+				if (SetValue(ref searchWord_, value)) {
 					SearchCommand.RaiseCanExecuteChanged();
 					SearchOnBrowserCommand.RaiseCanExecuteChanged();
 				}
@@ -95,7 +95,7 @@ namespace AnizanHelper.ViewModels
 			}
 			set
 			{
-				SetValue(ref results_, value, GetMemberName(() => Results));
+				SetValue(ref results_, value);
 			}
 		}
 		#endregion
@@ -110,7 +110,7 @@ namespace AnizanHelper.ViewModels
 			}
 			set
 			{
-				if (SetValue(ref isSearching_, value, GetMemberName(() => IsSearching))) {
+				if (SetValue(ref isSearching_, value)) {
 					Dispatch(() => {
 						SearchCommand.RaiseCanExecuteChanged();
 					});
@@ -119,39 +119,30 @@ namespace AnizanHelper.ViewModels
 		}
 		#endregion
 
-		#region Settings
-		Settings settings_ = null;
 		public Settings Settings
 		{
 			get
 			{
-				return settings_;
+				return GetValue<Settings>();
 			}
 			set
 			{
-				SetValue(ref settings_, value, GetMemberName(() => Settings));
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		#region CancellationTokenSource
-		CancellationTokenSource cancellationTokenSource_ = null;
 		public CancellationTokenSource CancellationTokenSource
 		{
 			get
 			{
-				return cancellationTokenSource_;
+				return GetValue<CancellationTokenSource>();
 			}
 			set
 			{
-				if (SetValue(ref cancellationTokenSource_, value, GetMemberName(() => CancellationTokenSource))) {
-					Dispatch(() => {
-						CancelSearchingCommand.RaiseCanExecuteChanged();
-					});
-				}
+				SetValue(value);
 			}
 		}
-		#endregion
+		
 		#endregion // Bindigns
 
 		#region Commands

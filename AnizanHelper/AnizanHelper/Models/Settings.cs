@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AnizanHelper.Models.SettingComponents;
+using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models
 {
@@ -19,11 +17,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false, GetMemberName(() => ClearInputAutomatically));
+				return GetMe(false);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => ClearInputAutomatically));
+				SetMe(value);
 			}
 		}
 
@@ -31,11 +29,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true, GetMemberName(() => AlwaysOnTop));
+				return GetMe(true);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => AlwaysOnTop));
+				SetMe(value);
 			}
 		}
 
@@ -43,11 +41,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false, GetMemberName(() => CopyAfterParse));
+				return GetMe(false);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => CopyAfterParse));
+				SetMe(value);
 			}
 		}
 
@@ -55,21 +53,21 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false, GetMemberName(() => CopyAfterApply));
+				return GetMe(false);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => CopyAfterApply));
+				SetMe(value);
 			}
 		}
 
 		public bool IncrementSongNumberWhenCopied
 		{
 			get{
-				return GetMe(true, GetMemberName(() => IncrementSongNumberWhenCopied));
+				return GetMe(true);
 			}
 			set{
-				SetMe(value, GetMemberName(() => IncrementSongNumberWhenCopied));
+				SetMe(value);
 			}
 		}
 
@@ -77,11 +75,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.DefaultServerName, GetMemberName(() => ServerName));
+				return GetMe(Constants.DefaultServerName);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => ServerName));
+				SetMe(value);
 			}
 		}
 
@@ -89,11 +87,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.DefaultBoardPath, GetMemberName(() => BoardPath));
+				return GetMe(Constants.DefaultBoardPath);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => BoardPath));
+				SetMe(value);
 			}
 		}
 
@@ -101,11 +99,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe("", GetMemberName(() => ThreadKey));
+				return GetMe(string.Empty);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => ThreadKey));
+				SetMe(value);
 			}
 		}
 
@@ -113,11 +111,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.ZanmaiSearchUrl, GetMemberName(() => ZanmaiSearchUrl));
+				return GetMe(Constants.ZanmaiSearchUrl);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => ZanmaiSearchUrl));
+				SetMe(value);
 			}
 		}
 
@@ -125,11 +123,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false, GetMemberName(() => ApplySongInfoAutomatically));
+				return GetMe(false);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => ApplySongInfoAutomatically));
+				SetMe(value);
 			}
 		}
 
@@ -137,11 +135,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true, GetMemberName(() => WriteAsSage));
+				return GetMe(true);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => WriteAsSage));
+				SetMe(value);
 			}
 		}
 
@@ -149,11 +147,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true, GetMemberName(() => CheckSeriesTypeNumberAutomatically));
+				return GetMe(true);
 			}
 			set
 			{
-				SetMe(value, GetMemberName(() => CheckSeriesTypeNumberAutomatically));
+				SetMe(value);
 			}
 		}
 	}

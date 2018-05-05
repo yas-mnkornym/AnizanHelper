@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Reactive.Disposables;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.SettingComponents;
 using Twin;
 using Twin.Bbs;
-using System.Reactive.Disposables;
 
 
 namespace AnizanHelper.ViewModels
 {
-	internal class MainWindowViewModel : BindableBase, IDisposable
+	internal class MainWindowViewModel : ViewModelBase, IDisposable
 	{
 		#region private fields
 		ISongInfoSerializer serializer_ = null;
@@ -30,22 +26,20 @@ namespace AnizanHelper.ViewModels
 		public MainWindowViewModel(
 			Settings settings,
 			AnizanSongInfoConverter converter,
-			IDispatcher dispatcher)
+			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
-			if (settings == null) { throw new ArgumentNullException("settings"); }
-			if (converter == null) { throw new ArgumentNullException("converter"); }
-
-			Settings = settings;
+			Settings = settings ?? throw new ArgumentNullException("settings");
+			converter_ = converter ?? throw new ArgumentNullException("converter");
+			
 			SongInfo = new AnizanSongInfo();
-			converter_ = converter;
 			serializer_ = new Models.Serializers.AnizanListSerializer();
 		
 			SearchVm = new SongSearchViewModel(settings, dispatcher);
-			SongParserVm = new ViewModels.SongParserVm(dispatcher);
+			SongParserVm = new SongParserVm(dispatcher);
 
 			SearchVm.SongParsed += SongParsed;
-			songParserVm.SongParsed += SongParsed;
+			SongParserVm.SongParsed += SongParsed;
 
 			settings.PropertyChanged += settings_PropertyChanged;
 
@@ -162,9 +156,9 @@ namespace AnizanHelper.ViewModels
 					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
 			};
 
-			Task.Factory.StartNew(() => {
+			Task.Factory.StartNew((Action)(() => {
 				try {
-					CanWrite = false;
+					this.CanWrite = false;
 					MessageService.Current.ShowMessage("書き込んでいます...");
 					post.Post(thread, res);
 				}
@@ -174,96 +168,80 @@ namespace AnizanHelper.ViewModels
 						"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
 				}
 				finally {
-					CanWrite = true;
+					this.CanWrite = true;
 				}
-			});
+			}));
 		}
 		#endregion
 
 		#region Bindings
-
-		#region 設定
-
-		#region Settings
-		Settings settings_;
+		
 		public Settings Settings
 		{
 			get
 			{
-				return settings_;
+				return GetValue<Settings>();
 			}
-			private set{
-				SetValue(ref settings_, value, GetMemberName(() => Settings));
+			set
+			{
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		#endregion // 設定
-
-		#region CanWrite
-		bool canWrite_ = true;
 		public bool CanWrite
 		{
 			get
 			{
-				return canWrite_;
+				return GetValue<bool>();
 			}
 			set
 			{
-				if (SetValue(ref canWrite_, value, GetMemberName(() => CanWrite))) {
+				if (SetValue(value)) {
 					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
 				}
 			}
 		}
-		#endregion
 
-		#region StatusText
-		string statusText_ = "";
 		public string StatusText
 		{
 			get
 			{
-				return statusText_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref statusText_, value, GetMemberName(() => StatusText));
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		#region ResultText
-		string resultText_ = "";
+
 		public string ResultText
 		{
 			get
 			{
-				return resultText_;
+				return GetValue<string>();
 			}
 			set
 			{
-				if (SetValue(ref resultText_, value, GetMemberName(() => ResultText))) {
+				if (SetValue(value)) {
 					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
 				}
 			}
 		}
-		#endregion
 
-		#region SongNumber
-		int songNumber_ = 1;
+
 		public int SongNumber
 		{
 			get
 			{
-				return songNumber_;
+				return GetValue<int>();
 			}
 			set
 			{
-				songNumber_ = value;
-				RaisePropertyChanged("SongNumber");
+				SetValue(value);
 			}
 		}
-		#endregion
+
 
 		#region VersionName
 		string versionName_ = null;
@@ -280,61 +258,55 @@ namespace AnizanHelper.ViewModels
 		}
 		#endregion
 
-		#region SearchVm
-		SongSearchViewModel searchVm_;
+
 		public SongSearchViewModel SearchVm
 		{
 			get
 			{
-				return searchVm_;
+				return GetValue<SongSearchViewModel>();
 			}
 			set
 			{
-				SetValue(ref searchVm_, value, GetMemberName(() => SearchVm));
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		#region SongParserVm
-		SongParserVm songParserVm = null;
 		public SongParserVm SongParserVm
 		{
 			get
 			{
-				return songParserVm;
+				return GetValue<SongParserVm>();
 			}
 			set
 			{
-				SetValue(ref songParserVm, value, GetMemberName(() => SongParserVm));
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		#region SongInfo
-		AnizanSongInfo songInfo_ = null;
+
 		public AnizanSongInfo SongInfo
 		{
 			get
 			{
-				return songInfo_;
+				return GetValue<AnizanSongInfo>();
 			}
 			set
 			{
-				SetValue(ref songInfo_, value,
-					actBeforeChange: oldInfo => {
-						if (oldInfo != null) {
-							oldInfo.PropertyChanged -= SongInfo_PropertyChanged;
+				SetValue(
+					value,
+					actBeforeChange: (oldValue, newValue) => {
+						if (oldValue != null) {
+							oldValue.PropertyChanged -= SongInfo_PropertyChanged;
 						}
 					},
-					actAfterChange: newInfo => {
-						newInfo.PropertyChanged += SongInfo_PropertyChanged;
+					actAfterChange: (oldValue, newValue) => {
+						newValue.PropertyChanged += SongInfo_PropertyChanged;
 						Dispatch(() => {
 							ToTvSizeCommand.RaiseCanExecuteChanged();
 							ToLiveVersionCommand.RaiseCanExecuteChanged();
 							SetAdditionalCommand.RaiseCanExecuteChanged();
 						});
-					},
-					propertyName: GetMemberName(() => SongInfo));
+					});
 			}
 		}
 
@@ -344,7 +316,6 @@ namespace AnizanHelper.ViewModels
 				Serialize();
 			}
 		}
-		#endregion
 
 		#endregion // Bindings
 
