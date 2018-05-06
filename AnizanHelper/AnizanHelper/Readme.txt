@@ -1,4 +1,4 @@
-Anizan Helper Version 1.1.14
+Anizan Helper Version 1.1.15
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
@@ -31,6 +31,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.2.0
  - リスト管理機能を追加
+
+Version 1.1.15
+ - 辞書ファイルの置換情報にタイトル制約を追加
 
 Version 1.1.14
  - 辞書ファイルの再読み込み機能を追加
