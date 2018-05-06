@@ -29,7 +29,7 @@ namespace AnizanHelper.ViewModels
 
 		void Search()
 		{
-			var words = SearchWord;
+			var words = SearchWord.Trim();
 			IsSearching = true;
 			MessageService.Current.ShowMessage("楽曲情報を検索しています...");
 			CancellationTokenSource = new System.Threading.CancellationTokenSource();

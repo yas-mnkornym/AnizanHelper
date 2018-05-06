@@ -51,9 +51,8 @@ namespace AnizanHelper.Models.Parsers
 				}
 			}
 
-			return match == null
-				? null
-				: new AnizanSongInfo {
+			return match?.Success == true
+				? new AnizanSongInfo {
 					Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
 					Title = match.Groups["Title"]?.Value?.Trim(),
 					Singer = match.Groups["Artist"]?.Value?.Trim(),
@@ -63,7 +62,8 @@ namespace AnizanHelper.Models.Parsers
 					Additional = match.Groups["Additional"]?.Value?.Trim(),
 					SpecialItemName = match.Groups["SpecialItemName"]?.Value?.Trim(),
 					SpecialHeader = match.Groups["SpecialHeader"]?.Value?.Trim(),
-				};
+				}
+				: null;
 		}
 
 		static int TryParseAsIntOrDefault(string text)
