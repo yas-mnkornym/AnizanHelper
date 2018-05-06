@@ -1,5 +1,6 @@
 ﻿using System;
 using AnizanHelper.Models.SettingComponents;
+using Newtonsoft.Json;
 using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models
@@ -152,6 +153,47 @@ namespace AnizanHelper.Models
 			set
 			{
 				SetMe(value);
+			}
+		}
+
+		public bool SnapListWindow
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
+
+		public AnizanSongInfo[] SongList
+		{
+			get
+			{
+				var ret = GetMe<string>(null);
+				if (!string.IsNullOrWhiteSpace(ret)) {
+					try {
+						return JsonConvert.DeserializeObject<AnizanSongInfo[]>(ret);
+					}
+					catch {
+						return new AnizanSongInfo[] { };
+					}
+				}
+				else {
+					return new AnizanSongInfo[] { };
+				}
+			}
+			set
+			{
+				if (value == null) {
+					SetMe<string>(null);
+				}
+				else {
+					var json = JsonConvert.SerializeObject(value);
+					SetMe(json);
+				}
 			}
 		}
 	}

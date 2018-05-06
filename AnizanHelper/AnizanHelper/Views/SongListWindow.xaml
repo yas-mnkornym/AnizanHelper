@@ -1,0 +1,116 @@
+﻿<Window x:Class="AnizanHelper.Views.SongListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnizanHelper.Views"
+		xmlns:behaviors="clr-namespace:AnizanHelper.Views.Behaviors"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+		WindowStyle="ToolWindow"
+        Title="曲リスト" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<DataGrid Grid.Row="0"
+				  HeadersVisibility="Column"
+				  CanUserSortColumns="False"
+				  CanUserAddRows="False"
+				  AutoGenerateColumns="False"
+				  ItemsSource="{Binding Path=SongList, Mode=OneWay}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="★"
+									Binding="{Binding Path=SpecialHeader, Mode=TwoWay}" />
+				
+				<DataGridTextColumn Header="種別"
+									Binding="{Binding Path=SpecialItemName, Mode=TwoWay}" />
+				
+				<DataGridTextColumn Header="番号"
+									Binding="{Binding Path=Number, StringFormat=0000, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="曲名"
+									Binding="{Binding Path=Title, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="歌手名"
+									Binding="{Binding Path=Singer, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="ジャンル"
+									Binding="{Binding Path=Genre, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="作品名"
+									Binding="{Binding Path=Series, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="曲種"
+									Binding="{Binding Path=SongType, Mode=TwoWay}" />
+
+				<DataGridTextColumn Header="補足"
+									Binding="{Binding Path=Additional, Mode=TwoWay}"
+									Width="*"/>
+			</DataGrid.Columns>
+
+			<i:Interaction.Behaviors>
+				<behaviors:DataGridBindableSelectedItemsBehavior SelectedItems="{Binding Path=SelectedItems, Mode=OneWay}" />
+			</i:Interaction.Behaviors>
+		</DataGrid>
+
+		<Grid Grid.Row="1">
+			<WrapPanel Orientation="Horizontal"
+					   Margin="0,0,5,5">
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="全選択・解除"
+						Command="{Binding Path=SelectOrDeselectAllCommand, Mode=OneWay}"/>
+				
+				<Button MinWidth="30"
+						Margin="5,5,0,0"
+						Content="↑"
+						Command="{Binding Path=MoveUpCommand, Mode=OneWay}"/>
+
+				<Button MinWidth="30"
+						Margin="5,5,0,0"
+						Content="↓"
+						Command="{Binding Path=MoveDownCommand, Mode=OneWay}"/>
+				
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="全削除"
+						Command="{Binding Path=DeleteAllCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="選択済削除"
+						Command="{Binding Path=DeleteSelectedCommand, Mode=OneWay}" />
+				
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="全コピー"
+						Command="{Binding Path=CopyAllCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="選択済みコピー"
+						Command="{Binding Path=CopySelectedCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="被選択曲順ソート"
+						Command="{Binding Path=SortSelectedCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="曲順自動採番"
+						Command="{Binding Path=NumberSelectedCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="クリップボードから登録"
+						Command="{Binding Path=PasteFromClipboardCommand, Mode=OneWay}" />
+			</WrapPanel>
+
+		</Grid>
+	</Grid>
+</Window>

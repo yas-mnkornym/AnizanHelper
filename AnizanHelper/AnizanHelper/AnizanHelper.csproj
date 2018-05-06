@@ -42,6 +42,9 @@
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ReactiveProperty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=910d1732782c71cb, processorArchitecture=MSIL">
       <HintPath>..\packages\ReactiveProperty.4.2.2\lib\net46\ReactiveProperty.dll</HintPath>
     </Reference>
@@ -72,6 +75,7 @@
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -121,6 +125,8 @@
     <Compile Include="Models\ReplaceDictionaryFileReader.cs" />
     <Compile Include="Models\ReplaceDictionaryUpdater.cs" />
     <Compile Include="Models\SettingComponents\NotificationObjectWithNotifyChaning.cs" />
+    <Compile Include="ViewModels\ReactiveViewModelBase.cs" />
+    <Compile Include="ViewModels\SongListWindowViewModel.cs" />
     <Compile Include="ViewModels\SongParserVm.cs" />
     <Compile Include="ViewModels\SongParserVmBase.cs" />
     <Compile Include="ViewModels\SongSearchViewModel.cs" />
@@ -128,7 +134,11 @@
     <Compile Include="Views\AnizanSongInfoControl.xaml.cs">
       <DependentUpon>AnizanSongInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Behaviors\DataGridSelectedItemsBehavior.cs" />
     <Compile Include="Views\Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Views\SongListWindow.xaml.cs">
+      <DependentUpon>SongListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SongParserControl.xaml.cs">
       <DependentUpon>SongParserControl.xaml</DependentUpon>
     </Compile>
@@ -175,6 +185,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SongListWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SongParserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

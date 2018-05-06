@@ -1,22 +1,24 @@
 ﻿using System;
-using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
-using AnizanHelper.Models.SettingComponents;
+using AnizanHelper.Views;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using Twin;
 using Twin.Bbs;
 
 
 namespace AnizanHelper.ViewModels
 {
-	internal class MainWindowViewModel : ViewModelBase, IDisposable
+	internal class MainWindowViewModel : ReactiveViewModelBase, IDisposable
 	{
-		#region private fields
 		ISongInfoSerializer serializer_ = null;
 		AnizanSongInfoConverter converter_ = null;
-		CompositeDisposable disposables_ = new CompositeDisposable();
-		#endregion
+		Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
+		SongListWindow SongListWindow { get; }
 
 		#region コンストラクタ
 		/// <summary>
@@ -24,17 +26,20 @@ namespace AnizanHelper.ViewModels
 		/// </summary>
 		/// <param name="dispatcher">ディスパッチャ</param>
 		public MainWindowViewModel(
+			Window mainWindow,
 			Settings settings,
 			AnizanSongInfoConverter converter,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
+			if (mainWindow == null) { throw new ArgumentNullException(nameof(mainWindow)); }
+
 			Settings = settings ?? throw new ArgumentNullException("settings");
 			converter_ = converter ?? throw new ArgumentNullException("converter");
-			
+
 			SongInfo = new AnizanSongInfo();
 			serializer_ = new Models.Serializers.AnizanListSerializer();
-		
+
 			SearchVm = new SongSearchViewModel(settings, dispatcher);
 			SongParserVm = new SongParserVm(dispatcher);
 
@@ -43,7 +48,82 @@ namespace AnizanHelper.ViewModels
 
 			settings.PropertyChanged += settings_PropertyChanged;
 
-			disposables_.Add(MessageService.Current.MessageObservable.Subscribe(message => StatusText = message));
+			MessageService.Current.MessageObservable
+				.Subscribe(message => StatusText = message)
+				.AddTo(Disposables);
+
+			SongsSubject.AddTo(Disposables);
+			SongListWindowViewModel = new SongListWindowViewModel(settings, serializer_, SongsSubject)
+				.AddTo(Disposables);
+
+			SongListWindow = new SongListWindow {
+				DataContext = SongListWindowViewModel,
+				Topmost = Settings.AlwaysOnTop
+			};
+
+			SongListWindow.Loaded += (_, __) => {
+				SongListWindow.Owner = mainWindow;
+				SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+				SongListWindow.Top = mainWindow.Top;
+				SongListWindow.Height = mainWindow.Height;
+			};
+
+			mainWindow.Closed += (_, __) => {
+				SongListWindow.Close();
+			};
+
+			mainWindow.LocationChanged += (_, __) => {
+				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					SongListWindow.Top = mainWindow.Top;
+				}
+			};
+
+			mainWindow.SizeChanged += (_, __) => {
+				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					SongListWindow.Top = mainWindow.Top;
+				}
+			};
+
+			SongListWindow.SizeChanged += (_, __) => {
+				if (mainWindow.Visibility == Visibility.Visible && SongListWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					SongListWindow.Top = mainWindow.Top;
+				}
+			};
+
+			settings.PropertyChangedAsObservable()
+				.Where(x => x.PropertyName == nameof(Settings.SnapListWindow))
+				.ObserveOnDispatcher()
+				.Subscribe(_ => {
+					if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+						SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+						SongListWindow.Top = mainWindow.Top;
+					}
+				});
+
+			Settings.PropertyChangedAsObservable()
+				.Where(x => x.PropertyName == nameof(Settings.AlwaysOnTop))
+				.ObserveOnUIDispatcher()
+				.Subscribe(_ => {
+					SongListWindow.Topmost = Settings.AlwaysOnTop;
+				})
+				.AddTo(Disposables);
+
+			ShowListWindow
+				.ObserveOnUIDispatcher()
+				.Subscribe(show => {
+					if (show) {
+						SongListWindow.Show();
+					}
+					else {
+						if (SongListWindow.Visibility == Visibility.Visible) {
+							SongListWindow.Hide();
+						}
+					}
+				})
+				.AddTo(Disposables);
 		}
 
 		// 曲情報がパースされたよ！
@@ -81,6 +161,8 @@ namespace AnizanHelper.ViewModels
 			if (string.IsNullOrEmpty("str")) { str = " "; }
 			System.Windows.Forms.Clipboard.SetText(str);
 
+			AddCurrentSongToList();
+
 			// 番号インクリメント
 			if (Settings.IncrementSongNumberWhenCopied) {
 				SongNumber++;
@@ -93,6 +175,19 @@ namespace AnizanHelper.ViewModels
 					SearchVm.ClearInput();
 				});
 			}
+		}
+
+		void AddCurrentSongToList()
+		{
+			SongsSubject.OnNext(new AnizanSongInfo {
+				Title = SongInfo.Title,
+				Singer = SongInfo.Singer,
+				Genre = SongInfo.Genre,
+				Series = SongInfo.Series,
+				SongType = SongInfo.SongType,
+				Additional = SongInfo.Additional,
+				Number = SongNumber,
+			});
 		}
 
 		void WriteToThread()
@@ -118,6 +213,8 @@ namespace AnizanHelper.ViewModels
 					case PostResponse.Success:
 						MessageService.Current.ShowMessage(string.Format("書き込み成功! ( {0} )",
 							str.Length > 40 ? str.Substring(0, 40) + "..." : str));
+
+						AddCurrentSongToList();
 
 						// 曲番号インクリメント
 						if (Settings.IncrementSongNumberWhenCopied) {
@@ -214,7 +311,6 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 
-
 		public string ResultText
 		{
 			get
@@ -229,19 +325,17 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 
-
 		public int SongNumber
 		{
 			get
 			{
-				return GetValue<int>();
+				return GetValue<int>(1);
 			}
 			set
 			{
 				SetValue(value);
 			}
 		}
-
 
 		#region VersionName
 		string versionName_ = null;
@@ -258,6 +352,8 @@ namespace AnizanHelper.ViewModels
 		}
 		#endregion
 
+		public ReactiveProperty<bool> ShowListWindow { get; } = new ReactiveProperty<bool>();
+		public ReactiveProperty<bool> SnapListWindow { get; } = new ReactiveProperty<bool>(true);
 
 		public SongSearchViewModel SearchVm
 		{
@@ -283,7 +379,6 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 
-
 		public AnizanSongInfo SongInfo
 		{
 			get
@@ -307,6 +402,18 @@ namespace AnizanHelper.ViewModels
 							SetAdditionalCommand.RaiseCanExecuteChanged();
 						});
 					});
+			}
+		}
+
+		public SongListWindowViewModel SongListWindowViewModel
+		{
+			get
+			{
+				return GetValue<SongListWindowViewModel>();
+			}
+			set
+			{
+				SetValue(value);
 			}
 		}
 
@@ -573,24 +680,6 @@ namespace AnizanHelper.ViewModels
 		{
 			ErrMsg(string.Format("{0}\n\n***例外情報***\n{1}",
 				message, ex.ToString()));
-		}
-		#endregion
-
-		#region IDisposable メンバ
-		bool isDisposed_ = false;
-		virtual protected void Dispose(bool disposing)
-		{
-			if (isDisposed_) { return; }
-			if (disposing) {
-				disposables_.Dispose();
-			}
-			isDisposed_ = true;
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
 		}
 		#endregion
 	}

@@ -1,120 +1,143 @@
-﻿using Studiotaiha.Toolkit;
+﻿using Newtonsoft.Json;
+using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models
 {
-	internal class AnizanSongInfo : NotificationObject
+	public class AnizanSongInfo : NotificationObjectWithPropertyBag
 	{
 		/// <summary>
 		/// 曲名
 		/// </summary>
-		#region Title
-		string title_ = null;
+		[JsonProperty]
 		public string Title
 		{
 			get
 			{
-				return title_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref title_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// 歌手
 		/// </summary>
-		#region Singers
-		string singer_ = null;
+		[JsonProperty]
 		public string Singer
 		{
 			get
 			{
-				return singer_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref singer_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// 作品名
 		/// </summary>
-		#region Series
-		string series_ = null;
+		[JsonProperty]
 		public string Series
 		{
 			get
 			{
-				return series_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref series_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// ジャンル
 		/// </summary>
-		#region Genre
-		string genre_ = null;
+		[JsonProperty]
 		public string Genre
 		{
 			get
 			{
-				return genre_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref genre_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// 曲種
 		/// </summary>
-		#region SongType
-		string songType_ = null;
+		[JsonProperty]
 		public string SongType
 		{
 			get
 			{
-				return songType_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref songType_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// 補足情報
 		/// </summary>
-		#region Additional
-		string additional_ = null;
+		[JsonProperty]
 		public string Additional
 		{
 			get
 			{
-				return additional_;
+				return GetValue<string>();
 			}
 			set
 			{
-				SetValue(ref additional_, value);
+				SetValue(value);
 			}
 		}
-		#endregion
 
-		public override string ToString()
+		[JsonProperty]
+		public int Number
 		{
-			return Utils.GeneralObjectToString(this);
+			get
+			{
+				return GetValue<int>();
+			}
+			set
+			{
+				SetValue(value);
+			}
+		}
+
+		[JsonProperty]
+		public string SpecialItemName
+		{
+			get
+			{
+				return GetValue<string>();
+			}
+			set
+			{
+				SetValue(value);
+			}
+		}
+
+		[JsonProperty]
+		public string SpecialHeader
+		{
+			get
+			{
+				return GetValue<string>();
+			}
+			set
+			{
+				SetValue(value);
+			}
 		}
 	}
 }

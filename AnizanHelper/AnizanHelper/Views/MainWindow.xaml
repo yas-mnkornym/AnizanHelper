@@ -30,32 +30,50 @@
 		
 		
 		<!-- 設定部 -->
-		<WrapPanel Grid.Row="0" Grid.Column="0"
-					Orientation="Horizontal">
-			<CheckBox Content="常に手前に表示"
-					  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" 
-					  VerticalAlignment="Center"
-					  Margin="2,0,2,0"/>
-			<CheckBox Content="解析時番号付きコピー"
-					  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
-					  VerticalAlignment="Center"
-					  Margin="2,0,2,0"/>
-			<CheckBox Content="適用時番号付きコピー"
-					  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
-					  VerticalAlignment="Center"
-					  Margin="2,0,2,0"/>
-			<CheckBox Content="コピー/書込後入力欄クリア"
-					  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
-					  VerticalAlignment="Center"
-					  Margin="2,0,2,0" />
-			<Button Content="辞書の更新を確認"
-					Margin="2,0,2,0"
-					Command="{Binding Path=CheckForDictionaryUpdateCommand}" />
-            <Button Content="辞書再読込"
-					Margin="2,0,2,0"
-					Command="{Binding Path=ReloadDictionaryCommand}" />
-        </WrapPanel>
-		
+		<Grid Grid.Row="0" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			
+			<WrapPanel Grid.Column="0" Orientation="Horizontal">
+				<CheckBox Content="常に手前に表示"
+						  IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" 
+						  VerticalAlignment="Center"
+						  Margin="2,0,2,0"/>
+				<!--<CheckBox Content="解析時番号付きコピー"
+						  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" 
+						  VerticalAlignment="Center"
+						  Margin="2,0,2,0"/>-->
+				<CheckBox Content="適用時番号付きコピー"
+						  IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" 
+						  VerticalAlignment="Center"
+						  Margin="2,0,2,0"/>
+				<CheckBox Content="コピー/書込後入力欄クリア"
+						  IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+						  VerticalAlignment="Center"
+						  Margin="2,0,2,0" />
+				<Button Content="辞書の更新を確認"
+						Margin="2,0,2,0"
+						Command="{Binding Path=CheckForDictionaryUpdateCommand}" />
+				<Button Content="辞書再読込"
+						Margin="2,0,2,0"
+						Command="{Binding Path=ReloadDictionaryCommand}" />
+			</WrapPanel>
+
+			<StackPanel Grid.Column="1"
+						Orientation="Horizontal">
+				<CheckBox Content="リスト追従"
+						  IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}"
+						  VerticalAlignment="Center" />
+
+				<ToggleButton Margin="5,0,0,0"
+							  MinWidth="70"
+							  Content="リスト"
+							  IsChecked="{Binding Path=ShowListWindow.Value, Mode=TwoWay}"/>
+			</StackPanel>
+		</Grid>
+
 		<!-- 曲表示 -->
 		<!--
 		<WebBrowser Grid.Row="1" Grid.Column="0"
@@ -72,10 +90,10 @@
 		<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}"/>
 		</GroupBox>
 		<!-- 入力部 -->
-		<GroupBox Grid.Row="4" Grid.Column="0"
+		<!--<GroupBox Grid.Row="4" Grid.Column="0"
 				  Header="Webブラウザからの一行コピペ">
 			<views:SongParserControl DataContext="{Binding Path=SongParserVm}" />
-		</GroupBox>
+		</GroupBox>-->
 		<!-- パース結果出力部 -->
 		<Grid Grid.Row="5" Grid.Column="0">
 			<Grid.ColumnDefinitions>

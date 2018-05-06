@@ -41,10 +41,8 @@ namespace AnizanHelper
 			LoadReplaceDictionary();
 
 			// メインウィンドウ作成
-			MainWindow = new MainWindow() {
-				DataContext = new MainWindowViewModel(settings_, converter_, new WPFDispatcher(Dispatcher)) {
-				}
-			};
+			MainWindow = new MainWindow();
+			MainWindow.DataContext = new MainWindowViewModel(MainWindow, settings_, converter_, new WPFDispatcher(Dispatcher));
 			MainWindow.Show();
 
 			// 辞書の更新を確認

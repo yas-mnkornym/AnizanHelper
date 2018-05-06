@@ -69,5 +69,25 @@ namespace AnizanHelper.Models.Serializers
 			}
 			return result;
 		}
+
+		public string SerializeFull(AnizanSongInfo info)
+		{
+			var sb = new StringBuilder();
+
+			var body = Serialize(info);
+			var isSpecial = !string.IsNullOrWhiteSpace(info.SpecialHeader);
+
+			if(isSpecial) {
+				sb.Append(info.SpecialHeader);
+				sb.Append(info.SpecialItemName);
+				body = body.Substring(1);
+			}
+			else {
+				sb.AppendFormat("{0:0000}", info.Number);
+			}
+			
+			sb.Append(body);
+			return sb.ToString();
+		}
 	}
 }
