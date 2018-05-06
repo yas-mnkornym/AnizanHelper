@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Views\Behaviors\DataGridSelectedItemsBehavior.cs" />
     <Compile Include="Views\Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Views\Converters\ReverseBoolConverter.cs" />
     <Compile Include="Views\SongListWindow.xaml.cs">
       <DependentUpon>SongListWindow.xaml</DependentUpon>
     </Compile>

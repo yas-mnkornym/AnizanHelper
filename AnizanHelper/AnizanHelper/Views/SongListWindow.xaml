@@ -63,51 +63,78 @@
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
 						Content="全選択・解除"
+						ToolTip="全てのアイテムの選択・非選択を切り替えます。"
 						Command="{Binding Path=SelectOrDeselectAllCommand, Mode=OneWay}"/>
 				
 				<Button MinWidth="30"
 						Margin="5,5,0,0"
 						Content="↑"
+						ToolTip="選択されたアイテムを一つ上に移動します。"
 						Command="{Binding Path=MoveUpCommand, Mode=OneWay}"/>
 
 				<Button MinWidth="30"
 						Margin="5,5,0,0"
 						Content="↓"
+						ToolTip="選択されたアイテムを一つ下に移動します。"
 						Command="{Binding Path=MoveDownCommand, Mode=OneWay}"/>
-				
-				<Button MinWidth="50"
+
+				<Button MinWidth="25"
 						Margin="5,5,0,0"
-						Content="全削除"
-						Command="{Binding Path=DeleteAllCommand, Mode=OneWay}" />
+						Content="★"
+						ToolTip="★から始まるアイテムを追加します。"
+						Command="{Binding Path=AddSpecialItemCommand, Mode=OneWay}" />
+
+				<Button MinWidth="25"
+						Margin="5,5,0,0"
+						Content="▼"
+						ToolTip="▼から始まるアイテムを追加します。"
+						Command="{Binding Path=AddSpecialItemCommand, Mode=OneWay}" />
 
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
-						Content="選択済削除"
-						Command="{Binding Path=DeleteSelectedCommand, Mode=OneWay}" />
+						Content="自動採番"
+						ToolTip="選択されたアイテムを自動で採番します。一番上のアイテム番号が基点になります。"
+						Command="{Binding Path=NumberSelectedCommand, Mode=OneWay}" />
 				
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
 						Content="全コピー"
+						ToolTip="全てのアイテムを、リストスレ・Wikiに貼り付けられる形式でクリップボードにコピーします。"
 						Command="{Binding Path=CopyAllCommand, Mode=OneWay}" />
 
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
 						Content="選択済みコピー"
+						ToolTip="選択されたアイテムを、リストスレ・Wikiに貼り付けられる形式でクリップボードにコピーします。"
 						Command="{Binding Path=CopySelectedCommand, Mode=OneWay}" />
 
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
 						Content="被選択曲順ソート"
+						ToolTip="選択されたアイテムを、曲番号順に並び替えます。※注意：★SE、▼DJトークなどが末尾に来ます。"
 						Command="{Binding Path=SortSelectedCommand, Mode=OneWay}" />
 
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
-						Content="曲順自動採番"
-						Command="{Binding Path=NumberSelectedCommand, Mode=OneWay}" />
+						Background="Black"
+						Foreground="Red"
+						FontWeight="Bold"
+						Content="全削除"
+						ToolTip="全てのアイテムを削除します。"
+						Command="{Binding Path=DeleteAllCommand, Mode=OneWay}" />
+
+				<Button MinWidth="50"
+						Margin="5,5,0,0"
+						Content="選択済削除"
+						Background="Black"
+						Foreground="Red"
+						ToolTip="選択されたアイテムを削除します。"
+						Command="{Binding Path=DeleteSelectedCommand, Mode=OneWay}" />
 
 				<Button MinWidth="50"
 						Margin="5,5,0,0"
 						Content="クリップボードから登録"
+						ToolTip="リストスレ・Wiki の形式のテキストを解析し、このリストに追加します。&#xa;複数行対応です。"
 						Command="{Binding Path=PasteFromClipboardCommand, Mode=OneWay}" />
 			</WrapPanel>
 

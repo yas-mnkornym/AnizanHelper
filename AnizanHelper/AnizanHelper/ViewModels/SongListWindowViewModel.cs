@@ -304,6 +304,13 @@ namespace AnizanHelper.ViewModels
 						SongList.Insert(pair.Index, pair.Item);
 					}
 				});
+
+			this.AddSpecialItemCommand = new ReactiveCommand()
+				.WithSubscribe(() => {
+					this.SongList.Add(new AnizanSongInfo {
+						SpecialHeader = "★",
+					});
+				});
 		}
 
 		static int TryParseAsIntOrDefault(string text) {
@@ -362,6 +369,7 @@ namespace AnizanHelper.ViewModels
 		public ReactiveCommand MoveDownCommand { get; }
 		public ReactiveCommand SelectOrDeselectAllCommand { get; }
 		
+		public ReactiveCommand AddSpecialItemCommand { get; }
 		public ReactiveCommand SortSelectedCommand { get; }
 
 	}

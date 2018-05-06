@@ -124,6 +124,54 @@ namespace AnizanHelper.ViewModels
 					}
 				})
 				.AddTo(Disposables);
+
+			SetToSpecialCommand = new ReactiveCommand<string>()
+				.WithSubscribe(type => {
+					var header = "★";
+					var body = "";
+					switch (type) {
+						case "BGM":
+							body = "繋ぎBGM";
+							break;
+
+						case "SE":
+							body = "SE";
+							break;
+
+						case "CM":
+							body = "CM";
+							break;
+
+						case "DJTALK":
+							header = "▼";
+							body = "DJトーク";
+							break;
+
+						default:
+							return;
+					}
+
+					SongInfo.IsSpecialItem = true;
+					SongInfo.SpecialHeader = header;
+					SongInfo.SpecialItemName = body;
+				});
+
+			SetPresetCommand = new ReactiveCommand<string>()
+				.WithSubscribe(type => {
+					switch (type) {
+						case "NOANIME":
+							SongInfo.Genre = string.Empty;
+							SongInfo.Series = "一般曲";
+							SongInfo.SongType = string.Empty;
+							break;
+
+						case "CLEARALL":
+							if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
+								SongInfo = new AnizanSongInfo();
+							}
+							break;
+					}
+				});
 		}
 
 		// 曲情報がパースされたよ！
@@ -150,7 +198,9 @@ namespace AnizanHelper.ViewModels
 		void Serialize()
 		{
 			if (serializer_ == null) { throw new InvalidOperationException("シリアライザが設定されていません。"); }
-			ResultText = serializer_.Serialize(SongInfo);
+			ResultText = SongInfo.IsSpecialItem
+				? serializer_.SerializeFull(SongInfo)
+				: serializer_.Serialize(SongInfo);
 		}
 
 		void CopyToClipboard(bool appendNumber)
@@ -164,7 +214,7 @@ namespace AnizanHelper.ViewModels
 			AddCurrentSongToList();
 
 			// 番号インクリメント
-			if (Settings.IncrementSongNumberWhenCopied) {
+			if (Settings.IncrementSongNumberWhenCopied && !SongInfo.IsSpecialItem) {
 				SongNumber++;
 			}
 
@@ -179,15 +229,25 @@ namespace AnizanHelper.ViewModels
 
 		void AddCurrentSongToList()
 		{
-			SongsSubject.OnNext(new AnizanSongInfo {
+			var info = new AnizanSongInfo {
 				Title = SongInfo.Title,
 				Singer = SongInfo.Singer,
 				Genre = SongInfo.Genre,
 				Series = SongInfo.Series,
 				SongType = SongInfo.SongType,
 				Additional = SongInfo.Additional,
-				Number = SongNumber,
-			});
+			};
+
+			if (SongInfo.IsSpecialItem) {
+				info.SpecialHeader = SongInfo.SpecialHeader;
+				info.SpecialItemName = SongInfo.SpecialItemName;
+				info.Number = 0;
+			}
+			else {
+				info.Number = SongNumber;
+			}
+
+			SongsSubject.OnNext(info);
 		}
 
 		void WriteToThread()
@@ -632,6 +692,10 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 		#endregion 
+
+		public ReactiveCommand<string> SetToSpecialCommand { get; }
+		public ReactiveCommand<string> SetPresetCommand { get; }
+
 		#endregion // Commands
 
 		#region SetAdditionalCommand

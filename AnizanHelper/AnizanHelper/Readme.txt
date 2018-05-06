@@ -31,6 +31,8 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.2.0
  - リスト管理機能を追加
+ - 楽曲以外の情報に対応
+ - プリセット用のショートカットボタンを追加
 
 Version 1.1.15
  - 辞書ファイルの置換情報にタイトル制約を追加

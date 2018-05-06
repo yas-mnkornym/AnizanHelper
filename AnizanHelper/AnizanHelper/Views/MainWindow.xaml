@@ -103,24 +103,36 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			
-			
+
 			<views:AnizanSongInfoControl 
-				Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"
+				Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+				VerticalAlignment="Center"
 				DataContext="{Binding Path=SongInfo}" />
 
-			<Button Grid.Row="0" Grid.Column="1" Content="TV size." Margin="5,0,0,0" Command="{Binding ToTvSizeCommand}" />
-			<Button Grid.Row="1" Grid.Column="1" Content="Live ver." Margin="5,2,0,0" Command="{Binding ToLiveVersionCommand}" />
-			<Button Grid.Row="2" Grid.Column="1" Content="※DJ熱唱" Margin="5,2,0,0" Command="{Binding SetAdditionalCommand}" CommandParameter="DJ熱唱" />
-			<Button Grid.Row="3" Grid.Column="1" Content="※放送事故" Margin="5,2,0,0" Command="{Binding SetAdditionalCommand}" CommandParameter="放送事故" />
-			<Button Grid.Row="4" Grid.Column="1"
+			<UniformGrid Grid.Row="0" Grid.Column="1"
+						 Columns="2">
+				<Button Content="★繋ぎBGM" Margin="1" Command="{Binding SetToSpecialCommand}" CommandParameter="BGM" />
+				<Button Content="★SE" Margin="1" Command="{Binding SetToSpecialCommand}" CommandParameter="SE" />
+				<Button Content="★CM" Margin="1" Command="{Binding SetToSpecialCommand}" CommandParameter="CM" />
+				<Button Content="▼DJトーク" Margin="1" Command="{Binding SetToSpecialCommand}" CommandParameter="DJTALK" />
+			</UniformGrid>
+
+			<UniformGrid Grid.Row="1" Grid.Column="1"
+						 Columns="2"
+						 Margin="0,3,0,0">
+				<Button Content="TV size." Margin="1" Command="{Binding ToTvSizeCommand}" />
+				<Button Content="Live ver." Margin="1" Command="{Binding ToLiveVersionCommand}" />
+				<Button Content="※DJ熱唱" Margin="1" Command="{Binding SetAdditionalCommand}" CommandParameter="DJ熱唱" />
+				<Button Content="※放送事故" Margin="1" Command="{Binding SetAdditionalCommand}" CommandParameter="放送事故" />
+				<Button Content="一般曲" Margin="1" Command="{Binding SetPresetCommand}" CommandParameter="NOANIME" />
+				<Button Content="クリア" Background="Black" Foreground="Red" FontWeight="Bold" Margin="1" Command="{Binding SetPresetCommand}" CommandParameter="CLEARALL" />
+			</UniformGrid>
+			<Button Grid.Row="2" Grid.Column="1"
 					HorizontalAlignment="Stretch"
-					Content="変更適用&#xa;　↓↓"
-					Margin="5,2,0,0"
+					Content="↓ 変更適用 ↓"
+					Margin="1"
 					Command="{Binding ApplyDetailsCommand}"/>
 		</Grid>
 
@@ -133,7 +145,7 @@
 				<Button	Content="コピー"
 						Margin="0,0,0,2"
 						Command="{Binding CopyResultCommand}" />
-				<Button Content="曲順コミコピー"
+				<Button Content="曲番コミコピー"
 						Margin="0,2,0,0"
 						Command="{Binding CopyResultAndSongNumberCommand}" />
 			</UniformGrid>

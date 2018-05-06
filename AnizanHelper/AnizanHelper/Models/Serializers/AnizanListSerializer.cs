@@ -29,27 +29,49 @@ namespace AnizanHelper.Models.Serializers
 			
 		public string Serialize(AnizanSongInfo info)
 		{
+			return Serialize(info, true);
+		}
+
+		private string Serialize(AnizanSongInfo info, bool appendAll)
+		{
 			if (info == null) { throw new ArgumentNullException("info"); }
 
 			// フォーマット構築
 			StringBuilder sb = new StringBuilder();
-			sb.Append(".｢{0}｣/{1}(");
+			sb.Append(".｢{0}｣");
+
+			var hasSinger = !string.IsNullOrWhiteSpace(info.Singer);
+
+			if (appendAll || hasSinger) {
+				sb.Append("/{1}");
+			}
+
+			var hasSeries = !string.IsNullOrWhiteSpace(info.Series);
+			var hasGenre = !string.IsNullOrWhiteSpace(info.Genre);
+			var hasSongType = !string.IsNullOrWhiteSpace(info.SongType);
+
+			if (appendAll || hasSeries || hasSongType) {
+				sb.Append("(");
+			}
 
 			// 使用作品名追加
-			if (!string.IsNullOrWhiteSpace(info.Series)) {
+			if (hasSeries) {
 				// ジャンル追加
-				if (!string.IsNullOrWhiteSpace(info.Genre)) {
+				if (hasGenre) {
 					sb.Append("[{2}]");
 				}
+
 				sb.Append("{3}");
 			}
 
 			// 曲種追加
-			if (!string.IsNullOrWhiteSpace(info.SongType)) {
+			if (hasSongType) {
 				sb.Append("　{4}");
 			}
 
-			sb.Append(")");
+			if (appendAll || hasSeries || hasSongType) {
+				sb.Append(")");
+			}
 
 			// 補足追加
 			if (!string.IsNullOrWhiteSpace(info.Additional)) {
@@ -64,7 +86,7 @@ namespace AnizanHelper.Models.Serializers
 				info.Series,
 				info.SongType,
 				info.Additional);
-			for (int i = 0; i < replaceList.Length-1; i++) {
+			for (int i = 0; i < replaceList.Length - 1; i++) {
 				result = Regex.Replace(result, replaceList[i], replaceList[i + 1]);
 			}
 			return result;
@@ -74,7 +96,7 @@ namespace AnizanHelper.Models.Serializers
 		{
 			var sb = new StringBuilder();
 
-			var body = Serialize(info);
+			var body = Serialize(info, false);
 			var isSpecial = !string.IsNullOrWhiteSpace(info.SpecialHeader);
 
 			if(isSpecial) {

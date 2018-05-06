@@ -139,5 +139,18 @@ namespace AnizanHelper.Models
 				SetValue(value);
 			}
 		}
+
+		[JsonProperty]
+		public bool IsSpecialItem
+		{
+			get
+			{
+				return GetValue(false);
+			}
+			set
+			{
+				SetValue(value);
+			}
+		}
 	}
 }
