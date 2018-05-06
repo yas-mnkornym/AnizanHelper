@@ -29,6 +29,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・TaihaToolkit
 
 ●更新履歴
+Version 1.2.0
+ - リスト管理機能を追加
+
 Version 1.1.14
  - 辞書ファイルの再読み込み機能を追加
  - 歌手名全体に対しても文字列の置換を行うよう修正
