@@ -129,11 +129,20 @@
 				<Button Content="一般曲" Margin="1" Command="{Binding SetPresetCommand}" CommandParameter="NOANIME" />
 				<Button Content="クリア" Background="Black" Foreground="Red" FontWeight="Bold" Margin="1" Command="{Binding SetPresetCommand}" CommandParameter="CLEARALL" />
 			</UniformGrid>
-			<Button Grid.Row="2" Grid.Column="1"
-					HorizontalAlignment="Stretch"
-					Content="↓ 変更適用 ↓"
-					Margin="1"
-					Command="{Binding ApplyDetailsCommand}"/>
+
+			<UniformGrid Grid.Row="2" Grid.Column="1"
+						 Columns="2">
+				<Button HorizontalAlignment="Stretch"
+						Content="貼付(三昧)"
+						Margin="1"
+						ToolTip="クリップボードから情報を貼り付けます。$#xa;三昧のリストフォーマットのみ対応しています。"
+						Command="{Binding PasteZanmaiFormatCommand}"/>
+				
+				<Button HorizontalAlignment="Stretch"
+						Content="↓変更適用↓"
+						Margin="1"
+						Command="{Binding ApplyDetailsCommand}"/>
+			</UniformGrid>
 		</Grid>
 
 		<!-- コピー用結果出力部 -->

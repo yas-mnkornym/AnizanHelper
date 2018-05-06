@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
+using AnizanHelper.Models.Parsers;
 using AnizanHelper.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -17,6 +20,7 @@ namespace AnizanHelper.ViewModels
 	{
 		ISongInfoSerializer serializer_ = null;
 		AnizanSongInfoConverter converter_ = null;
+		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 		Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
 		SongListWindow SongListWindow { get; }
 
@@ -69,7 +73,7 @@ namespace AnizanHelper.ViewModels
 			};
 
 			mainWindow.Closed += (_, __) => {
-				SongListWindow.Close();
+				SongListWindow.CloseImmediately();
 			};
 
 			mainWindow.LocationChanged += (_, __) => {
@@ -90,6 +94,12 @@ namespace AnizanHelper.ViewModels
 				if (mainWindow.Visibility == Visibility.Visible && SongListWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
 					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 					SongListWindow.Top = mainWindow.Top;
+				}
+			};
+
+			SongListWindow.IsVisibleChanged += (_, e) => {
+				if (SongListWindow.Visibility != Visibility.Visible) {
+					this.ShowListWindow.Value = false;
 				}
 			};
 
@@ -170,6 +180,33 @@ namespace AnizanHelper.ViewModels
 								SongInfo = new AnizanSongInfo();
 							}
 							break;
+					}
+				});
+
+			PasteZanmaiFormatCommand = new ReactiveCommand()
+				.WithSubscribe(() => {
+					try {
+						var item = Clipboard.GetText()
+							.Replace("\r", "")
+							.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+							.Select(line => line.Trim())
+							.Select(line => AnizanFormatParser.ParseAsAnizanInfo(line))
+							.FirstOrDefault(x => x != null);
+
+						if (item == null) {
+							return;
+						}
+
+						item.IsSpecialItem =! string.IsNullOrWhiteSpace(item.SpecialHeader);
+						this.SongInfo = item;
+						SearchVm.SearchWord = item.Title;
+					}
+					catch (Exception ex) {
+						var sb = new StringBuilder();
+						sb.AppendLine("クリップボードからの情報取得に失敗しました。");
+						sb.AppendLine(ex.Message);
+
+						MessageBox.Show(sb.ToString(), "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				});
 		}
@@ -257,8 +294,10 @@ namespace AnizanHelper.ViewModels
 				BoardInfo = board,
 				Key = Settings.ThreadKey
 			};
-
-			var str = string.Format("{0:D4}{1}", SongNumber, ResultText);
+			
+			var str = SongInfo.IsSpecialItem
+					? ResultText
+					: string.Format("{0:D4}{1}", SongNumber, ResultText);
 
 			var res = new PostRes {
 				Body = str,
@@ -277,7 +316,7 @@ namespace AnizanHelper.ViewModels
 						AddCurrentSongToList();
 
 						// 曲番号インクリメント
-						if (Settings.IncrementSongNumberWhenCopied) {
+						if (!SongInfo.IsSpecialItem && Settings.IncrementSongNumberWhenCopied) {
 							SongNumber++;
 						}
 
@@ -695,7 +734,7 @@ namespace AnizanHelper.ViewModels
 
 		public ReactiveCommand<string> SetToSpecialCommand { get; }
 		public ReactiveCommand<string> SetPresetCommand { get; }
-
+		public ReactiveCommand PasteZanmaiFormatCommand { get; }
 		#endregion // Commands
 
 		#region SetAdditionalCommand

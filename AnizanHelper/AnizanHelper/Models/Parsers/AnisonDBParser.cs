@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnizanHelper.Models.Parsers
 {
+
 	internal class AnisonDBParser : ISongInfoParser
 	{
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using AnizanHelper.Models;
+using AnizanHelper.Models.Parsers;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -14,6 +15,7 @@ namespace AnizanHelper.ViewModels
 	class SongListWindowViewModel : ReactiveViewModelBase
 	{
 		ISongInfoSerializer SongInfoSerializer { get; }
+		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 
 		public SongListWindowViewModel(
 			Settings settings,
@@ -114,31 +116,9 @@ namespace AnizanHelper.ViewModels
 						}
 
 						var items = text.Trim().Replace("\r", "").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-							.Select(line => {
-								Match match = null;
-								foreach (var regex in Regexes) {
-									match = regex.Match(line);
-									if (match.Success) {
-										break;
-									}
-								}
-
-								return new {
-									Line = line,
-									Info = match.Success
-										? new AnizanSongInfo {
-											Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
-											Title = match.Groups["Title"]?.Value?.Trim(),
-											Singer = match.Groups["Artist"]?.Value?.Trim(),
-											Genre = match.Groups["Genre"]?.Value?.Trim(),
-											Series = match.Groups["Series"]?.Value?.Trim(),
-											SongType = match.Groups["SongType"]?.Value?.Trim(),
-											Additional = match.Groups["Additional"]?.Value?.Trim(),
-											SpecialItemName = match.Groups["SpecialItemName"]?.Value?.Trim(),
-											SpecialHeader = match.Groups["SpecialHeader"]?.Value?.Trim(),
-										}
-										: null,
-								};
+							.Select(line => new {
+								Line = line,
+								Info = AnizanFormatParser.ParseAsAnizanInfo(line),
 							})
 							.ToArray();
 
@@ -313,33 +293,7 @@ namespace AnizanHelper.ViewModels
 				});
 		}
 
-		static int TryParseAsIntOrDefault(string text) {
-			if (text == null) {
-				return 0;
-			}
 
-			return int.TryParse(text, out var result) ? result : 0;
-		}
-
-		static Regex[] Regexes = new Regex[]{
-			// Special 
-			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)｢(?<Title>.*)｣/?(?<Artist>.*)?\((\[(?<Genre>.*)\])?(?<Series>.*)　(?<SongType>.*)?\)\s*(※(?<Additional>.*))?"),
-			
-			// Special w/o SongType
-			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)｢(?<Title>.*)｣/?(?<Artist>.*)?\((\[(?<Genre>.*)\])?(?<Series>.*)\)\s*(※(?<Additional>.*))?"),
-			
-			// Special Lack
-			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)｢(?<Title>.*)｣/?(?<Artist>.*)?\s*(※(?<Additional>.*))?"),
-
-			// Song
-			new Regex(@"(?<Number>\d{1,4})?\.｢(?<Title>.*)｣/?(?<Artist>.*)?\((\[(?<Genre>.*)\])?(?<Series>.*)　(?<SongType>.*)?\)\s*(※(?<Additional>.*))?"),
-
-			// Song w/o SongType
-			new Regex(@"(?<Number>\d{1,4})?\.｢(?<Title>.*)｣/?(?<Artist>.*)?\((\[(?<Genre>.*)\])?(?<Series>[^\)]*)\)\s*(※(?<Additional>.*))?"),
-
-			// Song Lack
-			new Regex(@"(?<Number>\d{1,4})?\.｢(?<Title>.*)｣/?(?<Artist>.*)?\s*(※(?<Additional>.*))?")
-	};
 		
 
 		private void CopyToClipboard(IEnumerable<AnizanSongInfo> items)

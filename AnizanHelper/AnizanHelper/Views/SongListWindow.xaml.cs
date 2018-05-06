@@ -10,6 +10,22 @@ namespace AnizanHelper.Views
 		public SongListWindow()
 		{
 			InitializeComponent();
+			this.Closing += SongListWindow_Closing;
+		}
+
+		private void SongListWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			if (!canClose_) {
+				this.Hide();
+				e.Cancel = true;
+			}
+		}
+
+		bool canClose_ = false;
+		public void CloseImmediately()
+		{
+			this.canClose_ = true;
+			this.Close();
 		}
 	}
 }
