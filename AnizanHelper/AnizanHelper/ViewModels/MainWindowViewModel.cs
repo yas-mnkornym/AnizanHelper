@@ -349,7 +349,7 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<bool>();
+				return GetValue<bool>(true);
 			}
 			set
 			{

@@ -29,6 +29,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・TaihaToolkit
 
 ●更新履歴
+Version 1.2.1
+ - スレッドに直接書き込めない問題を修正
+
 Version 1.2.0
  - リスト管理機能を追加
  - 楽曲以外の情報に対応
