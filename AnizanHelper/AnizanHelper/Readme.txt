@@ -1,4 +1,4 @@
-Anizan Helper Version 1.1.15
+Anizan Helper
 
 ●使い方
 １．アニソンDBの検索画面から一行コピー
