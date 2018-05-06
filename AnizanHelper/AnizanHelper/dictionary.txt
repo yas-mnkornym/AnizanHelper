@@ -1,4 +1,4 @@
-header,21,
+header,22,
 
 rem,記法： replaec,[置換元],[置換先],[曲名（無特定ならなし）]
 
@@ -54,6 +54,7 @@ replace,"アイカツ!","アイカツ!-アイドルカツドウ!-"
 replace,"from STAR☆ANIS",""
 replace,"STAR☆ANIS",""
 replace,"AIKATSU☆STARS!",""
+replace,"のラジカツ!","AIKATSU☆STARS!のラジカツ!"
 
 rem,faturing -> feat.
 replace,"featuring","feat."
