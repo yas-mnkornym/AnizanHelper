@@ -1,61 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AnizanHelper
+﻿namespace AnizanHelper
 {
 	internal static class Constants
 	{
 		/// <summary>
 		/// 設定ファイル名
 		/// </summary>
-		public static readonly string SettingsFileName = "AnizanHelper.xml";
+		public static string SettingsFileName { get; } = "AnizanHelper.xml";
 
 		/// <summary>
 		/// 設定一時ファイル名
 		/// </summary>
-		public static readonly string SettingsTempFileName = "AnzanHelper.xml.tmp";
+		public static string SettingsTempFileName { get; } = "AnzanHelper.xml.tmp";
 
 		/// <summary>
 		/// 初期設定鯖名
 		/// </summary>
-		public static readonly string DefaultServerName = "anizanv.ddo.jp";
+		public static string DefaultServerName { get; } = "anizanv.ddo.jp";
 
 		/// <summary>
 		/// アニソン三昧さーちURL
 		/// </summary>
-		public static readonly string ZanmaiSearchUrl = "http://anizanv.ddo.jp/archive/list/";
+		public static string ZanmaiSearchUrl { get; } = "http://anizanv.ddo.jp/archive/list/";
 
 		/// <summary>
 		/// 初期設定板パス
 		/// </summary>
-		public static readonly string DefaultBoardPath = "operate";
+		public static string DefaultBoardPath { get; } = "operate";
 
 		/// <summary>
 		/// 置換辞書ファイル名
 		/// </summary>
-		public static readonly string DictionaryFileName = "dictionary.txt";
+		public static string DictionaryFileName { get; } = "dictionary.txt";
 
 		/// <summary>
 		/// ユーザ定義置換辞書ファイル名
 		/// </summary>
-		public static readonly string UserDictionaryFileName = "dictionary.user.txt";
+		public static string UserDictionaryFileName { get; } = "dictionary.user.txt";
 
 		/// <summary>
 		/// 置換辞書URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
+		public static string ReplaceDictionaryUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
 
 		/// <summary>
 		/// 置換辞書バージョン情報URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryVersionUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=v";
+		public static string ReplaceDictionaryVersionUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=v";
 
 		/// <summary>
-		/// 更新情報URL
+		/// 辞書更新情報URL
 		/// </summary>
-		public static readonly string ReplaceDictionaryUpdateInfoUrl = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=u";
+		public static string ReplaceDictionaryUpdateInfoUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=u";
+
+		/// <summary>
+		/// 本体更新情報URL
+		/// </summary>
+		public static string UpdateInfoUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/updates.json";
+
+		/// <summary>
+		/// アニソンDBぱーさー サポートページURL
+		/// </summary>
+		public static string AnizanHelperWebSiteUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper";
 
 	}
 }

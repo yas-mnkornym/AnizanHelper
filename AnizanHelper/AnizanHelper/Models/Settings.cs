@@ -196,5 +196,17 @@ namespace AnizanHelper.Models
 				}
 			}
 		}
+
+		public bool CheckForUpdateAutomatically
+		{
+			get
+			{
+				return GetMe(true);
+			}
+			set
+			{
+				SetMe(value);
+			}
+		}
 	}
 }

@@ -27,8 +27,12 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Reactive Property
 ・Reactive Extensions
 ・TaihaToolkit
+・Unity (DIのほう)
 
 ●更新履歴
+Version 1.2.5
+ - 本体アップデート確認機能を追加
+
 Version 1.2.4
  - 曲リストウィンドウのコピペ機能がゴミを含んでしまう問題を修正
 

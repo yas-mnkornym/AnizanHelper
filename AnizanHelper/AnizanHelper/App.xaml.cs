@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Registries;
 using AnizanHelper.Models.SettingComponents;
+using AnizanHelper.Services;
 using AnizanHelper.ViewModels;
 using AnizanHelper.Views;
-using ComiketSystem.Csv;
+using Unity;
 
 namespace AnizanHelper
 {
+
 
 	/// <summary>
 	/// App.xaml の相互作用ロジック
 	/// </summary>
 	public partial class App : Application
 	{
+		CompositeDisposable Disposables { get; } = new CompositeDisposable();
+		UnityContainer UnityContainer { get; } = new UnityContainer();
 		Settings settings_;
 		SettingsAutoExpoter settingsAutoExpoter_;
 		AnizanSongInfoConverter converter_;
@@ -32,10 +36,17 @@ namespace AnizanHelper
 			base.OnStartup(e);
 
 			// レジストリを設定
-			//ConfigureRegistry();
+			var config = new UnityConfig();
+			config.RegisterTypes(UnityContainer);
 
 			// 設定初期化
 			InitializeSettinsg();
+			UnityContainer.RegisterInstance(settings_);
+			
+			// Initialize service manager
+			var serviceManager = UnityContainer.Resolve<IServiceManager>();
+			(serviceManager as ServiceManager)?.RegisterServicesFromAssembly(this.GetType().Assembly);
+			serviceManager.StartAll();
 
 			// コンバータをロード
 			LoadReplaceDictionary();
@@ -58,6 +69,11 @@ namespace AnizanHelper
 				settingsAutoExpoter_.Dispose();
 				settingsAutoExpoter_ = null;
 			}
+
+			// Stop all the services
+			UnityContainer.Resolve<IServiceManager>().StopAll();
+
+			Disposables.Dispose();
 
 			base.OnExit(e);
 		}
