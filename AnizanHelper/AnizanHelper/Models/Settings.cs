@@ -124,7 +124,7 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false);
+				return GetMe(true);
 			}
 			set
 			{
@@ -207,6 +207,12 @@ namespace AnizanHelper.Models
 			{
 				SetMe(value);
 			}
+		}
+
+		public bool ShowParserControl
+		{
+			get => GetMe(false);
+			set => SetMe(value);
 		}
 	}
 }

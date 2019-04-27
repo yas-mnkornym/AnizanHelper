@@ -159,6 +159,11 @@ namespace AnizanHelper.ViewModels
 				})
 				.AddTo(Disposables);
 
+			ShowParserControl = Settings
+				.ToReactivePropertyAsSynchronized(x => x.ShowParserControl, mode: ReactivePropertyMode.RaiseLatestValueOnSubscribe | ReactivePropertyMode.DistinctUntilChanged)
+				.AddTo(this.Disposables);
+
+
 			SetToSpecialCommand = new ReactiveCommand<string>()
 				.WithSubscribe(type =>
 				{
@@ -577,6 +582,8 @@ namespace AnizanHelper.ViewModels
 				Serialize();
 			}
 		}
+
+		public ReactiveProperty<bool> ShowParserControl { get; }
 
 		#endregion // Bindings
 

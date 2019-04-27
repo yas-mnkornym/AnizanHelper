@@ -2,7 +2,7 @@
 	x:Class="AnizanHelper.Views.MainWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:conv="clr-namespace:AnizanHelper.Converters"
+	xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
 	xmlns:views="clr-namespace:AnizanHelper.Views"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 	Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
@@ -12,6 +12,10 @@
 	Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}">
 	<Window.Resources>
 		<conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+		<conv:BoolVisibilityConverter
+			x:Key="TrueVisibleConverter"
+			FalseVisibility="Collapsed"
+			TrueVisibility="Visible" />
 	</Window.Resources>
 
 	<Grid Margin="5,5,5,0">
@@ -56,10 +60,19 @@
 				<CheckBox
 					Margin="2,0,2,0"
 					VerticalAlignment="Center"
-					Content="コピー/書込後 自動クリア"
-					IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}" />
-				<Button
+					Content="自動クリア"
+					IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+					ToolTip="コピー・書込 の操作後、" />
+
+				<ToggleButton
 					Margin="2,0,2,0"
+					VerticalAlignment="Center"
+					Content="一行コピペ表示"
+					IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
+					ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
+
+				<Button
+					Margin="5,0,2,0"
 					Command="{Binding Path=CheckForDictionaryUpdateCommand}"
 					Content="辞書更新を確認" />
 				<Button
@@ -73,16 +86,16 @@
 			</WrapPanel>
 
 			<StackPanel Grid.Column="1" Orientation="Horizontal">
-				<CheckBox
-					VerticalAlignment="Center"
-					Content="リスト追従"
-					IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}" />
-
 				<ToggleButton
 					MinWidth="70"
-					Margin="5,0,0,0"
 					Content="リスト"
 					IsChecked="{Binding Path=ShowListWindow.Value, Mode=TwoWay}" />
+
+				<CheckBox
+					Margin="2,0,0,0"
+					VerticalAlignment="Center"
+					Content="追従"
+					IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}" />
 			</StackPanel>
 		</Grid>
 
@@ -103,11 +116,17 @@
 			Header="DB直接検索(曲名サーチのみ)">
 			<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}" />
 		</GroupBox>
-		<!--  入力部  -->
-		<!--<GroupBox Grid.Row="4" Grid.Column="0"
-				  Header="Webブラウザからの一行コピペ">
+
+		<!--  一行コピペ  -->
+		<GroupBox
+			Grid.Row="4"
+			Grid.Column="0"
+			Header="Webブラウザからの一行コピペ"
+			ToolTip="アニソンDBからコピーした楽曲情報（一行分）を解析して、入力フォームに適用します。"
+			Visibility="{Binding Path=ShowParserControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
 			<views:SongParserControl DataContext="{Binding Path=SongParserVm}" />
-		</GroupBox>-->
+		</GroupBox>
+
 		<!--  パース結果出力部  -->
 		<Grid Grid.Row="5" Grid.Column="0">
 			<Grid.ColumnDefinitions>
