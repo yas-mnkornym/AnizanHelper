@@ -30,6 +30,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.2.6
+ - アニソンDBの仕様変更により「曲種番号自動補正」機能が正常に動作しなくなっていた問題を修正
+ - 検索動作の安定性を向上
+
 Version 1.2.5
  - 本体アップデート確認機能を追加
 

@@ -27,38 +27,40 @@ namespace AnizanHelper.ViewModels
 		}
 
 
-		void Search()
+		async Task SearchAsync()
 		{
 			var words = SearchWord.Trim();
-			IsSearching = true;
+
 			MessageService.Current.ShowMessage("楽曲情報を検索しています...");
-			CancellationTokenSource = new System.Threading.CancellationTokenSource();
-			Stopwatch sw = new Stopwatch();
-			Task.Factory
-				.StartNew(() => {
-					sw.Start();
-					return searcher_.Search(words, CancellationTokenSource.Token);
-				})
-				.ContinueWith(task => {
-					try {
-						sw.Stop();
-						Results = new ObservableCollection<SongSearchResult>(task.Result);
-						MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", Results.Count, sw.Elapsed.TotalSeconds));
-					}
-					catch (OperationCanceledException) {
-						MessageService.Current.ShowMessage("検索がキャンセルされました。");
-					}
-					catch (Exception ex) {
-						MessageService.Current.ShowMessage(string.Format("楽曲情報の検索に失敗しました。 ({0})", ex.Message));
-					}
-					finally {
-						if (CancellationTokenSource != null) {
-							CancellationTokenSource.Dispose();
-							CancellationTokenSource = null;
-						}
-						IsSearching = false;
-					}
-				}, TaskScheduler.Current);
+			var sw = new Stopwatch();
+
+			try
+			{
+				IsSearching = true;
+				CancellationTokenSource = new CancellationTokenSource();
+				CancelSearchingCommand.RaiseCanExecuteChanged();
+
+				var searchResultItems = await searcher_.SearchAsync(words, CancellationTokenSource.Token);
+				sw.Stop();
+
+				Results = new ObservableCollection<SongSearchResult>(searchResultItems);
+				MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", Results.Count, sw.Elapsed.TotalSeconds));
+			}
+			catch (Exception ex)
+			{
+				MessageService.Current.ShowMessage(string.Format("楽曲情報の検索に失敗しました。 ({0})", ex.Message));
+			}
+			finally
+			{
+				if (CancellationTokenSource != null)
+				{
+					CancellationTokenSource.Dispose();
+					CancellationTokenSource = null;
+				}
+				IsSearching = false;
+
+				CancelSearchingCommand.RaiseCanExecuteChanged();
+			}
 		}
 
 		public override void ClearInput()
@@ -153,9 +155,9 @@ namespace AnizanHelper.ViewModels
 			get
 			{
 				return searchCommand_ ?? (searchCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
+					ExecuteHandler = async param => {
 						try {
-							Search();
+							await SearchAsync();
 						}
 						catch (Exception ex) {
 							MessageBox.Show(string.Format("検索に失敗しました。\n\n【例外情報】\n{0}", ex), "検索失敗", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Stop);
