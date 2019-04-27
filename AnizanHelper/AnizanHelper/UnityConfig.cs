@@ -22,8 +22,8 @@ namespace AnizanHelper
 					new ResolvedParameter<HttpClient>(),
 					new InjectionParameter(new Uri(Constants.UpdateInfoUrl))));
 
-			unityContainer.RegisterType<IUpdateManager, UpdateManager>();
-			unityContainer.RegisterType<IServiceManager, ServiceManager>();
+			unityContainer.RegisterSingleton<IUpdateManager, UpdateManager>();
+			unityContainer.RegisterSingleton<IServiceManager, ServiceManager>();
 
 			// For test
 			//unityContainer.RegisterType<IUpdateInfoRetreiver, DummyUpdateInfoRetreiver>(

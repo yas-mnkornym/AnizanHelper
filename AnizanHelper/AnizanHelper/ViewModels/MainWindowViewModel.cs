@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
+using AnizanHelper.Services;
 using AnizanHelper.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -23,6 +24,7 @@ namespace AnizanHelper.ViewModels
 		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 		Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
 		SongListWindow SongListWindow { get; }
+		UpdateCheckerService UpdateCheckerService { get; }
 
 		#region コンストラクタ
 		/// <summary>
@@ -33,10 +35,12 @@ namespace AnizanHelper.ViewModels
 			Window mainWindow,
 			Settings settings,
 			AnizanSongInfoConverter converter,
+			IServiceManager serviceManager,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
 			if (mainWindow == null) { throw new ArgumentNullException(nameof(mainWindow)); }
+			if (serviceManager == null) { throw new ArgumentNullException(nameof(serviceManager)); }
 
 			Settings = settings ?? throw new ArgumentNullException("settings");
 			converter_ = converter ?? throw new ArgumentNullException("converter");
@@ -60,54 +64,69 @@ namespace AnizanHelper.ViewModels
 			SongListWindowViewModel = new SongListWindowViewModel(settings, serializer_, SongsSubject)
 				.AddTo(Disposables);
 
-			SongListWindow = new SongListWindow {
+			SongListWindow = new SongListWindow
+			{
 				DataContext = SongListWindowViewModel,
 				Topmost = Settings.AlwaysOnTop
 			};
 
-			SongListWindow.Loaded += (_, __) => {
+			SongListWindow.Loaded += (_, __) =>
+			{
 				SongListWindow.Owner = mainWindow;
 				SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 				SongListWindow.Top = mainWindow.Top;
 				SongListWindow.Height = mainWindow.Height;
 			};
 
-			mainWindow.Closed += (_, __) => {
+			mainWindow.Closed += (_, __) =>
+			{
 				SongListWindow.CloseImmediately();
 			};
 
-			mainWindow.LocationChanged += (_, __) => {
-				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+			mainWindow.LocationChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
+				{
 					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 					SongListWindow.Top = mainWindow.Top;
 				}
 			};
 
-			mainWindow.SizeChanged += (_, __) => {
-				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+			mainWindow.SizeChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
+				{
 					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 					SongListWindow.Top = mainWindow.Top;
 				}
 			};
 
-			SongListWindow.SizeChanged += (_, __) => {
-				if (mainWindow.Visibility == Visibility.Visible && SongListWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+			SongListWindow.SizeChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && SongListWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
+				{
 					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 					SongListWindow.Top = mainWindow.Top;
 				}
 			};
 
-			SongListWindow.IsVisibleChanged += (_, e) => {
-				if (SongListWindow.Visibility != Visibility.Visible) {
+			SongListWindow.IsVisibleChanged += (_, e) =>
+			{
+				if (SongListWindow.Visibility != Visibility.Visible)
+				{
 					this.ShowListWindow.Value = false;
 				}
 			};
 
+			UpdateCheckerService = serviceManager.Services.First(x => x is UpdateCheckerService) as UpdateCheckerService;
+
 			settings.PropertyChangedAsObservable()
 				.Where(x => x.PropertyName == nameof(Settings.SnapListWindow))
 				.ObserveOnDispatcher()
-				.Subscribe(_ => {
-					if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow) {
+				.Subscribe(_ =>
+				{
+					if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
+					{
 						SongListWindow.Left = mainWindow.Left + mainWindow.Width;
 						SongListWindow.Top = mainWindow.Top;
 					}
@@ -116,19 +135,24 @@ namespace AnizanHelper.ViewModels
 			Settings.PropertyChangedAsObservable()
 				.Where(x => x.PropertyName == nameof(Settings.AlwaysOnTop))
 				.ObserveOnUIDispatcher()
-				.Subscribe(_ => {
+				.Subscribe(_ =>
+				{
 					SongListWindow.Topmost = Settings.AlwaysOnTop;
 				})
 				.AddTo(Disposables);
 
 			ShowListWindow
 				.ObserveOnUIDispatcher()
-				.Subscribe(show => {
-					if (show) {
+				.Subscribe(show =>
+				{
+					if (show)
+					{
 						SongListWindow.Show();
 					}
-					else {
-						if (SongListWindow.Visibility == Visibility.Visible) {
+					else
+					{
+						if (SongListWindow.Visibility == Visibility.Visible)
+						{
 							SongListWindow.Hide();
 						}
 					}
@@ -136,10 +160,12 @@ namespace AnizanHelper.ViewModels
 				.AddTo(Disposables);
 
 			SetToSpecialCommand = new ReactiveCommand<string>()
-				.WithSubscribe(type => {
+				.WithSubscribe(type =>
+				{
 					var header = "★";
 					var body = "";
-					switch (type) {
+					switch (type)
+					{
 						case "BGM":
 							body = "繋ぎBGM";
 							break;
@@ -167,8 +193,10 @@ namespace AnizanHelper.ViewModels
 				});
 
 			SetPresetCommand = new ReactiveCommand<string>()
-				.WithSubscribe(type => {
-					switch (type) {
+				.WithSubscribe(type =>
+				{
+					switch (type)
+					{
 						case "NOANIME":
 							SongInfo.Genre = string.Empty;
 							SongInfo.Series = "一般曲";
@@ -176,7 +204,8 @@ namespace AnizanHelper.ViewModels
 							break;
 
 						case "CLEARALL":
-							if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
+							if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+							{
 								SongInfo = new AnizanSongInfo();
 							}
 							break;
@@ -184,8 +213,10 @@ namespace AnizanHelper.ViewModels
 				});
 
 			PasteZanmaiFormatCommand = new ReactiveCommand()
-				.WithSubscribe(() => {
-					try {
+				.WithSubscribe(() =>
+				{
+					try
+					{
 						var item = Clipboard.GetText()
 							.Replace("\r", "")
 							.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
@@ -193,15 +224,17 @@ namespace AnizanHelper.ViewModels
 							.Select(line => AnizanFormatParser.ParseAsAnizanInfo(line))
 							.FirstOrDefault(x => x != null);
 
-						if (item == null) {
+						if (item == null)
+						{
 							return;
 						}
 
-						item.IsSpecialItem =! string.IsNullOrWhiteSpace(item.SpecialHeader);
+						item.IsSpecialItem = !string.IsNullOrWhiteSpace(item.SpecialHeader);
 						this.SongInfo = item;
 						SearchVm.SearchWord = item.Title;
 					}
-					catch (Exception ex) {
+					catch (Exception ex)
+					{
 						var sb = new StringBuilder();
 						sb.AppendLine("クリップボードからの情報取得に失敗しました。");
 						sb.AppendLine(ex.Message);
@@ -209,6 +242,28 @@ namespace AnizanHelper.ViewModels
 						MessageBox.Show(sb.ToString(), "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				});
+
+			CheckForUpdateCommand = new AsyncReactiveCommand()
+				.WithSubscribe(async () =>
+				{
+					try
+					{
+						var ret = await UpdateCheckerService.CheckForUpdateAndShowDialogIfAvailableAsync(false);
+						if (ret == false)
+						{
+							MessageService.Current.ShowMessage("アップデートはありません。");
+						}
+					}
+					catch (Exception ex)
+					{
+						var sb = new StringBuilder();
+						sb.AppendLine("更新情報の取得に失敗しました。");
+						sb.AppendLine(ex.Message);
+
+						MessageBox.Show(sb.ToString(), "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+					}
+				},
+				x => x.AddTo(this.Disposables));
 		}
 
 		// 曲情報がパースされたよ！
@@ -735,6 +790,8 @@ namespace AnizanHelper.ViewModels
 		public ReactiveCommand<string> SetToSpecialCommand { get; }
 		public ReactiveCommand<string> SetPresetCommand { get; }
 		public ReactiveCommand PasteZanmaiFormatCommand { get; }
+		public AsyncReactiveCommand CheckForUpdateCommand { get; }
+
 		#endregion // Commands
 
 		#region SetAdditionalCommand

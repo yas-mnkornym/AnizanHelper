@@ -15,7 +15,7 @@ namespace AnizanHelper.Services
 	[Service]
 	class UpdateCheckerService : ReactiveServiceBase
 	{
-		static TimeSpan CheckInterval { get; } = TimeSpan.FromSeconds(10);
+		static TimeSpan CheckInterval { get; } = TimeSpan.FromMinutes(10);
 
 		IUpdateManager UpdateManager { get; }
 		Settings Settings { get; }
@@ -29,14 +29,19 @@ namespace AnizanHelper.Services
 			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 		}
 
-		public async Task CheckForUpdateAndShowDialogIfAvailableAsync()
+		public async Task<bool?> CheckForUpdateAndShowDialogIfAvailableAsync(bool autoIgnore = true)
 		{
 			await UpdateManager.CheckForUpdateAsync();
 			var updateInfo = UpdateManager.UpdateInfo;
 
-			if (updateInfo.Version <= IgnoreVersion)
+			if (updateInfo.Version <= AppInfo.Current.Version)
 			{
-				return;
+				return false;
+			}
+
+			if (autoIgnore && updateInfo.Version <= IgnoreVersion)
+			{
+				return null;
 			}
 
 			var sb = new StringBuilder();
@@ -62,6 +67,8 @@ namespace AnizanHelper.Services
 			{
 				this.IgnoreVersion = updateInfo.Version;
 			}
+
+			return true;
 		}
 
 		protected override void RegisterDisposables(CompositeDisposable disposables)
