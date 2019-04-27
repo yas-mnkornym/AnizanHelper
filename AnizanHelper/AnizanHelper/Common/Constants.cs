@@ -40,27 +40,27 @@
 		/// <summary>
 		/// 置換辞書URL
 		/// </summary>
-		public static string ReplaceDictionaryUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
+		public static string ReplaceDictionaryUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php";
 
 		/// <summary>
 		/// 置換辞書バージョン情報URL
 		/// </summary>
-		public static string ReplaceDictionaryVersionUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=v";
+		public static string ReplaceDictionaryVersionUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=v";
 
 		/// <summary>
 		/// 辞書更新情報URL
 		/// </summary>
-		public static string ReplaceDictionaryUpdateInfoUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=u";
+		public static string ReplaceDictionaryUpdateInfoUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper/dictionary/update.php?t=u";
 
 		/// <summary>
 		/// 本体更新情報URL
 		/// </summary>
-		public static string UpdateInfoUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper/updates.json";
+		public static string UpdateInfoUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper/updates.json";
 
 		/// <summary>
 		/// アニソンDBぱーさー サポートページURL
 		/// </summary>
-		public static string AnizanHelperWebSiteUrl { get; } = @"http://www.studio-taiha.net/anizan/anizanhelper";
+		public static string AnizanHelperWebSiteUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper";
 
 	}
 }
