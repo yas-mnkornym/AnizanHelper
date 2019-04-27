@@ -266,6 +266,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="updates.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
