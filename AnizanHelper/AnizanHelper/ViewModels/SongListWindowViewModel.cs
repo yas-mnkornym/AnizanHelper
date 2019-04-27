@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
 using Reactive.Bindings;
@@ -305,7 +307,17 @@ namespace AnizanHelper.ViewModels
 				Environment.NewLine,
 				lines);
 
-			System.Windows.Forms.Clipboard.SetText(text);
+			App.Current.Dispatcher.BeginInvoke((Action)(() =>
+			{
+				try
+				{
+					Clipboard.SetText(text);
+				}
+				catch
+				{
+					MessageBox.Show("コピーに失敗しました。", "エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+				}
+			}));
 		}
 
 		public ReactiveCollection<AnizanSongInfo> SongList { get; }

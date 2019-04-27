@@ -306,22 +306,37 @@ namespace AnizanHelper.ViewModels
 			var str = string.Format(format,
 				SongNumber, ResultText);
 			if (string.IsNullOrEmpty("str")) { str = " "; }
-			System.Windows.Forms.Clipboard.SetText(str);
 
-			AddCurrentSongToList();
+			App.Current.Dispatcher.BeginInvoke((Action)(() =>
+			{
+				try
+				{
+					Clipboard.SetText(str);
+				}
+				catch
+				{
+					MessageBox.Show("コピーに失敗しました。", "エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+					return;
+				}
 
-			// 番号インクリメント
-			if (Settings.IncrementSongNumberWhenCopied && !SongInfo.IsSpecialItem) {
-				SongNumber++;
-			}
+				AddCurrentSongToList();
 
-			// 入力欄クリア
-			if (Settings.ClearInputAutomatically) {
-				Dispatch(() => {
-					SongParserVm.ClearInput();
-					SearchVm.ClearInput();
-				});
-			}
+				// 番号インクリメント
+				if (Settings.IncrementSongNumberWhenCopied && !SongInfo.IsSpecialItem)
+				{
+					SongNumber++;
+				}
+
+				// 入力欄クリア
+				if (Settings.ClearInputAutomatically)
+				{
+					Dispatch(() =>
+					{
+						SongParserVm.ClearInput();
+						SearchVm.ClearInput();
+					});
+				}
+			}));
 		}
 
 		void AddCurrentSongToList()
