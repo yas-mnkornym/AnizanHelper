@@ -313,9 +313,9 @@ namespace AnizanHelper.ViewModels
 				{
 					Clipboard.SetText(text);
 				}
-				catch
+				catch(Exception ex)
 				{
-					MessageBox.Show("コピーに失敗しました。", "エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+					this.ShowErrorMessage("コピーに失敗しました。", ex);
 				}
 			}));
 		}

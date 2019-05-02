@@ -8,6 +8,7 @@ namespace AnizanHelper.Models
 	public class Settings : SettingsBase
 	{
 		public static readonly Type[] KnownTypes = new Type[]{
+			typeof(TimeSpan),
 		};
 
 		public Settings(ISettings settings, IDispatcher dispatcher)
@@ -64,10 +65,12 @@ namespace AnizanHelper.Models
 
 		public bool IncrementSongNumberWhenCopied
 		{
-			get{
+			get
+			{
 				return GetMe(true);
 			}
-			set{
+			set
+			{
 				SetMe(value);
 			}
 		}
@@ -173,24 +176,30 @@ namespace AnizanHelper.Models
 			get
 			{
 				var ret = GetMe<string>(null);
-				if (!string.IsNullOrWhiteSpace(ret)) {
-					try {
+				if (!string.IsNullOrWhiteSpace(ret))
+				{
+					try
+					{
 						return JsonConvert.DeserializeObject<AnizanSongInfo[]>(ret);
 					}
-					catch {
+					catch
+					{
 						return new AnizanSongInfo[] { };
 					}
 				}
-				else {
+				else
+				{
 					return new AnizanSongInfo[] { };
 				}
 			}
 			set
 			{
-				if (value == null) {
+				if (value == null)
+				{
 					SetMe<string>(null);
 				}
-				else {
+				else
+				{
 					var json = JsonConvert.SerializeObject(value);
 					SetMe(json);
 				}
@@ -212,6 +221,42 @@ namespace AnizanHelper.Models
 		public bool ShowParserControl
 		{
 			get => GetMe(false);
+			set => SetMe(value);
+		}
+
+		public string MetadataStreamUri
+		{
+			get => this.GetMe<string>(null);
+			set => this.SetMe(value);
+		}
+
+		public bool EnableMetadataStreamAutoReconnection
+		{
+			get => GetMe(true);
+			set => SetMe(value);
+		}
+
+		public int MaxMetadataStreamAutoReconnectionTrialCount
+		{
+			get => GetMe(20);
+			set => SetMe(value);
+		}
+
+		public TimeSpan MetadataStreamReconnectionInterval
+		{
+			get => GetMe(TimeSpan.FromSeconds(3));
+			set => SetMe(value);
+		}
+
+		public bool ShowMetadataStreamHistory
+		{
+			get => GetMe(false);
+			set => SetMe(value);
+		}
+
+		public bool ShowStreamMetadataRetreiver
+		{
+			get => GetMe(true);
 			set => SetMe(value);
 		}
 	}

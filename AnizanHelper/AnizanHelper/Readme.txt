@@ -30,6 +30,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.2.7
+ - Icecastの放送データからのタグ取得機能を追加
+
 Version 1.2.6
  - アニソンDBからの一行コピペ機能を復元
 	- 表示・非表示は画面上部のボタンで変更可能です

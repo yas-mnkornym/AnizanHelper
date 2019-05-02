@@ -43,38 +43,49 @@
 			</Grid.ColumnDefinitions>
 
 			<WrapPanel Grid.Column="0" Orientation="Horizontal">
-				<CheckBox
+				<ToggleButton
 					Margin="2,0,2,0"
 					VerticalAlignment="Center"
-					Content="最前面表示"
-					IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}" />
+					Content="最前面"
+					IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}"
+					ToolTip="ウィンドウを常に最前面に表示します。" />
 				<!--<CheckBox Content="解析時番号付きコピー"
 						  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}"
 						  VerticalAlignment="Center"
 						  Margin="2,0,2,0"/>-->
-				<CheckBox
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="適用時コピー"
-					IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}" />
-				<CheckBox
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="自動クリア"
-					IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
-					ToolTip="コピー・書込 の操作後、" />
 
 				<ToggleButton
 					Margin="2,0,2,0"
 					VerticalAlignment="Center"
-					Content="一行コピペ表示"
+					Content="適用時コピー"
+					IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}"
+					ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
+
+				<ToggleButton
+					Margin="2,0,2,0"
+					VerticalAlignment="Center"
+					Content="自動クリア"
+					IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+					ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
+
+				<ToggleButton
+					Margin="2,0,2,0"
+					VerticalAlignment="Center"
+					Content="一行コピペ"
 					IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
 					ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
 
+				<ToggleButton
+					Margin="2,0,2,0"
+					VerticalAlignment="Center"
+					Content="タグ取得"
+					IsChecked="{Binding Path=ShowTagRetreiver.Value, Mode=TwoWay}"
+					ToolTip="有効にすると 配信URLからのタグ取得機能 が有効になり、表示されます。" />
+
 				<Button
-					Margin="5,0,2,0"
+					Margin="10,0,2,0"
 					Command="{Binding Path=CheckForDictionaryUpdateCommand}"
-					Content="辞書更新を確認" />
+					Content="辞書更新確認" />
 				<Button
 					Margin="2,0,2,0"
 					Command="{Binding Path=ReloadDictionaryCommand}"
@@ -110,17 +121,42 @@
 		-->
 
 		<!--  検索部  -->
-		<GroupBox
-			Grid.Row="3"
-			Grid.Column="0"
-			Header="DB直接検索(曲名サーチのみ)">
-			<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}" />
-		</GroupBox>
+		<Grid Grid.Row="3">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<GroupBox
+				Grid.Row="0"
+				Grid.Column="0"
+				Header="DB直接検索(曲名サーチのみ)">
+				<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}" />
+			</GroupBox>
+
+			<GridSplitter
+				Grid.Row="1"
+				Height="2"
+				Margin="2"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Center"
+				Background="DarkGray"
+				Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}" />
+
+			<GroupBox
+				Grid.Row="2"
+				Header="タグ取得"
+				ToolTip="IcecastのストリームURLを開き、タグのログを取得します。"
+				Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+				<views:SongMetadataViewerControl DataContext="{Binding Path=SongMetadataViewerViewmodel, Mode=OneWay}" />
+			</GroupBox>
+		</Grid>
 
 		<!--  一行コピペ  -->
+
 		<GroupBox
 			Grid.Row="4"
-			Grid.Column="0"
 			Header="Webブラウザからの一行コピペ"
 			ToolTip="アニソンDBからコピーした楽曲情報（一行分）を解析して、入力フォームに適用します。"
 			Visibility="{Binding Path=ShowParserControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">

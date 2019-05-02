@@ -1,0 +1,168 @@
+﻿<UserControl
+	x:Class="AnizanHelper.Views.SongMetadataViewerControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:AnizanHelper.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<conv:BoolVisibilityConverter
+			x:Key="TrueVisibleConverter"
+			FalseVisibility="Collapsed"
+			TrueVisibility="Visible" />
+
+		<conv:SongRetreiverConnectionStateBoolConverter
+			x:Key="StreamUriCanEditConverter"
+			ConnectingValue="True"
+			ReconnectingValue="True"
+			RunningValue="True"
+			StoppedValue="False" />
+
+		<conv:SongRetreiverConnectionStateBrushConverter
+			x:Key="ConnectionStateBackgroundBrushConverter"
+			ConnectingValue="Orange"
+			ReconnectingValue="Orange"
+			RunningValue="Green"
+			StoppedValue="DarkRed" />
+
+		<conv:SongRetreiverConnectionStateBrushConverter
+			x:Key="ConnectionStateForegroundBrushConverter"
+			ConnectingValue="White"
+			ReconnectingValue="White"
+			RunningValue="White"
+			StoppedValue="White" />
+
+		<conv:SongRetreiverConnectionStateStringConverter
+			x:Key="ConnectionStateShortStringConverter"
+			ConnectingValue="接続試行中"
+			ReconnectingValue="再接続中"
+			RunningValue="接続確立"
+			StoppedValue="切断" />
+
+		<conv:SongRetreiverConnectionStateStringConverter
+			x:Key="ConnectionStateTooltipStringConverter"
+			ConnectingValue="接続を試行しています。"
+			ReconnectingValue="何らかのエラーが等が原因で切断されました。再接続を試みています。"
+			RunningValue="接続が確立しています。タグは正常に取得されています。"
+			StoppedValue="切断されています。タグは取得されません。" />
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Grid.Column="0"
+				VerticalAlignment="Center"
+				Text="配信URL" />
+
+			<TextBox
+				Grid.Column="1"
+				Margin="2,0,0,0"
+				VerticalAlignment="Center"
+				IsReadOnly="{Binding Path=RetreiverState.Value, Mode=OneWay, Converter={StaticResource StreamUriCanEditConverter}}"
+				Text="{Binding Path=StreamUri.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				ToolTip="Icecastの放送URLを入力してください。（.m3u 等の拡張子は付加しないでください。）" />
+
+			<StackPanel Grid.Column="2" Orientation="Horizontal">
+				<Border
+					MinWidth="60"
+					Margin="2,0,0,0"
+					Background="{Binding Path=RetreiverState.Value, Mode=OneWay, Converter={StaticResource ConnectionStateBackgroundBrushConverter}}"
+					BorderThickness="1"
+					ToolTip="{Binding Path=RetreiverState.Value, Mode=OneWay, Converter={StaticResource ConnectionStateTooltipStringConverter}}">
+					<TextBlock
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						FontWeight="Bold"
+						Foreground="{Binding Path=RetreiverState.Value, Mode=OneWay, Converter={StaticResource ConnectionStateForegroundBrushConverter}}"
+						Text="{Binding Path=RetreiverState.Value, Mode=OneWay, Converter={StaticResource ConnectionStateShortStringConverter}}" />
+				</Border>
+
+				<Button
+					MinWidth="75"
+					Margin="2,0,0,0"
+					Command="{Binding StartRetreivingCommand}"
+					Content="取得開始"
+					Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}" />
+
+				<Button
+					MinWidth="75"
+					Margin="2,0,0,0"
+					Command="{Binding StopRetreivingCommand}"
+					Content="取得停止"
+					Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}" />
+
+				<Button
+					MinWidth="75"
+					Margin="2,0,0,0"
+					Command="{Binding ClearHistoryCommand}"
+					Content="ログクリア"
+					ToolTip="放送データから取得した曲情報の履歴をクリアします。" />
+
+				<ToggleButton
+					Margin="2,0,0,0"
+					Content="履歴表示"
+					IsChecked="{Binding Path=ShowHistory.Value, Mode=TwoWay}"
+					ToolTip="放送データから取得した曲情報の履歴を表示します。" />
+			</StackPanel>
+		</Grid>
+
+		<StackPanel Grid.Row="1" Margin="0,2,0,0">
+			<DockPanel>
+				<TextBlock VerticalAlignment="Center" Text="現在の曲" />
+				<TextBox
+					Margin="2,0,0,0"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					DockPanel.Dock="Right"
+					FontSize="14"
+					FontWeight="Bold"
+					IsReadOnly="True"
+					Text="{Binding Path=CurrentSongTitle.Value, Mode=OneWay}" />
+			</DockPanel>
+		</StackPanel>
+
+		<Grid
+			Grid.Row="2"
+			Margin="0,2,0,0"
+			Visibility="{Binding Path=ShowHistory.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+			<DataGrid
+				Margin="0,2,0,0"
+				AutoGenerateColumns="False"
+				CanUserAddRows="False"
+				CanUserDeleteRows="True"
+				HeadersVisibility="Column"
+				ItemsSource="{Binding Path=SongMetadataHistory, Mode=OneWay}">
+
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding Path=Timestamp, Mode=OneWay, StringFormat=HH:mm:ss.fff}"
+						Header="取得時刻"
+						IsReadOnly="False"
+						SortDirection="Descending" />
+
+					<DataGridTextColumn
+						Width="*"
+						Binding="{Binding Path=StreamTitle, Mode=OneWay}"
+						Header="曲履歴"
+						IsReadOnly="False" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</Grid>
+</UserControl>

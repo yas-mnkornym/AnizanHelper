@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
@@ -53,7 +54,13 @@ namespace AnizanHelper
 
 			// メインウィンドウ作成
 			MainWindow = new MainWindow();
-			MainWindow.DataContext = new MainWindowViewModel(MainWindow, settings_, converter_, serviceManager, new WPFDispatcher(Dispatcher));
+			MainWindow.DataContext = new MainWindowViewModel(
+				MainWindow,
+				settings_,
+				converter_,
+				serviceManager,
+				UnityContainer.Resolve<HttpClient>(),
+				new WPFDispatcher(Dispatcher));
 			MainWindow.Show();
 
 			// 辞書の更新を確認

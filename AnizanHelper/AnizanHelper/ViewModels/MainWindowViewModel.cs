@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
@@ -36,11 +37,13 @@ namespace AnizanHelper.ViewModels
 			Settings settings,
 			AnizanSongInfoConverter converter,
 			IServiceManager serviceManager,
+			HttpClient httpClient,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
 			if (mainWindow == null) { throw new ArgumentNullException(nameof(mainWindow)); }
 			if (serviceManager == null) { throw new ArgumentNullException(nameof(serviceManager)); }
+			if (httpClient == null) { throw new ArgumentNullException(nameof(httpClient)); }
 
 			Settings = settings ?? throw new ArgumentNullException("settings");
 			converter_ = converter ?? throw new ArgumentNullException("converter");
@@ -50,6 +53,7 @@ namespace AnizanHelper.ViewModels
 
 			SearchVm = new SongSearchViewModel(settings, dispatcher);
 			SongParserVm = new SongParserVm(dispatcher);
+			SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient);
 
 			SearchVm.SongParsed += SongParsed;
 			SongParserVm.SongParsed += SongParsed;
@@ -161,6 +165,10 @@ namespace AnizanHelper.ViewModels
 
 			ShowParserControl = Settings
 				.ToReactivePropertyAsSynchronized(x => x.ShowParserControl, mode: ReactivePropertyMode.RaiseLatestValueOnSubscribe | ReactivePropertyMode.DistinctUntilChanged)
+				.AddTo(this.Disposables);
+
+			ShowTagRetreiver = Settings
+				.ToReactivePropertyAsSynchronized(x => x.ShowStreamMetadataRetreiver)
 				.AddTo(this.Disposables);
 
 
@@ -313,9 +321,9 @@ namespace AnizanHelper.ViewModels
 				{
 					Clipboard.SetText(str);
 				}
-				catch
+				catch(Exception ex)
 				{
-					MessageBox.Show("コピーに失敗しました。", "エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+					this.ShowErrorMessage("コピーに失敗しました。", ex);
 					return;
 				}
 
@@ -553,6 +561,12 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 
+		public SongMetadataViewerControlViewModel SongMetadataViewerViewmodel
+		{
+			get => this.GetValue<SongMetadataViewerControlViewModel>();
+			set => this.SetValue(value);
+		}
+
 		public AnizanSongInfo SongInfo
 		{
 			get
@@ -599,6 +613,7 @@ namespace AnizanHelper.ViewModels
 		}
 
 		public ReactiveProperty<bool> ShowParserControl { get; }
+		public ReactiveProperty<bool> ShowTagRetreiver { get; }
 
 		#endregion // Bindings
 
@@ -671,7 +686,7 @@ namespace AnizanHelper.ViewModels
 								CopyToClipboard(false);
 							}
 							catch (Exception ex) {
-								ErrMsg("コピーに失敗しました。", ex);
+								this.ShowErrorMessage("コピーに失敗しました。", ex);
 							}
 						}
 					};
@@ -693,8 +708,9 @@ namespace AnizanHelper.ViewModels
 							try {
 								CopyToClipboard(true);
 							}
-							catch (Exception ex) {
-								ErrMsg("コピーに失敗しました。", ex);
+							catch (Exception ex)
+							{
+								this.ShowErrorMessage("コピーに失敗しました。", ex);
 							}
 						}
 					};
