@@ -1,4 +1,4 @@
-header,22,
+header,23,
 
 rem,記法： replaec,[置換元],[置換先],[曲名（無特定ならなし）]
 
@@ -87,6 +87,7 @@ replace,"爆発だも~ん","爆発だも～ん"
 replace,"かくしん的☆めたまるふぉ~ぜっ!","かくしん的☆めたまるふぉ～ぜっ!"
 replace,"おねだり Shall We~?","おねだり Shall We～?"
 replace,"もーっと!うるさいにゃ~たんMIX","もーっと!うるさいにゃ～たんMIX"
+replace,"地獄先生ぬ~べ~",地獄先生ぬ～べ～
 
 rem,科学ADV
 replace,"Steins;Gate","STEINS;GATE"
