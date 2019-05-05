@@ -319,7 +319,7 @@ namespace AnizanHelper.ViewModels
 			{
 				try
 				{
-					Clipboard.SetText(str);
+					System.Windows.Forms.Clipboard.SetText(str);
 				}
 				catch(Exception ex)
 				{

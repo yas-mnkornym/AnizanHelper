@@ -30,6 +30,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.2.8
+ - もうWPFのClipboardクラスには怒ったもんただいまWinForms
+
 Version 1.2.7
  - Icecastの放送データからのタグ取得機能を追加
 

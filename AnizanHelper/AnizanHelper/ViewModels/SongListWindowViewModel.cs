@@ -311,7 +311,7 @@ namespace AnizanHelper.ViewModels
 			{
 				try
 				{
-					Clipboard.SetText(text);
+					System.Windows.Forms.Clipboard.SetText(text);
 				}
 				catch(Exception ex)
 				{
