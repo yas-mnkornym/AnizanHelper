@@ -8,7 +8,7 @@
         <RootNamespace>AnizanHelper</RootNamespace>
         <AssemblyName>AnizanHelper</AssemblyName>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <Version>1.2.7.0</Version>
+        <Version>1.2.8.0</Version>
         <Authors>manayome</Authors>
         <Copyright>@2014-2019 manayome</Copyright>
         <StartupObject />
