@@ -32,6 +32,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.2.8
  - もうWPFのClipboardクラスには怒ったもんただいまWinForms
+ - 曲リストウィンドウの自動採番機能がちゃんと動いてなかったのを修正
 
 Version 1.2.7
  - Icecastの放送データからのタグ取得機能を追加

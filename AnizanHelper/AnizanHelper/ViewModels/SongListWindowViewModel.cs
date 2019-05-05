@@ -90,19 +90,24 @@ namespace AnizanHelper.ViewModels
 
 			NumberSelectedCommand = SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => SelectedItems.Count > 1)
 				.ToReactiveCommand(false)
 				.AddTo(Disposables)
 				.WithSubscribe(() => {
 					var ret = MessageBox.Show("選択されたアイテムの番号を自動更新しますか？\n (最初のアイテムを基準に採番します。)", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
 					if (ret == MessageBoxResult.Yes) {
-						var items = SelectedItems
-							.ToArray()
+						var targetSelectedItems = SelectedItems
 							.Where(x => string.IsNullOrWhiteSpace(x.SpecialHeader))
-							.OrderBy(x => x.Number)
 							.ToArray();
-						var startNumber = items.First().Number + 1;
-						foreach (var item in items.Skip(1)) {
+
+						var startNumber = targetSelectedItems.First().Number + 1;
+						var selectedItemsToUpdate = new HashSet<AnizanSongInfo>(targetSelectedItems.Skip(1));
+
+						var itemsToUpdate = this.SongList
+							.Where(x => selectedItemsToUpdate.Contains(x))
+							.ToArray();
+
+						foreach (var item in itemsToUpdate) {
 							item.Number = startNumber;
 							startNumber++;
 						}
