@@ -30,6 +30,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.2.9
+ - 頻出曲入力用プリセット機能を追加
+
 Version 1.2.8
  - もうWPFのClipboardクラスには怒ったもんただいまWinForms
  - 曲リストウィンドウの自動採番機能がちゃんと動いてなかったのを修正
