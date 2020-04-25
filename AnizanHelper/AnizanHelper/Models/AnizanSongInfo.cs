@@ -152,5 +152,12 @@ namespace AnizanHelper.Models
 				SetValue(value);
 			}
 		}
+
+		[JsonProperty]
+		public string ShortDescription
+		{
+			get => this.GetValue<string>();
+			set => this.SetValue(value);
+		}
 	}
 }

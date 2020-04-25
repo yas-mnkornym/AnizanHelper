@@ -259,5 +259,11 @@ namespace AnizanHelper.Models
 			get => GetMe(true);
 			set => SetMe(value);
 		}
+
+		public bool ShowFrequentlyPlayedSongs
+		{
+			get => this.GetMe(true);
+			set => this.SetMe(value);
+		}
 	}
 }

@@ -22,6 +22,7 @@ namespace AnizanHelper.ViewModels
 	{
 		ISongInfoSerializer serializer_ = null;
 		AnizanSongInfoConverter converter_ = null;
+		SongPresetRepository songPresetRepository_ = null;
 		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 		Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
 		SongListWindow SongListWindow { get; }
@@ -36,6 +37,7 @@ namespace AnizanHelper.ViewModels
 			Window mainWindow,
 			Settings settings,
 			AnizanSongInfoConverter converter,
+			SongPresetRepository songPresetRepository,
 			IServiceManager serviceManager,
 			HttpClient httpClient,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
@@ -45,8 +47,9 @@ namespace AnizanHelper.ViewModels
 			if (serviceManager == null) { throw new ArgumentNullException(nameof(serviceManager)); }
 			if (httpClient == null) { throw new ArgumentNullException(nameof(httpClient)); }
 
-			Settings = settings ?? throw new ArgumentNullException("settings");
-			converter_ = converter ?? throw new ArgumentNullException("converter");
+			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+			converter_ = converter ?? throw new ArgumentNullException(nameof(converter));
+			songPresetRepository_ = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
 
 			SongInfo = new AnizanSongInfo();
 			serializer_ = new Models.Serializers.AnizanListSerializer();
@@ -171,6 +174,12 @@ namespace AnizanHelper.ViewModels
 				.ToReactivePropertyAsSynchronized(x => x.ShowStreamMetadataRetreiver)
 				.AddTo(this.Disposables);
 
+			ShowFrequentlyPlayedSongs = Settings
+				.ToReactivePropertyAsSynchronized(x => x.ShowFrequentlyPlayedSongs)
+				.AddTo(this.Disposables);
+
+			SongPresets = songPresetRepository
+				.ToReactivePropertyAsSynchronized(x => x.Presets);
 
 			SetToSpecialCommand = new ReactiveCommand<string>()
 				.WithSubscribe(type =>
@@ -204,6 +213,37 @@ namespace AnizanHelper.ViewModels
 					SongInfo.SpecialHeader = header;
 					SongInfo.SpecialItemName = body;
 				});
+
+			ApplyPresetCommand = new ReactiveCommand<AnizanSongInfo>()
+				.WithSubscribe(preset =>
+				{
+					if (preset == null)
+					{
+						return;
+					}
+
+
+					try
+					{
+						SongInfo.Title = preset.Title;
+						SongInfo.Singer = preset.Singer;
+						SongInfo.Genre = preset.Genre;
+						SongInfo.Series = preset.Series;
+						SongInfo.SongType = preset.SongType;
+						SongInfo.Additional = preset.Additional;
+
+						if (settings.ApplySongInfoAutomatically)
+						{
+							Serialize();
+						}
+					}
+					catch (Exception ex)
+					{
+						ShowErrorMessage("曲情報の適用に失敗為ました。", ex);
+					}
+				},
+				x => x.AddTo(this.Disposables))
+				.AddTo(this.Disposables);
 
 			SetPresetCommand = new ReactiveCommand<string>()
 				.WithSubscribe(type =>
@@ -537,6 +577,8 @@ namespace AnizanHelper.ViewModels
 		public ReactiveProperty<bool> ShowListWindow { get; } = new ReactiveProperty<bool>();
 		public ReactiveProperty<bool> SnapListWindow { get; } = new ReactiveProperty<bool>(true);
 
+		public ReactiveProperty<AnizanSongInfo[]> SongPresets { get; }
+
 		public SongSearchViewModel SearchVm
 		{
 			get
@@ -614,6 +656,7 @@ namespace AnizanHelper.ViewModels
 
 		public ReactiveProperty<bool> ShowParserControl { get; }
 		public ReactiveProperty<bool> ShowTagRetreiver { get; }
+		public ReactiveProperty<bool> ShowFrequentlyPlayedSongs { get; }
 
 		#endregion // Bindings
 
@@ -773,7 +816,7 @@ namespace AnizanHelper.ViewModels
 					ExecuteHandler = param => {
 						if (App.Current is App app) {
 							try {
-								app.LoadReplaceDictionary();
+								app.LoadDictionaries();
 								InfoMsg("辞書の読み込みを完了しました。");
 							}
 							catch (Exception ex) {
@@ -829,6 +872,7 @@ namespace AnizanHelper.ViewModels
 		public ReactiveCommand<string> SetPresetCommand { get; }
 		public ReactiveCommand PasteZanmaiFormatCommand { get; }
 		public AsyncReactiveCommand CheckForUpdateCommand { get; }
+		public ReactiveCommand<AnizanSongInfo> ApplyPresetCommand { get; }
 
 		#endregion // Commands
 

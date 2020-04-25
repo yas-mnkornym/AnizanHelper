@@ -31,6 +31,7 @@ namespace AnizanHelper
 		Settings settings_;
 		SettingsAutoExpoter settingsAutoExpoter_;
 		AnizanSongInfoConverter converter_;
+		SongPresetRepository songPresetRepository_;
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -50,7 +51,7 @@ namespace AnizanHelper
 			serviceManager.StartAll();
 
 			// コンバータをロード
-			LoadReplaceDictionary();
+			LoadDictionaries();
 
 			// メインウィンドウ作成
 			MainWindow = new MainWindow();
@@ -58,6 +59,7 @@ namespace AnizanHelper
 				MainWindow,
 				settings_,
 				converter_,
+				songPresetRepository_,
 				serviceManager,
 				UnityContainer.Resolve<HttpClient>(),
 				new WPFDispatcher(Dispatcher));
@@ -85,21 +87,27 @@ namespace AnizanHelper
 			base.OnExit(e);
 		}
 
-		public void LoadReplaceDictionary()
+		public void LoadDictionaries()
 		{
 			if (converter_ == null) {
 				converter_ = new AnizanSongInfoConverter();
 			}
 
+			if (songPresetRepository_ == null)
+			{
+				songPresetRepository_ = new SongPresetRepository();
+			}
+
 			var replaceList = new List<ReplaceInfo>();
+			var presetList = new List<AnizanSongInfo>();
 
 			try {
 				if (File.Exists(AppInfo.Current.DictionaryFilePath)) {
-					var loader = new ReplaceDictionaryFileReader();
-					var replaces = loader.Load(AppInfo.Current.DictionaryFilePath).ToArray();
-					if (replaces?.Any() == true) {
-						replaceList.AddRange(replaces);
-					}
+					var loader = new DictionaryFileReader();
+					loader.Load(AppInfo.Current.DictionaryFilePath);
+
+					replaceList.AddRange(loader.Replaces);
+					presetList.AddRange(loader.SongPresets);
 				}
 			}
 			catch (Exception ex) {
@@ -111,9 +119,10 @@ namespace AnizanHelper
 			// ユーザ辞書の内容を優先
 			try {
 				if (File.Exists(AppInfo.Current.UserDictionaryfilePath)) {
-					var loader = new ReplaceDictionaryFileReader();
-					var replaces = loader.Load(AppInfo.Current.UserDictionaryfilePath).ToArray();
-					foreach (var replace in replaces) {
+					var loader = new DictionaryFileReader();
+					loader.Load(AppInfo.Current.UserDictionaryfilePath);
+
+					foreach (var replace in loader.Replaces) {
 						var item = replaceList.FirstOrDefault(x => x.Original == replace.Original);
 						if (item != null) {
 							replaceList.Remove(item);
@@ -121,6 +130,8 @@ namespace AnizanHelper
 
 						replaceList.Add(replace);
 					}
+
+					presetList.AddRange(loader.SongPresets);
 				}
 				else {
 					try {
@@ -136,6 +147,7 @@ namespace AnizanHelper
 			}
 
 			converter_.Replaces = replaceList.Where(x => !string.IsNullOrEmpty(x.Original)).ToArray();
+			songPresetRepository_.Presets = presetList.ToArray();
 		}
 
 		public void UpdateDictionary()
@@ -169,7 +181,7 @@ namespace AnizanHelper
 
 				MessageService.Current.ShowMessage("辞書を更新しています...");
 				File.WriteAllText(AppInfo.Current.DictionaryFilePath, newDic, Encoding.UTF8);
-				LoadReplaceDictionary();
+				LoadDictionaries();
 
 				MessageService.Current.ShowMessage("辞書の更新が完了しました！");
 			}
@@ -183,7 +195,7 @@ namespace AnizanHelper
 			var currentVersion = 0;
 			var filePath = AppInfo.Current.DictionaryFilePath;
 			if (File.Exists(filePath)) {
-				var reader = new ReplaceDictionaryFileReader();
+				var reader = new DictionaryFileReader();
 				try{
 					currentVersion = reader.GetVersionNumber(filePath);
 				}

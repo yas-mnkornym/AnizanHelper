@@ -1,117 +1,126 @@
 ﻿<Window
-	x:Class="AnizanHelper.Views.MainWindow"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
-	xmlns:views="clr-namespace:AnizanHelper.Views"
-	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-	Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
-	Width="730"
-	Height="600"
-	Background="WhiteSmoke"
-	Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}">
-	<Window.Resources>
-		<conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
-		<conv:BoolVisibilityConverter
-			x:Key="TrueVisibleConverter"
-			FalseVisibility="Collapsed"
-			TrueVisibility="Visible" />
-	</Window.Resources>
+    x:Class="AnizanHelper.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
+    xmlns:views="clr-namespace:AnizanHelper.Views"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    x:Name="window_"
+    Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
+    Width="730"
+    Height="600"
+    Background="WhiteSmoke"
+    Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}">
+    <Window.Resources>
+        <conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+        <conv:BoolVisibilityConverter
+            x:Key="TrueVisibleConverter"
+            FalseVisibility="Collapsed"
+            TrueVisibility="Visible" />
+    </Window.Resources>
 
-	<Grid Margin="5,5,5,0">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="0" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
+    <Grid Margin="5,5,5,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
 
-		<!--  設定部  -->
-		<Grid Grid.Row="0" Grid.Column="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
+        <!--  設定部  -->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-			<WrapPanel Grid.Column="0" Orientation="Horizontal">
-				<ToggleButton
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="最前面"
-					IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}"
-					ToolTip="ウィンドウを常に最前面に表示します。" />
-				<!--<CheckBox Content="解析時番号付きコピー"
+            <WrapPanel Grid.Column="0" Orientation="Horizontal">
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="最前面"
+                    IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}"
+                    ToolTip="ウィンドウを常に最前面に表示します。" />
+                <!--<CheckBox Content="解析時番号付きコピー"
 						  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}"
 						  VerticalAlignment="Center"
 						  Margin="2,0,2,0"/>-->
 
-				<ToggleButton
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="適用時コピー"
-					IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}"
-					ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="適用時コピー"
+                    IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}"
+                    ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
 
-				<ToggleButton
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="自動クリア"
-					IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
-					ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="自動クリア"
+                    IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+                    ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
 
-				<ToggleButton
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="一行コピペ"
-					IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
-					ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="一行コピペ"
+                    IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
+                    ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
 
-				<ToggleButton
-					Margin="2,0,2,0"
-					VerticalAlignment="Center"
-					Content="タグ取得"
-					IsChecked="{Binding Path=ShowTagRetreiver.Value, Mode=TwoWay}"
-					ToolTip="有効にすると 配信URLからのタグ取得機能 が有効になり、表示されます。" />
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="タグ取得"
+                    IsChecked="{Binding Path=ShowTagRetreiver.Value, Mode=TwoWay}"
+                    ToolTip="有効にすると 配信URLからのタグ取得機能 が有効になり、表示されます。" />
 
-				<Button
-					Margin="10,0,2,0"
-					Command="{Binding Path=CheckForDictionaryUpdateCommand}"
-					Content="辞書更新確認" />
-				<Button
-					Margin="2,0,2,0"
-					Command="{Binding Path=ReloadDictionaryCommand}"
-					Content="辞書再読込" />
-				<Button
-					Margin="2,0,2,0"
-					Command="{Binding Path=CheckForUpdateCommand}"
-					Content="本体更新確認" />
-			</WrapPanel>
+                <ToggleButton
+                    Margin="2,0,2,0"
+                    VerticalAlignment="Center"
+                    Content="頻出曲"
+                    IsChecked="{Binding Path=ShowFrequentlyPlayedSongs.Value, Mode=TwoWay}"
+                    ToolTip="有効にすると、頻出曲を即時入力するボタンが表示されます。" />
 
-			<StackPanel Grid.Column="1" Orientation="Horizontal">
-				<ToggleButton
-					MinWidth="70"
-					Content="リスト"
-					IsChecked="{Binding Path=ShowListWindow.Value, Mode=TwoWay}" />
+                <Button
+                    Margin="10,0,2,0"
+                    Command="{Binding Path=CheckForDictionaryUpdateCommand}"
+                    Content="辞書更新確認" />
+                <Button
+                    Margin="2,0,2,0"
+                    Command="{Binding Path=ReloadDictionaryCommand}"
+                    Content="辞書再読込" />
+                <Button
+                    Margin="2,0,2,0"
+                    Command="{Binding Path=CheckForUpdateCommand}"
+                    Content="本体更新確認" />
+            </WrapPanel>
 
-				<CheckBox
-					Margin="2,0,0,0"
-					VerticalAlignment="Center"
-					Content="追従"
-					IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}" />
-			</StackPanel>
-		</Grid>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <ToggleButton
+                    MinWidth="70"
+                    Content="リスト"
+                    IsChecked="{Binding Path=ShowListWindow.Value, Mode=TwoWay}" />
 
-		<!--  曲表示  -->
-		<!--
+                <CheckBox
+                    Margin="2,0,0,0"
+                    VerticalAlignment="Center"
+                    Content="追従"
+                    IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}" />
+            </StackPanel>
+        </Grid>
+
+        <!--  曲表示  -->
+        <!--
 		<WebBrowser Grid.Row="1" Grid.Column="0"
 					Source="http://ggtea.org/sio/songzan.html"
 					/>
@@ -120,250 +129,282 @@
 				   HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="2" />
 		-->
 
-		<!--  検索部  -->
-		<Grid Grid.Row="3">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
+        <!--  検索部  -->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-			<GroupBox
-				Grid.Row="0"
-				Grid.Column="0"
-				Header="DB直接検索(曲名サーチのみ)">
-				<views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}" />
-			</GroupBox>
+            <GroupBox
+                Grid.Row="0"
+                Grid.Column="0"
+                Header="DB直接検索(曲名サーチのみ)">
+                <views:SongSearchControl DataContext="{Binding Path=SearchVm, Mode=OneWay}" />
+            </GroupBox>
 
-			<GridSplitter
-				Grid.Row="1"
-				Height="2"
-				Margin="2"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Center"
-				Background="DarkGray"
-				Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}" />
+            <GridSplitter
+                Grid.Row="1"
+                Height="2"
+                Margin="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Background="DarkGray"
+                Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}" />
 
-			<GroupBox
-				Grid.Row="2"
-				Header="タグ取得"
-				ToolTip="IcecastのストリームURLを開き、タグのログを取得します。"
-				Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
-				<views:SongMetadataViewerControl DataContext="{Binding Path=SongMetadataViewerViewmodel, Mode=OneWay}" />
-			</GroupBox>
-		</Grid>
+            <GroupBox
+                Grid.Row="2"
+                Header="タグ取得"
+                ToolTip="IcecastのストリームURLを開き、タグのログを取得します。"
+                Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+                <views:SongMetadataViewerControl DataContext="{Binding Path=SongMetadataViewerViewmodel, Mode=OneWay}" />
+            </GroupBox>
+        </Grid>
 
-		<!--  一行コピペ  -->
+        <!--  一行コピペ  -->
 
-		<GroupBox
-			Grid.Row="4"
-			Header="Webブラウザからの一行コピペ"
-			ToolTip="アニソンDBからコピーした楽曲情報（一行分）を解析して、入力フォームに適用します。"
-			Visibility="{Binding Path=ShowParserControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
-			<views:SongParserControl DataContext="{Binding Path=SongParserVm}" />
-		</GroupBox>
+        <GroupBox
+            Grid.Row="4"
+            Header="Webブラウザからの一行コピペ"
+            ToolTip="アニソンDBからコピーした楽曲情報（一行分）を解析して、入力フォームに適用します。"
+            Visibility="{Binding Path=ShowParserControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+            <views:SongParserControl DataContext="{Binding Path=SongParserVm}" />
+        </GroupBox>
 
-		<!--  パース結果出力部  -->
-		<Grid Grid.Row="5" Grid.Column="0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="*" />
-			</Grid.RowDefinitions>
+        <GroupBox
+            Grid.Row="5"
+            Header="頻出曲"
+            ToolTip="頻出曲を一発入力します"
+            Visibility="{Binding Path=ShowFrequentlyPlayedSongs.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+            <ItemsControl ItemsSource="{Binding Path=SongPresets.Value, Mode=OneWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-			<views:AnizanSongInfoControl
-				Grid.Row="0"
-				Grid.RowSpan="3"
-				Grid.Column="0"
-				VerticalAlignment="Center"
-				DataContext="{Binding Path=SongInfo}" />
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Margin="2,0,0,0"
+                            Command="{Binding Path=DataContext.ApplyPresetCommand, ElementName=window_}"
+                            CommandParameter="{Binding Mode=OneWay}"
+                            Content="{Binding Path=ShortDescription, Mode=OneWay}">
+                            <Button.ToolTip>
+                                <TextBlock>
+                                    <Run Text="{Binding Path=Title, Mode=OneWay}" />
+                                    <Run Text="/" />
+                                    <Run Text="{Binding Path=Singer, Mode=OneWay}" />
+                                </TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
 
-			<UniformGrid
-				Grid.Row="0"
-				Grid.Column="1"
-				Columns="2">
-				<Button
-					Margin="1"
-					Command="{Binding SetToSpecialCommand}"
-					CommandParameter="BGM"
-					Content="★繋ぎBGM" />
-				<Button
-					Margin="1"
-					Command="{Binding SetToSpecialCommand}"
-					CommandParameter="SE"
-					Content="★SE" />
-				<Button
-					Margin="1"
-					Command="{Binding SetToSpecialCommand}"
-					CommandParameter="CM"
-					Content="★CM" />
-				<Button
-					Margin="1"
-					Command="{Binding SetToSpecialCommand}"
-					CommandParameter="DJTALK"
-					Content="▼DJトーク" />
-			</UniformGrid>
+        <!--  パース結果出力部  -->
+        <Grid Grid.Row="6" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-			<UniformGrid
-				Grid.Row="1"
-				Grid.Column="1"
-				Margin="0,3,0,0"
-				Columns="2">
-				<Button
-					Margin="1"
-					Command="{Binding ToTvSizeCommand}"
-					Content="TV size." />
-				<Button
-					Margin="1"
-					Command="{Binding ToLiveVersionCommand}"
-					Content="Live ver." />
-				<Button
-					Margin="1"
-					Command="{Binding SetAdditionalCommand}"
-					CommandParameter="DJ熱唱"
-					Content="※DJ熱唱" />
-				<Button
-					Margin="1"
-					Command="{Binding SetAdditionalCommand}"
-					CommandParameter="放送事故"
-					Content="※放送事故" />
-				<Button
-					Margin="1"
-					Command="{Binding SetPresetCommand}"
-					CommandParameter="NOANIME"
-					Content="一般曲" />
-				<Button
-					Margin="1"
-					Background="Black"
-					Command="{Binding SetPresetCommand}"
-					CommandParameter="CLEARALL"
-					Content="クリア"
-					FontWeight="Bold"
-					Foreground="Red" />
-			</UniformGrid>
+            <views:AnizanSongInfoControl
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                DataContext="{Binding Path=SongInfo}" />
 
-			<UniformGrid
-				Grid.Row="2"
-				Grid.Column="1"
-				Columns="2">
-				<Button
-					Margin="1"
-					HorizontalAlignment="Stretch"
-					Command="{Binding PasteZanmaiFormatCommand}"
-					Content="貼付(三昧)"
-					ToolTip="クリップボードから情報を貼り付けます。$#xa;三昧のリストフォーマットのみ対応しています。" />
+            <UniformGrid
+                Grid.Row="0"
+                Grid.Column="1"
+                Columns="2">
+                <Button
+                    Margin="1"
+                    Command="{Binding SetToSpecialCommand}"
+                    CommandParameter="BGM"
+                    Content="★繋ぎBGM" />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetToSpecialCommand}"
+                    CommandParameter="SE"
+                    Content="★SE" />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetToSpecialCommand}"
+                    CommandParameter="CM"
+                    Content="★CM" />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetToSpecialCommand}"
+                    CommandParameter="DJTALK"
+                    Content="▼DJトーク" />
+            </UniformGrid>
 
-				<Button
-					Margin="1"
-					HorizontalAlignment="Stretch"
-					Command="{Binding ApplyDetailsCommand}"
-					Content="↓変更適用↓" />
-			</UniformGrid>
-		</Grid>
+            <UniformGrid
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,3,0,0"
+                Columns="2">
+                <Button
+                    Margin="1"
+                    Command="{Binding ToTvSizeCommand}"
+                    Content="TV size." />
+                <Button
+                    Margin="1"
+                    Command="{Binding ToLiveVersionCommand}"
+                    Content="Live ver." />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetAdditionalCommand}"
+                    CommandParameter="DJ熱唱"
+                    Content="※DJ熱唱" />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetAdditionalCommand}"
+                    CommandParameter="放送事故"
+                    Content="※放送事故" />
+                <Button
+                    Margin="1"
+                    Command="{Binding SetPresetCommand}"
+                    CommandParameter="NOANIME"
+                    Content="一般曲" />
+                <Button
+                    Margin="1"
+                    Background="Black"
+                    Command="{Binding SetPresetCommand}"
+                    CommandParameter="CLEARALL"
+                    Content="クリア"
+                    FontWeight="Bold"
+                    Foreground="Red" />
+            </UniformGrid>
 
-		<!--  コピー用結果出力部  -->
-		<DockPanel
-			Grid.Row="6"
-			Grid.Column="0"
-			Margin="0,2,0,0">
-			<UniformGrid
-				Margin="5,0,0,0"
-				Columns="1"
-				DockPanel.Dock="Right"
-				Rows="2">
-				<Button
-					Margin="0,0,0,2"
-					Command="{Binding CopyResultCommand}"
-					Content="コピー" />
-				<Button
-					Margin="0,2,0,0"
-					Command="{Binding CopyResultAndSongNumberCommand}"
-					Content="曲番コミコピー" />
-			</UniformGrid>
+            <UniformGrid
+                Grid.Row="2"
+                Grid.Column="1"
+                Columns="2">
+                <Button
+                    Margin="1"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding PasteZanmaiFormatCommand}"
+                    Content="貼付(三昧)"
+                    ToolTip="クリップボードから情報を貼り付けます。$#xa;三昧のリストフォーマットのみ対応しています。" />
 
-			<StackPanel
-				Margin="5,0,0,0"
-				VerticalAlignment="Top"
-				DockPanel.Dock="Right">
-				<DockPanel>
-					<TextBlock
-						VerticalAlignment="Center"
-						DockPanel.Dock="Left"
-						Text="曲番：" />
-					<xctk:IntegerUpDown DockPanel.Dock="Right" Value="{Binding Path=SongNumber, StringFormat=D4, Mode=TwoWay}" />
-				</DockPanel>
-				<CheckBox Content="コピー時増加" IsChecked="{Binding Settings.IncrementSongNumberWhenCopied}" />
-				<CheckBox Content="変更自動適用" IsChecked="{Binding Settings.ApplySongInfoAutomatically}" />
-			</StackPanel>
+                <Button
+                    Margin="1"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding ApplyDetailsCommand}"
+                    Content="↓変更適用↓" />
+            </UniformGrid>
+        </Grid>
 
-			<TextBox
-				AcceptsReturn="True"
-				AcceptsTab="True"
-				DockPanel.Dock="Left"
-				Text="{Binding Path=ResultText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				TextWrapping="Wrap" />
-		</DockPanel>
+        <!--  コピー用結果出力部  -->
+        <DockPanel
+            Grid.Row="7"
+            Grid.Column="0"
+            Margin="0,2,0,0">
+            <UniformGrid
+                Margin="5,0,0,0"
+                Columns="1"
+                DockPanel.Dock="Right"
+                Rows="2">
+                <Button
+                    Margin="0,0,0,2"
+                    Command="{Binding CopyResultCommand}"
+                    Content="コピー" />
+                <Button
+                    Margin="0,2,0,0"
+                    Command="{Binding CopyResultAndSongNumberCommand}"
+                    Content="曲番コミコピー" />
+            </UniformGrid>
 
-		<Grid Grid.Row="7" Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
+            <StackPanel
+                Margin="5,0,0,0"
+                VerticalAlignment="Top"
+                DockPanel.Dock="Right">
+                <DockPanel>
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left"
+                        Text="曲番：" />
+                    <xctk:IntegerUpDown DockPanel.Dock="Right" Value="{Binding Path=SongNumber, StringFormat=D4, Mode=TwoWay}" />
+                </DockPanel>
+                <CheckBox Content="コピー時増加" IsChecked="{Binding Settings.IncrementSongNumberWhenCopied}" />
+                <CheckBox Content="変更自動適用" IsChecked="{Binding Settings.ApplySongInfoAutomatically}" />
+            </StackPanel>
 
-			<Grid Grid.Column="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
+            <TextBox
+                AcceptsReturn="True"
+                AcceptsTab="True"
+                DockPanel.Dock="Left"
+                Text="{Binding Path=ResultText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                TextWrapping="Wrap" />
+        </DockPanel>
 
-				<TextBlock
-					Grid.Column="0"
-					VerticalAlignment="Center"
-					Text="鯖名:" />
-				<TextBlock
-					Grid.Column="2"
-					Margin="5,0,0,0"
-					VerticalAlignment="Center"
-					Text="板パス:" />
-				<TextBlock
-					Grid.Column="4"
-					Margin="5,0,0,0"
-					VerticalAlignment="Center"
-					Text="スレID:" />
+        <Grid Grid.Row="8" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-				<TextBox Grid.Column="1" Text="{Binding Path=Settings.ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-				<TextBox Grid.Column="3" Text="{Binding Path=Settings.BoardPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-				<TextBox Grid.Column="5" Text="{Binding Path=Settings.ThreadKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-				<CheckBox
-					Grid.Column="6"
-					Margin="5,0,0,0"
-					VerticalAlignment="Center"
-					Content="sage"
-					IsChecked="{Binding Path=Settings.WriteAsSage, Mode=TwoWay}" />
-			</Grid>
-			<Button
-				Grid.Column="1"
-				Margin="5,0,0,0"
-				Command="{Binding Path=WriteToThreadCommand}"
-				Content="書き込み" />
-		</Grid>
+                <TextBlock
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Text="鯖名:" />
+                <TextBlock
+                    Grid.Column="2"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="板パス:" />
+                <TextBlock
+                    Grid.Column="4"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="スレID:" />
 
-		<Border
-			Grid.Row="8"
-			Margin="0,5,0,0"
-			BorderBrush="Gray"
-			BorderThickness="0,1,0,0">
-			<TextBlock Text="{Binding Path=StatusText}" />
-		</Border>
-	</Grid>
+                <TextBox Grid.Column="1" Text="{Binding Path=Settings.ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="3" Text="{Binding Path=Settings.BoardPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="5" Text="{Binding Path=Settings.ThreadKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <CheckBox
+                    Grid.Column="6"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Content="sage"
+                    IsChecked="{Binding Path=Settings.WriteAsSage, Mode=TwoWay}" />
+            </Grid>
+            <Button
+                Grid.Column="1"
+                Margin="5,0,0,0"
+                Command="{Binding Path=WriteToThreadCommand}"
+                Content="書き込み" />
+        </Grid>
+
+        <Border
+            Grid.Row="9"
+            Margin="0,5,0,0"
+            BorderBrush="Gray"
+            BorderThickness="0,1,0,0">
+            <TextBlock Text="{Binding Path=StatusText}" />
+        </Border>
+    </Grid>
 </Window>
