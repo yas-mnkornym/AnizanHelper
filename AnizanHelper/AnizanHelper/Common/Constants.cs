@@ -15,7 +15,7 @@
 		/// <summary>
 		/// 初期設定鯖名
 		/// </summary>
-		public static string DefaultServerName { get; } = "anizanv.ddo.jp";
+		public static string DefaultServerName { get; } = "anizanv.com";
 
 		/// <summary>
 		/// アニソン三昧さーちURL
@@ -25,7 +25,7 @@
 		/// <summary>
 		/// 初期設定板パス
 		/// </summary>
-		public static string DefaultBoardPath { get; } = "operate";
+		public static string DefaultBoardPath { get; } = "anizanv2017";
 
 		/// <summary>
 		/// 置換辞書ファイル名
