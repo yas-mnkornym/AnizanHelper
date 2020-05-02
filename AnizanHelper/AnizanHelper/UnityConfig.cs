@@ -12,8 +12,7 @@ namespace AnizanHelper
 	{
 		public void RegisterTypes(IUnityContainer unityContainer)
 		{
-			unityContainer.RegisterSingleton<HttpClient>(
-				new InjectionFactory(_ => new HttpClient()));
+			unityContainer.RegisterFactory<HttpClient>(_ => new HttpClient());
 
 			// ------------------------------------------
 			// Updating
