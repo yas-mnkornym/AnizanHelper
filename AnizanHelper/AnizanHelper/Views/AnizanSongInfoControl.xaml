@@ -1,60 +1,132 @@
 ﻿<UserControl x:Class="AnizanHelper.Views.AnizanSongInfoControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-			 xmlns:conv="clr-namespace:AnizanHelper.Converters"
-             mc:Ignorable="d" d:DesignWidth="300">
-	<UserControl.Resources>
-		<ResourceDictionary>
-			<conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
-		</ResourceDictionary>
-	</UserControl.Resources>
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-		</Grid.RowDefinitions>
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:conv="clr-namespace:AnizanHelper.Converters"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Grid.Column="0" Text="種別" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="1" Grid.Column="0" Text="曲名" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="2" Grid.Column="0" Text="歌手名" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="3" Grid.Column="0" Text="ジャンル" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="4" Grid.Column="0" Text="作品名" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="5" Grid.Column="0" Text="曲種" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
-		<TextBlock Grid.Row="6" Grid.Column="0" Text="補足" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,1,0,0" />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="種別" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="曲名" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="歌手名" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="ジャンル" />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="作品名" />
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="曲種" />
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   Margin="0,1,0,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Text="補足" />
 
-		<Grid Grid.Row="0" Grid.Column="1">
-			<DockPanel>
-				<RadioButton DockPanel.Dock="Left" Content="楽曲" IsChecked="{Binding Path=IsSpecialItem, Mode=TwoWay, Converter={StaticResource ReverseBoolConverter}}" VerticalAlignment="Center" />
-				<RadioButton DockPanel.Dock="Left" Margin="5,0,0,0" IsChecked="{Binding Path=IsSpecialItem, Mode=TwoWay}" VerticalAlignment="Center" Content="その他" />
+        <Grid Grid.Row="0"
+              Grid.Column="1">
+            <DockPanel>
+                <RadioButton VerticalAlignment="Center"
+                             DockPanel.Dock="Left"
+                             Content="楽曲"
+                             IsChecked="{Binding Path=IsSpecialItem, Mode=TwoWay, Converter={StaticResource ReverseBoolConverter}}" />
+                <RadioButton Margin="5,0,0,0"
+                             VerticalAlignment="Center"
+                             DockPanel.Dock="Left"
+                             IsChecked="{Binding Path=IsSpecialItem, Mode=TwoWay}"
+                             Content="その他" />
 
-				<DockPanel DockPanel.Dock="Left">
-					<TextBlock DockPanel.Dock="Left" Text="→" VerticalAlignment="Center" />
-					
-					<TextBlock DockPanel.Dock="Left" Text="記号" VerticalAlignment="Center" />
-					<TextBox DockPanel.Dock="Left" Text="{Binding Path=SpecialHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="30" />
+                <DockPanel DockPanel.Dock="Left">
+                    <TextBlock VerticalAlignment="Center"
+                               DockPanel.Dock="Left"
+                               Text="→" />
 
-					<TextBlock DockPanel.Dock="Left" Text="種別" VerticalAlignment="Center" />
-					<TextBox DockPanel.Dock="Left" Text="{Binding Path=SpecialItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="30" />
-				</DockPanel>
-			</DockPanel>
-		</Grid>
-		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Singer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-		<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-		<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-		<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=SongType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-		<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1,1,0,0" />
-	</Grid>
+                    <TextBlock VerticalAlignment="Center"
+                               DockPanel.Dock="Left"
+                               Text="記号" />
+                    <TextBox MinWidth="30"
+                             DockPanel.Dock="Left"
+                             Text="{Binding Path=SpecialHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock VerticalAlignment="Center"
+                               DockPanel.Dock="Left"
+                               Text="種別" />
+                    <TextBox MinWidth="30"
+                             DockPanel.Dock="Left"
+                             Text="{Binding Path=SpecialItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=Singer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=SongType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row="6"
+                 Grid.Column="1"
+                 Margin="1,1,0,0"
+                 Text="{Binding Path=Additional, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
 </UserControl>
