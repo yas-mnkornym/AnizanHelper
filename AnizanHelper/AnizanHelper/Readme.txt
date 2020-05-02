@@ -27,9 +27,13 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Reactive Property
 ・Reactive Extensions
 ・TaihaToolkit
+・LazyProperty.Reactive
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.3.1
+  - プロジェクト内全てのアセンブリのターゲットを.NET Framework 4.7.2に変更
+
 Version 1.3.0
  - デフォルトのプリセットに「3万円を追加」
  - 曲情報の自動解析機能を追加（タグ取得機能）
