@@ -1,189 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A941B03E-81A7-4B6B-934E-A015057C39DA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <LangVersion>preview</LangVersion>
     <RootNamespace>CSharpSamples</RootNamespace>
     <AssemblyName>CSharpSamples</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+
+  <PropertyGroup>
+    <AssemblyTitle>CSharpSamples</AssemblyTitle>
+    <Product>CSharpSamples</Product>
+    <Copyright>Copyright (C)  2006 nullpo0@yahoo.co.jp</Copyright>
+    <ProductVersion>8.0.50727</ProductVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>..\x64\Release\</OutputPath>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Itanium'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Itanium\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugType>full</DebugType>
-    <PlatformTarget>Itanium</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Itanium'">
-    <OutputPath>bin\Itanium\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>Itanium</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Archives\IArchivable.cs" />
-    <Compile Include="Archives\Lha.cs.cs" />
-    <Compile Include="Configuration\ConfigSerializer.cs" />
-    <Compile Include="Configuration\CSPrivateProfile.cs" />
-    <Compile Include="Configuration\KeyValuesCollection.cs" />
-    <Compile Include="Configuration\PrivateProfile.cs" />
-    <Compile Include="Configuration\ProgramSettings.cs" />
-    <Compile Include="Configuration\SerializableSettings.cs" />
-    <Compile Include="Configuration\Serializer.cs" />
-    <Compile Include="Configuration\WindowProfileManager.cs" />
-    <Compile Include="Configuration\XorCryptoConfig.cs" />
-    <Compile Include="Controls\Button\TabButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Button\TabButtonControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Button\TabButtonEvent.cs" />
-    <Compile Include="Controls\Menu\MenuSerializer.cs" />
-    <Compile Include="Controls\Menu\MenuShortcutEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\ProgressBar\ColorProgressBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ProgressBar\ProgressCtrl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ProgressBar\SmoothProgressBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Property\Property.cs" />
-    <Compile Include="Controls\Property\PropertyDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\Thumbnails\Filters.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controls\Thumbnails\ThumbnailsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Thumbnails\WebThumbnailsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ToolBar\Chevron.cs" />
-    <Compile Include="Controls\ToolBar\CSharpToolBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ToolBar\CSharpToolBarButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\ToolBar\CSharpToolBarButtonEvent.cs" />
-    <Compile Include="Controls\ToolBar\CSharpToolBarButtonStyle.cs" />
-    <Compile Include="Html\Attribute\HtmlAttribute.cs" />
-    <Compile Include="Html\Attribute\HtmlAttributeCollection.cs" />
-    <Compile Include="Html\HtmlDocument.cs" />
-    <Compile Include="Html\HtmlException.cs" />
-    <Compile Include="Html\HtmlFormatter.cs" />
-    <Compile Include="Html\HtmlParser.cs" />
-    <Compile Include="Html\HtmlTextUtility.cs" />
-    <Compile Include="Html\Node\HtmlElement.cs" />
-    <Compile Include="Html\Node\HtmlNode.cs" />
-    <Compile Include="Html\Node\HtmlNodeCollection.cs" />
-    <Compile Include="Html\Node\HtmlText.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Text\Search\BmSearch.cs" />
-    <Compile Include="Text\Search\ISearchable.cs" />
-    <Compile Include="Text\Search\KmpSearch.cs" />
-    <Compile Include="Text\Search\RegexSearch.cs" />
-    <Compile Include="Text\Search\RkSearch.cs" />
-    <Compile Include="Windows\DirectoryPicker.cs" />
-    <Compile Include="Windows\GlobalAtom.cs" />
-    <Compile Include="Windows\SoundPlayer.cs" />
-    <Compile Include="Windows\WinApi.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\Button\TabButtonControl.resx">
-      <DependentUpon>TabButtonControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Menu\MenuShortcutEditor.resx">
-      <DependentUpon>MenuShortcutEditor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Property\PropertyDialog.resx">
-      <DependentUpon>PropertyDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ToolBar\CSharpToolBar.resx">
-      <DependentUpon>CSharpToolBar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ToolBar\CSharpToolBarButton.resx">
-      <DependentUpon>CSharpToolBarButton.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
