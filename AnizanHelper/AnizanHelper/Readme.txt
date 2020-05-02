@@ -12,8 +12,8 @@ Anizan Helper
 
 ●動作環境
 ・Windows XP以上
-・.Net Framework 4.6が必要です
-https://www.microsoft.com/ja-jp/download/details.aspx?id=48130
+・.Net Framework 4.7.2が必要です
+http://go.microsoft.com/fwlink/?linkid=863262
 
 ●最新版
 たぶんここにあります
