@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -60,14 +61,14 @@ namespace AnizanHelper.Models.DbSearch
 					var tds = tr.Descendants("td").ToArray();
 					var serisA = tds[3].Descendants("a").FirstOrDefault();
 					return new SongSearchResult {
-						Title = HttpUtility.HtmlDecode(tds[0].InnerText),
+						Title = WebUtility.HtmlDecode(tds[0].InnerText),
 						Singers = tds[1].Descendants("a").Any() ?
-							tds[1].Descendants("a").Select(x => HttpUtility.HtmlDecode(x.InnerText)).ToArray() :
+							tds[1].Descendants("a").Select(x => WebUtility.HtmlDecode(x.InnerText)).ToArray() :
 							new string[] { tds[1].InnerText },
-						Genre = HttpUtility.HtmlDecode(tds[2].InnerText.Replace(" ", "")),
-						Series = HttpUtility.HtmlDecode(tds[3].InnerText),
+						Genre = WebUtility.HtmlDecode(tds[2].InnerText.Replace(" ", "")),
+						Series = WebUtility.HtmlDecode(tds[3].InnerText),
 						SeriesUrl = (serisA != null ? GetActualLink(BaseUrl, serisA.GetAttributeValue("href", (string)null)) : null),
-						SongType = HttpUtility.HtmlDecode(tds[4].InnerText.Replace(" ", ""))
+						SongType = WebUtility.HtmlDecode(tds[4].InnerText.Replace(" ", ""))
 					};
 				});
 

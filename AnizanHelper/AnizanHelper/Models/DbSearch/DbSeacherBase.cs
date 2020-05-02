@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -35,8 +36,8 @@ namespace AnizanHelper.Models.DbSearch
 			return string.Format("{0}?q={1}&m={2}",
 				QueryUrlBase,
 				string.Join("+", word.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
-					.Select(x => HttpUtility.UrlEncode(x))),
-				HttpUtility.UrlEncode(type));
+					.Select(x => WebUtility.UrlEncode(x))),
+				WebUtility.UrlEncode(type));
 		}
 
 		protected HtmlDocument QueryDocument(string word, string type)
