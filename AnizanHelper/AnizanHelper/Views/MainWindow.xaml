@@ -6,8 +6,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         x:Name="window_"
         Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
-        Width="730"
-        Height="600"
+        Width="{Binding Path=WindowWidth.Value, Mode=TwoWay}"
+        Height="{Binding Path=WindowHeight.Value, Mode=TwoWay}"
         Background="WhiteSmoke"
         Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}">
     <Window.Resources>

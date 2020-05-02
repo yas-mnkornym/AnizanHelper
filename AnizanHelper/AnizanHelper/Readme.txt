@@ -30,6 +30,11 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.3.0
+ - デフォルトのプリセットに「3万円を追加」
+ - 曲情報の自動解析機能を追加（タグ取得機能）
+ - 前回終了時のウィンドウサイズを記憶するよう修正
+
 Version 1.2.9
  - 頻出曲入力用プリセット機能を追加
 

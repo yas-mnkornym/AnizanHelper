@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive.Disposables;
+using Studiotaiha.LazyProperty;
 using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.ViewModels
 {
-	public class ReactiveViewModelBase : ViewModelBase, IDisposable
+	public class ReactiveViewModelBase : ViewModelBase, IDisposable, IReactiveLazyPropertyHolder
 	{
 		protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
+
+		ICollection<IDisposable> IReactiveLazyPropertyHolder.Disposables => Disposables;
 
 		#region IDisposable
 

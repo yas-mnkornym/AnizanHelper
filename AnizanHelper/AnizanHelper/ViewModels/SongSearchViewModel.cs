@@ -19,11 +19,26 @@ namespace AnizanHelper.ViewModels
 
 		public SongSearchViewModel(
 			Settings settings,
+			ISearchManager searchManager,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
 			if (settings == null) { throw new ArgumentNullException("settings"); }
 			Settings = settings;
+
+			if (searchManager is SearchManager castedSearchManager)
+			{
+				castedSearchManager.SearchTriggered += async (_, searchTerm) =>
+				{
+					if (string.IsNullOrWhiteSpace(searchTerm))
+					{
+						return;
+					}
+
+					this.SearchWord = searchTerm;
+					await this.SearchAsync();
+				};
+			}
 		}
 
 

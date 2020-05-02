@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.Updating;
 using AnizanHelper.Services;
 using Unity;
@@ -24,6 +25,8 @@ namespace AnizanHelper
 
 			unityContainer.RegisterSingleton<IUpdateManager, UpdateManager>();
 			unityContainer.RegisterSingleton<IServiceManager, ServiceManager>();
+
+			unityContainer.RegisterSingleton<ISearchManager, SearchManager>();
 
 			// For test
 			//unityContainer.RegisterType<IUpdateInfoRetreiver, DummyUpdateInfoRetreiver>(

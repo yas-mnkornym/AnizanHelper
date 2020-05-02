@@ -19,11 +19,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false);
+				return GetValue(false);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -31,11 +31,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -43,11 +43,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false);
+				return GetValue(false);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -55,11 +55,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(false);
+				return GetValue(false);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -67,11 +67,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -79,11 +79,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.DefaultServerName);
+				return GetValue(Constants.DefaultServerName);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -91,11 +91,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.DefaultBoardPath);
+				return GetValue(Constants.DefaultBoardPath);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -103,11 +103,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(string.Empty);
+				return GetValue(string.Empty);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -115,11 +115,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(Constants.ZanmaiSearchUrl);
+				return GetValue(Constants.ZanmaiSearchUrl);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -127,11 +127,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -139,11 +139,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -151,11 +151,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -163,11 +163,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
@@ -175,7 +175,7 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				var ret = GetMe<string>(null);
+				var ret = GetValue<string>(null);
 				if (!string.IsNullOrWhiteSpace(ret))
 				{
 					try
@@ -196,12 +196,12 @@ namespace AnizanHelper.Models
 			{
 				if (value == null)
 				{
-					SetMe<string>(null);
+					SetValue<string>(null);
 				}
 				else
 				{
 					var json = JsonConvert.SerializeObject(value);
-					SetMe(json);
+					SetValue(json);
 				}
 			}
 		}
@@ -210,60 +210,99 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetMe(true);
+				return GetValue(true);
 			}
 			set
 			{
-				SetMe(value);
+				SetValue(value);
 			}
 		}
 
 		public bool ShowParserControl
 		{
-			get => GetMe(false);
-			set => SetMe(value);
+			get => GetValue(false);
+			set => SetValue(value);
 		}
 
 		public string MetadataStreamUri
 		{
-			get => this.GetMe<string>(null);
-			set => this.SetMe(value);
+			get => this.GetValue<string>(null);
+			set => this.SetValue(value);
 		}
 
 		public bool EnableMetadataStreamAutoReconnection
 		{
-			get => GetMe(true);
-			set => SetMe(value);
+			get => GetValue(true);
+			set => SetValue(value);
 		}
 
 		public int MaxMetadataStreamAutoReconnectionTrialCount
 		{
-			get => GetMe(20);
-			set => SetMe(value);
+			get => GetValue(20);
+			set => SetValue(value);
 		}
 
 		public TimeSpan MetadataStreamReconnectionInterval
 		{
-			get => GetMe(TimeSpan.FromSeconds(3));
-			set => SetMe(value);
+			get => GetValue(TimeSpan.FromSeconds(3));
+			set => SetValue(value);
 		}
 
 		public bool ShowMetadataStreamHistory
 		{
-			get => GetMe(false);
-			set => SetMe(value);
+			get => GetValue(false);
+			set => SetValue(value);
 		}
 
 		public bool ShowStreamMetadataRetreiver
 		{
-			get => GetMe(true);
-			set => SetMe(value);
+			get => GetValue(true);
+			set => SetValue(value);
 		}
 
 		public bool ShowFrequentlyPlayedSongs
 		{
-			get => this.GetMe(true);
-			set => this.SetMe(value);
+			get => this.GetValue(true);
+			set => this.SetValue(value);
+		}
+
+		public bool ShowSongInfoExtractorControl
+		{
+			get => this.GetValue(true);
+			set => this.SetValue(value);
+		}
+
+		public string SongInfoExtractorRegexFormat
+		{
+			get => this.GetValue(DefaultSongInfoExtractorPresets[0]);
+			set => this.SetValue(value);
+		}
+
+		public static string[] DefaultSongInfoExtractorPresets { get; } = new string[]{
+			@"((?<Artist>.*)(\s+-\s+)(?<Title>.*)|(?<Title>.*))",
+			@"((?<Title>.*)(\s+-\s+)(?<Artist>.*)|(?<Title>.*))",
+			@"((?<Artist>.*)\s*-\s*(?<Title>.*)|(?<Title>.*))",
+			@"((?<Title>.*)\s*-\s*(?<Artist>.*)|(?<Title>.*))",
+			@"(｢(?<Title>.*)｣\s*/\s*(?<Artist>.*)\s*\()|(｢(?<Title>.*)｣\s*/\s*(?<Artist>.*))",
+		};
+
+
+		public string[] SongInfoExtractorPresets
+		{
+			get => this.GetValue(DefaultSongInfoExtractorPresets);
+			set => this.SetValue(value);
+		}
+
+		public double WindowHeight
+		{
+			get => this.GetValue(800.0);
+			set => this.SetValue(value);
+		}
+
+		public double WindowWidth
+		{
+			get => this.GetValue(730.0);
+			set => this.SetValue(value);
 		}
 	}
 }

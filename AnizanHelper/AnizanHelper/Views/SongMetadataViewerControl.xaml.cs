@@ -24,5 +24,15 @@ namespace AnizanHelper.Views
 		{
 			InitializeComponent();
 		}
+
+		private void PresetButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.RegexPresetsDropDownButton.IsOpen = false;
+		}
+
+		private void SavePresetButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.RegexPresetsDropDownButton.IsOpen = false;
+		}
 	}
 }

@@ -7,11 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
+using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.Parsers;
 using AnizanHelper.Services;
 using AnizanHelper.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+using Studiotaiha.LazyProperty;
 using Twin;
 using Twin.Bbs;
 
@@ -40,6 +42,7 @@ namespace AnizanHelper.ViewModels
 			SongPresetRepository songPresetRepository,
 			IServiceManager serviceManager,
 			HttpClient httpClient,
+			ISearchManager searchManager,
 			Studiotaiha.Toolkit.IDispatcher dispatcher)
 			: base(dispatcher)
 		{
@@ -54,9 +57,9 @@ namespace AnizanHelper.ViewModels
 			SongInfo = new AnizanSongInfo();
 			serializer_ = new Models.Serializers.AnizanListSerializer();
 
-			SearchVm = new SongSearchViewModel(settings, dispatcher);
+			SearchVm = new SongSearchViewModel(settings, searchManager, dispatcher);
 			SongParserVm = new SongParserVm(dispatcher);
-			SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient);
+			SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient, searchManager);
 
 			SearchVm.SongParsed += SongParsed;
 			SongParserVm.SongParsed += SongParsed;
@@ -657,6 +660,9 @@ namespace AnizanHelper.ViewModels
 		public ReactiveProperty<bool> ShowParserControl { get; }
 		public ReactiveProperty<bool> ShowTagRetreiver { get; }
 		public ReactiveProperty<bool> ShowFrequentlyPlayedSongs { get; }
+
+		public ReactiveProperty<double> WindowWidth => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.WindowWidth));
+		public ReactiveProperty<double> WindowHeight => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.WindowHeight));
 
 		#endregion // Bindings
 

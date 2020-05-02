@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
+using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.Registries;
 using AnizanHelper.Models.SettingComponents;
 using AnizanHelper.Services;
@@ -62,6 +63,7 @@ namespace AnizanHelper
 				songPresetRepository_,
 				serviceManager,
 				UnityContainer.Resolve<HttpClient>(),
+				UnityContainer.Resolve<ISearchManager>(),
 				new WPFDispatcher(Dispatcher));
 			MainWindow.Show();
 

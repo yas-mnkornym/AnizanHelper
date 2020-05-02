@@ -1,11 +1,12 @@
-﻿using Studiotaiha.Toolkit;
+﻿using Studiotaiha.LazyProperty;
+using Studiotaiha.Toolkit;
 using System;
 using System.Text;
 using System.Windows;
 
 namespace AnizanHelper.ViewModels
 {
-	public class ViewModelBase : NotificationObjectWithPropertyBag
+	public class ViewModelBase : NotificationObjectWithPropertyBag, ILazyPropertyHolder
 	{
 		public ViewModelBase(IDispatcher dispatcher = null) : base(dispatcher)
 		{
@@ -13,6 +14,19 @@ namespace AnizanHelper.ViewModels
 
 		public ViewModelBase(IDispatcher dispatcher, bool enableAutoDispatch) : base(dispatcher, enableAutoDispatch)
 		{
+		}
+
+		public TValue GetOrCreateValue<TValue>(string propertyName, Func<TValue> valueProvider)
+		{
+			if (propertyName == null) { throw new ArgumentNullException(nameof(propertyName)); }
+			if (valueProvider == null) { throw new ArgumentNullException(nameof(valueProvider)); }
+
+			if (!(this.PropertyBag.TryGetValue(propertyName, out var value) && value is TValue result))
+			{
+				this.PropertyBag[propertyName] = result = valueProvider.Invoke();
+			}
+
+			return result;
 		}
 
 		protected void ShowErrorMessage(string message, Exception ex = null)

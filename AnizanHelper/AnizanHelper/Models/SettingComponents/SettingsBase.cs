@@ -48,7 +48,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="defaultValue">デフォルト値</param>
 		/// <param name="key">プロパティ名</param>
 		/// <returns>取得した値</returns>
-		protected T GetMe<T>(T defaultValue, [CallerMemberName]string key = null)
+		protected T GetValue<T>(T defaultValue = default, [CallerMemberName]string key = null)
 		{
 			return Settings.Get(key, defaultValue);
 		}
@@ -59,7 +59,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <typeparam name="T">設定の型</typeparam>
 		/// <param name="value">値</param>
 		/// <param name="key">プロパティ名</param>
-		protected void SetMe<T>(T value, [CallerMemberName]string key = null)
+		protected void SetValue<T>(T value, [CallerMemberName]string key = null)
 		{
 			Settings.Set(key, value);
 		}
@@ -71,7 +71,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="defaultValue">デフォルト値</param>
 		/// <param name="key">プロパティ名</param>
 		/// <returns>取得した値</returns>
-		protected T GetMeDecrypted<T>(T defaultValue, string key)
+		protected T GetValueDecrypted<T>(T defaultValue, string key)
 		{
 			return Settings.GetDecrypted(key, defaultValue);
 		}
@@ -82,7 +82,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <typeparam name="T">設定の型</typeparam>
 		/// <param name="value">値</param>
 		/// <param name="key">プロパティ名</param>
-		protected void SetMeCrypted<T>(T value, string key)
+		protected void SetValueCrypted<T>(T value, string key)
 		{
 			Settings.SetCrypted(key, value);
 		}
@@ -90,7 +90,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// 呼び出したプロパティ名の設定を削除する。
 		/// </summary>
 		/// <param name="key">プロパティ名</param>
-		protected void RemoveMe(string key)
+		protected void RemoveValue(string key)
 		{
 			Settings.Remove(key);
 		}

@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:AnizanHelper.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="Root"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
@@ -45,6 +47,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -101,6 +104,11 @@
                         Command="{Binding ClearHistoryCommand}" />
 
                 <ToggleButton Margin="2,0,0,0"
+                              Content="自動解析"
+                              IsChecked="{Binding Path=ShowSongInfoExtractorControl.Value, Mode=TwoWay}"
+                              ToolTip="タグ自動解析機能を表示します。" />
+
+                <ToggleButton Margin="2,0,0,0"
                               Content="履歴表示"
                               IsChecked="{Binding Path=ShowHistory.Value, Mode=TwoWay}"
                               ToolTip="放送データから取得した曲情報の履歴を表示します。" />
@@ -123,7 +131,150 @@
             </DockPanel>
         </StackPanel>
 
-        <Grid Grid.Row="2"
+
+        <GroupBox Grid.Row="2"
+                  Margin="0,2,0,0"
+                  Header="自動解析"
+                  Visibility="{Binding Path=ShowSongInfoExtractorControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock VerticalAlignment="Center"
+                               Text="フォーマット"
+                               ToolTip=".NETのSystem.Text.RegularExpressionsの書式で解析フォーマット(正規表現)を指定してください。" />
+
+                    <xctk:DropDownButton x:Name="RegexPresetsDropDownButton"
+                                         MinWidth="75"
+                                         Margin="2,0,0,0"
+                                         Content="プリセット"
+                                         DockPanel.Dock="Right">
+                        <xctk:DropDownButton.DropDownContent>
+                            <StackPanel>
+                                <Button x:Name="SavePresetButton"
+                                        MinWidth="75"
+                                        Margin="0"
+                                        Padding="0"
+                                        HorizontalAlignment="Stretch"
+                                        BorderThickness="0"
+                                        Content="保存"
+                                        Click="SavePresetButton_Click"
+                                        ToolTip="現在選択されているフォーマットをプリセットに保存します。"
+                                        Command="{Binding Path=SaveRegexFormatCommand}" />
+
+                                <Button MinWidth="75"
+                                        Margin="0"
+                                        Padding="0"
+                                        HorizontalAlignment="Stretch"
+                                        BorderThickness="0"
+                                        Content="初期プリセットを再登録"
+                                        ToolTip="初期状態で登録されていたプリセットを再登録します。"
+                                        Command="{Binding Path=RestoreDefaultPresetsCommand}" />
+
+                                <Separator HorizontalAlignment="Stretch" />
+
+                                <ItemsControl HorizontalAlignment="Stretch"
+                                              ItemsSource="{Binding Path=RegexFormatPresets.Value}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel HorizontalAlignment="Stretch">
+                                                <Button Margin="0"
+                                                        Padding="0"
+                                                        VerticalAlignment="Center"
+                                                        DockPanel.Dock="Right"
+                                                        BorderThickness="0"
+                                                        Content="r"
+                                                        FontFamily="Marlett"
+                                                        ToolTip="このプリセットを削除します。"
+                                                        Command="{Binding Path=DataContext.RemoveRegexFormatCommand, ElementName=Root}"
+                                                        CommandParameter="{Binding}" />
+
+                                                <Button Margin="0"
+                                                        Padding="0"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalContentAlignment="Left"
+                                                        DockPanel.Dock="Left"
+                                                        BorderThickness="0"
+                                                        Click="PresetButton_Click"
+                                                        Content="{Binding}"
+                                                        ToolTip="このプリセットを適用します。"
+                                                        Command="{Binding Path=DataContext.SetRegexFormatCommand, ElementName=Root}"
+                                                        CommandParameter="{Binding}" />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+
+                        </xctk:DropDownButton.DropDownContent>
+                    </xctk:DropDownButton>
+
+                    <TextBox Margin="2,0,0,0"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             DockPanel.Dock="Right"
+                             Text="{Binding Path=RegexFormat.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </DockPanel>
+
+                <StackPanel Margin="0,2,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="216*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="0,3,0,2"
+                                   VerticalAlignment="Center"
+                                   Text="解析結果(曲名)" />
+
+                        <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"
+                                 Margin="2,0,0,0"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 FontSize="14"
+                                 FontWeight="Bold"
+                                 IsReadOnly="True"
+                                 Text="{Binding Path=ExtractedSongTitle.Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <Button Grid.Row="0"
+                                Grid.Column="3"
+                                MinWidth="75"
+                                Margin="2,0,0,0"
+                                Content="検索"
+                                Command="{Binding Path=SearchCommand}" />
+
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Margin="0,5,0,1.62"
+                                   VerticalAlignment="Center"
+                                   Text="解析結果(歌手名)" />
+
+                        <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="3"
+                                 Margin="2,2,0,-0.38"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 FontSize="14"
+                                 FontWeight="Bold"
+                                 IsReadOnly="True"
+                                 Text="{Binding Path=ExtractedArtist.Value, Mode=OneWay}" />
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Grid Grid.Row="3"
               Margin="0,2,0,0"
               Visibility="{Binding Path=ShowHistory.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
             <DataGrid Margin="0,2,0,0"
