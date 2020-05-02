@@ -45,7 +45,7 @@ namespace AnizanHelper.Models.DbSearch
 		async Task<SearchPageResult> SearchPageAsync(string uri, CancellationToken cancellationToken)
 		{
 			var doc = await QueryDocumentAsync(uri, cancellationToken).ConfigureAwait(false);
-			var tbody = doc.DocumentNode.SelectSingleNode(" / html[1]/body[1]/table[2]/tbody[1]");
+			var tbody = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/table[1]/tbody[1]");
 			if (tbody == null)
 			{
 				return new SearchPageResult
