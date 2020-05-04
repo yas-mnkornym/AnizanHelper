@@ -236,6 +236,12 @@ namespace AnizanHelper.Models
 			set => SetValue(value);
 		}
 
+		public string SongMetadatSelectedEncodingName
+		{
+			get => this.GetValue<string>();
+			set => this.SetValue(value);
+		}
+
 		public int MaxMetadataStreamAutoReconnectionTrialCount
 		{
 			get => GetValue(20);

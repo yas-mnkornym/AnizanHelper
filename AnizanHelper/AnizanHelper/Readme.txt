@@ -33,6 +33,7 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ●更新履歴
 Version 1.3.1
   - プロジェクト内全てのアセンブリのターゲットを.NET Framework 4.7.2に変更
+  - タグ取得時の文字コード変更機能を追加
 
 Version 1.3.0
  - デフォルトのプリセットに「3万円を追加」

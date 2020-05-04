@@ -91,14 +91,12 @@
                         Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}"
                         Command="{Binding StartRetreivingCommand}" />
 
-                <Button MinWidth="75"
-                        Margin="2,0,0,0"
+                <Button Margin="2,0,0,0"
                         Content="取得停止"
                         Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Mode=Self}, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}"
                         Command="{Binding StopRetreivingCommand}" />
 
-                <Button MinWidth="75"
-                        Margin="2,0,0,0"
+                <Button Margin="2,0,0,0"
                         Content="ログクリア"
                         ToolTip="放送データから取得した曲情報の履歴をクリアします。"
                         Command="{Binding ClearHistoryCommand}" />
@@ -120,6 +118,23 @@
             <DockPanel>
                 <TextBlock VerticalAlignment="Center"
                            Text="現在の曲" />
+                
+                <xctk:DropDownButton x:Name="DropDownButton_EncodingSelector"
+                                     DockPanel.Dock="Right"
+                                     Margin="2,0,0,0"
+                                     MinWidth="75"
+                                     Content="{Binding Path=SelectedEncodingName.Value, Mode=OneWay}"
+                                     ToolTip="タグの文字コードを変更します。">
+                    <xctk:DropDownButton.DropDownContent>
+                        <ListView x:Name="ListView_Encoding"
+                                  ItemsSource="{Binding Path=MetadataEncodings.Value, Mode=OneWay}"
+                                  DisplayMemberPath="EncodingName"
+                                  SelectionMode="Single"
+                                  SelectedItem="{Binding Path=SelectedEncoding.Value, Mode=TwoWay}"
+                                  SelectionChanged="ListView_Encoding_SelectionChanged" />
+                    </xctk:DropDownButton.DropDownContent>
+                </xctk:DropDownButton>
+
                 <TextBox Margin="2,0,0,0"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
@@ -142,7 +157,7 @@
                                Text="フォーマット"
                                ToolTip=".NETのSystem.Text.RegularExpressionsの書式で解析フォーマット(正規表現)を指定してください。" />
 
-                    <xctk:DropDownButton x:Name="RegexPresetsDropDownButton"
+                    <xctk:DropDownButton x:Name="DropDownButton_RegexPresets"
                                          MinWidth="75"
                                          Margin="2,0,0,0"
                                          Content="プリセット"

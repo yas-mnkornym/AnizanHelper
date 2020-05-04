@@ -32,6 +32,7 @@ namespace AnizanHelper.ViewModels
 		private Settings Settings { get; }
 		private HttpClient HttpClient { get; }
 		private ISearchManager SearchManager { get; }
+		private IcecastSongMetadataRetreiver songMetadataRetreiver;
 
 		public SongMetadataViewerControlViewModel(
 			Settings settings,
@@ -107,6 +108,51 @@ namespace AnizanHelper.ViewModels
 
 		#region Bindings
 
+		public ReactiveProperty<Encoding> SelectedEncoding => this.LazyReactiveProperty(() =>
+		{
+			var defaultEncoding = this.Settings.SongMetadatSelectedEncodingName != null
+				? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
+				: this.MetadataEncodings.Value.First();
+
+			var prop = new ReactiveProperty<Encoding>(defaultEncoding);
+
+			this.Settings.PropertyChangedAsObservable(nameof(this.Settings.SongMetadatSelectedEncodingName))
+				.Select(_ => this.Settings.SongMetadatSelectedEncodingName)
+				.Subscribe(encodingName =>
+				{
+					var encoding = this.Settings.SongMetadatSelectedEncodingName != null
+						? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
+						: this.MetadataEncodings.Value.First();
+
+					if (prop.Value != encoding)
+					{
+						prop.Value = encoding;
+					}
+				});
+
+			prop
+				.Where(x => x != null)
+				.Subscribe(encoding =>
+				{
+					if (this.Settings.SongMetadatSelectedEncodingName != encoding.BodyName)
+					{
+						this.Settings.SongMetadatSelectedEncodingName = encoding.BodyName;
+					}
+
+					if (this.songMetadataRetreiver != null && this.songMetadataRetreiver.MetadataEncoding != encoding)
+					{
+						this.songMetadataRetreiver.MetadataEncoding = encoding;
+					}
+				})
+				.AddTo(this.Disposables);
+
+			return prop;
+		});
+
+		public ReadOnlyReactiveProperty<string> SelectedEncodingName => this.LazyReadOnlyReactiveProperty(() => this.SelectedEncoding.Select(x => x.EncodingName).ToReadOnlyReactiveProperty());
+
+		public ReactiveProperty<Encoding[]> MetadataEncodings { get; } = new ReactiveProperty<Encoding[]>(Constants.MetadataEncodings);
+
 		public ReactiveProperty<CancellationTokenSource> RetreiverCancellationTokenSource => this.LazyReactiveProperty(() =>
 		{
 			var prop = new ReactiveProperty<CancellationTokenSource>();
@@ -126,7 +172,7 @@ namespace AnizanHelper.ViewModels
 						using (var disposables = new CompositeDisposable())
 						{
 							var streamUri = new Uri(StreamUri.Value);
-							var retreiver = new IcecastSongMetadataRetreiver(this.HttpClient, streamUri, Encoding.GetEncoding("Shift_JIS"));
+							var retreiver = this.songMetadataRetreiver = new IcecastSongMetadataRetreiver(this.HttpClient, streamUri, this.SelectedEncoding.Value);
 
 							Observable.FromEventPattern<ISongMetadata>(retreiver, nameof(ISongMetadataRetreiver.SongMetadataReceived))
 								.Select(x => x.EventArgs)
@@ -198,6 +244,8 @@ namespace AnizanHelper.ViewModels
 					}
 					finally
 					{
+						this.songMetadataRetreiver = null;
+
 						if (shouldRetry)
 						{
 							CurrentSongMetadata.Value = null;

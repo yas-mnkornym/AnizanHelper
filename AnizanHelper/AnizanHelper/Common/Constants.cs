@@ -1,4 +1,6 @@
-﻿namespace AnizanHelper
+﻿using System.Text;
+
+namespace AnizanHelper
 {
 	internal static class Constants
 	{
@@ -62,5 +64,15 @@
 		/// </summary>
 		public static string AnizanHelperWebSiteUrl { get; } = @"https://www.studio-taiha.net/anizan/anizanhelper";
 
+		/// <summary>
+		/// タグ取得用エンコーディング
+		/// </summary>
+		public static Encoding[] MetadataEncodings { get; } = new Encoding[]
+		{
+			Encoding.GetEncoding("Shift_JIS"),
+			Encoding.GetEncoding("EUC-JP"),
+			Encoding.UTF8,
+			Encoding.Unicode,
+		};
 	}
 }

@@ -9,6 +9,10 @@ namespace AnizanHelper.Models.SongList
 {
 	public class IcecastSongMetadataRetreiver : ISongMetadataRetreiver
 	{
+		private byte[] currentMetadataBuffer;
+
+		private Encoding metadataEncoding;
+
 		public IcecastSongMetadataRetreiver(HttpClient httpClient, Uri streamUri, Encoding metadataEncoding)
 		{
 			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -16,8 +20,20 @@ namespace AnizanHelper.Models.SongList
 			this.MetadataEncoding = metadataEncoding ?? throw new ArgumentNullException(nameof(metadataEncoding));
 		}
 
+		public Encoding MetadataEncoding
+		{
+			get => metadataEncoding;
+			set
+			{
+				if (this.metadataEncoding != value)
+				{
+					this.metadataEncoding = value;
+					this.DecodeAndNotifyMetadata();
+				}
+			}
+		}
+
 		private HttpClient HttpClient { get; }
-		private Encoding MetadataEncoding { get; }
 		private Uri StreamUri { get; }
 
 		public async Task<SongListFeedStopStatus> RunAsync(CancellationToken cancellationToken = default)
@@ -67,16 +83,35 @@ namespace AnizanHelper.Models.SongList
 									return SongListFeedStopStatus.StreamClosed;
 								}
 
-								var metadataString = this.MetadataEncoding.GetString(metadataBuffer);
-								var songMetadata = SongMetadata.Parse(metadataString);
-
-								this.SongMetadataReceived?.Invoke(this, songMetadata);
+								this.currentMetadataBuffer = metadataBuffer;
+								this.DecodeAndNotifyMetadata();
 							}
 						}
 					}
 				}
 			}
 		}
+
+		private void DecodeAndNotifyMetadata()
+		{
+			if (this.currentMetadataBuffer != null && this.MetadataEncoding != null)
+			{
+				try
+				{
+					var metadataString = this.MetadataEncoding.GetString(this.currentMetadataBuffer);
+					var songMetadata = SongMetadata.Parse(metadataString);
+
+					this.SongMetadataReceived?.Invoke(this, songMetadata);
+				}
+				catch (Exception ex)
+				{
+					this.ParseFailed?.Invoke(this, ex);
+				}
+			}
+		}
+
+
+		public event EventHandler<Exception> ParseFailed;
 
 		public event EventHandler<ISongMetadata> SongMetadataReceived;
 	}
