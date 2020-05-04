@@ -144,8 +144,9 @@ namespace AnizanHelper
 			}
 			catch (Exception ex) {
 				MessageBox.Show(
-					string.Format("ユーザ定義置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex)
-					, "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+					App.Current.MainWindow,
+					string.Format("ユーザ定義置換辞書ファイルの読み込みに失敗しました。\n\n【例外情報】\n{0}", ex),
+					"エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 
 			converter_.Replaces = replaceList.Where(x => !string.IsNullOrEmpty(x.Original)).ToArray();
@@ -171,7 +172,7 @@ namespace AnizanHelper
 					sb.AppendLine();
 					sb.AppendLine(info.Description);
 				}
-				var ret = MessageBox.Show(sb.ToString(), "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				var ret = MessageBox.Show(App.Current.MainWindow, sb.ToString(), "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
 				if (ret != MessageBoxResult.Yes) {
 					MessageService.Current.ShowMessage("辞書の更新がキャンセルされました。");
 					return;
@@ -231,7 +232,7 @@ namespace AnizanHelper
 				}
 			}
 			catch {
-				MessageBox.Show("設定の読込に失敗しました。\nデフォルトの設定を利用します。", "エラー", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				MessageBox.Show(App.Current.MainWindow, "設定の読込に失敗しました。\nデフォルトの設定を利用します。", "エラー", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
 
 			settingsAutoExpoter_ = new SettingsAutoExpoter(

@@ -61,7 +61,7 @@ namespace AnizanHelper.Services
 			sb.AppendLine();
 			sb.AppendLine("※ キャンセル を選択すると、次回起動時までこのバージョンは通知されなくなります。");
 
-			var ret = MessageBox.Show(sb.ToString(), "アップデート確認", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.OK);
+			var ret = MessageBox.Show(App.Current.MainWindow, sb.ToString(), "アップデート確認", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.OK);
 			if (ret == MessageBoxResult.Yes)
 			{
 				Process.Start(Constants.AnizanHelperWebSiteUrl);
