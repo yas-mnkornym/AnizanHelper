@@ -384,16 +384,18 @@ namespace AnizanHelper.ViewModels
 			() =>
 			{
 				SongMetadataHistory.Clear();
-			});
+			}); 
 
-		public ICommand SearchCommand => this.LazyReactiveCommand(
-			this.CurrentSongMetadata.Select(x => !string.IsNullOrWhiteSpace(x?.ExtractedTitle)),
-			() =>
+		public ICommand SearchCommand => this.LazyReactiveCommand<string>(
+			searchTerm =>
 			{
-				var searchTerm = this.CurrentSongMetadata.Value?.ExtractedTitle;
 				if (!string.IsNullOrWhiteSpace(searchTerm))
 				{
 					this.SearchManager.TriggerSearch(searchTerm);
+				}
+				else
+				{
+					MessageService.Current.ShowMessage("検索ワードが空のため検索できません。");
 				}
 			});
 

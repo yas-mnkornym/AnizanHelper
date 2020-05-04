@@ -31,6 +31,11 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Unity (DIのほう)
 
 ●更新履歴
+Version 1.3.2
+ - タグ自動解析機能で曲名検索ボタンが機能しない場合がある問題を修正
+ - タグ履歴に曲名検索機能を追加
+ - タグ履歴を編集可能に変更
+
 Version 1.3.1
   - プロジェクト内全てのアセンブリのターゲットを.NET Framework 4.7.2に変更
   - タグ取得時の文字コード変更機能を追加

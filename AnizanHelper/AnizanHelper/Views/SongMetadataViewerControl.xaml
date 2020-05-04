@@ -270,7 +270,8 @@
                                 MinWidth="75"
                                 Margin="2,0,0,0"
                                 Content="検索"
-                                Command="{Binding Path=SearchCommand}" />
+                                Command="{Binding Path=SearchCommand}"
+                                CommandParameter="{Binding Path=CurrentSongMetadata.Value.ExtractedTitle, Mode=OneWay}"/>
 
 
                         <TextBlock Grid.Row="1"
@@ -302,6 +303,7 @@
                       CanUserAddRows="False"
                       CanUserDeleteRows="True"
                       HeadersVisibility="Column"
+                      IsReadOnly="False"
                       SelectedItem="{Binding Path=SelectedHistoryItem.Value, Mode=TwoWay}"
                       ItemsSource="{Binding Path=SongMetadataHistory, Mode=OneWay}">
 
@@ -310,22 +312,34 @@
                                         Header="取得時刻"
                                         IsReadOnly="False"
                                         SortDirection="Descending"
-                                        Binding="{Binding Path=Timestamp, Mode=OneWay, StringFormat=HH:mm:ss.fff}" />
+                                        Binding="{Binding Path=Timestamp, Mode=TwoWay, StringFormat=HH:mm:ss.fff}" />
 
-                    <DataGridTextColumn Width="*"
+                    <DataGridTextColumn Width="2*"
                                         Header="曲履歴"
                                         IsReadOnly="False"
-                                        Binding="{Binding Path=Content, Mode=OneWay}" />
+                                        Binding="{Binding Path=Content, Mode=TwoWay}" />
                     
-                    <DataGridTextColumn Width="200"
+                    <DataGridTextColumn Width="2*"
                                         Header="曲名"
                                         IsReadOnly="False"
-                                        Binding="{Binding Path=ExtractedTitle, Mode=OneWay}" />
+                                        Binding="{Binding Path=ExtractedTitle, Mode=TwoWay}" />
+
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="検索"
+                                        ToolTip="この履歴の曲名で検索します。"
+                                        Command="{Binding Path=DataContext.SearchCommand, ElementName=Root}"
+                                        CommandParameter="{Binding Path=ExtractedTitle, Mode=OneWay}"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                     <DataGridTextColumn Width="*"
                                         Header="歌手名"
                                         IsReadOnly="False"
-                                        Binding="{Binding Path=ExtractedArtist, Mode=OneWay}" />
+                                        Binding="{Binding Path=ExtractedArtist, Mode=TwoWay}" />
+
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
