@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using AnizanHelper.Models;
@@ -13,13 +15,13 @@ using Reactive.Bindings.Extensions;
 namespace AnizanHelper.Services
 {
 	[Service]
-	class UpdateCheckerService : ReactiveServiceBase
+	internal class UpdateCheckerService : ReactiveServiceBase
 	{
-		static TimeSpan CheckInterval { get; } = TimeSpan.FromMinutes(10);
+		private static TimeSpan CheckInterval { get; } = TimeSpan.FromMinutes(10);
 
-		IUpdateManager UpdateManager { get; }
-		Settings Settings { get; }
-		Version IgnoreVersion { get; set; } = AppInfo.Current.Version;
+		private IUpdateManager UpdateManager { get; }
+		private Settings Settings { get; }
+		private Version IgnoreVersion { get; set; } = AppInfo.Current.Version;
 
 		public UpdateCheckerService(
 			IUpdateManager updateManager,
@@ -48,7 +50,8 @@ namespace AnizanHelper.Services
 			sb.AppendLine("アニソンDBぱーさーのアップデートがあります。");
 			sb.AppendLine("Webサイトを開きますか？");
 
-			if (updateInfo != null) {
+			if (updateInfo != null)
+			{
 				sb.AppendLine();
 				sb.AppendLine("最新バージョン: {0}", updateInfo.Version);
 			}
@@ -73,18 +76,30 @@ namespace AnizanHelper.Services
 
 		protected override void RegisterDisposables(CompositeDisposable disposables)
 		{
+			int checkGate = 0;
 			Observable.Timer(TimeSpan.Zero, CheckInterval)
 				.Where(_ => Settings.CheckForUpdateAutomatically)
 				.ObserveOnDispatcher()
-				.SelectMany(async _ => {
-					try {
-						await CheckForUpdateAndShowDialogIfAvailableAsync().ConfigureAwait(false);
+				.SelectMany(async _ =>
+				{
+					if (Interlocked.CompareExchange(ref checkGate, 1, 0) == 0)
+					{
+						try
+						{
+							await CheckForUpdateAndShowDialogIfAvailableAsync().ConfigureAwait(false);
+						}
+						catch (Exception ex)
+						{
+							// TODO: Log error
+							Console.WriteLine(ex);
+						}
+						finally
+						{
+							Volatile.Write(ref checkGate, 0);
+						}
 					}
-					catch (Exception ex) {
-						// TODO: Log error
-						Console.WriteLine(ex);
-					}
-					return true;
+
+					return Unit.Default;
 				})
 				.Subscribe()
 				.AddTo(disposables);
