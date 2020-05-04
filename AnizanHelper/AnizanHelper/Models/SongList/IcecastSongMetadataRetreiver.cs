@@ -9,6 +9,8 @@ namespace AnizanHelper.Models.SongList
 {
 	public class IcecastSongMetadataRetreiver : ISongMetadataRetreiver
 	{
+		DateTimeOffset currentTimestamp;
+		Guid currentMetadataId;
 		private byte[] currentMetadataBuffer;
 
 		private Encoding metadataEncoding;
@@ -84,6 +86,8 @@ namespace AnizanHelper.Models.SongList
 								}
 
 								this.currentMetadataBuffer = metadataBuffer;
+								this.currentMetadataId = Guid.NewGuid();
+								this.currentTimestamp = DateTimeOffset.Now;
 								this.DecodeAndNotifyMetadata();
 							}
 						}
@@ -99,7 +103,7 @@ namespace AnizanHelper.Models.SongList
 				try
 				{
 					var metadataString = this.MetadataEncoding.GetString(this.currentMetadataBuffer);
-					var songMetadata = SongMetadata.Parse(metadataString);
+					var songMetadata = SongMetadata.Parse(metadataString, this.currentMetadataId, currentTimestamp);
 
 					this.SongMetadataReceived?.Invoke(this, songMetadata);
 				}

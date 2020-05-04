@@ -142,7 +142,7 @@
                          FontSize="14"
                          FontWeight="Bold"
                          IsReadOnly="True"
-                         Text="{Binding Path=CurrentSongTitle.Value, Mode=OneWay}" />
+                         Text="{Binding Path=CurrentSongMetadata.Value.Content, Mode=OneWay}" />
             </DockPanel>
         </StackPanel>
 
@@ -156,6 +156,11 @@
                     <TextBlock VerticalAlignment="Center"
                                Text="フォーマット"
                                ToolTip=".NETのSystem.Text.RegularExpressionsの書式で解析フォーマット(正規表現)を指定してください。" />
+
+                    <Button Content="履歴再解析"
+                            Margin="2,0,0,0"
+                            DockPanel.Dock="Right"
+                            Command="{Binding Path=ExtractHistoryCommand}"/>
 
                     <xctk:DropDownButton x:Name="DropDownButton_RegexPresets"
                                          MinWidth="75"
@@ -258,7 +263,7 @@
                                  FontSize="14"
                                  FontWeight="Bold"
                                  IsReadOnly="True"
-                                 Text="{Binding Path=ExtractedSongTitle.Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                 Text="{Binding Path=CurrentSongMetadata.Value.ExtractedTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Button Grid.Row="0"
                                 Grid.Column="3"
@@ -283,7 +288,7 @@
                                  FontSize="14"
                                  FontWeight="Bold"
                                  IsReadOnly="True"
-                                 Text="{Binding Path=ExtractedArtist.Value, Mode=OneWay}" />
+                                 Text="{Binding Path=CurrentSongMetadata.Value.ExtractedArtist, Mode=OneWay}" />
                     </Grid>
                 </StackPanel>
             </StackPanel>
@@ -297,6 +302,7 @@
                       CanUserAddRows="False"
                       CanUserDeleteRows="True"
                       HeadersVisibility="Column"
+                      SelectedItem="{Binding Path=SelectedHistoryItem.Value, Mode=TwoWay}"
                       ItemsSource="{Binding Path=SongMetadataHistory, Mode=OneWay}">
 
                 <DataGrid.Columns>
@@ -309,7 +315,17 @@
                     <DataGridTextColumn Width="*"
                                         Header="曲履歴"
                                         IsReadOnly="False"
-                                        Binding="{Binding Path=StreamTitle, Mode=OneWay}" />
+                                        Binding="{Binding Path=Content, Mode=OneWay}" />
+                    
+                    <DataGridTextColumn Width="200"
+                                        Header="曲名"
+                                        IsReadOnly="False"
+                                        Binding="{Binding Path=ExtractedTitle, Mode=OneWay}" />
+
+                    <DataGridTextColumn Width="*"
+                                        Header="歌手名"
+                                        IsReadOnly="False"
+                                        Binding="{Binding Path=ExtractedArtist, Mode=OneWay}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

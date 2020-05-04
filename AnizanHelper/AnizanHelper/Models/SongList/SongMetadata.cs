@@ -18,6 +18,8 @@ namespace AnizanHelper.Models.SongList
 		{
 		}
 
+		public Guid Id { get; set; }
+
 		public DateTimeOffset Timestamp { get; set; }
 
 		public string StreamTitle => this.GetPropertyValueOrDefault();
@@ -31,7 +33,7 @@ namespace AnizanHelper.Models.SongList
 				: defaultValue;
 		}
 
-		public static SongMetadata Parse(string iceCastMetadataString)
+		public static SongMetadata Parse(string iceCastMetadataString, Guid itemId, DateTimeOffset timestamp)
 		{
 			if (iceCastMetadataString == null) { throw new ArgumentNullException(nameof(iceCastMetadataString)); }
 
@@ -91,7 +93,8 @@ namespace AnizanHelper.Models.SongList
 
 			return new SongMetadata(properties)
 			{
-				Timestamp = DateTimeOffset.Now,
+				Id = itemId,
+				Timestamp = timestamp,
 			};
 		}
 	}

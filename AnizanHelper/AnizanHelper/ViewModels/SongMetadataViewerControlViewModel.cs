@@ -16,6 +16,7 @@ using AnizanHelper.Models.SongList;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
+using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.ViewModels
 {
@@ -45,19 +46,24 @@ namespace AnizanHelper.ViewModels
 
 			var regexTimeout = TimeSpan.FromMilliseconds(250);
 
-			this.CurrentSongTitle
-				.Merge(this.RegexFormat)
+			this.CurrentSongMetadata.Select(_ => Unit.Default)
+				.Merge(this.RegexFormat.Select(_ => Unit.Default))
 				.Throttle(regexTimeout)
 				.ObserveOnUIDispatcher()
 				.Subscribe(x =>
 				{
-					var songTitle = this.CurrentSongTitle.Value;
+					var target = this.CurrentSongMetadata.Value;
 					var regexFormat = this.RegexFormat.Value;
 
-					if (songTitle == null || regexFormat == null)
+					var treamTitle = target?.Content;
+
+					if (treamTitle == null || regexFormat == null)
 					{
-						this.ExtractedSongTitle.Value = null;
-						this.ExtractedArtist.Value = null;
+						if (target != null)
+						{
+							target.ExtractedTitle = null;
+							target.ExtractedArtist = null;
+						}
 
 						return;
 					}
@@ -69,13 +75,13 @@ namespace AnizanHelper.ViewModels
 						var regex = new Regex(regexFormat, RegexOptions.IgnoreCase, regexTimeout);
 						var sw = new Stopwatch();
 						sw.Start();
-						var match = regex.Match(songTitle);
+						var match = regex.Match(treamTitle);
 						sw.Stop();
 
 						if (match?.Success == true)
 						{
-							this.ExtractedSongTitle.Value = match.Groups["Title"].Value?.Trim();
-							this.ExtractedArtist.Value = match.Groups["Artist"].Value?.Trim();
+							target.ExtractedTitle = match.Groups["Title"].Value?.Trim();
+							target.ExtractedArtist = match.Groups["Artist"].Value?.Trim();
 
 							MessageService.Current.ShowMessage(string.Format(
 								"楽曲情報の解析に成功しました。({0}ms) @{1}",
@@ -84,8 +90,8 @@ namespace AnizanHelper.ViewModels
 						}
 						else
 						{
-							this.ExtractedSongTitle.Value = null;
-							this.ExtractedArtist.Value = null;
+							target.ExtractedTitle = null;
+							target.ExtractedArtist = null;
 
 							MessageService.Current.ShowMessage(string.Format(
 								"楽曲情報の解析に失敗しました。 - フォーマットにマッチしませんでした。 ({0}ms) @{1}",
@@ -95,8 +101,8 @@ namespace AnizanHelper.ViewModels
 					}
 					catch (Exception ex)
 					{
-						this.ExtractedSongTitle.Value = null;
-						this.ExtractedArtist.Value = null;
+						target.ExtractedTitle = null;
+						target.ExtractedArtist = null;
 
 						MessageService.Current.ShowMessage(string.Format(
 							"楽曲情報の自動解析に失敗しました。 - {0} @{1}",
@@ -179,7 +185,26 @@ namespace AnizanHelper.ViewModels
 								.ObserveOnUIDispatcher()
 								.Subscribe(songMetadata =>
 								{
-									CurrentSongMetadata.Value = songMetadata;
+									var historyItem = this.SongMetadataHistory.FirstOrDefault(x => x.Id == songMetadata.Id);
+									if (historyItem == null)
+									{
+										historyItem = new SongHistoryItem
+										{
+											Id = songMetadata.Id,
+											Timestamp = songMetadata.Timestamp,
+											Content = songMetadata.StreamTitle,
+										};
+
+										SongMetadataHistory.Insert(0, historyItem);
+									}
+									else
+									{
+										historyItem.Timestamp = songMetadata.Timestamp;
+										historyItem.Content = songMetadata.StreamTitle;
+									}
+
+									CurrentSongMetadata.Value = null;
+									CurrentSongMetadata.Value = historyItem;
 									RetreiverState.Value = SongRetreiverConnectionState.Running;
 								})
 								.AddTo(disposables);
@@ -286,28 +311,9 @@ namespace AnizanHelper.ViewModels
 			return prop;
 		});
 
-		public ReactiveProperty<ISongMetadata> CurrentSongMetadata => this.LazyReactiveProperty(() =>
-		{
-			var prop = new ReactiveProperty<ISongMetadata>();
-
-			prop.Where(x => x != null)
-				.Subscribe(x =>
-				{
-					SongMetadataHistory.Insert(0, x);
-				})
-				.AddTo(Disposables);
-
-			return prop;
-		});
-
-		public ReactiveProperty<string> CurrentSongTitle => this.LazyReactiveProperty(() =>
-		{
-			return CurrentSongMetadata
-				.Select(x => x?.StreamTitle)
-				.ToReactiveProperty();
-		});
-
-		public ReactiveCollection<ISongMetadata> SongMetadataHistory { get; } = new ReactiveCollection<ISongMetadata>();
+		public ReactiveProperty<SongHistoryItem> CurrentSongMetadata { get; } = new ReactiveProperty<SongHistoryItem>();
+		public ReactiveCollection<SongHistoryItem> SongMetadataHistory { get; } = new ReactiveCollection<SongHistoryItem>();
+		public ReactiveProperty<SongHistoryItem> SelectedHistoryItem { get; } = new ReactiveProperty<SongHistoryItem>();
 
 		public ReactiveProperty<SongRetreiverConnectionState> RetreiverState => this.LazyReactiveProperty(() =>
 		{
@@ -346,9 +352,6 @@ namespace AnizanHelper.ViewModels
 
 		public ReactiveProperty<string[]> RegexFormatPresets => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorPresets));
 
-		public ReactiveProperty<string> ExtractedSongTitle { get; } = new ReactiveProperty<string>();
-		public ReactiveProperty<string> ExtractedArtist { get; } = new ReactiveProperty<string>();
-
 		public ReactiveProperty<int> CurrentRetryCount { get; } = new ReactiveProperty<int>();
 
 		#endregion Bindings
@@ -384,10 +387,10 @@ namespace AnizanHelper.ViewModels
 			});
 
 		public ICommand SearchCommand => this.LazyReactiveCommand(
-			this.ExtractedSongTitle.Select(x => !string.IsNullOrWhiteSpace(x)),
+			this.CurrentSongMetadata.Select(x => !string.IsNullOrWhiteSpace(x?.ExtractedTitle)),
 			() =>
 			{
-				var searchTerm = this.ExtractedSongTitle.Value;
+				var searchTerm = this.CurrentSongMetadata.Value?.ExtractedTitle;
 				if (!string.IsNullOrWhiteSpace(searchTerm))
 				{
 					this.SearchManager.TriggerSearch(searchTerm);
@@ -451,6 +454,103 @@ namespace AnizanHelper.ViewModels
 					.ToArray();
 			});
 
+		public ICommand ExtractHistoryCommand => this.LazyReactiveCommand(
+			() =>
+			{
+				try
+				{
+					MessageService.Current.ShowMessage("履歴の楽曲情報を解析しています...");
+					var regexTimeout = TimeSpan.FromMilliseconds(250);
+					var regex = new Regex(this.RegexFormat.Value, RegexOptions.IgnoreCase, regexTimeout);
+
+					foreach (var item in this.SongMetadataHistory.ToArray())
+					{
+						try
+						{
+							var sw = new Stopwatch();
+							sw.Start();
+							var match = regex.Match(item.Content);
+							sw.Stop();
+
+							if (match?.Success == true)
+							{
+								item.ExtractedTitle = match.Groups["Title"].Value?.Trim();
+								item.ExtractedArtist = match.Groups["Artist"].Value?.Trim();
+
+								MessageService.Current.ShowMessage(string.Format(
+									"楽曲情報の解析に成功しました。({0}ms) @{1}",
+									(int)sw.Elapsed.TotalMilliseconds,
+									DateTimeOffset.Now.ToString("HH:mm:ss.fff")));
+							}
+							else
+							{
+								item.ExtractedTitle = null;
+								item.ExtractedArtist = null;
+
+								MessageService.Current.ShowMessage(string.Format(
+									"楽曲情報の解析に失敗しました。 - フォーマットにマッチしませんでした。 ({0}ms) @{1}",
+									(int)sw.Elapsed.TotalMilliseconds,
+									DateTimeOffset.Now.ToString("HH:mm:ss.fff")));
+							}
+						}
+						catch (RegexMatchTimeoutException)
+						{
+							throw;
+						}
+						catch (Exception ex)
+						{
+							item.ExtractedTitle = null;
+							item.ExtractedArtist = null;
+
+							MessageService.Current.ShowMessage(string.Format(
+								"楽曲情報の自動解析に失敗しました。 - {0} @{1}",
+								ex.Message,
+								DateTimeOffset.Now.ToString("HH:mm:ss.fff")));
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageService.Current.ShowMessage(string.Format(
+						"楽曲情報の自動解析に失敗しました。 - {0} @{1}",
+						ex.Message,
+						DateTimeOffset.Now.ToString("HH:mm:ss.fff")));
+				}
+			});
+
 		#endregion Commands
+
+		public class SongHistoryItem : ViewModelBase
+		{
+			public Guid Id
+			{
+				get => this.GetValue<Guid>();
+				set => this.SetValue(value);
+			}
+
+			public string Content
+			{
+				get => this.GetValue<string>();
+				set => this.SetValue(value);
+			}
+
+			public DateTimeOffset Timestamp
+			{
+				get => this.GetValue<DateTimeOffset>();
+				set => this.SetValue(value);
+			}
+
+			public string ExtractedTitle
+			{
+				get => this.GetValue<string>();
+				set => this.SetValue(value);
+			}
+
+			public string ExtractedArtist
+			{
+				get => this.GetValue<string>();
+				set => this.SetValue(value);
+			}
+		}
 	}
 }
