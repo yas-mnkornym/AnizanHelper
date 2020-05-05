@@ -7,12 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnizanHelper", "AnizanHelpe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Twintail", "Twintail", "{8CC1E7D4-8020-4186-BDA1-C035FA50EE57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpSamples", "Twintail\CSharpSamples\CSharpSamples.csproj", "{A941B03E-81A7-4B6B-934E-A015057C39DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpSamples", "Twintail\CSharpSamples\CSharpSamples.csproj", "{A941B03E-81A7-4B6B-934E-A015057C39DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twintail Library", "Twintail\Twintail Project\ch2Solution\twin\Twintail Library.csproj", "{1F43686D-EF23-4DDB-AF4B-0F391B5A4AAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C14079B0-ADE7-449D-B9FB-BE0064CFF4CF}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		CodeMaid.config = CodeMaid.config
 		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
 EndProject
