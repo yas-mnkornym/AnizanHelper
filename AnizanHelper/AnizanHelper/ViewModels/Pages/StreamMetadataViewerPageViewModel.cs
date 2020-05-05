@@ -19,7 +19,7 @@ using Studiotaiha.LazyProperty;
 
 namespace AnizanHelper.ViewModels.Pages
 {
-	public enum SongRetreiverConnectionState
+	public enum StreamMetadataRetreiverConnectionState
 	{
 		Stopped,
 		Running,
@@ -27,14 +27,14 @@ namespace AnizanHelper.ViewModels.Pages
 		Reconnecting,
 	}
 
-	public class SongMetadataViewerPageViewModel : ReactiveViewModelBase
+	public class StreamMetadataViewerPageViewModel : ReactiveViewModelBase
 	{
-		private Settings Settings { get; }
 		private HttpClient HttpClient { get; }
 		private ISearchController SearchManager { get; }
+		private Settings Settings { get; }
 		private IcecastSongMetadataRetreiver songMetadataRetreiver;
 
-		public SongMetadataViewerPageViewModel(
+		public StreamMetadataViewerPageViewModel(
 			Settings settings,
 			HttpClient httpClient,
 			ISearchController searchManager)
@@ -113,50 +113,22 @@ namespace AnizanHelper.ViewModels.Pages
 
 		#region Bindings
 
-		public ReactiveProperty<Encoding> SelectedEncoding => this.LazyReactiveProperty(() =>
+		public ReactiveProperty<int> CurrentRetryCount { get; } = new ReactiveProperty<int>();
+
+		public ReactiveProperty<SongHistoryItem> CurrentSongMetadata { get; } = new ReactiveProperty<SongHistoryItem>();
+
+		public ReactiveProperty<bool> EnableAutoReconnection => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.EnableMetadataStreamAutoReconnection));
+
+		public ReactiveProperty<Encoding[]> MetadataEncodings { get; } = new ReactiveProperty<Encoding[]>(Constants.MetadataEncodings);
+
+		public ReactiveProperty<string> RegexFormat => this.LazyReactiveProperty(() =>
 		{
-			var defaultEncoding = this.Settings.SongMetadatSelectedEncodingName != null
-				? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
-				: this.MetadataEncodings.Value.First();
-
-			var prop = new ReactiveProperty<Encoding>(defaultEncoding);
-
-			this.Settings.PropertyChangedAsObservable(nameof(this.Settings.SongMetadatSelectedEncodingName))
-				.Select(_ => this.Settings.SongMetadatSelectedEncodingName)
-				.Subscribe(encodingName =>
-				{
-					var encoding = this.Settings.SongMetadatSelectedEncodingName != null
-						? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
-						: this.MetadataEncodings.Value.First();
-
-					if (prop.Value != encoding)
-					{
-						prop.Value = encoding;
-					}
-				});
-
-			prop
-				.Where(x => x != null)
-				.Subscribe(encoding =>
-				{
-					if (this.Settings.SongMetadatSelectedEncodingName != encoding.BodyName)
-					{
-						this.Settings.SongMetadatSelectedEncodingName = encoding.BodyName;
-					}
-
-					if (this.songMetadataRetreiver != null && this.songMetadataRetreiver.MetadataEncoding != encoding)
-					{
-						this.songMetadataRetreiver.MetadataEncoding = encoding;
-					}
-				})
-				.AddTo(this.Disposables);
+			var prop = this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorRegexFormat);
 
 			return prop;
 		});
 
-		public ReadOnlyReactiveProperty<string> SelectedEncodingName => this.LazyReadOnlyReactiveProperty(() => this.SelectedEncoding.Select(x => x.EncodingName).ToReadOnlyReactiveProperty());
-
-		public ReactiveProperty<Encoding[]> MetadataEncodings { get; } = new ReactiveProperty<Encoding[]>(Constants.MetadataEncodings);
+		public ReactiveProperty<string[]> RegexFormatPresets => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorPresets));
 
 		public ReactiveProperty<CancellationTokenSource> RetreiverCancellationTokenSource => this.LazyReactiveProperty(() =>
 		{
@@ -169,9 +141,9 @@ namespace AnizanHelper.ViewModels.Pages
 
 					try
 					{
-						if (this.RetreiverState.Value == SongRetreiverConnectionState.Stopped)
+						if (this.RetreiverState.Value == StreamMetadataRetreiverConnectionState.Stopped)
 						{
-							this.RetreiverState.Value = SongRetreiverConnectionState.Connecting;
+							this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Connecting;
 						}
 
 						using (var disposables = new CompositeDisposable())
@@ -204,7 +176,7 @@ namespace AnizanHelper.ViewModels.Pages
 
 									this.CurrentSongMetadata.Value = null;
 									this.CurrentSongMetadata.Value = historyItem;
-									this.RetreiverState.Value = SongRetreiverConnectionState.Running;
+									this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Running;
 								})
 								.AddTo(disposables);
 
@@ -214,12 +186,12 @@ namespace AnizanHelper.ViewModels.Pages
 							{
 								case SongListFeedStopStatus.Unknown:
 									MessageService.Current.ShowMessage("タグの取得が異常終了しました。");
-									this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+									this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Stopped;
 									break;
 
 								case SongListFeedStopStatus.MetadataNotSupported:
 									MessageService.Current.ShowMessage("このストリームはタグの配信に対応していません。");
-									this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+									this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Stopped;
 									break;
 
 								case SongListFeedStopStatus.StreamClosed:
@@ -276,7 +248,7 @@ namespace AnizanHelper.ViewModels.Pages
 
 							try
 							{
-								this.RetreiverState.Value = SongRetreiverConnectionState.Reconnecting;
+								this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Reconnecting;
 								this.CurrentRetryCount.Value++;
 								await Task.Delay(this.Settings.MetadataStreamReconnectionInterval, cts.Token);
 
@@ -286,7 +258,7 @@ namespace AnizanHelper.ViewModels.Pages
 							catch (OperationCanceledException)
 							{
 								this.RetreiverCancellationTokenSource.Value = null;
-								this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+								this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Stopped;
 								MessageService.Current.ShowMessage("タグの取得が停止されました。");
 							}
 							finally
@@ -298,7 +270,7 @@ namespace AnizanHelper.ViewModels.Pages
 						{
 							this.RetreiverCancellationTokenSource.Value = null;
 							cts.Dispose();
-							this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+							this.RetreiverState.Value = StreamMetadataRetreiverConnectionState.Stopped;
 						}
 					}
 
@@ -310,23 +282,19 @@ namespace AnizanHelper.ViewModels.Pages
 			return prop;
 		});
 
-		public ReactiveProperty<SongHistoryItem> CurrentSongMetadata { get; } = new ReactiveProperty<SongHistoryItem>();
-		public ReactiveCollection<SongHistoryItem> SongMetadataHistory { get; } = new ReactiveCollection<SongHistoryItem>();
-		public ReactiveProperty<SongHistoryItem> SelectedHistoryItem { get; } = new ReactiveProperty<SongHistoryItem>();
-
-		public ReactiveProperty<SongRetreiverConnectionState> RetreiverState => this.LazyReactiveProperty(() =>
+		public ReactiveProperty<StreamMetadataRetreiverConnectionState> RetreiverState => this.LazyReactiveProperty(() =>
 		{
-			var prop = new ReactiveProperty<SongRetreiverConnectionState>();
+			var prop = new ReactiveProperty<StreamMetadataRetreiverConnectionState>();
 
 			prop.Subscribe(state =>
 				{
 					switch (state)
 					{
-						case SongRetreiverConnectionState.Stopped:
+						case StreamMetadataRetreiverConnectionState.Stopped:
 							this.CurrentRetryCount.Value = 0;
 							break;
 
-						case SongRetreiverConnectionState.Running:
+						case StreamMetadataRetreiverConnectionState.Running:
 							MessageService.Current.ShowMessage("タグ取得用ストリームへ接続しました。");
 							this.CurrentRetryCount.Value = 0;
 							break;
@@ -337,44 +305,57 @@ namespace AnizanHelper.ViewModels.Pages
 			return prop;
 		});
 
-		public ReactiveProperty<string> StreamUri => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.MetadataStreamUri));
-		public ReactiveProperty<bool> EnableAutoReconnection => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.EnableMetadataStreamAutoReconnection));
+		public ReactiveProperty<Encoding> SelectedEncoding => this.LazyReactiveProperty(() =>
+																		{
+																			var defaultEncoding = this.Settings.SongMetadatSelectedEncodingName != null
+																				? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
+																				: this.MetadataEncodings.Value.First();
+
+																			var prop = new ReactiveProperty<Encoding>(defaultEncoding);
+
+																			this.Settings.PropertyChangedAsObservable(nameof(this.Settings.SongMetadatSelectedEncodingName))
+																				.Select(_ => this.Settings.SongMetadatSelectedEncodingName)
+																				.Subscribe(encodingName =>
+																				{
+																					var encoding = this.Settings.SongMetadatSelectedEncodingName != null
+																						? this.MetadataEncodings.Value.FirstOrDefault(x => x.BodyName == this.Settings.SongMetadatSelectedEncodingName) ?? this.MetadataEncodings.Value.First()
+																						: this.MetadataEncodings.Value.First();
+
+																					if (prop.Value != encoding)
+																					{
+																						prop.Value = encoding;
+																					}
+																				});
+
+																			prop
+																				.Where(x => x != null)
+																				.Subscribe(encoding =>
+																				{
+																					if (this.Settings.SongMetadatSelectedEncodingName != encoding.BodyName)
+																					{
+																						this.Settings.SongMetadatSelectedEncodingName = encoding.BodyName;
+																					}
+
+																					if (this.songMetadataRetreiver != null && this.songMetadataRetreiver.MetadataEncoding != encoding)
+																					{
+																						this.songMetadataRetreiver.MetadataEncoding = encoding;
+																					}
+																				})
+																				.AddTo(this.Disposables);
+
+																			return prop;
+																		});
+
+		public ReadOnlyReactiveProperty<string> SelectedEncodingName => this.LazyReadOnlyReactiveProperty(() => this.SelectedEncoding.Select(x => x.EncodingName).ToReadOnlyReactiveProperty());
+		public ReactiveProperty<SongHistoryItem> SelectedHistoryItem { get; } = new ReactiveProperty<SongHistoryItem>();
 		public ReactiveProperty<bool> ShowHistory => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.ShowMetadataStreamHistory));
+		public ReactiveCollection<SongHistoryItem> SongMetadataHistory { get; } = new ReactiveCollection<SongHistoryItem>();
+		public ReactiveProperty<string> StreamUri => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.MetadataStreamUri));
 		public ReactiveProperty<bool> ShowSongInfoExtractorControl => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.ShowSongInfoExtractorControl));
-
-		public ReactiveProperty<string> RegexFormat => this.LazyReactiveProperty(() =>
-		{
-			var prop = this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorRegexFormat);
-
-			return prop;
-		});
-
-		public ReactiveProperty<string[]> RegexFormatPresets => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorPresets));
-
-		public ReactiveProperty<int> CurrentRetryCount { get; } = new ReactiveProperty<int>();
 
 		#endregion Bindings
 
 		#region Commands
-
-		public ICommand StartRetreivingCommand => this.LazyReactiveCommand(
-			new[] {
-				this.RetreiverCancellationTokenSource.Select(x => x == null),
-				this.StreamUri.Select(x => !string.IsNullOrWhiteSpace(x)),
-				this.RetreiverState.Select(x => x == SongRetreiverConnectionState.Stopped),
-			}
-			.CombineLatestValuesAreAllTrue(),
-			() =>
-			{
-				this.RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
-			});
-
-		public ICommand StopRetreivingCommand => this.LazyReactiveCommand(
-			this.RetreiverState.Select(x => x != SongRetreiverConnectionState.Stopped),
-			() =>
-			{
-				this.RetreiverCancellationTokenSource.Value?.Cancel();
-			});
 
 		public ICommand ClearHistoryCommand => this.LazyReactiveCommand(
 			this.SongMetadataHistory
@@ -383,76 +364,6 @@ namespace AnizanHelper.ViewModels.Pages
 			() =>
 			{
 				this.SongMetadataHistory.Clear();
-			});
-
-		public ICommand SearchCommand => this.LazyReactiveCommand<string>(
-			searchTerm =>
-			{
-				if (!string.IsNullOrWhiteSpace(searchTerm))
-				{
-					this.SearchManager.TriggerSearch(searchTerm);
-				}
-				else
-				{
-					MessageService.Current.ShowMessage("検索ワードが空のため検索できません。");
-				}
-			});
-
-		public ICommand SaveRegexFormatCommand => this.LazyReactiveCommand(
-			this.RegexFormat.Select(_ => Unit.Default)
-				.Merge(this.RegexFormatPresets.Select(_ => Unit.Default))
-				.Select(_ =>
-				{
-					var format = this.RegexFormat.Value;
-					var presets = this.RegexFormatPresets.Value;
-
-					return !string.IsNullOrWhiteSpace(format) && presets?.Contains(format) != true;
-				}),
-			() =>
-			{
-				var regexFormat = this.RegexFormat.Value;
-
-				if (this.Settings.SongInfoExtractorPresets?.Contains(regexFormat) == true)
-				{
-					MessageService.Current.ShowMessage(string.Format(
-						"この自動解析フォーマットは既にプリセットに登録されています。 - {0}",
-						regexFormat));
-				}
-				else
-				{
-					this.Settings.SongInfoExtractorPresets = (this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
-						.Concat(new string[] { regexFormat })
-						.ToArray();
-				}
-			});
-
-		public ICommand SetRegexFormatCommand => this.LazyReactiveCommand<string>(
-			format =>
-			{
-				if (format != null)
-				{
-					this.RegexFormat.Value = format;
-				}
-			});
-
-		public ICommand RemoveRegexFormatCommand => this.LazyReactiveCommand<string>(
-			format =>
-			{
-				if (format != null)
-				{
-					this.Settings.SongInfoExtractorPresets = (this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
-						.Except(new string[] { format })
-						.ToArray();
-				}
-			});
-
-		public ICommand RestoreDefaultPresetsCommand => this.LazyReactiveCommand(
-			() =>
-			{
-				this.Settings.SongInfoExtractorPresets = Models.Settings.DefaultSongInfoExtractorPresets
-					.Concat(this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
-					.Distinct()
-					.ToArray();
 			});
 
 		public ICommand ExtractHistoryCommand => this.LazyReactiveCommand(
@@ -519,25 +430,108 @@ namespace AnizanHelper.ViewModels.Pages
 				}
 			});
 
+		public ICommand RemoveRegexFormatCommand => this.LazyReactiveCommand<string>(
+			format =>
+			{
+				if (format != null)
+				{
+					this.Settings.SongInfoExtractorPresets = (this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
+						.Except(new string[] { format })
+						.ToArray();
+				}
+			});
+
+		public ICommand RestoreDefaultPresetsCommand => this.LazyReactiveCommand(
+			() =>
+			{
+				this.Settings.SongInfoExtractorPresets = Models.Settings.DefaultSongInfoExtractorPresets
+					.Concat(this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
+					.Distinct()
+					.ToArray();
+			});
+
+		public ICommand SaveRegexFormatCommand => this.LazyReactiveCommand(
+			this.RegexFormat.Select(_ => Unit.Default)
+				.Merge(this.RegexFormatPresets.Select(_ => Unit.Default))
+				.Select(_ =>
+				{
+					var format = this.RegexFormat.Value;
+					var presets = this.RegexFormatPresets.Value;
+
+					return !string.IsNullOrWhiteSpace(format) && presets?.Contains(format) != true;
+				}),
+			() =>
+			{
+				var regexFormat = this.RegexFormat.Value;
+
+				if (this.Settings.SongInfoExtractorPresets?.Contains(regexFormat) == true)
+				{
+					MessageService.Current.ShowMessage(string.Format(
+						"この自動解析フォーマットは既にプリセットに登録されています。 - {0}",
+						regexFormat));
+				}
+				else
+				{
+					this.Settings.SongInfoExtractorPresets = (this.Settings.SongInfoExtractorPresets ?? Array.Empty<string>())
+						.Concat(new string[] { regexFormat })
+						.ToArray();
+				}
+			});
+
+		public ICommand SearchCommand => this.LazyReactiveCommand<string>(
+			searchTerm =>
+			{
+				if (!string.IsNullOrWhiteSpace(searchTerm))
+				{
+					this.SearchManager.TriggerSearch(searchTerm);
+				}
+				else
+				{
+					MessageService.Current.ShowMessage("検索ワードが空のため検索できません。");
+				}
+			});
+
+		public ICommand SetRegexFormatCommand => this.LazyReactiveCommand<string>(
+			format =>
+			{
+				if (format != null)
+				{
+					this.RegexFormat.Value = format;
+				}
+			});
+
+		public ICommand StartRetreivingCommand => this.LazyReactiveCommand(
+			new[] {
+				this.RetreiverCancellationTokenSource.Select(x => x == null),
+				this.StreamUri.Select(x => !string.IsNullOrWhiteSpace(x)),
+				this.RetreiverState.Select(x => x == StreamMetadataRetreiverConnectionState.Stopped),
+			}
+			.CombineLatestValuesAreAllTrue(),
+			() =>
+			{
+				this.RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
+			});
+
+		public ICommand StopRetreivingCommand => this.LazyReactiveCommand(
+			this.RetreiverState.Select(x => x != StreamMetadataRetreiverConnectionState.Stopped),
+			() =>
+			{
+				this.RetreiverCancellationTokenSource.Value?.Cancel();
+			});
+
 		#endregion Commands
 
 		public class SongHistoryItem : ViewModelBase
 		{
-			public Guid Id
-			{
-				get => this.GetValue<Guid>();
-				set => this.SetValue(value);
-			}
-
 			public string Content
 			{
 				get => this.GetValue<string>();
 				set => this.SetValue(value);
 			}
 
-			public DateTimeOffset Timestamp
+			public string ExtractedArtist
 			{
-				get => this.GetValue<DateTimeOffset>();
+				get => this.GetValue<string>();
 				set => this.SetValue(value);
 			}
 
@@ -547,9 +541,15 @@ namespace AnizanHelper.ViewModels.Pages
 				set => this.SetValue(value);
 			}
 
-			public string ExtractedArtist
+			public Guid Id
 			{
-				get => this.GetValue<string>();
+				get => this.GetValue<Guid>();
+				set => this.SetValue(value);
+			}
+
+			public DateTimeOffset Timestamp
+			{
+				get => this.GetValue<DateTimeOffset>();
 				set => this.SetValue(value);
 			}
 		}

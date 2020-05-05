@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace AnizanHelper.Views.Pages
 {
-	public partial class SongMetadataViewerPage : UserControl
+	public partial class StreamMetadataViewerPage : UserControl
 	{
-		public SongMetadataViewerPage()
+		public StreamMetadataViewerPage()
 		{
 			this.InitializeComponent();
 		}

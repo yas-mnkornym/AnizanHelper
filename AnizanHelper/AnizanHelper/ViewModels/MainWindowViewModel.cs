@@ -55,7 +55,6 @@ namespace AnizanHelper.ViewModels
 			this.serializer_ = new Models.Serializers.AnizanListSerializer();
 
 			this.SongParserVm = new SongParserPageViewModel();
-			this.SongMetadataViewerViewmodel = new SongMetadataViewerPageViewModel(settings, httpClient, searchManager);
 
 			//this.SearchVm.SongParsed += this.SongParsed;
 			this.SongParserVm.SongParsed += this.SongParsed;
@@ -625,12 +624,6 @@ namespace AnizanHelper.ViewModels
 			{
 				this.SetValue(value);
 			}
-		}
-
-		public SongMetadataViewerPageViewModel SongMetadataViewerViewmodel
-		{
-			get => this.GetValue<SongMetadataViewerPageViewModel>();
-			set => this.SetValue(value);
 		}
 
 		public AnizanSongInfo SongInfo

@@ -154,8 +154,8 @@
                       Header="タグ取得"
                       ToolTip="IcecastのストリームURLを開き、タグのログを取得します。"
                       Visibility="{Binding Path=ShowTagRetreiver.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
-                <pages:SongMetadataViewerPage DataContext="{Binding Path=SongMetadataViewerViewmodel, Mode=OneWay}" />
-            </GroupBox>
+				<ContentControl prism:RegionManager.RegionName="Region_StreamMetadata" />
+			</GroupBox>
         </Grid>
 
         <!-- 一行コピペ -->

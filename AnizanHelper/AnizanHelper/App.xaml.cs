@@ -40,6 +40,7 @@ namespace AnizanHelper
 		{
 			var regionManager = this.Container.Resolve<IRegionManager>();
 			regionManager.RequestNavigate("Region_Search", "SongSearchPage");
+			regionManager.RequestNavigate("Region_StreamMetadata", "StreamMetadataViewerPage");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
