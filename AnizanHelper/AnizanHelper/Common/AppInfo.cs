@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace AnizanHelper
 {
@@ -11,7 +8,7 @@ namespace AnizanHelper
 	{
 		protected AppInfo() { }
 
-		static AppInfo current_ = new AppInfo();
+		private static AppInfo current_ = new AppInfo();
 		public static AppInfo Current
 		{
 			get
@@ -22,7 +19,7 @@ namespace AnizanHelper
 
 
 		#region StartupPath
-		string startupPath_ = null;
+		private string startupPath_ = null;
 		/// <summary>
 		/// プログラム実行ファイルのパスを取得する。
 		/// </summary>
@@ -30,14 +27,14 @@ namespace AnizanHelper
 		{
 			get
 			{
-				return startupPath_ ?? (startupPath_ =
+				return this.startupPath_ ?? (this.startupPath_ =
 					Assembly.GetEntryAssembly().Location);
 			}
 		}
 		#endregion
 
 		#region StartupDirectory
-		string startupDirectory_ = null;
+		private string startupDirectory_ = null;
 
 		/// <summary>
 		/// プログラム実行ファイルのディレクトリを取得する。
@@ -46,13 +43,13 @@ namespace AnizanHelper
 		{
 			get
 			{
-				return startupDirectory_ ?? (startupDirectory_ = Path.GetDirectoryName(StartupPath));
+				return this.startupDirectory_ ?? (this.startupDirectory_ = Path.GetDirectoryName(this.StartupPath));
 			}
 		}
 		#endregion
 
 		#region ExecutionFileName
-		string executionFileName_ = null;
+		private string executionFileName_ = null;
 
 		/// <summary>
 		/// プログラム実行ファイルの名前を取得する。
@@ -61,41 +58,42 @@ namespace AnizanHelper
 		{
 			get
 			{
-				if (executionFileName_ == null) {
-					executionFileName_ = Path.GetFileName(StartupPath);
+				if (this.executionFileName_ == null)
+				{
+					this.executionFileName_ = Path.GetFileName(this.StartupPath);
 				}
-				return executionFileName_;
+				return this.executionFileName_;
 			}
 		}
 		#endregion
 
-		string dictionaryFilePath_ = null;
+		private string dictionaryFilePath_ = null;
 		public string DictionaryFilePath
 		{
 			get
 			{
-				return dictionaryFilePath_ ?? (dictionaryFilePath_ =
+				return this.dictionaryFilePath_ ?? (this.dictionaryFilePath_ =
 					Path.Combine(AppInfo.Current.StartupDirectory, Constants.DictionaryFileName));
 			}
 		}
 
-		string userDictionaryFilePath_ = null;
+		private string userDictionaryFilePath_ = null;
 		public string UserDictionaryfilePath
 		{
 			get
 			{
-				return userDictionaryFilePath_ ?? (userDictionaryFilePath_ =
+				return this.userDictionaryFilePath_ ?? (this.userDictionaryFilePath_ =
 					Path.Combine(AppInfo.Current.StartupDirectory, Constants.UserDictionaryFileName));
 			}
 		}
 
 		#region Version
-		Version version_ = null;
+		private Version version_ = null;
 		public Version Version
 		{
 			get
 			{
-				return version_ ?? (version_ = Assembly.GetExecutingAssembly().GetName().Version);
+				return this.version_ ?? (this.version_ = Assembly.GetExecutingAssembly().GetName().Version);
 			}
 		}
 		#endregion

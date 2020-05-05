@@ -9,8 +9,8 @@ namespace AnizanHelper.Models.SongList
 {
 	public class IcecastSongMetadataRetreiver : ISongMetadataRetreiver
 	{
-		DateTimeOffset currentTimestamp;
-		Guid currentMetadataId;
+		private DateTimeOffset currentTimestamp;
+		private Guid currentMetadataId;
 		private byte[] currentMetadataBuffer;
 
 		private Encoding metadataEncoding;
@@ -24,7 +24,7 @@ namespace AnizanHelper.Models.SongList
 
 		public Encoding MetadataEncoding
 		{
-			get => metadataEncoding;
+			get => this.metadataEncoding;
 			set
 			{
 				if (this.metadataEncoding != value)
@@ -103,7 +103,7 @@ namespace AnizanHelper.Models.SongList
 				try
 				{
 					var metadataString = this.MetadataEncoding.GetString(this.currentMetadataBuffer);
-					var songMetadata = SongMetadata.Parse(metadataString, this.currentMetadataId, currentTimestamp);
+					var songMetadata = SongMetadata.Parse(metadataString, this.currentMetadataId, this.currentTimestamp);
 
 					this.SongMetadataReceived?.Invoke(this, songMetadata);
 				}

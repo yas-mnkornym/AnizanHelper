@@ -4,17 +4,17 @@ namespace AnizanHelper.Models
 {
 	internal class SongPresetRepository : INotifyPropertyChanged
 	{
-		AnizanSongInfo[] presets_;
+		private AnizanSongInfo[] presets_;
 
 		public AnizanSongInfo[] Presets
 		{
-			get => presets_;
+			get => this.presets_;
 			set
 			{
-				if (presets_ != value)
+				if (this.presets_ != value)
 				{
-					presets_ = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Presets)));
+					this.presets_ = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.Presets)));
 				}
 			}
 		}

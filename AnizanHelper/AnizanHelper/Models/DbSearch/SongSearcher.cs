@@ -2,25 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace AnizanHelper.Models.DbSearch
 {
 	public class SongSearcher : DbSeacherBase<SongSearchResult>
 	{
 		public static string SearchType { get; } = "song";
-		static string BaseUrl { get; } = "http://anison.info/data/";
-		static Regex LinkParserRegex { get; } = new Regex(@"javascript:link\('(?<Category>.*)','(?<Id>.*)'\)");
+		private static string BaseUrl { get; } = "http://anison.info/data/";
+		private static Regex LinkParserRegex { get; } = new Regex(@"javascript:link\('(?<Category>.*)','(?<Id>.*)'\)");
 
 		public override async Task<IEnumerable<SongSearchResult>> SearchAsync(string searchWord, CancellationToken cancellationToken = default)
 		{
 			if (searchWord == null) { throw new ArgumentNullException(nameof(searchWord)); }
 
-			var uri = CreateQueryUrl(searchWord, SearchType);
+			var uri = this.CreateQueryUrl(searchWord, SearchType);
 			var list = new List<SongSearchResult>();
 
 
@@ -28,7 +26,7 @@ namespace AnizanHelper.Models.DbSearch
 			for (var i = 0; i < limit && uri != null; i++)
 			{
 				cancellationToken.ThrowIfCancellationRequested();
-				var items = await SearchPageAsync(uri, cancellationToken).ConfigureAwait(false);
+				var items = await this.SearchPageAsync(uri, cancellationToken).ConfigureAwait(false);
 				list.AddRange(items.Songs);
 				uri = items.NextPageUri;
 			}
@@ -36,15 +34,15 @@ namespace AnizanHelper.Models.DbSearch
 			return list;
 		}
 
-		class SearchPageResult
+		private class SearchPageResult
 		{
 			public SongSearchResult[] Songs { get; set; }
 			public string NextPageUri { get; set; }
 		}
 
-		async Task<SearchPageResult> SearchPageAsync(string uri, CancellationToken cancellationToken)
+		private async Task<SearchPageResult> SearchPageAsync(string uri, CancellationToken cancellationToken)
 		{
-			var doc = await QueryDocumentAsync(uri, cancellationToken).ConfigureAwait(false);
+			var doc = await this.QueryDocumentAsync(uri, cancellationToken).ConfigureAwait(false);
 			var tbody = doc.DocumentNode.SelectSingleNode(@"//table[contains(.,""曲名"")]/tbody");
 			if (tbody == null)
 			{
@@ -57,17 +55,19 @@ namespace AnizanHelper.Models.DbSearch
 
 			var songs = tbody
 				.Descendants("tr")
-				.Select(tr => {
+				.Select(tr =>
+				{
 					var tds = tr.Descendants("td").ToArray();
 					var serisA = tds[3].Descendants("a").FirstOrDefault();
-					return new SongSearchResult {
+					return new SongSearchResult
+					{
 						Title = WebUtility.HtmlDecode(tds[0].InnerText),
 						Singers = tds[1].Descendants("a").Any() ?
 							tds[1].Descendants("a").Select(x => WebUtility.HtmlDecode(x.InnerText)).ToArray() :
 							new string[] { tds[1].InnerText },
 						Genre = WebUtility.HtmlDecode(tds[2].InnerText.Replace(" ", "")),
 						Series = WebUtility.HtmlDecode(tds[3].InnerText),
-						SeriesUrl = (serisA != null ? GetActualLink(BaseUrl, serisA.GetAttributeValue("href", (string)null)) : null),
+						SeriesUrl = (serisA != null ? this.GetActualLink(BaseUrl, serisA.GetAttributeValue("href", (string)null)) : null),
 						SongType = WebUtility.HtmlDecode(tds[4].InnerText.Replace(" ", ""))
 					};
 				});
@@ -87,7 +87,7 @@ namespace AnizanHelper.Models.DbSearch
 			};
 		}
 
-		string GetActualLink(string baseUrl, string path)
+		private string GetActualLink(string baseUrl, string path)
 		{
 			if (path == null) { throw new ArgumentNullException(nameof(path)); }
 

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AnizanHelper.Models.Serializers
 {
@@ -12,7 +9,7 @@ namespace AnizanHelper.Models.Serializers
 	/// </summary>
 	internal class AnizanListSerializer : ISongInfoSerializer
 	{
-		static readonly string[] replaceList = new string[]{
+		private static readonly string[] replaceList = new string[]{
 			// 両側空白
 			@"(?<prev>[^\s])&(?<next>[^\s])",
 			@"${prev} & ${next}",
@@ -26,10 +23,10 @@ namespace AnizanHelper.Models.Serializers
 			@"${prev} &${next}"
 		};
 
-			
+
 		public string Serialize(AnizanSongInfo info)
 		{
-			return Serialize(info, true);
+			return this.Serialize(info, true);
 		}
 
 		private string Serialize(AnizanSongInfo info, bool appendAll)
@@ -42,7 +39,8 @@ namespace AnizanHelper.Models.Serializers
 
 			var hasSinger = !string.IsNullOrWhiteSpace(info.Singer);
 
-			if (appendAll || hasSinger) {
+			if (appendAll || hasSinger)
+			{
 				sb.Append("/{1}");
 			}
 
@@ -50,14 +48,17 @@ namespace AnizanHelper.Models.Serializers
 			var hasGenre = !string.IsNullOrWhiteSpace(info.Genre);
 			var hasSongType = !string.IsNullOrWhiteSpace(info.SongType);
 
-			if (appendAll || hasSeries || hasSongType) {
+			if (appendAll || hasSeries || hasSongType)
+			{
 				sb.Append("(");
 			}
 
 			// 使用作品名追加
-			if (hasSeries) {
+			if (hasSeries)
+			{
 				// ジャンル追加
-				if (hasGenre) {
+				if (hasGenre)
+				{
 					sb.Append("[{2}]");
 				}
 
@@ -65,16 +66,19 @@ namespace AnizanHelper.Models.Serializers
 			}
 
 			// 曲種追加
-			if (hasSongType) {
+			if (hasSongType)
+			{
 				sb.Append("　{4}");
 			}
 
-			if (appendAll || hasSeries || hasSongType) {
+			if (appendAll || hasSeries || hasSongType)
+			{
 				sb.Append(")");
 			}
 
 			// 補足追加
-			if (!string.IsNullOrWhiteSpace(info.Additional)) {
+			if (!string.IsNullOrWhiteSpace(info.Additional))
+			{
 				sb.Append("※{5}");
 			}
 
@@ -86,7 +90,8 @@ namespace AnizanHelper.Models.Serializers
 				info.Series,
 				info.SongType,
 				info.Additional);
-			for (int i = 0; i < replaceList.Length - 1; i++) {
+			for (int i = 0; i < replaceList.Length - 1; i++)
+			{
 				result = Regex.Replace(result, replaceList[i], replaceList[i + 1]);
 			}
 			return result;
@@ -96,18 +101,20 @@ namespace AnizanHelper.Models.Serializers
 		{
 			var sb = new StringBuilder();
 
-			var body = Serialize(info, false);
+			var body = this.Serialize(info, false);
 			var isSpecial = !string.IsNullOrWhiteSpace(info.SpecialHeader);
 
-			if(isSpecial) {
+			if (isSpecial)
+			{
 				sb.Append(info.SpecialHeader);
 				sb.Append(info.SpecialItemName);
 				body = body.Substring(1);
 			}
-			else {
+			else
+			{
 				sb.AppendFormat("{0:0000}", info.Number);
 			}
-			
+
 			sb.Append(body);
 			return sb.ToString();
 		}

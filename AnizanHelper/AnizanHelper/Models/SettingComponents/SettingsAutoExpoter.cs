@@ -8,9 +8,9 @@ namespace AnizanHelper.Models.SettingComponents
 	internal class SettingsAutoExpoter : IDisposable
 	{
 		#region Private Field
-		ISettingsSerializer serializer_;
-		Stream stream_;
-		CompositeDisposable disposables_ = new CompositeDisposable();
+		private ISettingsSerializer serializer_;
+		private Stream stream_;
+		private CompositeDisposable disposables_ = new CompositeDisposable();
 		#endregion
 
 		public SettingsAutoExpoter(
@@ -25,32 +25,37 @@ namespace AnizanHelper.Models.SettingComponents
 			if (settings == null) { throw new ArgumentNullException("settings"); }
 			if (delay < 0) { throw new ArgumentOutOfRangeException("dealy must be >= 0)"); }
 			if (serializer == null) { throw new ArgumentNullException("serializer"); }
-			serializer_ = serializer;
+			this.serializer_ = serializer;
 
 			// ファイルを開く
-			stream_ = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
-			disposables_.Add(stream_);
+			this.stream_ = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
+			this.disposables_.Add(this.stream_);
 
 			// 設定変更を監視
 			var subscription = Observable.FromEventPattern<SettingChangeEventArgs>(settings, "SettingChanged")
 				.Throttle(TimeSpan.FromMilliseconds(delay))
-				.Subscribe(args => {
-					try {
-						Export(filePath, tempFilePath, settings);
-						if (Exported != null) {
+				.Subscribe(args =>
+				{
+					try
+					{
+						this.Export(filePath, tempFilePath, settings);
+						if (Exported != null)
+						{
 							Exported(this, new EventArgs());
 						}
 					}
-					catch (Exception ex) {
-						if (Error != null) {
+					catch (Exception ex)
+					{
+						if (Error != null)
+						{
 							Error(this, new ErrorEventArgs(ex));
 						}
 					}
 				});
-			disposables_.Add(subscription);
+			this.disposables_.Add(subscription);
 		}
 
-		void Export(
+		private void Export(
 			string filePath,
 			string tempFilePath,
 			SettingsImpl settings
@@ -61,10 +66,10 @@ namespace AnizanHelper.Models.SettingComponents
 			if (settings == null) { throw new ArgumentNullException("settings"); }
 
 			// ファイルを空にする
-			stream_.SetLength(0);
+			this.stream_.SetLength(0);
 
 			// 設定をシリアラズしてファイルに保存
-			serializer_.Serialize(stream_, settings);
+			this.serializer_.Serialize(this.stream_, settings);
 
 			// 一時ファイルから本来のファイルにコピーする
 			File.Copy(tempFilePath, filePath, true);
@@ -74,21 +79,22 @@ namespace AnizanHelper.Models.SettingComponents
 		public event EventHandler<ErrorEventArgs> Error;
 
 		#region IDisposable メンバ
-		bool isDisposed_ = false;
+		private bool isDisposed_ = false;
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "stream_")]
-		virtual protected void Dispose(bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
-			if (isDisposed_) { return; }
-			if (disposing) {
-				disposables_.Dispose();
-				disposables_ = null;
+			if (this.isDisposed_) { return; }
+			if (disposing)
+			{
+				this.disposables_.Dispose();
+				this.disposables_ = null;
 			}
-			isDisposed_ = true;
+			this.isDisposed_ = true;
 		}
 
 		public void Dispose()
 		{
-			Dispose(true);
+			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 		#endregion

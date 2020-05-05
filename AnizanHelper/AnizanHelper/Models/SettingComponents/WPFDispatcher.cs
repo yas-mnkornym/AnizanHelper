@@ -5,32 +5,36 @@ using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models.SettingComponents
 {
-	class WPFDispatcher : IDispatcher
+	internal class WPFDispatcher : IDispatcher
 	{
-		Dispatcher dispatcher_;
+		private Dispatcher dispatcher_;
 
 		public WPFDispatcher(Dispatcher dispatcher)
 		{
 			if (dispatcher == null) { throw new ArgumentNullException("dispatcher"); }
-			dispatcher_ = dispatcher;
+			this.dispatcher_ = dispatcher;
 		}
 
 		public void Dispatch(Action act)
 		{
-			if (Thread.CurrentThread.ManagedThreadId != dispatcher_.Thread.ManagedThreadId) {
-				dispatcher_.Invoke(act);
+			if (Thread.CurrentThread.ManagedThreadId != this.dispatcher_.Thread.ManagedThreadId)
+			{
+				this.dispatcher_.Invoke(act);
 			}
-			else {
+			else
+			{
 				act();
 			}
 		}
 
 		public T Dispatch<T>(Func<T> func)
 		{
-			if (Thread.CurrentThread.ManagedThreadId != dispatcher_.Thread.ManagedThreadId) {
-				return (T)dispatcher_.Invoke(func);
+			if (Thread.CurrentThread.ManagedThreadId != this.dispatcher_.Thread.ManagedThreadId)
+			{
+				return (T)this.dispatcher_.Invoke(func);
 			}
-			else {
+			else
+			{
 				return func();
 			}
 		}
@@ -40,11 +44,13 @@ namespace AnizanHelper.Models.SettingComponents
 			Action onCompleted = null,
 			Action onAborted = null)
 		{
-			var ret = dispatcher_.BeginInvoke(act);
-			ret.Completed += (_, __) => {
+			var ret = this.dispatcher_.BeginInvoke(act);
+			ret.Completed += (_, __) =>
+			{
 				onCompleted();
 			};
-			ret.Aborted += (_, __) => {
+			ret.Aborted += (_, __) =>
+			{
 				onAborted();
 			};
 		}
@@ -54,11 +60,13 @@ namespace AnizanHelper.Models.SettingComponents
 			Action<T> onCompleted = null,
 			Action onAborted = null)
 		{
-			var ret = dispatcher_.BeginInvoke(func);
-			ret.Completed += (_, __) => {
+			var ret = this.dispatcher_.BeginInvoke(func);
+			ret.Completed += (_, __) =>
+			{
 				onCompleted((T)ret.Result);
 			};
-			ret.Aborted += (_, __) => {
+			ret.Aborted += (_, __) =>
+			{
 				onAborted();
 			};
 		}

@@ -11,11 +11,11 @@ namespace AnizanHelper.Services
 		public IUnityContainer UnityContainer { get; }
 		private List<IService> ServiceList { get; } = new List<IService>();
 
-		public IEnumerable<IService> Services => ServiceList;
+		public IEnumerable<IService> Services => this.ServiceList;
 
 		public ServiceManager(IUnityContainer unityContainer)
 		{
-			UnityContainer = unityContainer ?? throw new ArgumentNullException(nameof(unityContainer));
+			this.UnityContainer = unityContainer ?? throw new ArgumentNullException(nameof(unityContainer));
 		}
 
 		public void RegisterServicesFromAssembly(Assembly assembly)
@@ -23,16 +23,20 @@ namespace AnizanHelper.Services
 			var services = assembly
 				.GetTypes()
 				.Where(type => !type.IsAbstract && type.GetInterface(typeof(IService).FullName) != null)
-				.Select(type => new {
+				.Select(type => new
+				{
 					Type = type,
 					Attribute = type.GetCustomAttribute<ServiceAttribute>(),
 				})
 				.Where(x => x.Attribute?.IsEnabled == true)
-				.Select(x => {
-					try {
-						return (IService)UnityContainer.Resolve(x.Type);
+				.Select(x =>
+				{
+					try
+					{
+						return (IService)this.UnityContainer.Resolve(x.Type);
 					}
-					catch (Exception ex){
+					catch (Exception ex)
+					{
 						Console.WriteLine(ex);
 						// TOOD: log error
 					}
@@ -41,19 +45,21 @@ namespace AnizanHelper.Services
 				})
 				.Where(x => x != null);
 
-			ServiceList.AddRange(services);
+			this.ServiceList.AddRange(services);
 		}
 
 		public void StartAll()
 		{
-			foreach (var service in ServiceList) {
+			foreach (var service in this.ServiceList)
+			{
 				service.Start();
 			}
 		}
 
 		public void StopAll()
 		{
-			foreach (var service in ServiceList) {
+			foreach (var service in this.ServiceList)
+			{
 				service.Stop();
 			}
 		}
@@ -61,23 +67,25 @@ namespace AnizanHelper.Services
 		public void Register(IService service)
 		{
 			if (service == null) { throw new ArgumentNullException(nameof(service)); }
-			ServiceList.Add(service);
+			this.ServiceList.Add(service);
 		}
 
 		public void Unregister(IService service)
 		{
 			if (service == null) { throw new ArgumentNullException(nameof(service)); }
-			if (ServiceList.Remove(service)) {
+			if (this.ServiceList.Remove(service))
+			{
 				service.Dispose();
 			}
 		}
 
 		public void UnregisterAll()
 		{
-			var services = ServiceList.ToArray();
-			ServiceList.Clear();
+			var services = this.ServiceList.ToArray();
+			this.ServiceList.Clear();
 
-			foreach (var service in services) {
+			foreach (var service in services)
+			{
 				service.Dispose();
 			}
 		}

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using ComiketSystem.Csv;
 
@@ -12,17 +10,20 @@ namespace AnizanHelper.Models
 		private List<ReplaceInfo> ReplaceList { get; } = new List<ReplaceInfo>();
 		private List<AnizanSongInfo> SongPresetList { get; } = new List<AnizanSongInfo>();
 
-		public IEnumerable<ReplaceInfo> Replaces => ReplaceList;
-		public IEnumerable<AnizanSongInfo> SongPresets => SongPresetList;
+		public IEnumerable<ReplaceInfo> Replaces => this.ReplaceList;
+		public IEnumerable<AnizanSongInfo> SongPresets => this.SongPresetList;
 
 		public int GetVersionNumber(string path)
 		{
-			if (File.Exists(path)) {
+			if (File.Exists(path))
+			{
 				var str = File.ReadAllText(path, Encoding.UTF8);
 				var cs = new CsvSplitter(str);
-				while (cs.ToNextLine()) {
+				while (cs.ToNextLine())
+				{
 					if (cs.TokenCount < 2) { continue; }
-					if (cs.GetString(0) == "header") {
+					if (cs.GetString(0) == "header")
+					{
 						return cs.GetInt(1);
 					}
 				}
@@ -34,8 +35,9 @@ namespace AnizanHelper.Models
 		{
 			var str = File.ReadAllText(path, Encoding.UTF8);
 			var cs = new CsvSplitter(str);
-			
-			while (cs.ToNextLine()) {
+
+			while (cs.ToNextLine())
+			{
 				if (cs.TokenCount < 3) { continue; }
 
 				var recordName = cs.GetString(0);
@@ -53,7 +55,7 @@ namespace AnizanHelper.Models
 						info.Exact = cs.GetBoolOrDeraulf(4, false);
 					}
 
-					ReplaceList.Add(info);
+					this.ReplaceList.Add(info);
 				}
 				else if (recordName == "preset")
 				{
@@ -67,7 +69,7 @@ namespace AnizanHelper.Models
 						SongType = cs.GetString(6)
 					};
 
-					SongPresetList.Add(info);
+					this.SongPresetList.Add(info);
 				}
 			}
 		}

@@ -27,21 +27,21 @@ namespace AnizanHelper.Services
 			IUpdateManager updateManager,
 			Settings settings)
 		{
-			UpdateManager = updateManager ?? throw new ArgumentNullException(nameof(updateManager));
-			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+			this.UpdateManager = updateManager ?? throw new ArgumentNullException(nameof(updateManager));
+			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 		}
 
 		public async Task<bool?> CheckForUpdateAndShowDialogIfAvailableAsync(bool autoIgnore = true)
 		{
-			await UpdateManager.CheckForUpdateAsync();
-			var updateInfo = UpdateManager.UpdateInfo;
+			await this.UpdateManager.CheckForUpdateAsync();
+			var updateInfo = this.UpdateManager.UpdateInfo;
 
 			if (updateInfo.Version <= AppInfo.Current.Version)
 			{
 				return false;
 			}
 
-			if (autoIgnore && updateInfo.Version <= IgnoreVersion)
+			if (autoIgnore && updateInfo.Version <= this.IgnoreVersion)
 			{
 				return null;
 			}
@@ -78,7 +78,7 @@ namespace AnizanHelper.Services
 		{
 			int checkGate = 0;
 			Observable.Timer(TimeSpan.Zero, CheckInterval)
-				.Where(_ => Settings.CheckForUpdateAutomatically)
+				.Where(_ => this.Settings.CheckForUpdateAutomatically)
 				.ObserveOnDispatcher()
 				.SelectMany(async _ =>
 				{
@@ -86,7 +86,7 @@ namespace AnizanHelper.Services
 					{
 						try
 						{
-							await CheckForUpdateAndShowDialogIfAvailableAsync().ConfigureAwait(false);
+							await this.CheckForUpdateAndShowDialogIfAvailableAsync().ConfigureAwait(false);
 						}
 						catch (Exception ex)
 						{

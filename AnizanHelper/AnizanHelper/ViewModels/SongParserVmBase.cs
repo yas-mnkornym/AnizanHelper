@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AnizanHelper.Models;
-using AnizanHelper.Models.SettingComponents;
 
 namespace AnizanHelper.ViewModels
 {
@@ -13,7 +9,8 @@ namespace AnizanHelper.ViewModels
 
 		protected void OnSongParsed(SongParsedEventArgs args)
 		{
-			if (SongParsed != null) {
+			if (SongParsed != null)
+			{
 				SongParsed(this, args);
 			}
 		}
@@ -27,7 +24,7 @@ namespace AnizanHelper.ViewModels
 	{
 		public SongParsedEventArgs(GeneralSongInfo songInfo)
 		{
-			SongInfo = songInfo;
+			this.SongInfo = songInfo;
 		}
 
 		public GeneralSongInfo SongInfo { get; private set; }

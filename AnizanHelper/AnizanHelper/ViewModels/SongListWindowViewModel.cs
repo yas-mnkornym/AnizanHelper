@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
 using Reactive.Bindings;
@@ -14,10 +11,10 @@ using Reactive.Bindings.Extensions;
 
 namespace AnizanHelper.ViewModels
 {
-	class SongListWindowViewModel : ReactiveViewModelBase
+	internal class SongListWindowViewModel : ReactiveViewModelBase
 	{
-		ISongInfoSerializer SongInfoSerializer { get; }
-		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
+		private ISongInfoSerializer SongInfoSerializer { get; }
+		private AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 
 		public SongListWindowViewModel(
 			Settings settings,
@@ -27,76 +24,87 @@ namespace AnizanHelper.ViewModels
 			if (settings == null) { throw new ArgumentNullException(nameof(settings)); }
 			if (songInfoObservable == null) { throw new ArgumentNullException(nameof(songInfoObservable)); }
 
-			SongInfoSerializer = songInfoSerializer ?? throw new ArgumentNullException(nameof(songInfoSerializer));
+			this.SongInfoSerializer = songInfoSerializer ?? throw new ArgumentNullException(nameof(songInfoSerializer));
 
-			SongList = songInfoObservable
+			this.SongList = songInfoObservable
 				.ToReactiveCollection()
 				.AddTo(this.Disposables);
 
-			foreach (var item in settings.SongList) {
-				SongList.Add(item);
+			foreach (var item in settings.SongList)
+			{
+				this.SongList.Add(item);
 			}
 
-			SongList.CollectionChangedAsObservable()
+			this.SongList.CollectionChangedAsObservable()
 				.Throttle(TimeSpan.FromMilliseconds(250))
-				.Subscribe(_ => {
-					settings.SongList = SongList.ToArray();
+				.Subscribe(_ =>
+				{
+					settings.SongList = this.SongList.ToArray();
 				})
-				.AddTo(Disposables);
+				.AddTo(this.Disposables);
 
-			CopyAllCommand = SongList
+			this.CopyAllCommand = this.SongList
 				.CollectionChangedAsObservable()
-				.Select(_ => SongList.Count > 0)
-				.ToReactiveCommand(SongList.Count > 0)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
-					CopyToClipboard(SongList);
+				.Select(_ => this.SongList.Count > 0)
+				.ToReactiveCommand(this.SongList.Count > 0)
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
+					this.CopyToClipboard(this.SongList);
 				});
 
-			CopySelectedCommand = SelectedItems
+			this.CopySelectedCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => this.SelectedItems.Count > 0)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
-					CopyToClipboard(SelectedItems);
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
+					this.CopyToClipboard(this.SelectedItems);
 				});
 
-			DeleteAllCommand = SongList
+			this.DeleteAllCommand = this.SongList
 				.CollectionChangedAsObservable()
-				.Select(_ => SongList.Count > 0)
-				.ToReactiveCommand(SongList.Count > 0)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
+				.Select(_ => this.SongList.Count > 0)
+				.ToReactiveCommand(this.SongList.Count > 0)
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
 					var ret = MessageBox.Show("全てのアイテムを削除しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
-					if (ret == MessageBoxResult.Yes) {
-						SongList.Clear();
+					if (ret == MessageBoxResult.Yes)
+					{
+						this.SongList.Clear();
 					}
 				});
 
-			DeleteSelectedCommand = SelectedItems
+			this.DeleteSelectedCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => this.SelectedItems.Count > 0)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
 					var ret = MessageBox.Show("選択したアイテムを削除しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
-					if (ret == MessageBoxResult.Yes) {
-						foreach (var item in SelectedItems.ToArray()) {
-							SongList.Remove(item);
+					if (ret == MessageBoxResult.Yes)
+					{
+						foreach (var item in this.SelectedItems.ToArray())
+						{
+							this.SongList.Remove(item);
 						}
 					}
 				});
 
-			NumberSelectedCommand = SelectedItems
+			this.NumberSelectedCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 1)
+				.Select(_ => this.SelectedItems.Count > 1)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
 					var ret = MessageBox.Show("選択されたアイテムの番号を自動更新しますか？\n (最初のアイテムを基準に採番します。)", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
-					if (ret == MessageBoxResult.Yes) {
-						var targetSelectedItems = SelectedItems
+					if (ret == MessageBoxResult.Yes)
+					{
+						var targetSelectedItems = this.SelectedItems
 							.Where(x => string.IsNullOrWhiteSpace(x.SpecialHeader))
 							.ToArray();
 
@@ -107,7 +115,8 @@ namespace AnizanHelper.ViewModels
 							.Where(x => selectedItemsToUpdate.Contains(x))
 							.ToArray();
 
-						foreach (var item in itemsToUpdate) {
+						foreach (var item in itemsToUpdate)
+						{
 							item.Number = startNumber;
 							startNumber++;
 						}
@@ -115,17 +124,21 @@ namespace AnizanHelper.ViewModels
 				});
 
 			this.PasteFromClipboardCommand = new ReactiveCommand()
-				.WithSubscribe(() => {
-					try {
+				.WithSubscribe(() =>
+				{
+					try
+					{
 						var text = Clipboard.GetText();
-						if (string.IsNullOrWhiteSpace(text)) {
+						if (string.IsNullOrWhiteSpace(text))
+						{
 							return;
 						}
 
 						var items = text.Trim().Replace("\r", "").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-							.Select(line => new {
+							.Select(line => new
+							{
 								Line = line,
-								Info = AnizanFormatParser.ParseAsAnizanInfo(line),
+								Info = this.AnizanFormatParser.ParseAsAnizanInfo(line),
 							})
 							.ToArray();
 
@@ -138,32 +151,39 @@ namespace AnizanHelper.ViewModels
 							.ToArray();
 
 
-						if (registeredItems.Length == 0) {
+						if (registeredItems.Length == 0)
+						{
 							return;
 						}
 
 						var sb = new StringBuilder();
 						sb.AppendLine("以下のアイテムを登録します。");
-						if (registeredItems.Length > 0) {
-							foreach (var item in registeredItems) {
-								sb.AppendLine(SongInfoSerializer.SerializeFull(item.Info));
+						if (registeredItems.Length > 0)
+						{
+							foreach (var item in registeredItems)
+							{
+								sb.AppendLine(this.SongInfoSerializer.SerializeFull(item.Info));
 							}
 						}
 
-						if (nonRegisteredItems.Length > 0) {
+						if (nonRegisteredItems.Length > 0)
+						{
 							sb.AppendLine();
 							sb.AppendLine("※以下のアイテムは登録されません。");
-							foreach (var item in nonRegisteredItems) {
+							foreach (var item in nonRegisteredItems)
+							{
 								sb.AppendLine(item.Line);
 							}
 						}
 
 						var ret = MessageBox.Show(sb.ToString(), "クリップボードから登録", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-						if (ret == MessageBoxResult.OK) {
-							SongList.AddRangeOnScheduler(registeredItems.Select(x => x.Info).ToArray());
+						if (ret == MessageBoxResult.OK)
+						{
+							this.SongList.AddRangeOnScheduler(registeredItems.Select(x => x.Info).ToArray());
 						}
 					}
-					catch (Exception ex) {
+					catch (Exception ex)
+					{
 						var sb = new StringBuilder();
 						sb.AppendLine("クリップボードからのアイテム登録に失敗しました。");
 						sb.AppendLine(ex.Message);
@@ -172,107 +192,128 @@ namespace AnizanHelper.ViewModels
 					}
 				});
 
-			this.MoveDownCommand = SelectedItems
+			this.MoveDownCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => this.SelectedItems.Count > 0)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
-					var pairs = SelectedItems
-						.Select(x => new {
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
+					var pairs = this.SelectedItems
+						.Select(x => new
+						{
 							Item = x,
-							Index = SongList.IndexOf(x),
+							Index = this.SongList.IndexOf(x),
 						})
 						.OrderByDescending(x => x.Index)
 						.ToArray();
 
-					var maxIndex = SongList.Count;
-					foreach (var pair in pairs) {
-						if (pair.Index < maxIndex - 1) {
-							SongList.Remove(pair.Item);
+					var maxIndex = this.SongList.Count;
+					foreach (var pair in pairs)
+					{
+						if (pair.Index < maxIndex - 1)
+						{
+							this.SongList.Remove(pair.Item);
 
 							var newIndex = pair.Index + 1;
-							if (newIndex > SongList.Count - 1) {
-								SongList.Add(pair.Item);
+							if (newIndex > this.SongList.Count - 1)
+							{
+								this.SongList.Add(pair.Item);
 							}
-							else {
-								SongList.Insert(newIndex, pair.Item);
+							else
+							{
+								this.SongList.Insert(newIndex, pair.Item);
 							}
 
-							SelectedItems.Add(pair.Item);
+							this.SelectedItems.Add(pair.Item);
 							maxIndex = pair.Index + 1;
 						}
-						else {
+						else
+						{
 							maxIndex = pair.Index;
 						}
 					}
 				});
 
-			this.MoveUpCommand = SelectedItems
+			this.MoveUpCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => this.SelectedItems.Count > 0)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
-					var pairs = SelectedItems
-						.Select(x => new {
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
+					var pairs = this.SelectedItems
+						.Select(x => new
+						{
 							Item = x,
-							Index = SongList.IndexOf(x),
+							Index = this.SongList.IndexOf(x),
 						})
 						.OrderBy(x => x.Index)
 						.ToArray();
 
 					var minIndex = -1;
-					foreach (var pair in pairs) {
-						if (pair.Index > minIndex + 1) {
-							SongList.Remove(pair.Item);
-							SongList.Insert(pair.Index - 1, pair.Item);
-							SelectedItems.Add(pair.Item);
+					foreach (var pair in pairs)
+					{
+						if (pair.Index > minIndex + 1)
+						{
+							this.SongList.Remove(pair.Item);
+							this.SongList.Insert(pair.Index - 1, pair.Item);
+							this.SelectedItems.Add(pair.Item);
 							minIndex = pair.Index - 1;
 						}
-						else {
+						else
+						{
 							minIndex = pair.Index;
 						}
 					}
 				});
 
-			SelectOrDeselectAllCommand = new ReactiveCommand()
-				.WithSubscribe(() => {
-					if (SelectedItems.Count > 0) {
-						SelectedItems.Clear();
+			this.SelectOrDeselectAllCommand = new ReactiveCommand()
+				.WithSubscribe(() =>
+				{
+					if (this.SelectedItems.Count > 0)
+					{
+						this.SelectedItems.Clear();
 					}
-					else {
-						foreach (var item in SongList.ToArray()) {
-							SelectedItems.Add(item);
+					else
+					{
+						foreach (var item in this.SongList.ToArray())
+						{
+							this.SelectedItems.Add(item);
 						}
 					}
 				});
 
-			this.SortSelectedCommand = SelectedItems
+			this.SortSelectedCommand = this.SelectedItems
 				.CollectionChangedAsObservable()
-				.Select(_ => SelectedItems.Count > 0)
+				.Select(_ => this.SelectedItems.Count > 0)
 				.ToReactiveCommand(false)
-				.AddTo(Disposables)
-				.WithSubscribe(() => {
-					var pairs = SelectedItems
+				.AddTo(this.Disposables)
+				.WithSubscribe(() =>
+				{
+					var pairs = this.SelectedItems
 						.Where(x => string.IsNullOrWhiteSpace(x.SpecialHeader))
-						.Select(x => new {
+						.Select(x => new
+						{
 							Item = x,
-							Index = SongList.IndexOf(x),
+							Index = this.SongList.IndexOf(x),
 						})
 						.ToArray();
 
-					if (pairs.Length == 0) {
+					if (pairs.Length == 0)
+					{
 						return;
 					}
 
 					var ret = MessageBox.Show("選択されたアイテムをソートしますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
-					if (ret != MessageBoxResult.OK) {
+					if (ret != MessageBoxResult.OK)
+					{
 						return;
 					}
 
-					foreach (var pair in pairs) {
-						SongList.Remove(pair.Item);
+					foreach (var pair in pairs)
+					{
+						this.SongList.Remove(pair.Item);
 					}
 
 					var minIndex = pairs
@@ -283,30 +324,34 @@ namespace AnizanHelper.ViewModels
 
 					var itemsToAdd = pairs
 						.OrderBy(x => x.Item.Number)
-						.Zip(indices, (x, i) => new {
+						.Zip(indices, (x, i) => new
+						{
 							Item = x.Item,
 							Index = i,
 						});
-					foreach (var pair in itemsToAdd) {
-						SongList.Insert(pair.Index, pair.Item);
+					foreach (var pair in itemsToAdd)
+					{
+						this.SongList.Insert(pair.Index, pair.Item);
 					}
 				});
 
 			this.AddSpecialItemCommand = new ReactiveCommand()
-				.WithSubscribe(() => {
-					this.SongList.Add(new AnizanSongInfo {
+				.WithSubscribe(() =>
+				{
+					this.SongList.Add(new AnizanSongInfo
+					{
 						SpecialHeader = "★",
 					});
 				});
 		}
 
 
-		
+
 
 		private void CopyToClipboard(IEnumerable<AnizanSongInfo> items)
 		{
 			var lines = items
-				.Select(item => SongInfoSerializer.SerializeFull(item));
+				.Select(item => this.SongInfoSerializer.SerializeFull(item));
 
 			var text = string.Join(
 				Environment.NewLine,
@@ -318,7 +363,7 @@ namespace AnizanHelper.ViewModels
 				{
 					System.Windows.Forms.Clipboard.SetText(text);
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
 					this.ShowErrorMessage("コピーに失敗しました。", ex);
 				}
@@ -328,7 +373,7 @@ namespace AnizanHelper.ViewModels
 		public ReactiveCollection<AnizanSongInfo> SongList { get; }
 		public ReactiveCollection<AnizanSongInfo> SelectedItems { get; } = new ReactiveCollection<AnizanSongInfo>();
 
-		
+
 		public ReactiveCommand CopyAllCommand { get; }
 		public ReactiveCommand CopySelectedCommand { get; }
 		public ReactiveCommand DeleteAllCommand { get; }
@@ -339,7 +384,7 @@ namespace AnizanHelper.ViewModels
 		public ReactiveCommand MoveUpCommand { get; }
 		public ReactiveCommand MoveDownCommand { get; }
 		public ReactiveCommand SelectOrDeselectAllCommand { get; }
-		
+
 		public ReactiveCommand AddSpecialItemCommand { get; }
 		public ReactiveCommand SortSelectedCommand { get; }
 

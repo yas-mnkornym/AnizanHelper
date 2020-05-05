@@ -9,12 +9,12 @@ namespace AnizanHelper.Models.SettingComponents
 	/// </summary>
 	public class SettingsBase : NotificationObjectWithNotifyChaning
 	{
-		ISettings settings_;
+		private ISettings settings_;
 
 		/// <summary>
 		/// 設定インスタンスを取得する
 		/// </summary>
-		public ISettings Settings { get { return settings_; } }
+		public ISettings Settings { get { return this.settings_; } }
 
 		/// <summary>
 		/// コンストラクタ
@@ -26,19 +26,19 @@ namespace AnizanHelper.Models.SettingComponents
 			IDispatcher dispatcher = null)
 			: base(dispatcher)
 		{
-			settings_ = settings ?? throw new ArgumentNullException("settings");
-			settings_.SettingChanging += settings_SettingChanging;
-			settings_.SettingChanged += settings_SettingChanged;
+			this.settings_ = settings ?? throw new ArgumentNullException("settings");
+			this.settings_.SettingChanging += this.settings_SettingChanging;
+			this.settings_.SettingChanged += this.settings_SettingChanged;
 		}
 
-		void settings_SettingChanging(object sender, SettingChangeEventArgs e)
+		private void settings_SettingChanging(object sender, SettingChangeEventArgs e)
 		{
-			RaisePropertyChanging(e.Key);
+			this.RaisePropertyChanging(e.Key);
 		}
 
-		void settings_SettingChanged(object sender, SettingChangeEventArgs e)
+		private void settings_SettingChanged(object sender, SettingChangeEventArgs e)
 		{
-			RaisePropertyChanged(e.Key);
+			this.RaisePropertyChanged(e.Key);
 		}
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>取得した値</returns>
 		protected T GetValue<T>(T defaultValue = default, [CallerMemberName]string key = null)
 		{
-			return Settings.Get(key, defaultValue);
+			return this.Settings.Get(key, defaultValue);
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void SetValue<T>(T value, [CallerMemberName]string key = null)
 		{
-			Settings.Set(key, value);
+			this.Settings.Set(key, value);
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>取得した値</returns>
 		protected T GetValueDecrypted<T>(T defaultValue, string key)
 		{
-			return Settings.GetDecrypted(key, defaultValue);
+			return this.Settings.GetDecrypted(key, defaultValue);
 		}
 
 		/// <summary>
@@ -84,7 +84,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void SetValueCrypted<T>(T value, string key)
 		{
-			Settings.SetCrypted(key, value);
+			this.Settings.SetCrypted(key, value);
 		}
 
 		/// 呼び出したプロパティ名の設定を削除する。
@@ -92,7 +92,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void RemoveValue(string key)
 		{
-			Settings.Remove(key);
+			this.Settings.Remove(key);
 		}
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param key="value">データの値</param>
 		protected void Set<T>(string key, T value)
 		{
-			Settings.Set(key, value);
+			this.Settings.Set(key, value);
 		}
 
 		/// <summary>
@@ -115,7 +115,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>データ</returns>
 		protected T Get<T>(string key, T defaultValue = default(T))
 		{
-			return Settings.Get(key, defaultValue);
+			return this.Settings.Get(key, defaultValue);
 		}
 
 		/// <summary>
@@ -124,7 +124,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param key="key">データのキー</param>
 		protected void Remove(string key)
 		{
-			Settings.Remove(key);
+			this.Settings.Remove(key);
 		}
 
 		/// <summary>
@@ -132,7 +132,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// </summary>
 		protected void Clear()
 		{
-			Settings.Clear();
+			this.Settings.Clear();
 		}
 
 	}

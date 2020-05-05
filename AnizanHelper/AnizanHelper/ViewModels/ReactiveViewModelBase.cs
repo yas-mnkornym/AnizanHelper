@@ -10,11 +10,11 @@ namespace AnizanHelper.ViewModels
 	{
 		protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
 
-		ICollection<IDisposable> IReactiveLazyPropertyHolder.Disposables => Disposables;
+		ICollection<IDisposable> IReactiveLazyPropertyHolder.Disposables => this.Disposables;
 
 		#region IDisposable
 
-		bool isDisposed_ = false;
+		private bool isDisposed_ = false;
 
 		public ReactiveViewModelBase(IDispatcher dispatcher = null) : base(dispatcher)
 		{
@@ -24,18 +24,19 @@ namespace AnizanHelper.ViewModels
 		{
 		}
 
-		virtual protected void Dispose(bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
-			if (isDisposed_) { return; }
-			if (disposing) {
-				Disposables.Dispose();
+			if (this.isDisposed_) { return; }
+			if (disposing)
+			{
+				this.Disposables.Dispose();
 			}
-			isDisposed_ = true;
+			this.isDisposed_ = true;
 		}
 
 		public void Dispose()
 		{
-			Dispose(true);
+			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 

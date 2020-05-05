@@ -9,16 +9,18 @@ namespace AnizanHelper.Models.SettingComponents
 
 		public Dispatchable(IDispatcher dispatcher = null)
 		{
-			Dispatcher = dispatcher;
+			this.Dispatcher = dispatcher;
 		}
 
 		protected void Dispatch(Action act)
 		{
 			if (act == null) { throw new ArgumentNullException("act"); }
-			if (Dispatcher != null) {
-				Dispatcher.Dispatch(act);
+			if (this.Dispatcher != null)
+			{
+				this.Dispatcher.Dispatch(act);
 			}
-			else {
+			else
+			{
 				act();
 			}
 		}
@@ -26,10 +28,12 @@ namespace AnizanHelper.Models.SettingComponents
 		protected T Dispatch<T>(Func<T> func)
 		{
 			if (func == null) { throw new ArgumentNullException("func"); }
-			if (Dispatcher != null) {
-				return Dispatcher.Dispatch(func);
+			if (this.Dispatcher != null)
+			{
+				return this.Dispatcher.Dispatch(func);
 			}
-			else {
+			else
+			{
 				return func();
 			}
 		}
@@ -40,23 +44,28 @@ namespace AnizanHelper.Models.SettingComponents
 			Action onAborted = null)
 		{
 			if (act == null) { throw new ArgumentNullException("act"); }
-			if (Dispatcher != null) {
-				Dispatcher.BeginDispatch(act, onCompleted, onAborted);
+			if (this.Dispatcher != null)
+			{
+				this.Dispatcher.BeginDispatch(act, onCompleted, onAborted);
 			}
-			else {
+			else
+			{
 				act();
 			}
 		}
-		void BeginDispatch<T>(
+
+		private void BeginDispatch<T>(
 			Func<T> func,
 			Action<T> onCompleted = null,
 			Action onAborted = null)
 		{
 			if (func == null) { throw new ArgumentNullException("func"); }
-			if (Dispatcher != null) {
-				Dispatcher.BeginDispatch(func, onCompleted, onAborted);
+			if (this.Dispatcher != null)
+			{
+				this.Dispatcher.BeginDispatch(func, onCompleted, onAborted);
 			}
-			else {
+			else
+			{
 				var ret = func();
 				onCompleted(ret);
 			}

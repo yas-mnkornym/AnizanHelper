@@ -16,7 +16,6 @@ using AnizanHelper.Models.SongList;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
-using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.ViewModels.Pages
 {
@@ -40,9 +39,9 @@ namespace AnizanHelper.ViewModels.Pages
 			HttpClient httpClient,
 			ISearchController searchManager)
 		{
-			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-			HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-			SearchManager = searchManager ?? throw new ArgumentNullException(nameof(searchManager));
+			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+			this.SearchManager = searchManager ?? throw new ArgumentNullException(nameof(searchManager));
 
 			var regexTimeout = TimeSpan.FromMilliseconds(250);
 
@@ -170,14 +169,14 @@ namespace AnizanHelper.ViewModels.Pages
 
 					try
 					{
-						if (RetreiverState.Value == SongRetreiverConnectionState.Stopped)
+						if (this.RetreiverState.Value == SongRetreiverConnectionState.Stopped)
 						{
-							RetreiverState.Value = SongRetreiverConnectionState.Connecting;
+							this.RetreiverState.Value = SongRetreiverConnectionState.Connecting;
 						}
 
 						using (var disposables = new CompositeDisposable())
 						{
-							var streamUri = new Uri(StreamUri.Value);
+							var streamUri = new Uri(this.StreamUri.Value);
 							var retreiver = this.songMetadataRetreiver = new IcecastSongMetadataRetreiver(this.HttpClient, streamUri, this.SelectedEncoding.Value);
 
 							Observable.FromEventPattern<ISongMetadata>(retreiver, nameof(ISongMetadataRetreiver.SongMetadataReceived))
@@ -195,7 +194,7 @@ namespace AnizanHelper.ViewModels.Pages
 											Content = songMetadata.StreamTitle,
 										};
 
-										SongMetadataHistory.Insert(0, historyItem);
+										this.SongMetadataHistory.Insert(0, historyItem);
 									}
 									else
 									{
@@ -203,9 +202,9 @@ namespace AnizanHelper.ViewModels.Pages
 										historyItem.Content = songMetadata.StreamTitle;
 									}
 
-									CurrentSongMetadata.Value = null;
-									CurrentSongMetadata.Value = historyItem;
-									RetreiverState.Value = SongRetreiverConnectionState.Running;
+									this.CurrentSongMetadata.Value = null;
+									this.CurrentSongMetadata.Value = historyItem;
+									this.RetreiverState.Value = SongRetreiverConnectionState.Running;
 								})
 								.AddTo(disposables);
 
@@ -215,20 +214,20 @@ namespace AnizanHelper.ViewModels.Pages
 							{
 								case SongListFeedStopStatus.Unknown:
 									MessageService.Current.ShowMessage("タグの取得が異常終了しました。");
-									RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+									this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
 									break;
 
 								case SongListFeedStopStatus.MetadataNotSupported:
 									MessageService.Current.ShowMessage("このストリームはタグの配信に対応していません。");
-									RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+									this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
 									break;
 
 								case SongListFeedStopStatus.StreamClosed:
 									if (this.Settings.EnableMetadataStreamAutoReconnection)
 									{
-										if (CurrentRetryCount.Value < this.Settings.MaxMetadataStreamAutoReconnectionTrialCount)
+										if (this.CurrentRetryCount.Value < this.Settings.MaxMetadataStreamAutoReconnectionTrialCount)
 										{
-											MessageService.Current.ShowMessage($"タグ取得用ストリームが切断されました。再接続しています... ({CurrentRetryCount.Value + 1}回目)");
+											MessageService.Current.ShowMessage($"タグ取得用ストリームが切断されました。再接続しています... ({this.CurrentRetryCount.Value + 1}回目)");
 											shouldRetry = true;
 										}
 										else
@@ -252,9 +251,9 @@ namespace AnizanHelper.ViewModels.Pages
 					{
 						if (this.Settings.EnableMetadataStreamAutoReconnection)
 						{
-							if (CurrentRetryCount.Value < this.Settings.MaxMetadataStreamAutoReconnectionTrialCount)
+							if (this.CurrentRetryCount.Value < this.Settings.MaxMetadataStreamAutoReconnectionTrialCount)
 							{
-								MessageService.Current.ShowMessage($"タグ取得用ストリームへの接続に失敗しました。再接続しています... ({CurrentRetryCount.Value + 1}回目)");
+								MessageService.Current.ShowMessage($"タグ取得用ストリームへの接続に失敗しました。再接続しています... ({this.CurrentRetryCount.Value + 1}回目)");
 								shouldRetry = true;
 							}
 							else
@@ -264,7 +263,7 @@ namespace AnizanHelper.ViewModels.Pages
 						}
 						else
 						{
-							ShowErrorMessage("タグの取得に失敗しました。", ex);
+							this.ShowErrorMessage("タグの取得に失敗しました。", ex);
 						}
 					}
 					finally
@@ -273,21 +272,21 @@ namespace AnizanHelper.ViewModels.Pages
 
 						if (shouldRetry)
 						{
-							CurrentSongMetadata.Value = null;
+							this.CurrentSongMetadata.Value = null;
 
 							try
 							{
-								RetreiverState.Value = SongRetreiverConnectionState.Reconnecting;
-								CurrentRetryCount.Value++;
+								this.RetreiverState.Value = SongRetreiverConnectionState.Reconnecting;
+								this.CurrentRetryCount.Value++;
 								await Task.Delay(this.Settings.MetadataStreamReconnectionInterval, cts.Token);
 
-								RetreiverCancellationTokenSource.Value = null;
-								RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
+								this.RetreiverCancellationTokenSource.Value = null;
+								this.RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
 							}
 							catch (OperationCanceledException)
 							{
-								RetreiverCancellationTokenSource.Value = null;
-								RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+								this.RetreiverCancellationTokenSource.Value = null;
+								this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
 								MessageService.Current.ShowMessage("タグの取得が停止されました。");
 							}
 							finally
@@ -297,16 +296,16 @@ namespace AnizanHelper.ViewModels.Pages
 						}
 						else
 						{
-							RetreiverCancellationTokenSource.Value = null;
+							this.RetreiverCancellationTokenSource.Value = null;
 							cts.Dispose();
-							RetreiverState.Value = SongRetreiverConnectionState.Stopped;
+							this.RetreiverState.Value = SongRetreiverConnectionState.Stopped;
 						}
 					}
 
 					return cts;
 				})
 				.Subscribe()
-				.AddTo(Disposables);
+				.AddTo(this.Disposables);
 
 			return prop;
 		});
@@ -324,33 +323,33 @@ namespace AnizanHelper.ViewModels.Pages
 					switch (state)
 					{
 						case SongRetreiverConnectionState.Stopped:
-							CurrentRetryCount.Value = 0;
+							this.CurrentRetryCount.Value = 0;
 							break;
 
 						case SongRetreiverConnectionState.Running:
 							MessageService.Current.ShowMessage("タグ取得用ストリームへ接続しました。");
-							CurrentRetryCount.Value = 0;
+							this.CurrentRetryCount.Value = 0;
 							break;
 					}
 				})
-				.AddTo(Disposables);
+				.AddTo(this.Disposables);
 
 			return prop;
 		});
 
-		public ReactiveProperty<string> StreamUri => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.MetadataStreamUri));
-		public ReactiveProperty<bool> EnableAutoReconnection => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.EnableMetadataStreamAutoReconnection));
-		public ReactiveProperty<bool> ShowHistory => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.ShowMetadataStreamHistory));
-		public ReactiveProperty<bool> ShowSongInfoExtractorControl => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.ShowSongInfoExtractorControl));
+		public ReactiveProperty<string> StreamUri => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.MetadataStreamUri));
+		public ReactiveProperty<bool> EnableAutoReconnection => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.EnableMetadataStreamAutoReconnection));
+		public ReactiveProperty<bool> ShowHistory => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.ShowMetadataStreamHistory));
+		public ReactiveProperty<bool> ShowSongInfoExtractorControl => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.ShowSongInfoExtractorControl));
 
 		public ReactiveProperty<string> RegexFormat => this.LazyReactiveProperty(() =>
 		{
-			var prop = Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorRegexFormat);
+			var prop = this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorRegexFormat);
 
 			return prop;
 		});
 
-		public ReactiveProperty<string[]> RegexFormatPresets => this.LazyReactiveProperty(() => Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorPresets));
+		public ReactiveProperty<string[]> RegexFormatPresets => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.SongInfoExtractorPresets));
 
 		public ReactiveProperty<int> CurrentRetryCount { get; } = new ReactiveProperty<int>();
 
@@ -360,31 +359,31 @@ namespace AnizanHelper.ViewModels.Pages
 
 		public ICommand StartRetreivingCommand => this.LazyReactiveCommand(
 			new[] {
-				RetreiverCancellationTokenSource.Select(x => x == null),
-				StreamUri.Select(x => !string.IsNullOrWhiteSpace(x)),
-				RetreiverState.Select(x => x == SongRetreiverConnectionState.Stopped),
+				this.RetreiverCancellationTokenSource.Select(x => x == null),
+				this.StreamUri.Select(x => !string.IsNullOrWhiteSpace(x)),
+				this.RetreiverState.Select(x => x == SongRetreiverConnectionState.Stopped),
 			}
 			.CombineLatestValuesAreAllTrue(),
 			() =>
 			{
-				RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
+				this.RetreiverCancellationTokenSource.Value = new CancellationTokenSource();
 			});
 
 		public ICommand StopRetreivingCommand => this.LazyReactiveCommand(
-			RetreiverState.Select(x => x != SongRetreiverConnectionState.Stopped),
+			this.RetreiverState.Select(x => x != SongRetreiverConnectionState.Stopped),
 			() =>
 			{
-				RetreiverCancellationTokenSource.Value?.Cancel();
+				this.RetreiverCancellationTokenSource.Value?.Cancel();
 			});
 
 		public ICommand ClearHistoryCommand => this.LazyReactiveCommand(
-			SongMetadataHistory
+			this.SongMetadataHistory
 				.CollectionChangedAsObservable()
-				.Select(_ => SongMetadataHistory.Count != 0),
+				.Select(_ => this.SongMetadataHistory.Count != 0),
 			() =>
 			{
-				SongMetadataHistory.Clear();
-			}); 
+				this.SongMetadataHistory.Clear();
+			});
 
 		public ICommand SearchCommand => this.LazyReactiveCommand<string>(
 			searchTerm =>

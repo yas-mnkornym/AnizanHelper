@@ -19,11 +19,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(false);
+				return this.GetValue(false);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -31,11 +31,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -43,11 +43,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(false);
+				return this.GetValue(false);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -55,11 +55,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(false);
+				return this.GetValue(false);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -67,11 +67,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -79,11 +79,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(Constants.DefaultServerName);
+				return this.GetValue(Constants.DefaultServerName);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -91,11 +91,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(Constants.DefaultBoardPath);
+				return this.GetValue(Constants.DefaultBoardPath);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -103,11 +103,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(string.Empty);
+				return this.GetValue(string.Empty);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -115,11 +115,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(Constants.ZanmaiSearchUrl);
+				return this.GetValue(Constants.ZanmaiSearchUrl);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -127,11 +127,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -139,11 +139,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -151,11 +151,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -163,11 +163,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -175,7 +175,7 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				var ret = GetValue<string>(null);
+				var ret = this.GetValue<string>(null);
 				if (!string.IsNullOrWhiteSpace(ret))
 				{
 					try
@@ -196,12 +196,12 @@ namespace AnizanHelper.Models
 			{
 				if (value == null)
 				{
-					SetValue<string>(null);
+					this.SetValue<string>(null);
 				}
 				else
 				{
 					var json = JsonConvert.SerializeObject(value);
-					SetValue(json);
+					this.SetValue(json);
 				}
 			}
 		}
@@ -210,18 +210,18 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
 		public bool ShowParserControl
 		{
-			get => GetValue(false);
-			set => SetValue(value);
+			get => this.GetValue(false);
+			set => this.SetValue(value);
 		}
 
 		public string MetadataStreamUri
@@ -232,8 +232,8 @@ namespace AnizanHelper.Models
 
 		public bool EnableMetadataStreamAutoReconnection
 		{
-			get => GetValue(true);
-			set => SetValue(value);
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public string SongMetadatSelectedEncodingName
@@ -244,26 +244,26 @@ namespace AnizanHelper.Models
 
 		public int MaxMetadataStreamAutoReconnectionTrialCount
 		{
-			get => GetValue(20);
-			set => SetValue(value);
+			get => this.GetValue(20);
+			set => this.SetValue(value);
 		}
 
 		public TimeSpan MetadataStreamReconnectionInterval
 		{
-			get => GetValue(TimeSpan.FromSeconds(3));
-			set => SetValue(value);
+			get => this.GetValue(TimeSpan.FromSeconds(3));
+			set => this.SetValue(value);
 		}
 
 		public bool ShowMetadataStreamHistory
 		{
-			get => GetValue(false);
-			set => SetValue(value);
+			get => this.GetValue(false);
+			set => this.SetValue(value);
 		}
 
 		public bool ShowStreamMetadataRetreiver
 		{
-			get => GetValue(true);
-			set => SetValue(value);
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool ShowFrequentlyPlayedSongs

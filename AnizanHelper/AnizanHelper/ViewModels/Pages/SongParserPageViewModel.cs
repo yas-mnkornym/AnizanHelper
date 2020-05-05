@@ -2,17 +2,16 @@ using System;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
-using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.ViewModels.Pages
 {
 	public class SongParserPageViewModel : SongParserVmBase
 	{
-		ISongInfoParser parser = new AnisonDBParser();
+		private ISongInfoParser parser = new AnisonDBParser();
 
 		public override void ClearInput()
 		{
-			InputText = string.Empty;
+			this.InputText = string.Empty;
 		}
 
 		#region Bindings
@@ -21,12 +20,13 @@ namespace AnizanHelper.ViewModels.Pages
 		{
 			get
 			{
-				return GetValue<string>(string.Empty);
+				return this.GetValue(string.Empty);
 			}
 			set
 			{
-				if (SetValue(value)) {
-					ParseCommand.RaiseCanExecuteChanged();
+				if (this.SetValue(value))
+				{
+					this.ParseCommand.RaiseCanExecuteChanged();
 				}
 			}
 		}
@@ -35,29 +35,34 @@ namespace AnizanHelper.ViewModels.Pages
 
 		#region Commands
 		#region ParseCommand
-		DelegateCommand parseCommand_ = null;
+		private DelegateCommand parseCommand_ = null;
 		public DelegateCommand ParseCommand
 		{
 			get
 			{
-				return parseCommand_ ?? (parseCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
-						try {
-							var info = parser.Parse(InputText);
-							OnSongParsed(new SongParsedEventArgs(info));
+				return this.parseCommand_ ?? (this.parseCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
+						try
+						{
+							var info = this.parser.Parse(this.InputText);
+							this.OnSongParsed(new SongParsedEventArgs(info));
 						}
-						catch (Exception ex) {
+						catch (Exception ex)
+						{
 							MessageBox.Show(ex.ToString(), "解析失敗", MessageBoxButton.OK, MessageBoxImage.Stop);
 						}
 
 					},
-					CanExecuteHandler = param => {
+					CanExecuteHandler = param =>
+					{
 						return true;
 					}
 				});
 			}
 		}
-		#endregion 
+		#endregion
 		#endregion // Commands
 	}
 }

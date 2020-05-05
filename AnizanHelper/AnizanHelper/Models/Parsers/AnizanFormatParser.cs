@@ -4,7 +4,7 @@ namespace AnizanHelper.Models.Parsers
 {
 	internal class AnizanFormatParser : ISongInfoParser
 	{
-		static Regex[] Regexes = new Regex[]{
+		private static Regex[] Regexes = new Regex[]{
 			// Special 
 			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?[\(（](\[(?<Genre>.*)\])?(?<Series>.*)　(?<SongType>.*)?[\)）]\s*(※(?<Additional>.*))?"),
 			
@@ -26,12 +26,15 @@ namespace AnizanHelper.Models.Parsers
 
 		public GeneralSongInfo Parse(string inputText)
 		{
-			var anizanSongInfo = ParseAsAnizanInfo(inputText);
-			if (anizanSongInfo == null) {
+			var anizanSongInfo = this.ParseAsAnizanInfo(inputText);
+			if (anizanSongInfo == null)
+			{
 				return null;
 			}
-			else {
-				return new GeneralSongInfo {
+			else
+			{
+				return new GeneralSongInfo
+				{
 					Title = anizanSongInfo.Title,
 					Singers = anizanSongInfo.Singer.Split(','),
 					Genre = anizanSongInfo.Genre,
@@ -44,15 +47,18 @@ namespace AnizanHelper.Models.Parsers
 		public AnizanSongInfo ParseAsAnizanInfo(string inputText)
 		{
 			Match match = null;
-			foreach (var regex in Regexes) {
+			foreach (var regex in Regexes)
+			{
 				match = regex.Match(inputText);
-				if (match.Success) {
+				if (match.Success)
+				{
 					break;
 				}
 			}
 
 			return match?.Success == true
-				? new AnizanSongInfo {
+				? new AnizanSongInfo
+				{
 					Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
 					Title = match.Groups["Title"]?.Value?.Trim(),
 					Singer = match.Groups["Artist"]?.Value?.Trim(),
@@ -66,9 +72,10 @@ namespace AnizanHelper.Models.Parsers
 				: null;
 		}
 
-		static int TryParseAsIntOrDefault(string text)
+		private static int TryParseAsIntOrDefault(string text)
 		{
-			if (text == null) {
+			if (text == null)
+			{
 				return 0;
 			}
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnizanHelper.Models
 {
@@ -11,23 +9,26 @@ namespace AnizanHelper.Models
 
 		public AnizanSongInfoConverter(params ReplaceInfo[] replaces)
 		{
-			Replaces = replaces;
+			this.Replaces = replaces;
 		}
 
 		public AnizanSongInfo Convert(GeneralSongInfo gInfo)
 		{
-			var replacedTitle = Replace(gInfo.Title);
-			var result = new AnizanSongInfo {
+			var replacedTitle = this.Replace(gInfo.Title);
+			var result = new AnizanSongInfo
+			{
 				Title = replacedTitle,
-				Singer = Replace(string.Join(",", gInfo.Singers.Select(x => Replace(x, replacedTitle)).Where(x => !string.IsNullOrWhiteSpace(x))), replacedTitle),
-				Genre = Replace(gInfo.Genre, replacedTitle),
-				Series = Replace(gInfo.Series, replacedTitle),
-				SongType = Replace(gInfo.SongType, replacedTitle)
+				Singer = this.Replace(string.Join(",", gInfo.Singers.Select(x => this.Replace(x, replacedTitle)).Where(x => !string.IsNullOrWhiteSpace(x))), replacedTitle),
+				Genre = this.Replace(gInfo.Genre, replacedTitle),
+				Series = this.Replace(gInfo.Series, replacedTitle),
+				SongType = this.Replace(gInfo.SongType, replacedTitle)
 			};
 
 			// ジャンルを置換
-			if (gInfo.Genre != null) {
-				switch (gInfo.Genre) {
+			if (gInfo.Genre != null)
+			{
+				switch (gInfo.Genre)
+				{
 					case "GM":
 						result.Genre = "GM";
 						break;
@@ -71,8 +72,10 @@ namespace AnizanHelper.Models
 			}
 
 			// 曲種に基づいてジャンルを置換
-			if (gInfo.SongType != null) {
-				switch (gInfo.SongType) {
+			if (gInfo.SongType != null)
+			{
+				switch (gInfo.SongType)
+				{
 					case "KK":
 						result.Genre = "企画";
 						result.SongType = null;
@@ -83,22 +86,25 @@ namespace AnizanHelper.Models
 			return result;
 		}
 
-		string Replace(string text, string songName = null)
+		private string Replace(string text, string songName = null)
 		{
 			if (text == null) { throw new ArgumentNullException("text"); }
 			var str = text;
-			foreach (var rep in Replaces) {
-				if (!string.IsNullOrWhiteSpace(rep.SongTitleConstraint) && songName != rep.SongTitleConstraint) {
+			foreach (var rep in this.Replaces)
+			{
+				if (!string.IsNullOrWhiteSpace(rep.SongTitleConstraint) && songName != rep.SongTitleConstraint)
+				{
 					continue;
 				}
 
-				if (rep.Exact && rep.Original != str) {
+				if (rep.Exact && rep.Original != str)
+				{
 					continue;
 				}
 
 				str = str.Replace(rep.Original, rep.Replaced);
 			}
-			
+
 			// 前後の空白削除して返す
 			return str.Trim();
 		}

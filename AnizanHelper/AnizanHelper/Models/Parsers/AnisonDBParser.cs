@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnizanHelper.Models.Parsers
 {
@@ -26,14 +23,16 @@ namespace AnizanHelper.Models.Parsers
 			var stokens = singerStr.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			string genre = "";
 			var singers = stokens.ToList();
-			if (stokens.Length > 1 && stokens.Last().Length == 2) {
+			if (stokens.Length > 1 && stokens.Last().Length == 2)
+			{
 				genre = stokens.Last();
 				singers.RemoveAt(singers.Count - 1);
 			}
 			var songType = (tokens.Length > 3 ? tokens[3] : "");
-			if(songType != null){ songType = songType.Replace(" ", ""); }
+			if (songType != null) { songType = songType.Replace(" ", ""); }
 
-			return new GeneralSongInfo {
+			return new GeneralSongInfo
+			{
 				Title = (tokens.Length > 0 ? tokens[0] : ""),
 				Singers = singers,
 				Genre = genre,

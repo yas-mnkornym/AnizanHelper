@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using AnizanHelper.Models.SettingComponents;
 using HtmlAgilityPack;
 
 namespace AnizanHelper.Models.DbSearch
@@ -33,7 +32,8 @@ namespace AnizanHelper.Models.DbSearch
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
 
-			return new GeneralSongInfo {
+			return new GeneralSongInfo
+			{
 				Title = info.Title,
 				Series = info.Series,
 				Genre = info.Genre,
@@ -42,32 +42,38 @@ namespace AnizanHelper.Models.DbSearch
 			};
 		}
 
-		static string patternNumber = @"(?<Type>(OP|ED))\s*(?<Number>\d)";
-		static string userAgent_ = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
-		static string FindActualSongType(SongSearchResult info)
+		private static string patternNumber = @"(?<Type>(OP|ED))\s*(?<Number>\d)";
+		private static string userAgent_ = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+
+		private static string FindActualSongType(SongSearchResult info)
 		{
 			if (string.IsNullOrWhiteSpace(info.SeriesUrl)) { return info.SongType; }
 
 			var match = Regex.Match(info.SongType, patternNumber);
 			if (match == null) { return info.SongType; }
 			if (string.IsNullOrWhiteSpace(match.Groups["Number"].Value)) { return info.SongType; }
-			if(Convert.ToInt32(match.Groups["Number"].Value) > 1) {	return info.SongType; }
+			if (Convert.ToInt32(match.Groups["Number"].Value) > 1) { return info.SongType; }
 
-			using (var client = new HttpClient()) {
-				if (!string.IsNullOrWhiteSpace(userAgent_)) {
+			using (var client = new HttpClient())
+			{
+				if (!string.IsNullOrWhiteSpace(userAgent_))
+				{
 					client.DefaultRequestHeaders.Add("User-Agent", userAgent_);
 				}
 
-				using (var stream = client.GetStreamAsync(info.SeriesUrl).Result) {
+				using (var stream = client.GetStreamAsync(info.SeriesUrl).Result)
+				{
 					var doc = new HtmlDocument();
 					doc.Load(stream, Encoding.UTF8);
 
 					var tbody = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/table[2]/tbody[1]");
-					if (tbody == null) {
+					if (tbody == null)
+					{
 						return info.SongType;
 					}
 					var isActuallyNumbered = tbody.Descendants("tr")
-						.Where(tr => {
+						.Where(tr =>
+						{
 							var td1 = tr.Descendants("td").FirstOrDefault();
 							if (td1 == null) { return false; }
 							var dbMatch = Regex.Match(td1.InnerText, patternNumber);

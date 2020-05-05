@@ -19,7 +19,7 @@ namespace AnizanHelper.Views
 			}
 		}
 
-		bool canClose_ = false;
+		private bool canClose_ = false;
 		public void CloseImmediately()
 		{
 			this.canClose_ = true;

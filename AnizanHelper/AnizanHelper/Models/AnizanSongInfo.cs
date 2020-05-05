@@ -13,11 +13,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -29,11 +29,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -45,11 +45,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -61,11 +61,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -77,11 +77,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -93,11 +93,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -106,11 +106,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<int>();
+				return this.GetValue<int>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -119,11 +119,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -132,11 +132,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -145,11 +145,11 @@ namespace AnizanHelper.Models
 		{
 			get
 			{
-				return GetValue(false);
+				return this.GetValue(false);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 

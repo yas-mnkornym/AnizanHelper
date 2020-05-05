@@ -1,4 +1,3 @@
-﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +6,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
+using HtmlAgilityPack;
 
 namespace AnizanHelper.Models.DbSearch
 {
 	public abstract class DbSeacherBase<TResult> : IDbSearcher<TResult>
 	{
-		string QueryUrlBase { get; } = "http://anison.info/data/n.php";
-		static HttpClient HttpClient { get; } = new HttpClient();
+		private string QueryUrlBase { get; } = "http://anison.info/data/n.php";
+		private static HttpClient HttpClient { get; } = new HttpClient();
 
 		public string UserAgent { get; set; } = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
 
@@ -23,7 +22,7 @@ namespace AnizanHelper.Models.DbSearch
 
 		public DbSeacherBase(string queryUrl)
 		{
-			QueryUrlBase = queryUrl ?? throw new ArgumentNullException(nameof(queryUrl));
+			this.QueryUrlBase = queryUrl ?? throw new ArgumentNullException(nameof(queryUrl));
 		}
 
 		public abstract Task<IEnumerable<SongSearchResult>> SearchAsync(string searchWord, CancellationToken cancellationToken = default);
@@ -34,7 +33,7 @@ namespace AnizanHelper.Models.DbSearch
 			if (type == null) { throw new ArgumentNullException(nameof(type)); }
 
 			return string.Format("{0}?q={1}&m={2}",
-				QueryUrlBase,
+				this.QueryUrlBase,
 				string.Join("+", word.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries)
 					.Select(x => WebUtility.UrlEncode(x))),
 				WebUtility.UrlEncode(type));
@@ -42,13 +41,16 @@ namespace AnizanHelper.Models.DbSearch
 
 		protected HtmlDocument QueryDocument(string word, string type)
 		{
-			var queryUrl = CreateQueryUrl(word, type);
-			using (var client = new HttpClient()) {
-				if (!string.IsNullOrWhiteSpace(UserAgent)) {
-					client.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+			var queryUrl = this.CreateQueryUrl(word, type);
+			using (var client = new HttpClient())
+			{
+				if (!string.IsNullOrWhiteSpace(this.UserAgent))
+				{
+					client.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
 				}
 
-				using (var stream = client.GetStreamAsync(queryUrl).Result) {
+				using (var stream = client.GetStreamAsync(queryUrl).Result)
+				{
 					var doc = new HtmlDocument();
 					doc.Load(stream, Encoding.UTF8);
 					return doc;
@@ -58,9 +60,9 @@ namespace AnizanHelper.Models.DbSearch
 
 		protected async Task<HtmlDocument> QueryDocumentAsync(string queryUrl, CancellationToken cancellationToken = default)
 		{
-			if (!string.IsNullOrWhiteSpace(UserAgent))
+			if (!string.IsNullOrWhiteSpace(this.UserAgent))
 			{
-				HttpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent);
+				HttpClient.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
 			}
 
 			using (var response = await HttpClient.GetAsync(queryUrl, cancellationToken).ConfigureAwait(false))

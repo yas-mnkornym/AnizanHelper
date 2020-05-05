@@ -1,5 +1,3 @@
-using System;
-
 namespace AnizanHelper.Models.DbSearch
 {
 	public class ProxySearchController : ISearchController

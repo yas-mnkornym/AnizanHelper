@@ -3,26 +3,28 @@ using System.Reactive.Disposables;
 
 namespace AnizanHelper.Services
 {
-	abstract class ReactiveServiceBase : IService
+	internal abstract class ReactiveServiceBase : IService
 	{
 		private CompositeDisposable Disposables { get; set; }
 
-		public bool IsRunning => Disposables != null;
+		public bool IsRunning => this.Disposables != null;
 
 		public virtual void Start()
 		{
-			if (Disposables == null) {
-				Disposables = new CompositeDisposable();
+			if (this.Disposables == null)
+			{
+				this.Disposables = new CompositeDisposable();
 
-				RegisterDisposables(Disposables);
+				this.RegisterDisposables(this.Disposables);
 			}
 		}
 
 		public virtual void Stop()
 		{
-			if (Disposables != null) {
-				Disposables.Dispose();
-				Disposables = null;
+			if (this.Disposables != null)
+			{
+				this.Disposables.Dispose();
+				this.Disposables = null;
 			}
 		}
 
@@ -30,19 +32,20 @@ namespace AnizanHelper.Services
 
 		#region IDisposable
 
-		bool isDisposed_ = false;
-		virtual protected void Dispose(bool disposing)
+		private bool isDisposed_ = false;
+		protected virtual void Dispose(bool disposing)
 		{
-			if (isDisposed_) { return; }
-			if (disposing) {
-				Stop();
+			if (this.isDisposed_) { return; }
+			if (disposing)
+			{
+				this.Stop();
 			}
-			isDisposed_ = true;
+			this.isDisposed_ = true;
 		}
 
 		public void Dispose()
 		{
-			Dispose(true);
+			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 

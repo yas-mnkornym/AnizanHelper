@@ -9,10 +9,10 @@ namespace AnizanHelper.Models.SettingComponents
 	internal class SettingsImpl : ISettings
 	{
 		#region Private Field
-		List<Type> knownTypes_ = new List<Type>();
+		private List<Type> knownTypes_ = new List<Type>();
 		internal Dictionary<string, object> SettingsData { get; } = new Dictionary<string, object>(); // 設定データ
-		Dictionary<string, SettingsImpl> ChildSettings { get; } = new Dictionary<string, SettingsImpl>(); // 子設定
-		ISettingsSerializer ChildSettingsSerializer { get; } = new DataContractSettingsSerializer(); // 子設定のシリアライザ 
+		private Dictionary<string, SettingsImpl> ChildSettings { get; } = new Dictionary<string, SettingsImpl>(); // 子設定
+		private ISettingsSerializer ChildSettingsSerializer { get; } = new DataContractSettingsSerializer(); // 子設定のシリアライザ 
 		#endregion
 
 
@@ -24,7 +24,7 @@ namespace AnizanHelper.Models.SettingComponents
 		#region Constructors
 		public SettingsImpl(string tag)
 		{
-			Tag = tag;
+			this.Tag = tag;
 		}
 
 		public SettingsImpl(IEnumerable<Type> knownTypes)
@@ -34,8 +34,9 @@ namespace AnizanHelper.Models.SettingComponents
 		public SettingsImpl(string tag, IEnumerable<Type> knownTypes)
 			: this(tag)
 		{
-			if (knownTypes != null) {
-				knownTypes_.AddRange(knownTypes);
+			if (knownTypes != null)
+			{
+				this.knownTypes_.AddRange(knownTypes);
 			}
 		}
 
@@ -43,17 +44,18 @@ namespace AnizanHelper.Models.SettingComponents
 			: this(tag, knownTypes)
 		{
 			if (parentSettings == null) { throw new ArgumentNullException("parentSettings"); }
-			ParentSettings = parentSettings;
+			this.ParentSettings = parentSettings;
 
 			// タグ編集
 			List<string> tags = new List<string>();
 			var settings = this;
-			while (settings != null) {
+			while (settings != null)
+			{
 				tags.Add(settings.Tag);
 				settings = settings.ParentSettings;
 			}
 			tags.Reverse();
-			Tag = string.Join("_", tags);
+			this.Tag = string.Join("_", tags);
 		}
 
 		#endregion
@@ -63,7 +65,7 @@ namespace AnizanHelper.Models.SettingComponents
 		{
 			get
 			{
-				return knownTypes_;
+				return this.knownTypes_;
 			}
 		}
 
@@ -75,27 +77,31 @@ namespace AnizanHelper.Models.SettingComponents
 			bool isNew = true;
 			object oldValue = null;
 
-			if (SettingsData.ContainsKey(actKey)) {
-				oldValue = SettingsData[actKey];
-				if (oldValue != null) {
+			if (this.SettingsData.ContainsKey(actKey))
+			{
+				oldValue = this.SettingsData[actKey];
+				if (oldValue != null)
+				{
 					isNew = (!oldValue.Equals(value));
 				}
-				else {
+				else
+				{
 					isNew = (value != null);
 				}
 			}
 
-			if (isNew) {
+			if (isNew)
+			{
 				var args = new SettingChangeEventArgs(key, oldValue, value);
-				OnSettingChanging(args);
-				SettingsData[actKey] = value;
-				OnSettingChanged(args);
+				this.OnSettingChanging(args);
+				this.SettingsData[actKey] = value;
+				this.OnSettingChanged(args);
 			}
 		}
 
 		public T Get<T>(string key, T defaultValue = default(T))
 		{
-			return SettingsData.TryGetValue(key, out var value) && value is T
+			return this.SettingsData.TryGetValue(key, out var value) && value is T
 				? (T)value
 				: defaultValue;
 		}
@@ -113,24 +119,26 @@ namespace AnizanHelper.Models.SettingComponents
 		public bool Exists(string key)
 		{
 			var actKey = key;
-			return SettingsData.ContainsKey(actKey);
+			return this.SettingsData.ContainsKey(actKey);
 		}
 
 		public void Remove(string key)
 		{
 			var actKey = key; // GetTaggedKey(key);
-			if (SettingsData.ContainsKey(actKey)) {
-				var args = new SettingChangeEventArgs(key, SettingsData[actKey], null);
-				OnSettingChanging(args);
-				SettingsData.Remove(actKey);
-				OnSettingChanged(args);
+			if (this.SettingsData.ContainsKey(actKey))
+			{
+				var args = new SettingChangeEventArgs(key, this.SettingsData[actKey], null);
+				this.OnSettingChanging(args);
+				this.SettingsData.Remove(actKey);
+				this.OnSettingChanged(args);
 			}
 		}
 
 		public void Clear()
 		{
-			foreach (var key in SettingsData.Keys.ToArray()) {
-				Remove(key);
+			foreach (var key in this.SettingsData.Keys.ToArray())
+			{
+				this.Remove(key);
 			}
 		}
 
@@ -138,35 +146,39 @@ namespace AnizanHelper.Models.SettingComponents
 		{
 			get
 			{
-				return SettingsData.Keys;
+				return this.SettingsData.Keys;
 			}
 		}
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:オブジェクトを複数回破棄しない")]
 		public ISettings GetChildSettings(string tag, IEnumerable<Type> knownTypes)
 		{
-			if (ChildSettings.ContainsKey(tag)) {
-				return ChildSettings[tag];
+			if (this.ChildSettings.ContainsKey(tag))
+			{
+				return this.ChildSettings[tag];
 			}
-			else {
+			else
+			{
 				var settings = new SettingsImpl(this, tag, knownTypes);
 
 				// 設定をロード
-				var setTag = GetTaggedKey(settings.Tag, true);
-				var setStr = Get<string>(setTag, null);
-				if (setStr != null) {
+				var setTag = this.GetTaggedKey(settings.Tag, true);
+				var setStr = this.Get<string>(setTag, null);
+				if (setStr != null)
+				{
 					using (var ms = new MemoryStream())
-					using (var writer = new StreamWriter(ms, Encoding.UTF8)) {
+					using (var writer = new StreamWriter(ms, Encoding.UTF8))
+					{
 						writer.Write(setStr);
 						writer.Flush();
 						ms.Seek(0, SeekOrigin.Begin);
-						ChildSettingsSerializer.Deserialize(ms, settings);
+						this.ChildSettingsSerializer.Deserialize(ms, settings);
 					}
 				}
 
 				// 子設定に追加
-				settings.SettingChanged += settings_SettingChanged;
-				ChildSettings[settings.Tag] = settings;
+				settings.SettingChanged += this.settings_SettingChanged;
+				this.ChildSettings[settings.Tag] = settings;
 				return settings;
 			}
 		}
@@ -176,31 +188,35 @@ namespace AnizanHelper.Models.SettingComponents
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		void settings_SettingChanged(object sender, SettingChangeEventArgs e)
+		private void settings_SettingChanged(object sender, SettingChangeEventArgs e)
 		{
 			var settings = sender as SettingsImpl;
-			if (settings != null) {
-				var tag = GetTaggedKey(settings.Tag, true);
+			if (settings != null)
+			{
+				var tag = this.GetTaggedKey(settings.Tag, true);
 				string str = null;
-				using (var ms = new MemoryStream()) {
-					ChildSettingsSerializer.Serialize(ms, settings);
+				using (var ms = new MemoryStream())
+				{
+					this.ChildSettingsSerializer.Serialize(ms, settings);
 					ms.Seek(0, SeekOrigin.Begin);
-					using (var reader = new StreamReader(ms)) {
+					using (var reader = new StreamReader(ms))
+					{
 						str = reader.ReadToEnd();
 					}
 				}
 
 				// 設定保存
-				Set(tag, str);
+				this.Set(tag, str);
 			}
 		}
 
 		public void RemoveChildSettings(string tag)
 		{
-			if (ChildSettings.ContainsKey(tag)) {
-				var settings = ChildSettings[tag];
-				ChildSettings[tag] = null;
-				settings.SettingChanged -= settings_SettingChanged;
+			if (this.ChildSettings.ContainsKey(tag))
+			{
+				var settings = this.ChildSettings[tag];
+				this.ChildSettings[tag] = null;
+				settings.SettingChanged -= this.settings_SettingChanged;
 			}
 		}
 
@@ -208,7 +224,7 @@ namespace AnizanHelper.Models.SettingComponents
 		{
 			get
 			{
-				return ChildSettings.Keys;
+				return this.ChildSettings.Keys;
 			}
 		}
 
@@ -218,34 +234,40 @@ namespace AnizanHelper.Models.SettingComponents
 		#endregion // ISettings メンバ
 
 		#region Private Methods
-		string GetTaggedKey(string key, bool isEmbed = false)
+		private string GetTaggedKey(string key, bool isEmbed = false)
 		{
 			string result;
-			if (Tag == null) {
+			if (this.Tag == null)
+			{
 				result = key;
 			}
-			else {
-				result = string.Format("{0}.{1}", Tag, key);
+			else
+			{
+				result = string.Format("{0}.{1}", this.Tag, key);
 			}
 
-			if (isEmbed) {
+			if (isEmbed)
+			{
 				return "__" + result;
 			}
-			else {
+			else
+			{
 				return result;
 			}
 		}
 
-		void OnSettingChanging(SettingChangeEventArgs args)
+		private void OnSettingChanging(SettingChangeEventArgs args)
 		{
-			if (SettingChanging != null) {
+			if (SettingChanging != null)
+			{
 				SettingChanging(this, args);
 			}
 		}
 
-		void OnSettingChanged(SettingChangeEventArgs args)
+		private void OnSettingChanged(SettingChangeEventArgs args)
 		{
-			if (SettingChanged != null) {
+			if (SettingChanged != null)
+			{
 				SettingChanged(this, args);
 			}
 		}
