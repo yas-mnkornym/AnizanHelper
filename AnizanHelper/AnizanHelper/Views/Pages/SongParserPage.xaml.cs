@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace AnizanHelper.Views.Pages
 {
-	public partial class SongSearchPage : UserControl
+	public partial class SongParserPage : UserControl
 	{
-		public SongSearchPage()
+		public SongParserPage()
 		{
 			this.InitializeComponent();
 		}

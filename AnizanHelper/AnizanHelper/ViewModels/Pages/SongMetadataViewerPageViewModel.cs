@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -18,7 +18,7 @@ using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
 using Studiotaiha.Toolkit;
 
-namespace AnizanHelper.ViewModels
+namespace AnizanHelper.ViewModels.Pages
 {
 	public enum SongRetreiverConnectionState
 	{
@@ -28,14 +28,14 @@ namespace AnizanHelper.ViewModels
 		Reconnecting,
 	}
 
-	public class SongMetadataViewerControlViewModel : ReactiveViewModelBase
+	public class SongMetadataViewerPageViewModel : ReactiveViewModelBase
 	{
 		private Settings Settings { get; }
 		private HttpClient HttpClient { get; }
 		private ISearchController SearchManager { get; }
 		private IcecastSongMetadataRetreiver songMetadataRetreiver;
 
-		public SongMetadataViewerControlViewModel(
+		public SongMetadataViewerPageViewModel(
 			Settings settings,
 			HttpClient httpClient,
 			ISearchController searchManager)

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AnizanHelper.Views.SongMetadataViewerControl"
+<UserControl x:Class="AnizanHelper.Views.Pages.SongMetadataViewerPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
@@ -6,7 +6,9 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:AnizanHelper.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
              x:Name="Root"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
@@ -118,11 +120,11 @@
             <DockPanel>
                 <TextBlock VerticalAlignment="Center"
                            Text="現在の曲" />
-                
+
                 <xctk:DropDownButton x:Name="DropDownButton_EncodingSelector"
-                                     DockPanel.Dock="Right"
-                                     Margin="2,0,0,0"
                                      MinWidth="75"
+                                     Margin="2,0,0,0"
+                                     DockPanel.Dock="Right"
                                      Content="{Binding Path=SelectedEncodingName.Value, Mode=OneWay}"
                                      ToolTip="タグの文字コードを変更します。">
                     <xctk:DropDownButton.DropDownContent>
@@ -157,10 +159,10 @@
                                Text="フォーマット"
                                ToolTip=".NETのSystem.Text.RegularExpressionsの書式で解析フォーマット(正規表現)を指定してください。" />
 
-                    <Button Content="履歴再解析"
-                            Margin="2,0,0,0"
+                    <Button Margin="2,0,0,0"
+                            Content="履歴再解析"
                             DockPanel.Dock="Right"
-                            Command="{Binding Path=ExtractHistoryCommand}"/>
+                            Command="{Binding Path=ExtractHistoryCommand}" />
 
                     <xctk:DropDownButton x:Name="DropDownButton_RegexPresets"
                                          MinWidth="75"
@@ -271,7 +273,7 @@
                                 Margin="2,0,0,0"
                                 Content="検索"
                                 Command="{Binding Path=SearchCommand}"
-                                CommandParameter="{Binding Path=CurrentSongMetadata.Value.ExtractedTitle, Mode=OneWay}"/>
+                                CommandParameter="{Binding Path=CurrentSongMetadata.Value.ExtractedTitle, Mode=OneWay}" />
 
 
                         <TextBlock Grid.Row="1"
@@ -318,7 +320,7 @@
                                         Header="曲履歴"
                                         IsReadOnly="False"
                                         Binding="{Binding Path=Content, Mode=TwoWay}" />
-                    
+
                     <DataGridTextColumn Width="2*"
                                         Header="曲名"
                                         IsReadOnly="False"
@@ -330,7 +332,7 @@
                                 <Button Content="検索"
                                         ToolTip="この履歴の曲名で検索します。"
                                         Command="{Binding Path=DataContext.SearchCommand, ElementName=Root}"
-                                        CommandParameter="{Binding Path=ExtractedTitle, Mode=OneWay}"  />
+                                        CommandParameter="{Binding Path=ExtractedTitle, Mode=OneWay}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

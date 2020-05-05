@@ -4,9 +4,9 @@ using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
 using Studiotaiha.Toolkit;
 
-namespace AnizanHelper.ViewModels
+namespace AnizanHelper.ViewModels.Pages
 {
-	public class SongParserVm : SongParserVmBase
+	public class SongParserPageViewModel : SongParserVmBase
 	{
 		ISongInfoParser parser = new AnisonDBParser();
 

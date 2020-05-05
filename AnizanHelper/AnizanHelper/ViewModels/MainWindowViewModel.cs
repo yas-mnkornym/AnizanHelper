@@ -10,6 +10,7 @@ using AnizanHelper.Models;
 using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.Parsers;
 using AnizanHelper.Services;
+using AnizanHelper.ViewModels.Pages;
 using AnizanHelper.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -53,8 +54,8 @@ namespace AnizanHelper.ViewModels
 			this.SongInfo = new AnizanSongInfo();
 			this.serializer_ = new Models.Serializers.AnizanListSerializer();
 
-			this.SongParserVm = new SongParserVm();
-			this.SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient, searchManager);
+			this.SongParserVm = new SongParserPageViewModel();
+			this.SongMetadataViewerViewmodel = new SongMetadataViewerPageViewModel(settings, httpClient, searchManager);
 
 			//this.SearchVm.SongParsed += this.SongParsed;
 			this.SongParserVm.SongParsed += this.SongParsed;
@@ -614,11 +615,11 @@ namespace AnizanHelper.ViewModels
 		//	}
 		//}
 
-		public SongParserVm SongParserVm
+		public SongParserPageViewModel SongParserVm
 		{
 			get
 			{
-				return this.GetValue<SongParserVm>();
+				return this.GetValue<SongParserPageViewModel>();
 			}
 			set
 			{
@@ -626,9 +627,9 @@ namespace AnizanHelper.ViewModels
 			}
 		}
 
-		public SongMetadataViewerControlViewModel SongMetadataViewerViewmodel
+		public SongMetadataViewerPageViewModel SongMetadataViewerViewmodel
 		{
-			get => this.GetValue<SongMetadataViewerControlViewModel>();
+			get => this.GetValue<SongMetadataViewerPageViewModel>();
 			set => this.SetValue(value);
 		}
 

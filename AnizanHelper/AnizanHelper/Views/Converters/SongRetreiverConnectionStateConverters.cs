@@ -1,9 +1,9 @@
-﻿using AnizanHelper.ViewModels;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+using AnizanHelper.ViewModels.Pages;
 
 namespace AnizanHelper.Views.Converters
 {
@@ -43,6 +43,7 @@ namespace AnizanHelper.Views.Converters
 	public class SongRetreiverConnectionStateStringConverter : SongRetreiverConnectionStateConverterBase<string>
 	{
 	}
+
 	public class SongRetreiverConnectionStateBrushConverter : SongRetreiverConnectionStateConverterBase<Brush>
 	{
 	}
