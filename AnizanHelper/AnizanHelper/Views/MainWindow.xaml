@@ -8,12 +8,12 @@
         xmlns:local="clr-namespace:AnizanHelper"
         xmlns:prism="http://prismlibrary.com/"
         x:Name="window_"
-        Title="{Binding Path=VersionName, StringFormat={}アニソンDBぱーさー Version {0}}"
+        Title="{Binding Path=VersionName.Value, StringFormat={}アニソンDBぱーさー Version {0}}"
         Width="{Binding Path=WindowWidth.Value, Mode=TwoWay}"
         Height="{Binding Path=WindowHeight.Value, Mode=TwoWay}"
         Background="WhiteSmoke"
 		prism:ViewModelLocator.AutoWireViewModel="True"
-        Topmost="{Binding Path=Settings.AlwaysOnTop, Mode=OneWay}">
+        Topmost="{Binding Path=ShowWindowAlwaysOnTop.Value, Mode=OneWay}">
     <Window.Resources>
         <conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
         <conv:BoolVisibilityConverter x:Key="TrueVisibleConverter"
@@ -52,8 +52,9 @@
                 <ToggleButton Margin="2,0,2,0"
                               VerticalAlignment="Center"
                               Content="最前面"
-                              IsChecked="{Binding Path=Settings.AlwaysOnTop, Mode=TwoWay}"
+                              IsChecked="{Binding Path=ShowWindowAlwaysOnTop.Value, Mode=TwoWay}"
                               ToolTip="ウィンドウを常に最前面に表示します。" />
+				
                 <!--<CheckBox Content="解析時番号付きコピー"
 						  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}"
 						  VerticalAlignment="Center"
@@ -62,13 +63,13 @@
                 <ToggleButton Margin="2,0,2,0"
                               VerticalAlignment="Center"
                               Content="適用時コピー"
-                              IsChecked="{Binding Path=Settings.CopyAfterApply, Mode=TwoWay}"
+                              IsChecked="{Binding Path=CopyAfterApply.Value, Mode=TwoWay}"
                               ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
 
                 <ToggleButton Margin="2,0,2,0"
                               VerticalAlignment="Center"
                               Content="自動クリア"
-                              IsChecked="{Binding Path=Settings.ClearInputAutomatically, Mode=TwoWay}"
+                              IsChecked="{Binding Path=ClearInputAutomatically.Value, Mode=TwoWay}"
                               ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
 
                 <ToggleButton Margin="2,0,2,0"
@@ -114,7 +115,7 @@
                 <CheckBox Margin="2,0,0,0"
                           VerticalAlignment="Center"
                           Content="追従"
-                          IsChecked="{Binding Path=Settings.SnapListWindow, Mode=TwoWay}" />
+                          IsChecked="{Binding Path=SnapListWindow.Value, Mode=TwoWay}" />
             </StackPanel>
         </Grid>
 
@@ -214,7 +215,7 @@
                                          Grid.RowSpan="3"
                                          Grid.Column="0"
                                          VerticalAlignment="Center"
-                                         DataContext="{Binding Path=SongInfo}" />
+                                         DataContext="{Binding Path=SongInfo.Value}" />
 
             <UniformGrid Grid.Row="0"
                          Grid.Column="1"
@@ -308,18 +309,18 @@
                                DockPanel.Dock="Left"
                                Text="曲番：" />
                     <xctk:IntegerUpDown DockPanel.Dock="Right"
-                                        Value="{Binding Path=SongNumber, StringFormat=D4, Mode=TwoWay}" />
+                                        Value="{Binding Path=SongNumber.Value, StringFormat=D4, Mode=TwoWay}" />
                 </DockPanel>
                 <CheckBox Content="コピー時増加"
-                          IsChecked="{Binding Settings.IncrementSongNumberWhenCopied}" />
+                          IsChecked="{Binding IncrementSongNumberWhenCopied.Vaule}" />
                 <CheckBox Content="変更自動適用"
-                          IsChecked="{Binding Settings.ApplySongInfoAutomatically}" />
+                          IsChecked="{Binding ApplySongInfoAutomatically.Value}" />
             </StackPanel>
 
             <TextBox AcceptsReturn="True"
                      AcceptsTab="True"
                      DockPanel.Dock="Left"
-                     Text="{Binding Path=ResultText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Path=ResultText.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      TextWrapping="Wrap" />
         </DockPanel>
 
@@ -354,17 +355,17 @@
                            Text="スレID:" />
 
                 <TextBox Grid.Column="1"
-                         Text="{Binding Path=Settings.ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding Path=ServerName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Grid.Column="3"
-                         Text="{Binding Path=Settings.BoardPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding Path=BoardPath.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox Grid.Column="5"
-                         Text="{Binding Path=Settings.ThreadKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding Path=ThreadKey.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <CheckBox Grid.Column="6"
                           Margin="5,0,0,0"
                           VerticalAlignment="Center"
                           Content="sage"
-                          IsChecked="{Binding Path=Settings.WriteAsSage, Mode=TwoWay}" />
+                          IsChecked="{Binding Path=WriteAsSage.Value, Mode=TwoWay}" />
             </Grid>
             <Button Grid.Column="1"
                     Margin="5,0,0,0"
@@ -376,7 +377,7 @@
                 Margin="0,5,0,0"
                 BorderBrush="Gray"
                 BorderThickness="0,1,0,0">
-            <TextBlock Text="{Binding Path=StatusText}" />
+            <TextBlock Text="{Binding Path=StatusText.Value}" />
         </Border>
     </Grid>
 </Window>

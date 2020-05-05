@@ -260,7 +260,7 @@ namespace AnizanHelper
 		private Settings InitializeSettings()
 		{
 			var settingsImpl = new SettingsImpl("AnizanHelper", Settings.KnownTypes);
-			this.settings_ = new Settings(settingsImpl, new WPFDispatcher(App.Current.Dispatcher));
+			this.settings_ = new Settings(settingsImpl);
 			var serializer = new DataContractSettingsSerializer();
 
 			// 設定を読込

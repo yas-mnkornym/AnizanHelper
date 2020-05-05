@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AnizanHelper.Models.SettingComponents;
 using Newtonsoft.Json;
 using Studiotaiha.Toolkit;
@@ -11,164 +11,92 @@ namespace AnizanHelper.Models
 			typeof(TimeSpan),
 		};
 
-		public Settings(ISettings settings, IDispatcher dispatcher)
-			: base(settings, dispatcher)
+		public Settings(ISettings settings)
+			: base(settings)
 		{ }
 
 		public bool ClearInputAutomatically
 		{
-			get
-			{
-				return this.GetValue(false);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(false);
+			set => this.SetValue(value);
 		}
 
 		public bool AlwaysOnTop
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool CopyAfterParse
 		{
-			get
-			{
-				return this.GetValue(false);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(false);
+			set => this.SetValue(value);
 		}
 
 		public bool CopyAfterApply
 		{
-			get
-			{
-				return this.GetValue(false);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(false);
+			set => this.SetValue(value);
 		}
 
 		public bool IncrementSongNumberWhenCopied
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public string ServerName
 		{
-			get
-			{
-				return this.GetValue(Constants.DefaultServerName);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(Constants.DefaultServerName);
+			set => this.SetValue(value);
 		}
 
 		public string BoardPath
 		{
-			get
-			{
-				return this.GetValue(Constants.DefaultBoardPath);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(Constants.DefaultBoardPath);
+			set => this.SetValue(value);
 		}
 
 		public string ThreadKey
 		{
-			get
-			{
-				return this.GetValue(string.Empty);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(string.Empty);
+			set => this.SetValue(value);
 		}
 
 		public string ZanmaiSearchUrl
 		{
-			get
-			{
-				return this.GetValue(Constants.ZanmaiSearchUrl);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(Constants.ZanmaiSearchUrl);
+			set => this.SetValue(value);
 		}
 
 		public bool ApplySongInfoAutomatically
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool WriteAsSage
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool CheckSeriesTypeNumberAutomatically
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool SnapListWindow
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
+		}
+
+		public bool ShowListWindow
+		{
+			get => this.GetValue<bool>();
+			set => this.SetValue(value);
 		}
 
 		public AnizanSongInfo[] SongList
@@ -208,14 +136,8 @@ namespace AnizanHelper.Models
 
 		public bool CheckForUpdateAutomatically
 		{
-			get
-			{
-				return this.GetValue(true);
-			}
-			set
-			{
-				this.SetValue(value);
-			}
+			get => this.GetValue(true);
+			set => this.SetValue(value);
 		}
 
 		public bool ShowParserControl
