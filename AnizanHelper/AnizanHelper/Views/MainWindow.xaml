@@ -164,8 +164,8 @@
                   Header="Webブラウザからの一行コピペ"
                   ToolTip="アニソンDBからコピーした楽曲情報（一行分）を解析して、入力フォームに適用します。"
                   Visibility="{Binding Path=ShowParserControl.Value, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}">
-            <pages:SongParserPage DataContext="{Binding Path=SongParserVm}" />
-        </GroupBox>
+			<ContentControl prism:RegionManager.RegionName="Region_SongParser" />
+		</GroupBox>
 
         <GroupBox Grid.Row="5"
                   Header="頻出曲"

@@ -39,8 +39,9 @@ namespace AnizanHelper
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			var regionManager = this.Container.Resolve<IRegionManager>();
-			regionManager.RequestNavigate("Region_Search", "SongSearchPage");
+			regionManager.RequestNavigate("Region_Search", "SongSearchPage"); 
 			regionManager.RequestNavigate("Region_StreamMetadata", "StreamMetadataViewerPage");
+			regionManager.RequestNavigate("Region_SongParser", "SongParserPage");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)

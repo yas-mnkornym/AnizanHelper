@@ -54,10 +54,8 @@ namespace AnizanHelper.ViewModels
 			this.SongInfo = new AnizanSongInfo();
 			this.serializer_ = new Models.Serializers.AnizanListSerializer();
 
-			this.SongParserVm = new SongParserPageViewModel();
-
 			//this.SearchVm.SongParsed += this.SongParsed;
-			this.SongParserVm.SongParsed += this.SongParsed;
+			//this.SongParserVm.SongParsed += this.SongParsed;
 
 			settings.PropertyChanged += this.settings_PropertyChanged;
 
@@ -380,7 +378,7 @@ namespace AnizanHelper.ViewModels
 				{
 					this.Dispatch(() =>
 					{
-						this.SongParserVm.ClearInput();
+						//this.SongParserVm.ClearInput();
 						//this.SearchVm.ClearInput();
 					});
 				}
@@ -457,7 +455,7 @@ namespace AnizanHelper.ViewModels
 						{
 							this.Dispatch(() =>
 							{
-								this.SongParserVm.ClearInput();
+								//this.SongParserVm.ClearInput();
 								//this.SearchVm.ClearInput();
 							});
 						}
@@ -601,30 +599,6 @@ namespace AnizanHelper.ViewModels
 		public ReactiveProperty<bool> SnapListWindow { get; } = new ReactiveProperty<bool>(true);
 
 		public ReactiveProperty<AnizanSongInfo[]> SongPresets { get; }
-
-		//public SongSearchViewModel SearchVm
-		//{
-		//	get
-		//	{
-		//		return this.GetValue<SongSearchViewModel>();
-		//	}
-		//	set
-		//	{
-		//		this.SetValue(value);
-		//	}
-		//}
-
-		public SongParserPageViewModel SongParserVm
-		{
-			get
-			{
-				return this.GetValue<SongParserPageViewModel>();
-			}
-			set
-			{
-				this.SetValue(value);
-			}
-		}
 
 		public AnizanSongInfo SongInfo
 		{
