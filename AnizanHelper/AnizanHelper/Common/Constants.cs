@@ -4,6 +4,13 @@ namespace AnizanHelper
 {
 	internal static class Constants
 	{
+		public static bool IsDebugBuild { get; } =
+#if DEBUG
+				true;
+#else
+				false;
+#endif
+
 		/// <summary>
 		/// 設定ファイル名
 		/// </summary>

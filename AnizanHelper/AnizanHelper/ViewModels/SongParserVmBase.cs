@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +7,9 @@ using AnizanHelper.Models.SettingComponents;
 
 namespace AnizanHelper.ViewModels
 {
-	public abstract class SongParserVmBase : ViewModelBase
+	public abstract class SongParserVmBase : ReactiveViewModelBase
 	{
 		public SongParserVmBase() { }
-
-		public SongParserVmBase(Studiotaiha.Toolkit.IDispatcher dispatcher)
-			: base(dispatcher)
-		{ }
-
 
 		protected void OnSongParsed(SongParsedEventArgs args)
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -45,7 +45,7 @@ namespace AnizanHelper.Models.DbSearch
 		async Task<SearchPageResult> SearchPageAsync(string uri, CancellationToken cancellationToken)
 		{
 			var doc = await QueryDocumentAsync(uri, cancellationToken).ConfigureAwait(false);
-			var tbody = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/table[1]/tbody[1]");
+			var tbody = doc.DocumentNode.SelectSingleNode(@"//table[contains(.,""曲名"")]/tbody");
 			if (tbody == null)
 			{
 				return new SearchPageResult

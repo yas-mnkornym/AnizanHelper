@@ -32,13 +32,13 @@ namespace AnizanHelper.ViewModels
 	{
 		private Settings Settings { get; }
 		private HttpClient HttpClient { get; }
-		private ISearchManager SearchManager { get; }
+		private ISearchController SearchManager { get; }
 		private IcecastSongMetadataRetreiver songMetadataRetreiver;
 
 		public SongMetadataViewerControlViewModel(
 			Settings settings,
 			HttpClient httpClient,
-			ISearchManager searchManager)
+			ISearchController searchManager)
 		{
 			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));

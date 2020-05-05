@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Reactive.Linq;
@@ -17,174 +17,169 @@ using Studiotaiha.LazyProperty;
 using Twin;
 using Twin.Bbs;
 
-
 namespace AnizanHelper.ViewModels
 {
 	internal class MainWindowViewModel : ReactiveViewModelBase, IDisposable
 	{
-		ISongInfoSerializer serializer_ = null;
-		AnizanSongInfoConverter converter_ = null;
-		SongPresetRepository songPresetRepository_ = null;
-		AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
-		Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
-		SongListWindow SongListWindow { get; }
-		UpdateCheckerService UpdateCheckerService { get; }
+		private ISongInfoSerializer serializer_ = null;
+		private AnizanSongInfoConverter converter_ = null;
+		private SongPresetRepository songPresetRepository_ = null;
+		private AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
+		private Subject<AnizanSongInfo> SongsSubject { get; } = new Subject<AnizanSongInfo>();
+		private SongListWindow SongListWindow { get; }
+		private UpdateCheckerService UpdateCheckerService { get; }
 
 		#region コンストラクタ
+
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="dispatcher">ディスパッチャ</param>
 		public MainWindowViewModel(
-			Window mainWindow,
 			Settings settings,
 			AnizanSongInfoConverter converter,
 			SongPresetRepository songPresetRepository,
 			IServiceManager serviceManager,
 			HttpClient httpClient,
-			ISearchManager searchManager,
-			Studiotaiha.Toolkit.IDispatcher dispatcher)
-			: base(dispatcher)
+			ISearchController searchManager)
 		{
-			if (mainWindow == null) { throw new ArgumentNullException(nameof(mainWindow)); }
 			if (serviceManager == null) { throw new ArgumentNullException(nameof(serviceManager)); }
 			if (httpClient == null) { throw new ArgumentNullException(nameof(httpClient)); }
 
-			Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-			converter_ = converter ?? throw new ArgumentNullException(nameof(converter));
-			songPresetRepository_ = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
+			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+			this.converter_ = converter ?? throw new ArgumentNullException(nameof(converter));
+			this.songPresetRepository_ = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
 
-			SongInfo = new AnizanSongInfo();
-			serializer_ = new Models.Serializers.AnizanListSerializer();
+			this.SongInfo = new AnizanSongInfo();
+			this.serializer_ = new Models.Serializers.AnizanListSerializer();
 
-			SearchVm = new SongSearchViewModel(settings, searchManager, dispatcher);
-			SongParserVm = new SongParserVm(dispatcher);
-			SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient, searchManager);
+			this.SongParserVm = new SongParserVm();
+			this.SongMetadataViewerViewmodel = new SongMetadataViewerControlViewModel(settings, httpClient, searchManager);
 
-			SearchVm.SongParsed += SongParsed;
-			SongParserVm.SongParsed += SongParsed;
+			//this.SearchVm.SongParsed += this.SongParsed;
+			this.SongParserVm.SongParsed += this.SongParsed;
 
-			settings.PropertyChanged += settings_PropertyChanged;
+			settings.PropertyChanged += this.settings_PropertyChanged;
 
 			MessageService.Current.MessageObservable
-				.Subscribe(message => StatusText = message)
-				.AddTo(Disposables);
+				.Subscribe(message => this.StatusText = message)
+				.AddTo(this.Disposables);
 
-			SongsSubject.AddTo(Disposables);
-			SongListWindowViewModel = new SongListWindowViewModel(settings, serializer_, SongsSubject)
-				.AddTo(Disposables);
+			this.SongsSubject.AddTo(this.Disposables);
+			this.SongListWindowViewModel = new SongListWindowViewModel(settings, this.serializer_, this.SongsSubject)
+				.AddTo(this.Disposables);
 
-			SongListWindow = new SongListWindow
+			this.SongListWindow = new SongListWindow
 			{
 				DataContext = SongListWindowViewModel,
-				Topmost = Settings.AlwaysOnTop
+				Topmost = this.Settings.AlwaysOnTop
 			};
 
-			SongListWindow.Loaded += (_, __) =>
+			this.SongListWindow.Loaded += (_, __) =>
 			{
-				SongListWindow.Owner = mainWindow;
-				SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-				SongListWindow.Top = mainWindow.Top;
-				SongListWindow.Height = mainWindow.Height;
+				//this.SongListWindow.Owner = mainWindow;
+				//this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+				//this.SongListWindow.Top = mainWindow.Top;
+				//this.SongListWindow.Height = mainWindow.Height;
 			};
 
-			mainWindow.Closed += (_, __) =>
-			{
-				SongListWindow.CloseImmediately();
-			};
+			//mainWindow.Closed += (_, __) =>
+			//{
+			//	this.SongListWindow.CloseImmediately();
+			//};
 
-			mainWindow.LocationChanged += (_, __) =>
-			{
-				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
-				{
-					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-					SongListWindow.Top = mainWindow.Top;
-				}
-			};
+			//mainWindow.LocationChanged += (_, __) =>
+			//{
+			//	if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+			//	{
+			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+			//		this.SongListWindow.Top = mainWindow.Top;
+			//	}
+			//};
 
-			mainWindow.SizeChanged += (_, __) =>
-			{
-				if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
-				{
-					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-					SongListWindow.Top = mainWindow.Top;
-				}
-			};
+			//mainWindow.SizeChanged += (_, __) =>
+			//{
+			//	if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+			//	{
+			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+			//		this.SongListWindow.Top = mainWindow.Top;
+			//	}
+			//};
 
-			SongListWindow.SizeChanged += (_, __) =>
-			{
-				if (mainWindow.Visibility == Visibility.Visible && SongListWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
-				{
-					SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-					SongListWindow.Top = mainWindow.Top;
-				}
-			};
+			//this.SongListWindow.SizeChanged += (_, __) =>
+			//{
+			//	if (mainWindow.Visibility == Visibility.Visible && this.SongListWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+			//	{
+			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+			//		this.SongListWindow.Top = mainWindow.Top;
+			//	}
+			//};
 
-			SongListWindow.IsVisibleChanged += (_, e) =>
+			this.SongListWindow.IsVisibleChanged += (_, e) =>
 			{
-				if (SongListWindow.Visibility != Visibility.Visible)
+				if (this.SongListWindow.Visibility != Visibility.Visible)
 				{
 					this.ShowListWindow.Value = false;
 				}
 			};
 
-			UpdateCheckerService = serviceManager.Services.First(x => x is UpdateCheckerService) as UpdateCheckerService;
+			this.UpdateCheckerService = serviceManager.Services.First(x => x is UpdateCheckerService) as UpdateCheckerService;
 
 			settings.PropertyChangedAsObservable()
-				.Where(x => x.PropertyName == nameof(Settings.SnapListWindow))
+				.Where(x => x.PropertyName == nameof(this.Settings.SnapListWindow))
 				.ObserveOnDispatcher()
 				.Subscribe(_ =>
 				{
-					if (mainWindow.Visibility == Visibility.Visible && Settings.SnapListWindow)
-					{
-						SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-						SongListWindow.Top = mainWindow.Top;
-					}
+					//if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+					//{
+					//	this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					//	this.SongListWindow.Top = mainWindow.Top;
+					//}
 				});
 
-			Settings.PropertyChangedAsObservable()
-				.Where(x => x.PropertyName == nameof(Settings.AlwaysOnTop))
+			this.Settings.PropertyChangedAsObservable()
+				.Where(x => x.PropertyName == nameof(this.Settings.AlwaysOnTop))
 				.ObserveOnUIDispatcher()
 				.Subscribe(_ =>
 				{
-					SongListWindow.Topmost = Settings.AlwaysOnTop;
+					this.SongListWindow.Topmost = this.Settings.AlwaysOnTop;
 				})
-				.AddTo(Disposables);
+				.AddTo(this.Disposables);
 
-			ShowListWindow
+			this.ShowListWindow
 				.ObserveOnUIDispatcher()
 				.Subscribe(show =>
 				{
 					if (show)
 					{
-						SongListWindow.Show();
+						this.SongListWindow.Show();
 					}
 					else
 					{
-						if (SongListWindow.Visibility == Visibility.Visible)
+						if (this.SongListWindow.Visibility == Visibility.Visible)
 						{
-							SongListWindow.Hide();
+							this.SongListWindow.Hide();
 						}
 					}
 				})
-				.AddTo(Disposables);
+				.AddTo(this.Disposables);
 
-			ShowParserControl = Settings
+			this.ShowParserControl = this.Settings
 				.ToReactivePropertyAsSynchronized(x => x.ShowParserControl, mode: ReactivePropertyMode.RaiseLatestValueOnSubscribe | ReactivePropertyMode.DistinctUntilChanged)
 				.AddTo(this.Disposables);
 
-			ShowTagRetreiver = Settings
+			this.ShowTagRetreiver = this.Settings
 				.ToReactivePropertyAsSynchronized(x => x.ShowStreamMetadataRetreiver)
 				.AddTo(this.Disposables);
 
-			ShowFrequentlyPlayedSongs = Settings
+			this.ShowFrequentlyPlayedSongs = this.Settings
 				.ToReactivePropertyAsSynchronized(x => x.ShowFrequentlyPlayedSongs)
 				.AddTo(this.Disposables);
 
-			SongPresets = songPresetRepository
+			this.SongPresets = songPresetRepository
 				.ToReactivePropertyAsSynchronized(x => x.Presets);
 
-			SetToSpecialCommand = new ReactiveCommand<string>()
+			this.SetToSpecialCommand = new ReactiveCommand<string>()
 				.WithSubscribe(type =>
 				{
 					var header = "★";
@@ -212,12 +207,12 @@ namespace AnizanHelper.ViewModels
 							return;
 					}
 
-					SongInfo.IsSpecialItem = true;
-					SongInfo.SpecialHeader = header;
-					SongInfo.SpecialItemName = body;
+					this.SongInfo.IsSpecialItem = true;
+					this.SongInfo.SpecialHeader = header;
+					this.SongInfo.SpecialItemName = body;
 				});
 
-			ApplyPresetCommand = new ReactiveCommand<AnizanSongInfo>()
+			this.ApplyPresetCommand = new ReactiveCommand<AnizanSongInfo>()
 				.WithSubscribe(preset =>
 				{
 					if (preset == null)
@@ -225,50 +220,49 @@ namespace AnizanHelper.ViewModels
 						return;
 					}
 
-
 					try
 					{
-						SongInfo.Title = preset.Title;
-						SongInfo.Singer = preset.Singer;
-						SongInfo.Genre = preset.Genre;
-						SongInfo.Series = preset.Series;
-						SongInfo.SongType = preset.SongType;
-						SongInfo.Additional = preset.Additional;
+						this.SongInfo.Title = preset.Title;
+						this.SongInfo.Singer = preset.Singer;
+						this.SongInfo.Genre = preset.Genre;
+						this.SongInfo.Series = preset.Series;
+						this.SongInfo.SongType = preset.SongType;
+						this.SongInfo.Additional = preset.Additional;
 
 						if (settings.ApplySongInfoAutomatically)
 						{
-							Serialize();
+							this.Serialize();
 						}
 					}
 					catch (Exception ex)
 					{
-						ShowErrorMessage("曲情報の適用に失敗為ました。", ex);
+						this.ShowErrorMessage("曲情報の適用に失敗為ました。", ex);
 					}
 				},
 				x => x.AddTo(this.Disposables))
 				.AddTo(this.Disposables);
 
-			SetPresetCommand = new ReactiveCommand<string>()
+			this.SetPresetCommand = new ReactiveCommand<string>()
 				.WithSubscribe(type =>
 				{
 					switch (type)
 					{
 						case "NOANIME":
-							SongInfo.Genre = string.Empty;
-							SongInfo.Series = "一般曲";
-							SongInfo.SongType = string.Empty;
+							this.SongInfo.Genre = string.Empty;
+							this.SongInfo.Series = "一般曲";
+							this.SongInfo.SongType = string.Empty;
 							break;
 
 						case "CLEARALL":
 							if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
 							{
-								SongInfo = new AnizanSongInfo();
+								this.SongInfo = new AnizanSongInfo();
 							}
 							break;
 					}
 				});
 
-			PasteZanmaiFormatCommand = new ReactiveCommand()
+			this.PasteZanmaiFormatCommand = new ReactiveCommand()
 				.WithSubscribe(() =>
 				{
 					try
@@ -277,7 +271,7 @@ namespace AnizanHelper.ViewModels
 							.Replace("\r", "")
 							.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
 							.Select(line => line.Trim())
-							.Select(line => AnizanFormatParser.ParseAsAnizanInfo(line))
+							.Select(line => this.AnizanFormatParser.ParseAsAnizanInfo(line))
 							.FirstOrDefault(x => x != null);
 
 						if (item == null)
@@ -287,7 +281,7 @@ namespace AnizanHelper.ViewModels
 
 						item.IsSpecialItem = !string.IsNullOrWhiteSpace(item.SpecialHeader);
 						this.SongInfo = item;
-						SearchVm.SearchWord = item.Title;
+						//this.SearchVm.SearchWord = item.Title;
 					}
 					catch (Exception ex)
 					{
@@ -299,12 +293,12 @@ namespace AnizanHelper.ViewModels
 					}
 				});
 
-			CheckForUpdateCommand = new AsyncReactiveCommand()
+			this.CheckForUpdateCommand = new AsyncReactiveCommand()
 				.WithSubscribe(async () =>
 				{
 					try
 					{
-						var ret = await UpdateCheckerService.CheckForUpdateAndShowDialogIfAvailableAsync(false);
+						var ret = await this.UpdateCheckerService.CheckForUpdateAndShowDialogIfAvailableAsync(false);
 						if (ret == false)
 						{
 							MessageService.Current.ShowMessage("アップデートはありません。");
@@ -323,39 +317,42 @@ namespace AnizanHelper.ViewModels
 		}
 
 		// 曲情報がパースされたよ！
-		void SongParsed(object sender, SongParsedEventArgs e)
+		private void SongParsed(object sender, SongParsedEventArgs e)
 		{
-			SongInfo = converter_.Convert(e.SongInfo);
-			Serialize();
+			this.SongInfo = this.converter_.Convert(e.SongInfo);
+			this.Serialize();
 		}
 
-		void settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == GetMemberName(() => Settings.ServerName) ||
-				e.PropertyName == GetMemberName(() => Settings.BoardPath) ||
-				e.PropertyName == GetMemberName(() => Settings.ThreadKey)) {
-					Dispatch(() => {
-						WriteToThreadCommand.RaiseCanExecuteChanged();
-					});
+			if (e.PropertyName == this.GetMemberName(() => this.Settings.ServerName) ||
+				e.PropertyName == this.GetMemberName(() => this.Settings.BoardPath) ||
+				e.PropertyName == this.GetMemberName(() => this.Settings.ThreadKey))
+			{
+				this.Dispatch(() =>
+				{
+					this.WriteToThreadCommand.RaiseCanExecuteChanged();
+				});
 			}
 		}
-		#endregion
+
+		#endregion コンストラクタ
 
 		#region いろいろやるやつ
 
-		void Serialize()
+		private void Serialize()
 		{
-			if (serializer_ == null) { throw new InvalidOperationException("シリアライザが設定されていません。"); }
-			ResultText = SongInfo.IsSpecialItem
-				? serializer_.SerializeFull(SongInfo)
-				: serializer_.Serialize(SongInfo);
+			if (this.serializer_ == null) { throw new InvalidOperationException("シリアライザが設定されていません。"); }
+			this.ResultText = this.SongInfo.IsSpecialItem
+				? this.serializer_.SerializeFull(this.SongInfo)
+				: this.serializer_.Serialize(this.SongInfo);
 		}
 
-		void CopyToClipboard(bool appendNumber)
+		private void CopyToClipboard(bool appendNumber)
 		{
 			string format = (appendNumber ? "{0:D4}{1}" : "{1}");
 			var str = string.Format(format,
-				SongNumber, ResultText);
+				this.SongNumber, this.ResultText);
 			if (string.IsNullOrEmpty("str")) { str = " "; }
 
 			App.Current.Dispatcher.BeginInvoke((Action)(() =>
@@ -364,93 +361,104 @@ namespace AnizanHelper.ViewModels
 				{
 					System.Windows.Forms.Clipboard.SetText(str);
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
 					this.ShowErrorMessage("コピーに失敗しました。", ex);
 					return;
 				}
 
-				AddCurrentSongToList();
+				this.AddCurrentSongToList();
 
 				// 番号インクリメント
-				if (Settings.IncrementSongNumberWhenCopied && !SongInfo.IsSpecialItem)
+				if (this.Settings.IncrementSongNumberWhenCopied && !this.SongInfo.IsSpecialItem)
 				{
-					SongNumber++;
+					this.SongNumber++;
 				}
 
 				// 入力欄クリア
-				if (Settings.ClearInputAutomatically)
+				if (this.Settings.ClearInputAutomatically)
 				{
-					Dispatch(() =>
+					this.Dispatch(() =>
 					{
-						SongParserVm.ClearInput();
-						SearchVm.ClearInput();
+						this.SongParserVm.ClearInput();
+						//this.SearchVm.ClearInput();
 					});
 				}
 			}));
 		}
 
-		void AddCurrentSongToList()
+		private void AddCurrentSongToList()
 		{
-			var info = new AnizanSongInfo {
-				Title = SongInfo.Title,
-				Singer = SongInfo.Singer,
-				Genre = SongInfo.Genre,
-				Series = SongInfo.Series,
-				SongType = SongInfo.SongType,
-				Additional = SongInfo.Additional,
+			var info = new AnizanSongInfo
+			{
+				Title = this.SongInfo.Title,
+				Singer = this.SongInfo.Singer,
+				Genre = this.SongInfo.Genre,
+				Series = this.SongInfo.Series,
+				SongType = this.SongInfo.SongType,
+				Additional = this.SongInfo.Additional,
 			};
 
-			if (SongInfo.IsSpecialItem) {
-				info.SpecialHeader = SongInfo.SpecialHeader;
-				info.SpecialItemName = SongInfo.SpecialItemName;
+			if (this.SongInfo.IsSpecialItem)
+			{
+				info.SpecialHeader = this.SongInfo.SpecialHeader;
+				info.SpecialItemName = this.SongInfo.SpecialItemName;
 				info.Number = 0;
 			}
-			else {
-				info.Number = SongNumber;
+			else
+			{
+				info.Number = this.SongNumber;
 			}
 
-			SongsSubject.OnNext(info);
+			this.SongsSubject.OnNext(info);
 		}
 
-		void WriteToThread()
+		private void WriteToThread()
 		{
-			var board = new BoardInfo(Settings.ServerName, Settings.BoardPath, "板名");
-			var thread = new X2chThreadHeader {
+			var board = new BoardInfo(this.Settings.ServerName, this.Settings.BoardPath, "板名");
+			var thread = new X2chThreadHeader
+			{
 				BoardInfo = board,
-				Key = Settings.ThreadKey
+				Key = this.Settings.ThreadKey
 			};
-			
-			var str = SongInfo.IsSpecialItem
-					? ResultText
-					: string.Format("{0:D4}{1}", SongNumber, ResultText);
 
-			var res = new PostRes {
+			var str = this.SongInfo.IsSpecialItem
+					? this.ResultText
+					: string.Format("{0:D4}{1}", this.SongNumber, this.ResultText);
+
+			var res = new PostRes
+			{
 				Body = str,
 			};
-			if (Settings.WriteAsSage) {
+			if (this.Settings.WriteAsSage)
+			{
 				res.Email = "sage";
 			}
 			var post = new X2chPost();
-			post.Posted += (s, e) => {
+			post.Posted += (s, e) =>
+			{
 				Console.WriteLine("Response: ", e.Response);
-				switch (e.Response) {
+				switch (e.Response)
+				{
 					case PostResponse.Success:
 						MessageService.Current.ShowMessage(string.Format("書き込み成功! ( {0} )",
 							str.Length > 40 ? str.Substring(0, 40) + "..." : str));
 
-						AddCurrentSongToList();
+						this.AddCurrentSongToList();
 
 						// 曲番号インクリメント
-						if (!SongInfo.IsSpecialItem && Settings.IncrementSongNumberWhenCopied) {
-							SongNumber++;
+						if (!this.SongInfo.IsSpecialItem && this.Settings.IncrementSongNumberWhenCopied)
+						{
+							this.SongNumber++;
 						}
 
 						// 入力欄クリア
-						if (Settings.ClearInputAutomatically) {
-							Dispatch(() => {
-								SongParserVm.ClearInput();
-								SearchVm.ClearInput();
+						if (this.Settings.ClearInputAutomatically)
+						{
+							this.Dispatch(() =>
+							{
+								this.SongParserVm.ClearInput();
+								//this.SearchVm.ClearInput();
 							});
 						}
 						break;
@@ -471,42 +479,48 @@ namespace AnizanHelper.ViewModels
 						break;
 				}
 			};
-			post.Error += (s, e) => {
+			post.Error += (s, e) =>
+			{
 				MessageService.Current.ShowMessage("書き込み失敗orz");
 				MessageBox.Show(
 					string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", e.Exception),
 					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
 			};
 
-			Task.Factory.StartNew((Action)(() => {
-				try {
+			Task.Factory.StartNew((Action)(() =>
+			{
+				try
+				{
 					this.CanWrite = false;
 					MessageService.Current.ShowMessage("書き込んでいます...");
 					post.Post(thread, res);
 				}
-				catch (Exception ex) {
+				catch (Exception ex)
+				{
 					MessageBox.Show(
 						string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", ex),
 						"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
 				}
-				finally {
+				finally
+				{
 					this.CanWrite = true;
 				}
 			}));
 		}
-		#endregion
+
+		#endregion いろいろやるやつ
 
 		#region Bindings
-		
+
 		public Settings Settings
 		{
 			get
 			{
-				return GetValue<Settings>();
+				return this.GetValue<Settings>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -514,12 +528,13 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<bool>(true);
+				return this.GetValue(true);
 			}
 			set
 			{
-				if (SetValue(value)) {
-					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
+				if (this.SetValue(value))
+				{
+					this.Dispatch(() => this.WriteToThreadCommand.RaiseCanExecuteChanged());
 				}
 			}
 		}
@@ -528,11 +543,11 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -540,12 +555,13 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<string>();
+				return this.GetValue<string>();
 			}
 			set
 			{
-				if (SetValue(value)) {
-					Dispatch(() => WriteToThreadCommand.RaiseCanExecuteChanged());
+				if (this.SetValue(value))
+				{
+					this.Dispatch(() => this.WriteToThreadCommand.RaiseCanExecuteChanged());
 				}
 			}
 		}
@@ -554,55 +570,59 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<int>(1);
+				return this.GetValue(1);
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
 		#region VersionName
-		string versionName_ = null;
+
+		private string versionName_ = null;
+
 		public string VersionName
 		{
 			get
 			{
-				if (versionName_ == null) {
+				if (this.versionName_ == null)
+				{
 					var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-					versionName_ = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+					this.versionName_ = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
 				}
-				return versionName_;
+				return this.versionName_;
 			}
 		}
-		#endregion
+
+		#endregion VersionName
 
 		public ReactiveProperty<bool> ShowListWindow { get; } = new ReactiveProperty<bool>();
 		public ReactiveProperty<bool> SnapListWindow { get; } = new ReactiveProperty<bool>(true);
 
 		public ReactiveProperty<AnizanSongInfo[]> SongPresets { get; }
 
-		public SongSearchViewModel SearchVm
-		{
-			get
-			{
-				return GetValue<SongSearchViewModel>();
-			}
-			set
-			{
-				SetValue(value);
-			}
-		}
+		//public SongSearchViewModel SearchVm
+		//{
+		//	get
+		//	{
+		//		return this.GetValue<SongSearchViewModel>();
+		//	}
+		//	set
+		//	{
+		//		this.SetValue(value);
+		//	}
+		//}
 
 		public SongParserVm SongParserVm
 		{
 			get
 			{
-				return GetValue<SongParserVm>();
+				return this.GetValue<SongParserVm>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
@@ -616,23 +636,27 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<AnizanSongInfo>();
+				return this.GetValue<AnizanSongInfo>();
 			}
 			set
 			{
-				SetValue(
+				this.SetValue(
 					value,
-					actBeforeChange: (oldValue, newValue) => {
-						if (oldValue != null) {
-							oldValue.PropertyChanged -= SongInfo_PropertyChanged;
+					actBeforeChange: (oldValue, newValue) =>
+					{
+						if (oldValue != null)
+						{
+							oldValue.PropertyChanged -= this.SongInfo_PropertyChanged;
 						}
 					},
-					actAfterChange: (oldValue, newValue) => {
-						newValue.PropertyChanged += SongInfo_PropertyChanged;
-						Dispatch(() => {
-							ToTvSizeCommand.RaiseCanExecuteChanged();
-							ToLiveVersionCommand.RaiseCanExecuteChanged();
-							SetAdditionalCommand.RaiseCanExecuteChanged();
+					actAfterChange: (oldValue, newValue) =>
+					{
+						newValue.PropertyChanged += this.SongInfo_PropertyChanged;
+						this.Dispatch(() =>
+						{
+							this.ToTvSizeCommand.RaiseCanExecuteChanged();
+							this.ToLiveVersionCommand.RaiseCanExecuteChanged();
+							this.SetAdditionalCommand.RaiseCanExecuteChanged();
 						});
 					});
 			}
@@ -642,18 +666,19 @@ namespace AnizanHelper.ViewModels
 		{
 			get
 			{
-				return GetValue<SongListWindowViewModel>();
+				return this.GetValue<SongListWindowViewModel>();
 			}
 			set
 			{
-				SetValue(value);
+				this.SetValue(value);
 			}
 		}
 
-		void SongInfo_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private void SongInfo_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (Settings.ApplySongInfoAutomatically) {
-				Serialize();
+			if (this.Settings.ApplySongInfoAutomatically)
+			{
+				this.Serialize();
 			}
 		}
 
@@ -664,98 +689,99 @@ namespace AnizanHelper.ViewModels
 		public ReactiveProperty<double> WindowWidth => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.WindowWidth));
 		public ReactiveProperty<double> WindowHeight => this.LazyReactiveProperty(() => this.Settings.ToReactivePropertyAsSynchronized(x => x.WindowHeight));
 
-		#endregion // Bindings
+		#endregion Bindings
 
 		#region Commands
 
 		#region ParseInputCommand
-		DelegateCommand parseInputCommand_ = null;
+
+		private DelegateCommand parseInputCommand_ = null;
+
 		public DelegateCommand ParseInputCommand
 		{
 			get
 			{
-				if (parseInputCommand_ == null) {
-					parseInputCommand_ = new DelegateCommand {
-						ExecuteHandler = param => {
-							try {
-								Serialize();
+				if (this.parseInputCommand_ == null)
+				{
+					this.parseInputCommand_ = new DelegateCommand
+					{
+						ExecuteHandler = param =>
+						{
+							try
+							{
+								this.Serialize();
 
 								// 自動コピー
-								if (Settings.CopyAfterParse) {
-									CopyToClipboard(true);
+								if (this.Settings.CopyAfterParse)
+								{
+									this.CopyToClipboard(true);
 								}
 							}
-							catch (Exception ex) {
-								ErrMsg("曲情報の解析に失敗しました。", ex);
+							catch (Exception ex)
+							{
+								this.ErrMsg("曲情報の解析に失敗しました。", ex);
 							}
 						}
 					};
 				}
-				return parseInputCommand_;
+				return this.parseInputCommand_;
 			}
 		}
-		#endregion
+
+		#endregion ParseInputCommand
 
 		#region ApplyDetailsCommand
-		DelegateCommand applyDetailsCommand_ = null;
+
+		private DelegateCommand applyDetailsCommand_ = null;
+
 		public DelegateCommand ApplyDetailsCommand
 		{
 			get
 			{
-				if (applyDetailsCommand_ == null) {
-					applyDetailsCommand_ = new DelegateCommand {
-						ExecuteHandler = param => {
-							try {
-								Serialize();
-								if (Settings.CopyAfterApply) {
-									CopyToClipboard(true);
+				if (this.applyDetailsCommand_ == null)
+				{
+					this.applyDetailsCommand_ = new DelegateCommand
+					{
+						ExecuteHandler = param =>
+						{
+							try
+							{
+								this.Serialize();
+								if (this.Settings.CopyAfterApply)
+								{
+									this.CopyToClipboard(true);
 								}
 							}
-							catch (Exception ex) {
-								ErrMsg("曲情報の適用に失敗しました。", ex);
+							catch (Exception ex)
+							{
+								this.ErrMsg("曲情報の適用に失敗しました。", ex);
 							}
 						}
 					};
 				}
-				return applyDetailsCommand_;
+				return this.applyDetailsCommand_;
 			}
 		}
-		#endregion
+
+		#endregion ApplyDetailsCommand
 
 		#region CopyResultCommand
-		DelegateCommand copyResultCommand_ = null;
+
+		private DelegateCommand copyResultCommand_ = null;
+
 		public DelegateCommand CopyResultCommand
 		{
 			get
 			{
-				if (copyResultCommand_ == null) {
-					copyResultCommand_ = new DelegateCommand {
-						ExecuteHandler = param => {
-							try {
-								CopyToClipboard(false);
-							}
-							catch (Exception ex) {
-								this.ShowErrorMessage("コピーに失敗しました。", ex);
-							}
-						}
-					};
-				}
-				return copyResultCommand_;
-			}
-		}
-		#endregion
-
-		#region CopyResultAndSongNumberCommand
-		DelegateCommand copyResultAndSongNumberCommand = null;
-		public DelegateCommand CopyResultAndSongNumberCommand
-		{
-			get
-			{
-				if (copyResultAndSongNumberCommand == null) {
-					copyResultAndSongNumberCommand = new DelegateCommand {
-						ExecuteHandler = param => {
-							try {
-								CopyToClipboard(true);
+				if (this.copyResultCommand_ == null)
+				{
+					this.copyResultCommand_ = new DelegateCommand
+					{
+						ExecuteHandler = param =>
+						{
+							try
+							{
+								this.CopyToClipboard(false);
 							}
 							catch (Exception ex)
 							{
@@ -764,45 +790,89 @@ namespace AnizanHelper.ViewModels
 						}
 					};
 				}
-				return copyResultAndSongNumberCommand;
+				return this.copyResultCommand_;
 			}
 		}
-		#endregion
+
+		#endregion CopyResultCommand
+
+		#region CopyResultAndSongNumberCommand
+
+		private DelegateCommand copyResultAndSongNumberCommand = null;
+
+		public DelegateCommand CopyResultAndSongNumberCommand
+		{
+			get
+			{
+				if (this.copyResultAndSongNumberCommand == null)
+				{
+					this.copyResultAndSongNumberCommand = new DelegateCommand
+					{
+						ExecuteHandler = param =>
+						{
+							try
+							{
+								this.CopyToClipboard(true);
+							}
+							catch (Exception ex)
+							{
+								this.ShowErrorMessage("コピーに失敗しました。", ex);
+							}
+						}
+					};
+				}
+				return this.copyResultAndSongNumberCommand;
+			}
+		}
+
+		#endregion CopyResultAndSongNumberCommand
 
 		#region WriteToThreadCommand
-		DelegateCommand writeToThreadCommand_ = null;
+
+		private DelegateCommand writeToThreadCommand_ = null;
+
 		public DelegateCommand WriteToThreadCommand
 		{
 			get
 			{
-				return writeToThreadCommand_ ?? (writeToThreadCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
-						WriteToThread();
+				return this.writeToThreadCommand_ ?? (this.writeToThreadCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
+						this.WriteToThread();
 					},
-					CanExecuteHandler = param => {
+					CanExecuteHandler = param =>
+					{
 						return (
-							CanWrite &&
-							!string.IsNullOrWhiteSpace(ResultText) &&
-							!string.IsNullOrWhiteSpace(Settings.ServerName) &&
-							!string.IsNullOrWhiteSpace(Settings.BoardPath) &&
-							!string.IsNullOrWhiteSpace(Settings.ThreadKey));
+							this.CanWrite &&
+							!string.IsNullOrWhiteSpace(this.ResultText) &&
+							!string.IsNullOrWhiteSpace(this.Settings.ServerName) &&
+							!string.IsNullOrWhiteSpace(this.Settings.BoardPath) &&
+							!string.IsNullOrWhiteSpace(this.Settings.ThreadKey));
 					}
 				});
 			}
 		}
-		#endregion 
+
+		#endregion WriteToThreadCommand
 
 		#region CheckForDictionaryUpdateCommand
-		DelegateCommand checkForDictionaryUpdateCommand_ = null;
+
+		private DelegateCommand checkForDictionaryUpdateCommand_ = null;
+
 		public DelegateCommand CheckForDictionaryUpdateCommand
 		{
 			get
 			{
-				return checkForDictionaryUpdateCommand_ ?? (checkForDictionaryUpdateCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
+				return this.checkForDictionaryUpdateCommand_ ?? (this.checkForDictionaryUpdateCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
 						var app = App.Current as App;
-						if (app != null) {
-							Task.Factory.StartNew(() => {
+						if (app != null)
+						{
+							Task.Factory.StartNew(() =>
+							{
 								app.UpdateDictionary();
 							});
 						}
@@ -810,69 +880,90 @@ namespace AnizanHelper.ViewModels
 				});
 			}
 		}
-		#endregion
+
+		#endregion CheckForDictionaryUpdateCommand
 
 		#region ReloadDictionaryCommand
-		DelegateCommand reloadDictionaryCommand_ = null;
+
+		private DelegateCommand reloadDictionaryCommand_ = null;
+
 		public DelegateCommand ReloadDictionaryCommand
 		{
 			get
 			{
-				return reloadDictionaryCommand_ ?? (reloadDictionaryCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
-						if (App.Current is App app) {
-							try {
+				return this.reloadDictionaryCommand_ ?? (this.reloadDictionaryCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
+						if (App.Current is App app)
+						{
+							try
+							{
 								app.LoadDictionaries();
-								InfoMsg("辞書の読み込みを完了しました。");
+								this.InfoMsg("辞書の読み込みを完了しました。");
 							}
-							catch (Exception ex) {
-								ErrMsg("辞書データの読み込みに失敗しました。", ex);
+							catch (Exception ex)
+							{
+								this.ErrMsg("辞書データの読み込みに失敗しました。", ex);
 							}
 						}
 					}
 				});
 			}
 		}
-		#endregion
+
+		#endregion ReloadDictionaryCommand
 
 		#region ToTvSizeCommand
-		DelegateCommand toTvSizeCommand_ = null;
+
+		private DelegateCommand toTvSizeCommand_ = null;
+
 		public DelegateCommand ToTvSizeCommand
 		{
 			get
 			{
-				return toTvSizeCommand_ ?? (toTvSizeCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
-						var oldStr = SongInfo.Title ?? "";
-						SongInfo.Title = oldStr.TrimEnd() + "(TV size)";
+				return this.toTvSizeCommand_ ?? (this.toTvSizeCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
+						var oldStr = this.SongInfo.Title ?? "";
+						this.SongInfo.Title = oldStr.TrimEnd() + "(TV size)";
 					},
-					CanExecuteHandler = param => {
-						return (SongInfo != null);
+					CanExecuteHandler = param =>
+					{
+						return (this.SongInfo != null);
 					}
 				});
 			}
 		}
-		#endregion 
+
+		#endregion ToTvSizeCommand
 
 		#region ToLiveVersionCommand
-		DelegateCommand toLiveVersionCommand_ = null;
+
+		private DelegateCommand toLiveVersionCommand_ = null;
+
 		public DelegateCommand ToLiveVersionCommand
 		{
 			get
 			{
-				return toLiveVersionCommand_ ?? (toLiveVersionCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
-						var oldStr = SongInfo.Title ?? "";
-						SongInfo.Title = oldStr.TrimEnd() + "(Live ver.)";
-						SongInfo.SongType = "AR";
+				return this.toLiveVersionCommand_ ?? (this.toLiveVersionCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
+						var oldStr = this.SongInfo.Title ?? "";
+						this.SongInfo.Title = oldStr.TrimEnd() + "(Live ver.)";
+						this.SongInfo.SongType = "AR";
 					},
-					CanExecuteHandler = param => {
-						return (SongInfo != null);
+					CanExecuteHandler = param =>
+					{
+						return (this.SongInfo != null);
 					}
 				});
 			}
 		}
-		#endregion 
+
+		#endregion ToLiveVersionCommand
 
 		public ReactiveCommand<string> SetToSpecialCommand { get; }
 		public ReactiveCommand<string> SetPresetCommand { get; }
@@ -880,55 +971,65 @@ namespace AnizanHelper.ViewModels
 		public AsyncReactiveCommand CheckForUpdateCommand { get; }
 		public ReactiveCommand<AnizanSongInfo> ApplyPresetCommand { get; }
 
-		#endregion // Commands
+		#endregion Commands
 
 		#region SetAdditionalCommand
-		DelegateCommand setAdditionalCommand_ = null;
+
+		private DelegateCommand setAdditionalCommand_ = null;
+
 		public DelegateCommand SetAdditionalCommand
 		{
 			get
 			{
-				return setAdditionalCommand_ ?? (setAdditionalCommand_ = new DelegateCommand {
-					ExecuteHandler = param => {
+				return this.setAdditionalCommand_ ?? (this.setAdditionalCommand_ = new DelegateCommand
+				{
+					ExecuteHandler = param =>
+					{
 						var str = param as string;
 						if (string.IsNullOrWhiteSpace(str)) { return; }
-						if (!string.IsNullOrWhiteSpace(SongInfo.Additional)) {
-							SongInfo.Additional += "," + str;
+						if (!string.IsNullOrWhiteSpace(this.SongInfo.Additional))
+						{
+							this.SongInfo.Additional += "," + str;
 						}
-						else {
-							SongInfo.Additional = str;
+						else
+						{
+							this.SongInfo.Additional = str;
 						}
 					},
-					CanExecuteHandler = param => {
-						return (SongInfo != null);
+					CanExecuteHandler = param =>
+					{
+						return (this.SongInfo != null);
 					}
 				});
 			}
 		}
-		#endregion 
+
+		#endregion SetAdditionalCommand
 
 		#region メッセージ
-		void InfoMsg(string message)
+
+		private void InfoMsg(string message)
 		{
 			MessageBox.Show(message, "情報", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
-		void InfoMsg(string message, Exception ex)
+		private void InfoMsg(string message, Exception ex)
 		{
-			InfoMsg(string.Format("{0}\n\n***例外情報***\n{1}",
+			this.InfoMsg(string.Format("{0}\n\n***例外情報***\n{1}",
 				message, ex.ToString()));
 		}
 
-		void ErrMsg(string message)
+		private void ErrMsg(string message)
 		{
 			MessageBox.Show(message, "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
-		void ErrMsg(string message, Exception ex)
+		private void ErrMsg(string message, Exception ex)
 		{
-			ErrMsg(string.Format("{0}\n\n***例外情報***\n{1}",
+			this.ErrMsg(string.Format("{0}\n\n***例外情報***\n{1}",
 				message, ex.ToString()));
 		}
-		#endregion
+
+		#endregion メッセージ
 	}
 }

@@ -9,7 +9,7 @@ using HtmlAgilityPack;
 
 namespace AnizanHelper.Models.DbSearch
 {
-	public class SongSearchResult : NotificationObjectWithNotifyChaning
+	public class SongSearchResult
 	{
 		public string Title { get; set; }
 

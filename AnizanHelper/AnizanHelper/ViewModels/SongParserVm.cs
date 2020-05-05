@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
@@ -9,10 +9,6 @@ namespace AnizanHelper.ViewModels
 	public class SongParserVm : SongParserVmBase
 	{
 		ISongInfoParser parser = new AnisonDBParser();
-
-		public SongParserVm(IDispatcher dispatcher)
-			: base(dispatcher)
-		{ }
 
 		public override void ClearInput()
 		{

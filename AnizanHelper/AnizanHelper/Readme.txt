@@ -27,8 +27,9 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Reactive Property
 ・Reactive Extensions
 ・TaihaToolkit
-・LazyProperty.Reactive
+・LazyProperty
 ・Unity (DIのほう)
+・Prism
 
 ●更新履歴
 Version 1.3.3
