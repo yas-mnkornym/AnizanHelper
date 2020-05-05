@@ -5,13 +5,6 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnizanHelper", "AnizanHelper\AnizanHelper.csproj", "{C4F3E160-4ADE-438F-9BC8-4B8F2EB1CE3D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B4349AC6-0BAE-45A4-A299-BE8FAC9C65F2}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Twintail", "Twintail", "{8CC1E7D4-8020-4186-BDA1-C035FA50EE57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpSamples", "Twintail\CSharpSamples\CSharpSamples.csproj", "{A941B03E-81A7-4B6B-934E-A015057C39DA}"
