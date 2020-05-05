@@ -12,14 +12,14 @@ using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
 using Xceed.Wpf.Toolkit;
 
-namespace AnizanHelper.ViewModels
+namespace AnizanHelper.ViewModels.Pages
 {
-	internal class SongSearchControlViewModel : SongParserVmBase, ISearchController
+	internal class SongSearchPageViewModel : SongParserVmBase, ISearchController
 	{
 		public SongSearcher Searcher { get; } = new SongSearcher();
 		private Settings Settings { get; }
 
-		public SongSearchControlViewModel(
+		public SongSearchPageViewModel(
 			Settings settings,
 			ProxySearchController proxySearchController)
 		{

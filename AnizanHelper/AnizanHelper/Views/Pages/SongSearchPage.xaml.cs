@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AnizanHelper.Views
+namespace AnizanHelper.Views.Pages
 {
 	/// <summary>
 	/// DbSearchControl.xaml の相互作用ロジック
 	/// </summary>
-	public partial class SongSearchControl : UserControl
+	public partial class SongSearchPage : UserControl
 	{
-		public SongSearchControl()
+		public SongSearchPage()
 		{
 			InitializeComponent();
 		}

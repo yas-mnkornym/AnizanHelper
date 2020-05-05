@@ -2,20 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using AnizanHelper.Models;
-using AnizanHelper.Models.DbSearch;
-using AnizanHelper.Models.Registries;
 using AnizanHelper.Models.SettingComponents;
 using AnizanHelper.Services;
-using AnizanHelper.ViewModels;
 using AnizanHelper.Views;
 using Prism.Ioc;
 using Prism.Regions;
@@ -45,7 +39,7 @@ namespace AnizanHelper
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			var regionManager = this.Container.Resolve<IRegionManager>();
-			regionManager.RequestNavigate("Region_Search", nameof(SongSearchControl));
+			regionManager.RequestNavigate("Region_Search", "SongSearchPage");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -53,9 +47,6 @@ namespace AnizanHelper
 			var unityContainer = containerRegistry.GetContainer();
 
 			new UnityConfig().RegisterTypes(unityContainer);
-
-			containerRegistry.RegisterSingleton<MainWindow>();
-			containerRegistry.RegisterForNavigation<SongSearchControl>();
 
 			// 設定初期化
 			var settings = this.InitializeSettings();
@@ -72,6 +63,23 @@ namespace AnizanHelper
 
 			unityContainer.RegisterInstance(this.converter_);
 			unityContainer.RegisterInstance(this.songPresetRepository_);
+
+
+			containerRegistry.RegisterSingleton<MainWindow>();
+
+			// Register UI pages
+			this.GetType().Assembly.GetTypes()
+				.Where(x => x.Name.EndsWith("Page"))
+				.Where(x => x.IsSubclassOf(typeof(UserControl)))
+				.Select(x => new
+				{
+					Name = x.Name,
+					Type = x,
+				})
+				.ForEach(x =>
+				{
+					unityContainer.RegisterTypeForNavigation(x.Type, x.Name);
+				});
 		}
 
 		//protected override void OnInitialized()
