@@ -9,41 +9,53 @@ using Unity;
 
 namespace AnizanHelper.Modules
 {
-	public class ModuleCleanupService
+	public class AppLifetimeNotifier
 	{
-		private List<IDestructiveModule> Modules { get; } = new List<IDestructiveModule>();
+		private List<IAppLifetimeAware> Modules { get; } = new List<IAppLifetimeAware>();
 
-		public void Register(IDestructiveModule module)
+		public void Register(IAppLifetimeAware module)
 		{
 			this.Modules.Add(module);
 		}
 
-		public void Cleanup()
+		public void OnExit(IContainerProvider containerProvider)
 		{
 			foreach (var module in this.Modules)
 			{
-				module.Cleanup();
+				module.OnAppExit(containerProvider);
+			}
+		}
+
+		public void OnInitialized(IContainerProvider containerProvider)
+		{
+			foreach (var module in this.Modules)
+			{
+				module.OnAppInitialized(containerProvider);
 			}
 		}
 	}
 
-	public interface IDestructiveModule : IModule
+	public interface IAppLifetimeAware
 	{
-		void Cleanup();
+		void OnAppInitialized(IContainerProvider containerProvider);
+		void OnAppExit(IContainerProvider containerProvider);
 	}
 
-	public abstract class ModuleBase : IModule, IDestructiveModule
+	public abstract class ModuleBase : IModule, IAppLifetimeAware
 	{
 		protected CompositeDisposable Disposables { get; } = new CompositeDisposable();
 
-		public virtual void Cleanup()
+		public virtual void OnAppExit(IContainerProvider containerProvider)
 		{
 			this.Disposables.Dispose();
 		}
 
+		public virtual void OnAppInitialized(IContainerProvider containerProvider)
+		{ }
+
 		public virtual void OnInitialized(IContainerProvider containerProvider)
 		{
-			var cleanupService = containerProvider.Resolve<ModuleCleanupService>();
+			var cleanupService = containerProvider.Resolve<AppLifetimeNotifier>();
 			cleanupService.Register(this);
 		}
 

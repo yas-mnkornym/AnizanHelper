@@ -22,10 +22,19 @@ namespace AnizanHelper.Modules.Dictionaries
 
 		protected override void RegisterDisposables(CompositeDisposable disposables)
 		{
-			foreach (var filePath in this.DictionaryManager.DictionaryFilePaths)
+			var files = this.DictionaryManager.DictionaryFilePaths;
+			var directories = files
+				.Select(x => Path.GetDirectoryName(x))
+				.Distinct()
+				.ToArray();
+
+			foreach (var directory in directories)
 			{
-				var watcher = new FileSystemWatcher(filePath)
-					.AddTo(disposables);
+				var watcher = new FileSystemWatcher(directory)
+				{
+					IncludeSubdirectories = false,
+				}
+				.AddTo(disposables);
 
 				new[]
 				{
@@ -33,8 +42,12 @@ namespace AnizanHelper.Modules.Dictionaries
 					Observable.FromEventPattern<FileSystemEventArgs>(watcher, nameof(watcher.Created)),
 				}
 				.Merge()
+				.Where(x => files.Contains(x.EventArgs.FullPath))
+				//.Select(x => x.EventArgs.FullPath)
+				//.Buffer(this.ThrottlingInterval)
+				//.SelectMany(x => x.Distinct())
 				.Throttle(this.ThrottlingInterval)
-				.Select(x => Observable.FromAsync(async () =>
+				.Select(filePath => Observable.FromAsync(async () =>
 				{
 					try
 					{
@@ -49,7 +62,9 @@ namespace AnizanHelper.Modules.Dictionaries
 				}))
 				.Merge(1)
 				.Subscribe()
-				.Dispose();
+				.AddTo(disposables);
+
+				watcher.EnableRaisingEvents = true;
 			}
 		}
 	}

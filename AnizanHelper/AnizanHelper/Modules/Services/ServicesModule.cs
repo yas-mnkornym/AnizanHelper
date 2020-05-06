@@ -14,7 +14,6 @@ namespace AnizanHelper.Modules.Services
 
 		public ServicesModule()
 		{
-
 		}
 
 		protected override void RegisterTypes(IUnityContainer unityContainer)
@@ -23,12 +22,17 @@ namespace AnizanHelper.Modules.Services
 			unityContainer.RegisterInstance((IServiceManager)this.serviceManager);
 		}
 
+		public override void OnAppInitialized(IContainerProvider containerProvider)
+		{
+			base.OnAppInitialized(containerProvider);
+
+			this.serviceManager.RegisterServicesFromAssembly(this.GetType().Assembly);
+			this.serviceManager.StartAll();
+		}
+
 		public override void OnInitialized(IContainerProvider containerProvider)
 		{
 			base.OnInitialized(containerProvider);
-
-			this.serviceManager.RegisterServicesFromAssembly(typeof(App).Assembly);
-			this.serviceManager.StartAll();
 
 			Disposable
 				.Create(() =>

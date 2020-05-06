@@ -44,13 +44,16 @@ namespace AnizanHelper
 		{
 			this.MainWindow.DataContext = this.Container.Resolve<MainWindowViewModel>();
 
+			var moduleCleanupService = this.Container.Resolve<AppLifetimeNotifier>();
+			moduleCleanupService.OnInitialized(this.Container);
+
 			base.OnInitialized();
 		}
 
 		protected override void OnExit(ExitEventArgs e)
 		{
-			var moduleCleanupService = this.Container.Resolve<ModuleCleanupService>();
-			moduleCleanupService.Cleanup();
+			var moduleCleanupService = this.Container.Resolve<AppLifetimeNotifier>();
+			moduleCleanupService.OnExit(this.Container);
 
 			base.OnExit(e);
 		}
@@ -83,7 +86,7 @@ namespace AnizanHelper
 		{
 			var unityContainer = containerRegistry.GetContainer();
 
-			unityContainer.RegisterSingleton<ModuleCleanupService>();
+			unityContainer.RegisterSingleton<AppLifetimeNotifier>();
 
 			unityContainer.RegisterFactory<HttpClient>(_ => new HttpClient());
 
