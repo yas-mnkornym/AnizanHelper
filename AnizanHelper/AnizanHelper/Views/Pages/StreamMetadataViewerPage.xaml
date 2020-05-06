@@ -330,6 +330,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="検索"
+										Margin="0"
                                         ToolTip="この履歴の曲名で検索します。"
                                         Command="{Binding Path=DataContext.SearchCommand, ElementName=Root}"
                                         CommandParameter="{Binding Path=ExtractedTitle, Mode=OneWay}" />
