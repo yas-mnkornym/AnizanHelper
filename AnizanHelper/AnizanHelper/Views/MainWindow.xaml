@@ -48,46 +48,62 @@
 
             <WrapPanel Grid.Column="0"
                        Orientation="Horizontal">
+
                 <ToggleButton Margin="2,0,2,0"
                               VerticalAlignment="Center"
                               Content="最前面"
                               IsChecked="{Binding Path=ShowWindowAlwaysOnTop.Value, Mode=TwoWay}"
                               ToolTip="ウィンドウを常に最前面に表示します。" />
 
-                <!--<CheckBox Content="解析時番号付きコピー"
-						  IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}"
-						  VerticalAlignment="Center"
-						  Margin="2,0,2,0"/>-->
+                <xctk:DropDownButton Content="表示設定"
+									 Margin="2,0,0,0">
+                    <xctk:DropDownButton.DropDownContent>
+						<StackPanel>
+							<CheckBox VerticalAlignment="Center"
+                                      Content="一行コピペ"
+                                      IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
 
-                <ToggleButton Margin="2,0,2,0"
-                              VerticalAlignment="Center"
-                              Content="適用時コピー"
-                              IsChecked="{Binding Path=CopyAfterApply.Value, Mode=TwoWay}"
-                              ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="タグ取得"
+                                      IsChecked="{Binding Path=ShowTagRetreiver.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると 配信URLからのタグ取得機能 が有効になり、表示されます。" />
 
-                <ToggleButton Margin="2,0,2,0"
-                              VerticalAlignment="Center"
-                              Content="自動クリア"
-                              IsChecked="{Binding Path=ClearInputAutomatically.Value, Mode=TwoWay}"
-                              ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="頻出曲"
+                                      IsChecked="{Binding Path=ShowFrequentlyPlayedSongs.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると、頻出曲を即時入力するボタンが表示されます。" />
+                        </StackPanel>
+                    </xctk:DropDownButton.DropDownContent>
+                </xctk:DropDownButton>
 
-                <ToggleButton Margin="2,0,2,0"
-                              VerticalAlignment="Center"
-                              Content="一行コピペ"
-                              IsChecked="{Binding Path=ShowParserControl.Value, Mode=TwoWay}"
-                              ToolTip="有効にすると Webブラウザからの一行コピペ 入力欄が表示されます。" />
+                <xctk:DropDownButton Content="その他設定"
+									 Margin="2,0,0,0">
+                    <xctk:DropDownButton.DropDownContent>
+                        <StackPanel>
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="適用時コピー"
+                                      IsChecked="{Binding Path=CopyAfterApply.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
 
-                <ToggleButton Margin="2,0,2,0"
-                              VerticalAlignment="Center"
-                              Content="タグ取得"
-                              IsChecked="{Binding Path=ShowTagRetreiver.Value, Mode=TwoWay}"
-                              ToolTip="有効にすると 配信URLからのタグ取得機能 が有効になり、表示されます。" />
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="解析時番号付きコピー"
+                                      IsChecked="{Binding Path=Settings.CopyAfterParse, Mode=TwoWay}" />
 
-                <ToggleButton Margin="2,0,2,0"
-                              VerticalAlignment="Center"
-                              Content="頻出曲"
-                              IsChecked="{Binding Path=ShowFrequentlyPlayedSongs.Value, Mode=TwoWay}"
-                              ToolTip="有効にすると、頻出曲を即時入力するボタンが表示されます。" />
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="適用時コピー"
+                                      IsChecked="{Binding Path=CopyAfterApply.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると「変更適用」ボタンを押した時、自動で「曲順コミコピー」の動作を行います。" />
+
+                            <CheckBox VerticalAlignment="Center"
+                                      Content="自動クリア"
+                                      IsChecked="{Binding Path=ClearInputAutomatically.Value, Mode=TwoWay}"
+                                      ToolTip="有効にすると コピー・書込 の操作後、自動で曲情報入力欄をクリアします。" />
+                        </StackPanel>
+                    </xctk:DropDownButton.DropDownContent>
+                </xctk:DropDownButton>
+
+
 
                 <Button Margin="10,0,2,0"
                         Content="辞書更新確認"
@@ -117,16 +133,6 @@
                           IsChecked="{Binding Path=SnapListWindow.Value, Mode=TwoWay}" />
             </StackPanel>
         </Grid>
-
-        <!-- 曲表示 -->
-        <!--
-		<WebBrowser Grid.Row="1" Grid.Column="0"
-					Source="http://ggtea.org/sio/songzan.html"
-					/>
-		
-		<GridSplitter Grid.Row="2" Grid.Column="0"
-				   HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="2" />
-		-->
 
         <!-- 検索部 -->
         <Grid Grid.Row="3">
