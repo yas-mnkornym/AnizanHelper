@@ -291,7 +291,8 @@
                                  FontSize="14"
                                  FontWeight="Bold"
                                  IsReadOnly="True"
-                                 Text="{Binding Path=CurrentSongMetadata.Value.ExtractedArtist, Mode=OneWay}" />
+                                 Text="{Binding Path=CurrentSongMetadata.Value.ExtractedArtist, Mode=OneWay}"
+								 ToolTip=".NETのSystem.Text.RegularExpressionsの書式で解析フォーマット(正規表現)を指定してください。" />
                     </Grid>
                 </StackPanel>
             </StackPanel>
