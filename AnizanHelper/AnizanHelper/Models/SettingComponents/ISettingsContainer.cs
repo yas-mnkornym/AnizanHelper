@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace AnizanHelper.Models.SettingComponents
 {
-	public interface ISettings
+	public interface ISettingsContainer
 	{
 		/// <summary>
 		/// シリアライズ/デシリアライズのための既知の型のリストを取得・設定する
@@ -80,7 +80,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="knownTypes">子設定をデシリアライズするための既知の型</param>
 		/// <remarks>同じタグで複数回呼び出しても、同じ値が返される。</remarks>
 		/// <returns>子設定</returns>
-		ISettings GetChildSettings(string tag, IEnumerable<Type> knownTypes);
+		ISettingsContainer GetChildSettings(string tag, IEnumerable<Type> knownTypes);
 
 		/// <summary>
 		/// 子設定を削除する。

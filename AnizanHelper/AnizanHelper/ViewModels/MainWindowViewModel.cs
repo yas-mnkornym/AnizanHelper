@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
 using AnizanHelper.Models.Serializers;
+using AnizanHelper.Modules.Dictionaries;
 using AnizanHelper.Services;
 using AnizanHelper.Views;
 using Reactive.Bindings;
@@ -29,16 +31,19 @@ namespace AnizanHelper.ViewModels
 		private SongListWindow SongListWindow { get; }
 		private SongPresetRepository SongPresetRepository { get; }
 		private Subject<AnizanSongInfo> SongsSubject { get; }
-
+		private IDictionaryManager DictionaryManager { get; }
+		
 		public MainWindowViewModel(
 			Settings settings,
 			AnizanSongInfoConverter songInfoConverter,
 			SongPresetRepository songPresetRepository,
+			IDictionaryManager dictionaryManager,
 			IServiceManager serviceManager)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
 			this.SongPresetRepository = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
+			this.DictionaryManager = dictionaryManager ?? throw new ArgumentNullException(nameof(dictionaryManager));
 			this.ServiceManager = serviceManager ?? throw new ArgumentNullException(nameof(serviceManager));
 
 			//this.SearchVm.SongParsed += this.SongParsed;
@@ -453,17 +458,18 @@ namespace AnizanHelper.ViewModels
 				}
 			});
 
-		public ICommand CheckForDictionaryUpdateCommand => this.LazyReactiveCommand(() =>
-		{
-			var app = App.Current as App;
-			if (app != null)
+		public ICommand CheckForDictionaryUpdateCommand => this.LazyAsyncReactiveCommand(
+			async () =>
 			{
-				Task.Factory.StartNew(() =>
+				var service = this.ServiceManager.Services
+					.OfType<DictionaryUpdaterService>()
+					.FirstOrDefault();
+
+				if (service != null)
 				{
-					app.UpdateDictionary();
-				});
-			}
-		});
+					await service.CheckForUpdateAsync();
+				}
+			});
 
 		public ICommand CheckForUpdateCommand => this.LazyAsyncReactiveCommand(
 			async () =>
@@ -561,21 +567,19 @@ namespace AnizanHelper.ViewModels
 			}
 		});
 
-		public ICommand ReloadDictionaryCommand => this.LazyReactiveCommand(() =>
-		{
-			if (App.Current is App app)
+		public ICommand ReloadDictionaryCommand => this.LazyAsyncReactiveCommand(
+			async () =>
 			{
 				try
 				{
-					app.LoadDictionaries();
-					this.InfoMsg("辞書の読み込みを完了しました。");
+					await this.DictionaryManager.LoadAsync().ConfigureAwait(false);
+					MessageService.Current.ShowMessage("辞書を読み込みました。");
 				}
 				catch (Exception ex)
 				{
 					this.ErrMsg("辞書データの読み込みに失敗しました。", ex);
 				}
-			}
-		});
+			});
 
 		public ICommand SetAdditionalCommand => this.LazyReactiveCommand<string>(
 			this.SongInfo.Select(x => x != null),

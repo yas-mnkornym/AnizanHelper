@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AnizanHelper.Services;
 using Unity;
 
-namespace AnizanHelper.Services
+namespace AnizanHelper.Modules.Services
 {
 	public class ServiceManager : IServiceManager
 	{
@@ -12,6 +13,8 @@ namespace AnizanHelper.Services
 		private List<IService> ServiceList { get; } = new List<IService>();
 
 		public IEnumerable<IService> Services => this.ServiceList;
+
+		private bool isStarted = false;
 
 		public ServiceManager(IUnityContainer unityContainer)
 		{
@@ -54,10 +57,12 @@ namespace AnizanHelper.Services
 			{
 				service.Start();
 			}
+			this.isStarted = true;
 		}
 
 		public void StopAll()
 		{
+			this.isStarted = false;
 			foreach (var service in this.ServiceList)
 			{
 				service.Stop();
@@ -67,7 +72,15 @@ namespace AnizanHelper.Services
 		public void Register(IService service)
 		{
 			if (service == null) { throw new ArgumentNullException(nameof(service)); }
-			this.ServiceList.Add(service);
+			if (!this.ServiceList.Contains(service))
+			{
+				this.ServiceList.Add(service);
+
+				if (this.isStarted)
+				{
+					service.Start();
+				}
+			}
 		}
 
 		public void Unregister(IService service)

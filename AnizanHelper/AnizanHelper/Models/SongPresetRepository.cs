@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 
 namespace AnizanHelper.Models
 {
-	internal class SongPresetRepository : INotifyPropertyChanged
+	public class SongPresetRepository : INotifyPropertyChanged
 	{
 		private AnizanSongInfo[] presets_;
 

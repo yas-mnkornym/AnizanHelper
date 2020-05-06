@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace AnizanHelper.Models
 {
-	internal class AnizanSongInfoConverter
+	public class AnizanSongInfoConverter
 	{
 		public ReplaceInfo[] Replaces { get; set; }
 

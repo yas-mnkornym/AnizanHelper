@@ -1,9 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using ComiketSystem.Csv;
 
 namespace AnizanHelper.Models
@@ -22,23 +25,28 @@ namespace AnizanHelper.Models
 			}
 		}
 
-		public IEnumerable<ReplaceDictionaryUpdateInfo> GetUpdateInfo()
+		public async Task<IEnumerable<ReplaceDictionaryUpdateInfo>> GetUpdateInfoAsync()
 		{
 			using (var client = new HttpClient())
-			using (var stream = client.GetStreamAsync(Constants.ReplaceDictionaryUpdateInfoUrl).Result)
-			using (var reader = new StreamReader(stream, Encoding.UTF8))
 			{
-				var cs = new CsvSplitter(reader.ReadToEnd());
+				var content = await client.GetStringAsync(Constants.ReplaceDictionaryUpdateInfoUrl).ConfigureAwait(false);
+
+				var cs = new CsvSplitter(content);
+				var list = new List<ReplaceDictionaryUpdateInfo>();
+
 				while (cs.ToNextLine())
 				{
 					if (cs.TokenCount < 3) { continue; }
-					yield return new ReplaceDictionaryUpdateInfo
+
+					list.Add(new ReplaceDictionaryUpdateInfo
 					{
 						Version = cs.GetInt(0),
 						Description = cs.GetString(1),
 						Date = new DateTimeOffset(DateTime.ParseExact(cs.GetString(2), "yyyy/MM/dd-HH:mm", CultureInfo.CurrentCulture), TimeSpan.FromHours(9))
-					};
+					});
 				}
+
+				return list;
 			}
 		}
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.CompilerServices;
 using Studiotaiha.Toolkit;
 
@@ -9,34 +9,32 @@ namespace AnizanHelper.Models.SettingComponents
 	/// </summary>
 	public class SettingsBase : NotificationObjectWithNotifyChaning
 	{
-		private ISettings settings_;
-
 		/// <summary>
 		/// 設定インスタンスを取得する
 		/// </summary>
-		public ISettings Settings { get { return this.settings_; } }
+		public ISettingsContainer SettingsContainer { get; }
 
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
-		/// <param name="settings">設定インスタンス</param>
+		/// <param name="settingsContainer">設定インスタンス</param>
 		/// <param name="dispatcher">ディスパッチャ</param>
 		protected SettingsBase(
-			ISettings settings, // not null
+			ISettingsContainer settingsContainer,
 			IDispatcher dispatcher = null)
 			: base(dispatcher)
 		{
-			this.settings_ = settings ?? throw new ArgumentNullException("settings");
-			this.settings_.SettingChanging += this.settings_SettingChanging;
-			this.settings_.SettingChanged += this.settings_SettingChanged;
+			this.SettingsContainer = settingsContainer ?? throw new ArgumentNullException(nameof(settingsContainer));
+			this.SettingsContainer.SettingChanging += this.SettingsContainer_SettingChanging;
+			this.SettingsContainer.SettingChanged += this.SettingsContainer_SettingChanged;
 		}
 
-		private void settings_SettingChanging(object sender, SettingChangeEventArgs e)
+		private void SettingsContainer_SettingChanging(object sender, SettingChangeEventArgs e)
 		{
 			this.RaisePropertyChanging(e.Key);
 		}
 
-		private void settings_SettingChanged(object sender, SettingChangeEventArgs e)
+		private void SettingsContainer_SettingChanged(object sender, SettingChangeEventArgs e)
 		{
 			this.RaisePropertyChanged(e.Key);
 		}
@@ -50,7 +48,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>取得した値</returns>
 		protected T GetValue<T>(T defaultValue = default, [CallerMemberName]string key = null)
 		{
-			return this.Settings.Get(key, defaultValue);
+			return this.SettingsContainer.Get(key, defaultValue);
 		}
 
 		/// <summary>
@@ -61,7 +59,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void SetValue<T>(T value, [CallerMemberName]string key = null)
 		{
-			this.Settings.Set(key, value);
+			this.SettingsContainer.Set(key, value);
 		}
 
 		/// <summary>
@@ -73,7 +71,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>取得した値</returns>
 		protected T GetValueDecrypted<T>(T defaultValue, string key)
 		{
-			return this.Settings.GetDecrypted(key, defaultValue);
+			return this.SettingsContainer.GetDecrypted(key, defaultValue);
 		}
 
 		/// <summary>
@@ -84,7 +82,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void SetValueCrypted<T>(T value, string key)
 		{
-			this.Settings.SetCrypted(key, value);
+			this.SettingsContainer.SetCrypted(key, value);
 		}
 
 		/// 呼び出したプロパティ名の設定を削除する。
@@ -92,7 +90,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="key">プロパティ名</param>
 		protected void RemoveValue(string key)
 		{
-			this.Settings.Remove(key);
+			this.SettingsContainer.Remove(key);
 		}
 
 		/// <summary>
@@ -103,7 +101,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param key="value">データの値</param>
 		protected void Set<T>(string key, T value)
 		{
-			this.Settings.Set(key, value);
+			this.SettingsContainer.Set(key, value);
 		}
 
 		/// <summary>
@@ -115,7 +113,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <returns>データ</returns>
 		protected T Get<T>(string key, T defaultValue = default(T))
 		{
-			return this.Settings.Get(key, defaultValue);
+			return this.SettingsContainer.Get(key, defaultValue);
 		}
 
 		/// <summary>
@@ -124,7 +122,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param key="key">データのキー</param>
 		protected void Remove(string key)
 		{
-			this.Settings.Remove(key);
+			this.SettingsContainer.Remove(key);
 		}
 
 		/// <summary>
@@ -132,7 +130,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// </summary>
 		protected void Clear()
 		{
-			this.Settings.Clear();
+			this.SettingsContainer.Clear();
 		}
 
 	}

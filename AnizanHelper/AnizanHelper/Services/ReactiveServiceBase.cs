@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Reactive.Disposables;
 
 namespace AnizanHelper.Services
 {
-	internal abstract class ReactiveServiceBase : IService
+	public abstract class ReactiveServiceBase : IService
 	{
 		private CompositeDisposable Disposables { get; set; }
 
@@ -33,6 +33,7 @@ namespace AnizanHelper.Services
 		#region IDisposable
 
 		private bool isDisposed_ = false;
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (this.isDisposed_) { return; }
@@ -49,6 +50,6 @@ namespace AnizanHelper.Services
 			GC.SuppressFinalize(this);
 		}
 
-		#endregion
+		#endregion IDisposable
 	}
 }

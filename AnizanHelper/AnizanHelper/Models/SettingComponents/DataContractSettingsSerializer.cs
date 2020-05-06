@@ -14,14 +14,14 @@ namespace AnizanHelper.Models.SettingComponents
 
 		#region ISettingsSerializer メンバー
 
-		public void Serialize(System.IO.Stream stream, SettingsImpl settings)
+		public void Serialize(System.IO.Stream stream, SettingsContainer settings)
 		{
 			var serializationInfoArray = settings.SettingsData.Select(x => this.SerializeSerializaeInfo(x.Key, x.Value, settings.KnownTypes)).ToArray();
 			DataContractSerializer serializer = new DataContractSerializer(typeof(KeyValueSerializationInfo[]));
 			serializer.WriteObject(stream, serializationInfoArray);
 		}
 
-		public void Deserialize(System.IO.Stream stream, SettingsImpl settings)
+		public void Deserialize(System.IO.Stream stream, SettingsContainer settings)
 		{
 			DataContractSerializer serializer = new DataContractSerializer(typeof(KeyValueSerializationInfo[]));
 			var serializationInfoArray = (KeyValueSerializationInfo[])serializer.ReadObject(stream);

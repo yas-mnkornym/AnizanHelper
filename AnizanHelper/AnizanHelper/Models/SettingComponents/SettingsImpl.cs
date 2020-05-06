@@ -6,32 +6,32 @@ using System.Text;
 
 namespace AnizanHelper.Models.SettingComponents
 {
-	internal class SettingsImpl : ISettings
+	internal class SettingsContainer : ISettingsContainer
 	{
 		#region Private Field
 		private List<Type> knownTypes_ = new List<Type>();
 		internal Dictionary<string, object> SettingsData { get; } = new Dictionary<string, object>(); // 設定データ
-		private Dictionary<string, SettingsImpl> ChildSettings { get; } = new Dictionary<string, SettingsImpl>(); // 子設定
+		private Dictionary<string, SettingsContainer> ChildSettings { get; } = new Dictionary<string, SettingsContainer>(); // 子設定
 		private ISettingsSerializer ChildSettingsSerializer { get; } = new DataContractSettingsSerializer(); // 子設定のシリアライザ 
 		#endregion
 
 
 		#region Properties
 
-		protected SettingsImpl ParentSettings { get; private set; }
+		protected SettingsContainer ParentSettings { get; private set; }
 		#endregion
 
 		#region Constructors
-		public SettingsImpl(string tag)
+		public SettingsContainer(string tag)
 		{
 			this.Tag = tag;
 		}
 
-		public SettingsImpl(IEnumerable<Type> knownTypes)
+		public SettingsContainer(IEnumerable<Type> knownTypes)
 			: this(null, knownTypes)
 		{ }
 
-		public SettingsImpl(string tag, IEnumerable<Type> knownTypes)
+		public SettingsContainer(string tag, IEnumerable<Type> knownTypes)
 			: this(tag)
 		{
 			if (knownTypes != null)
@@ -40,7 +40,7 @@ namespace AnizanHelper.Models.SettingComponents
 			}
 		}
 
-		protected SettingsImpl(SettingsImpl parentSettings, string tag, IEnumerable<Type> knownTypes)
+		protected SettingsContainer(SettingsContainer parentSettings, string tag, IEnumerable<Type> knownTypes)
 			: this(tag, knownTypes)
 		{
 			if (parentSettings == null) { throw new ArgumentNullException("parentSettings"); }
@@ -151,7 +151,7 @@ namespace AnizanHelper.Models.SettingComponents
 		}
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:オブジェクトを複数回破棄しない")]
-		public ISettings GetChildSettings(string tag, IEnumerable<Type> knownTypes)
+		public ISettingsContainer GetChildSettings(string tag, IEnumerable<Type> knownTypes)
 		{
 			if (this.ChildSettings.ContainsKey(tag))
 			{
@@ -159,7 +159,7 @@ namespace AnizanHelper.Models.SettingComponents
 			}
 			else
 			{
-				var settings = new SettingsImpl(this, tag, knownTypes);
+				var settings = new SettingsContainer(this, tag, knownTypes);
 
 				// 設定をロード
 				var setTag = this.GetTaggedKey(settings.Tag, true);
@@ -190,7 +190,7 @@ namespace AnizanHelper.Models.SettingComponents
 		/// <param name="e"></param>
 		private void settings_SettingChanged(object sender, SettingChangeEventArgs e)
 		{
-			var settings = sender as SettingsImpl;
+			var settings = sender as SettingsContainer;
 			if (settings != null)
 			{
 				var tag = this.GetTaggedKey(settings.Tag, true);

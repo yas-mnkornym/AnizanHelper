@@ -11,7 +11,7 @@ namespace AnizanHelper.Models
 			typeof(TimeSpan),
 		};
 
-		public Settings(ISettings settings)
+		public Settings(ISettingsContainer settings)
 			: base(settings)
 		{ }
 
@@ -132,6 +132,12 @@ namespace AnizanHelper.Models
 					this.SetValue(json);
 				}
 			}
+		}
+
+		public bool CheckForDictionaryUpdateAutomatically
+		{
+			get => this.GetValue<bool>();
+			set => this.SetValue(value);
 		}
 
 		public bool CheckForUpdateAutomatically
