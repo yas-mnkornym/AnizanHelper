@@ -166,7 +166,7 @@ namespace AnizanHelper.ViewModels
 			var info = new AnizanSongInfo
 			{
 				Title = songInfo.Title,
-				Singer = songInfo.Singer,
+				Artist = songInfo.Artist,
 				Genre = songInfo.Genre,
 				Series = songInfo.Series,
 				SongType = songInfo.SongType,
@@ -445,7 +445,7 @@ namespace AnizanHelper.ViewModels
 				{
 					var songInfo = this.SongInfo.Value;
 					songInfo.Title = preset.Title;
-					songInfo.Singer = preset.Singer;
+					songInfo.Artist = preset.Artist;
 					songInfo.Genre = preset.Genre;
 					songInfo.Series = preset.Series;
 					songInfo.SongType = preset.SongType;

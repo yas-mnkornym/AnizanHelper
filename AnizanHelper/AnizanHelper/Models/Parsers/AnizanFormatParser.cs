@@ -36,7 +36,7 @@ namespace AnizanHelper.Models.Parsers
 				return new GeneralSongInfo
 				{
 					Title = anizanSongInfo.Title,
-					Singers = anizanSongInfo.Singer.Split(','),
+					Artists = anizanSongInfo.Artist.Split(','),
 					Genre = anizanSongInfo.Genre,
 					Series = anizanSongInfo.Series,
 					SongType = anizanSongInfo.SongType,
@@ -61,7 +61,7 @@ namespace AnizanHelper.Models.Parsers
 				{
 					Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
 					Title = match.Groups["Title"]?.Value?.Trim(),
-					Singer = match.Groups["Artist"]?.Value?.Trim(),
+					Artist = match.Groups["Artist"]?.Value?.Trim(),
 					Genre = match.Groups["Genre"]?.Value?.Trim(),
 					Series = match.Groups["Series"]?.Value?.Trim(),
 					SongType = match.Groups["SongType"]?.Value?.Trim(),

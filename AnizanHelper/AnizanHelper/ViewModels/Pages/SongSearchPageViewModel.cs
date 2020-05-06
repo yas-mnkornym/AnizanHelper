@@ -6,7 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AnizanHelper.Models;
-using AnizanHelper.Models.DbSearch;
+using AnizanHelper.Models.Searching;
+using AnizanHelper.Models.Searching.AnisonDb;
 using AnizanHelper.ViewModels.Events;
 using Prism.Events;
 using Reactive.Bindings;
@@ -16,29 +17,55 @@ using Xceed.Wpf.Toolkit;
 
 namespace AnizanHelper.ViewModels.Pages
 {
-	internal class SongSearchPageViewModel : ReactiveViewModelBase, ISearchController
+	internal class SongSearchPageViewModel : ReactiveViewModelBase
 	{
-		public SongSearcher Searcher { get; } = new SongSearcher();
+		private ISongSearchProvider SongSearchProvider { get; }
 		private Settings Settings { get; }
 		private IEventAggregator EventAggregator { get; }
 
 		public SongSearchPageViewModel(
 			Settings settings,
-			ProxySearchController proxySearchController,
+			ISongSearchProvider songSearchProvider,
 			IEventAggregator eventAggregator)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-			if (proxySearchController == null) { throw new ArgumentNullException(nameof(proxySearchController)); }
+			this.SongSearchProvider = songSearchProvider ?? throw new ArgumentNullException(nameof(songSearchProvider));
 			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
-			proxySearchController.Target = this;
+			if (this.SongSearchProvider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
+			{
+				anisonDbSearchProvider.CheckSeries = this.Settings.CheckSeriesTypeNumberAutomatically;
+
+				this.Settings
+					.PropertyChangedAsObservable(nameof(this.Settings.CheckSeriesTypeNumberAutomatically))
+					.Subscribe(_ =>
+					{
+						anisonDbSearchProvider.CheckSeries = this.Settings.CheckSeriesTypeNumberAutomatically;
+					})
+					.AddTo(this.Disposables);
+			}
+
+			this.EventAggregator
+				.GetEvent<SearchSongEvent>()
+				.Subscribe(
+					async condition =>
+					{
+						this.SearchTerm.Value = condition.SearchTerm;
+						await this.SearchAsync();
+					},
+					ThreadOption.UIThread,
+					true)
+				.AddTo(this.Disposables);
 
 			this.EventAggregator
 				.GetEvent<ClearSearchInputEvent>()
-				.Subscribe(() =>
-				{
-					this.ClearInput();
-				})
+				.Subscribe(
+					() =>
+					{
+						this.ClearInput();
+					},
+					ThreadOption.UIThread,
+					true)
 				.AddTo(this.Disposables);
 		}
 
@@ -47,12 +74,6 @@ namespace AnizanHelper.ViewModels.Pages
 		public void ClearInput()
 		{
 			this.SearchTerm.Value = null;
-		}
-
-		public async void TriggerSearch(string searchTerm)
-		{
-			this.SearchTerm.Value = searchTerm;
-			await this.SearchAsync();
 		}
 
 		#endregion ISearchController
@@ -71,14 +92,16 @@ namespace AnizanHelper.ViewModels.Pages
 
 					try
 					{
-						var searchResultItems = await this.Searcher.SearchAsync(searchTerm, cts.Token);
-						sw.Stop();
-
 						this.Results.Clear();
-						this.Results.AddRangeOnScheduler(searchResultItems);
+
+						await foreach (var item in this.SongSearchProvider.SearchAsync(searchTerm, null, cts.Token))
+						{
+							this.Results.Add(item);
+						}
 					}
 					finally
 					{
+						sw.Stop();
 						this.SearchCancellationTokenSource.Value = null;
 					}
 				}
@@ -105,7 +128,7 @@ namespace AnizanHelper.ViewModels.Pages
 				.ToReadOnlyReactiveProperty();
 		});
 
-		public ReactiveCollection<SongSearchResult> Results { get; } = new ReactiveCollection<SongSearchResult>();
+		public ReactiveCollection<ISongSearchResult> Results { get; } = new ReactiveCollection<ISongSearchResult>();
 		public ReactiveProperty<CancellationTokenSource> SearchCancellationTokenSource { get; } = new ReactiveProperty<CancellationTokenSource>();
 		public ReactiveProperty<string> SearchTerm { get; } = new ReactiveProperty<string>();
 
@@ -113,14 +136,15 @@ namespace AnizanHelper.ViewModels.Pages
 
 		#region Commands
 
-		public ICommand ApplySongCommand => this.LazyReactiveCommand<SongSearchResult>(
-			result =>
+		public ICommand ApplySongCommand => this.LazyAsyncReactiveCommand<SongSearchResult>(
+			async result =>
 			{
 				if (result == null) { return; }
 
 				try
 				{
-					var songInfo = SongSearchResult.ToGeneralInfo(result, this.Settings.CheckSeriesTypeNumberAutomatically);
+					var songInfo = await this.SongSearchProvider.ConvertToGeneralSongInfoAsync(result);
+
 					this.EventAggregator
 						.GetEvent<SongParsedEvent>()
 						.Publish(songInfo);
@@ -167,8 +191,11 @@ namespace AnizanHelper.ViewModels.Pages
 				try
 				{
 					var searchTerm = this.SearchTerm.Value;
-					var url = this.Searcher.CreateQueryUrl(searchTerm, SongSearcher.SearchType);
-					Process.Start(url);
+					if (this.SongSearchProvider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
+					{
+						var uri = anisonDbSearchProvider.CreateQueryUri(searchTerm, "song");
+						Process.Start(uri.AbsoluteUri);
+					}
 				}
 				catch (Exception ex)
 				{

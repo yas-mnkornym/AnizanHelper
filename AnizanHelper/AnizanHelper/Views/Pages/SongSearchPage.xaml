@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -37,34 +38,43 @@
             </TextBox.InputBindings>
         </TextBox>
 
-        <CheckBox Grid.Row="0"
-                  Grid.Column="1"
-                  Margin="5,0,0,0"
-                  VerticalAlignment="Center"
-                  Content="曲種番号自動補正"
-                  IsChecked="{Binding Path=CheckSeriesTypeNumberAutomatically.Value, Mode=TwoWay}" />
-
         <Button Grid.Row="0"
-                Grid.Column="2"
+                Grid.Column="1"
                 MinWidth="75"
                 Margin="5,0,0,0"
                 Content="検索"
                 Visibility="{Binding Path=IsSearching.Value, Converter={StaticResource TrueCollapseConverter}}"
                 Command="{Binding SearchCommand}" />
+
         <Button Grid.Row="0"
-                Grid.Column="2"
+                Grid.Column="1"
                 MinWidth="75"
                 Margin="5,0,0,0"
                 Content="検索中止"
                 Visibility="{Binding Path=IsSearching.Value, Converter={StaticResource TrueVisibleConverter}}"
                 Command="{Binding CancelSearchingCommand}" />
 
+
         <Button Grid.Row="0"
-                Grid.Column="3"
+                Grid.Column="2"
                 MinWidth="75"
                 Margin="5,0,0,0"
                 Content="ブラウザで検索"
+                ToolTip="アニソンDBの検索画面をWebブラウザで開きます。"
                 Command="{Binding SearchOnBrowserCommand}" />
+
+        <xctk:DropDownButton Grid.Column="3"
+                             Margin="5,0,0,0"
+                             Content="検索設定">
+            <xctk:DropDownButton.DropDownContent>
+                <CheckBox Grid.Row="0"
+                          VerticalAlignment="Center"
+                          Content="曲種番号自動補正"
+                          IsChecked="{Binding Path=CheckSeriesTypeNumberAutomatically.Value, Mode=TwoWay}" />
+            </xctk:DropDownButton.DropDownContent>
+        </xctk:DropDownButton>
+
+
 
         <DataGrid x:Name="dataGrid_result"
                   Grid.Row="1"
@@ -86,12 +96,17 @@
             </DataGrid.InputBindings>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="曲名"
+                <DataGridTextColumn Header="元"
+                                    Binding="{Binding Path=ShortSourceIdentifier, Mode=OneWay}" />
+
+                <DataGridTextColumn Width="2*"
+                                    Header="曲名"
                                     Binding="{Binding Path=Title}" />
-                <DataGridTemplateColumn Header="歌手名">
+				
+                <DataGridTemplateColumn Header="歌手名" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Path=Singers}">
+                            <ItemsControl ItemsSource="{Binding Path=Artists}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" />
@@ -107,12 +122,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="ジャンル"
+				
+                <DataGridTextColumn Width="Auto"
+                                    Header="ジャンル"
                                     Binding="{Binding Path=Genre}" />
+				
                 <DataGridTextColumn Width="*"
                                     Header="使用作品"
                                     Binding="{Binding Path=Series}" />
-                <DataGridTextColumn Header="種別"
+				
+                <DataGridTextColumn Width="Auto"
+                                    Header="種別"
                                     Binding="{Binding Path=SongType}" />
             </DataGrid.Columns>
         </DataGrid>

@@ -37,7 +37,7 @@
                                     Binding="{Binding Path=Title, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="歌手名"
-                                    Binding="{Binding Path=Singer, Mode=TwoWay}" />
+                                    Binding="{Binding Path=Artist, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="ジャンル"
                                     Binding="{Binding Path=Genre, Mode=TwoWay}" />

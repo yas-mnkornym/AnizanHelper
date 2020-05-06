@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace AnizanHelper.Models.Parsers
@@ -19,24 +19,28 @@ namespace AnizanHelper.Models.Parsers
 				.ToArray();
 
 			// 歌手名とジャンルをパース
-			var singerStr = (tokens.Length > 1 ? tokens[1] : "");
-			var stokens = singerStr.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+			var artistText = tokens.ElementAtOrDefault(1) ?? string.Empty;
+			var artistTokens = artistText.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
 			string genre = "";
-			var singers = stokens.ToList();
-			if (stokens.Length > 1 && stokens.Last().Length == 2)
+			var artists = artistTokens.ToList();
+			if (artistTokens.Length > 1 && artistTokens.Last().Length == 2)
 			{
-				genre = stokens.Last();
-				singers.RemoveAt(singers.Count - 1);
+				genre = artistTokens.Last();
+				artists.RemoveAt(artists.Count - 1);
 			}
-			var songType = (tokens.Length > 3 ? tokens[3] : "");
-			if (songType != null) { songType = songType.Replace(" ", ""); }
+
+			var songType = tokens
+				.ElementAtOrDefault(3)
+				?.Replace(" ", string.Empty)
+				?? string.Empty;
 
 			return new GeneralSongInfo
 			{
-				Title = (tokens.Length > 0 ? tokens[0] : ""),
-				Singers = singers,
+				Title = tokens.ElementAtOrDefault(0) ?? string.Empty,
+				Artists = artists.ToArray(),
 				Genre = genre,
-				Series = (tokens.Length > 2 ? tokens[2] : ""),
+				Series = tokens.ElementAtOrDefault(2) ?? string.Empty,
 				SongType = songType
 			};
 		}

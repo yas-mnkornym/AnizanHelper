@@ -144,7 +144,7 @@
 
             <GroupBox Grid.Row="0"
                       Grid.Column="0"
-                      Header="DB直接検索(曲名サーチのみ)">
+                      Header="楽曲検索">
                 <ContentControl prism:RegionManager.RegionName="Region_Search" />
             </GroupBox>
 
@@ -194,7 +194,7 @@
                                 <TextBlock>
                                     <Run Text="{Binding Path=Title, Mode=OneWay}" />
                                     <Run Text="/" />
-                                    <Run Text="{Binding Path=Singer, Mode=OneWay}" />
+                                    <Run Text="{Binding Path=Artist, Mode=OneWay}" />
                                 </TextBlock>
                             </Button.ToolTip>
                         </Button>

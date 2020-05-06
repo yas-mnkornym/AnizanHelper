@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Studiotaiha.Toolkit;
 
 namespace AnizanHelper.Models
@@ -25,7 +25,7 @@ namespace AnizanHelper.Models
 		/// 歌手
 		/// </summary>
 		[JsonProperty]
-		public string Singer
+		public string Artist
 		{
 			get
 			{

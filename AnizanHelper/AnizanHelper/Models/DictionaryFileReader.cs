@@ -67,7 +67,7 @@ namespace AnizanHelper.Models
 						{
 							ShortDescription = cs.GetString(1),
 							Title = cs.GetString(2),
-							Singer = cs.GetString(3),
+							Artist = cs.GetString(3),
 							Genre = cs.GetString(4),
 							Series = cs.GetString(5),
 							SongType = cs.GetString(6)

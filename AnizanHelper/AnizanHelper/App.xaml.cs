@@ -6,7 +6,8 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using AnizanHelper.Models;
-using AnizanHelper.Models.DbSearch;
+using AnizanHelper.Models.Searching;
+using AnizanHelper.Models.Searching.AnisonDb;
 using AnizanHelper.Models.Updating;
 using AnizanHelper.Modules;
 using AnizanHelper.ViewModels;
@@ -88,7 +89,14 @@ namespace AnizanHelper
 
 			unityContainer.RegisterSingleton<AppLifetimeNotifier>();
 
-			unityContainer.RegisterFactory<HttpClient>(_ => new HttpClient());
+			unityContainer.RegisterFactory<HttpClient>(_ =>
+			{
+				var httpClient = new HttpClient();
+				var userAgent = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+				httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
+
+				return httpClient;
+			});
 
 			// ------------------------------------------
 			// Updating
@@ -99,9 +107,7 @@ namespace AnizanHelper
 					new InjectionParameter(new Uri(Constants.UpdateInfoUrl))));
 
 			unityContainer.RegisterSingleton<IUpdateManager, UpdateManager>();
-
-			unityContainer.RegisterSingleton<ProxySearchController>();
-			unityContainer.RegisterSingleton<ISearchController, ProxySearchController>();
+			unityContainer.RegisterSingleton<ISongSearchProvider, AnisonDbSongNameSearchProvider>();
 
 			unityContainer.RegisterSingleton<AnizanSongInfoConverter>();
 			unityContainer.RegisterSingleton<SongPresetRepository>();

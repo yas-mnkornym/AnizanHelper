@@ -11,8 +11,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AnizanHelper.Models;
-using AnizanHelper.Models.DbSearch;
 using AnizanHelper.Models.SongList;
+using AnizanHelper.ViewModels.Events;
+using Prism.Events;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
@@ -30,18 +31,18 @@ namespace AnizanHelper.ViewModels.Pages
 	public class StreamMetadataViewerPageViewModel : ReactiveViewModelBase
 	{
 		private HttpClient HttpClient { get; }
-		private ISearchController SearchManager { get; }
 		private Settings Settings { get; }
 		private IcecastSongMetadataRetreiver songMetadataRetreiver;
+		private IEventAggregator EventAggregator { get; }
 
 		public StreamMetadataViewerPageViewModel(
 			Settings settings,
 			HttpClient httpClient,
-			ISearchController searchManager)
+			IEventAggregator eventAggregator)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-			this.SearchManager = searchManager ?? throw new ArgumentNullException(nameof(searchManager));
+			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
 			var regexTimeout = TimeSpan.FromMilliseconds(250);
 
@@ -483,7 +484,12 @@ namespace AnizanHelper.ViewModels.Pages
 			{
 				if (!string.IsNullOrWhiteSpace(searchTerm))
 				{
-					this.SearchManager.TriggerSearch(searchTerm);
+					this.EventAggregator
+						.GetEvent<SearchSongEvent>()
+						.Publish(new SearchCondition
+						{
+							SearchTerm = searchTerm,
+						});
 				}
 				else
 				{

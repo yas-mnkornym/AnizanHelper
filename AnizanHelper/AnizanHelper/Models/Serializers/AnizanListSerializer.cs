@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -37,9 +37,9 @@ namespace AnizanHelper.Models.Serializers
 			StringBuilder sb = new StringBuilder();
 			sb.Append(".｢{0}｣");
 
-			var hasSinger = !string.IsNullOrWhiteSpace(info.Singer);
+			var hasArtist = !string.IsNullOrWhiteSpace(info.Artist);
 
-			if (appendAll || hasSinger)
+			if (appendAll || hasArtist)
 			{
 				sb.Append("/{1}");
 			}
@@ -85,7 +85,7 @@ namespace AnizanHelper.Models.Serializers
 			var result = string.Format(
 				sb.ToString(),
 				info.Title,
-				info.Singer,
+				info.Artist,
 				info.Genre,
 				info.Series,
 				info.SongType,
