@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -12,7 +11,9 @@ using AnizanHelper.Models.Parsers;
 using AnizanHelper.Models.Serializers;
 using AnizanHelper.Modules.Dictionaries;
 using AnizanHelper.Services;
+using AnizanHelper.ViewModels.Events;
 using AnizanHelper.Views;
+using Prism.Events;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
@@ -32,19 +33,22 @@ namespace AnizanHelper.ViewModels
 		private SongPresetRepository SongPresetRepository { get; }
 		private Subject<AnizanSongInfo> SongsSubject { get; }
 		private IDictionaryManager DictionaryManager { get; }
-		
+		private IEventAggregator EventAggregator { get; }
+
 		public MainWindowViewModel(
 			Settings settings,
 			AnizanSongInfoConverter songInfoConverter,
 			SongPresetRepository songPresetRepository,
 			IDictionaryManager dictionaryManager,
-			IServiceManager serviceManager)
+			IServiceManager serviceManager,
+			IEventAggregator eventAggregator)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
 			this.SongPresetRepository = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
 			this.DictionaryManager = dictionaryManager ?? throw new ArgumentNullException(nameof(dictionaryManager));
 			this.ServiceManager = serviceManager ?? throw new ArgumentNullException(nameof(serviceManager));
+			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
 			//this.SearchVm.SongParsed += this.SongParsed;
 			//this.SongParserVm.SongParsed += this.SongParsed;
@@ -52,6 +56,15 @@ namespace AnizanHelper.ViewModels
 			MessageService.Current.MessageObservable
 				.ObserveOnUIDispatcher()
 				.Subscribe(message => this.StatusText.Value = message)
+				.AddTo(this.Disposables);
+
+			this.EventAggregator
+				.GetEvent<SongParsedEvent>()
+				.Subscribe(songInfo =>
+				{
+					this.SongInfo.Value = this.SongInfoConverter.Convert(songInfo);
+					this.Serialize();
+				})
 				.AddTo(this.Disposables);
 
 			this.SongsSubject = new Subject<AnizanSongInfo>().AddTo(this.Disposables);
@@ -64,45 +77,47 @@ namespace AnizanHelper.ViewModels
 				Topmost = this.Settings.AlwaysOnTop
 			};
 
+			var mainWindow = App.Current.MainWindow;
+
 			this.SongListWindow.Loaded += (_, __) =>
 			{
-				//this.SongListWindow.Owner = mainWindow;
-				//this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-				//this.SongListWindow.Top = mainWindow.Top;
-				//this.SongListWindow.Height = mainWindow.Height;
+				this.SongListWindow.Owner = mainWindow;
+				this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+				this.SongListWindow.Top = mainWindow.Top;
+				this.SongListWindow.Height = mainWindow.Height;
 			};
 
-			//mainWindow.Closed += (_, __) =>
-			//{
-			//	this.SongListWindow.CloseImmediately();
-			//};
+			mainWindow.Closed += (_, __) =>
+			{
+				this.SongListWindow.CloseImmediately();
+			};
 
-			//mainWindow.LocationChanged += (_, __) =>
-			//{
-			//	if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
-			//	{
-			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-			//		this.SongListWindow.Top = mainWindow.Top;
-			//	}
-			//};
+			mainWindow.LocationChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+				{
+					this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					this.SongListWindow.Top = mainWindow.Top;
+				}
+			};
 
-			//mainWindow.SizeChanged += (_, __) =>
-			//{
-			//	if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
-			//	{
-			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-			//		this.SongListWindow.Top = mainWindow.Top;
-			//	}
-			//};
+			mainWindow.SizeChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+				{
+					this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					this.SongListWindow.Top = mainWindow.Top;
+				}
+			};
 
-			//this.SongListWindow.SizeChanged += (_, __) =>
-			//{
-			//	if (mainWindow.Visibility == Visibility.Visible && this.SongListWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
-			//	{
-			//		this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-			//		this.SongListWindow.Top = mainWindow.Top;
-			//	}
-			//};
+			this.SongListWindow.SizeChanged += (_, __) =>
+			{
+				if (mainWindow.Visibility == Visibility.Visible && this.SongListWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+				{
+					this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+					this.SongListWindow.Top = mainWindow.Top;
+				}
+			};
 
 			this.SongListWindow.IsVisibleChanged += (_, e) =>
 			{
@@ -117,11 +132,11 @@ namespace AnizanHelper.ViewModels
 				.ObserveOnDispatcher()
 				.Subscribe(_ =>
 				{
-					//if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
-					//{
-					//	this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
-					//	this.SongListWindow.Top = mainWindow.Top;
-					//}
+					if (mainWindow.Visibility == Visibility.Visible && this.Settings.SnapListWindow)
+					{
+						this.SongListWindow.Left = mainWindow.Left + mainWindow.Width;
+						this.SongListWindow.Top = mainWindow.Top;
+					}
 				});
 
 			this.ShowListWindow
@@ -141,13 +156,6 @@ namespace AnizanHelper.ViewModels
 					}
 				})
 				.AddTo(this.Disposables);
-		}
-
-		// 曲情報がパースされたよ！
-		private void SongParsed(object sender, SongParsedEventArgs e)
-		{
-			this.SongInfo.Value = this.SongInfoConverter.Convert(e.SongInfo);
-			this.Serialize();
 		}
 
 		#region いろいろやるやつ
@@ -210,11 +218,7 @@ namespace AnizanHelper.ViewModels
 				// 入力欄クリア
 				if (this.Settings.ClearInputAutomatically)
 				{
-					this.Dispatch(() =>
-					{
-						//this.SongParserVm.ClearInput();
-						//this.SearchVm.ClearInput();
-					});
+					this.EventAggregator.GetEvent<ClearSearchInputEvent>().Publish();
 				}
 			}));
 		}
@@ -222,9 +226,12 @@ namespace AnizanHelper.ViewModels
 		private void Serialize()
 		{
 			var songInfo = this.SongInfo.Value;
-			this.ResultText.Value = songInfo.IsSpecialItem
-				? this.SongInfoSerializer.SerializeFull(songInfo)
-				: this.SongInfoSerializer.Serialize(songInfo);
+			if (songInfo != null)
+			{
+				this.ResultText.Value = songInfo.IsSpecialItem
+					? this.SongInfoSerializer.SerializeFull(songInfo)
+					: this.SongInfoSerializer.Serialize(songInfo);
+			}
 		}
 
 		private void WriteToThread()
@@ -270,11 +277,7 @@ namespace AnizanHelper.ViewModels
 						// 入力欄クリア
 						if (this.Settings.ClearInputAutomatically)
 						{
-							this.Dispatch(() =>
-							{
-								//this.SongParserVm.ClearInput();
-								//this.SearchVm.ClearInput();
-							});
+							this.EventAggregator.GetEvent<ClearSearchInputEvent>().Publish();
 						}
 						break;
 
@@ -351,7 +354,9 @@ namespace AnizanHelper.ViewModels
 
 		public ReactiveProperty<AnizanSongInfo> SongInfo => this.LazyReactiveProperty(() =>
 		{
-			var prop = new ReactiveProperty<AnizanSongInfo>();
+			var prop = new ReactiveProperty<AnizanSongInfo>(new AnizanSongInfo());
+
+			prop.PropertyChanged += this.SongInfo_PropertyChanged;
 
 			prop.Pairwise()
 				.Subscribe(x =>
@@ -364,11 +369,10 @@ namespace AnizanHelper.ViewModels
 					if (x.NewItem != null)
 					{
 						x.NewItem.PropertyChanged += this.SongInfo_PropertyChanged;
+						this.Serialize();
 					}
 				})
 				.AddTo(this.Disposables);
-
-			prop.Value = new AnizanSongInfo();
 
 			return prop;
 		});
@@ -612,7 +616,7 @@ namespace AnizanHelper.ViewModels
 					case "CLEARALL":
 						if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
 						{
-							songInfo = new AnizanSongInfo();
+							this.SongInfo.Value = new AnizanSongInfo();
 						}
 						break;
 				}

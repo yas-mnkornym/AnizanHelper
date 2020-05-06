@@ -2,14 +2,31 @@ using System;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
+using AnizanHelper.ViewModels.Events;
+using Prism.Events;
+using Reactive.Bindings.Extensions;
 
 namespace AnizanHelper.ViewModels.Pages
 {
-	public class SongParserPageViewModel : SongParserVmBase
+	public class SongParserPageViewModel : ReactiveViewModelBase
 	{
-		private ISongInfoParser parser = new AnisonDBParser();
+		private ISongInfoParser Parser { get; } = new AnisonDBParser();
+		private IEventAggregator EventAggregator { get; }
 
-		public override void ClearInput()
+		public SongParserPageViewModel(IEventAggregator eventAggregator)
+		{
+			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
+
+			this.EventAggregator
+				.GetEvent<ClearSearchInputEvent>()
+				.Subscribe(() =>
+				{
+					this.ClearInput();
+				})
+				.AddTo(this.Disposables);
+		}
+
+		public void ClearInput()
 		{
 			this.InputText = string.Empty;
 		}
@@ -31,11 +48,14 @@ namespace AnizanHelper.ViewModels.Pages
 			}
 		}
 
-		#endregion // Bindings
+		#endregion Bindings
 
 		#region Commands
+
 		#region ParseCommand
+
 		private DelegateCommand parseCommand_ = null;
+
 		public DelegateCommand ParseCommand
 		{
 			get
@@ -46,14 +66,15 @@ namespace AnizanHelper.ViewModels.Pages
 					{
 						try
 						{
-							var info = this.parser.Parse(this.InputText);
-							this.OnSongParsed(new SongParsedEventArgs(info));
+							var info = this.Parser.Parse(this.InputText);
+							this.EventAggregator
+								.GetEvent<SongParsedEvent>()
+								.Publish(info);
 						}
 						catch (Exception ex)
 						{
 							MessageBox.Show(ex.ToString(), "解析失敗", MessageBoxButton.OK, MessageBoxImage.Stop);
 						}
-
 					},
 					CanExecuteHandler = param =>
 					{
@@ -62,7 +83,9 @@ namespace AnizanHelper.ViewModels.Pages
 				});
 			}
 		}
-		#endregion
-		#endregion // Commands
+
+		#endregion ParseCommand
+
+		#endregion Commands
 	}
 }

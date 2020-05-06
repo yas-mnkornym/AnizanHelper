@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AnizanHelper.Models;
 using AnizanHelper.Models.DbSearch;
+using AnizanHelper.ViewModels.Events;
+using Prism.Events;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
@@ -14,24 +16,35 @@ using Xceed.Wpf.Toolkit;
 
 namespace AnizanHelper.ViewModels.Pages
 {
-	internal class SongSearchPageViewModel : SongParserVmBase, ISearchController
+	internal class SongSearchPageViewModel : ReactiveViewModelBase, ISearchController
 	{
 		public SongSearcher Searcher { get; } = new SongSearcher();
 		private Settings Settings { get; }
+		private IEventAggregator EventAggregator { get; }
 
 		public SongSearchPageViewModel(
 			Settings settings,
-			ProxySearchController proxySearchController)
+			ProxySearchController proxySearchController,
+			IEventAggregator eventAggregator)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			if (proxySearchController == null) { throw new ArgumentNullException(nameof(proxySearchController)); }
+			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
 			proxySearchController.Target = this;
+
+			this.EventAggregator
+				.GetEvent<ClearSearchInputEvent>()
+				.Subscribe(() =>
+				{
+					this.ClearInput();
+				})
+				.AddTo(this.Disposables);
 		}
 
 		#region ISearchController
 
-		public override void ClearInput()
+		public void ClearInput()
 		{
 			this.SearchTerm.Value = null;
 		}
@@ -107,7 +120,10 @@ namespace AnizanHelper.ViewModels.Pages
 
 				try
 				{
-					this.OnSongParsed(new SongParsedEventArgs(SongSearchResult.ToGeneralInfo(result, this.Settings.CheckSeriesTypeNumberAutomatically)));
+					var songInfo = SongSearchResult.ToGeneralInfo(result, this.Settings.CheckSeriesTypeNumberAutomatically);
+					this.EventAggregator
+						.GetEvent<SongParsedEvent>()
+						.Publish(songInfo);
 				}
 				catch (Exception ex)
 				{
