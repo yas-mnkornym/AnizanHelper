@@ -97,7 +97,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="元"
-                                    Binding="{Binding Path=ShortSourceIdentifier, Mode=OneWay}" />
+                                    Binding="{Binding Path=ShortProviderIdentifier, Mode=OneWay}" />
 
                 <DataGridTextColumn Width="2*"
                                     Header="曲名"

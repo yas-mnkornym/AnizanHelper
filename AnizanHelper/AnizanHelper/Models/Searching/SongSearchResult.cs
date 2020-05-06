@@ -1,8 +1,9 @@
-﻿namespace AnizanHelper.Models.Searching
+namespace AnizanHelper.Models.Searching
 {
 	public class SongSearchResult : ISongSearchResult
 	{
 		public string ProviderId { get; set; }
+		public string ShortProviderIdentifier { get; set; }
 
 		public string Title { get; set; }
 		public string[] Artists { get; set; }

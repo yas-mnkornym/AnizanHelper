@@ -18,6 +18,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 		public static Uri DatabaseBaseUri { get; } = new Uri("http://anison.info/data/");
 		private static Regex LinkParserRegex { get; } = new Regex(@"javascript:link\('(?<Category>.*)','(?<Id>.*)'\)");
 		private static Regex SeriesNumberPatternRegex { get; } = new Regex(@"(?<Type>(OP|ED))\s*(?<Number>\d)");
+		public static string ShortProviderIdentifier { get; } = "DB";
 
 		public bool CheckSeries { get; set; }
 
@@ -144,6 +145,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 					var serisA = tds[3].Descendants("a").FirstOrDefault();
 					return new AnisonDbNameSongSearchResult
 					{
+						ShortProviderIdentifier = ShortProviderIdentifier,
 						ProviderId = this.Id,
 						Title = WebUtility.HtmlDecode(tds[0].InnerText),
 						Artists = tds[1].Descendants("a").Any() ?
