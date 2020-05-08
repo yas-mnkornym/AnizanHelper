@@ -1,13 +1,17 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
+using AnizanHelper.Models.Searching.Zanmai;
 using AnizanHelper.Models.Serializers;
 using AnizanHelper.Modules.Dictionaries;
 using AnizanHelper.Services;
@@ -19,6 +23,7 @@ using Reactive.Bindings.Extensions;
 using Studiotaiha.LazyProperty;
 using Twin;
 using Twin.Bbs;
+using Unity;
 
 namespace AnizanHelper.ViewModels
 {
@@ -34,6 +39,7 @@ namespace AnizanHelper.ViewModels
 		private Subject<AnizanSongInfo> SongsSubject { get; }
 		private IDictionaryManager DictionaryManager { get; }
 		private IEventAggregator EventAggregator { get; }
+		private IUnityContainer UnityContainer { get; }
 
 		public MainWindowViewModel(
 			Settings settings,
@@ -41,7 +47,8 @@ namespace AnizanHelper.ViewModels
 			SongPresetRepository songPresetRepository,
 			IDictionaryManager dictionaryManager,
 			IServiceManager serviceManager,
-			IEventAggregator eventAggregator)
+			IEventAggregator eventAggregator,
+			IUnityContainer unityContainer)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
@@ -49,6 +56,7 @@ namespace AnizanHelper.ViewModels
 			this.DictionaryManager = dictionaryManager ?? throw new ArgumentNullException(nameof(dictionaryManager));
 			this.ServiceManager = serviceManager ?? throw new ArgumentNullException(nameof(serviceManager));
 			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
+			this.UnityContainer = unityContainer ?? throw new ArgumentNullException(nameof(unityContainer));
 
 			//this.SearchVm.SongParsed += this.SongParsed;
 			//this.SongParserVm.SongParsed += this.SongParsed;
@@ -687,6 +695,24 @@ namespace AnizanHelper.ViewModels
 			() =>
 			{
 				this.WriteToThread();
+			});
+
+		public ICommand GenerateZanmaiSearchIndexCommand => this.LazyAsyncReactiveCommand(
+			async () =>
+			{
+				try
+				{
+					var generator = this.UnityContainer.Resolve<ZanmaiWikiSearchIndexGenerator>();
+					using (var cts = new CancellationTokenSource())
+					using (var fs = new FileStream(AppInfo.Current.ZanmaiSearchIndexPath, FileMode.Create, FileAccess.Write, FileShare.Read))
+					{
+						await generator.CreateIndexAsync(fs, cts.Token);
+					}
+				}
+				catch (Exception ex)
+				{
+					this.ErrMsg("三昧サーチ用のインデックス作成に失敗しました。", ex);
+				}
 			});
 
 		#endregion Commands

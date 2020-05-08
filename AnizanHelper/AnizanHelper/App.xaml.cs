@@ -92,7 +92,8 @@ namespace AnizanHelper
 			unityContainer.RegisterFactory<HttpClient>(_ =>
 			{
 				var httpClient = new HttpClient();
-				var userAgent = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+				//var userAgent = @"Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+				var userAgent = @"Mozilla/5.0 (Windows NT 10.0;) AppleWebKit/537.36 (KHTML, like Gecko)";
 				httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
 
 				return httpClient;

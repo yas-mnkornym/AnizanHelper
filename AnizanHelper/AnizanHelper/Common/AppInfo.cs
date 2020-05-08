@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace AnizanHelper
 {
@@ -86,6 +87,8 @@ namespace AnizanHelper
 					Path.Combine(AppInfo.Current.StartupDirectory, Constants.UserDictionaryFileName));
 			}
 		}
+
+		public string ZanmaiSearchIndexPath => Path.Combine(AppInfo.Current.StartupDirectory, Constants.AnizanSearchIndexPath);
 
 		#region Version
 		private Version version_ = null;

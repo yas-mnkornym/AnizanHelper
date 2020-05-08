@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace AnizanHelper
 {
@@ -45,6 +45,11 @@ namespace AnizanHelper
 		/// ユーザ定義置換辞書ファイル名
 		/// </summary>
 		public static string UserDictionaryFileName { get; } = "dictionary.user.txt";
+
+		/// <summary>
+		/// 三昧サーチ用インデックスファイル名
+		/// </summary>
+		public static string AnizanSearchIndexPath { get; } = "anizan.index";
 
 		/// <summary>
 		/// 置換辞書URL

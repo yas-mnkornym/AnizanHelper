@@ -118,7 +118,7 @@
                 <Button Margin="2,0,2,0"
                         Content="wiki解析"
                         Visibility="{Binding Source={x:Static local:Constants.IsDebugBuild}, Mode=OneWay, Converter={StaticResource TrueVisibleConverter}}"
-                        Command="{Binding Path=CheckForUpdateCommand}" />
+                        Command="{Binding Path=GenerateZanmaiSearchIndexCommand}" />
             </WrapPanel>
 
             <StackPanel Grid.Column="1"
