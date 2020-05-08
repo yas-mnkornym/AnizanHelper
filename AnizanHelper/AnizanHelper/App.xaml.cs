@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Searching;
 using AnizanHelper.Models.Searching.AnisonDb;
+using AnizanHelper.Models.Searching.Zanmai;
 using AnizanHelper.Models.Updating;
 using AnizanHelper.Modules;
 using AnizanHelper.ViewModels;
@@ -108,7 +109,18 @@ namespace AnizanHelper
 					new InjectionParameter(new Uri(Constants.UpdateInfoUrl))));
 
 			unityContainer.RegisterSingleton<IUpdateManager, UpdateManager>();
-			unityContainer.RegisterSingleton<ISongSearchProvider, AnisonDbSongNameSearchProvider>();
+
+			unityContainer.RegisterFactory<ISongSearchProvider>(container =>
+			{
+				return new CompositeSearchProvider(
+					container.Resolve<AnisonDbSongNameSearchProvider>(),
+					new ZanmaiWikiSearchProvider(new ZanmaiWikiSearchProviderOptions
+					{
+						IndexFilePath = AppInfo.Current.ZanmaiSearchIndexPath,
+					}));
+
+			});
+
 
 			unityContainer.RegisterSingleton<AnizanSongInfoConverter>();
 			unityContainer.RegisterSingleton<SongPresetRepository>();

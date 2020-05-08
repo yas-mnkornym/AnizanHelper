@@ -1,327 +1,152 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using AnizanHelper.Models.Parsers;
-using HtmlAgilityPack;
+using AnizanHelper.Models.Serializers;
 
 namespace AnizanHelper.Models.Searching.Zanmai
 {
-	public class ZanmaiWikiSearchIndexGenerator
+	public class ZanmaiWikiSearchProviderOptions
 	{
-		public static Uri WikiUrl { get; } = new Uri("https://w.atwiki.jp/anizan_portal");
-		public static string ListPagePath { get; } = "list";
-		public Regex RegexListPageTitle { get; } = new Regex(@"(?<Year>.*)/放送曲リスト/(?<Date>.*)");
+		public string IndexFilePath { get; set; }
+	}
 
-		private HttpClient HttpClient { get; }
-		private HtmlHelper HtmlHelper { get; }
+	public class ZanmaiWikiSearchProvider : ISongSearchProvider
+	{
+		public string Id => nameof(ZanmaiWikiSearchProvider);
 
-		public ZanmaiWikiSearchIndexGenerator(HttpClient httpClient)
+		// TODO: Create efficient index
+		// TODO: Support live update
+		private List<ZanmaiProgram> Programs { get; } = new List<ZanmaiProgram>();
+		private Task InitializationTask { get; }
+		private static AnizanListSerializer AnizanListSerializer { get; } = new AnizanListSerializer();
+
+		public ZanmaiWikiSearchProvider(ZanmaiWikiSearchProviderOptions options)
 		{
-			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-			this.HtmlHelper = new HtmlHelper(this.HttpClient, WikiUrl);
-		}
+			if (options == null) { throw new ArgumentNullException(nameof(options)); }
 
-		public async Task CreateIndexAsync(
-			Stream outputStream,
-			CancellationToken cancellationToken)
-		{
-			var programs = await this.RetrieveSongEntries(cancellationToken)
-				.ToArrayAsync()
-				.ConfigureAwait(false);
-
-			using (var writer = new StreamWriter(outputStream))
+			this.InitializationTask = Task.Run(async () =>
 			{
-				var programId = 0;
-				foreach (var program in programs)
+				try
 				{
-					await this.WriteEntriesAsync(
-						writer,
-						"Program",
-						programId,
-						program.ProgramTitle,
-						program.Songs.Length,
-						program.SongListPageLink.Year,
-						program.SongListPageLink.Date,
-						program.SongListPageLink.Title,
-						program.SongListPageLink.Uri.AbsoluteUri)
-						.ConfigureAwait(false);
-
-					foreach (var song in program.Songs.Select(x => x.SongInfo))
+					using (var fs = new FileStream(options.IndexFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
 					{
-						await this.WriteEntriesAsync(
-							writer,
-							"Song",
-							programId,
-							song.Number,
-							song.Title,
-							song.Artist,
-							song.Genre,
-							song.Series,
-							song.SongType,
-							song.IsSpecialItem,
-							song.SpecialHeader,
-							song.SpecialItemName,
-							song.Additional,
-							song.ShortDescription)
+						var programs = await ZanmaiWikiSearchDataHelper.DeserializeProgramsAsync(fs)
+							.ToArrayAsync()
 							.ConfigureAwait(false);
+
+						this.Programs.AddRange(programs);
 					}
-
-					programId++;
 				}
-
-				await writer.FlushAsync().ConfigureAwait(false);
-			}
+				catch (Exception ex)
+				{
+					Debug.WriteLine("Failed to load search index.");
+					Debug.WriteLine(ex);
+				}
+			});
 		}
 
-
-		private Task WriteEntriesAsync(
-			TextWriter writer,
-			string recordName,
-			params object[] values)
+		public Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default)
 		{
-			var line = string.Join(
-				"\t",
-				new string[] { recordName }
-					.Concat(values.Select(x => x?.ToString() ?? string.Empty))
-					.Select(x => x.Replace("\\", "\\\\").Replace("\t", "\\\t")));
-
-			return writer.WriteLineAsync(line);
-		}
-
-
-		private async IAsyncEnumerable<ZanmaiProgram> RetrieveSongEntries([EnumeratorCancellation]CancellationToken cancellationToken = default)
-		{
-			await foreach (var page in this.GetListPagesAsync(cancellationToken).ConfigureAwait(false))
+			if (songSearchResult is ZanmaiSongSearchResult zanmaiSongSearchResult)
 			{
-				var doc = await this.HtmlHelper.GetDocumentAsync(page.Uri, cancellationToken).ConfigureAwait(false);
-
-				var programs = this.ParseListPage(doc)
-					.GroupBy(x => x.ProgramTitle)
-					.Select(x => new ZanmaiProgram
-					{
-						SongListPageLink = page,
-						ProgramTitle = x.Key,
-						Songs = x.ToArray(),
-					});
-
-				foreach (var program in programs) {
-					yield return program;
-				}
-			}
-		}
-
-
-		private IEnumerable<ZanmaiSongListItem> ParseListPage(HtmlDocument doc)
-		{
-			var lines = doc.DocumentNode
-				.SelectSingleNode(@"//*[@id=""wikibody""]")
-				.InnerText
-				.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-				.Select(x => WebUtility.HtmlDecode(x.Trim()))
-				.ToArray();
-
-			var regexProgramTitle = new Regex(@"第(?<Number>\d+)部.*\[.+\]");
-			var songInfoParser = new AnizanFormatParser();
-
-			string currentProgram = null;
-			foreach (var line in lines)
-			{
-				var programRegexMatch = regexProgramTitle.Match(line);
-				if (programRegexMatch.Success)
+				var song = zanmaiSongSearchResult.SongListItem.SongInfo;
+				var result = new GeneralSongInfo
 				{
-					currentProgram = line;
-					continue;
-				}
-
-				var songInfo = songInfoParser.ParseAsAnizanInfo(line);
-				if (songInfo != null)
-				{
-					yield return new ZanmaiSongListItem
-					{
-						ProgramTitle = currentProgram,
-						SongInfo = songInfo,
-					};
-				}
-			}
-		}
-
-		private async IAsyncEnumerable<WikiSongListPageLink> GetListPages(HtmlDocument doc, [EnumeratorCancellation]CancellationToken cancellationToken)
-		{
-			var linkNodes = doc.DocumentNode.SelectNodes(@"//table[contains(.,""ページ名"")]//tr/td/a");
-			foreach (var node in linkNodes)
-			{
-				var title = node.InnerText.Trim();
-				var url = node.GetAttributeValue<string>("href", null);
-
-				if (title == null || url == null)
-				{
-					continue;
-				}
-
-				if (!title.Contains("放送曲リスト"))
-				{
-					continue;
-				}
-
-				var match = this.RegexListPageTitle.Match(title);
-				if (!match.Success)
-				{
-					continue;
-				}
-
-				var year = match.Groups["Year"].Value;
-				var date = match.Groups["Date"].Value;
-				if (string.IsNullOrWhiteSpace(year) || string.IsNullOrWhiteSpace(date))
-				{
-					continue;
-				}
-
-				yield return new WikiSongListPageLink
-				{
-					Year = year,
-					Date = date,
-					Title = title,
-					Uri = url.StartsWith("//")
-						? new Uri(WikiUrl.Scheme + ":" + url)
-						: url.StartsWith("/")
-							? new Uri(WikiUrl.AbsoluteUri + url)
-							: new Uri(url),
+					Title = song.Title,
+					Artists = new string[] { song.Artist },
+					Genre = song.Genre,
+					Series = song.Series,
+					SongType = song.SongType,
 				};
+
+				return Task.FromResult(result);
 			}
 
-			var nextPageLinkNode = doc.DocumentNode.SelectSingleNode(@"//*[@id=""wikibody""]//ul/li[@class=""next""]/span/a");
-			if (nextPageLinkNode != null)
+			throw new ArgumentException($"Unsupported result type.", nameof(songSearchResult));
+		}
+
+		public async IAsyncEnumerable<ISongSearchResult> SearchAsync(string searchTerm, Dictionary<string, string> options = null, [EnumeratorCancellation]CancellationToken cancellationToken = default)
+		{
+			if (searchTerm == null) { throw new ArgumentNullException(nameof(searchTerm)); }
+
+			await this.InitializationTask.ConfigureAwait(false);
+
+			var compareOptions = CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreSymbols | CompareOptions.IgnoreCase;
+			foreach (var program in this.Programs)
 			{
-				var link = nextPageLinkNode.GetAttributeValue<string>("href", null);
-				if (!string.IsNullOrWhiteSpace(link))
+				cancellationToken.ThrowIfCancellationRequested();
+				foreach (var item in program.Songs)
 				{
-					var tokens = link.Split('?');
-					var path = tokens.ElementAtOrDefault(0)?.Trim();
-					if (string.IsNullOrWhiteSpace(path))
+					var song = item.SongInfo;
+					var score = 0;
+
+					if (song.IsSpecialItem)
 					{
-						path = ListPagePath;
+						continue;
 					}
 
-					var nextPageDoc = await this.HtmlHelper.GetDocumentAsync(
-						path,
-						tokens.ElementAtOrDefault(1)?.Trim(),
-						cancellationToken);
-
-					await Task.Delay(TimeSpan.FromMilliseconds(300)).ConfigureAwait(false);
-					await foreach (var item in this.GetListPages(nextPageDoc, cancellationToken).ConfigureAwait(false))
+					if (string.Compare(song.Title, searchTerm, true) == 0)
 					{
-						yield return item;
+						score += 5;
+					}
+					else if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(song.Title, searchTerm, compareOptions) >= 0)
+					{
+						score += 4;
+					}
+
+					if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(song.Artist, searchTerm, compareOptions) >= 0)
+					{
+						score += 2;
+					}
+
+					if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(song.Series, searchTerm, compareOptions) >= 0)
+					{
+						score += 1;
+					}
+
+					if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(song.Additional, searchTerm, compareOptions) >= 0)
+					{
+						score += 1;
+					}
+
+					if (score != 0)
+					{
+						yield return new ZanmaiSongSearchResult
+						{
+							Score = score,
+							SongPageLink = program.SongListPageLink,
+							SongListItem = item,
+						};
 					}
 				}
 			}
 		}
 
-		private async IAsyncEnumerable<WikiSongListPageLink> GetListPagesAsync([EnumeratorCancellation]CancellationToken cancellationToken)
+		public class ZanmaiSongSearchResult : ISongSearchResult
 		{
-			var doc = await this.HtmlHelper.GetDocumentAsync(ListPagePath, cancellationToken).ConfigureAwait(false);
+			public int Score { get; set; }
+			internal WikiSongListPageLink SongPageLink { get; set; }
+			internal ZanmaiSongListItem SongListItem { get; set; }
 
-			await foreach (var item in this.GetListPages(doc, cancellationToken).ConfigureAwait(false))
-			{
-				yield return item;
-			}
+			public string ProviderId => nameof(ZanmaiWikiSearchProvider);
+			public string ShortProviderIdentifier { get; } = "昧";
+			public string[] Artists => this.SongListItem.SongInfo.Artist.Split(',').ToArray();
+			public string Genre => this.SongListItem.SongInfo.Genre;
+			public string Series => this.SongListItem.SongInfo.Series;
+			public string SongType => this.SongListItem.SongInfo.SongType;
+			public string Title => this.SongListItem.SongInfo.Title;
+
+			public string Note => string.Join(
+				"\n",
+				string.Format("{0} / {1}", this.SongPageLink.Year, this.SongPageLink.Date),
+				this.SongListItem.ProgramTitle,
+				AnizanListSerializer.SerializeFull(this.SongListItem.SongInfo));
 		}
-
-		#region Internal classes
-
-		private class WikiSongListPageLink
-		{
-			public string Year { get; set; }
-			public string Date { get; set; }
-			public string Title { get; set; }
-			public Uri Uri { get; set; }
-		}
-		private class ZanmaiSongListItem
-		{
-			public string ProgramTitle { get; set; }
-			public AnizanSongInfo SongInfo { get; set; }
-		}
-
-		private class ZanmaiProgram 
-		{
-			public WikiSongListPageLink SongListPageLink { get; set; }
-			public string ProgramTitle { get; set; }
-			public ZanmaiSongListItem[] Songs { get; set; }
-		}
-
-		#endregion Internal classes
-	}
-
-	public class HtmlHelper
-	{
-		public HtmlHelper(HttpClient httpClient, Uri baseUri)
-		{
-			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-			this.BaseUri = baseUri ?? throw new ArgumentNullException(nameof(baseUri));
-		}
-
-		public Uri BaseUri { get; }
-		public HttpClient HttpClient { get; }
-
-		public async Task<HtmlDocument> GetDocumentAsync(
-			Uri uri,
-			CancellationToken cancellationToken = default)
-		{
-			using (var res = await this.HttpClient.GetAsync(uri, cancellationToken).ConfigureAwait(false))
-			{
-				res.EnsureSuccessStatusCode();
-				var text = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
-				var doc = new HtmlDocument();
-				doc.LoadHtml(text);
-				return doc;
-				//using (var stream = await res.Content.ReadAsStreamAsync().ConfigureAwait(false))
-				//{
-				//	var doc = new HtmlDocument();
-				//	doc.Load(stream);
-
-				//	return doc;
-				//}
-			}
-		}
-
-		public Task<HtmlDocument> GetDocumentAsync(
-			string path,
-			CancellationToken cancellationToken = default)
-		{
-			return this.GetDocumentAsync(path, null, cancellationToken);
-		}
-
-		public Task<HtmlDocument> GetDocumentAsync(
-			string path,
-			string query = null,
-			CancellationToken cancellationToken = default)
-		{
-			if (path == null) { throw new ArgumentNullException(nameof(path)); }
-
-			var ub = new UriBuilder(this.BaseUri);
-			ub.Path = string.IsNullOrWhiteSpace(ub.Path)
-				? path
-				: ub.Path.TrimEnd('/') + "/" + path.TrimStart('/');
-
-			if (!string.IsNullOrEmpty(query))
-			{
-				ub.Query = query;
-			}
-
-			return this.GetDocumentAsync(ub.Uri, cancellationToken);
-		}
-	}
-
-	public class ZanmaiWikiSearchProvider
-	{
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace AnizanHelper.Models.Parsers
 {
@@ -56,6 +56,7 @@ namespace AnizanHelper.Models.Parsers
 				}
 			}
 
+			var specialItemHeader = match.Groups["SpecialHeader"]?.Value?.Trim();
 			return match?.Success == true
 				? new AnizanSongInfo
 				{
@@ -67,7 +68,8 @@ namespace AnizanHelper.Models.Parsers
 					SongType = match.Groups["SongType"]?.Value?.Trim(),
 					Additional = match.Groups["Additional"]?.Value?.Trim(),
 					SpecialItemName = match.Groups["SpecialItemName"]?.Value?.Trim(),
-					SpecialHeader = match.Groups["SpecialHeader"]?.Value?.Trim(),
+					SpecialHeader = specialItemHeader,
+					IsSpecialItem = !string.IsNullOrWhiteSpace(specialItemHeader),
 				}
 				: null;
 		}

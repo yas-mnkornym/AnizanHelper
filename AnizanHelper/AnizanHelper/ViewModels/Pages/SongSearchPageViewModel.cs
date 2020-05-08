@@ -85,6 +85,7 @@ namespace AnizanHelper.ViewModels.Pages
 				var searchTerm = this.SearchTerm.Value.Trim();
 				MessageService.Current.ShowMessage("楽曲情報を検索しています...");
 				var sw = new Stopwatch();
+				sw.Start();
 
 				using (var cts = new CancellationTokenSource())
 				{
@@ -94,7 +95,7 @@ namespace AnizanHelper.ViewModels.Pages
 					{
 						this.Results.Clear();
 
-						await foreach (var item in this.SongSearchProvider.SearchAsync(searchTerm, null, cts.Token))
+						await foreach (var item in this.SongSearchProvider.SearchAsync(searchTerm, null, cts.Token).OrderByDescending(x => x.Score))
 						{
 							this.Results.Add(item);
 						}
@@ -136,7 +137,7 @@ namespace AnizanHelper.ViewModels.Pages
 
 		#region Commands
 
-		public ICommand ApplySongCommand => this.LazyAsyncReactiveCommand<SongSearchResult>(
+		public ICommand ApplySongCommand => this.LazyAsyncReactiveCommand<ISongSearchResult>(
 			async result =>
 			{
 				if (result == null) { return; }

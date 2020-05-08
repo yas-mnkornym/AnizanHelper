@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -114,7 +115,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 
 			for (var i = 0; i < MaxPageNumberToRetreive && uri != null; i++)
 			{
-				var item = await this.SearchPageAsync(uri, cancellationToken).ConfigureAwait(false);
+				var item = await this.SearchPageAsync(searchTerm, uri, cancellationToken).ConfigureAwait(false);
 				uri = item.NextPageUri;
 
 				foreach (var song in item.Songs)
@@ -124,7 +125,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 			}
 		}
 
-		private async Task<SearchPageResult> SearchPageAsync(Uri uri, CancellationToken cancellationToken)
+		private async Task<SearchPageResult> SearchPageAsync(string searchTerm, Uri uri, CancellationToken cancellationToken)
 		{
 			var doc = await this.QueryDocumentAsync(uri, cancellationToken).ConfigureAwait(false);
 			var tbody = doc.DocumentNode.SelectSingleNode(@"//table[contains(.,""曲名"")]/tbody");
@@ -143,18 +144,22 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 				{
 					var tds = tr.Descendants("td").ToArray();
 					var serisA = tds[3].Descendants("a").FirstOrDefault();
+					var title = WebUtility.HtmlDecode(tds[0].InnerText);
 					return new AnisonDbNameSongSearchResult
 					{
 						ShortProviderIdentifier = ShortProviderIdentifier,
 						ProviderId = this.Id,
-						Title = WebUtility.HtmlDecode(tds[0].InnerText),
+						Title = title,
 						Artists = tds[1].Descendants("a").Any() ?
 							tds[1].Descendants("a").Select(x => WebUtility.HtmlDecode(x.InnerText)).ToArray() :
 							new string[] { tds[1].InnerText },
 						Genre = WebUtility.HtmlDecode(tds[2].InnerText.Replace(" ", "")),
 						Series = WebUtility.HtmlDecode(tds[3].InnerText),
 						SeriesUrl = (serisA != null ? this.GetSeriesUri(serisA.GetAttributeValue("href", (string)null)) : null),
-						SongType = WebUtility.HtmlDecode(tds[4].InnerText.Replace(" ", ""))
+						SongType = WebUtility.HtmlDecode(tds[4].InnerText.Replace(" ", "")),
+						Score = string.Compare(title, searchTerm, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreSymbols| CompareOptions.IgnoreWidth) == 0
+						? 4
+						: 3,
 					};
 				});
 

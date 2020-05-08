@@ -52,7 +52,7 @@
                 Margin="5,0,0,0"
                 Content="検索中止"
                 Visibility="{Binding Path=IsSearching.Value, Converter={StaticResource TrueVisibleConverter}}"
-                Command="{Binding CancelSearchingCommand}" />
+                Command="{Binding CancelSearchCommand}" />
 
 
         <Button Grid.Row="0"
@@ -88,25 +88,39 @@
                   ItemsSource="{Binding Path=Results}"
                   SelectionMode="Single"
                   ToolTip="曲情報ダブルクリックで適用します"
-                  VerticalScrollBarVisibility="Auto">
-            <DataGrid.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick"
+                  VerticalScrollBarVisibility="Auto"
+				  AlternatingRowBackground="WhiteSmoke">
+			<DataGrid.InputBindings>
+				<MouseBinding Gesture="LeftDoubleClick"
                               Command="{Binding Path=ApplySongCommand}"
                               CommandParameter="{Binding Path=SelectedItem, ElementName=dataGrid_result}" />
-            </DataGrid.InputBindings>
+			</DataGrid.InputBindings>
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="元"
-                                    Binding="{Binding Path=ShortProviderIdentifier, Mode=OneWay}" />
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="元"
+                                    Binding="{Binding Path=ShortProviderIdentifier, Mode=OneWay}">
+					<DataGridTextColumn.ElementStyle>
+						<Style>
+							<Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
 
-                <DataGridTextColumn Width="2*"
+				<DataGridTextColumn Width="2*"
                                     Header="曲名"
-                                    Binding="{Binding Path=Title}" />
-				
-                <DataGridTemplateColumn Header="歌手名" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Path=Artists}">
+                                    Binding="{Binding Path=Title}">
+					<DataGridTextColumn.ElementStyle>
+						<Style>
+							<Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTemplateColumn Header="歌手名" Width="*">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ItemsControl ItemsSource="{Binding Path=Artists}"
+										  ToolTip="{Binding Path=Note, Mode=OneWay}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" />
@@ -122,19 +136,37 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-				
-                <DataGridTextColumn Width="Auto"
+
+				<DataGridTextColumn Width="Auto"
                                     Header="ジャンル"
-                                    Binding="{Binding Path=Genre}" />
-				
-                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Path=Genre}" >
+					<DataGridTextColumn.ElementStyle>
+						<Style>
+							<Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Width="*"
                                     Header="使用作品"
-                                    Binding="{Binding Path=Series}" />
-				
-                <DataGridTextColumn Width="Auto"
+                                    Binding="{Binding Path=Series}">
+					<DataGridTextColumn.ElementStyle>
+						<Style>
+							<Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Width="Auto"
                                     Header="種別"
-                                    Binding="{Binding Path=SongType}" />
-            </DataGrid.Columns>
+                                    Binding="{Binding Path=SongType}" >
+					<DataGridTextColumn.ElementStyle>
+						<Style>
+							<Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>
