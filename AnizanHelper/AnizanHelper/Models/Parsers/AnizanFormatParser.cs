@@ -16,7 +16,7 @@ namespace AnizanHelper.Models.Parsers
 			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?\s*(※(?<Additional>.*))?"),
 
 			// Song
-			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?[\(（](\[(?<Genre>.*)\])?(?<Series>.*)　(?<SongType>.*)?[\)）]\s*(※(?<Additional>.*))?"),
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])?\s*(?<Series>[^　]+)　(?<SongType>[^　]+)[\)）]\s*(※(?<Additional>.*))?"),
 
 			// Song w/o SongType
 			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?[\(（](\[(?<Genre>.*)\])?(?<Series>[^\)]*)[\)）]\s*(※(?<Additional>.*))?"),
