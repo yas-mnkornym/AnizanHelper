@@ -126,7 +126,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 			internal ZanmaiSongListItem SongListItem { get; set; }
 
 			public string ProviderId => nameof(ZanmaiWikiSearchProvider);
-			public string ShortProviderIdentifier { get; } = "昧";
+			public string ShortProviderIdentifier => $"三昧{this.SongPageLink.Year}";
 			public string[] Artists => this.SongListItem.SongInfo.Artists;
 			public string Genre => this.SongListItem.SongInfo.Genre;
 			public string Series => this.SongListItem.SongInfo.Series;
