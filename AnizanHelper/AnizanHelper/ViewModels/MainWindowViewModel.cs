@@ -195,8 +195,10 @@ namespace AnizanHelper.ViewModels
 		private void CopyToClipboard(bool appendNumber)
 		{
 			string format = (appendNumber ? "{0:D4}{1}" : "{1}");
-			var str = string.Format(format,
-				this.SongNumber, this.ResultText);
+			var str = string.Format(
+				format,
+				this.SongNumber.Value,
+				this.ResultText.Value);
 			if (string.IsNullOrEmpty("str")) { str = " "; }
 
 			App.Current.Dispatcher.BeginInvoke((Action)(() =>
