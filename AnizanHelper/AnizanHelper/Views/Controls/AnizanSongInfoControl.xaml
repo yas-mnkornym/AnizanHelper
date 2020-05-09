@@ -111,7 +111,7 @@
         <TextBox Grid.Row="2"
                  Grid.Column="1"
                  Margin="1,1,0,0"
-                 Text="{Binding Path=Artist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                 Text="{Binding Path=Artists, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox Grid.Row="3"
                  Grid.Column="1"
                  Margin="1,1,0,0"

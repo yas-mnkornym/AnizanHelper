@@ -105,7 +105,7 @@ namespace AnizanHelper.Models
 			set => this.SetValue(value);
 		}
 
-		public AnizanSongInfo[] SongList
+		public ZanmaiSongInfo[] SongList
 		{
 			get
 			{
@@ -114,16 +114,16 @@ namespace AnizanHelper.Models
 				{
 					try
 					{
-						return JsonConvert.DeserializeObject<AnizanSongInfo[]>(ret);
+						return JsonConvert.DeserializeObject<ZanmaiSongInfo[]>(ret);
 					}
 					catch
 					{
-						return new AnizanSongInfo[] { };
+						return new ZanmaiSongInfo[] { };
 					}
 				}
 				else
 				{
-					return new AnizanSongInfo[] { };
+					return new ZanmaiSongInfo[] { };
 				}
 			}
 			set

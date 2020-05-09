@@ -28,7 +28,7 @@ namespace AnizanHelper.Models
 		public async Task LoadAsync(CancellationToken cancellationToken = default)
 		{
 			var replaceList = new List<ReplaceInfo>();
-			var presetList = new List<AnizanSongInfo>();
+			var presetList = new List<ZanmaiSongInfo>();
 
 			try
 			{

@@ -4,9 +4,9 @@ namespace AnizanHelper.Models
 {
 	public class SongPresetRepository : INotifyPropertyChanged
 	{
-		private AnizanSongInfo[] presets_;
+		private ZanmaiSongInfo[] presets_;
 
-		public AnizanSongInfo[] Presets
+		public ZanmaiSongInfo[] Presets
 		{
 			get => this.presets_;
 			set

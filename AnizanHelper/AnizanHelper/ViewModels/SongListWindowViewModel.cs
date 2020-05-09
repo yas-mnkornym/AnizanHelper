@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
@@ -19,7 +19,7 @@ namespace AnizanHelper.ViewModels
 		public SongListWindowViewModel(
 			Settings settings,
 			ISongInfoSerializer songInfoSerializer,
-			IObservable<AnizanSongInfo> songInfoObservable)
+			IObservable<ZanmaiSongInfo> songInfoObservable)
 		{
 			if (settings == null) { throw new ArgumentNullException(nameof(settings)); }
 			if (songInfoObservable == null) { throw new ArgumentNullException(nameof(songInfoObservable)); }
@@ -27,19 +27,20 @@ namespace AnizanHelper.ViewModels
 			this.SongInfoSerializer = songInfoSerializer ?? throw new ArgumentNullException(nameof(songInfoSerializer));
 
 			this.SongList = songInfoObservable
+				.Select(x => new ZanmaiSongInfoViewModel(x))
 				.ToReactiveCollection()
 				.AddTo(this.Disposables);
 
 			foreach (var item in settings.SongList)
 			{
-				this.SongList.Add(item);
+				this.SongList.Add(new ZanmaiSongInfoViewModel(item));
 			}
 
 			this.SongList.CollectionChangedAsObservable()
 				.Throttle(TimeSpan.FromMilliseconds(250))
 				.Subscribe(_ =>
 				{
-					settings.SongList = this.SongList.ToArray();
+					settings.SongList = this.SongList.Select(x => x.ToZanmaiSongInfo()).ToArray();
 				})
 				.AddTo(this.Disposables);
 
@@ -50,7 +51,7 @@ namespace AnizanHelper.ViewModels
 				.AddTo(this.Disposables)
 				.WithSubscribe(() =>
 				{
-					this.CopyToClipboard(this.SongList);
+					this.CopyToClipboard(this.SongList.Select(x => x.ToZanmaiSongInfo()));
 				});
 
 			this.CopySelectedCommand = this.SelectedItems
@@ -60,7 +61,7 @@ namespace AnizanHelper.ViewModels
 				.AddTo(this.Disposables)
 				.WithSubscribe(() =>
 				{
-					this.CopyToClipboard(this.SelectedItems);
+					this.CopyToClipboard(this.SelectedItems.Select(x => x.ToZanmaiSongInfo()));
 				});
 
 			this.DeleteAllCommand = this.SongList
@@ -109,7 +110,7 @@ namespace AnizanHelper.ViewModels
 							.ToArray();
 
 						var startNumber = targetSelectedItems.First().Number + 1;
-						var selectedItemsToUpdate = new HashSet<AnizanSongInfo>(targetSelectedItems.Skip(1));
+						var selectedItemsToUpdate = new HashSet<ZanmaiSongInfoViewModel>(targetSelectedItems.Skip(1).Select(x => new ZanmaiSongInfoViewModel(x)));
 
 						var itemsToUpdate = this.SongList
 							.Where(x => selectedItemsToUpdate.Contains(x))
@@ -138,7 +139,7 @@ namespace AnizanHelper.ViewModels
 							.Select(line => new
 							{
 								Line = line,
-								Info = this.AnizanFormatParser.ParseAsAnizanInfo(line),
+								Info = this.AnizanFormatParser.Parse(line),
 							})
 							.ToArray();
 
@@ -179,7 +180,7 @@ namespace AnizanHelper.ViewModels
 						var ret = MessageBox.Show(sb.ToString(), "クリップボードから登録", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 						if (ret == MessageBoxResult.OK)
 						{
-							this.SongList.AddRangeOnScheduler(registeredItems.Select(x => x.Info).ToArray());
+							this.SongList.AddRangeOnScheduler(registeredItems.Select(x => new ZanmaiSongInfoViewModel(x.Info)).ToArray());
 						}
 					}
 					catch (Exception ex)
@@ -338,7 +339,7 @@ namespace AnizanHelper.ViewModels
 			this.AddSpecialItemCommand = new ReactiveCommand()
 				.WithSubscribe(() =>
 				{
-					this.SongList.Add(new AnizanSongInfo
+					this.SongList.Add(new ZanmaiSongInfoViewModel
 					{
 						SpecialHeader = "★",
 					});
@@ -348,7 +349,7 @@ namespace AnizanHelper.ViewModels
 
 
 
-		private void CopyToClipboard(IEnumerable<AnizanSongInfo> items)
+		private void CopyToClipboard(IEnumerable<ZanmaiSongInfo> items)
 		{
 			var lines = items
 				.Select(item => this.SongInfoSerializer.SerializeFull(item));
@@ -370,8 +371,8 @@ namespace AnizanHelper.ViewModels
 			}));
 		}
 
-		public ReactiveCollection<AnizanSongInfo> SongList { get; }
-		public ReactiveCollection<AnizanSongInfo> SelectedItems { get; } = new ReactiveCollection<AnizanSongInfo>();
+		public ReactiveCollection<ZanmaiSongInfoViewModel> SongList { get; }
+		public ReactiveCollection<ZanmaiSongInfoViewModel> SelectedItems { get; } = new ReactiveCollection<ZanmaiSongInfoViewModel>();
 
 
 		public ReactiveCommand CopyAllCommand { get; }

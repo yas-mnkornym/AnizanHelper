@@ -87,7 +87,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 					continue;
 				}
 
-				var songInfo = songInfoParser.ParseAsAnizanInfo(line);
+				var songInfo = songInfoParser.Parse(line);
 				if (songInfo != null)
 				{
 					yield return new ZanmaiSongListItem

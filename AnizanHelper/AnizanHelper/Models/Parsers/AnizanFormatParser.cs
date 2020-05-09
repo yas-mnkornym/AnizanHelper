@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace AnizanHelper.Models.Parsers
@@ -24,27 +25,7 @@ namespace AnizanHelper.Models.Parsers
 			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?\s*(※(?<Additional>.*))?")
 		};
 
-		public GeneralSongInfo Parse(string inputText)
-		{
-			var anizanSongInfo = this.ParseAsAnizanInfo(inputText);
-			if (anizanSongInfo == null)
-			{
-				return null;
-			}
-			else
-			{
-				return new GeneralSongInfo
-				{
-					Title = anizanSongInfo.Title,
-					Artists = anizanSongInfo.Artist.Split(','),
-					Genre = anizanSongInfo.Genre,
-					Series = anizanSongInfo.Series,
-					SongType = anizanSongInfo.SongType,
-				};
-			}
-		}
-
-		public AnizanSongInfo ParseAsAnizanInfo(string inputText)
+		public ZanmaiSongInfo Parse(string inputText)
 		{
 			Match match = null;
 			foreach (var regex in Regexes)
@@ -58,11 +39,11 @@ namespace AnizanHelper.Models.Parsers
 
 			var specialItemHeader = match.Groups["SpecialHeader"]?.Value?.Trim();
 			return match?.Success == true
-				? new AnizanSongInfo
+				? new ZanmaiSongInfo
 				{
 					Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
 					Title = match.Groups["Title"]?.Value?.Trim(),
-					Artist = match.Groups["Artist"]?.Value?.Trim(),
+					Artists = match.Groups["Artist"]?.Value?.Trim()?.Split(',') ?? Array.Empty<string>(),
 					Genre = match.Groups["Genre"]?.Value?.Trim(),
 					Series = match.Groups["Series"]?.Value?.Trim(),
 					SongType = match.Groups["SongType"]?.Value?.Trim(),

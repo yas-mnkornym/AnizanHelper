@@ -10,7 +10,7 @@ namespace AnizanHelper.Models.Parsers
 		public AnisonDBParser()
 		{ }
 
-		public GeneralSongInfo Parse(string inputText)
+		public ZanmaiSongInfo Parse(string inputText)
 		{
 			// トークン分割
 			var tokens = inputText
@@ -35,7 +35,7 @@ namespace AnizanHelper.Models.Parsers
 				?.Replace(" ", string.Empty)
 				?? string.Empty;
 
-			return new GeneralSongInfo
+			return new ZanmaiSongInfo
 			{
 				Title = tokens.ElementAtOrDefault(0) ?? string.Empty,
 				Artists = artists.ToArray(),

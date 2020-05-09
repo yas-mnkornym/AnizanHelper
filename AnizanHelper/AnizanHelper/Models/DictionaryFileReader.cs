@@ -9,10 +9,10 @@ namespace AnizanHelper.Models
 	public class DictionaryFileReader
 	{
 		private List<ReplaceInfo> ReplaceList { get; } = new List<ReplaceInfo>();
-		private List<AnizanSongInfo> SongPresetList { get; } = new List<AnizanSongInfo>();
+		private List<ZanmaiSongInfo> SongPresetList { get; } = new List<ZanmaiSongInfo>();
 
 		public IEnumerable<ReplaceInfo> Replaces => this.ReplaceList;
-		public IEnumerable<AnizanSongInfo> SongPresets => this.SongPresetList;
+		public IEnumerable<ZanmaiSongInfo> SongPresets => this.SongPresetList;
 
 		public int GetVersionNumber(string path)
 		{
@@ -63,11 +63,11 @@ namespace AnizanHelper.Models
 					}
 					else if (recordName == "preset")
 					{
-						var info = new AnizanSongInfo
+						var info = new ZanmaiSongInfo
 						{
 							ShortDescription = cs.GetString(1),
 							Title = cs.GetString(2),
-							Artist = cs.GetString(3),
+							Artists = cs.GetString(3).Split(','),
 							Genre = cs.GetString(4),
 							Series = cs.GetString(5),
 							SongType = cs.GetString(6)

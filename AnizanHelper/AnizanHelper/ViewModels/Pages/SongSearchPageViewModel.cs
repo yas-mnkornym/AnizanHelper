@@ -180,7 +180,7 @@ namespace AnizanHelper.ViewModels.Pages
 				try
 				{
 					var searchProvider = this.SongSearchProvider.Value;
-					var songInfo = await searchProvider.ConvertToGeneralSongInfoAsync(result);
+					var songInfo = await searchProvider.ConvertToZanmaiSongInfoAsync(result);
 
 					this.EventAggregator
 						.GetEvent<SongParsedEvent>()

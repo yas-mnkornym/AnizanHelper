@@ -3,6 +3,6 @@
 	internal class ZanmaiSongListItem
 	{
 		public string ProgramTitle { get; set; }
-		public AnizanSongInfo SongInfo { get; set; }
+		public ZanmaiSongInfo SongInfo { get; set; }
 	}
 }

@@ -21,19 +21,24 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 		private static Regex SeriesNumberPatternRegex { get; } = new Regex(@"(?<Type>(OP|ED))\s*(?<Number>\d)");
 		public static string ShortProviderIdentifier { get; } = "DB";
 
+		private AnizanSongInfoConverter SongInfoConverter { get; }
+
 		public bool CheckSeries { get; set; }
 
-		public AnisonDbSongNameSearchProvider(HttpClient httpClient) : base(httpClient)
+		public AnisonDbSongNameSearchProvider(
+			HttpClient httpClient,
+			AnizanSongInfoConverter songInfoConverter) : base(httpClient)
 		{
+			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
 		}
 
-		public override async Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(
+		public override async Task<ZanmaiSongInfo> ConvertToZanmaiSongInfoAsync(
 			ISongSearchResult songSearchResult,
 			CancellationToken cancellationToken = default)
 		{
 			if (songSearchResult is AnisonDbNameSongSearchResult result)
 			{
-				return new GeneralSongInfo
+				var info = new ZanmaiSongInfo
 				{
 					Title = result.Title,
 					Series = result.Series,
@@ -41,6 +46,8 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 					Artists = result.Artists,
 					SongType = this.CheckSeries ? await this.FindActualSongTypeAsync(result, cancellationToken).ConfigureAwait(false) : result.SongType
 				};
+
+				return this.SongInfoConverter.Convert(info);
 			}
 			else
 			{

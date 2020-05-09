@@ -3,7 +3,7 @@ using Prism.Events;
 
 namespace AnizanHelper.ViewModels.Events
 {
-	internal class SongParsedEvent : PubSubEvent<GeneralSongInfo>
+	internal class SongParsedEvent : PubSubEvent<ZanmaiSongInfo>
 	{
 	}
 

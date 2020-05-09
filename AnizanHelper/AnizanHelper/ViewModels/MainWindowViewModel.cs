@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +16,7 @@ using AnizanHelper.Modules.Dictionaries;
 using AnizanHelper.Services;
 using AnizanHelper.ViewModels.Events;
 using AnizanHelper.Views;
+using Microsoft.Expression.Interactivity.Media;
 using Prism.Events;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -32,18 +32,16 @@ namespace AnizanHelper.ViewModels
 		private AnizanFormatParser AnizanFormatParser { get; } = new AnizanFormatParser();
 		private IServiceManager ServiceManager { get; }
 		private Settings Settings { get; }
-		private AnizanSongInfoConverter SongInfoConverter { get; }
 		private ISongInfoSerializer SongInfoSerializer { get; } = new AnizanListSerializer();
 		private SongListWindow SongListWindow { get; }
 		private SongPresetRepository SongPresetRepository { get; }
-		private Subject<AnizanSongInfo> SongsSubject { get; }
+		private Subject<ZanmaiSongInfo> SongsSubject { get; }
 		private IDictionaryManager DictionaryManager { get; }
 		private IEventAggregator EventAggregator { get; }
 		private IUnityContainer UnityContainer { get; }
 
 		public MainWindowViewModel(
 			Settings settings,
-			AnizanSongInfoConverter songInfoConverter,
 			SongPresetRepository songPresetRepository,
 			IDictionaryManager dictionaryManager,
 			IServiceManager serviceManager,
@@ -51,7 +49,6 @@ namespace AnizanHelper.ViewModels
 			IUnityContainer unityContainer)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
 			this.SongPresetRepository = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
 			this.DictionaryManager = dictionaryManager ?? throw new ArgumentNullException(nameof(dictionaryManager));
 			this.ServiceManager = serviceManager ?? throw new ArgumentNullException(nameof(serviceManager));
@@ -70,12 +67,12 @@ namespace AnizanHelper.ViewModels
 				.GetEvent<SongParsedEvent>()
 				.Subscribe(songInfo =>
 				{
-					this.SongInfo.Value = this.SongInfoConverter.Convert(songInfo);
+					this.SongInfo.Value = new ZanmaiSongInfoViewModel(songInfo);
 					this.Serialize();
 				})
 				.AddTo(this.Disposables);
 
-			this.SongsSubject = new Subject<AnizanSongInfo>().AddTo(this.Disposables);
+			this.SongsSubject = new Subject<ZanmaiSongInfo>().AddTo(this.Disposables);
 			this.SongListWindowViewModel = new SongListWindowViewModel(settings, this.SongInfoSerializer, this.SongsSubject)
 				.AddTo(this.Disposables);
 
@@ -171,10 +168,10 @@ namespace AnizanHelper.ViewModels
 		private void AddCurrentSongToList()
 		{
 			var songInfo = this.SongInfo.Value;
-			var info = new AnizanSongInfo
+			var info = new ZanmaiSongInfo
 			{
 				Title = songInfo.Title,
-				Artist = songInfo.Artist,
+				Artists = songInfo.Artists.Split(','),
 				Genre = songInfo.Genre,
 				Series = songInfo.Series,
 				SongType = songInfo.SongType,
@@ -360,9 +357,9 @@ namespace AnizanHelper.ViewModels
 		public ReactiveProperty<bool> CanWrite { get; } = new ReactiveProperty<bool>();
 		public ReactiveProperty<string> ResultText { get; } = new ReactiveProperty<string>();
 
-		public ReactiveProperty<AnizanSongInfo> SongInfo => this.LazyReactiveProperty(() =>
+		public ReactiveProperty<ZanmaiSongInfoViewModel> SongInfo => this.LazyReactiveProperty(() =>
 		{
-			var prop = new ReactiveProperty<AnizanSongInfo>(new AnizanSongInfo());
+			var prop = new ReactiveProperty<ZanmaiSongInfoViewModel>(new ZanmaiSongInfoViewModel());
 
 			prop.PropertyChanged += this.SongInfo_PropertyChanged;
 
@@ -398,7 +395,13 @@ namespace AnizanHelper.ViewModels
 		}
 
 		public ReactiveProperty<int> SongNumber { get; } = new ReactiveProperty<int>();
-		public ReadOnlyReactiveProperty<AnizanSongInfo[]> SongPresets => this.LazyReadOnlyReactiveProperty(() => this.SongPresetRepository.ToReadOnlyReactiveProperty(x => x.Presets));
+		public ReadOnlyReactiveProperty<ZanmaiSongInfoViewModel[]> SongPresets => this.LazyReadOnlyReactiveProperty(() =>
+		{
+			return this.SongPresetRepository.ToReadOnlyReactiveProperty(
+				x => x.Presets,
+				presets => presets.Select(x => new ZanmaiSongInfoViewModel(x)).ToArray());
+		});
+
 		public ReactiveProperty<string> StatusText { get; } = new ReactiveProperty<string>();
 
 		public ReactiveProperty<string> VersionName => this.LazyReactiveProperty<string>(() =>
@@ -441,7 +444,7 @@ namespace AnizanHelper.ViewModels
 			}
 		});
 
-		public ICommand ApplyPresetCommand => this.LazyReactiveCommand<AnizanSongInfo>(
+		public ICommand ApplyPresetCommand => this.LazyReactiveCommand<ZanmaiSongInfoViewModel>(
 			preset =>
 			{
 				if (preset == null)
@@ -451,13 +454,14 @@ namespace AnizanHelper.ViewModels
 
 				try
 				{
-					var songInfo = this.SongInfo.Value;
-					songInfo.Title = preset.Title;
-					songInfo.Artist = preset.Artist;
-					songInfo.Genre = preset.Genre;
-					songInfo.Series = preset.Series;
-					songInfo.SongType = preset.SongType;
-					songInfo.Additional = preset.Additional;
+					this.SongInfo.Value = new ZanmaiSongInfoViewModel(preset);
+					//var songInfo = this.SongInfo.Value;
+					//songInfo.Title = preset.Title;
+					//songInfo.Artists = string.Join(",", preset.Artists);
+					//songInfo.Genre = preset.Genre;
+					//songInfo.Series = preset.Series;
+					//songInfo.SongType = preset.SongType;
+					//songInfo.Additional = preset.Additional;
 
 					if (this.Settings.ApplySongInfoAutomatically)
 					{
@@ -557,7 +561,7 @@ namespace AnizanHelper.ViewModels
 					.Replace("\r", "")
 					.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
 					.Select(line => line.Trim())
-					.Select(line => this.AnizanFormatParser.ParseAsAnizanInfo(line))
+					.Select(line => this.AnizanFormatParser.Parse(line))
 					.FirstOrDefault(x => x != null);
 
 				if (item == null)
@@ -566,8 +570,7 @@ namespace AnizanHelper.ViewModels
 				}
 
 				item.IsSpecialItem = !string.IsNullOrWhiteSpace(item.SpecialHeader);
-				this.SongInfo.Value = item;
-				//this.SearchVm.SearchWord = item.Title;
+				this.SongInfo.Value = new ZanmaiSongInfoViewModel(item);
 			}
 			catch (Exception ex)
 			{
@@ -624,7 +627,7 @@ namespace AnizanHelper.ViewModels
 					case "CLEARALL":
 						if (MessageBox.Show("記入内容を全てクリアします", "確認", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
 						{
-							this.SongInfo.Value = new AnizanSongInfo();
+							this.SongInfo.Value = new ZanmaiSongInfoViewModel();
 						}
 						break;
 				}
@@ -742,5 +745,6 @@ namespace AnizanHelper.ViewModels
 		}
 
 		#endregion メッセージ
+
 	}
 }

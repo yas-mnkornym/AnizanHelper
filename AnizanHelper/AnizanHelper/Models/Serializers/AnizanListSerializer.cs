@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -24,12 +25,12 @@ namespace AnizanHelper.Models.Serializers
 		};
 
 
-		public string Serialize(AnizanSongInfo info)
+		public string Serialize(ZanmaiSongInfo info)
 		{
 			return this.Serialize(info, true);
 		}
 
-		private string Serialize(AnizanSongInfo info, bool appendAll)
+		private string Serialize(ZanmaiSongInfo info, bool appendAll)
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
 
@@ -37,7 +38,7 @@ namespace AnizanHelper.Models.Serializers
 			StringBuilder sb = new StringBuilder();
 			sb.Append(".｢{0}｣");
 
-			var hasArtist = !string.IsNullOrWhiteSpace(info.Artist);
+			var hasArtist = info.Artists?.Any() == true;
 
 			if (appendAll || hasArtist)
 			{
@@ -85,7 +86,7 @@ namespace AnizanHelper.Models.Serializers
 			var result = string.Format(
 				sb.ToString(),
 				info.Title,
-				info.Artist,
+				string.Join(",", info.Artists),
 				info.Genre,
 				info.Series,
 				info.SongType,
@@ -97,7 +98,7 @@ namespace AnizanHelper.Models.Serializers
 			return result;
 		}
 
-		public string SerializeFull(AnizanSongInfo info)
+		public string SerializeFull(ZanmaiSongInfo info)
 		{
 			var sb = new StringBuilder();
 

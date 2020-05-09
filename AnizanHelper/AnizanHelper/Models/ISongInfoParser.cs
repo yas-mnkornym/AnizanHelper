@@ -1,4 +1,4 @@
-﻿namespace AnizanHelper.Models
+namespace AnizanHelper.Models
 {
 	internal interface ISongInfoParser
 	{
@@ -7,6 +7,6 @@
 		/// </summary>
 		/// <param name="inputText">入力文字列</param>
 		/// <returns>曲情報</returns>
-		GeneralSongInfo Parse(string inputText);
+		ZanmaiSongInfo Parse(string inputText);
 	}
 }

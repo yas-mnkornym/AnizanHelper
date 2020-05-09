@@ -155,7 +155,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding Path=Artists}"
-                                          ToolTip="{Binding Path=DataContext.Note, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent, AncestorLevel=2}}">
+										  HorizontalAlignment="Stretch"
+                                          ToolTip="{Binding Path=Note, Mode=OneWay}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" />

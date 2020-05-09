@@ -8,7 +8,7 @@ namespace AnizanHelper.Models.Searching
 	{
 		string Id { get; }
 
-		Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(
+		Task<ZanmaiSongInfo> ConvertToZanmaiSongInfoAsync(
 			ISongSearchResult songSearchResult,
 			CancellationToken cancellationToken = default);
 

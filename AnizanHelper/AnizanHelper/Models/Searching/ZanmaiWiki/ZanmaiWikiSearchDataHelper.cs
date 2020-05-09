@@ -73,11 +73,11 @@ namespace AnizanHelper.Models.Searching.Zanmai
 									program.Songs.Add(new ZanmaiSongListItem
 									{
 										ProgramTitle = program.ProgramTitle,
-										SongInfo = new AnizanSongInfo
+										SongInfo = new ZanmaiSongInfo
 										{
 											Number = int.Parse(tokens[2]),
 											Title = tokens[3],
-											Artist = tokens[4],
+											Artists = tokens[4].Split(','),
 											Genre = tokens[5],
 											Series = tokens[6],
 											SongType = tokens[7],
@@ -136,7 +136,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 							programId,
 							song.Number,
 							song.Title,
-							song.Artist,
+							string.Join(",", song.Artists),
 							song.Genre,
 							song.Series,
 							song.SongType,

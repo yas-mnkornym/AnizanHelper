@@ -51,20 +51,11 @@ namespace AnizanHelper.Models.Searching.Zanmai
 			});
 		}
 
-		public Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default)
+		public Task<ZanmaiSongInfo> ConvertToZanmaiSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default)
 		{
 			if (songSearchResult is ZanmaiSongSearchResult zanmaiSongSearchResult)
 			{
-				var song = zanmaiSongSearchResult.SongListItem.SongInfo;
-				var result = new GeneralSongInfo
-				{
-					Title = song.Title,
-					Artists = new string[] { song.Artist },
-					Genre = song.Genre,
-					Series = song.Series,
-					SongType = song.SongType,
-				};
-
+				var result = zanmaiSongSearchResult.SongListItem.SongInfo;
 				return Task.FromResult(result);
 			}
 
@@ -100,7 +91,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 						score += 4;
 					}
 
-					if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(song.Artist, searchTerm, compareOptions) >= 0)
+					if(song.Artists.Any(x => CultureInfo.InvariantCulture.CompareInfo.IndexOf(x, searchTerm, compareOptions) >= 0))
 					{
 						score += 2;
 					}
@@ -136,7 +127,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 
 			public string ProviderId => nameof(ZanmaiWikiSearchProvider);
 			public string ShortProviderIdentifier { get; } = "昧";
-			public string[] Artists => this.SongListItem.SongInfo.Artist.Split(',').ToArray();
+			public string[] Artists => this.SongListItem.SongInfo.Artists;
 			public string Genre => this.SongListItem.SongInfo.Genre;
 			public string Series => this.SongListItem.SongInfo.Series;
 			public string SongType => this.SongListItem.SongInfo.SongType;

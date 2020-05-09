@@ -26,12 +26,12 @@ namespace AnizanHelper.Models.Searching
 		{
 		}
 
-		public Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default)
+		public Task<ZanmaiSongInfo> ConvertToZanmaiSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default)
 		{
 			if (songSearchResult == null) { throw new ArgumentNullException(nameof(songSearchResult)); }
 
 			return this.Providers.TryGetValue(songSearchResult.ProviderId, out var provider)
-				? provider.ConvertToGeneralSongInfoAsync(songSearchResult, cancellationToken)
+				? provider.ConvertToZanmaiSongInfoAsync(songSearchResult, cancellationToken)
 				: throw new ArgumentException("Unsupported provider ID.", nameof(songSearchResult));
 		}
 

@@ -61,6 +61,6 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 
 		public abstract IAsyncEnumerable<ISongSearchResult> SearchAsync(string searchTerm, Dictionary<string, string> options = null, CancellationToken cancellationToken = default);
 
-		public abstract Task<GeneralSongInfo> ConvertToGeneralSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default);
+		public abstract Task<ZanmaiSongInfo> ConvertToZanmaiSongInfoAsync(ISongSearchResult songSearchResult, CancellationToken cancellationToken = default);
 	}
 }

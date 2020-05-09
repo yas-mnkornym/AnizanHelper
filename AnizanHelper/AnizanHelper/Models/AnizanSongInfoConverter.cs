@@ -12,13 +12,13 @@ namespace AnizanHelper.Models
 			this.Replaces = replaces;
 		}
 
-		public AnizanSongInfo Convert(GeneralSongInfo gInfo)
+		public ZanmaiSongInfo Convert(ZanmaiSongInfo gInfo)
 		{
 			var replacedTitle = this.Replace(gInfo.Title);
-			var result = new AnizanSongInfo
+			var result = new ZanmaiSongInfo
 			{
 				Title = replacedTitle,
-				Artist = this.Replace(string.Join(",", gInfo.Artists.Select(x => this.Replace(x, replacedTitle)).Where(x => !string.IsNullOrWhiteSpace(x))), replacedTitle),
+				Artists = this.Replace(string.Join(",", gInfo.Artists.Select(x => this.Replace(x, replacedTitle)).Where(x => !string.IsNullOrWhiteSpace(x))), replacedTitle).Split(','),
 				Genre = this.Replace(gInfo.Genre, replacedTitle),
 				Series = this.Replace(gInfo.Series, replacedTitle),
 				SongType = this.Replace(gInfo.SongType, replacedTitle)
