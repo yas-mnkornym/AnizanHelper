@@ -23,7 +23,7 @@ namespace AnizanHelper.Models
 
 
 		[JsonExtensionData]
-		private IDictionary<string, JToken> additionalData;
+		private IDictionary<string, JToken> additionalData = null;
 
 		[OnDeserialized]
 		internal void OnDeserialized(StreamingContext context)
