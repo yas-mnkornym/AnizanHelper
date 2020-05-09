@@ -54,6 +54,20 @@ namespace AnizanHelper.Services
 			{
 				sb.AppendLine();
 				sb.AppendLine("最新バージョン: {0}", updateInfo.Version);
+
+				var releaseNote = updateInfo.ReleaseNotes
+					?.FirstOrDefault(x => x.Version == updateInfo.Version);
+
+				if(releaseNote != null)
+				{
+					sb.AppendLine();
+					sb.AppendLine("【更新内容】");
+
+					foreach (var message in releaseNote.Messages)
+					{
+						sb.AppendLine($" - {message}");
+					}
+				}
 			}
 
 			sb.AppendLine();
