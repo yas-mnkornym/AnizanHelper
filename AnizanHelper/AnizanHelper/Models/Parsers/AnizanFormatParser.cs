@@ -15,14 +15,35 @@ namespace AnizanHelper.Models.Parsers
 			// Special Lack
 			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?\s*(※(?<Additional>.*))?"),
 
+			// Song w/ note
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」]\s*[/／]?(?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])\s*(?<Series>[^　]+)　(?<SongType>.+)[\)）]\s*※(?<Additional>.+)"),
+
 			// Song
-			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])?\s*(?<Series>[^　]+)　(?<SongType>[^　]+)[\)）]\s*(※(?<Additional>.*))?"),
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」]\s*[/／]?(?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])\s*(?<Series>[^　]+)　(?<SongType>.+)[\)）]"),
+
+			// Song w/o Genre w/ note
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」]\s*[/／]?(?<Artist>[^(]+)[\(（](?<Series>[^　]+)　(?<SongType>.+)[\)）]\s*※(?<Additional>.+)"),
+
+			// Song w/o Genre
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^(]+)[\(（](?<Series>[^　]+)　(?<SongType>[^　]+)[\)）]"),
+			
+			// Song w/o SongType w/ Genre and note
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])\s*(?<Series>[^　]+)[\)）]\s*※(?<Additional>.+)"),
+
+			// Song w/o SongType w/ Genre
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^(]+)[\(（](\[(?<Genre>.*)\])\s*(?<Series>[^　]+)[\)）]"),
+			
+			// Song w/o SongType w/ note
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^(]+)[\(（](?<Series>[^　]+)[\)）]\s*※(?<Additional>.+)"),
 
 			// Song w/o SongType
-			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?[\(（](\[(?<Genre>.*)\])?(?<Series>[^\)]*)[\)）]\s*(※(?<Additional>.*))?"),
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^(]+)[\(（](?<Series>[^　]+)[\)）]"),
 
-			// Song Lack
-			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?\s*(※(?<Additional>.*))?")
+			// Song w/o Series Info w/ note
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^※]+)\s*※(?<Additional>.+)"),
+			
+			// Song w/o Series Info
+			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.+)[｣」][/／](?<Artist>[^※]+)?"),
 		};
 
 		public ZanmaiSongInfo Parse(string inputText)
