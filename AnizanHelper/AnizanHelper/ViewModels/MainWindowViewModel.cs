@@ -356,7 +356,7 @@ namespace AnizanHelper.ViewModels
 
 		#endregion Settings
 
-		public ReactiveProperty<bool> CanWrite { get; } = new ReactiveProperty<bool>();
+		public ReactiveProperty<bool> CanWrite { get; } = new ReactiveProperty<bool>(true);
 		public ReactiveProperty<string> ResultText { get; } = new ReactiveProperty<string>();
 
 		public ReactiveProperty<ZanmaiSongInfoViewModel> SongInfo => this.LazyReactiveProperty(() =>
