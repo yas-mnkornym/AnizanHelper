@@ -253,7 +253,7 @@ namespace AnizanHelper.ViewModels
 			var songInfo = this.SongInfo.Value;
 			var str = songInfo.IsSpecialItem
 					? this.ResultText.Value
-					: string.Format("{0:D4}{1}", this.SongNumber, this.ResultText.Value);
+					: string.Format("{0:D4}{1}", this.SongNumber.Value, this.ResultText.Value);
 
 			var res = new PostRes
 			{
@@ -312,25 +312,17 @@ namespace AnizanHelper.ViewModels
 					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
 			};
 
-			Task.Factory.StartNew((Action)(() =>
+			try
 			{
-				try
-				{
-					this.CanWrite.Value = false;
-					MessageService.Current.ShowMessage("書き込んでいます...");
-					post.Post(thread, res);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(
-						string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", ex),
-						"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
-				}
-				finally
-				{
-					this.CanWrite.Value = true;
-				}
-			}));
+				MessageService.Current.ShowMessage("書き込んでいます...");
+				post.Post(thread, res);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					string.Format("投稿に失敗しました。\n\n【例外情報】\n{0}", ex),
+					"エラー", MessageBoxButton.OK, MessageBoxImage.Stop);
+			}
 		}
 
 		#endregion いろいろやるやつ
@@ -356,7 +348,6 @@ namespace AnizanHelper.ViewModels
 
 		#endregion Settings
 
-		public ReactiveProperty<bool> CanWrite { get; } = new ReactiveProperty<bool>(true);
 		public ReactiveProperty<string> ResultText { get; } = new ReactiveProperty<string>();
 
 		public ReactiveProperty<ZanmaiSongInfoViewModel> SongInfo => this.LazyReactiveProperty(() =>
@@ -690,7 +681,6 @@ namespace AnizanHelper.ViewModels
 
 		public ICommand WriteToThreadCommand => this.LazyReactiveCommand(
 			new[]{
-				this.CanWrite,
 				this.ResultText.Select(x => !string.IsNullOrWhiteSpace(x)),
 				this.ServerName.Select(x => !string.IsNullOrWhiteSpace(x)),
 				this.BoardPath.Select(x => !string.IsNullOrWhiteSpace(x)),
