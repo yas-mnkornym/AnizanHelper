@@ -32,6 +32,10 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Prism
 
 ●更新履歴
+Version 1.4.1
+ - 「コピー」「曲番コミコピー」機能が正常に動作しない問題を修正
+ - アニソンDB検索で曲種番号補正機能が正常に機能しない問題を修正
+
 Version 1.4.0
  - 三昧さーちに対応
  - 検索結果の列幅を調整
