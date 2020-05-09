@@ -1,4 +1,4 @@
-header,28,
+header,29,
 
 rem,記法： replaec,[置換元],[置換先],[曲名（無特定ならなし）]
 
@@ -48,6 +48,7 @@ replace,"アイドルマスター シャイニーTV","THE IDOLM@STER SHINY TV"
 replace,"アイドルマスター ワンフォーオール","THE IDOLM@STER ONE FOR ALL"
 replace,"アイドルマスター SideM","THE IDOLM@STER SideM"
 replace,"THE iDOLM@STER","THE IDOLM@STER"
+replace,"THE IDOLM@STER MILLION LIVE! シアターデイズ","THE IDOLM@STER MILLION LIVE! THEATER DAYS"
 
 rem,アイカツ対策
 replace,"アイカツ!","アイカツ!-アイドルカツドウ!-"
@@ -130,5 +131,5 @@ preset,"マロスカ","魔法少女マロン＆スカーラル","小宮真央,�
 preset,"ちっぱいぱん","ちっぱいぱん","小宮真央","同人","ちっぱいぱんCD",,
 preset,"3万円","アイデンティティ","酒井ミキオ","","落第騎士の英雄譚",OP,
 preset,"バックス","委員長とバックでセックス","委員長","GM","プリンセスうぃっちぃず",,
-preset,"ガラス","覚醒ヒロイズム～THE HERO WITHOUT A ""NAME""～","アンティック-珈琲店-",,"DARKER THAN BLACK-黒の契約者-","OP2",
+preset,"ガラス","覚醒ヒロイズム~THE HERO WITHOUT A ""NAME""~","アンティック-珈琲店-",,"DARKER THAN BLACK-黒の契約者-","OP2",
 preset,"精霊飛来","精霊飛来","小野大輔,柿原徹也",,"BRAVE10","OP",
