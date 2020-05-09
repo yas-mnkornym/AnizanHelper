@@ -15,5 +15,6 @@ namespace AnizanHelper.Models.Searching
 		string Title { get; }
 
 		string Note { get; }
+		string ShortNote { get; }
 	}
 }

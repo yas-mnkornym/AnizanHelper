@@ -12,5 +12,6 @@ namespace AnizanHelper.Models.Searching
 		public string Series { get; set; }
 		public string SongType { get; set; }
 		public string Note { get; set; }
+		public string ShortNote { get; set; }
 	}
 }

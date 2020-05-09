@@ -140,7 +140,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Width="2*"
+                <DataGridTextColumn Width="4*"
                                     Header="曲名"
                                     Binding="{Binding Path=Title}">
                     <DataGridTextColumn.ElementStyle>
@@ -150,12 +150,12 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTemplateColumn Width="*"
+                <DataGridTemplateColumn Width="3*"
                                         Header="歌手名">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Path=Artists}"
-										  HorizontalAlignment="Stretch"
+                            <ItemsControl HorizontalAlignment="Stretch"
+                                          ItemsSource="{Binding Path=Artists}"
                                           ToolTip="{Binding Path=Note, Mode=OneWay}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -183,7 +183,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Width="*"
+                <DataGridTextColumn Width="2*"
                                     Header="使用作品"
                                     Binding="{Binding Path=Series}">
                     <DataGridTextColumn.ElementStyle>
@@ -196,6 +196,16 @@
                 <DataGridTextColumn Width="Auto"
                                     Header="種別"
                                     Binding="{Binding Path=SongType}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="1*"
+                                    Header="補足"
+                                    Binding="{Binding Path=ShortNote}">
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />

@@ -132,6 +132,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 			public string Series => this.SongListItem.SongInfo.Series;
 			public string SongType => this.SongListItem.SongInfo.SongType;
 			public string Title => this.SongListItem.SongInfo.Title;
+			public string ShortNote => this.SongListItem.SongInfo.Additional;
 
 			public string Note => string.Join(
 				"\n",
