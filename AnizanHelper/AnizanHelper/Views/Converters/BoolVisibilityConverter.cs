@@ -4,6 +4,7 @@ using System.Windows.Data;
 
 namespace AnizanHelper.Views.Converters
 {
+
 	public sealed class BoolVisibilityConverter : IValueConverter
 	{
 		public BoolVisibilityConverter()

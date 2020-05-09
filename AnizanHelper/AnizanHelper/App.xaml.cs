@@ -110,15 +110,14 @@ namespace AnizanHelper
 
 			unityContainer.RegisterSingleton<IUpdateManager, UpdateManager>();
 
-			unityContainer.RegisterFactory<ISongSearchProvider>(container =>
+			unityContainer.RegisterFactory<ISongSearchProviderRepository>(container =>
 			{
-				return new CompositeSearchProvider(
+				return new SongSearchProviderRepository(
 					container.Resolve<AnisonDbSongNameSearchProvider>(),
 					new ZanmaiWikiSearchProvider(new ZanmaiWikiSearchProviderOptions
 					{
 						IndexFilePath = AppInfo.Current.ZanmaiSearchIndexPath,
 					}));
-
 			});
 
 

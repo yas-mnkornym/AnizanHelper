@@ -19,20 +19,20 @@ namespace AnizanHelper.ViewModels.Pages
 {
 	internal class SongSearchPageViewModel : ReactiveViewModelBase
 	{
-		private ISongSearchProvider SongSearchProvider { get; }
+		private ISongSearchProviderRepository SongSearchProviderRepository { get; }
 		private Settings Settings { get; }
 		private IEventAggregator EventAggregator { get; }
 
 		public SongSearchPageViewModel(
 			Settings settings,
-			ISongSearchProvider songSearchProvider,
+			ISongSearchProviderRepository songSearchProviderRepository,
 			IEventAggregator eventAggregator)
 		{
 			this.Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-			this.SongSearchProvider = songSearchProvider ?? throw new ArgumentNullException(nameof(songSearchProvider));
+			this.SongSearchProviderRepository = songSearchProviderRepository ?? throw new ArgumentNullException(nameof(songSearchProviderRepository));
 			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
 
-			if (this.SongSearchProvider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
+			if (this.SongSearchProviderRepository.TryGetProvider(nameof(AnisonDbSongNameSearchProvider), out var provider) && provider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
 			{
 				anisonDbSearchProvider.CheckSeries = this.Settings.CheckSeriesTypeNumberAutomatically;
 
@@ -83,31 +83,36 @@ namespace AnizanHelper.ViewModels.Pages
 			try
 			{
 				var searchTerm = this.SearchTerm.Value.Trim();
-				MessageService.Current.ShowMessage("楽曲情報を検索しています...");
-				var sw = new Stopwatch();
-				sw.Start();
 
-				using (var cts = new CancellationTokenSource())
+				var searchProvider = this.SongSearchProvider.Value;
+				if (searchProvider != null)
 				{
-					this.SearchCancellationTokenSource.Value = cts;
+					MessageService.Current.ShowMessage("楽曲情報を検索しています...");
+					var sw = new Stopwatch();
+					sw.Start();
 
-					try
+					using (var cts = new CancellationTokenSource())
 					{
-						this.Results.Clear();
+						this.SearchCancellationTokenSource.Value = cts;
 
-						await foreach (var item in this.SongSearchProvider.SearchAsync(searchTerm, null, cts.Token).OrderByDescending(x => x.Score))
+						try
 						{
-							this.Results.Add(item);
+							this.Results.Clear();
+
+							await foreach (var item in searchProvider.SearchAsync(searchTerm, null, cts.Token).OrderByDescending(x => x.Score))
+							{
+								this.Results.Add(item);
+							}
+						}
+						finally
+						{
+							sw.Stop();
+							this.SearchCancellationTokenSource.Value = null;
 						}
 					}
-					finally
-					{
-						sw.Stop();
-						this.SearchCancellationTokenSource.Value = null;
-					}
-				}
 
-				MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", this.Results.Count, sw.Elapsed.TotalSeconds));
+					MessageService.Current.ShowMessage(string.Format("検索完了({0}件, {1:0.000}秒)", this.Results.Count, sw.Elapsed.TotalSeconds));
+				}
 			}
 			catch (Exception ex)
 			{
@@ -133,6 +138,36 @@ namespace AnizanHelper.ViewModels.Pages
 		public ReactiveProperty<CancellationTokenSource> SearchCancellationTokenSource { get; } = new ReactiveProperty<CancellationTokenSource>();
 		public ReactiveProperty<string> SearchTerm { get; } = new ReactiveProperty<string>();
 
+		public ReactiveProperty<SongSearchProviderConfigurationViewModel[]> SearchProviderConfigurations => this.LazyReactiveProperty(() =>
+		{
+			var viewModels = this.SongSearchProviderRepository
+				.GetProviders()
+				.Select(provider => new SongSearchProviderConfigurationViewModel(provider, this.Settings))
+				.ToArray();
+
+			return new ReactiveProperty<SongSearchProviderConfigurationViewModel[]>(viewModels);
+		});
+
+		public ReactiveProperty<ISongSearchProvider> SongSearchProvider => this.LazyReactiveProperty(() =>
+		{
+			ISongSearchProvider getCompositeProvider()
+			{
+				var disabledProviders = this.Settings.DisabledSearchProviders ?? Array.Empty<string>();
+				var providers = this.SongSearchProviderRepository
+					.GetProviders()
+					.Where(x => !disabledProviders.Contains(x.Id))
+					.ToArray();
+
+				return providers.Length == 0
+					? null
+					: new CompositeSearchProvider(providers);
+			}
+
+			return this.Settings.PropertyChangedAsObservable(nameof(this.Settings.DisabledSearchProviders))
+					.Select(_ => getCompositeProvider())
+					.ToReactiveProperty(getCompositeProvider());
+		});
+
 		#endregion Bindings
 
 		#region Commands
@@ -144,7 +179,8 @@ namespace AnizanHelper.ViewModels.Pages
 
 				try
 				{
-					var songInfo = await this.SongSearchProvider.ConvertToGeneralSongInfoAsync(result);
+					var searchProvider = this.SongSearchProvider.Value;
+					var songInfo = await searchProvider.ConvertToGeneralSongInfoAsync(result);
 
 					this.EventAggregator
 						.GetEvent<SongParsedEvent>()
@@ -171,6 +207,7 @@ namespace AnizanHelper.ViewModels.Pages
 			new[]{
 				this.SearchTerm.Select(x => !string.IsNullOrWhiteSpace(x)),
 				this.IsSearching.Select(x => !x),
+				this.SongSearchProvider.Select(x => x != null),
 			}
 			.CombineLatestValuesAreAllTrue(),
 			async () =>
@@ -192,7 +229,7 @@ namespace AnizanHelper.ViewModels.Pages
 				try
 				{
 					var searchTerm = this.SearchTerm.Value;
-					if (this.SongSearchProvider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
+					if (this.SongSearchProviderRepository.TryGetProvider(nameof(AnisonDbSongNameSearchProvider), out var provider) && provider is AnisonDbSongNameSearchProvider anisonDbSearchProvider)
 					{
 						var uri = anisonDbSearchProvider.CreateQueryUri(searchTerm, "song");
 						Process.Start(uri.AbsoluteUri);

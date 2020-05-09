@@ -69,6 +69,12 @@ namespace AnizanHelper.Models
 			set => this.SetValue(value);
 		}
 
+		public string[] DisabledSearchProviders
+		{
+			get => this.GetValue(Array.Empty<string>());
+			set => this.SetValue(value);
+		}
+
 		public bool ApplySongInfoAutomatically
 		{
 			get => this.GetValue(true);
