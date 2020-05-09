@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -59,25 +59,45 @@ namespace AnizanHelper.Models.SongList
 				switch (current)
 				{
 					case '\'':
-						inText = !inText;
-						break;
-
-					case '\\':
-						sb.Append(next);
-						shouldSkipNext = true;
+						if (!inText)
+						{
+							inText = true;
+						}
+						else if (next == ';')
+						{
+							inText = false;
+						}
+						else
+						{
+							sb.Append(current);
+						}
 						break;
 
 					case '=':
-						propertyName = sb.ToString();
-						sb.Clear();
+						if (!inText)
+						{
+							propertyName = sb.ToString();
+							sb.Clear();
+						}
+						else
+						{
+							sb.Append(current);
+						}
 						break;
 
 					case ';':
-						propertyValue = sb.ToString();
-						sb.Clear();
-						properties.Add(new KeyValuePair<string, string>(propertyName, propertyValue));
-						propertyName = null;
-						propertyValue = null;
+						if (!inText)
+						{
+							propertyValue = sb.ToString();
+							sb.Clear();
+							properties.Add(new KeyValuePair<string, string>(propertyName, propertyValue));
+							propertyName = null;
+							propertyValue = null;
+						}
+						else
+						{
+							sb.Append(current);
+						}
 						break;
 
 					default:
