@@ -9,12 +9,13 @@ namespace AnizanHelper.Models.Updating
 
 		public DummyUpdateInfoRetreiver(Version version)
 		{
-			Version = version ?? throw new ArgumentNullException(nameof(version));
+			this.Version = version ?? throw new ArgumentNullException(nameof(version));
 		}
 
 		public Task<UpdateInfo> GetUpdateInfoAsync()
 		{
-			return Task.FromResult(new UpdateInfo {
+			return Task.FromResult(new UpdateInfo
+			{
 				Version = Version,
 			});
 		}

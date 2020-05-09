@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AnizanHelper
 {
@@ -17,7 +13,8 @@ namespace AnizanHelper
 			sb.Append(type.Name);
 			sb.Append("{");
 			bool isFirst = true;
-			foreach (var prop in properties) {
+			foreach (var prop in properties)
+			{
 				if (isFirst) { isFirst = false; }
 				else { sb.Append(", "); }
 				sb.Append(prop.Name);
@@ -28,30 +25,35 @@ namespace AnizanHelper
 			return sb.ToString();
 		}
 
-		static void PrintProperty(System.Reflection.PropertyInfo prop, object dstObj, StringBuilder sb)
+		private static void PrintProperty(System.Reflection.PropertyInfo prop, object dstObj, StringBuilder sb)
 		{
-			if (prop.PropertyType.IsArray) {
+			if (prop.PropertyType.IsArray)
+			{
 				var array = (System.Collections.IEnumerable)prop.GetValue(dstObj, null);
 				PrintArray(array, sb);
 			}
-			else {
+			else
+			{
 				sb.Append(prop.GetValue(dstObj, null));
 			}
 		}
 
-		static void PrintArray(System.Collections.IEnumerable array, StringBuilder sb)
+		private static void PrintArray(System.Collections.IEnumerable array, StringBuilder sb)
 		{
 			bool isFirst = true;
 			sb.Append("[");
-			foreach (var el in array) {
+			foreach (var el in array)
+			{
 				if (isFirst) { isFirst = false; }
 				else { sb.Append(", "); }
 
 				var elType = el.GetType();
-				if (elType.IsArray) {
+				if (elType.IsArray)
+				{
 					PrintArray((System.Collections.IEnumerable)el, sb);
 				}
-				else {
+				else
+				{
 					sb.Append(el);
 				}
 			}

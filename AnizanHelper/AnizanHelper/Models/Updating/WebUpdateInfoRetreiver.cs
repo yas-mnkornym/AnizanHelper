@@ -12,13 +12,13 @@ namespace AnizanHelper.Models.Updating
 
 		public WebUpdateInfoRetreiver(HttpClient httpClient, Uri updateInfoUri)
 		{
-			HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-			UpdateInfoUri = updateInfoUri ?? throw new ArgumentNullException(nameof(updateInfoUri));
+			this.HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+			this.UpdateInfoUri = updateInfoUri ?? throw new ArgumentNullException(nameof(updateInfoUri));
 		}
 
 		public async Task<UpdateInfo> GetUpdateInfoAsync()
 		{
-			var updateInfoJson = await HttpClient.GetStringAsync(UpdateInfoUri).ConfigureAwait(false);
+			var updateInfoJson = await this.HttpClient.GetStringAsync(this.UpdateInfoUri).ConfigureAwait(false);
 			return JsonConvert.DeserializeObject<UpdateInfo>(updateInfoJson);
 		}
 	}

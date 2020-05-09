@@ -11,80 +11,94 @@ namespace AnizanHelper.Views.Behaviors
 	public class DataGridBindableSelectedItemsBehavior : Behavior<DataGrid>
 	{
 		#region
-		static DependencyProperty SelectedItemsProperty = DependencyProperty.Register(
+		private static DependencyProperty SelectedItemsProperty = DependencyProperty.Register(
 			"SelectedItems",
 			typeof(IList),
 			typeof(DataGridBindableSelectedItemsBehavior),
-			new PropertyMetadata(null, (d, e) => {
+			new PropertyMetadata(null, (d, e) =>
+			{
 				var behavior = d as DataGridBindableSelectedItemsBehavior;
 				if (behavior == null) { return; }
 
 				var newValue = e.NewValue as IList;
 
-				if (behavior.disp_ != null) {
+				if (behavior.disp_ != null)
+				{
 					behavior.disp_.Dispose();
 					behavior.disp_ = null;
 				}
 
 				var collection = newValue as INotifyCollectionChanged;
-				if (collection != null) {
-					try {
+				if (collection != null)
+				{
+					try
+					{
 						behavior.isUpdating_ = true;
-						foreach (var item in newValue) {
+						foreach (var item in newValue)
+						{
 							behavior.AssociatedObject.SelectedItems.Add(item);
 						}
 					}
-					finally {
+					finally
+					{
 						behavior.isUpdating_ = false;
 					}
 
 					collection.CollectionChanged += behavior.collection_CollectionChanged;
 					behavior.disp_ = Observable.FromEventPattern<NotifyCollectionChangedEventArgs>(collection, "CollectionChanged")
-						.Subscribe(args => {
+						.Subscribe(args =>
+						{
 							behavior.collection_CollectionChanged(args.Sender, args.EventArgs);
 						});
 				}
 			}));
-
-		bool isUpdating_ = false;
-		IDisposable disp_ = null;
+		private bool isUpdating_ = false;
+		private IDisposable disp_ = null;
 		public IList SelectedItems
 		{
 			get
 			{
-				return (IList)GetValue(SelectedItemsProperty);
+				return (IList)this.GetValue(SelectedItemsProperty);
 			}
 			set
 			{
-				SetValue(SelectedItemsProperty, value);
+				this.SetValue(SelectedItemsProperty, value);
 			}
 		}
 
-		void collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			if (isUpdating_) { return; }
+			if (this.isUpdating_) { return; }
 
-			isUpdating_ = true;
-			try {
-				if (e.Action == NotifyCollectionChangedAction.Reset) {
-					AssociatedObject.SelectedItems.Clear();
+			this.isUpdating_ = true;
+			try
+			{
+				if (e.Action == NotifyCollectionChangedAction.Reset)
+				{
+					this.AssociatedObject.SelectedItems.Clear();
 				}
-				else {
-					if (e.OldItems != null) {
-						foreach (var item in e.OldItems) {
-							AssociatedObject.SelectedItems.Remove(item);
+				else
+				{
+					if (e.OldItems != null)
+					{
+						foreach (var item in e.OldItems)
+						{
+							this.AssociatedObject.SelectedItems.Remove(item);
 						}
 					}
 
-					if (e.NewItems != null) {
-						foreach (var item in e.NewItems) {
-							AssociatedObject.SelectedItems.Add(item);
+					if (e.NewItems != null)
+					{
+						foreach (var item in e.NewItems)
+						{
+							this.AssociatedObject.SelectedItems.Add(item);
 						}
 					}
 				}
 			}
-			finally {
-				isUpdating_ = false;
+			finally
+			{
+				this.isUpdating_ = false;
 			}
 		}
 		#endregion
@@ -93,7 +107,7 @@ namespace AnizanHelper.Views.Behaviors
 		protected override void OnAttached()
 		{
 			base.OnAttached();
-			AssociatedObject.SelectionChanged += AssociatedObject_SelectionChanged;
+			this.AssociatedObject.SelectionChanged += this.AssociatedObject_SelectionChanged;
 		}
 
 		protected override void OnDetaching()
@@ -103,14 +117,16 @@ namespace AnizanHelper.Views.Behaviors
 		#endregion
 
 
-		void AssociatedObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void AssociatedObject_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (isUpdating_) { return; }
-			foreach (var item in e.AddedItems) {
-				SelectedItems.Add(item);
+			if (this.isUpdating_) { return; }
+			foreach (var item in e.AddedItems)
+			{
+				this.SelectedItems.Add(item);
 			}
-			foreach (var item in e.RemovedItems) {
-				SelectedItems.Remove(item);
+			foreach (var item in e.RemovedItems)
+			{
+				this.SelectedItems.Remove(item);
 			}
 		}
 	}

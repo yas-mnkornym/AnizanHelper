@@ -1,0 +1,208 @@
+<UserControl x:Class="AnizanHelper.Views.Pages.SongSearchPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:AnizanHelper.Views.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <conv:BoolVisibilityConverter x:Key="TrueVisibleConverter" />
+        <conv:BoolVisibilityConverter x:Key="TrueCollapseConverter"
+                                      FalseVisibility="Visible"
+                                      TrueVisibility="Collapsed" />
+        <conv:NullBoolConverter x:Key="NullFalseConverter"
+                                NullValue="False"
+                                NonNullValue="True" />
+
+        <conv:NullVisibilityConverter x:Key="NullVisibleConverter"
+                                      NullValue="Visible"
+                                      NonNullValue="Collapsed" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0"
+              Grid.Column="0">
+            <TextBox Text="{Binding Path=SearchTerm.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding Path=SongSearchProvider.Value, Mode=OneWay, Converter={StaticResource NullFalseConverter}}"
+                     ToolTip="エンターキーでも検索できます">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding Path=SearchCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Background="#AA000000"
+                  Visibility="{Binding Path=SongSearchProvider.Value, Mode=OneWay, Converter={StaticResource NullVisibleConverter}}">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Text="「検索設定」から1個以上の検索プロバイダを選択してください。" />
+
+            </Grid>
+        </Grid>
+
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                MinWidth="75"
+                Margin="5,0,0,0"
+                Content="検索"
+                Visibility="{Binding Path=IsSearching.Value, Converter={StaticResource TrueCollapseConverter}}"
+                Command="{Binding SearchCommand}" />
+
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                MinWidth="75"
+                Margin="5,0,0,0"
+                Content="検索中止"
+                Visibility="{Binding Path=IsSearching.Value, Converter={StaticResource TrueVisibleConverter}}"
+                Command="{Binding CancelSearchCommand}" />
+
+
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                MinWidth="75"
+                Margin="5,0,0,0"
+                Content="ブラウザで検索"
+                ToolTip="アニソンDBの検索画面をWebブラウザで開きます。"
+                Command="{Binding SearchOnBrowserCommand}" />
+
+        <xctk:DropDownButton Grid.Column="3"
+                             Margin="5,0,0,0"
+                             Content="検索設定">
+            <xctk:DropDownButton.DropDownContent>
+                <StackPanel>
+                    <CheckBox Grid.Row="0"
+                              VerticalAlignment="Center"
+                              Content="曲種番号自動補正(アニソンDB)"
+                              IsChecked="{Binding Path=CheckSeriesTypeNumberAutomatically.Value, Mode=TwoWay}" />
+
+                    <GroupBox Header="検索プロバイダ">
+                        <ItemsControl ItemsSource="{Binding Path=SearchProviderConfigurations.Value, Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name.Value, Mode=OneWay}"
+                                              IsChecked="{Binding Path=IsEnabled.Value, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                </StackPanel>
+            </xctk:DropDownButton.DropDownContent>
+        </xctk:DropDownButton>
+
+
+
+        <DataGrid x:Name="dataGrid_result"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4"
+                  Margin="0,2,0,0"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  HorizontalScrollBarVisibility="Auto"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Path=Results}"
+                  SelectionMode="Single"
+                  ToolTip="曲情報ダブルクリックで適用します"
+                  VerticalScrollBarVisibility="Auto"
+                  AlternatingRowBackground="WhiteSmoke">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick"
+                              Command="{Binding Path=ApplySongCommand}"
+                              CommandParameter="{Binding Path=SelectedItem, ElementName=dataGrid_result}" />
+            </DataGrid.InputBindings>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="元"
+                                    Binding="{Binding Path=ShortProviderIdentifier, Mode=OneWay}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="2*"
+                                    Header="曲名"
+                                    Binding="{Binding Path=Title}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="*"
+                                        Header="歌手名">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Path=Artists}"
+										  HorizontalAlignment="Stretch"
+                                          ToolTip="{Binding Path=Note, Mode=OneWay}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="0,0,5,0"
+                                                   Text="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Width="Auto"
+                                    Header="ジャンル"
+                                    Binding="{Binding Path=Genre}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="*"
+                                    Header="使用作品"
+                                    Binding="{Binding Path=Series}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="Auto"
+                                    Header="種別"
+                                    Binding="{Binding Path=SongType}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ToolTipService.ToolTip" Value="{Binding Path=Note, Mode=OneWay}" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

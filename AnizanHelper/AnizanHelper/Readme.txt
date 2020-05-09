@@ -27,13 +27,22 @@ http://www.studio-taiha.net/anizan/anizanhelper/
 ・Reactive Property
 ・Reactive Extensions
 ・TaihaToolkit
-・LazyProperty.Reactive
+・LazyProperty
 ・Unity (DIのほう)
+・Prism
 
 ●更新履歴
+Version 1.4.0
+ - 三昧さーちに対応
+ - 検索結果の列幅を調整
+ - 楽曲リストの列幅を調整
+ - 画面上部の設定ボタン類を整理
+ - タグ取得機能が一部の文字に対応していなかった問題を修正
+
 Version 1.3.3
  - アップデート確認ダイアログが複数同時に表示されないよう処理を修正
  - エラーや確認ダイアログがメインウィンドウに隠れてしまう問題を修正
+ - 画面の構成を改善しました
 
 Version 1.3.2
  - タグ自動解析機能で曲名検索ボタンが機能しない場合がある問題を修正

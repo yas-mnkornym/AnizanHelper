@@ -1,4 +1,4 @@
-﻿<Window x:Class="AnizanHelper.Views.SongListWindow"
+<Window x:Class="AnizanHelper.Views.SongListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,27 +25,35 @@
                   ItemsSource="{Binding Path=SongList, Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="★"
+									Width="Auto"
                                     Binding="{Binding Path=SpecialHeader, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="種別"
+									Width="Auto"
                                     Binding="{Binding Path=SpecialItemName, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="番号"
+									Width="Auto"
                                     Binding="{Binding Path=Number, StringFormat=0000, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="曲名"
+									Width="3*"
                                     Binding="{Binding Path=Title, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="歌手名"
-                                    Binding="{Binding Path=Singer, Mode=TwoWay}" />
+									Width="2*"
+                                    Binding="{Binding Path=Artists, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="ジャンル"
+									Width="Auto"
                                     Binding="{Binding Path=Genre, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="作品名"
+									Width="*"
                                     Binding="{Binding Path=Series, Mode=TwoWay}" />
 
                 <DataGridTextColumn Header="曲種"
+									Width="Auto"
                                     Binding="{Binding Path=SongType, Mode=TwoWay}" />
 
                 <DataGridTextColumn Width="*"

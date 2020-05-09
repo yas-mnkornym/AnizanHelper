@@ -9,9 +9,9 @@ namespace AnizanHelper.Models.SettingComponents
 			object oldValue,
 			object newValue)
 		{
-			Key = key;
-			OldValue = oldValue;
-			NewValue = newValue;
+			this.Key = key;
+			this.OldValue = oldValue;
+			this.NewValue = newValue;
 		}
 
 		/// <summary>

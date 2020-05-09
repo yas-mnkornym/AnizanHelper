@@ -1,9 +1,9 @@
-﻿using AnizanHelper.ViewModels;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+using AnizanHelper.ViewModels.Pages;
 
 namespace AnizanHelper.Views.Converters
 {
@@ -16,12 +16,12 @@ namespace AnizanHelper.Views.Converters
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			return ((SongRetreiverConnectionState)value) switch
+			return ((StreamMetadataRetreiverConnectionState)value) switch
 			{
-				SongRetreiverConnectionState.Stopped => this.StoppedValue,
-				SongRetreiverConnectionState.Running => this.RunningValue,
-				SongRetreiverConnectionState.Connecting => this.ConnectingValue,
-				SongRetreiverConnectionState.Reconnecting => this.ReconnectingValue,
+				StreamMetadataRetreiverConnectionState.Stopped => this.StoppedValue,
+				StreamMetadataRetreiverConnectionState.Running => this.RunningValue,
+				StreamMetadataRetreiverConnectionState.Connecting => this.ConnectingValue,
+				StreamMetadataRetreiverConnectionState.Reconnecting => this.ReconnectingValue,
 				_ => throw new NotSupportedException(),
 			};
 		}
@@ -43,6 +43,7 @@ namespace AnizanHelper.Views.Converters
 	public class SongRetreiverConnectionStateStringConverter : SongRetreiverConnectionStateConverterBase<string>
 	{
 	}
+
 	public class SongRetreiverConnectionStateBrushConverter : SongRetreiverConnectionStateConverterBase<Brush>
 	{
 	}

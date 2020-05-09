@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 namespace AnizanHelper.Models.Registries
 {
 	internal class IERegistryManager
 	{
-		static readonly string RegKeyEmulation =
+		private static readonly string RegKeyEmulation =
 			@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
-		static readonly string[] RegKeyIEs = new string[]{
+		private static readonly string[] RegKeyIEs = new string[]{
 			@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_GPU_RENDERING",
 			@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_AJAX_CONNECTIONEVENTS",
 			@"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBSOCKET",
@@ -24,8 +20,8 @@ namespace AnizanHelper.Models.Registries
 			string appName,
 			bool toMachine)
 		{
-			ApplicationName = appName;
-			ToMachine = toMachine;
+			this.ApplicationName = appName;
+			this.ToMachine = toMachine;
 		}
 
 		#region レジストリ操作
@@ -37,25 +33,30 @@ namespace AnizanHelper.Models.Registries
 		public void ManageRegistry(bool delete = false)
 		{
 
-			if (delete) {
-				DeleteRegistry(ApplicationName, ToMachine);
+			if (delete)
+			{
+				this.DeleteRegistry(this.ApplicationName, this.ToMachine);
 			}
-			else {
-				if (ShouldResetRegistry(ApplicationName, ToMachine)) { // キーがない場合、追加しないと！
-					AddRegistry(ApplicationName, ToMachine);
+			else
+			{
+				if (ShouldResetRegistry(this.ApplicationName, this.ToMachine))
+				{ // キーがない場合、追加しないと！
+					this.AddRegistry(this.ApplicationName, this.ToMachine);
 				}
 			}
 		}
 
-		static int RegValueIE
+		private static int RegValueIE
 		{
 			get
 			{
-				try {
+				try
+				{
 					var key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Internet Explorer", false);
 					var version = (string)key.GetValue("svcVersion");
 					int majorVersion = int.Parse(version.Substring(0, version.IndexOf('.')));
-					switch (majorVersion) {
+					switch (majorVersion)
+					{
 						case 11:
 							return 11001;
 
@@ -75,7 +76,8 @@ namespace AnizanHelper.Models.Registries
 							return majorVersion * 1000;
 					}
 				}
-				catch {
+				catch
+				{
 					return 8000;
 				}
 			}
@@ -85,11 +87,13 @@ namespace AnizanHelper.Models.Registries
 		/// レジストリを追加する
 		/// </summary>
 		/// <param name="appName">艦ぶら実行ファイル名</param>
-		void AddRegistry(string appName, bool toMachine)
+		private void AddRegistry(string appName, bool toMachine)
 		{
-			using (var editor = new RegistryEditor(appName, toMachine)) {
+			using (var editor = new RegistryEditor(appName, toMachine))
+			{
 				editor.SetValue(RegKeyEmulation, RegValueIE, RegistryValueKind.DWord);
-				foreach (var key in RegKeyIEs) {
+				foreach (var key in RegKeyIEs)
+				{
 					editor.SetValue(key, 1, RegistryValueKind.DWord);
 				}
 			}
@@ -99,12 +103,14 @@ namespace AnizanHelper.Models.Registries
 		/// レジストリを削除する
 		/// </summary>
 		/// <param name="appName">艦ぶら実行ファイル名</param>
-		void DeleteRegistry(string appName, bool forOldVersion = false)
+		private void DeleteRegistry(string appName, bool forOldVersion = false)
 		{
 			// レジストリキーを削除
-			using (var editor = new RegistryEditor(appName, forOldVersion)) {
+			using (var editor = new RegistryEditor(appName, forOldVersion))
+			{
 				editor.DeleteKey(RegKeyEmulation);
-				foreach (var key in RegKeyIEs) {
+				foreach (var key in RegKeyIEs)
+				{
 					editor.DeleteKey(key);
 				}
 			}
@@ -118,16 +124,20 @@ namespace AnizanHelper.Models.Registries
 		public static bool ShouldResetRegistry(string appName, bool toMachine)
 		{
 			// キーの存在を確認
-			using (var editor = new RegistryEditor(appName, toMachine)) {
-				if (!editor.IsKeyExists(RegKeyEmulation)) {
+			using (var editor = new RegistryEditor(appName, toMachine))
+			{
+				if (!editor.IsKeyExists(RegKeyEmulation))
+				{
 					return true;
 				}
 			}
 
 			// 値を確認
-			using (var editor = new RegistryEditor(appName, toMachine)) {
+			using (var editor = new RegistryEditor(appName, toMachine))
+			{
 				var ieVal = editor.GetValue(RegKeyEmulation, (int)0);
-				if (ieVal != RegValueIE) {
+				if (ieVal != RegValueIE)
+				{
 					return true;
 				}
 			}

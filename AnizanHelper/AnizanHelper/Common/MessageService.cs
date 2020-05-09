@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using System.Reactive.Subjects;
-using System.Text;
 
 namespace AnizanHelper
 {
@@ -10,7 +7,7 @@ namespace AnizanHelper
 	{
 		protected MessageService() { }
 
-		static MessageService current_ = null;
+		private static MessageService current_ = null;
 		public static MessageService Current
 		{
 			get
@@ -19,18 +16,17 @@ namespace AnizanHelper
 			}
 		}
 
-
-		Subject<string> subject_ = new Subject<string>();
+		private Subject<string> subject_ = new Subject<string>();
 		public IObservable<string> MessageObservable
 		{
 			get
 			{
-				return subject_;
+				return this.subject_;
 			}
 		}
 		public void ShowMessage(string message)
 		{
-			subject_.OnNext(message);
+			this.subject_.OnNext(message);
 		}
 	}
 }

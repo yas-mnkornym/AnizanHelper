@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 namespace AnizanHelper.ViewModels
@@ -15,14 +11,15 @@ namespace AnizanHelper.ViewModels
 		#region ICommandメンバ
 		public bool CanExecute(object parameter)
 		{
-			var d = CanExecuteHandler;
+			var d = this.CanExecuteHandler;
 			return d == null ? true : d(parameter);
 		}
 
 		public void Execute(object parameter)
 		{
-			var d = ExecuteHandler;
-			if (d != null) {
+			var d = this.ExecuteHandler;
+			if (d != null)
+			{
 				d(parameter);
 			}
 		}
@@ -32,7 +29,8 @@ namespace AnizanHelper.ViewModels
 		public void RaiseCanExecuteChanged()
 		{
 			var d = CanExecuteChanged;
-			if (d != null) {
+			if (d != null)
+			{
 				d(this, null);
 			}
 		}

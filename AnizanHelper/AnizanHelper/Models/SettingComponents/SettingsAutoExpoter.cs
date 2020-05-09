@@ -1,96 +1,104 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 namespace AnizanHelper.Models.SettingComponents
 {
-	internal class SettingsAutoExpoter : IDisposable
+	internal sealed class SettingsAutoExpoter : IDisposable
 	{
-		#region Private Field
-		ISettingsSerializer serializer_;
-		Stream stream_;
-		CompositeDisposable disposables_ = new CompositeDisposable();
-		#endregion
+		private ISettingsSerializer Serializer { get; }
+		private Stream Stream { get; }
+		private CompositeDisposable Disposables { get; } = new CompositeDisposable();
 
 		public SettingsAutoExpoter(
 			string filePath,
 			string tempFilePath,
-			SettingsImpl settings,
+			SettingsContainer settings,
 			ISettingsSerializer serializer,
-			int delay = 300)
+			TimeSpan throttlingInterval)
 		{
-			if (filePath == null) { throw new ArgumentNullException("filePath"); }
-			if (tempFilePath == null) { throw new ArgumentNullException("tempFilePath"); }
-			if (settings == null) { throw new ArgumentNullException("settings"); }
-			if (delay < 0) { throw new ArgumentOutOfRangeException("dealy must be >= 0)"); }
-			if (serializer == null) { throw new ArgumentNullException("serializer"); }
-			serializer_ = serializer;
+			if (filePath == null) { throw new ArgumentNullException(nameof(filePath)); }
+			if (tempFilePath == null) { throw new ArgumentNullException(nameof(tempFilePath)); }
+			if (settings == null) { throw new ArgumentNullException(nameof(settings)); }
+			this.Serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
 
 			// ファイルを開く
-			stream_ = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
-			disposables_.Add(stream_);
+			this.Stream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.Read);
+			this.Disposables.Add(this.Stream);
 
 			// 設定変更を監視
 			var subscription = Observable.FromEventPattern<SettingChangeEventArgs>(settings, "SettingChanged")
-				.Throttle(TimeSpan.FromMilliseconds(delay))
-				.Subscribe(args => {
-					try {
-						Export(filePath, tempFilePath, settings);
-						if (Exported != null) {
-							Exported(this, new EventArgs());
-						}
+				.Throttle(throttlingInterval)
+				.Subscribe(args =>
+				{
+					try
+					{
+						this.Export(filePath, tempFilePath, settings);
+						this.Exported?.Invoke(this, new EventArgs());
 					}
-					catch (Exception ex) {
-						if (Error != null) {
-							Error(this, new ErrorEventArgs(ex));
-						}
+					catch (Exception ex)
+					{
+						this.Error?.Invoke(this, new ErrorEventArgs(ex));
 					}
 				});
-			disposables_.Add(subscription);
+
+			this.Disposables.Add(subscription);
 		}
 
-		void Export(
+		private void Export(
 			string filePath,
 			string tempFilePath,
-			SettingsImpl settings
-			)
+			SettingsContainer settings)
 		{
-			if (filePath == null) { throw new ArgumentNullException("filePath"); }
-			if (tempFilePath == null) { throw new ArgumentNullException("tempFilePath"); }
-			if (settings == null) { throw new ArgumentNullException("settings"); }
+			if (filePath == null) { throw new ArgumentNullException(nameof(filePath)); }
+			if (tempFilePath == null) { throw new ArgumentNullException(nameof(tempFilePath)); }
+			if (settings == null) { throw new ArgumentNullException(nameof(settings)); }
 
 			// ファイルを空にする
-			stream_.SetLength(0);
+			this.Stream.SetLength(0);
 
 			// 設定をシリアラズしてファイルに保存
-			serializer_.Serialize(stream_, settings);
+			this.Serializer.Serialize(this.Stream, settings);
 
 			// 一時ファイルから本来のファイルにコピーする
 			File.Copy(tempFilePath, filePath, true);
 		}
 
 		public event EventHandler Exported;
+
 		public event EventHandler<ErrorEventArgs> Error;
 
-		#region IDisposable メンバ
-		bool isDisposed_ = false;
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "stream_")]
-		virtual protected void Dispose(bool disposing)
-		{
-			if (isDisposed_) { return; }
-			if (disposing) {
-				disposables_.Dispose();
-				disposables_ = null;
-			}
-			isDisposed_ = true;
-		}
+		#region IDisposable
+
+		private bool isDisposed = false;
 
 		public void Dispose()
 		{
-			Dispose(true);
+			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
-		#endregion
+
+		private void Dispose(bool disposing)
+		{
+			if (this.isDisposed) { return; }
+
+			if (disposing)
+			{
+				this.Disposables.Dispose();
+			}
+
+			this.isDisposed = true;
+		}
+
+		private void ThrowIfDisposed()
+		{
+			if (this.isDisposed)
+			{
+				throw new ObjectDisposedException(this.ToString());
+			}
+		}
+
+		#endregion IDisposable
 	}
 }

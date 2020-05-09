@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AnizanHelper.Models
+﻿namespace AnizanHelper.Models
 {
 	internal interface ISongInfoSerializer
 	{
@@ -14,7 +7,7 @@ namespace AnizanHelper.Models
 		/// </summary>
 		/// <param name="info">曲情報</param>
 		/// <returns>シリアライズされた曲情報</returns>
-		string Serialize(AnizanSongInfo info);
-		string SerializeFull(AnizanSongInfo info);
+		string Serialize(ZanmaiSongInfo info);
+		string SerializeFull(ZanmaiSongInfo info);
 	}
 }

@@ -1,10 +1,11 @@
-﻿using System.Text.RegularExpressions;
+using System;
+using System.Text.RegularExpressions;
 
 namespace AnizanHelper.Models.Parsers
 {
 	internal class AnizanFormatParser : ISongInfoParser
 	{
-		static Regex[] Regexes = new Regex[]{
+		private static Regex[] Regexes = new Regex[]{
 			// Special 
 			new Regex(@"(?<SpecialHeader>[★▼])(?<SpecialItemName>.*)[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?[\(（](\[(?<Genre>.*)\])?(?<Series>.*)　(?<SongType>.*)?[\)）]\s*(※(?<Additional>.*))?"),
 			
@@ -24,51 +25,40 @@ namespace AnizanHelper.Models.Parsers
 			new Regex(@"(?<Number>\d{1,4})?[\.．]?[「｢](?<Title>.*)[｣」]\s*[/／]?(?<Artist>.*)?\s*(※(?<Additional>.*))?")
 		};
 
-		public GeneralSongInfo Parse(string inputText)
-		{
-			var anizanSongInfo = ParseAsAnizanInfo(inputText);
-			if (anizanSongInfo == null) {
-				return null;
-			}
-			else {
-				return new GeneralSongInfo {
-					Title = anizanSongInfo.Title,
-					Singers = anizanSongInfo.Singer.Split(','),
-					Genre = anizanSongInfo.Genre,
-					Series = anizanSongInfo.Series,
-					SongType = anizanSongInfo.SongType,
-				};
-			}
-		}
-
-		public AnizanSongInfo ParseAsAnizanInfo(string inputText)
+		public ZanmaiSongInfo Parse(string inputText)
 		{
 			Match match = null;
-			foreach (var regex in Regexes) {
+			foreach (var regex in Regexes)
+			{
 				match = regex.Match(inputText);
-				if (match.Success) {
+				if (match.Success)
+				{
 					break;
 				}
 			}
 
+			var specialItemHeader = match.Groups["SpecialHeader"]?.Value?.Trim();
 			return match?.Success == true
-				? new AnizanSongInfo {
+				? new ZanmaiSongInfo
+				{
 					Number = TryParseAsIntOrDefault(match.Groups["Number"]?.Value?.Trim()),
 					Title = match.Groups["Title"]?.Value?.Trim(),
-					Singer = match.Groups["Artist"]?.Value?.Trim(),
+					Artists = match.Groups["Artist"]?.Value?.Trim()?.Split(',') ?? Array.Empty<string>(),
 					Genre = match.Groups["Genre"]?.Value?.Trim(),
 					Series = match.Groups["Series"]?.Value?.Trim(),
 					SongType = match.Groups["SongType"]?.Value?.Trim(),
 					Additional = match.Groups["Additional"]?.Value?.Trim(),
 					SpecialItemName = match.Groups["SpecialItemName"]?.Value?.Trim(),
-					SpecialHeader = match.Groups["SpecialHeader"]?.Value?.Trim(),
+					SpecialHeader = specialItemHeader,
+					IsSpecialItem = !string.IsNullOrWhiteSpace(specialItemHeader),
 				}
 				: null;
 		}
 
-		static int TryParseAsIntOrDefault(string text)
+		private static int TryParseAsIntOrDefault(string text)
 		{
-			if (text == null) {
+			if (text == null)
+			{
 				return 0;
 			}
 

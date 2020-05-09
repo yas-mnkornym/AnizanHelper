@@ -1,22 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace ComiketSystem.Csv
 {
 	public class CsvMaker
 	{
-		List<List<string>> lines = new List<List<string>>();
+		private List<List<string>> lines = new List<List<string>>();
 		public int CurrentLine { get; set; }
 		public string Newline { get; set; }
 
 		public CsvMaker()
 		{
-			UseEscape = false;
-			Delimiter = ',';
-			Newline = "\n";
-			lines.Add(new List<string>());
+			this.UseEscape = false;
+			this.Delimiter = ',';
+			this.Newline = "\n";
+			this.lines.Add(new List<string>());
 		}
 
 		public char Delimiter
@@ -25,24 +24,26 @@ namespace ComiketSystem.Csv
 			set;
 		}
 
-		Dictionary<char, char> escapeMap_ = new Dictionary<char, char>();
+		private Dictionary<char, char> escapeMap_ = new Dictionary<char, char>();
 		public bool UseEscape { get; set; }
+
 		public void AddEscape(char origin, char escaped)
 		{
-			escapeMap_[origin] = escaped;
+			this.escapeMap_[origin] = escaped;
 		}
 
 		public void RemoveEscape(char origin)
 		{
-			try {
-				escapeMap_.Remove(origin);
+			try
+			{
+				this.escapeMap_.Remove(origin);
 			}
 			catch { }
 		}
 
 		public void RemoveAllEscapes()
 		{
-			escapeMap_.Clear();
+			this.escapeMap_.Clear();
 		}
 
 		/// <summary>
@@ -54,38 +55,48 @@ namespace ComiketSystem.Csv
 			StringBuilder sb = new StringBuilder();
 
 			bool firstline = true;
-			foreach (List<string> line in lines) {
+			foreach (List<string> line in this.lines)
+			{
 				if (firstline) { firstline = false; }
-				else { sb.Append(Newline); }
+				else { sb.Append(this.Newline); }
 				bool first = true;
-				foreach (string orgtoken in line) {
+				foreach (string orgtoken in line)
+				{
 					var token = orgtoken;
-					if (UseEscape) {
-						foreach (var pair in escapeMap_) {
+					if (this.UseEscape)
+					{
+						foreach (var pair in this.escapeMap_)
+						{
 							token = token.Replace(pair.Key.ToString(), "\\" + pair.Value);
 						}
 					}
 
-					if (first) {
+					if (first)
+					{
 						first = false;
 					}
-					else {
-						sb.Append(Delimiter);
+					else
+					{
+						sb.Append(this.Delimiter);
 					}
 
 					bool flag = false;
-					for (int i = 0; i < token.Length; i++) {
-						if (token[i] == '"' || token[i] == Delimiter || token[i] == '\n') {
+					for (int i = 0; i < token.Length; i++)
+					{
+						if (token[i] == '"' || token[i] == this.Delimiter || token[i] == '\n')
+						{
 							flag = true;
 							break;
 						}
 					}
-					if (flag) {
+					if (flag)
+					{
 						sb.Append('"');
 						sb.Append(token.Replace("\"", "\"\""));
 						sb.Append('"');
 					}
-					else {
+					else
+					{
 						sb.Append(token);
 					}
 				}
@@ -98,38 +109,46 @@ namespace ComiketSystem.Csv
 		/// </summary>
 		public void Clear()
 		{
-			lines.Clear();
-			lines.Add(new List<string>());
+			this.lines.Clear();
+			this.lines.Add(new List<string>());
 		}
-
 
 		public void AddToken<T>(T value, bool emptyOnNull = true, string nullText = "null")
 		{
 			string str = "";
-			try {
-				if (value != null) {
+			try
+			{
+				if (value != null)
+				{
 					str = value.ToString();
 				}
-				else if (!emptyOnNull) {
+				else if (!emptyOnNull)
+				{
 					if (nullText == null) { throw new ArgumentNullException("nullText"); }
 					str = nullText;
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				throw new Exception("値の文字列化に失敗しました。", ex);
 			}
 
-			try {
-				if (lines.Count > CurrentLine && lines[CurrentLine] != null) {
-					if (str != null) {
-						lines[CurrentLine].Add(str);
+			try
+			{
+				if (this.lines.Count > this.CurrentLine && this.lines[this.CurrentLine] != null)
+				{
+					if (str != null)
+					{
+						this.lines[this.CurrentLine].Add(str);
 					}
-					else {
-						lines[CurrentLine].Add("");
+					else
+					{
+						this.lines[this.CurrentLine].Add("");
 					}
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				throw new Exception("トークンの追加処理に失敗しました。", ex);
 			}
 		}
@@ -183,25 +202,31 @@ namespace ComiketSystem.Csv
 		public void AddTokenOrEmpty<T>(T value, T emptyValue)
 		{
 			bool equals = false;
-			if (value == null) {
+			if (value == null)
+			{
 				equals = (emptyValue == null);
 			}
-			else {
+			else
+			{
 				equals = value.Equals(emptyValue);
 			}
-			if(equals){
-				AddToken("");
+			if (equals)
+			{
+				this.AddToken("");
 			}
-			else {
-				AddToken(value.ToString());
+			else
+			{
+				this.AddToken(value.ToString());
 			}
 		}
 
 		public bool DeleteToken(int index)
 		{
-			if (lines.Count > CurrentLine && lines[CurrentLine] != null) {
-				if (lines[CurrentLine].Count > index) {
-					lines[CurrentLine].RemoveAt(index);
+			if (this.lines.Count > this.CurrentLine && this.lines[this.CurrentLine] != null)
+			{
+				if (this.lines[this.CurrentLine].Count > index)
+				{
+					this.lines[this.CurrentLine].RemoveAt(index);
 					return true;
 				}
 			}
@@ -210,13 +235,13 @@ namespace ComiketSystem.Csv
 
 		public void ToNextLine()
 		{
-			lines.Add(new List<string>());
-			CurrentLine++;
+			this.lines.Add(new List<string>());
+			this.CurrentLine++;
 		}
 
 		public override string ToString()
 		{
-			return GetCsvString();
+			return this.GetCsvString();
 		}
 	}
 }

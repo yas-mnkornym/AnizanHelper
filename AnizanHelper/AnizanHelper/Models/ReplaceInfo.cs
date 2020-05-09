@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AnizanHelper.Models
+﻿namespace AnizanHelper.Models
 {
 	public class ReplaceInfo
 	{
 		public ReplaceInfo(string original, string replaced, bool exact = false)
 		{
-			Original = original;
-			Replaced = replaced;
-			Exact = exact;
+			this.Original = original;
+			this.Replaced = replaced;
+			this.Exact = exact;
 		}
 
 		/// <summary>
 		/// 置換対象の文字列
 		/// </summary>
 		public string Original { get; set; }
-		
+
 		/// <summary>
 		/// 置換語の文字列
 		/// </summary>

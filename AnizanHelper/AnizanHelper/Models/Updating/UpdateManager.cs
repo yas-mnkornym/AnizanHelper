@@ -8,7 +8,7 @@ namespace AnizanHelper.Models.Updating
 		public Version CurrentVersion { get; } = typeof(UpdateManager).Assembly.GetName().Version;
 
 		public UpdateInfo UpdateInfo { get; private set; }
-		public bool IsUpdateAvailable => UpdateInfo?.Version > CurrentVersion == true;
+		public bool IsUpdateAvailable => this.UpdateInfo?.Version > this.CurrentVersion == true;
 
 		private IUpdateInfoRetreiver UpdateInfoRetreiver { get; }
 
@@ -19,7 +19,7 @@ namespace AnizanHelper.Models.Updating
 
 		public async Task CheckForUpdateAsync()
 		{
-			UpdateInfo = await UpdateInfoRetreiver.GetUpdateInfoAsync().ConfigureAwait(false);
+			this.UpdateInfo = await this.UpdateInfoRetreiver.GetUpdateInfoAsync().ConfigureAwait(false);
 		}
 	}
 }

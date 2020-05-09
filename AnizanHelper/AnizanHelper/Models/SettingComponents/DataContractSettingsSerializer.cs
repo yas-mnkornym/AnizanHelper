@@ -14,35 +14,39 @@ namespace AnizanHelper.Models.SettingComponents
 
 		#region ISettingsSerializer メンバー
 
-		public void Serialize(System.IO.Stream stream, SettingsImpl settings)
+		public void Serialize(System.IO.Stream stream, SettingsContainer settings)
 		{
-			var serializationInfoArray = settings.SettingsData.Select(x => SerializeSerializaeInfo(x.Key, x.Value, settings.KnownTypes)).ToArray();
+			var serializationInfoArray = settings.SettingsData.Select(x => this.SerializeSerializaeInfo(x.Key, x.Value, settings.KnownTypes)).ToArray();
 			DataContractSerializer serializer = new DataContractSerializer(typeof(KeyValueSerializationInfo[]));
 			serializer.WriteObject(stream, serializationInfoArray);
 		}
 
-		public void Deserialize(System.IO.Stream stream, SettingsImpl settings)
+		public void Deserialize(System.IO.Stream stream, SettingsContainer settings)
 		{
 			DataContractSerializer serializer = new DataContractSerializer(typeof(KeyValueSerializationInfo[]));
 			var serializationInfoArray = (KeyValueSerializationInfo[])serializer.ReadObject(stream);
-			var deserialized = serializationInfoArray.Select(x => new { Key = x.Key, Value = DeserializSeserializeInfo(x, settings.KnownTypes) });
+			var deserialized = serializationInfoArray.Select(x => new { Key = x.Key, Value = this.DeserializSeserializeInfo(x, settings.KnownTypes) });
 			settings.Clear();
-			foreach (var des in deserialized) {
+			foreach (var des in deserialized)
+			{
 				settings.Set(des.Key, des.Value);
 			}
 		}
 
 		#endregion
 
-		object DeserializSeserializeInfo(KeyValueSerializationInfo info, IEnumerable<Type> knownTypes)
+		private object DeserializSeserializeInfo(KeyValueSerializationInfo info, IEnumerable<Type> knownTypes)
 		{
 			if (info == null) { throw new ArgumentNullException("info"); }
 
 			// 設定の型を取得
 			Type type = Type.GetType(info.Type, false);
-			if (type == null) {
-				foreach (var knownType in knownTypes) {
-					if (knownType.FullName == info.Type) {
+			if (type == null)
+			{
+				foreach (var knownType in knownTypes)
+				{
+					if (knownType.FullName == info.Type)
+					{
 						type = knownType;
 						break;
 					}
@@ -50,12 +54,14 @@ namespace AnizanHelper.Models.SettingComponents
 			}
 
 			// 型が取得できなかったらnullを返す
-			if (type == null) {
+			if (type == null)
+			{
 				return null;
 			}
 
 			// デシリアライズ
-			using (var xmlReader = new XmlTextReader(new StringReader(info.Value))) {
+			using (var xmlReader = new XmlTextReader(new StringReader(info.Value)))
+			{
 				DataContractSerializer serializer = new DataContractSerializer(type, knownTypes);
 				return serializer.ReadObject(xmlReader);
 			}
@@ -63,17 +69,19 @@ namespace AnizanHelper.Models.SettingComponents
 
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:オブジェクトを複数回破棄しない")]
-		KeyValueSerializationInfo SerializeSerializaeInfo(string key, object value, IEnumerable<Type> knownTypes)
+		private KeyValueSerializationInfo SerializeSerializaeInfo(string key, object value, IEnumerable<Type> knownTypes)
 		{
 			if (key == null) { throw new ArgumentNullException("key"); }
 			if (value == null) { throw new ArgumentNullException("value"); }
-			var serializationInfo = new KeyValueSerializationInfo {
+			var serializationInfo = new KeyValueSerializationInfo
+			{
 				Key = key,
 				Type = value.GetType().FullName
 			};
 
 			using (var writer = new StringWriter())
-			using (var xmlWriter = new XmlTextWriter(writer)) {
+			using (var xmlWriter = new XmlTextWriter(writer))
+			{
 				DataContractSerializer serializer = new DataContractSerializer(value.GetType(), knownTypes);
 				serializer.WriteObject(xmlWriter, value);
 
@@ -85,7 +93,7 @@ namespace AnizanHelper.Models.SettingComponents
 	}
 
 	[DataContract]
-	class KeyValueSerializationInfo
+	internal class KeyValueSerializationInfo
 	{
 		[DataMember]
 		public string Type { get; set; }

@@ -1,20 +1,20 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 
 namespace AnizanHelper.Models
 {
-	internal class SongPresetRepository : INotifyPropertyChanged
+	public class SongPresetRepository : INotifyPropertyChanged
 	{
-		AnizanSongInfo[] presets_;
+		private ZanmaiSongInfo[] presets_;
 
-		public AnizanSongInfo[] Presets
+		public ZanmaiSongInfo[] Presets
 		{
-			get => presets_;
+			get => this.presets_;
 			set
 			{
-				if (presets_ != value)
+				if (this.presets_ != value)
 				{
-					presets_ = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Presets)));
+					this.presets_ = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.Presets)));
 				}
 			}
 		}
