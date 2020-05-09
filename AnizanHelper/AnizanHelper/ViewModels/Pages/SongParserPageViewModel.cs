@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using AnizanHelper.Models;
 using AnizanHelper.Models.Parsers;
@@ -12,10 +13,14 @@ namespace AnizanHelper.ViewModels.Pages
 	{
 		private ISongInfoParser Parser { get; } = new AnisonDBParser();
 		private IEventAggregator EventAggregator { get; }
+		private AnizanSongInfoProcessor AnizanSongInfoProcessor { get; }
 
-		public SongParserPageViewModel(IEventAggregator eventAggregator)
+		public SongParserPageViewModel(
+			IEventAggregator eventAggregator,
+			AnizanSongInfoProcessor anizanSongInfoProcessor)
 		{
 			this.EventAggregator = eventAggregator ?? throw new ArgumentNullException(nameof(eventAggregator));
+			this.AnizanSongInfoProcessor = anizanSongInfoProcessor ?? throw new ArgumentNullException(nameof(anizanSongInfoProcessor));
 
 			this.EventAggregator
 				.GetEvent<ClearSearchInputEvent>()
@@ -67,6 +72,9 @@ namespace AnizanHelper.ViewModels.Pages
 						try
 						{
 							var info = this.Parser.Parse(this.InputText);
+
+							info = this.AnizanSongInfoProcessor.Convert(info);
+
 							this.EventAggregator
 								.GetEvent<SongParsedEvent>()
 								.Publish(info);
