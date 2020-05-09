@@ -16,7 +16,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 
 		protected HttpClient HttpClient { get; }
 
-		public string Id => "AnizonDb";
+		public abstract string Id { get; }
 
 		public object QueryUrlBase { get; private set; }
 

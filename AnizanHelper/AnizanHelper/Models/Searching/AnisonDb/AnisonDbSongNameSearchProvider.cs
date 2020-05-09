@@ -22,7 +22,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 		public static string ShortProviderIdentifier { get; } = "DB";
 
 		private AnizanSongInfoProcessor SongInfoConverter { get; }
-
+		public override string Id { get; } = nameof(AnisonDbSongNameSearchProvider);
 		public bool CheckSeries { get; set; }
 
 		public AnisonDbSongNameSearchProvider(
