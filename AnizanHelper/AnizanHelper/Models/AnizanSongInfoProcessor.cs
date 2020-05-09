@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace AnizanHelper.Models
 {
-	public class AnizanSongInfoConverter
+	public class AnizanSongInfoProcessor
 	{
 		public ReplaceInfo[] Replaces { get; set; }
 
-		public AnizanSongInfoConverter(params ReplaceInfo[] replaces)
+		public AnizanSongInfoProcessor(params ReplaceInfo[] replaces)
 		{
 			this.Replaces = replaces;
 		}

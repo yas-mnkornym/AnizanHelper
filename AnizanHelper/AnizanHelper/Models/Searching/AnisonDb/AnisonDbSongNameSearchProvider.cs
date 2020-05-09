@@ -21,13 +21,13 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 		private static Regex SeriesNumberPatternRegex { get; } = new Regex(@"(?<Type>(OP|ED))\s*(?<Number>\d)");
 		public static string ShortProviderIdentifier { get; } = "DB";
 
-		private AnizanSongInfoConverter SongInfoConverter { get; }
+		private AnizanSongInfoProcessor SongInfoConverter { get; }
 
 		public bool CheckSeries { get; set; }
 
 		public AnisonDbSongNameSearchProvider(
 			HttpClient httpClient,
-			AnizanSongInfoConverter songInfoConverter) : base(httpClient)
+			AnizanSongInfoProcessor songInfoConverter) : base(httpClient)
 		{
 			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));
 		}

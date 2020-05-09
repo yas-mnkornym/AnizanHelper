@@ -16,10 +16,10 @@ namespace AnizanHelper.Models
 			AppInfo.Current.UserDictionaryfilePath,
 		};
 
-		private AnizanSongInfoConverter SongInfoConverter { get; }
+		private AnizanSongInfoProcessor SongInfoConverter { get; }
 		private SongPresetRepository SongPresetRepository { get; }
 
-		public DictionaryManager(SongPresetRepository songPresetRepository, AnizanSongInfoConverter songInfoConverter)
+		public DictionaryManager(SongPresetRepository songPresetRepository, AnizanSongInfoProcessor songInfoConverter)
 		{
 			this.SongPresetRepository = songPresetRepository ?? throw new ArgumentNullException(nameof(songPresetRepository));
 			this.SongInfoConverter = songInfoConverter ?? throw new ArgumentNullException(nameof(songInfoConverter));

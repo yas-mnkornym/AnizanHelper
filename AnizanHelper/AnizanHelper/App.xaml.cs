@@ -121,7 +121,7 @@ namespace AnizanHelper
 			});
 
 
-			unityContainer.RegisterSingleton<AnizanSongInfoConverter>();
+			unityContainer.RegisterSingleton<AnizanSongInfoProcessor>();
 			unityContainer.RegisterSingleton<SongPresetRepository>();
 
 			containerRegistry.RegisterSingleton<MainWindow>();
