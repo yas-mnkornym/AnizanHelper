@@ -35,7 +35,7 @@ stages:
         command: "publish"
         zipAfterPublish: false
         projects: $(project)
-        arguments: "p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
+        arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
         modifyOutputPath: false
 
     - publish: dist
