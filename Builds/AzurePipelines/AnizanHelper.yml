@@ -31,9 +31,12 @@ stages:
     - task: DotNetCoreCLI@2
       displayName: "dotnet publish"
       inputs:
+        publishWebProjects: false
         command: "publish"
-        projects: "$(project)"
+        zipAfterPublish: false
+        projects: $(project)
         arguments: "p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
+        modifyOutputPath: false
 
     - publish: dist
       artifact: app
