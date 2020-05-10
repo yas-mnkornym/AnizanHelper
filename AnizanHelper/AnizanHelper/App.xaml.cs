@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reactive.Linq;
@@ -40,6 +41,28 @@ namespace AnizanHelper
 			regionManager.RequestNavigate("Region_Search", "SongSearchPage");
 			regionManager.RequestNavigate("Region_StreamMetadata", "StreamMetadataViewerPage");
 			regionManager.RequestNavigate("Region_SongParser", "SongParserPage");
+		}
+
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			if (e.Args.FirstOrDefault() == "--export-version")
+			{
+				try
+				{
+					var outputFile = e.Args[1];
+					File.WriteAllText(
+						outputFile,
+						AppInfo.Current.Version.ToString());
+				}
+				finally
+				{
+					this.Shutdown();
+				}
+
+				return;
+			}
+
+			base.OnStartup(e);
 		}
 
 		protected override void OnInitialized()
