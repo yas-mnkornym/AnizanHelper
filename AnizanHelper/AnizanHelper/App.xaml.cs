@@ -78,7 +78,7 @@ namespace AnizanHelper
 		protected override void OnExit(ExitEventArgs e)
 		{
 			var moduleCleanupService = this.Container.Resolve<AppLifetimeNotifier>();
-			moduleCleanupService.OnExit(this.Container);
+			moduleCleanupService?.OnExit(this.Container);
 
 			base.OnExit(e);
 		}
