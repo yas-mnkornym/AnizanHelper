@@ -50,9 +50,14 @@ namespace AnizanHelper
 				try
 				{
 					var outputFile = e.Args[1];
+					var version = AppInfo.Current.Version;
 					File.WriteAllText(
 						outputFile,
-						AppInfo.Current.Version.ToString());
+						string.Format(
+							"{0}.{1}.{2}",
+							version.Major,
+							version.Minor,
+							version.Build));
 				}
 				finally
 				{
