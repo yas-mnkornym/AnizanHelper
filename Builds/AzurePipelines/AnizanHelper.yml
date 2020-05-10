@@ -60,6 +60,7 @@ stages:
       - task: CopyFilesOverSSH@0
         inputs:
           sshEndpoint: 'Taiha-WebServer-SSH'
+          sourceFolder: "$(Pipeline.Workspace)/app"
           contents: 'AnizanHelper*.zip'
           targetFolder: '$(SshPublishTargetDirectoryRoot)/files'
           readyTimeout: '20000'
