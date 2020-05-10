@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+    - master
+
+pr: none
+
+variables:
+  project: "AnizanHelper/AnizanHelper/AnizanHelper.csproj"
+  publishProfile: AnizanHelper/AnizanHelper/Properties/PublishProfiles/AzurePipelines.pubxm
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildPackages
+    
+    pool:
+      vmImage: "windows-latest"
+
+    steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: "sdk"
+        version: "3.1.201"
+
+    - task: DotNetCoreCLI@2
+      displayName: "dotnet publish"
+      inputs:
+        command: "publish"
+        projects: |
+          "$(solution)""
+        arguments: "p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
+
+    - publish: dist
+      artifact: app
+      displayName: 'Publish artifacts'
