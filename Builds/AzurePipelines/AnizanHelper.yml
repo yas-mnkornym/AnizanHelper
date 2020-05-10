@@ -61,7 +61,7 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-            ./publish/AnizanHelper.exe --export-version version.txt
+            $(Pipeline.Workspace)/AnizanHelper/AnizanHelper.exe --export-version version.txt
             $version = cat version.txt
             echo "##vso[task.setvariable variable=AppVersion]$version"
 
