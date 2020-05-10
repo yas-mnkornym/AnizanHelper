@@ -57,12 +57,20 @@ stages:
         artifact: AnizanHelper
         displayName: "Download artifact"
 
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            ./publish/AnizanHelper.exe --export-version version.txt
+            $version = cat version.txt
+            echo "##vso[task.setvariable variable=AppVersion]$version"
+
       - task: ArchiveFiles@2
         inputs:
           rootFolderOrFile: "$(Pipeline.Workspace)/AnizanHelper"
           includeRootFolder: false
           archiveType: "zip"
-          archiveFile: "AnizanHelper.zip"
+          archiveFile: "AnizanHelper_$(AppVersion).zip"
           replaceExistingArchive: true
 
       - task: CopyFilesOverSSH@0
