@@ -35,11 +35,11 @@ stages:
         command: "publish"
         zipAfterPublish: true
         projects: $(project)
-        arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/AnizanHelper"
+        arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/publish"
         modifyOutputPath: false
 
-    - publish: AnizanHelper
-      artifact: app
+    - publish: publish
+      artifact: AnizanHelper
       displayName: 'Publish artifacts'
 
 - stage: Publish
@@ -52,16 +52,23 @@ stages:
       vmImage: "windows-latest"
     steps:
       - checkout: none
-
+      
       - download: current
-        artifact: app
-        displayName: 'Download artifact'
+        artifact: AnizanHelper
+        displayName: "Download artifact"
+
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: "$(Pipeline.Workspace)/AnizanHelper"
+          includeRootFolder: false
+          archiveType: "zip"
+          archiveFile: "AnizanHelper.zip"
+          replaceExistingArchive: true
 
       - task: CopyFilesOverSSH@0
         inputs:
-          sshEndpoint: 'Taiha-WebServer-SSH'
-          sourceFolder: "$(Pipeline.Workspace)/app"
-          contents: 'AnizanHelper*.zip'
-          targetFolder: '$(SshPublishTargetDirectoryRoot)/files'
-          readyTimeout: '20000'
+          sshEndpoint: "Taiha-WebServer-SSH"
+          contents: "AnizanHelper*.zip"
+          targetFolder: "$(SshPublishTargetDirectoryRoot)/files"
+          readyTimeout: "20000"
           failOnEmptySource: true
