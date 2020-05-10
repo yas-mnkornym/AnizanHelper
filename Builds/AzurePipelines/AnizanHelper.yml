@@ -35,9 +35,32 @@ stages:
         command: "publish"
         zipAfterPublish: true
         projects: $(project)
-        arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
+        arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/AnizanHelper"
         modifyOutputPath: false
 
     - publish: dist
       artifact: app
       displayName: 'Publish artifacts'
+
+- stage: Publish
+  dependsOn:
+  - Build
+  condition: succeeded()
+  jobs:
+  - job: PublishAppPackage
+    pool:
+      vmImage: "windows-latest"
+    steps:
+      - checkout: none
+
+      - download: current
+        artifact: app
+        displayName: 'Download artifact'
+
+      - task: CopyFilesOverSSH@0
+        inputs:
+          sshEndpoint: 'Taiha-WebServer-SSH'
+          contents: 'AnizanHelper*.zip'
+          targetFolder: '$(SshPublishTargetDirectoryRoot)/files'
+          readyTimeout: '20000'
+          failOnEmptySource: true
