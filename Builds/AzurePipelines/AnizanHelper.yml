@@ -12,7 +12,7 @@ pr: none
 
 variables:
   project: "AnizanHelper/AnizanHelper/AnizanHelper.csproj"
-  publishProfile: AnizanHelper/AnizanHelper/Properties/PublishProfiles/AzurePipelines.pubxm
+  publishProfile: "AnizanHelper/AnizanHelper/Properties/PublishProfiles/AzurePipelines.pubxm"
 
 stages:
 - stage: Build
@@ -32,8 +32,7 @@ stages:
       displayName: "dotnet publish"
       inputs:
         command: "publish"
-        projects: |
-          "$(solution)""
+        projects: "$(project)"
         arguments: "p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
 
     - publish: dist
