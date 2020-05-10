@@ -33,7 +33,7 @@ stages:
       inputs:
         publishWebProjects: false
         command: "publish"
-        zipAfterPublish: false
+        zipAfterPublish: true
         projects: $(project)
         arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/dist"
         modifyOutputPath: false
