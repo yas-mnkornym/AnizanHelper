@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
@@ -25,7 +25,7 @@ namespace Twintail3
 		{
 			if (value is string)
 			{
-				string[] array = Regex.Split(value.ToString(), @"(?<!(?<!\\)\\),");　// NTwin23.103
+				string[] array = Regex.Split(value.ToString(), @"(?<!(?<!\\)\\),"); // NTwin23.103
 
 				ArrayList al = new ArrayList();
 				TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));

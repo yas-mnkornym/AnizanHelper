@@ -12,8 +12,8 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// ƒXƒLƒ“•W€‰»ƒvƒƒWƒFƒNƒg (http://dtao.cside.com/stdskin/)ŒİŠ·ƒXƒLƒ“‚ğ•\‚·
-	/// (REGEX_REPLACE‚ğ’è‹`‚µ‚½ê‡‚Ì‚İA‚©‚¿‚ãƒXƒLƒ“‚É‚àŒİŠ·)
+	/// ã‚¹ã‚­ãƒ³æ¨™æº–åŒ–ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ (http://dtao.cside.com/stdskin/)äº’æ›ã‚¹ã‚­ãƒ³ã‚’è¡¨ã™
+	/// (REGEX_REPLACEã‚’å®šç¾©ã—ãŸå ´åˆã®ã¿ã€ã‹ã¡ã‚…ã‚¹ã‚­ãƒ³ã«ã‚‚äº’æ›)
 	/// </summary>
 	public class StandardHtmlSkin : ThreadSkinBase
 	{
@@ -31,7 +31,7 @@ namespace Twin
 		private string baseUri;
 
 		/// <summary>
-		/// ƒŒƒXQÆ‚ÌŠî–{‚Æ‚È‚éURL‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¬ã‚¹å‚ç…§ã®åŸºæœ¬ã¨ãªã‚‹URLã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override string BaseUri {
 			set {
@@ -46,13 +46,13 @@ namespace Twin
 			get { return baseUri; }
 		}
 
-		// ƒXƒLƒ“–¼‚ğæ“¾
+		// ã‚¹ã‚­ãƒ³åã‚’å–å¾—
 		public override string Name {
 			get { return "stdskin"; }
 		}
 
 		/// <summary>
-		/// –¼‘O—“ƒ|ƒbƒvƒAƒbƒv
+		/// åå‰æ¬„ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—
 		/// </summary>
 		public bool NamePopup {
 			set {
@@ -63,33 +63,33 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// StandardHtmlSkinƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// StandardHtmlSkinã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public StandardHtmlSkin()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			skinPath = String.Empty;
 			headerSkin = "<html><head><title><THREADNAME/></title></head><b><font color=red><THREADNAME/></font></b><br><br><dl>";
 			footerSkin = "</dl></body></html>";
-			newResSkin = "<dt><b><NUMBER/></b> –¼‘OF<font color=\"forestgreen\"><MAILNAME/></font> “Še“úF<DATE/></dt><dd><MESSAGE/><br><br></dd></dt>";
-			resSkin = "<dt><NUMBER/> –¼‘OF<font color=\"forestgreen\"><MAILNAME/></font> “Še“úF<DATE/></dt><dd><MESSAGE/><br><br></dd></dt>";
-			bookmarkSkin = "</dl><span style=\"font-size:8pt; ; text-align: center; color: #ffffff; background-color: #70cc70; border: 1px solid forestgreen; width: 100%;\">ƒRƒR‚Ü‚Å“Ç‚ñ‚¾‚Ì</span><dl>";
+			newResSkin = "<dt><b><NUMBER/></b> åå‰ï¼š<font color=\"forestgreen\"><MAILNAME/></font> æŠ•ç¨¿æ—¥ï¼š<DATE/></dt><dd><MESSAGE/><br><br></dd></dt>";
+			resSkin = "<dt><NUMBER/> åå‰ï¼š<font color=\"forestgreen\"><MAILNAME/></font> æŠ•ç¨¿æ—¥ï¼š<DATE/></dt><dd><MESSAGE/><br><br></dd></dt>";
+			bookmarkSkin = "</dl><span style=\"font-size:8pt; ; text-align: center; color: #ffffff; background-color: #70cc70; border: 1px solid forestgreen; width: 100%;\">ã‚³ã‚³ã¾ã§èª­ã‚“ã ã®</span><dl>";
 			baseUri = String.Empty;
 		}
 
 		/// <summary>
-		/// HtmlThreadSkinƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlThreadSkinã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="folder">“Ç‚İ‚ŞƒXƒLƒ“‚ª‘¶İ‚·‚éƒtƒHƒ‹ƒ_ƒpƒX</param>
+		/// <param name="folder">èª­ã¿è¾¼ã‚€ã‚¹ã‚­ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹</param>
 		public StandardHtmlSkin(string folder) : this()
 		{
 			Load(folder);
 		}
 
 		/// <summary>
-		/// ƒXƒLƒ“‚ğ“Ç‚İ‚Ş
+		/// ã‚¹ã‚­ãƒ³ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="skinFolder"></param>
 		public override void Load(string skinFolder)
@@ -113,7 +113,7 @@ namespace Twin
 			bookmarkSkin = FileUtility.ReadToEnd(
 				Path.Combine(skinFolder, "Bookmark.html"));
 
-			// ÅŒã‚ªƒXƒ‰ƒbƒVƒ…‹L†‚ÅI‚í‚Á‚Ä‚¢‚È‚¯‚ê‚Î•t‰Á‚·‚é
+			// æœ€å¾ŒãŒã‚¹ãƒ©ãƒƒã‚·ãƒ¥è¨˜å·ã§çµ‚ã‚ã£ã¦ã„ãªã‘ã‚Œã°ä»˜åŠ ã™ã‚‹
 			if (!skinFolder.EndsWith("\\"))
 				skinFolder += "\\";
 
@@ -121,7 +121,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_[‚Æƒtƒbƒ^[‹¤’Ê‚Ì’u‚«Š·‚¦ŠÖ”
+		/// ãƒ˜ãƒƒãƒ€ãƒ¼ã¨ãƒ•ãƒƒã‚¿ãƒ¼å…±é€šã®ç½®ãæ›ãˆé–¢æ•°
 		/// </summary>
 		/// <param name="skinhtml"></param>
 		/// <param name="obj"></param>
@@ -151,7 +151,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_[ƒXƒLƒ“‚ğæ“¾
+		/// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚¹ã‚­ãƒ³ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -161,7 +161,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒtƒbƒ^[ƒXƒLƒ“‚ğæ“¾
+		/// ãƒ•ãƒƒã‚¿ãƒ¼ã‚¹ã‚­ãƒ³ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -179,7 +179,7 @@ namespace Twin
 			string dateonly, dateString;
 			string body;
 
-			#region ƒƒjƒ…[•t‚«”Ô†‚Ìì¬
+			#region ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä»˜ãç•ªå·ã®ä½œæˆ
 			int iPos = -1;
 
 			sb.Append("<a href=\"menu:");
@@ -202,7 +202,7 @@ namespace Twin
 			sb.Remove(0, sb.Length);
 			#endregion
 
-			#region –¼‘O‚Ìì¬
+			#region åå‰ã®ä½œæˆ
 			sb.Append("<b>");
 			sb.Append(resSet.Name);
 			sb.Append("</b>");
@@ -210,16 +210,16 @@ namespace Twin
 			sb.Remove(0, sb.Length);
 			#endregion
 
-			#region –¼‘O—“ƒ|ƒbƒvƒAƒbƒv
+			#region åå‰æ¬„ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—
 			string _resName = String.Empty;
 			if (!String.IsNullOrEmpty(resSet.Name))
 			{
 				if (namePopup && Char.IsDigit(resSet.Name[resSet.Name.Length - 1]))
-					_resName = Regex.Replace(resSet.Name, ">|„|&gt;", String.Empty);
+					_resName = Regex.Replace(resSet.Name, ">|ï¼|&gt;", String.Empty);
 			}
 
-			// –¼‘O—“‚ª”š‚È‚çƒŠƒ“ƒN‚ğ“\‚é
-			if (namePopup && HtmlTextUtility.IsDigit(_resName)) // ÅŒã‚Ì•¶š‚ª”š‚Ì‚Æ‚«‚Ì‚İˆ—‚·‚é
+			// åå‰æ¬„ãŒæ•°å­—ãªã‚‰ãƒªãƒ³ã‚¯ã‚’è²¼ã‚‹
+			if (namePopup && HtmlTextUtility.IsDigit(_resName)) // æœ€å¾Œã®æ–‡å­—ãŒæ•°å­—ã®ã¨ãã®ã¿å‡¦ç†ã™ã‚‹
 			{
 				sb.Append("<a href=\"");
 				sb.Append(baseUri);
@@ -233,7 +233,7 @@ namespace Twin
 			}
 			#endregion
 
-			#region Email•t‚«–¼‘O‚Ìì¬
+			#region Emailä»˜ãåå‰ã®ä½œæˆ
 			else if (resSet.Email != String.Empty)
 			{
 				sb.Append("<a href=\"mailto:");
@@ -250,7 +250,7 @@ namespace Twin
 			}
 			#endregion
 
-			#region “ú•t‚ÆID‚ğì¬
+			#region æ—¥ä»˜ã¨IDã‚’ä½œæˆ
 			dateString = resSet.DateString;
 			dateonly = resSet.DateString;
 			Match m = Regex.Match(resSet.DateString, @"\d{2,4}/\d{2}/\d{2}(\(\w\))?\s\d{2}:\d{2}(:\d{2}.\d{2}|:\d{2})?(\s[0-9a-zA-GJ-Z])?");
@@ -261,29 +261,29 @@ namespace Twin
 			}
 			#endregion
 
-			#region Be2chID‚ÌƒŠƒ“ƒN‚ğ“\‚é
-			// BE:0123456-# ‚Ü‚½‚Í <BE:0123456:0> Œ`®‚Ì“ñ‚Â‚ ‚é‚İ‚½‚¢
+			#region Be2chIDã®ãƒªãƒ³ã‚¯ã‚’è²¼ã‚‹
+			// BE:0123456-# ã¾ãŸã¯ <BE:0123456:0> å½¢å¼ã®äºŒã¤ã‚ã‚‹ã¿ãŸã„
 			dateString =
 				Regex.Replace(dateString, @"BE:(?<id>\d+)\-(?<rank>.+)",
 				"<a href=\"http://be.2ch.net/test/p.php?i=${id}\" target=\"_blank\">?${rank}</a>", RegexOptions.IgnoreCase);
 
-			dateString =// –Ê”’ƒlƒ^newsŒ`®
+			dateString =// é¢ç™½ãƒã‚¿newså½¢å¼
 				Regex.Replace(dateString, @"<BE:(?<id>\d+):(?<rank>.+)>",
 				"<a href=\"http://be.2ch.net/test/p.php?i=${id}\" target=\"_blank\">Lv.${rank}</a>", RegexOptions.IgnoreCase);
 			#endregion
 
-			#region –{•ª‚ğì¬
+			#region æœ¬åˆ†ã‚’ä½œæˆ
 			body = HtmlTextUtility.RemoveTag(resSet.Body, "a|font");
 			body = rexBRSpace.Replace(body, "<BR>");
 			body = HtmlTextUtility.Linking(body);
 			#endregion
 
-			#region ƒŒƒXQÆ‚ğì¬
+			#region ãƒ¬ã‚¹å‚ç…§ã‚’ä½œæˆ
 			body = HtmlTextUtility.RefRegex.Replace(body, "<a href=\"" + baseUri + "${num}\" target=\"_blank\" name=\"res" + resSet.Index + "_ref${num}\">${ref}</a>");
-			// body = HtmlTextUtility.ExRefRegex.Replace(body, "<a href=\"" + baseUri + "${num}\" target=\"_blank\">${num}</a>"); @// 2011.12.16 …‹Ê‚³‚ñ
+			// body = HtmlTextUtility.ExRefRegex.Replace(body, "<a href=\"" + baseUri + "${num}\" target=\"_blank\">${num}</a>");  // 2011.12.16 æ°´ç‰ã•ã‚“
 			#endregion
 
-			#region ‚»‚Ì‚Ù‚©‚Ì’u‚«Š·‚¦ˆ—
+			#region ãã®ã»ã‹ã®ç½®ãæ›ãˆå‡¦ç†
 			sb.Remove(0, sb.Length);
 			sb.Append(skinhtml);
 			sb.Replace("<PLAINNUMBER/>", resSet.Index.ToString());
@@ -304,8 +304,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ResSet‚ğ
-		/// İ’è‚³‚ê‚Ä‚¢‚éƒXƒLƒ“‚ğg—p‚µ‚Ä•¶š—ñŒ`®‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸResSetã‚’
+		/// è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚¹ã‚­ãƒ³ã‚’ä½¿ç”¨ã—ã¦æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <returns></returns>
@@ -313,7 +313,7 @@ namespace Twin
 		{
 			StringBuilder sb = null;
 
-			if (!resSet.Visible || resSet.DateString == "“§–¾‚ ‚Ú[‚ñ")
+			if (!resSet.Visible || resSet.DateString == "é€æ˜ã‚ã¼ãƒ¼ã‚“")
 			{
 				sb = new StringBuilder();
 			}
@@ -322,7 +322,7 @@ namespace Twin
 				sb = CreateHtml(skinhtml, resSet);
 			}			
 
-			// ‚µ‚¨‚èˆ—
+			// ã—ãŠã‚Šå‡¦ç†
 			if (resSet.Bookmark)
 				sb.Append(bookmarkSkin);
 
@@ -330,8 +330,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ResSet‚ğ
-		/// İ’è‚³‚ê‚Ä‚¢‚éƒXƒLƒ“‚ğg—p‚µ‚Ä•¶š—ñŒ`®‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸResSetã‚’
+		/// è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚¹ã‚­ãƒ³ã‚’ä½¿ç”¨ã—ã¦æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <returns></returns>
@@ -342,8 +342,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ResSetƒRƒŒƒNƒVƒ‡ƒ“‚ğ
-		/// İ’è‚³‚ê‚Ä‚¢‚éƒXƒLƒ“‚ğg—p‚µ‚Ä•¶š—ñŒ`®‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸResSetã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’
+		/// è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚¹ã‚­ãƒ³ã‚’ä½¿ç”¨ã—ã¦æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSetCollection"></param>
 		/// <returns></returns>
@@ -353,7 +353,7 @@ namespace Twin
 				throw new ArgumentNullException("resSetCollection");
 			}
 
-			// w’è‚µ‚½ƒŒƒX•ª‚Ì‰Šú”z—ñ‚ğŠ„‚è“–‚Ä‚é
+			// æŒ‡å®šã—ãŸãƒ¬ã‚¹åˆ†ã®åˆæœŸé…åˆ—ã‚’å‰²ã‚Šå½“ã¦ã‚‹
 			StringBuilder sb = new StringBuilder(Capacity * resSetCollection.Count);
 
 			foreach (ResSet resSet in resSetCollection)

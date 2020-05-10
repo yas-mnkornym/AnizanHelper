@@ -10,50 +10,50 @@ namespace Twin.Text
 
 	// *****
 	//  2012/1/15
-	//  URL‚ğ‰üs‚¹‚¸‚É˜A‘±‚µ‚Ä‘‚©‚ê‚Ä‚¢‚½ê‡‚É‚à‚¤‚Ü‚­ƒŠƒ“ƒN‚·‚é‚æ‚¤‚ÉC³
-	//  …‹Ê‚³‚ñ»İ¸½‚Å‚·I
+	//  URLã‚’æ”¹è¡Œã›ãšã«é€£ç¶šã—ã¦æ›¸ã‹ã‚Œã¦ã„ãŸå ´åˆã«ã‚‚ã†ã¾ããƒªãƒ³ã‚¯ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
+	//  æ°´ç‰ã•ã‚“ï½»ï¾ï½¸ï½½ã§ã™ï¼
 	// ******
 
 	/// <summary>
-	/// Html‚â•¶š—ñ‘€ì‚Ìƒ†[ƒeƒBƒŠƒeƒBŒQ
+	/// Htmlã‚„æ–‡å­—åˆ—æ“ä½œã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ç¾¤
 	/// </summary>
 	public class HtmlTextUtility
 	{
 		/// <summary>
-		/// ƒ^ƒO‚·‚×‚Ä‚ğŒŸõ‚·‚é³‹K•\Œ»
+		/// ã‚¿ã‚°ã™ã¹ã¦ã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static Regex SearchTagRegex = 
 			new Regex(@"</?[^>]*/?>", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ”š‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// æ•°å­—ã‹ã©ã†ã‹ã‚’åˆ¤æ–­ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex IsDigitRegex =
 			new Regex(@"^\d+$", RegexOptions.Compiled);
 
 //		/// <summary>
-//		/// <br>ƒ^ƒO‚Å•ªŠ„‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+//		/// <br>ã‚¿ã‚°ã§åˆ†å‰²ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 //		/// </summary>
 //		public static readonly Regex SplitRegex =
 //			new Regex(@"<br>", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		/// <summary>
-		/// ƒŒƒXQÆ(—á: >>1-5 Œ`®)‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// ãƒ¬ã‚¹å‚ç…§(ä¾‹: >>1-5 å½¢å¼)ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex RefRegex =
-			new Regex(@"(?<ref>&gt;&gt;(?<num>[1-9]+[\d\-\+,]*))", RegexOptions.Compiled);@// 2011.12.16 …‹Ê‚³‚ñ
+			new Regex(@"(?<ref>&gt;&gt;(?<num>[1-9]+[\d\-\+,]*))", RegexOptions.Compiled); // 2011.12.16 æ°´ç‰ã•ã‚“
 
 //			new Regex(@"(?<ref>&gt;&gt;(?<num>\d+\-?\d*))", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ƒŒƒXQÆ(—á: >>10-15,20,30,40-50Œ`®) ‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»B‚½‚¾‚µ">>10-15"‚ÌƒŒƒX”Ô‚Íæ‚ê‚È‚¢B
+		/// ãƒ¬ã‚¹å‚ç…§(ä¾‹: >>10-15,20,30,40-50å½¢å¼) ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾ã€‚ãŸã ã—">>10-15"ã®ãƒ¬ã‚¹ç•ªã¯å–ã‚Œãªã„ã€‚
 		/// </summary>
 		public static readonly Regex ExRefRegex =
 			new Regex(@"(?<=&gt;&gt;[\d\-\,]+?(,|\+))(?<num>\d+\-?\d*)", RegexOptions.Compiled);
 		//			new Regex(@"(?<=&gt;&gt;[^\s]+?(,|\+))(?<num>\d+\-?\d*)", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ttp://‚ÌURL‚ğŒŸõ‚·‚é³‹K•\Œ»
+		/// ttp://ã®URLã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex ttpToRegex =
 // 1/15		new Regex(@"(?<!h)(?<link>(ttp://[\w\.]+?/wiki/[^\s\<]+)|(ttps?://[a-zA-Z\d/_@#%&+*:;=~',.!()|?[\]\-]+))", 
@@ -61,14 +61,14 @@ namespace Twin.Text
 				RegexOptions.Compiled);
 
 		/// <summary>
-		/// Šî–{“I‚ÈURL‚ğŒŸõ‚·‚é³‹K•\Œ»
+		/// åŸºæœ¬çš„ãªURLã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex LinkRegex =
 			new Regex(@"(?<link>((http://[\w\.]+?/wiki/[^\s\<]+)|((https?|ftps?|mms|rts?p)://[a-zA-Z\d/_@#%&+*:;=~',.!()|?[\]\-]+)))", 
 				RegexOptions.Compiled);
 
 		/// <summary>
-		/// Šî–{“I‚ÈURL‚ğŒŸõ‚·‚é³‹K•\Œ» (h”²‚«‚àŒŸõ)
+		/// åŸºæœ¬çš„ãªURLã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾ (hæŠœãã‚‚æ¤œç´¢)
 		/// </summary>
 		public static readonly Regex LinkRegex2 =
 // 1/15		new Regex(@"(?<link>(h?ttps?|ftps?|mms|rts?p)://(?<url>[a-zA-Z\d/_@#%&+*:;=~',.!()|?[\]\-]+))", 
@@ -76,16 +76,16 @@ namespace Twin.Text
 				RegexOptions.Compiled);
 
 		/// <summary>
-		/// È—ªŒ`‚ÌHTTP‚ÈURL‚©‚Ç‚¤‚©‚ğ”»’f
+		/// çœç•¥å½¢ã®HTTPãªURLã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public static readonly Regex IsShortHttpUrl =
 			new Regex(@"^((ttp|tp)://)|(www.[^/]+\.)", RegexOptions.Compiled);
 
-		// ID‚Ì³‹K•\Œ»
+		// IDã®æ­£è¦è¡¨ç¾
 		public static readonly Regex IDRegex = new Regex(@"[a-zA-Z0-9+/]{8,9}");
 
 		/// <summary>
-		/// w’è‚µ‚½html“à‚ÌURL‚ğAƒ^ƒO‚Å‹²‚İƒŠƒ“ƒN‚·‚é
+		/// æŒ‡å®šã—ãŸhtmlå†…ã®URLã‚’Aã‚¿ã‚°ã§æŒŸã¿ãƒªãƒ³ã‚¯ã™ã‚‹
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -102,7 +102,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// ”¼Šp”š‚ğ‘SŠp”š‚É•ÏŠ·
+		/// åŠè§’æ•°å­—ã‚’å…¨è§’æ•°å­—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -114,7 +114,7 @@ namespace Twin.Text
 			}
 
 			StringBuilder buffer = new StringBuilder(text);
-			char[] zenChars = { '‚O', '‚P', '‚Q', '‚R', '‚S', '‚T', '‚U', '‚V', '‚W', '‚X' };
+			char[] zenChars = { 'ï¼', 'ï¼‘', 'ï¼’', 'ï¼“', 'ï¼”', 'ï¼•', 'ï¼–', 'ï¼—', 'ï¼˜', 'ï¼™' };
 			char[] hanChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 			for (int i = 0; i < 10; i++)
@@ -124,7 +124,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// ‘SŠp”š‚ğ”¼Šp”š‚É•ÏŠ·
+		/// å…¨è§’æ•°å­—ã‚’åŠè§’æ•°å­—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -135,7 +135,7 @@ namespace Twin.Text
 			}
 
 			StringBuilder buffer = new StringBuilder(text);
-			char[] zenChars = {'‚O','‚P','‚Q','‚R','‚S','‚T','‚U','‚V','‚W','‚X'};
+			char[] zenChars = {'ï¼','ï¼‘','ï¼’','ï¼“','ï¼”','ï¼•','ï¼–','ï¼—','ï¼˜','ï¼™'};
 			char[] hanChars = {'0','1','2','3','4','5','6','7','8','9'};
 
 			for (int i = 0; i < 10; i++)
@@ -145,7 +145,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½•¶š—ñ‚ª”š‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸæ–‡å­—åˆ—ãŒæ•°å­—ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -157,7 +157,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ‚èœ‚­
+		/// ã‚¿ã‚°ã‚’å–ã‚Šé™¤ã
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -169,10 +169,10 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ^ƒO‚ğæ‚èœ‚«‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚¿ã‚°ã‚’å–ã‚Šé™¤ãã¾ã™ã€‚
 		/// </summary>
 		/// <param name="html"></param>
-		/// <param name="tagName">œ‹‚·‚éƒ^ƒO‚Ì–¼‘OBOR‰‰Zq‚É‚æ‚è•¡”w’è‚Å‚«‚Ü‚·B‘å•¶š¬•¶š‚Í‹æ•Ê‚µ‚Ü‚¹‚ñB</param>
+		/// <param name="tagName">é™¤å»ã™ã‚‹ã‚¿ã‚°ã®åå‰ã€‚ORæ¼”ç®—å­ã«ã‚ˆã‚Šè¤‡æ•°æŒ‡å®šã§ãã¾ã™ã€‚å¤§æ–‡å­—å°æ–‡å­—ã¯åŒºåˆ¥ã—ã¾ã›ã‚“ã€‚</param>
 		/// <returns></returns>
 		public static string RemoveTag(string html, string tagName)
 		{
@@ -180,7 +180,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// HTML•¶š—ñ‚ğƒeƒLƒXƒg‚É•ÏŠ·
+		/// HTMLæ–‡å­—åˆ—ã‚’ãƒ†ã‚­ã‚¹ãƒˆã«å¤‰æ›
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -195,7 +195,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// text‚Ì—¼’[‚ÉŠÜ‚Ü‚ê‚é‹ó”’‚ğíœ
+		/// textã®ä¸¡ç«¯ã«å«ã¾ã‚Œã‚‹ç©ºç™½ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -208,7 +208,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚¨‚æ‚ÑƒXƒy[ƒX‚ğœ‹
+		/// ã‚¿ã‚°ãŠã‚ˆã³ã‚¹ãƒšãƒ¼ã‚¹ã‚’é™¤å»
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>

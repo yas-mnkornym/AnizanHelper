@@ -19,7 +19,7 @@ namespace Twin
 			return base.CanConvertFrom(context, sourceType);
 		}
 
-		// •¶Žš—ñ‚©‚ç•ÏŠ·
+		// æ–‡å­—åˆ—ã‹ã‚‰å¤‰æ›
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
 			if (value is string)
@@ -41,7 +41,7 @@ namespace Twin
 			return base.ConvertFrom(context, culture, value);
 		}
 
-		// •¶Žš—ñ‚É•ÏŠ·
+		// æ–‡å­—åˆ—ã«å¤‰æ›
 		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
 		{
 			if (destinationType == typeof(string))
@@ -53,7 +53,7 @@ namespace Twin
 					sb.Append(val).Append(',');
 				}
 
-				// —]•ª‚ÈÅŒã‚ÌƒRƒƒ“‚ðŽæ‚èœ‚­
+				// ä½™åˆ†ãªæœ€å¾Œã®ã‚³ãƒ­ãƒ³ã‚’å–ã‚Šé™¤ã
 				if (sb.Length > 0)
 					sb.Remove(sb.Length - 1, 1);
 
@@ -209,7 +209,7 @@ namespace Twin
 		{
 			if (value is string)
 			{
-				string[] array = Regex.Split(value.ToString(), @"(?<!(?<!\\)\\),");@// NTwin23.103 
+				string[] array = Regex.Split(value.ToString(), @"(?<!(?<!\\)\\),"); // NTwin23.103 
 
 				ArrayList al = new ArrayList();
 				TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
@@ -267,8 +267,8 @@ namespace Twin
 		private string Escape(string s)
 		{
 			// NTwin23.103 
-			s = s.Replace(@"\", @"\\");@@// ‚Ü‚¸u\v‚ðƒGƒXƒP[ƒv‚µ‚Ä‚¨‚¢‚Ä 
-			s = s.Replace(",", @"\,");@@@// u,viƒRƒ“ƒ}j‚ðƒGƒXƒP[ƒv 
+			s = s.Replace(@"\", @"\\"); // ã¾ãšã€Œ\ã€ã‚’ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã—ã¦ãŠã„ã¦ 
+			s = s.Replace(",", @"\,");  // ã€Œ,ã€ï¼ˆã‚³ãƒ³ãƒžï¼‰ã‚’ã‚¨ã‚¹ã‚±ãƒ¼ãƒ— 
 
 			return s;
 		}

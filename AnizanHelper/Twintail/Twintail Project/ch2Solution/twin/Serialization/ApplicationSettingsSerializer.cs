@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Twintail3
 {
 	/// <summary>
-	/// —lX‚ÈŒ^‚ÌPublicƒvƒƒpƒeƒB’l‚ÌƒVƒŠƒAƒ‰ƒCƒY/ƒfƒVƒŠƒAƒ‰ƒCƒY‚ğs‚¤ƒNƒ‰ƒX‚Å‚·B
+	/// æ§˜ã€…ãªå‹ã®Publicãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤ã®ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º/ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public abstract class ApplicationSettingsSerializer
 	{
@@ -18,7 +18,7 @@ namespace Twintail3
 		protected Encoding encoding = Encoding.UTF8;
 
 		/// <summary>
-		/// İ’è‚Ì•Û‘¶æƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚µ‚Ü‚·B
+		/// è¨­å®šã®ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		private string fileName;
 		[XmlIgnore]
@@ -36,7 +36,7 @@ namespace Twintail3
 //		{ get; protected set; }
 
 		/// <summary>
-		/// Œ»İ‚Ìƒf[ƒ^‚ª•œŒ³‚³‚ê‚½ó‘Ô‚Å‚ ‚é‚©‚Ç‚¤‚©‚ğ¦‚µ‚Ü‚·B
+		/// ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ãŒå¾©å…ƒã•ã‚ŒãŸçŠ¶æ…‹ã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã—ã¾ã™ã€‚
 		/// </summary>
 		private bool deserialized;
 		[XmlIgnore]
@@ -66,7 +66,7 @@ namespace Twintail3
 		public ApplicationSettingsSerializer(string fileName, bool reset)
 			: this(fileName)
 		{
-			if (reset)@Reset();
+			if (reset) Reset();
 		}
 
 		private Attribute GetCustomAttribute(PropertyInfo property, Type type)
@@ -119,7 +119,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// DefaultValueAttribute ‘®«‚ªİ’è‚³‚ê‚Ä‚¢‚éƒvƒƒpƒeƒB‚·‚×‚Ä‚ğ DefaultValueAttribute ‘®«‚Åw’è‚³‚ê‚½’l‚Éİ’è‚µ‚Ü‚·B
+		/// DefaultValueAttribute å±æ€§ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã™ã¹ã¦ã‚’ DefaultValueAttribute å±æ€§ã§æŒ‡å®šã•ã‚ŒãŸå€¤ã«è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Reset()
 		{
@@ -160,7 +160,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// ©g‚Ìİ’èƒtƒ@ƒCƒ‹‚ğíœ‚µAReset ƒƒ\ƒbƒh‚É‚æ‚Á‚ÄƒvƒƒpƒeƒB‚Ì’l‚ğƒŠƒZƒbƒg‚µ‚Ü‚·B
+		/// è‡ªèº«ã®è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã—ã€Reset ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã£ã¦ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Remove()
 		{
@@ -171,7 +171,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚çİ’è‚ğ•œŒ³‚µ‚Ü‚·Bƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰è¨­å®šã‚’å¾©å…ƒã—ã¾ã™ã€‚ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
 		/// </summary>
 		public virtual void Load()
 		{
@@ -201,7 +201,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// Load ƒƒ\ƒbƒh‚É‚æ‚Á‚Äİ’è‚ª³í‚ÉƒfƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒh‚Å‚·B
+		/// Load ãƒ¡ã‚½ãƒƒãƒ‰ã«ã‚ˆã£ã¦è¨­å®šãŒæ­£å¸¸ã«ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚
 		/// </summary>
 		protected virtual void OnDeserialized()
 		{
@@ -266,7 +266,7 @@ namespace Twintail3
 						}
 						else
 						{
-							// set ƒƒ\ƒbƒh‚ª‚È‚¢ƒvƒƒpƒeƒB‚Íˆ—‚µ‚È‚¢
+							// set ãƒ¡ã‚½ãƒƒãƒ‰ãŒãªã„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å‡¦ç†ã—ãªã„
 							if (property.GetSetMethod() == null)
 								continue;
 
@@ -280,7 +280,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// Œ»İ‚Ìİ’è‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·B
+		/// ç¾åœ¨ã®è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã—ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Save()
 		{
