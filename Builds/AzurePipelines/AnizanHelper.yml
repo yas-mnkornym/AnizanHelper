@@ -12,7 +12,7 @@ pr: none
 
 variables:
   project: "AnizanHelper/AnizanHelper/AnizanHelper.csproj"
-  publishProfile: "AnizanHelper/AnizanHelper/Properties/PublishProfiles/AzurePipelines.pubxm"
+  publishProfile: "$(Build.SourcesDirectory)/AnizanHelper/AnizanHelper/Properties/PublishProfiles/AzurePipelines.pubxm"
 
 stages:
 - stage: Build
