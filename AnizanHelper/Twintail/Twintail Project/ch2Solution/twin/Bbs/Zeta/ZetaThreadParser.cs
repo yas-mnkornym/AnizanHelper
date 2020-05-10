@@ -9,30 +9,30 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// Zetabbs‚ÌƒXƒŒƒbƒh‚ğ‰ğÍ (2chŒİŠ·)
+	/// Zetabbsã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’è§£æ (2chäº’æ›)
 	/// </summary>
 	public class ZetaThreadParser : X2chThreadParser
 	{
 		/// <summary>
-		/// ID‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// IDã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		private readonly Regex ZetaIDRegex =
 			new Regex(@"(TC:(?<id>[^\s]+))", RegexOptions.Compiled);
 
 //		/// <summary>
-//		/// “ú•t‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+//		/// æ—¥ä»˜ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 //		/// </summary>
 //		private readonly Regex ZetaDateRegex =
 //			new Regex(@"(?<date>\d+/\d+/\d+ \(.+?\) \d+:\d+:\d+)", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ZetaThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ZetaThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ZetaThreadParser()
 			: base(BbsType.Zeta, Encoding.GetEncoding("Shift_Jis"))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
@@ -50,19 +50,19 @@ namespace Twin.Bbs
 				string lineData = dataText.Substring(begin, index - begin);
 				begin = index + searcher.Pattern.Length;
 		
-				ResSet resSet = new ResSet(-1, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]",
-					String.Empty, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]", "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]");
+				ResSet resSet = new ResSet(-1, "[ã“ã“å£Šã‚Œã¦ã¾ã™]",
+					String.Empty, "[ã“ã“å£Šã‚Œã¦ã¾ã™]", "[ã“ã“å£Šã‚Œã¦ã¾ã™]");
 
 				string[] elements = Regex.Split(lineData, "<>");
 
 				if (elements.Length >= 4)
 				{
 					try {
-						// ID‚ğæ“¾
+						// IDã‚’å–å¾—
 						Match idmatch = ZetaIDRegex.Match(elements[2]);
 						string id = idmatch.Success ? idmatch.Groups["id"].Value : "";
 
-						// name=0Aemail=1Adate=2Amessage=3Asubject=4
+						// name=0ã€email=1ã€date=2ã€message=3ã€subject=4
 						resSet.ID = id;
 						resSet.Name = elements[0];
 						resSet.Email = elements[1];

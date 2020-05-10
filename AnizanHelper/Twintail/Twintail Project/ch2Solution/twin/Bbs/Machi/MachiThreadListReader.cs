@@ -9,14 +9,14 @@ namespace Twin.Bbs
 	using Twin.IO;
 
 	/// <summary>
-	/// ‚Ü‚¿BBS (www.machi.to) ‚ÌƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş‹@”\‚ğ’ñ‹Ÿ
+	/// ã¾ã¡BBS (www.machi.to) ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class MachiThreadListReader : ThreadListReaderBase
 	{
 		private HttpWebResponse _res = null;
 
 		/// <summary>
-		/// ƒp[ƒT‚ğw’è‚µ‚ÄMachiThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ãƒ‘ãƒ¼ã‚µã‚’æŒ‡å®šã—ã¦MachiThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadListReader(ThreadListParser dataParser) 
 			: base(dataParser)
@@ -24,14 +24,14 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// MachiThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// MachiThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadListReader() : this(new MachiThreadListParser())
 		{
 		}
 
 		/// <summary>
-		/// ”Â‚ğŠJ‚­
+		/// æ¿ã‚’é–‹ã
 		/// </summary>
 		/// <param name="info"></param>
 		public override bool Open(BoardInfo info)
@@ -40,10 +40,10 @@ namespace Twin.Bbs
 				throw new ArgumentNullException("info");
 			}
 			if (isOpen) {
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
-			// ƒlƒbƒgƒ[ƒNƒXƒgƒŠ[ƒ€‚ğ‰Šú‰»
+			// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’åˆæœŸåŒ–
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(info.Url + "subject.txt");
 			req.Timeout = 30000;
 			req.UserAgent = UserAgent;

@@ -10,7 +10,7 @@ namespace CSharpSamples
 	using System.Text.RegularExpressions;
 
 	/// <summary>
-	/// ƒf[ƒ^‚ğŠÈ’P‚ÈXORˆÃ†‰»‚µ‚Ä•Û‘¶A‚Ü‚½‚ÍˆÃ†‰»‚³‚ê‚½ƒf[ƒ^‚ğ•œŒ³‚µ‚Ü‚·B
+	/// ãƒ‡ãƒ¼ã‚¿ã‚’ç°¡å˜ãªXORæš—å·åŒ–ã—ã¦ä¿å­˜ã€ã¾ãŸã¯æš—å·åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å¾©å…ƒã—ã¾ã™ã€‚
 	/// </summary>
 	public class XorCryptoConfig
 	{
@@ -18,7 +18,7 @@ namespace CSharpSamples
 		private byte[] _key;
 
 		/// <summary>
-		/// CryptoConfigƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// CryptoConfigã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public XorCryptoConfig() :
 			this("mc$r[olUa`![c|k5yt:]SW@#{xx,6!dt=8sGq]n#xl)5CFf(<Hd")
@@ -26,12 +26,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CryptoConfigƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// CryptoConfigã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
 		public XorCryptoConfig(string key)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this._hash = new Hashtable();
 			this._key = Encoding.Default.GetBytes(key);
@@ -50,11 +50,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// •¶š—ñŒ`®‚Ì’l‚ğæ“¾‚µ‚Ü‚·B
+		/// æ–‡å­—åˆ—å½¢å¼ã®å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="def"></param>
-		/// <returns>ƒL[‚ª‘¶İ‚·‚ê‚Îæ“¾‚µ‚½•¶š—ñAƒGƒ‰[‚È‚ç def ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <returns>ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚Œã°å–å¾—ã—ãŸæ–‡å­—åˆ—ã€ã‚¨ãƒ©ãƒ¼ãªã‚‰ def ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public string Get(string key, string def)
 		{
 			string ret = this.GetBase(key);
@@ -62,11 +62,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ”’lŒ`®‚Ì’l‚ğæ“¾‚µ‚Ü‚·B
+		/// æ•°å€¤å½¢å¼ã®å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="def"></param>
-		/// <returns>ƒL[‚ª‘¶İ‚·‚ê‚Îæ“¾‚µ‚½”’lAƒGƒ‰[‚È‚ç def ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <returns>ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚Œã°å–å¾—ã—ãŸæ•°å€¤ã€ã‚¨ãƒ©ãƒ¼ãªã‚‰ def ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public int GetInt(string key, int def)
 		{
 			string ret = this.GetBase(key);
@@ -74,7 +74,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚É’l‚ğİ’è‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
@@ -91,7 +91,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// İ’è‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B
+		/// è¨­å®šã‚’ã™ã¹ã¦å‰Šé™¤ã—ã¾ã™ã€‚
 		/// </summary>
 		public void Clear()
 		{
@@ -99,7 +99,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚çİ’è‚ğ“Ç‚İ‚İ‚Ü‚·B
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰è¨­å®šã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		public void Save(string fileName)
@@ -109,7 +109,7 @@ namespace CSharpSamples
 				throw new ArgumentNullException("fileName");
 			}
 
-			// •¶š—ñ ¨ ˆÃ†‰» ¨ ƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€
+			// æ–‡å­—åˆ— â†’ æš—å·åŒ– â†’ ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 
 			Stream fileStream = null;
 			StringBuilder sb = new StringBuilder();
@@ -144,7 +144,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// İ’è‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·B
+		/// è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		public void Load(string fileName)
@@ -154,7 +154,7 @@ namespace CSharpSamples
 				throw new ArgumentNullException("fileName");
 			}
 
-			// ƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€ ¨ •œ†‰» ¨ ƒƒ‚ƒŠƒXƒgƒŠ[ƒ€ ¨ ƒXƒgƒŠ[ƒ€ƒŠ[ƒ_[
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ  â†’ å¾©å·åŒ– â†’ ãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ  â†’ ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
 
 			Stream fileStream = null;
 			StreamReader reader = null;
@@ -206,7 +206,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// data ‚ğw’è‚µ‚½ key ‚ğg—p‚µ‚Ä xor ”½“]‚ğs‚¢‚Ü‚·B
+		/// data ã‚’æŒ‡å®šã—ãŸ key ã‚’ä½¿ç”¨ã—ã¦ xor åè»¢ã‚’è¡Œã„ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="data"></param>
 		/// <param name="key"></param>

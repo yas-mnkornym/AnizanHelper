@@ -9,7 +9,7 @@ namespace Twin.Util
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ƒGƒ‰[‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+	/// ã‚¨ãƒ©ãƒ¼ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
 	/// </summary>
 	public class ErrorWriter
 	{
@@ -22,7 +22,7 @@ namespace Twin.Util
 		private string fileName;
 
 		/// <summary>
-		/// ƒGƒ‰[‚ğ•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼
+		/// ã‚¨ãƒ©ãƒ¼ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
 		/// </summary>
 		public string FileName {
 			set {
@@ -55,7 +55,7 @@ namespace Twin.Util
 		private void SetListener(string fileName)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException("fileName", "fileName‚ªnullQÆ‚Å‚·");
+				throw new ArgumentNullException("fileName", "fileNameãŒnullå‚ç…§ã§ã™");
 			}
 
 			Close();
@@ -94,7 +94,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// •Â‚¶‚é
+		/// é–‰ã˜ã‚‹
 		/// </summary>
 		public void Close()
 		{
@@ -106,14 +106,14 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <param name="owner">ƒI[ƒi[ƒEƒCƒ“ƒhƒE</param>
-		/// <param name="message">•\¦‚·‚éƒƒbƒZ[ƒW</param>
-		/// <param name="caption">ƒLƒƒƒvƒVƒ‡ƒ“</param>
-		/// <param name="buttons">ƒ{ƒ^ƒ“</param>
-		/// <param name="icon">ƒAƒCƒRƒ“</param>
-		/// <returns>‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“‚Ìí—Ş</returns>
+		/// <param name="owner">ã‚ªãƒ¼ãƒŠãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦</param>
+		/// <param name="message">è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
+		/// <param name="caption">ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³</param>
+		/// <param name="buttons">ãƒœã‚¿ãƒ³</param>
+		/// <param name="icon">ã‚¢ã‚¤ã‚³ãƒ³</param>
+		/// <returns>æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã®ç¨®é¡</returns>
 		public DialogResult Show(IWin32Window owner, 
 										string message, 
 										string caption, 
@@ -127,20 +127,20 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <param name="message">•\¦‚·‚éƒƒbƒZ[ƒW</param>
+		/// <param name="message">è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public void Show(string message)
 		{
-			Show(null, message, "ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒGƒ‰[",
+			Show(null, message, "ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼",
 				MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ‘®‰»‚µ‚Ä•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ›¸å¼åŒ–ã—ã¦è¡¨ç¤º
 		/// </summary>
-		/// <param name="format">‘®</param>
-		/// <param name="arguments">ˆø”</param>
+		/// <param name="format">æ›¸å¼</param>
+		/// <param name="arguments">å¼•æ•°</param>
 		public void Show(string format, params object[] arguments)
 		{
 			string text = String.Format(format, arguments);
@@ -148,42 +148,42 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <param name="owner">ƒI[ƒi[ƒEƒCƒ“ƒhƒE</param>
-		/// <param name="message">•\¦‚·‚éƒƒbƒZ[ƒW</param>
+		/// <param name="owner">ã‚ªãƒ¼ãƒŠãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦</param>
+		/// <param name="message">è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public void Show(IWin32Window owner, string message)
 		{
-			Show(owner, message, "ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒGƒ‰[",
+			Show(owner, message, "ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼",
 				MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚Å—áŠO‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã§ä¾‹å¤–ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <param name="ex">•\¦‚·‚é—áŠO</param>
+		/// <param name="ex">è¡¨ç¤ºã™ã‚‹ä¾‹å¤–</param>
 		public void Show(Exception ex)
 		{
 			Show(null, ex);
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <param name="owner">ƒI[ƒi[ƒEƒCƒ“ƒhƒE</param>
-		/// <param name="ex">•\¦‚·‚é—áŠO</param>
+		/// <param name="owner">ã‚ªãƒ¼ãƒŠãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦</param>
+		/// <param name="ex">è¡¨ç¤ºã™ã‚‹ä¾‹å¤–</param>
 		public void Show(IWin32Window owner, Exception ex)
 		{
 			Write(ex.ToString());
 
-			MessageBox.Show(owner, ex.Message, "—áŠO‚ª”­¶‚µ‚Ü‚µ‚½",
+			MessageBox.Show(owner, ex.Message, "ä¾‹å¤–ãŒç™ºç”Ÿã—ã¾ã—ãŸ",
 				MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
 		/// </summary>
-		/// <param name="message">‘‚«‚ŞƒƒbƒZ[ƒW</param>
+		/// <param name="message">æ›¸ãè¾¼ã‚€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public void Write(string message)
 		{
 			listener.WriteLine(String.Format("ver{0} ({1})", TwinDll.Version, DateTime.Now));
@@ -193,19 +193,19 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// •¶š—ñ‚ğ‘®‰»‚µ‚Ä‘‚«‚Ş
+		/// æ–‡å­—åˆ—ã‚’æ›¸å¼åŒ–ã—ã¦æ›¸ãè¾¼ã‚€
 		/// </summary>
-		/// <param name="format">‘®</param>
-		/// <param name="arguments">ˆø”</param>
+		/// <param name="format">æ›¸å¼</param>
+		/// <param name="arguments">å¼•æ•°</param>
 		public void Write(string format, params object[] arguments)
 		{
 			Write(String.Format(format, arguments));
 		}
 
 		/// <summary>
-		/// ƒIƒuƒWƒFƒNƒg‚ğ•¶š—ñ‚É•ÏŠ·‚µ‚Ä‘‚«‚Ş
+		/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦æ›¸ãè¾¼ã‚€
 		/// </summary>
-		/// <param name="obj">‘‚«‚ŞƒIƒuƒWƒFƒNƒg</param>
+		/// <param name="obj">æ›¸ãè¾¼ã‚€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
 		public void Write(object obj)
 		{
 			Write(obj.ToString());

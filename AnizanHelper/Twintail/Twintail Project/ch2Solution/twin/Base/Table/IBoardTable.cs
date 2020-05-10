@@ -8,12 +8,12 @@ namespace Twin
 	using System.Net;
 
 	/// <summary>
-	/// �ꗗ���Ǘ�����C���^�[�t�F�[�X
+	/// 板一覧を管理するインターフェース
 	/// </summary>
 	public interface IBoardTable
 	{
 		/// <summary>
-		/// �o�^����Ă��邷�ׂĂ� Category ���i�[���� List ��Ԃ��܂��B
+		/// 登録されているすべての Category を格納した List を返します。
 		/// </summary>
 		List<Category> Items
 		{
@@ -21,61 +21,61 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// �I�����C���ōŐV�̔ꗗ�ɍX�V���܂��B
+		/// オンラインで最新の板一覧に更新します。
 		/// </summary>
-		/// <param name="url">�X�V��URL</param>
-		/// <param name="callback">���ړ]���Ă����ꍇ�ɌĂ΂��R�[���o�b�N</param>
+		/// <param name="url">更新先URL</param>
+		/// <param name="callback">板が移転していた場合に呼ばれるコールバック</param>
 		void OnlineUpdate(string url, BoardUpdateEventHandler callback);
 
 		/// <summary>
-		/// �w�肵���ꗗ�����݂̃e�[�u���ɒǉ����܂��B
+		/// 指定した板一覧を現在のテーブルに追加します。
 		/// </summary>
-		/// <param name="table">�ǉ����� IBoardTable�B</param>
+		/// <param name="table">追加する IBoardTable。</param>
 		void Add(IBoardTable table);
 
 		/// <summary>
-		/// �ꗗ�����ׂč폜���A��̏�Ԃɂ��܂��B
+		/// 板一覧をすべて削除し、空の状態にします。
 		/// </summary>
 		void Clear();
 
 		/// <summary>
-		/// �ꗗ���w�肵���t�@�C���ɕۑ����܂��B
+		/// 板一覧を指定したファイルに保存します。
 		/// </summary>
-		/// <param name="fileName">�ۑ��t�@�C�����B</param>
+		/// <param name="fileName">保存ファイル名。</param>
 		void SaveTable(string fileName);
 
 		/// <summary>
-		/// �w�肵���t�@�C������ꗗ��ǂݍ��݂܂��B
+		/// 指定したファイルから板一覧を読み込みます。
 		/// </summary>
-		/// <param name="fileName">�ǂݍ��ރt�@�C�����B</param>
+		/// <param name="fileName">読み込むファイル名。</param>
 		void LoadTable(string fileName);
 
 		/// <summary>
-		/// ��ʂ̔֒u��������
+		/// 板を別の板へ置き換える
 		/// </summary>
-		/// <param name="oldBoard">�Â���</param>
-		/// <param name="newBoard">�V������</param>
+		/// <param name="oldBoard">古い板</param>
+		/// <param name="newBoard">新しい板</param>
 		void Replace(BoardInfo oldBoard, BoardInfo newBoard);
 
 		/// <summary>
-		/// board �����݂̔ꗗ���ɑ��݂��邩�ǂ����𔻒f���܂��B
+		/// board が現在の板一覧内に存在するかどうかを判断します。
 		/// </summary>
-		/// <param name="board">���������</param>
-		/// <returns>board ���ꗗ�ɑ��݂���� true�A����ȊO�� false �ł��B</returns>
+		/// <param name="board">検索する板</param>
+		/// <returns>board が板一覧に存在すれば true、それ以外は false です。</returns>
 		bool Contains(BoardInfo board);
 
 		/// <summary>
-		/// ���݂̔ꗗ����w�肵�� URL ���܂ލŏ��Ɍ������� BoardInfo ��Ԃ��܂��B
+		/// 現在の板一覧から指定した URL を含む最初に見つかった BoardInfo を返します。
 		/// </summary>
 		BoardInfo FromUrl(string url);
 
 		/// <summary>
-		/// ���݂̔ꗗ����w�肵��������уh���C���p�X���������A�ŏ��Ɍ������� BoardInfo ��Ԃ��܂��B
+		/// 現在の板一覧から指定した板名およびドメインパスを検索し、最初に見つかった BoardInfo を返します。
 		/// </summary>
 		BoardInfo FromName(string name, string domainPath);
 
 		/// <summary>
-		/// ���ׂĂ̔��� BoardInfo[] �^�ɕϊ����ĕԂ��܂��B
+		/// すべての板情報を BoardInfo[] 型に変換して返します。
 		/// </summary>
 		BoardInfo[] ToArray();
 	}

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 namespace CSharpSamples
 {
 	/// <summary>
-	/// TabButtonControl ‚Ìƒ^ƒuƒ{ƒ^ƒ“‚ğ•\‚·ƒNƒ‰ƒX‚Å‚·B
+	/// TabButtonControl ã®ã‚¿ãƒ–ãƒœã‚¿ãƒ³ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	[DesignTimeVisible(false)]
 	public class TabButton : Component, ICloneable
 	{
 		#region inner class
 		/// <summary>
-		/// TabButton ‚ğŠi”[‚·‚éƒRƒŒƒNƒVƒ‡ƒ“‚Å‚·B
+		/// TabButton ã‚’æ ¼ç´ã™ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã§ã™ã€‚
 		/// </summary>
 		public class TabButtonCollection : ICollection, IList, IEnumerable
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples
 			private ArrayList innerList;
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ^ƒu”‚ğæ“¾‚µ‚Ü‚·B
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒ–æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚
 			/// </summary>
 			public int Count
 			{
@@ -36,7 +36,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Ìƒ^ƒu‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+			/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¿ãƒ–ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 			/// </summary>
 			public TabButton this[int index]
 			{
@@ -47,7 +47,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// TabButtonCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+			/// TabButtonCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 			/// </summary>
 			internal TabButtonCollection(TabButtonControl parent)
 			{
@@ -56,7 +56,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É button ‚ğ’Ç‰Á‚µ‚Ü‚·B
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã« button ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <param name="button"></param>
 			/// <returns></returns>
@@ -69,7 +69,7 @@ namespace CSharpSamples
 
 				if (button.parent != null)
 				{
-					throw new ArgumentException("‚±‚Ìƒ{ƒ^ƒ“‚ÍŠù‚É‘¼‚Ìƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B");
+					throw new ArgumentException("ã“ã®ãƒœã‚¿ãƒ³ã¯æ—¢ã«ä»–ã®ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚");
 				}
 
 				int index = this.innerList.Add(button);
@@ -82,7 +82,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É array ‚ğ’Ç‰Á‚µ‚Ü‚·B
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã« array ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <param name="array"></param>
 			public void AddRange(TabButton[] array)
@@ -94,10 +94,10 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ““à‚Ì index ”Ô–Ú‚É button ‚ğ‘}“ü‚µ‚Ü‚·B
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã® index ç•ªç›®ã« button ã‚’æŒ¿å…¥ã—ã¾ã™ã€‚
 			/// </summary>
-			/// <param name="index">0 ‚©‚çn‚Ü‚éƒRƒŒƒNƒVƒ‡ƒ““àƒCƒ“ƒfƒbƒNƒXB</param>
-			/// <param name="button">index ”Ô–Ú‚É‘}“ü‚³‚ê‚éƒ{ƒ^ƒ“B</param>
+			/// <param name="index">0 ã‹ã‚‰å§‹ã¾ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€‚</param>
+			/// <param name="button">index ç•ªç›®ã«æŒ¿å…¥ã•ã‚Œã‚‹ãƒœã‚¿ãƒ³ã€‚</param>
 			public void Insert(int index, TabButton button)
 			{
 				if (index < 0 || index > this.Count)
@@ -107,7 +107,7 @@ namespace CSharpSamples
 
 				if (button.parent != null)
 				{
-					throw new ArgumentException("‚±‚Ìƒ{ƒ^ƒ“‚ÍŠù‚É‘¼‚Ìƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B");
+					throw new ArgumentException("ã“ã®ãƒœã‚¿ãƒ³ã¯æ—¢ã«ä»–ã®ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚");
 				}
 
 				this.innerList.Insert(index, button);
@@ -119,9 +119,9 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// button ‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ‚µ‚Ü‚·B
+			/// button ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤ã—ã¾ã™ã€‚
 			/// </summary>
-			/// <param name="button">ƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ‚·‚éƒ{ƒ^ƒ“B</param>
+			/// <param name="button">ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤ã™ã‚‹ãƒœã‚¿ãƒ³ã€‚</param>
 			public void Remove(TabButton button)
 			{
 				if (this.innerList.Contains(button))
@@ -135,9 +135,9 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ“‚©‚ç index ”Ô–Ú‚Ìƒ{ƒ^ƒ“‚ğíœ‚µ‚Ü‚·B
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰ index ç•ªç›®ã®ãƒœã‚¿ãƒ³ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
 			/// </summary>
-			/// <param name="index">íœ‚·‚éƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXB</param>
+			/// <param name="index">å‰Šé™¤ã™ã‚‹ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€‚</param>
 			public void RemoveAt(int index)
 			{
 				if (index < 0 || index >= this.Count)
@@ -164,7 +164,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// “o˜^‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B
+			/// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³ã‚’ã™ã¹ã¦å‰Šé™¤ã—ã¾ã™ã€‚
 			/// </summary>
 			public void Clear()
 			{
@@ -178,7 +178,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// button ‚ÌˆÊ’u‚ğ target ‚Ì‘O‚ÉˆÚ“®‚µ‚Ü‚·B
+			/// button ã®ä½ç½®ã‚’ target ã®å‰ã«ç§»å‹•ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <param name="target"></param>
 			/// <param name="button"></param>
@@ -191,17 +191,17 @@ namespace CSharpSamples
 
 				if (target.parent == null)
 				{
-					throw new ArgumentException("target ‚Ée‚ª‘¶İ‚µ‚Ü‚¹‚ñB");
+					throw new ArgumentException("target ã«è¦ªãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚");
 				}
 
 				if (button.parent == null)
 				{
-					throw new ArgumentException("button ‚Ée‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ArgumentException("button ã«è¦ªãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 				}
 
 				if (target.parent != button.parent)
 				{
-					throw new ArgumentException("target ‚Æ button ‚Ìe‚ªˆá‚¢‚Ü‚·B");
+					throw new ArgumentException("target ã¨ button ã®è¦ªãŒé•ã„ã¾ã™ã€‚");
 				}
 
 				int newIndex;
@@ -222,7 +222,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// TabButtonCollection ‚ÌƒZƒNƒVƒ‡ƒ“‚Ì—ñ‹“q‚ğ•Ô‚µ‚Ü‚·B
+			/// TabButtonCollection ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆ—æŒ™å­ã‚’è¿”ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <returns>IEnumerator</returns>
 			public IEnumerator GetEnumerator()
@@ -232,7 +232,7 @@ namespace CSharpSamples
 
 			#region ICollection
 			/// <summary>
-			/// q‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ö‚ÌƒAƒNƒZƒX‚ª“¯Šú‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f‚µ‚Ü‚·B
+			/// å­ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒåŒæœŸã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­ã—ã¾ã™ã€‚
 			/// </summary>
 			bool ICollection.IsSynchronized
 			{
@@ -243,7 +243,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// q‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ö‚ÌƒAƒNƒZƒX‚ğ“¯Šú‚·‚é‚½‚ß‚Ég—p‚·‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·B
+			/// å­ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’åŒæœŸã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚
 			/// </summary>
 			object ICollection.SyncRoot
 			{
@@ -254,7 +254,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ array ‚ÉƒRƒs[‚µ‚Ü‚·B
+			/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ array ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <param name="array"></param>
 			/// <param name="index"></param>
@@ -337,7 +337,7 @@ namespace CSharpSamples
 		internal Rectangle bounds = Rectangle.Empty;
 
 		/// <summary>
-		/// ƒ^ƒu‚Ì•\¦ƒeƒLƒXƒg‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¿ãƒ–ã®è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue("")]
 		public string Text
@@ -354,7 +354,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚µ‚Ü‚·B
+		/// ã“ã®ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		[Browsable(false)]
 		public int Index
@@ -380,7 +380,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ImageList ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ImageList ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(-1)]
 		[TypeConverter(typeof(ImageIndexConverter))]
@@ -402,7 +402,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚ê‚Î trueA‚»‚¤‚Å‚È‚¯‚ê‚Î false ‚ğ•Ô‚µ‚Ü‚·B
+		/// ã“ã®ãƒœã‚¿ãƒ³ãŒé¸æŠã•ã‚Œã¦ã„ã‚Œã° trueã€ãã†ã§ãªã‘ã‚Œã° false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		[Browsable(false)]
 		public bool IsSelected
@@ -419,7 +419,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚Ì Rectangle À•W‚ğæ“¾‚µ‚Ü‚·B
+		/// ã“ã®ãƒœã‚¿ãƒ³ã® Rectangle åº§æ¨™ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		[Browsable(false)]
 		public Rectangle Bounds
@@ -431,7 +431,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒAƒNƒeƒBƒu‚Èƒ^ƒu‚Ì•¶šF‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¿ãƒ–ã®æ–‡å­—è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlText")]
 		public Color ActiveForeColor
@@ -448,7 +448,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒAƒNƒeƒBƒu‚Èƒ^ƒu‚Ì”wŒiF‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¿ãƒ–ã®èƒŒæ™¯è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlLightLight")]
 		public Color ActiveBackColor
@@ -465,7 +465,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ”ñƒAƒNƒeƒBƒu‚Èƒ^ƒu‚Ì•¶šF‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¿ãƒ–ã®æ–‡å­—è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlText")]
 		public Color InactiveForeColor
@@ -482,7 +482,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ”ñƒAƒNƒeƒBƒu‚Èƒ^ƒu‚Ì”wŒiF‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¿ãƒ–ã®èƒŒæ™¯è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Color), "Control")]
 		public Color InactiveBackColor
@@ -499,7 +499,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒAƒNƒeƒBƒu‚È•\¦ƒeƒLƒXƒg‚ÌƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªè¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public FontFamily ActiveFontFamily
 		{
@@ -515,7 +515,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒAƒNƒeƒBƒu‚È•\¦ƒeƒLƒXƒg‚ÌƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªè¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(FontStyle), "Regular")]
 		public FontStyle ActiveFontStyle
@@ -532,7 +532,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ”ñƒAƒNƒeƒBƒu‚È•\¦ƒeƒLƒXƒg‚ÌƒtƒHƒ“ƒgƒtƒ@ƒ~ƒŠ[‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªè¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ãƒŸãƒªãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public FontFamily InactiveFontFamily
 		{
@@ -548,7 +548,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ”ñƒAƒNƒeƒBƒu‚È•\¦ƒeƒLƒXƒg‚ÌƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªè¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(FontStyle), "Regular")]
 		public FontStyle InactiveFontStyle
@@ -565,7 +565,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¿ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public object Tag
 		{
@@ -611,7 +611,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚Ìó‘Ô‚ªXV‚³‚ê‚½‚±‚Æ‚ğeƒRƒ“ƒgƒ[ƒ‹‚É’Ê’m‚µ‚Ü‚·B
+		/// ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ãŒæ›´æ–°ã•ã‚ŒãŸã“ã¨ã‚’è¦ªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«é€šçŸ¥ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="all"></param>
 		private void Update(bool all)
@@ -632,7 +632,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŠÈˆÕƒRƒs[‚ğì¬‚µ‚Ü‚·B
+		/// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç°¡æ˜“ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆã—ã¾ã™ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public object Clone()

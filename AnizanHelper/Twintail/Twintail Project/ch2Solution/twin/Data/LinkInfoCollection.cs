@@ -13,7 +13,7 @@ namespace Twin
 	using System.Text.RegularExpressions;
 
 	/// <summary>
-	/// LinkInfoƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// LinkInfoã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	[Serializable]
 	public class LinkInfoCollection : CollectionBase, ISerializable
@@ -21,7 +21,7 @@ namespace Twin
 		private string filePath;
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒCƒeƒ€‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
 		/// </summary>
 		public LinkInfo this[int index] {
 			get {
@@ -30,7 +30,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// LinkInfoCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LinkInfoCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public LinkInfoCollection() 
 		{
@@ -38,7 +38,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// LinkInfoCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LinkInfoCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public LinkInfoCollection(string fileName) 
 		{
@@ -61,56 +61,56 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
-		/// <param name="item">’Ç‰Á‚·‚éLinkInfoƒNƒ‰ƒX</param>
-		/// <returns>’Ç‰Á‚³‚ê‚½ˆÊ’u</returns>
+		/// <param name="item">è¿½åŠ ã™ã‚‹LinkInfoã‚¯ãƒ©ã‚¹</param>
+		/// <returns>è¿½åŠ ã•ã‚ŒãŸä½ç½®</returns>
 		public int Add(LinkInfo item)
 		{
 			return List.Add(item);
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚ğ’Ç‰Á
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
 		/// </summary>
-		/// <param name="items">’Ç‰Á‚·‚éLinkInfoCollectionƒNƒ‰ƒX</param>
-		/// <returns>’Ç‰Á‚³‚ê‚½ˆÊ’u</returns>
+		/// <param name="items">è¿½åŠ ã™ã‚‹LinkInfoCollectionã‚¯ãƒ©ã‚¹</param>
+		/// <returns>è¿½åŠ ã•ã‚ŒãŸä½ç½®</returns>
 		public void AddRange(LinkInfoCollection items)
 		{
 			InnerList.AddRange(items);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‘}“ü
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«æŒ¿å…¥
 		/// </summary>
-		/// <param name="index">‘}“ü‚·‚éƒCƒ“ƒfƒbƒNƒX</param>
-		/// <param name="item">‘}“ü‚·‚éLinkInfoƒNƒ‰ƒX</param>
+		/// <param name="index">æŒ¿å…¥ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
+		/// <param name="item">æŒ¿å…¥ã™ã‚‹LinkInfoã‚¯ãƒ©ã‚¹</param>
 		public void Insert(int index, LinkInfo item)
 		{
 			List.Insert(index, item);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½LinkInfo‚ğíœ
+		/// æŒ‡å®šã—ãŸLinkInfoã‚’å‰Šé™¤
 		/// </summary>
-		/// <param name="item">íœ‚·‚éLinkInfo</param>
+		/// <param name="item">å‰Šé™¤ã™ã‚‹LinkInfo</param>
 		public void Remove(LinkInfo item)
 		{
 			List.Remove(item);
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		/// </summary>
-		/// <param name="item">ŒŸõ‚·‚éƒAƒCƒeƒ€</param>
-		/// <returns>‘¶İ‚·‚ê‚Î‚»‚ÌƒCƒ“ƒfƒbƒNƒX (Œ©‚Â‚©‚ç‚È‚¯‚ê‚Î-1)</returns>
+		/// <param name="item">æ¤œç´¢ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ </param>
+		/// <returns>å­˜åœ¨ã™ã‚Œã°ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ (è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°-1)</returns>
 		public int IndexOf(LinkInfo item)
 		{
 			return List.IndexOf(item);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½URI‚ÉƒŠƒ“ƒNî•ñ‚ğæ“¾
+		/// æŒ‡å®šã—ãŸURIã«ãƒªãƒ³ã‚¯æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		/// <param name="uri"></param>
 		/// <returns></returns>
@@ -127,7 +127,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŠƒ“ƒNƒRƒŒƒNƒVƒ‡ƒ“‚ğ“Ç‚İ‚Ş (‹Œƒo[ƒWƒ‡ƒ“‚Ìƒtƒ@ƒCƒ‹Œ`®)
+		/// ãƒªãƒ³ã‚¯ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚€ (æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼)
 		/// </summary>
 		/// <param name="fileName"></param>
 		public void LoadFromSoap(string fileName)
@@ -170,7 +170,7 @@ namespace Twin
 
 					if (xmlIn.Name == "SOAP-ENV:Envelope")
 					{
-						// ‹Œ®‚Ìƒtƒ@ƒCƒ‹‚Ìê‡
+						// æ—§å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆ
 						xmlIn.Close();
 						xmlIn = null;
 
@@ -214,7 +214,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŠƒ“ƒNƒRƒŒƒNƒVƒ‡ƒ“‚ğ•Û‘¶
+		/// ãƒªãƒ³ã‚¯ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 		/// </summary>
 		/// <param name="fileName"></param>
 		public void SaveToXml(string fileName)

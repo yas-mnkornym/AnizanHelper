@@ -5,12 +5,12 @@ namespace Twin.Bbs
 	using System;
 
 	/// <summary>
-	/// Zetabbs—p‚ÌƒXƒŒƒbƒhî•ñ‚ğŠi”[‚·‚éƒNƒ‰ƒX
+	/// Zetabbsç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class ZetaThreadHeader : ThreadHeader
 	{
 		/// <summary>
-		/// dat‚Ì‘¶İ‚·‚éƒpƒX‚ğæ“¾
+		/// datã®å­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public override string DatUrl {
 			get {
@@ -20,7 +20,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public override string Url {
 			get {
@@ -30,7 +30,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ‘‚«‚İ‰Â”\‚ÈÅ‘åƒŒƒX”‚ğæ“¾
+		/// æ›¸ãè¾¼ã¿å¯èƒ½ãªæœ€å¤§ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public override int UpperLimitResCount {
 			get {
@@ -39,7 +39,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ZetaThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ZetaThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ZetaThreadHeader()
 		{

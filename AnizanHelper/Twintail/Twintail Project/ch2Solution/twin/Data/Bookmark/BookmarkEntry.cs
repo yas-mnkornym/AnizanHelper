@@ -6,12 +6,12 @@ namespace Twin
 	using System.Collections;
 
 	/// <summary>
-	/// ‚¨‹C‚É“ü‚è‚ÌŠî–{’ŠÛƒNƒ‰ƒX
+	/// ãŠæ°—ã«å…¥ã‚Šã®åŸºæœ¬æŠ½è±¡ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class BookmarkEntry
 	{
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ì‚¨‹C‚É“ü‚è‚ª“o˜^‚³‚ê‚Ä‚¢‚éƒe[ƒuƒ‹
+		/// ã™ã¹ã¦ã®ãŠæ°—ã«å…¥ã‚ŠãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
 		/// </summary>
 		private static readonly Hashtable hash;
 		private static readonly Random random;
@@ -20,7 +20,7 @@ namespace Twin
 		private object tag;
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚ªŠi”[‚³‚ê‚Ä‚¢‚éeƒtƒHƒ‹ƒ_‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹è¦ªãƒ•ã‚©ãƒ«ãƒ€ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract BookmarkEntry Parent {
 			set;
@@ -28,14 +28,14 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚ÌqƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªã®å­ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public abstract BookmarkEntryCollection Children {
 			get;
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract string Name {
 			set;
@@ -43,14 +43,14 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ª—t‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒè‘‰ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public abstract bool IsLeaf {
 			get;
 		}
 
 		/// <summary>
-		/// ‚±‚Ì‚¨‹C‚É“ü‚è‚ğ¯•Ê‚·‚éID‚ğæ“¾
+		/// ã“ã®ãŠæ°—ã«å…¥ã‚Šã‚’è­˜åˆ¥ã™ã‚‹IDã‚’å–å¾—
 		/// </summary>
 		public int Id {
 			get {
@@ -59,7 +59,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¿ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public object Tag {
 			set { tag = value; }
@@ -73,46 +73,46 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkEntryƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkEntryã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected BookmarkEntry()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			id = GetRandomId();
 			hash[id] = this;
 		}
 
 		/// <summary>
-		/// BookmarkEntryƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkEntryã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="entryid">‘¼‚Ì‚¨‹C‚É“ü‚è‚Æ‚©‚Ô‚ç‚È‚¢Id‚ğw’èB-1‚É‚·‚é‚Æƒ‰ƒ“ƒ_ƒ€‚Éİ’è‚³‚ê‚éB</param>
+		/// <param name="entryid">ä»–ã®ãŠæ°—ã«å…¥ã‚Šã¨ã‹ã¶ã‚‰ãªã„Idã‚’æŒ‡å®šã€‚-1ã«ã™ã‚‹ã¨ãƒ©ãƒ³ãƒ€ãƒ ã«è¨­å®šã•ã‚Œã‚‹ã€‚</param>
 		protected BookmarkEntry(int entryid)
 		{
 			if (entryid == -1)
 				entryid = GetRandomId();
 
 			if (hash.Contains(entryid))
-				throw new ArgumentException("Id:" + entryid + "‚Í‘¼‚Ì‚¨‹C‚É“ü‚è‚ÌId‚Æd•¡‚µ‚Ä‚¢‚Ü‚·");
+				throw new ArgumentException("Id:" + entryid + "ã¯ä»–ã®ãŠæ°—ã«å…¥ã‚Šã®Idã¨é‡è¤‡ã—ã¦ã„ã¾ã™");
 
 			id = entryid;
 			hash[id] = this;
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚ğe‚©‚çíœ
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªã‚’è¦ªã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public abstract void Remove();
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚ğ•¡»
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªã‚’è¤‡è£½
 		/// </summary>
 		/// <returns></returns>
 		public abstract BookmarkEntry Clone();
 
 		/// <summary>
-		/// Šù‚É“o˜^‚³‚ê‚Ä‚¢‚é‚¨‹C‚É“ü‚è‚Éd•¡‚µ‚È‚¢ƒ‰ƒ“ƒ_ƒ€‚ÈID‚ğæ“¾
+		/// æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãŠæ°—ã«å…¥ã‚Šã«é‡è¤‡ã—ãªã„ãƒ©ãƒ³ãƒ€ãƒ ãªIDã‚’å–å¾—
 		/// </summary>
 		/// <returns></returns>
 		protected static int GetRandomId()
@@ -127,7 +127,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ID‚ğ‚Â‚¨‹C‚É“ü‚è‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸIDã‚’æŒã¤ãŠæ°—ã«å…¥ã‚ŠãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -137,7 +137,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ID‚ğ‚ÂƒGƒ“ƒgƒŠ‚ğæ“¾
+		/// æŒ‡å®šã—ãŸIDã‚’æŒã¤ã‚¨ãƒ³ãƒˆãƒªã‚’å–å¾—
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -147,7 +147,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½‚¨‹C‚É“ü‚è‚ÉV‚µ‚¢ID‚ğİ’è‚·‚é
+		/// æŒ‡å®šã—ãŸãŠæ°—ã«å…¥ã‚Šã«æ–°ã—ã„IDã‚’è¨­å®šã™ã‚‹
 		/// </summary>
 		/// <param name="entry"></param>
 		/// <param name="newid"></param>
@@ -157,7 +157,7 @@ namespace Twin
 				return;
 
 			if (hash.ContainsKey(newid))
-				throw new ArgumentException("Id:" + newid + "‚Í‘¼‚Ì‚¨‹C‚É“ü‚è‚Æd•¡‚µ‚Ä‚¢‚Ü‚·");
+				throw new ArgumentException("Id:" + newid + "ã¯ä»–ã®ãŠæ°—ã«å…¥ã‚Šã¨é‡è¤‡ã—ã¦ã„ã¾ã™");
 
 			entry.id = newid;
 
@@ -166,7 +166,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒnƒbƒVƒ…’l‚ğ•Ô‚·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒƒã‚·ãƒ¥å€¤ã‚’è¿”ã™
 		/// </summary>
 		/// <returns></returns>
 		public override int GetHashCode()
@@ -175,7 +175,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æobj‚ª“™‚µ‚¢‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨objãŒç­‰ã—ã„ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
@@ -186,7 +186,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

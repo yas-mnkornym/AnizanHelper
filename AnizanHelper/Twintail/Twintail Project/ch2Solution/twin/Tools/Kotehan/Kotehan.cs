@@ -5,7 +5,7 @@ namespace Twin.Tools
 	using System;
 
 	/// <summary>
-	/// ‚P‚Â‚ÌƒRƒeƒnƒ“‚ğ•\‚·
+	/// ï¼‘ã¤ã®ã‚³ãƒ†ãƒãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	public class Kotehan
 	{
@@ -14,7 +14,7 @@ namespace Twin.Tools
 		private bool be;
 
 		/// <summary>
-		/// –¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name {
 			set {
@@ -26,7 +26,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// E-mailƒAƒhƒŒƒX‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// E-mailã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Email {
 			set {
@@ -38,7 +38,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// BeID‚ğ‘—M‚·‚é‚È‚ç trueA‚»‚êˆÈŠO‚Í false ‚ğ•\‚·B
+		/// BeIDã‚’é€ä¿¡ã™ã‚‹ãªã‚‰ trueã€ãã‚Œä»¥å¤–ã¯ false ã‚’è¡¨ã™ã€‚
 		/// </summary>
 		public bool Be {
 			set {
@@ -48,7 +48,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ‹ó‚ÌƒRƒeƒnƒ“‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ç©ºã®ã‚³ãƒ†ãƒãƒ³ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public bool IsEmpty {
 			get {
@@ -57,12 +57,12 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// KotehanƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Kotehanã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Kotehan()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			name = String.Empty;
 			email = String.Empty;
@@ -70,11 +70,11 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// KotehanƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Kotehanã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="name">–¼‘O</param>
-		/// <param name="email">EmailƒAƒhƒŒƒX</param>
-		/// <param name="be">Be‚ÌOn/Off</param>
+		/// <param name="name">åå‰</param>
+		/// <param name="email">Emailã‚¢ãƒ‰ãƒ¬ã‚¹</param>
+		/// <param name="be">Beã®On/Off</param>
 		public Kotehan(string name, string email, bool be)
 		{
 			if (name == null)
@@ -88,12 +88,12 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("–¼‘O: {0}, E-mail: {1}, Be={2}",
+			return String.Format("åå‰: {0}, E-mail: {1}, Be={2}",
 				name, email, be);
 		}
 	}

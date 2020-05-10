@@ -62,7 +62,7 @@ using System.Text;
 namespace FreeBSD.Security.Cryptography
 {
 	/// <summary>
-	/// “`““I‚È DES ‚É‚æ‚éˆÃ†‰»‚ğs‚¢‚Ü‚·B
+	/// ä¼çµ±çš„ãª DES ã«ã‚ˆã‚‹æš—å·åŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 	/// </summary>
 	public class TraditionalDES
 	{

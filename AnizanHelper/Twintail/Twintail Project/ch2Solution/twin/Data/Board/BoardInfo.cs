@@ -12,7 +12,7 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// Œf¦”Â‚Ì”Âî•ñ‚ğ•Û‚·‚éƒNƒ‰ƒX‚Å‚·B
+	/// æ²ç¤ºæ¿ã®æ¿æƒ…å ±ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	[Serializable]
 	public class BoardInfo : ISerializable, IComparable
@@ -25,7 +25,7 @@ namespace Twin
 		private BbsType bbs;
 
 		/// <summary>
-		/// ”Â‚Ö‚Ì URL ‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// æ¿ã¸ã® URL ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[XmlIgnore]
 		public string Url
@@ -37,7 +37,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚Ì–¼‘O•”•ª‚Ì‚İ‚ğæ“¾‚µ‚Ü‚·B
+		/// ã‚µãƒ¼ãƒãƒ¼ã®åå‰éƒ¨åˆ†ã®ã¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public string ServerName
 		{
@@ -60,7 +60,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒhƒƒCƒ“–¼‚Æ”Â‚Ö‚ÌƒpƒX‚ğæ“¾‚µ‚Ü‚·B
+		/// ãƒ‰ãƒ¡ã‚¤ãƒ³åã¨æ¿ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public string DomainPath
 		{
@@ -79,7 +79,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[ƒAƒhƒŒƒX‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚µãƒ¼ãƒãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public string Server
 		{
@@ -97,7 +97,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Â‚Ö‚ÌƒpƒX‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ¿ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Path
 		{
@@ -114,7 +114,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Â–¼‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ¿åã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name
 		{
@@ -131,7 +131,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒNƒbƒL[‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¯ãƒƒã‚­ãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[XmlIgnore]
 		public CookieContainer CookieContainer
@@ -149,7 +149,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œf¦”Â‚Ìí—Ş‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ²ç¤ºæ¿ã®ç¨®é¡ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[XmlIgnore]
 		public BbsType Bbs
@@ -163,7 +163,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Tag‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// Tagã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[XmlIgnore]
 		public object Tag
@@ -177,12 +177,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BoardInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BoardInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BoardInfo()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			server = String.Empty;
 			path = String.Empty;
@@ -192,11 +192,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BoardInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BoardInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="server">ƒT[ƒo[ƒAƒhƒŒƒX</param>
-		/// <param name="path">”Â‚Ö‚ÌƒpƒX</param>
-		/// <param name="name">”Â–¼</param>
+		/// <param name="server">ã‚µãƒ¼ãƒãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹</param>
+		/// <param name="path">æ¿ã¸ã®ãƒ‘ã‚¹</param>
+		/// <param name="name">æ¿å</param>
 		public BoardInfo(string server, string path, string name)
 			: this()
 		{
@@ -207,7 +207,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒfƒVƒŠƒAƒ‰ƒCƒY‚ÉŒÄ‚Î‚ê‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
 		/// <param name="info"></param>
 		/// <param name="context"></param>
@@ -220,7 +220,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒVƒŠƒAƒ‰ƒCƒY
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 		/// </summary>
 		/// <param name="info"></param>
 		/// <param name="context"></param>
@@ -233,7 +233,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½server‚©‚çŒf¦”Â‚Ìí—Ş‚ğ‰ğÍ‚·‚é
+		/// æŒ‡å®šã—ãŸserverã‹ã‚‰æ²ç¤ºæ¿ã®ç¨®é¡ã‚’è§£æã™ã‚‹
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
@@ -279,7 +279,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒnƒbƒVƒ…ŠÖ”
+		/// ãƒãƒƒã‚·ãƒ¥é–¢æ•°
 		/// </summary>
 		/// <returns></returns>
 		public override int GetHashCode()
@@ -288,7 +288,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æentry‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨entryã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
@@ -298,7 +298,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æboard‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨boardã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -311,7 +311,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
@@ -320,7 +320,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æobj‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨objã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>

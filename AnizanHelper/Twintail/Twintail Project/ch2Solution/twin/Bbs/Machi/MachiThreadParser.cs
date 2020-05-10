@@ -11,38 +11,38 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// ‚Ü‚¿BBS‚ÌhtmlŒ`®‚ğˆ—‚·‚é
+	/// ã¾ã¡BBSã®htmlå½¢å¼ã‚’å‡¦ç†ã™ã‚‹
 	/// </summary>
 	public class MachiThreadParser : ThreadParser
 	{
 		/// <summary>
-		/// ƒ^ƒCƒgƒ‹‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// ã‚¿ã‚¤ãƒˆãƒ«ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		protected Regex SubjRegex =
 			new Regex(@"<title>(?<subj>.*)</title>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 		/// <summary>
-		/// ƒŒƒX–{•¶‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// ãƒ¬ã‚¹æœ¬æ–‡ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		protected Regex BodyRegex =
-			new Regex("<dt>(?<num>\\d+) –¼‘OF((<font.*?><b>\\s?(?<name>.+?)\\s?</b></font>)|(<a href=\"mailto:(?<email>.+?)\"><b>\\s?(?<name>.+?)\\s?</B></a>))\\s*?“Še“úF(?<date>.+?)<br><dd>\\s?(?<body>.+)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+			new Regex("<dt>(?<num>\\d+) åå‰ï¼š((<font.*?><b>\\s?(?<name>.+?)\\s?</b></font>)|(<a href=\"mailto:(?<email>.+?)\"><b>\\s?(?<name>.+?)\\s?</B></a>))\\s*?æŠ•ç¨¿æ—¥ï¼š(?<date>.+?)<br><dd>\\s?(?<body>.+)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 		
 		protected Regex IDHostRegex =
 			new Regex(@"ID:(?<idhost>(?<id>[^\s]+).+?\[(?<host>.+?)])</font>", RegexOptions.Compiled);
 
 		/// <summary>
-		/// aƒ^ƒO‚ğŒŸõ‚·‚é³‹K•\Œ»
+		/// aã‚¿ã‚°ã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 		/// </summary>
 		protected Regex AHrefRegex =
 			new Regex(@"</?a.*?>", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 		/// <summary>
-		/// ƒŒƒXŠJnˆÊ’u‚ğŒŸõ‚·‚é‚½‚ß‚ÌŒŸõƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// ãƒ¬ã‚¹é–‹å§‹ä½ç½®ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ¤œç´¢ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected ISearchable headSrch = new BmSearch2("<dt>");
 
 		/// <summary>
-		/// ƒŒƒXI—¹ˆÊ’u‚ğŒŸõ‚·‚é‚½‚ß‚ÌŒŸõƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// ãƒ¬ã‚¹çµ‚äº†ä½ç½®ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ¤œç´¢ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected ISearchable tailSrch = new BmSearch2("<br><br>\n");
 
@@ -50,7 +50,7 @@ namespace Twin.Bbs
 		private int totalCount;
 
 		/// <summary>
-		/// ŠJnƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int StartIndex {
 			set { totalCount = value; }
@@ -58,20 +58,20 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// Œf¦”Â‚ÌŒ^‚ÆƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğw’è‚µ‚ÄA
-		/// MachiThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// æ²ç¤ºæ¿ã®å‹ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’æŒ‡å®šã—ã¦ã€
+		/// MachiThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadParser(BbsType bbs, Encoding enc) : base(bbs, enc)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			subject = String.Empty;
 			totalCount = 1;
 		}
 
 		/// <summary>
-		/// MachiThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// MachiThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadParser() : this(BbsType.Machi, Encoding.GetEncoding("Shift_Jis"))
 		{
@@ -88,15 +88,15 @@ namespace Twin.Bbs
 			List<ResSet> list = new List<ResSet>(300);
 			int begin = 0, index;
 			
-			// ƒXƒŒƒbƒh–¼‚ğŒŸõ
+			// ã‚¹ãƒ¬ãƒƒãƒ‰åã‚’æ¤œç´¢
 			Match m = SubjRegex.Match(dataText);
 			if (m.Success) subject = m.Groups["subj"].Value;
 
-			// ƒŒƒXŠJnˆÊ’u‚ğŒŸõ
+			// ãƒ¬ã‚¹é–‹å§‹ä½ç½®ã‚’æ¤œç´¢
 			while (begin < dataText.Length && 
 				(index = headSrch.Search(dataText, begin)) != -1)
 			{
-				// ƒŒƒXŠJnˆÊ’u‚©‚çƒŒƒXI—¹ˆÊ’u‚ğŒŸõ
+				// ãƒ¬ã‚¹é–‹å§‹ä½ç½®ã‹ã‚‰ãƒ¬ã‚¹çµ‚äº†ä½ç½®ã‚’æ¤œç´¢
 				begin = index;
 				int end = tailSrch.Search(dataText, begin);
 
@@ -110,8 +110,8 @@ namespace Twin.Bbs
 					if (res.Index == 1)
 						res.Tag = subject;
 
-					// ‰ğÍ‚µ‚½”‚ÆÀÛ‚ÌƒŒƒX”Ô†‚ªˆá‚¦‚Î‚ ‚Ú[‚ñ‚³‚ê‚Ä‚¢‚é‚Æv‚í‚ê‚é‚Ì‚ÅA
-					// ‚»‚ÌŒŠ–„‚ß‚Æ‚µ‚Ä‚ ‚Ú[‚ñƒŒƒX‚ğ‘}“ü
+					// è§£æã—ãŸæ•°ã¨å®Ÿéš›ã®ãƒ¬ã‚¹ç•ªå·ãŒé•ãˆã°ã‚ã¼ãƒ¼ã‚“ã•ã‚Œã¦ã„ã‚‹ã¨æ€ã‚ã‚Œã‚‹ã®ã§ã€
+					// ãã®ç©´åŸ‹ã‚ã¨ã—ã¦ã‚ã¼ãƒ¼ã‚“ãƒ¬ã‚¹ã‚’æŒ¿å…¥
 					if (totalCount != res.Index)
 					{
 						int length = res.Index - totalCount;
@@ -132,8 +132,8 @@ namespace Twin.Bbs
 
 		protected virtual ResSet ParseResSet(string data)
 		{
-			ResSet resSet = new ResSet(-1, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]",
-				String.Empty, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]", "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]");
+			ResSet resSet = new ResSet(-1, "[ã“ã“å£Šã‚Œã¦ã¾ã™]",
+				String.Empty, "[ã“ã“å£Šã‚Œã¦ã¾ã™]", "[ã“ã“å£Šã‚Œã¦ã¾ã™]");
 
 			Match m = BodyRegex.Match(data);
 			if (m.Success)
@@ -147,10 +147,10 @@ namespace Twin.Bbs
 				resSet.Body = m.Groups["body"].Value;
 				resSet.Email = m.Groups["email"].Value;
 
-				// “ú•t‚Ì‰üs‚ğíœ
+				// æ—¥ä»˜ã®æ”¹è¡Œã‚’å‰Šé™¤
 				resSet.DateString = resSet.DateString.Replace("\n", "");
 
-				// –{•¶‚ÌƒŠƒ“ƒN‚ğíœ‚µAƒŒƒXQÆ‚ÉƒŠƒ“ƒN‚ğ’£‚é
+				// æœ¬æ–‡ã®ãƒªãƒ³ã‚¯ã‚’å‰Šé™¤ã—ã€ãƒ¬ã‚¹å‚ç…§ã«ãƒªãƒ³ã‚¯ã‚’å¼µã‚‹
 				resSet.Body = AHrefRegex.Replace(resSet.Body, String.Empty);
 				//resSet.Body = HtmlTextUtility.RefRegex.Replace(resSet.Body, "<a href=\"/${num}\" target=\"_blank\">${ref}</a>");
 			}

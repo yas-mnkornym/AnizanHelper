@@ -7,15 +7,15 @@ namespace Twin.Util
 	using System.Text;
 
 	/// <summary>
-	/// �t�@�C���֌W�̃��[�e�B���e�B�Q
+	/// ファイル関係のユーティリティ群
 	/// </summary>
 	public class FileUtility
 	{
 		/// <summary>
-		/// �t�@�C����ǂݍ���
-		/// �i�t�@�C�������݂��Ȃ���΋󕶎����Ԃ��j
+		/// ファイルを読み込む
+		/// （ファイルが存在しなければ空文字列を返す）
 		/// </summary>
-		/// <param name="filePath">�ǂݍ��ރt�@�C���̃p�X</param>
+		/// <param name="filePath">読み込むファイルのパス</param>
 		/// <returns></returns>
 		public static string ReadToEnd(string filePath)
 		{
@@ -23,10 +23,10 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// �t�@�C����ǂݍ���
-		/// �i�t�@�C�������݂��Ȃ���΋󕶎����Ԃ��j
+		/// ファイルを読み込む
+		/// （ファイルが存在しなければ空文字列を返す）
 		/// </summary>
-		/// <param name="filePath">�ǂݍ��ރt�@�C���̃p�X</param>
+		/// <param name="filePath">読み込むファイルのパス</param>
 		/// <returns></returns>
 		public static string ReadToEnd(string filePath, Encoding enc)
 		{
@@ -42,22 +42,22 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// �w�肵���t�@�C���Ƀe�L�X�g��ۑ�
+		/// 指定したファイルにテキストを保存
 		/// </summary>
-		/// <param name="filePath">�ۑ���t�@�C����</param>
-		/// <param name="text">�������ޕ�����</param>
-		/// <param name="append">�ǉ��������݂��s���ꍇ��true�A�����łȂ����false</param>
+		/// <param name="filePath">保存先ファイル名</param>
+		/// <param name="text">書き込む文字列</param>
+		/// <param name="append">追加書き込みを行う場合はtrue、そうでなければfalse</param>
 		public static void Write(string filePath, string text, bool append)
 		{
 			Write(filePath, text, append, TwinDll.DefaultEncoding);
 		}
 
 		/// <summary>
-		/// �w�肵���t�@�C���Ƀe�L�X�g��ۑ�
+		/// 指定したファイルにテキストを保存
 		/// </summary>
-		/// <param name="filePath">�ۑ���t�@�C����</param>
-		/// <param name="text">�������ޕ�����</param>
-		/// <param name="append">�ǉ��������݂��s���ꍇ��true�A�����łȂ����false</param>
+		/// <param name="filePath">保存先ファイル名</param>
+		/// <param name="text">書き込む文字列</param>
+		/// <param name="append">追加書き込みを行う場合はtrue、そうでなければfalse</param>
 		public static void Write(string filePath, string text, bool append, Encoding enc)
 		{
 			if (filePath == null) {
@@ -78,7 +78,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ���ׂĂ�ǂݍ��݃������X�g���[�����쐬
+		/// すべてを読み込みメモリストリームを作成
 		/// </summary>
 		/// <param name="baseStream"></param>
 		/// <returns></returns>
@@ -107,7 +107,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ���ׂĂ�ǂݍ���byte�z��Ɋi�[
+		/// すべてを読み込みbyte配列に格納
 		/// </summary>
 		/// <param name="baseStream"></param>
 		/// <returns></returns>

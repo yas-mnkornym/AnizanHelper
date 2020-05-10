@@ -9,14 +9,14 @@ namespace Twin.Tools
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ƒLƒƒƒbƒVƒ…‚ğíœ‚·‚éƒ†[ƒeƒBƒŠƒeƒB
+	/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’å‰Šé™¤ã™ã‚‹ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
 	/// </summary>
 	public class CacheRemoveUtility
 	{
 		private Cache cache;
 
 		/// <summary>
-		/// CacheRemoveUtilityƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CacheRemoveUtilityã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		public CacheRemoveUtility(Cache cache)
@@ -25,7 +25,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚èˆÈŠO‚ÌŠù“¾ƒXƒŒƒbƒh‚ğíœ‚µ‚Ü‚·B
+		/// ãŠæ°—ã«å…¥ã‚Šä»¥å¤–ã®æ—¢å¾—ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="bookmarkRoot"></param>
 		public void RemoveWithoutBookmarks(IBoardTable table, BookmarkRoot bookmarkRoot)
@@ -34,11 +34,11 @@ namespace Twin.Tools
 				throw new ArgumentNullException("bookmarkRoot");
 			}
 
-			// ‚·‚×‚Ä‚Ì”Â‚ÌŠù“¾ƒCƒ“ƒfƒbƒNƒX‚ğ“Ç‚İ‚Ş
+			// ã™ã¹ã¦ã®æ¿ã®æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 			List<ThreadHeader> targets = Twin.IO.GotThreadListReader.GetAllThreads(cache, table);
 			int count1 = targets.Count;
 
-			// “Ç‚İ‚Ü‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ÅA‚¨‹C‚É“ü‚è‚É“o˜^‚³‚ê‚Ä‚¢‚é•¨‚ÍœŠO
+			// èª­ã¿è¾¼ã¾ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã€ãŠæ°—ã«å…¥ã‚Šã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç‰©ã¯é™¤å¤–
 			for (int i = 0; i < targets.Count;)
 			{
 				ThreadHeader h = targets[i];
@@ -59,7 +59,7 @@ namespace Twin.Tools
 
 #if DEBUG
 			int count3 = Twin.IO.GotThreadListReader.GetAllThreads(cache, table).Count;
-			MessageBox.Show(String.Format("íœ‘O={0}, ‚¨‹C‚É“ü‚è‚Ì”={1}, íœŒã‚ÌƒƒO”={2}", count1, count2, count3));
+			MessageBox.Show(String.Format("å‰Šé™¤å‰={0}, ãŠæ°—ã«å…¥ã‚Šã®æ•°={1}, å‰Šé™¤å¾Œã®ãƒ­ã‚°æ•°={2}", count1, count2, count3));
 #endif
 		}
 	}

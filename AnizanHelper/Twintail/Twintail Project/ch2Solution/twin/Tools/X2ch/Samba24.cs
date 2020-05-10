@@ -11,7 +11,7 @@ namespace Twin.Tools
 using System.Diagnostics;
 
 	/// <summary>
-	/// Samba24‘Îô‚É©å‹K§‚ğs‚¤
+	/// Samba24å¯¾ç­–ã«è‡ªä¸»è¦åˆ¶ã‚’è¡Œã†
 	/// </summary>
 	public class Samba24
 	{
@@ -20,7 +20,7 @@ using System.Diagnostics;
 		private string filePath;
 
 		/// <summary>
-		/// w’è‚µ‚½ƒT[ƒo[–¼‚Ì‹K§•b”‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚µãƒ¼ãƒãƒ¼åã®è¦åˆ¶ç§’æ•°ã‚’å–å¾—
 		/// </summary>
 		public int this[string server] {
 			get {
@@ -29,12 +29,12 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// Samba24ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Samba24ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Samba24()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			table = new Hashtable();
 			profile = new CSPrivateProfile();
@@ -42,7 +42,7 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// Samba24ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Samba24ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Samba24(string filePath) : this()
 		{
@@ -50,7 +50,7 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// sambaİ’èƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+		/// sambaè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void Load(string filePath)
@@ -65,20 +65,20 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒT[ƒo[‚ÌƒJƒEƒ“ƒ^[ŠJn
+		/// æŒ‡å®šã—ãŸã‚µãƒ¼ãƒãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é–‹å§‹
 		/// </summary>
 		/// <param name="server"></param>
 		public void CountStart(string server)
 		{
-			// Œ»İ’l‚ğİ’è
+			// ç¾åœ¨å€¤ã‚’è¨­å®š
 			table[server] = Environment.TickCount;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒT[ƒo[‚Ì‹K§ŠÔ‚ªŒo‰ß‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚µãƒ¼ãƒãƒ¼ã®è¦åˆ¶æ™‚é–“ãŒçµŒéã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="server">ƒ`ƒFƒbƒN‚·‚éƒT[ƒo[–¼</param>
-		/// <returns>‹K§ŠÔ‚ğ‰ß‚¬‚Ä‚¢‚½‚çtrueA‹K§ŠÔ“à‚È‚çfalse</returns>
+		/// <param name="server">ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚µãƒ¼ãƒãƒ¼å</param>
+		/// <returns>è¦åˆ¶æ™‚é–“ã‚’éãã¦ã„ãŸã‚‰trueã€è¦åˆ¶æ™‚é–“å†…ãªã‚‰false</returns>
 		public bool IsElapsed(string server)
 		{
 			int r;
@@ -86,42 +86,42 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒT[ƒo[‚Ì‹K§ŠÔ‚ªŒo‰ß‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’fB
-		/// ƒJƒEƒ“ƒ^‚ªŠJn‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAí‚Étrue‚ğ•Ô‚·B
+		/// æŒ‡å®šã—ãŸã‚µãƒ¼ãƒãƒ¼ã®è¦åˆ¶æ™‚é–“ãŒçµŒéã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤æ–­ã€‚
+		/// ã‚«ã‚¦ãƒ³ã‚¿ãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€å¸¸ã«trueã‚’è¿”ã™ã€‚
 		/// </summary>
-		/// <param name="server">ƒ`ƒFƒbƒN‚·‚éƒT[ƒo[–¼</param>
-		/// <param name="result">c‚è•b”‚ªŠi”[‚³‚ê‚é</param>
-		/// <returns>‹K§ŠÔ‚ğ‰ß‚¬‚Ä‚¢‚½‚çtrueA‹K§ŠÔ“à‚È‚çfalse</returns>
+		/// <param name="server">ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚µãƒ¼ãƒãƒ¼å</param>
+		/// <param name="result">æ®‹ã‚Šç§’æ•°ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
+		/// <returns>è¦åˆ¶æ™‚é–“ã‚’éãã¦ã„ãŸã‚‰trueã€è¦åˆ¶æ™‚é–“å†…ãªã‚‰false</returns>
 		public bool IsElapsed(string server, out int result)
 		{
 			if (table.Contains(server))
 			{
-				int now = Environment.TickCount;	// Œ»İ’l
-				int begin = (int)table[server];		// ŠJn’l
+				int now = Environment.TickCount;	// ç¾åœ¨å€¤
+				int begin = (int)table[server];		// é–‹å§‹å€¤
 
-				// Œo‰ß•b”‚ğŒvZ
+				// çµŒéç§’æ•°ã‚’è¨ˆç®—
 				int count = (now - begin) / 1000;
 
-				// c‚è•b”‚ğŒvZ
+				// æ®‹ã‚Šç§’æ•°ã‚’è¨ˆç®—
 				result = this[server] - count;
 
 				return (count >= this[server]) ? true : false;
 			}
 			else {
-				//throw new ArgumentException(server + "‚ÌŠJn’l‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				//throw new ArgumentException(server + "ã®é–‹å§‹å€¤ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 				result = 0;
 				return true;
 			}
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒT[ƒo[‚ÌSambaƒJƒEƒ“ƒg‚ğC³
+		/// æŒ‡å®šã—ãŸã‚µãƒ¼ãƒãƒ¼ã®Sambaã‚«ã‚¦ãƒ³ãƒˆã‚’ä¿®æ­£
 		/// </summary>
 		/// <param name="server"></param>
 		/// <param name="newCount"></param>
 		public void Correct(string server, int newCount)
 		{
-			// ƒe[ƒuƒ‹‚ÉV‚µ‚¢’l‚ğİ’è‚µ‚Ä•Û‘¶
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ã„å€¤ã‚’è¨­å®šã—ã¦ä¿å­˜
 			profile.SetValue("samba", server, newCount);
 			
 			if (filePath != null)
@@ -129,7 +129,7 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+		/// ã™ã¹ã¦ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 		/// </summary>
 		public void Reset()
 		{
@@ -137,10 +137,10 @@ using System.Diagnostics;
 		}
 
 		/// <summary>
-		/// ”Â‚Ìƒgƒbƒvƒy[ƒW‚ğæ“¾‚µ‚ÄAÅV‚Ìsamba’l‚ğæ“¾B
+		/// æ¿ã®ãƒˆãƒƒãƒ—ãƒšãƒ¼ã‚¸ã‚’å–å¾—ã—ã¦ã€æœ€æ–°ã®sambaå€¤ã‚’å–å¾—ã€‚
 		/// </summary>
 		/// <param name="bi"></param>
-		/// <returns>³‚µ‚­XV‚³‚ê‚½ê‡‚É‚ÍAÅV‚Ìsamba24‚Ì’l‚ğ•Ô‚µ‚Ü‚·B‚»‚êˆÈŠO‚Í -1 ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <returns>æ­£ã—ãæ›´æ–°ã•ã‚ŒãŸå ´åˆã«ã¯ã€æœ€æ–°ã®samba24ã®å€¤ã‚’è¿”ã—ã¾ã™ã€‚ãã‚Œä»¥å¤–ã¯ -1 ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public int Update(BoardInfo bi)
 		{
 			using (WebClient w = new WebClient())

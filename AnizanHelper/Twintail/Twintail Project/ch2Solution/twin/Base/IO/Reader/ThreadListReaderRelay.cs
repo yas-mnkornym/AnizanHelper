@@ -7,19 +7,19 @@ namespace Twin.IO
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒŠ[ƒ_[‚©‚ç“Ç‚İæ‚Á‚½ƒXƒŒƒbƒhˆê——‚ğƒLƒƒƒbƒVƒ…‚·‚é‚½‚ß‚Ì’†ŒpƒNƒ‰ƒX‚Å‚·B
+	/// ãƒªãƒ¼ãƒ€ãƒ¼ã‹ã‚‰èª­ã¿å–ã£ãŸã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹ãŸã‚ã®ä¸­ç¶™ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public class ThreadListReaderRelay : ThreadListReader
 	{
-		private Cache cache;						// ƒLƒƒƒbƒVƒ…‚ğŠÇ—‚µ‚Ü‚·B
-		private ThreadListStorage storage;			// ƒ[ƒJƒ‹‚ÉƒLƒƒƒbƒVƒ…‚ğ•Û‘¶‚·‚éƒNƒ‰ƒX‚Å‚·B
-		private ThreadListReader baseReader;		// ƒlƒbƒgƒ[ƒN‚©‚çÅV‚ÌƒXƒŒƒbƒhˆê——‚ğóM‚·‚éƒNƒ‰ƒX‚Å‚·B
-		private List<ThreadHeader> cacheItems;		// ƒLƒƒƒbƒVƒ…‚³‚ê‚Ä‚¢‚éƒXƒŒƒbƒhˆê——‚Å‚·B
+		private Cache cache;						// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç®¡ç†ã—ã¾ã™ã€‚
+		private ThreadListStorage storage;			// ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä¿å­˜ã™ã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+		private ThreadListReader baseReader;		// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‹ã‚‰æœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å—ä¿¡ã™ã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+		private List<ThreadHeader> cacheItems;		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã§ã™ã€‚
 		private BoardInfo boardInfo;
 		private bool isOpen;
 
 		/// <summary>
-		/// Šî‚É‚È‚éƒLƒƒƒbƒVƒ…î•ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// åŸºã«ãªã‚‹ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public Cache Cache
 		{
@@ -30,7 +30,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// Œ»İŠJ‚©‚ê‚Ä‚¢‚é”Â‚Ìî•ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// ç¾åœ¨é–‹ã‹ã‚Œã¦ã„ã‚‹æ¿ã®æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public BoardInfo BoardInfo
 		{
@@ -101,7 +101,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚³‚ê‚Ä‚¢‚éƒXƒŒƒbƒhˆê——‚ğæ“¾‚µ‚Ü‚·B
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public List<ThreadHeader> CacheItems
 		{
@@ -112,10 +112,10 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ThreadListReaderRelayƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// ThreadListReaderRelayã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="cache">Šî‚É‚È‚éƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="baseReader">Šî‚É‚È‚éƒŠ[ƒ_[‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
+		/// <param name="cache">åŸºã«ãªã‚‹ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="baseReader">åŸºã«ãªã‚‹ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
 		public ThreadListReaderRelay(Cache cache, ThreadListReader baseReader)
 		{
 			if (cache == null)
@@ -144,13 +144,13 @@ namespace Twin.IO
 
 			if (baseReader.IsOpen)
 			{
-				throw new InvalidOperationException("ƒŠ[ƒ_[‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("ãƒªãƒ¼ãƒ€ãƒ¼ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
 			cacheItems.Clear();
 			boardInfo = board;
 
-			// ƒLƒƒƒbƒVƒ…‚ğ‚·‚×‚Ä“Ç‚İ‚Ş
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ã™ã¹ã¦èª­ã¿è¾¼ã‚€
 			if (storage.Open(board, StorageMode.Read))
 			{
 				while (storage.Read(cacheItems) != 0)
@@ -158,7 +158,7 @@ namespace Twin.IO
 				storage.Close();
 			}
 
-			// ƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 			if (baseReader.Open(board))
 			{
 				isOpen = storage.Open(board, StorageMode.Write);
@@ -177,12 +177,12 @@ namespace Twin.IO
 		{
 			if (!isOpen)
 			{
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
 			int read = baseReader.Read(headers, out byteParsed);
 
-			// 2010/12/05 …‹Ê‚³‚ñthx!
+			// 2010/12/05 æ°´ç‰ã•ã‚“thx!
 			if (byteParsed > 0)
 			{
 				storage.Write(headers);

@@ -19,7 +19,7 @@ namespace Twin
 			return base.CanConvertFrom(context, sourceType);
 		}
 
-		// 文字列から変換
+		// 譁・ｭ怜・縺九ｉ螟画鋤
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
 			if (value is string)
@@ -41,7 +41,7 @@ namespace Twin
 			return base.ConvertFrom(context, culture, value);
 		}
 
-		// 文字列に変換
+		// 譁・ｭ怜・縺ｫ螟画鋤
 		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
 		{
 			if (destinationType == typeof(string))
@@ -53,7 +53,7 @@ namespace Twin
 					sb.Append(val).Append(',');
 				}
 
-				// 余分な最後のコロンを取り除く
+				// 菴吝・縺ｪ譛蠕後・繧ｳ繝ｭ繝ｳ繧貞叙繧企勁縺・
 				if (sb.Length > 0)
 					sb.Remove(sb.Length - 1, 1);
 
@@ -267,8 +267,8 @@ namespace Twin
 		private string Escape(string s)
 		{
 			// NTwin23.103 
-			s = s.Replace(@"\", @"\\"); // まず「\」をエスケープしておいて 
-			s = s.Replace(",", @"\,");  // 「,」（コンマ）をエスケープ 
+			s = s.Replace(@"\", @"\\"); // 縺ｾ縺壹圭縲阪ｒ繧ｨ繧ｹ繧ｱ繝ｼ繝励＠縺ｦ縺翫＞縺ｦ 
+			s = s.Replace(",", @"\,");  // 縲・縲搾ｼ医さ繝ｳ繝橸ｼ峨ｒ繧ｨ繧ｹ繧ｱ繝ｼ繝・
 
 			return s;
 		}

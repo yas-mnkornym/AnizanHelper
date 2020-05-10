@@ -12,7 +12,7 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ìˆê——‚ğŠÇ—
+	/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸€è¦§ã‚’ç®¡ç†
 	/// </summary>
 	public class ThreadHeaderIndices
 	{
@@ -21,21 +21,21 @@ namespace Twin
 		private string fileName;
 
 		/// <summary>
-		/// ThreadHeader‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ThreadHeaderã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public List<ThreadHeader> Items {
 			get { return items; }
 		}
 
 		/// <summary>
-		/// ThreadHeaderIndicesƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderIndicesã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="fileName"></param>
 		public ThreadHeaderIndices(Cache cache, string fileName)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.cache = cache;
 			this.fileName = fileName;
@@ -43,7 +43,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒXˆê——‚ğ“Ç‚İ‚Ş
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		public void Load()
 		{
@@ -73,7 +73,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒXˆê——‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 		/// </summary>
 		public void Save()
 		{
@@ -84,7 +84,7 @@ namespace Twin
 				{
 					if (ThreadIndexer.Exists(cache, header))
 					{
-						// ‘Š‘ÎƒpƒX‚É•ÏŠ·
+						// ç›¸å¯¾ãƒ‘ã‚¹ã«å¤‰æ›
 						string relative = Shlwapi.GetRelativePath(
 							Application.StartupPath, cache.GetIndexPath(header));
 

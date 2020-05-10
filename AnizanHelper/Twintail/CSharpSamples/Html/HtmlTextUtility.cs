@@ -7,7 +7,7 @@ namespace CSharpSamples.Html
 	using System.Text;
 
 	/// <summary>
-	/// HtmlUtility ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlUtility ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlTextUtility
 	{
@@ -15,19 +15,19 @@ namespace CSharpSamples.Html
 		private static string[] unesc_replacement = null;
 
 		/// <summary>
-		/// “Áê•¶š‚ğƒGƒXƒP[ƒv
+		/// ç‰¹æ®Šæ–‡å­—ã‚’ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
 		public static string Escape(string html)
 		{
-			throw new NotSupportedException("–¢À‘•");
+			throw new NotSupportedException("æœªå®Ÿè£…");
 			//StringBuilder sb = new StringBuilder(html);
 			//return sb.ToString();
 		}
 
 		/// <summary>
-		/// ƒXƒP[ƒv‚³‚ê‚½•¶š‚ğŒ³‚É•ÏŠ·
+		/// ã‚¹ã‚±ãƒ¼ãƒ—ã•ã‚ŒãŸæ–‡å­—ã‚’å…ƒã«å¤‰æ›
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -57,7 +57,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlŒ`®‚ÌFî•ñ‚ğColor\‘¢‘Ì‚É•ÏŠ·
+		/// Htmlå½¢å¼ã®è‰²æƒ…å ±ã‚’Coloræ§‹é€ ä½“ã«å¤‰æ›
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>

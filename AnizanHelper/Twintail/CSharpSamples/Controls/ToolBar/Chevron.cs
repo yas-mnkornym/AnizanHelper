@@ -3,14 +3,14 @@
 namespace CSharpSamples
 {
 	/// <summary>
-	/// Chevron ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Chevron ã®æ¦‚è¦ã®èª¬æ˜Žã§ã™ã€‚
 	/// </summary>
 	public class Chevron
 	{
 		public Chevron()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ð‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

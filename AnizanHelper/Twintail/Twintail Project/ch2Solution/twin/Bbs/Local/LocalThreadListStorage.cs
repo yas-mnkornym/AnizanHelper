@@ -10,7 +10,7 @@ namespace Twin.IO
 	using Twin.Bbs;
 
 	/// <summary>
-	/// ƒ[ƒJƒ‹ƒfƒBƒXƒN‚ÉƒXƒŒƒbƒhˆê——‚ğ•Û‘¶‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ã«ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’ä¿å­˜ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class LocalThreadListStorage : ThreadListStorage
 	{
@@ -27,57 +27,57 @@ namespace Twin.IO
 		private int index;
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğŠJ‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public override bool IsOpen {
 			get { return isOpen; }
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…ƒf[ƒ^‚Ì’·‚³‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å–å¾—
 		/// </summary>
 		public override int Length {
 			get {
 				if (isOpen) {
 					return (int)baseStream.Length;
 				}
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒXƒgƒŠ[ƒ€‚ÌˆÊ’u‚ğæ“¾
+		/// ç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		public override int Position {
 			get {
 				if (isOpen) {
 					return position;
 				}
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚·
+		/// èª­ã¿è¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã™
 		/// </summary>
 		public override bool CanRead {
 			get { return (mode == StorageMode.Read); }
 		}
 
 		/// <summary>
-		/// ‘‚«‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚·
+		/// æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã™
 		/// </summary>
 		public override bool CanWrite {
 			get { return (mode == StorageMode.Write); }
 		}
 
 		/// <summary>
-		/// LocalThreadListStorageƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LocalThreadListStorageã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="cache">Šî‚É‚È‚éƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="parser">ƒf[ƒ^‚ğ‰ğÍ‚·‚é‚Æ‚«‚Ég—p‚·‚éƒp[ƒT</param>
-		/// <param name="formatter">‘‚«‚İ‚Ég—p‚·‚éƒtƒH[ƒ}ƒbƒ^</param>
-		/// <param name="enc">‘‚«‚İ‚Ég—p‚·‚éƒGƒ“ƒR[ƒ_</param>
+		/// <param name="cache">åŸºã«ãªã‚‹ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="parser">ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã™ã‚‹ã¨ãã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¼ã‚µ</param>
+		/// <param name="formatter">æ›¸ãè¾¼ã¿æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ¼ãƒãƒƒã‚¿</param>
+		/// <param name="enc">æ›¸ãè¾¼ã¿æ™‚ã«ä½¿ç”¨ã™ã‚‹ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€</param>
 		public LocalThreadListStorage(Cache cache, ThreadListFormatter formatter, Encoding enc)
 		{
 			if (cache == null) {
@@ -97,7 +97,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// LocalThreadListStorageƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LocalThreadListStorageã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		public LocalThreadListStorage(Cache cache)
@@ -106,30 +106,30 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 		/// </summary>
-		/// <param name="board">‘‚«‚Ş”Â‚Ìƒwƒbƒ_î•ñ</param>
-		/// <param name="modeRead">ƒXƒgƒŒ[ƒW‚ğŠJ‚­•û–@</param>
+		/// <param name="board">æ›¸ãè¾¼ã‚€æ¿ã®ãƒ˜ãƒƒãƒ€æƒ…å ±</param>
+		/// <param name="modeRead">ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚’é–‹ãæ–¹æ³•</param>
 		public override bool Open(BoardInfo board, StorageMode mode)
 		{
 			if (board == null) {
 				throw new ArgumentNullException("board");
 			}
 			if (isOpen) {
-				throw new InvalidCastException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidCastException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
-			// ‘‚«‚İæƒtƒ@ƒCƒ‹–¼
+			// æ›¸ãè¾¼ã¿å…ˆãƒ•ã‚¡ã‚¤ãƒ«å
 			string filePath = Path.Combine(cache.GetFolderPath(board), "subject.txt");
 
-			// ƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 			if (mode == StorageMode.Read) {
 				baseStream = StreamCreator.CreateReader(filePath, false);
 			} else {
 				baseStream = StreamCreator.CreateWriter(filePath, false, false);
 			}
 
-			// ƒp[ƒT‚ğ‰Šú‰»
+			// ãƒ‘ãƒ¼ã‚µã‚’åˆæœŸåŒ–
 			dataParser = new X2chThreadListParser(board.Bbs, encoding);
 
 			this.index = 1;
@@ -142,7 +142,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒfƒBƒXƒN‚ÉƒLƒƒƒbƒVƒ…‚µ‚È‚ª‚çƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş
+		/// ãƒ‡ã‚£ã‚¹ã‚¯ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ãªãŒã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="headers"></param>
 		/// <returns></returns>
@@ -153,7 +153,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhî•ñ‚ğ“Ç‚İ‚Ş
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="headerCollects"></param>
 		/// <returns></returns>
@@ -163,13 +163,13 @@ namespace Twin.IO
 				throw new ArgumentNullException("headerCollects");
 			}
 			if (!isOpen) {
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
-			// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			int readCount = baseStream.Read(buffer, 0, buffer.Length);
 
-			// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+			// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 			Array array = dataParser.Parse(buffer, readCount, out byteParsed);
 
 			foreach (ThreadHeader header in array)
@@ -179,27 +179,27 @@ namespace Twin.IO
 				headerCollects.Add(header);
 			}
 
-			// ÀÛ‚É“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğŒvZ
+			// å®Ÿéš›ã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 			position += readCount;
 
 			return readCount;
 		}
 
 		/// <summary>
-		/// resCollection‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+		/// resCollectionã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
 		/// </summary>
-		/// <param name="headerCollects">ƒXƒŒƒbƒh‚Ì“à—e‚ªŠi”[‚³‚ê‚½List<ThreadHeader>ƒNƒ‰ƒX</param>
-		/// <returns>ÀÛ‚É‘‚«‚Ü‚ê‚½ƒoƒCƒg”</returns>
+		/// <param name="headerCollects">ã‚¹ãƒ¬ãƒƒãƒ‰ã®å†…å®¹ãŒæ ¼ç´ã•ã‚ŒãŸList<ThreadHeader>ã‚¯ãƒ©ã‚¹</param>
+		/// <returns>å®Ÿéš›ã«æ›¸ãè¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°</returns>
 		public override int Write(List<ThreadHeader> headerCollects)
 		{
 			if (!CanWrite) {
-				throw new NotSupportedException("‘‚«‚İ—p‚ÉŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new NotSupportedException("æ›¸ãè¾¼ã¿ç”¨ã«é–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 			if (headerCollects == null) {
 				throw new ArgumentNullException("headerCollects");
 			}
 			if (!isOpen) {
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
 			string textData = formatter.Format(headerCollects);
@@ -212,7 +212,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 		/// </summary>
 		public override void Close()
 		{
@@ -228,7 +228,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 		/// </summary>
 		public override void Dispose()
 		{

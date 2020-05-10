@@ -6,7 +6,7 @@ namespace Twin
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ÌŠî–{ƒwƒbƒ_î•ñ‚ğ•\‚·
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®åŸºæœ¬ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	public abstract class ThreadHeader : IComparable
 	{
@@ -34,7 +34,7 @@ namespace Twin
 		private int hashcode;
 
 		/// <summary>
-		/// ”Âî•ñ‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ¿æƒ…å ±ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public BoardInfo BoardInfo {
 			set {
@@ -48,7 +48,7 @@ namespace Twin
 		}
 		
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ì”Ô†‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç•ªå·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int No {
 			set { no = value; }
@@ -56,7 +56,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhƒ^ƒCƒgƒ‹‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Subject {
 			set {
@@ -69,7 +69,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// DAT”Ô†‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// DATç•ªå·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Key {
 			set {
@@ -83,7 +83,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ETag‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ETagã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string ETag {
 			set {
@@ -95,28 +95,28 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// DAT‚Ì‘¶İ‚·‚éURL‚ğæ“¾
+		/// DATã®å­˜åœ¨ã™ã‚‹URLã‚’å–å¾—
 		/// </summary>
 		public abstract string DatUrl {
 			get;
 		}
 
 		/// <summary>
-		/// URL‚ğæ“¾
+		/// URLã‚’å–å¾—
 		/// </summary>
 		public abstract string Url {
 			get;
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ª—§‚Ä‚ç‚ê‚½“ú•t‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒç«‹ã¦ã‚‰ã‚ŒãŸæ—¥ä»˜ã‚’å–å¾—
 		/// </summary>
 		public DateTime Date {
 			get { 
 				DateTime result = new DateTime(1970, 1, 1);
 
 				try {
-					// ƒXƒŒƒbƒh‚ª—§‚Ä‚ç‚ê‚½“ú•t‚ğŒvZ
+					// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒç«‹ã¦ã‚‰ã‚ŒãŸæ—¥ä»˜ã‚’è¨ˆç®—
 					int seconds;
 					if (Int32.TryParse(Key, out seconds))
 						result = result.AddSeconds(seconds);
@@ -128,7 +128,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌÅIXV“ú‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æœ€çµ‚æ›´æ–°æ—¥ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public DateTime LastModified {
 			set { lastModified = value; }
@@ -136,7 +136,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌÅI‘“ú‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æœ€çµ‚æ›¸è¾¼æ—¥ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public DateTime LastWritten {
 			set { lastWritten = value; }
@@ -144,7 +144,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¬ã‚¹æ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int ResCount {
 			set { resCount = value; }
@@ -152,7 +152,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// æ“¾Ï‚İƒŒƒX”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// å–å¾—æ¸ˆã¿ãƒ¬ã‚¹æ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int GotResCount {
 			set {
@@ -165,7 +165,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Šù“¾Ï‚İƒoƒCƒg”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ—¢å¾—æ¸ˆã¿ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int GotByteCount {
 			set { gotByteCount = value; }
@@ -173,7 +173,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// V’…ƒŒƒX”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ–°ç€ãƒ¬ã‚¹æ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int NewResCount {
 			set { newResCount = value; }
@@ -181,7 +181,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX”‚©‚çŠù“¾‚ğˆø‚¢‚½”‚ğæ“¾
+		/// ãƒ¬ã‚¹æ•°ã‹ã‚‰æ—¢å¾—ã‚’å¼•ã„ãŸæ•°ã‚’å–å¾—
 		/// </summary>
 		public int SubNewResCount {
 			get {
@@ -192,21 +192,21 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX”‚ÌãŒÀ‚ğæ“¾
+		/// ãƒ¬ã‚¹æ•°ã®ä¸Šé™ã‚’å–å¾—
 		/// </summary>
 		public abstract int UpperLimitResCount {
 			get;
 		}
 
 		/// <summary>
-		/// Å‘åƒŒƒX”‚ğ‰z‚¦‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æœ€å¤§ãƒ¬ã‚¹æ•°ã‚’è¶Šãˆã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public bool IsLimitOverThread {
 			get { return (ResCount >= UpperLimitResCount); }
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒXƒŒƒbƒh‚ğQÆ‚µ‚½‰ñ”
+		/// ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å‚ç…§ã—ãŸå›æ•°
 		/// </summary>
 		public int RefCount {
 			set { refcount = value; }
@@ -214,7 +214,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚µ‚¨‚è”Ô†‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã—ãŠã‚Šç•ªå·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Shiori {
 			set { shiori = Math.Max(0, value); }
@@ -222,7 +222,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒNƒ[ƒ‹ˆÊ’u‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public float Position {
 			set { position = value; }
@@ -230,7 +230,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‰ß‹ƒƒO‚©‚Ç‚¤‚©‚ğ•\‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// éå»ãƒ­ã‚°ã‹ã©ã†ã‹ã‚’è¡¨ã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool Pastlog {
 			set { pastlog = value; }
@@ -238,7 +238,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// V’…ƒXƒŒƒbƒh‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ–°ç€ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsNewThread {
 			set { newthread = value; }
@@ -246,7 +246,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Gzipˆ³k‚ğ—˜—p‚·‚é‚©‚Ç‚¤‚©‚ğ•\‚·’l‚ğæ“¾
+		/// Gzipåœ§ç¸®ã‚’åˆ©ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã™å€¤ã‚’å–å¾—
 		/// </summary>
 		public bool UseGzip {
 			set { useGzip = value; }
@@ -254,7 +254,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Tag‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// Tagã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public object Tag {
 			set { tag = value; }
@@ -262,19 +262,19 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ˆó‚³‚ê‚½ƒŒƒX”Ô†‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// å°ã•ã‚ŒãŸãƒ¬ã‚¹ç•ªå·ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public SortedValueCollection<int> Sirusi {
 			get { return sirusi; }
 		}
 
 		/// <summary>
-		/// ThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThreadHeader()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			board = new BoardInfo();
 			subject = String.Empty;
@@ -300,7 +300,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="board"></param>
 		/// <param name="key"></param>
@@ -311,7 +311,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="board"></param>
 		/// <param name="key"></param>
@@ -322,7 +322,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ì’l‚ğheader‚ÉƒRƒs[
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å€¤ã‚’headerã«ã‚³ãƒ”ãƒ¼
 		/// </summary>
 		/// <param name="header"></param>
 		public void CopyTo(ThreadHeader header)
@@ -354,7 +354,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒnƒbƒVƒ…ƒR[ƒh‚ğŒvZ (URL‚Ì’l‚ğ•ÏX‚µ‚½‚Æ‚«‚ÉŒÄ‚Ô•K—v‚ª‚ ‚é)
+		/// ãƒãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰ã‚’è¨ˆç®— (URLã®å€¤ã‚’å¤‰æ›´ã—ãŸã¨ãã«å‘¼ã¶å¿…è¦ãŒã‚ã‚‹)
 		/// </summary>
 		protected void CalcHash()
 		{
@@ -362,7 +362,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒnƒbƒVƒ…’l‚ğæ“¾
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒƒã‚·ãƒ¥å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <returns></returns>
 		public override int GetHashCode()
@@ -371,7 +371,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æobj‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨objã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
@@ -381,7 +381,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æheader‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨headerã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -398,7 +398,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
@@ -408,7 +408,7 @@ namespace Twin
 		}
 		
 		/// <summary>
-		/// Œ»İ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æobj‚ğ”äŠr
+		/// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨objã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>

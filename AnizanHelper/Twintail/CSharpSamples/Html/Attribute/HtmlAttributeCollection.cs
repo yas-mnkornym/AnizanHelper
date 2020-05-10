@@ -6,20 +6,20 @@ namespace CSharpSamples.Html
 	using System.Collections;
 
 	/// <summary>
-	/// HtmlAttributeƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// HtmlAttributeã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class HtmlAttributeCollection
 	{
 		/// <summary>
-		/// ‘®«‚ğŠÇ—‚·‚éƒRƒŒƒNƒVƒ‡ƒ“
+		/// å±æ€§ã‚’ç®¡ç†ã™ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³
 		/// </summary>
 		private ArrayList attributes;
 
-		// ‚±‚Ì‘®«ƒRƒŒƒNƒVƒ‡ƒ“‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Û‚µ‚Ä‚¢‚ée—v‘f
+		// ã“ã®å±æ€§ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä¿æŒã—ã¦ã„ã‚‹è¦ªè¦ç´ 
 		private HtmlElement parent;
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚É“o˜^‚³‚ê‚Ä‚¢‚é‘®«‚Ì”‚ğ•Ô‚·
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å±æ€§ã®æ•°ã‚’è¿”ã™
 		/// </summary>
 		public int Count
 		{
@@ -30,7 +30,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚ ‚é‘®«‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ã‚‹å±æ€§ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public HtmlAttribute this[int index]
 		{
@@ -45,7 +45,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚ğ‚Â‘®«‚Ì’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸåå‰ã‚’æŒã¤å±æ€§ã®å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string this[string name]
 		{
@@ -70,20 +70,20 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlAttributeCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlAttributeCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="parent"></param>
 		public HtmlAttributeCollection(HtmlElement parent)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.attributes = new ArrayList();
 			this.parent = parent;
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É‘®«‚ğ’Ç‰Á
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã«å±æ€§ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="attr"></param>
 		/// <returns></returns>
@@ -91,14 +91,14 @@ namespace CSharpSamples.Html
 		{
 			if (this.attributes.Contains(attr))
 			{
-				throw new HtmlException();  // “¯ˆêƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¡”“o˜^‚·‚é‚±‚Æ‚Ío—ˆ‚È‚¢
+				throw new HtmlException();  // åŒä¸€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¤‡æ•°ç™»éŒ²ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ãªã„
 			}
 
 			return this.attributes.Add(attr);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Éattr‚ğ‘}“ü
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«attrã‚’æŒ¿å…¥
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="attr"></param>
@@ -106,14 +106,14 @@ namespace CSharpSamples.Html
 		{
 			if (this.attributes.Contains(attr))
 			{
-				throw new HtmlException();  // “¯ˆêƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¡”“o˜^‚·‚é‚±‚Æ‚Ío—ˆ‚È‚¢
+				throw new HtmlException();  // åŒä¸€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¤‡æ•°ç™»éŒ²ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ãªã„
 			}
 
 			this.attributes.Insert(index, attr);
 		}
 
 		/// <summary>
-		/// attr‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// attrã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="attr"></param>
 		public void Remove(HtmlAttribute attr)
@@ -122,7 +122,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚ ‚é‘®«‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ã‚‹å±æ€§ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="index"></param>
 		public void RemoveAt(int index)
@@ -131,7 +131,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ì‘®«‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// ã™ã¹ã¦ã®å±æ€§ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public void RemoveAll()
 		{
@@ -139,10 +139,10 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚ğ‚Â‘®«‚ğ•Ô‚·
+		/// æŒ‡å®šã—ãŸåå‰ã‚’æŒã¤å±æ€§ã‚’è¿”ã™
 		/// </summary>
-		/// <param name="name">ŒŸõ‚·‚é‘®«–¼Bnull‚ğw’è‚·‚é‚ÆArgumentNullExceptionB</param>
-		/// <returns>Œ©‚Â‚©‚ê‚Î‚»‚Ì‘®«‚ÌƒCƒ“ƒXƒ^ƒ“ƒXAŒ©‚Â‚©‚ç‚È‚¯‚ê‚Înull‚ğ•Ô‚·</returns>
+		/// <param name="name">æ¤œç´¢ã™ã‚‹å±æ€§åã€‚nullã‚’æŒ‡å®šã™ã‚‹ã¨ArgumentNullExceptionã€‚</param>
+		/// <returns>è¦‹ã¤ã‹ã‚Œã°ãã®å±æ€§ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°nullã‚’è¿”ã™</returns>
 		public HtmlAttribute FindByName(string name)
 		{
 			if (name == null)
@@ -162,7 +162,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlAttributeCollection‚ğ”½•œˆ—‚·‚é—ñ‹“q‚ğ•Ô‚·
+		/// HtmlAttributeCollectionã‚’åå¾©å‡¦ç†ã™ã‚‹åˆ—æŒ™å­ã‚’è¿”ã™
 		/// </summary>
 		public IEnumerator GetEnumerator()
 		{

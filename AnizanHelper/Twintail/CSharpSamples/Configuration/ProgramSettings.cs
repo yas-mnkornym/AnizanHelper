@@ -9,7 +9,7 @@ namespace CSharpSamples
 	using System.Xml;
 
 	/// <summary>
-	/// ƒvƒƒOƒ‰ƒ€İ’è‚È‚Ç‚Ìî•ñ‚ğ Xml Œ`®‚ÅŠÇ—‚·‚é‹@”\‚ğ’ñ‹Ÿ‚µ‚Ü‚·B
+	/// ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®šãªã©ã®æƒ…å ±ã‚’ Xml å½¢å¼ã§ç®¡ç†ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›ã—ã¾ã™ã€‚
 	/// </summary>
 	public class ProgramSettings
 	{
@@ -17,9 +17,9 @@ namespace CSharpSamples
 		private XmlDocument document;
 
 		/// <summary>
-		/// ProgramSettingsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// ProgramSettingsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
-		/// <param name="fileName">İ’èî•ñ‚Ìƒtƒ@ƒCƒ‹–¼B</param>
+		/// <param name="fileName">è¨­å®šæƒ…å ±ã®ãƒ•ã‚¡ã‚¤ãƒ«åã€‚</param>
 		public ProgramSettings(string fileName)
 		{
 			if (fileName == null)
@@ -27,7 +27,7 @@ namespace CSharpSamples
 				throw new ArgumentNullException("fileName");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.fileName = fileName;
 			this.document = new XmlDocument();
@@ -51,7 +51,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ‹[ƒg‚ğì¬‚µ‚Ü‚·B
+		/// ãƒ«ãƒ¼ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
 		/// </summary>
 		private void CreateRoot()
 		{
@@ -60,7 +60,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚Ì’l‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã®å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="type"></param>
@@ -81,7 +81,7 @@ namespace CSharpSamples
 
 				if (converter == null)
 				{
-					throw new ArgumentException(type + "Œ^‚É‘Î‰‚·‚é TypeConverter ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", "type");
+					throw new ArgumentException(type + "å‹ã«å¯¾å¿œã™ã‚‹ TypeConverter ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", "type");
 				}
 
 				return converter.ConvertFromString(node.InnerText);
@@ -91,7 +91,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚é’l‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -116,7 +116,7 @@ namespace CSharpSamples
 
 				if (converter == null)
 				{
-					throw new ArgumentException(type + "Œ^‚É‘Î‰‚·‚é TypeConverter ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", "type");
+					throw new ArgumentException(type + "å‹ã«å¯¾å¿œã™ã‚‹ TypeConverter ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", "type");
 				}
 
 				return converter.ConvertFromString(node.InnerText);
@@ -126,7 +126,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚É’l‚ğİ’è‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
@@ -145,13 +145,13 @@ namespace CSharpSamples
 
 			if (converter == null)
 			{
-				throw new ArgumentException("w’è‚µ‚½ƒIƒuƒWƒFƒNƒg‚É‘Î‰‚·‚é TypeConverter ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", "value");
+				throw new ArgumentException("æŒ‡å®šã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾å¿œã™ã‚‹ TypeConverter ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", "value");
 			}
 
-			// ƒ‹[ƒg—v‘f‚ğæ“¾
+			// ãƒ«ãƒ¼ãƒˆè¦ç´ ã‚’å–å¾—
 			XmlElement root = this.document.DocumentElement;
 
-			// ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚éƒm[ƒh‚ğæ“¾
+			// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒãƒ¼ãƒ‰ã‚’å–å¾—
 			XmlNode node = root.SelectSingleNode(key);
 			if (node == null)
 			{
@@ -163,11 +163,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚Ìw’è‚µ‚½ƒL[‚É’l‚ğİ’è‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="section">ƒZƒNƒVƒ‡ƒ“–¼</param>
-		/// <param name="key">ƒL[–¼</param>
-		/// <param name="value">İ’è‚·‚é’l</param>
+		/// <param name="section">ã‚»ã‚¯ã‚·ãƒ§ãƒ³å</param>
+		/// <param name="key">ã‚­ãƒ¼å</param>
+		/// <param name="value">è¨­å®šã™ã‚‹å€¤</param>
 		public void Set(string section, string key, object value)
 		{
 			if (section == null)
@@ -187,13 +187,13 @@ namespace CSharpSamples
 
 			if (converter == null)
 			{
-				throw new ArgumentException("w’è‚µ‚½ƒIƒuƒWƒFƒNƒg‚É‘Î‰‚·‚é TypeConverter ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", "value");
+				throw new ArgumentException("æŒ‡å®šã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾å¿œã™ã‚‹ TypeConverter ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", "value");
 			}
 
-			// ƒ‹[ƒg—v‘f‚ğæ“¾
+			// ãƒ«ãƒ¼ãƒˆè¦ç´ ã‚’å–å¾—
 			XmlElement root = this.document.DocumentElement;
 
-			// ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚éƒm[ƒh‚ğæ“¾
+			// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒãƒ¼ãƒ‰ã‚’å–å¾—
 			XmlNode parent = root.SelectSingleNode(section);
 			if (parent == null)
 			{
@@ -201,7 +201,7 @@ namespace CSharpSamples
 					this.document.CreateElement(section));
 			}
 
-			// ’l‚ğŠi”[‚·‚éƒm[ƒh‚ğæ“¾
+			// å€¤ã‚’æ ¼ç´ã™ã‚‹ãƒãƒ¼ãƒ‰ã‚’å–å¾—
 			XmlNode child = parent.SelectSingleNode(key);
 			if (child == null)
 			{
@@ -213,7 +213,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// İ’èî•ñ‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·B
+		/// è¨­å®šæƒ…å ±ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã—ã¾ã™ã€‚
 		/// </summary>
 		public void Save()
 		{

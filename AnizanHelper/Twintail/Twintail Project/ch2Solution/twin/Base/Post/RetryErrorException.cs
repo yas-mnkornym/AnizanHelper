@@ -5,17 +5,17 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ƒŠƒgƒ‰ƒC‚ÉŽ¸”s‚µ‚½‚Æ‚«‚É”­¶‚·‚é—áŠO
+	/// ãƒªãƒˆãƒ©ã‚¤ã«å¤±æ•—ã—ãŸã¨ãã«ç™ºç”Ÿã™ã‚‹ä¾‹å¤–
 	/// </summary>
 	public class RetryErrorException : ApplicationException
 	{
 		/// <summary>
-		/// RetryErrorExceptionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// RetryErrorExceptionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public RetryErrorException()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ð‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

@@ -9,23 +9,23 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// 2ch‚Ì‰ß‹ƒƒO‰»‚³‚ê‚½html‚ğ‰ğÍ‚·‚éƒp[ƒT
+	/// 2chã®éå»ãƒ­ã‚°åŒ–ã•ã‚ŒãŸhtmlã‚’è§£æã™ã‚‹ãƒ‘ãƒ¼ã‚µ
 	/// </summary>
 	public class X2chHtmlThreadParser : ThreadParser
 	{
 		/// <summary>
-		/// ƒŒƒX‚ğŒŸõ‚·‚éƒpƒ^[ƒ“
+		/// ãƒ¬ã‚¹ã‚’æ¤œç´¢ã™ã‚‹ãƒ‘ã‚¿ãƒ¼ãƒ³
 		/// </summary>
 		private readonly Regex Pattern =
-			new Regex("<dt>(?<index>\\d+) F(<a href=\"mailto:(?<email>\\w+?)\">|(?<email>)).*<b>(?<name>\\w+?)</b></font> F(?<dateid>.+?)<dd>(?<body>.+?)(<dt>|</dl>)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+			new Regex("<dt>(?<index>\\d+) ï¼š(<a href=\"mailto:(?<email>\\w+?)\">|(?<email>)).*<b>(?<name>\\w+?)</b></font> ï¼š(?<dateid>.+?)<dd>(?<body>.+?)(<dt>|</dl>)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 		/// <summary>
-		/// X2chHtmlThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chHtmlThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chHtmlThreadParser(BbsType bbs, Encoding enc) : base(bbs, enc)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 

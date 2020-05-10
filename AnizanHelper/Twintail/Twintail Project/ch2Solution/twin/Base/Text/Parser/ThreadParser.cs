@@ -6,19 +6,19 @@ namespace Twin.Text
 	using System.Text;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ÌƒŒƒX‚ğ‰ğÍ‚·‚éƒp[ƒT
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ¬ã‚¹ã‚’è§£æã™ã‚‹ãƒ‘ãƒ¼ã‚µ
 	/// </summary>
 	public abstract class ThreadParser : PartialDataParser<ResSet>
 	{
 		/// <summary>
-		/// ThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="enc"></param>
 		public ThreadParser(BbsType bbs, Encoding enc)
 			: base(bbs, enc)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

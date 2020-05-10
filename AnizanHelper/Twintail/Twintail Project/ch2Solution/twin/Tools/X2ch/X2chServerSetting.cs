@@ -11,7 +11,7 @@ namespace Twin.Tools
 	using System.IO;
 
 	/// <summary>
-	/// 2ch‚ÌƒT[ƒo[İ’èî•ñ‚ğŠÇ—
+	/// 2chã®ã‚µãƒ¼ãƒãƒ¼è¨­å®šæƒ…å ±ã‚’ç®¡ç†
 	/// </summary>
 	public class X2chServerSetting
 	{
@@ -31,7 +31,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ”Âî•ñ‚ğæ“¾
+		/// æ¿æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public BoardInfo Board
 		{
@@ -55,7 +55,7 @@ namespace Twin.Tools
 	
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚Ìî•ñ‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã®æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public string this[string key]
 		{
@@ -314,18 +314,18 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// X2chServerSettingƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chServerSettingã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chServerSetting()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			board = null;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚Ìİ’èî•ñ‚ğƒ_ƒEƒ“ƒ[ƒh
+		/// æŒ‡å®šã—ãŸæ¿ã®è¨­å®šæƒ…å ±ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 		/// </summary>
 		/// <param name="info"></param>
 		public void Download(BoardInfo info)
@@ -335,7 +335,7 @@ namespace Twin.Tools
 				throw new ArgumentNullException("info");
 			}
 
-			// İ’èî•ñ‚Ì‘¶İ‚·‚éURL
+			// è¨­å®šæƒ…å ±ã®å­˜åœ¨ã™ã‚‹URL
 			string url = info.Url + "SETTING.TXT";
 
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
@@ -443,7 +443,7 @@ namespace Twin.Tools
 
 
 		/// <summary>
-		/// ‘Š‘ÎƒpƒX‚ğâ‘ÎƒpƒX‚É•ÏŠ·‚·‚éB
+		/// ç›¸å¯¾ãƒ‘ã‚¹ã‚’çµ¶å¯¾ãƒ‘ã‚¹ã«å¤‰æ›ã™ã‚‹ã€‚
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>

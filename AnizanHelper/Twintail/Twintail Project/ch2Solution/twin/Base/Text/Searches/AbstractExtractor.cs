@@ -7,7 +7,7 @@ namespace Twin.Text
 	using CSharpSamples;
 
 	/// <summary>
-	/// ƒŒƒX’Šo‹@”\‚ğÀ‘•‚·‚éŠî–{ƒNƒ‰ƒX
+	/// ãƒ¬ã‚¹æŠ½å‡ºæ©Ÿèƒ½ã‚’å®Ÿè£…ã™ã‚‹åŸºæœ¬ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class AbstractExtractor
 	{
@@ -15,7 +15,7 @@ namespace Twin.Text
 		private bool newWindow;
 
 		/// <summary>
-		/// ŒŸõƒIƒvƒVƒ‡ƒ“‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public SearchOptions Options {
 			set { options = value; }
@@ -23,7 +23,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// ’ŠoŒ‹‰Ê‚ğV‚µ‚¢ƒEƒCƒ“ƒhƒE‚Å•\¦‚·‚é‚©‚Ç‚¤‚©
+		/// æŠ½å‡ºçµæœã‚’æ–°ã—ã„ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã§è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
 		/// </summary>
 		public bool NewWindow {
 			set {
@@ -34,12 +34,12 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// AbstractExtractorƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AbstractExtractorã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public AbstractExtractor()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			options = SearchOptions.None;
 			newWindow = false;
@@ -47,22 +47,22 @@ namespace Twin.Text
 
 		
 		/// <summary>
-		/// w’è‚µ‚½ƒL[ƒ[ƒh‚ğŠÜ‚ŞƒŒƒX‚ğ’Šo
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’å«ã‚€ãƒ¬ã‚¹ã‚’æŠ½å‡º
 		/// </summary>
-		/// <param name="keyword">ŒŸõƒL[ƒ[ƒh</param>
-		/// <param name="element">ŒŸõ‘ÎÛ‚Ì—v‘f</param>
+		/// <param name="keyword">æ¤œç´¢ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰</param>
+		/// <param name="element">æ¤œç´¢å¯¾è±¡ã®è¦ç´ </param>
 		/// <returns></returns>
 		public abstract ResSetCollection Extract(string keyword, ResSetElement element);
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[ƒ[ƒh‚ğŠÜ‚ŞƒŒƒX‚ğ’Šo‚µ•\¦
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã‚’å«ã‚€ãƒ¬ã‚¹ã‚’æŠ½å‡ºã—è¡¨ç¤º
 		/// </summary>
-		/// <param name="keyword">ŒŸõƒL[ƒ[ƒh</param>
-		/// <param name="element">ŒŸõ‘ÎÛ‚Ì—v‘f</param>
+		/// <param name="keyword">æ¤œç´¢ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰</param>
+		/// <param name="element">æ¤œç´¢å¯¾è±¡ã®è¦ç´ </param>
 		public abstract bool InnerExtract(string keyword, ResSetElement element);
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒŠƒ“ƒN‚ğæ“¾
+		/// ã™ã¹ã¦ã®ãƒªãƒ³ã‚¯ã‚’å–å¾—
 		/// </summary>
 		/// <returns></returns>
 		public abstract LinkCollection GetLinks();

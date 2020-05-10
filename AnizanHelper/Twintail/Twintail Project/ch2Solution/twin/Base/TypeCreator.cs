@@ -7,7 +7,7 @@ namespace Twin
 	using Twin.IO;
 
 	/// <summary>
-	/// �o�^����Ă���^�����ɏ���������N���X
+	/// 登録されている型を代わりに初期化するクラス
 	/// </summary>
 	public sealed class TypeCreator
 	{
@@ -22,13 +22,13 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// bbs�ɑΉ�����e�N���X��o�^
+		/// bbsに対応する各クラスを登録
 		/// </summary>
-		/// <param name="bbs">�o�^����f����</param>
-		/// <param name="headerType">bbs�̂ɑΉ����Ă���w�b�_�N���X���w��</param>
-		/// <param name="readerType">bbs�̃X���b�h�ǂݍ��݂ɑΉ����Ă��郊�[�_�[���w��</param>
-		/// <param name="listReaderType">bbs�̃X���b�h�ꗗ�ǂݍ��݂ɑΉ����Ă��郊�[�_�[���w��</param>
-		/// <param name="postType">bbs�̓��e�ɑΉ����Ă���N���X���w��</param>
+		/// <param name="bbs">登録する掲示板</param>
+		/// <param name="headerType">bbsのに対応しているヘッダクラスを指定</param>
+		/// <param name="readerType">bbsのスレッド読み込みに対応しているリーダーを指定</param>
+		/// <param name="listReaderType">bbsのスレッド一覧読み込みに対応しているリーダーを指定</param>
+		/// <param name="postType">bbsの投稿に対応しているクラスを指定</param>
 		public static void Regist(BbsType bbs, 
 			Type headerType, Type readerType, Type listReaderType, Type postType)
 		{
@@ -54,7 +54,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// bbs�ɑΉ������w�b�_�N���X���쐬
+		/// bbsに対応したヘッダクラスを作成
 		/// </summary>
 		/// <param name="bbs"></param>
 		/// <returns></returns>
@@ -65,7 +65,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// bbs�ɑΉ������X���b�h���[�_�[���쐬
+		/// bbsに対応したスレッドリーダーを作成
 		/// </summary>
 		/// <param name="bbs"></param>
 		/// <returns></returns>
@@ -76,7 +76,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// bbs�ɑΉ������X���b�h�ꗗ���[�_�[���쐬
+		/// bbsに対応したスレッド一覧リーダーを作成
 		/// </summary>
 		/// <param name="bbs"></param>
 		/// <returns></returns>
@@ -87,7 +87,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// bbs�ɑΉ��������e�N���X���쐬
+		/// bbsに対応した投稿クラスを作成
 		/// </summary>
 		/// <param name="bbs"></param>
 		/// <returns></returns>

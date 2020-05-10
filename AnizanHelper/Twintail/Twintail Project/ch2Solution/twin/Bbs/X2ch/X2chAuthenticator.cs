@@ -100,17 +100,17 @@ namespace Twin.Bbs
 			);
 		#endregion
 
-		#region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		#region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// <summary>
-		/// ƒvƒ‰ƒCƒx[ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		/// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		/// </summary>
-		/// <remarks>X2chAuthenticator‚ğg—p‚·‚é‚½‚ß‚É‚Í<see cref="GetInstance"/>‚ÅƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B</remarks>
+		/// <remarks>X2chAuthenticatorã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã«ã¯<see cref="GetInstance"/>ã§ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚</remarks>
 		static X2chAuthenticator() { Disable(); }
 		#endregion
 
-		#region ‰Šú‰»¥—LŒø‰»E–³Œø‰»
+		#region åˆæœŸåŒ–ï½¥æœ‰åŠ¹åŒ–ãƒ»ç„¡åŠ¹åŒ–
 		/// <summary>
-		/// ”FØ‚ğ—LŒø‰»‚µ‚Ü‚·
+		/// èªè¨¼ã‚’æœ‰åŠ¹åŒ–ã—ã¾ã™
 		/// </summary>
 		public static void Enable(string loginId, string password)
 		{
@@ -119,7 +119,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ”FØ‚ğ–³Œø‰»‚µ‚Ü‚·
+		/// èªè¨¼ã‚’ç„¡åŠ¹åŒ–ã—ã¾ã™
 		/// </summary>
 		public static void Disable()
 		{
@@ -131,7 +131,7 @@ namespace Twin.Bbs
 		}
 		#endregion
 
-		#region ƒCƒ“ƒXƒ^ƒ“ƒXì¬‚ÆÚ‘±
+		#region ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä½œæˆã¨æ¥ç¶š
 		public static X2chAuthenticator GetInstance()
 		{
 			if (authenticator.IsConnectNeeded())
@@ -252,7 +252,7 @@ namespace Twin.Bbs
 
 		#region Properties
 		/// <summary>
-		/// ”FØ‚³‚ê‚½ SessionId
+		/// èªè¨¼ã•ã‚ŒãŸ SessionId
 		/// </summary>
 		public string SessionId
 		{
@@ -267,7 +267,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// —LŒø‚ÈSessionId‚Ì—L–³
+		/// æœ‰åŠ¹ãªSessionIdã®æœ‰ç„¡
 		/// </summary>
 		public bool HasSession
 		{

@@ -6,40 +6,40 @@ namespace Twin.Bbs
 	using System.Text;
 
 	/// <summary>
-	/// Zetabbs‚É“Še‚·‚éƒNƒ‰ƒX
+	/// Zetabbsã«æŠ•ç¨¿ã™ã‚‹ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class ZetaPost : X2chPost
 	{
 		/// <summary>
-		/// ZetaPostƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ZetaPostã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ZetaPost()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚ğ“Še
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(BoardInfo board, PostThread thread)
 		{
 			try {
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(Time);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				bool retried = false;
 
-				// CGI‚Ì‘¶İ‚·‚éURL‚ğì¬
+				// CGIã®å­˜åœ¨ã™ã‚‹URLã‚’ä½œæˆ
 				string uri = String.Format("http://{0}/cgi-bin/test/bbs.cgi", board.Server);
 
 				StringBuilder sb = new StringBuilder();
 				sb.Append("subject=" + UrlEncode(thread.Subject));
-				sb.Append("&submit=" + UrlEncode("V‹KƒXƒŒƒbƒhì¬"));
+				sb.Append("&submit=" + UrlEncode("æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆ"));
 				sb.Append("&FROM=" + UrlEncode(thread.From));
 				sb.Append("&mail=" + UrlEncode(thread.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(thread.Body));
@@ -56,10 +56,10 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ“Še
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(ThreadHeader header, PostRes res)
 		{
 			if (header == null) {
@@ -67,15 +67,15 @@ namespace Twin.Bbs
 			}
 
 			try {
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(header.LastModified);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				bool retried = false;
 
 				string uri = String.Format("http://{0}/cgi-bin/test/bbs.cgi", header.BoardInfo.Server);
 				StringBuilder sb = new StringBuilder();
-				sb.Append("submit=" + UrlEncode("‚Â‚Á‚±‚Ş"));
+				sb.Append("submit=" + UrlEncode("ã¤ã£ã“ã‚€"));
 				sb.Append("&FROM=" + UrlEncode(res.From));
 				sb.Append("&mail=" + UrlEncode(res.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(res.Body));

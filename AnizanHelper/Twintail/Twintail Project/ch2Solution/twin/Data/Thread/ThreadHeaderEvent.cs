@@ -6,19 +6,19 @@ namespace Twin
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ThreadHeaderEventHandlerƒfƒŠƒQ[ƒg
+	/// ThreadHeaderEventHandlerãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void ThreadHeaderEventHandler(object sender, ThreadHeaderEventArgs e);
 
 	/// <summary>
-	/// ThreadHeaderEvent ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// ThreadHeaderEvent ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ThreadHeaderEventArgs : EventArgs
 	{
 		private readonly List<ThreadHeader> headerCollection;
 
 		/// <summary>
-		/// ThreadHeader‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ThreadHeaderã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public List<ThreadHeader> Items {
 			get {
@@ -27,7 +27,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ThreadHeaderEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThreadHeaderEventArgs(List<ThreadHeader> items)
 		{
@@ -35,13 +35,13 @@ namespace Twin
 				throw new ArgumentNullException("items");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			headerCollection = items;
 		}
 
 		/// <summary>
-		/// ThreadHeaderEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThreadHeaderEventArgs(ThreadHeader header)
 		{

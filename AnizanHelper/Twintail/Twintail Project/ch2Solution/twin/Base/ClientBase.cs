@@ -9,8 +9,8 @@ namespace Twin.Bbs
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// Œf¦”Â‚©‚çƒf[ƒ^‚ğæ“¾‚·‚é‚½‚ß‚ÌŠî–{ƒNƒ‰ƒXB
-	/// ƒNƒ‰ƒCƒAƒ“ƒg‹¤’Ê‚Ì‹@”\‚ÆƒCƒxƒ“ƒg‚È‚ÇB
+	/// æ²ç¤ºæ¿ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹ã€‚
+	/// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå…±é€šã®æ©Ÿèƒ½ã¨ã‚¤ãƒ™ãƒ³ãƒˆãªã©ã€‚
 	/// </summary>
 	public abstract class ClientBase : Control
 	{
@@ -31,46 +31,46 @@ namespace Twin.Bbs
 		}
 	
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public static ThreadPriority Priority = ThreadPriority.Normal;
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…î•ñ‚ğŠÇ—‚·‚éƒNƒ‰ƒX‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public readonly Cache Cache;
 
 		/// <summary>
-		/// “Ç‚İ‚İŠJn‚É”­¶
+		/// èª­ã¿è¾¼ã¿é–‹å§‹æ™‚ã«ç™ºç”Ÿ
 		/// </summary>
 		public event EventHandler Loading;
 
 		/// <summary>
-		/// ƒf[ƒ^óM‚É”­¶
+		/// ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚ã«ç™ºç”Ÿ
 		/// </summary>
 		public event ReceiveEventHandler Receive;
 
 		/// <summary>
-		/// “Ç‚İ‚İŠ®—¹‚É”­¶
+		/// èª­ã¿è¾¼ã¿å®Œäº†æ™‚ã«ç™ºç”Ÿ
 		/// </summary>
 		public event CompleteEventHandler Complete;
 
 		/// <summary>
-		/// ƒXƒe[ƒ^ƒX‚ª•ÏX‚³‚ê‚½‚É”­¶
+		/// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒå¤‰æ›´ã•ã‚ŒãŸæ™‚ã«ç™ºç”Ÿ
 		/// </summary>
 		public event StatusTextEventHandler StatusTextChanged;
 
 		/// <summary>
-		/// ClientBaseƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ClientBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="cache">ƒLƒƒƒbƒVƒ…î•ñ</param>
+		/// <param name="cache">ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
 		protected ClientBase(Cache cache)
 		{
 			Cache = cache;
 		}
 
 		/// <summary>
-		/// LoadingƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Loadingã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -94,7 +94,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ReceiveƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Receiveã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -115,7 +115,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// CompleteƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Completeã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -139,7 +139,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// StatusTextChangedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// StatusTextChangedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -162,7 +162,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒRƒ“ƒgƒ[ƒ‹‚ğ‘I‘ğ
+		/// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’é¸æŠ
 		/// </summary>
 		public abstract void _Select();
 	}

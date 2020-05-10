@@ -10,7 +10,7 @@ namespace Twin.Tools
 	using Twin.Text;
 
 	/// <summary>
-	/// 2ch‚ÌƒT[ƒo[ˆÚ“]’ÇÕ
+	/// 2chã®ã‚µãƒ¼ãƒãƒ¼ç§»è»¢è¿½è·¡
 	/// </summary>
 	public class X2chServerTracer
 	{
@@ -18,42 +18,42 @@ namespace Twin.Tools
 		private BoardInfo result;
 
 		/// <summary>
-		/// ”Â‚Ì’ÇÕ—š—ğ‚ğæ“¾
+		/// æ¿ã®è¿½è·¡å±¥æ­´ã‚’å–å¾—
 		/// </summary>
 		public BoardInfoCollection TraceList {
 			get { return traceList; }
 		}
 
 		/// <summary>
-		/// ˆÚ“]æ‚ğæ“¾
+		/// ç§»è»¢å…ˆã‚’å–å¾—
 		/// </summary>
 		public BoardInfo Result {
 			get { return result; }
 		}
 
 		/// <summary>
-		/// ”Â‚Ì’ÇÕ‚É¬Œ÷‚µ‚½‚Æ‚«‚É”­¶‚·‚éƒCƒxƒ“ƒg
+		/// æ¿ã®è¿½è·¡ã«æˆåŠŸã—ãŸã¨ãã«ç™ºç”Ÿã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
 		/// </summary>
 		public event EventHandler<ServerChangeEventArgs> Tracing;
 
 		/// <summary>
-		/// X2chServerTracerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chServerTracerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chServerTracer()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			traceList = new BoardInfoCollection();
 			result = null;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌˆÚ“]‚ğ’ÇÕ
+		/// æŒ‡å®šã—ãŸæ¿ã®ç§»è»¢ã‚’è¿½è·¡
 		/// </summary>
-		/// <param name="board">’ÇÕ‚·‚é”Â</param>
-		/// <param name="recursive">ˆÚ“]æ‚ª‚³‚ç‚ÉˆÚ“]‚µ‚Ä‚¢‚½ê‡AÄ‹N’ÇÕ‚·‚é‚©‚Ç‚¤‚©</param>
-		/// <returns>’ÇÕ‚Å‚«‚ê‚ÎtrueA¸”s‚·‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="board">è¿½è·¡ã™ã‚‹æ¿</param>
+		/// <param name="recursive">ç§»è»¢å…ˆãŒã•ã‚‰ã«ç§»è»¢ã—ã¦ã„ãŸå ´åˆã€å†èµ·è¿½è·¡ã™ã‚‹ã‹ã©ã†ã‹</param>
+		/// <returns>è¿½è·¡ã§ãã‚Œã°trueã€å¤±æ•—ã™ã‚Œã°falseã‚’è¿”ã™</returns>
 		public bool Trace(BoardInfo board, bool recursive)
 		{
 			if (board == null) {
@@ -63,7 +63,7 @@ namespace Twin.Tools
 			traceList.Clear();
 			result = null;
 Check:
-			// Htmlƒf[ƒ^‚ğæ“¾
+			// Htmlãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(board.Url);
 			req.UserAgent = TwinDll.UserAgent;
 			req.AddRange(0, 499);
@@ -76,18 +76,18 @@ Check:
 
 			res.Close();
 			
-			// ƒT[ƒo[ˆÚ“]
+			// ã‚µãƒ¼ãƒãƒ¼ç§»è»¢
 			if (html.IndexOf("2chbbs..") >= 0)
 			{
-				TwinDll.Output("{0} ‚ªˆÚ“]‚µ‚Ä‚¢‚Ü‚·B", board.Url);
+				TwinDll.Output("{0} ãŒç§»è»¢ã—ã¦ã„ã¾ã™ã€‚", board.Url);
 
-				// ˆÚ“]æ‚ÌURL‚ğæ“¾
+				// ç§»è»¢å…ˆã®URLã‚’å–å¾—
 				Match m = Regex.Match(html, "<a href=\"(?<url>.+?)\">GO !</a>", RegexOptions.IgnoreCase);
 				if (m.Success)
 				{
 					string newUrl = m.Groups["url"].Value;
 
-					TwinDll.Output("ˆÚ“]æ {0} ‚ğ”­Œ©‚µ‚Ü‚µ‚½B", newUrl);
+					TwinDll.Output("ç§»è»¢å…ˆ {0} ã‚’ç™ºè¦‹ã—ã¾ã—ãŸã€‚", newUrl);
 
 					result = URLParser.ParseBoard(m.Groups["url"].Value);
 					if (result != null)
@@ -107,7 +107,7 @@ Check:
 					}
 				}
 			}
-			// ’ÇÕI—¹‚µ‚½ê‡‚Í”Â–¼‚ğæ“¾
+			// è¿½è·¡çµ‚äº†ã—ãŸå ´åˆã¯æ¿åã‚’å–å¾—
 			else if (result != null)
 			{
 				if (String.IsNullOrEmpty(result.Name))
@@ -118,14 +118,14 @@ Check:
 						result.Name = m.Groups["t"].Value;
 					}
 				}
-				TwinDll.Output("{0} ‚Ì’ÇÕ‚É¬Œ÷‚µ‚Ü‚µ‚½B", result.Name);
+				TwinDll.Output("{0} ã®è¿½è·¡ã«æˆåŠŸã—ã¾ã—ãŸã€‚", result.Name);
 			}
 
 			return (result != null) ? true : false;
 		}
 
 		/// <summary>
-		/// TracingƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Tracingã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnTracing(ServerChangeEventArgs e)

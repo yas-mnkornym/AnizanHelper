@@ -5,7 +5,7 @@ namespace Twin
 	using System;
 	using System.Collections.Generic;
 
-	// デリゲートの定義
+	// 繝�繝ｪ繧ｲ繝ｼ繝医�ｮ螳夂ｾｩ
 	internal delegate void WriteResMethodInvoker(ResSetCollection items);
 	internal delegate void WriteListMethodInvoker(List<ThreadHeader> items);
 	internal delegate void LoadingMethodInvoker(EventArgs e);

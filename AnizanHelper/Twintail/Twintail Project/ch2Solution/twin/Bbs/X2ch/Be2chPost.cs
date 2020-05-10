@@ -6,7 +6,7 @@ using System.Text;
 namespace Twin.Bbs
 {
 	/// <summary>
-	/// Be2chPost ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Be2chPost ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class Be2chPost : X2chPost
 	{
@@ -19,12 +19,12 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// Be2chPost ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Be2chPost ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Be2chPost() : base(Encoding.GetEncoding("euc-jp"))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

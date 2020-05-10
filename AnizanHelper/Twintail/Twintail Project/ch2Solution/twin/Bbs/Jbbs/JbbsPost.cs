@@ -9,65 +9,65 @@ namespace Twin.Bbs
 	using System.Diagnostics;
 
 	/// <summary>
-	/// jbbs‚É“Še‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// jbbsã«æŠ•ç¨¿ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class JbbsPost : PostBase
 	{
 		private PostResponse response;
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Še‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾ (‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Étrue‚ğ•Ô‚·)
+		/// ãƒ¬ã‚¹ã‚’æŠ•ç¨¿ã§ãã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾— (ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«trueã‚’è¿”ã™)
 		/// </summary>
 		public override bool CanPostRes {
 			get { return true; }
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğ“Še‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾ (‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Éfalse‚ğ•Ô‚·)
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿ã§ãã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾— (ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«falseã‚’è¿”ã™)
 		/// </summary>
 		public override bool CanPostThread {
 			get { return true; }
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚©‚ç‚Ì‰‘Î‚ğæ“¾
+		/// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œå¯¾ã‚’å–å¾—
 		/// </summary>
 		public override PostResponse Response {
 			get { return response; }
 		}
 
 		/// <summary>
-		/// JbbsPostƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// JbbsPostã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public JbbsPost()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			Encoding = Encoding.GetEncoding("EUC-JP");
 			response = PostResponse.None;
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚ğ“Še
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(BoardInfo board, PostThread thread)
 		{
 			try {
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(Time);
 
 				string[] dirbbs = board.Path.Split('/');
 
-				// CGI‚Ì‘¶İ‚·‚éURL‚ğì¬
+				// CGIã®å­˜åœ¨ã™ã‚‹URLã‚’ä½œæˆ
 				string uri = String.Format("http://{0}/bbs/write.cgi/{1}/new/", board.Server, board.Path);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				StringBuilder sb = new StringBuilder();
 				sb.Append("SUBJECT=" + UrlEncode(thread.Subject));
-				sb.Append("&submit=" + UrlEncode("V‹K‘‚«‚İ"));
+				sb.Append("&submit=" + UrlEncode("æ–°è¦æ›¸ãè¾¼ã¿"));
 				sb.Append("&NAME=" + UrlEncode(thread.From));
 				sb.Append("&MAIL=" + UrlEncode(thread.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(thread.Body));
@@ -87,10 +87,10 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ“Še
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(ThreadHeader header, PostRes res)
 		{
 			if (header == null) {
@@ -100,17 +100,17 @@ namespace Twin.Bbs
 			try {
 				BoardInfo board = header.BoardInfo;
 
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(header.LastModified);
 
-				// BoardInfo.Path‚ğBBS‚ÆDIR‚É•ªŠ„
+				// BoardInfo.Pathã‚’BBSã¨DIRã«åˆ†å‰²
 				string[] dirbbs = board.Path.Split('/');
 				Trace.Assert(dirbbs.Length == 2);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				string uri = String.Format("http://{0}/bbs/write.cgi/{1}/{2}/", board.Server, board.Path, header.Key);
 				StringBuilder sb = new StringBuilder();
-				sb.Append("submit=" + UrlEncode("‘‚«‚Ş"));
+				sb.Append("submit=" + UrlEncode("æ›¸ãè¾¼ã‚€"));
 				sb.Append("&NAME=" + UrlEncode(res.From));
 				sb.Append("&MAIL=" + UrlEncode(res.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(res.Body));
@@ -157,22 +157,22 @@ namespace Twin.Bbs
 
 				res = (HttpWebResponse)req.GetResponse();
 
-				// ƒŒƒXƒ|ƒ“ƒX‚ğ‰ğÍ
+				// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’è§£æ
 				using (TextReader reader = new StreamReader(res.GetResponseStream(), Encoding))
 				{
 					parser = new PostResponseParser(reader.ReadToEnd());
 					response = parser.Response;
 
-					// <TITLE>302 Found</TITLE>‚ª•Ô‚Á‚Ä‚«‚½‚ç‘‚«‚İ¬Œ÷
+					// <TITLE>302 Found</TITLE>ãŒè¿”ã£ã¦ããŸã‚‰æ›¸ãè¾¼ã¿æˆåŠŸ
 //					if (res.StatusCode == HttpStatusCode.Found)
 //						response = PostResponse.Success;
 				}
 
-				// “ŠeƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+				// æŠ•ç¨¿ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 				PostEventArgs e = new PostEventArgs(response, parser.Title, parser.PlainText, null, -1);
 				OnPosted(this, e);
 
-				// Šù‚ÉƒŠƒgƒ‰ƒC‚³‚ê‚Ä‚¢‚½‚ç–³ŒÀƒ‹[ƒv–h~‚Ì‚½‚ßfalse‚Éİ’è
+				// æ—¢ã«ãƒªãƒˆãƒ©ã‚¤ã•ã‚Œã¦ã„ãŸã‚‰ç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢ã®ãŸã‚falseã«è¨­å®š
 				retried = retried ? false : e.Retry;
 			}
 			catch (Exception ex)
@@ -189,7 +189,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// “Še‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+		/// æŠ•ç¨¿ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 		/// </summary>
 		public override void Cancel()
 		{

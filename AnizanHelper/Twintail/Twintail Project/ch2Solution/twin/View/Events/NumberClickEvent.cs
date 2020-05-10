@@ -6,13 +6,13 @@ namespace Twin
 	using Twin;
 
 	/// <summary>
-	/// ThreadViewer.NumberClickƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ThreadViewer.NumberClickã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void NumberClickEventHandler(object sender, 
 					NumberClickEventArgs e);
 
 	/// <summary>
-	/// ThreadViewer.NumberClickƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ThreadViewer.NumberClickã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class NumberClickEventArgs : EventArgs
 	{
@@ -20,21 +20,21 @@ namespace Twin
 		private readonly ResSet resSet;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ìƒwƒbƒ_î•ñ‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public ThreadHeader Header {
 			get { return header; }
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚½ƒŒƒX‚ğæ“¾
+		/// é¸æŠã•ã‚ŒãŸãƒ¬ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public ResSet ResSet {
 			get { return resSet; }
 		}
 
 		/// <summary>
-		/// NumberClickEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// NumberClickEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="header"></param>
 		/// <param name="res"></param>

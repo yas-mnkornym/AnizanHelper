@@ -7,12 +7,12 @@ namespace Twin.IO
 	using System.Net;
 
 	/// <summary>
-	/// Œf¦”Â‚ÌƒXƒŒƒbƒh‚ğ“Ç‚İ‚ŞƒCƒ“ƒ^[ƒtƒF[ƒX
+	/// æ²ç¤ºæ¿ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã‚€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	/// </summary>
 	public abstract class ThreadReader
 	{
 		/// <summary>
-		/// ƒf[ƒ^‚Ì’·‚³‚ğæ“¾
+		/// ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å–å¾—
 		/// </summary>
 		public abstract int Length
 		{
@@ -20,7 +20,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ÌŒ»İˆÊ’u‚ğæ“¾
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		public abstract int Position
 		{
@@ -28,7 +28,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İ‚Ég—p‚·‚éƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract int BufferSize
 		{
@@ -37,7 +37,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public abstract bool IsOpen
 		{
@@ -45,7 +45,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// User-Agent‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// User-Agentã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract string UserAgent
 		{
@@ -54,45 +54,45 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ·•ªæ“¾‚É‚ ‚Ú[‚ñ‚ğŒŸo‚µ‚½‚Æ‚«‚É”­¶
+		/// å·®åˆ†å–å¾—æ™‚ã«ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œå‡ºã—ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public virtual event EventHandler ABone;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğæ“¾‚Å‚«‚È‚©‚Á‚½‚Æ‚«‚É”­¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å–å¾—ã§ããªã‹ã£ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public virtual event EventHandler<PastlogEventArgs> Pastlog;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="header"></param>
 		public abstract bool Open(ThreadHeader header);
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ‰ğÍ‚µ‚ÄresCollection‚ÉŠi”[
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã—ã¦resCollectionã«æ ¼ç´
 		/// </summary>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”B––’[‚Ìê‡‚Í 0B‚ ‚Ú[‚ñ‚ğŒŸ’m‚µ‚½ê‡‚Í -1 ‚ğ•Ô‚·</returns>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã€‚æœ«ç«¯ã®å ´åˆã¯ 0ã€‚ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œçŸ¥ã—ãŸå ´åˆã¯ -1 ã‚’è¿”ã™</returns>
 		public abstract int Read(ResSetCollection resCollection);
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ‰ğÍ‚µ‚ÄresCollection‚ÉŠi”[
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã—ã¦resCollectionã«æ ¼ç´
 		/// </summary>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”B––’[‚Ìê‡‚Í 0B‚ ‚Ú[‚ñ‚ğŒŸ’m‚µ‚½ê‡‚Í -1 ‚ğ•Ô‚·</returns>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã€‚æœ«ç«¯ã®å ´åˆã¯ 0ã€‚ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œçŸ¥ã—ãŸå ´åˆã¯ -1 ã‚’è¿”ã™</returns>
 		public abstract int Read(ResSetCollection resCollection, out int byteParsed);
 
 		/// <summary>
-		/// “Ç‚İ‚İƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+		/// èª­ã¿è¾¼ã¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 		/// </summary>
 		public abstract void Close();
 
 		/// <summary>
-		/// ’ÊMˆ—‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B
+		/// é€šä¿¡å‡¦ç†ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract void Cancel();
 
 		/// <summary>
-		/// ABoneƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// ABoneã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		protected void OnABone()
 		{
@@ -101,7 +101,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// PastlogƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Pastlogã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		protected void OnPastlog(PastlogEventArgs argument)
 		{
@@ -116,7 +116,7 @@ namespace Twin.IO
 	{
 		private bool reget = false;
 		/// <summary>
-		/// ƒƒO‚ğÄæ“¾‚·‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ãƒ­ã‚°ã‚’å†å–å¾—ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsReget
 		{

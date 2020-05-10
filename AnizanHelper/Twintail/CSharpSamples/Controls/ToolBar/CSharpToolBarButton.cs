@@ -10,14 +10,14 @@ namespace CSharpSamples
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// CSharpToolBar ‚Ìƒ{ƒ^ƒ“‚ğ•\‚·
+	/// CSharpToolBar ã®ãƒœã‚¿ãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	[DesignTimeVisible(false)]
 	public class CSharpToolBarButton : Component, ICloneable
 	{
 		#region InnerClass
 		/// <summary>
-		/// CSharpToolBarButton‚ğŠi”[‚·‚éƒRƒŒƒNƒVƒ‡ƒ“
+		/// CSharpToolBarButtonã‚’æ ¼ç´ã™ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³
 		/// </summary>
 		public class CSharpToolBarButtonCollection : ICollection, IList, IEnumerable
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples
 			private ArrayList innerList;
 
 			/// <summary>
-			/// ƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“”‚ğæ“¾
+			/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³æ•°ã‚’å–å¾—
 			/// </summary>
 			public int Count
 			{
@@ -36,7 +36,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Ìƒ{ƒ^ƒ“‚ğæ“¾‚Ü‚½‚Íİ’è
+			/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 			/// </summary>
 			public CSharpToolBarButton this[int index]
 			{
@@ -47,9 +47,9 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// CSharpToolBarButtonCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+			/// CSharpToolBarButtonCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 			/// </summary>
-			/// <param name="toolbar">‚±‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ìe‚É‚È‚éCSharpToolBarƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
+			/// <param name="toolbar">ã“ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®è¦ªã«ãªã‚‹CSharpToolBarã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
 			internal CSharpToolBarButtonCollection(CSharpToolBar toolbar)
 			{
 				if (toolbar == null)
@@ -62,10 +62,10 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒc[ƒ‹ƒo[‚Ì––”ö‚Éƒ{ƒ^ƒ“‚ğ’Ç‰Á
+			/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®æœ«å°¾ã«ãƒœã‚¿ãƒ³ã‚’è¿½åŠ 
 			/// </summary>
-			/// <param name="button">ƒc[ƒ‹ƒo[‚É’Ç‰Á‚·‚éƒ{ƒ^ƒ“</param>
-			/// <returns>ƒ{ƒ^ƒ“‚ª’Ç‰Á‚³‚ê‚½ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌƒCƒ“ƒfƒbƒNƒX</returns>
+			/// <param name="button">ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«è¿½åŠ ã™ã‚‹ãƒœã‚¿ãƒ³</param>
+			/// <returns>ãƒœã‚¿ãƒ³ãŒè¿½åŠ ã•ã‚ŒãŸã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</returns>
 			public int Add(CSharpToolBarButton button)
 			{
 				if (button == null)
@@ -74,7 +74,7 @@ namespace CSharpSamples
 				}
 				if (button.toolBar != null)
 				{
-					throw new ArgumentException("‚±‚Ìƒ{ƒ^ƒ“‚ÍŠù‚É‘¼‚Ìƒc[ƒ‹ƒo[‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·");
+					throw new ArgumentException("ã“ã®ãƒœã‚¿ãƒ³ã¯æ—¢ã«ä»–ã®ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™");
 				}
 
 				int index = this.innerList.Add(button);
@@ -88,7 +88,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒc[ƒ‹ƒo[‚ÉCSharpToolBarButton‚Ì”z—ñ‚ğ’Ç‰Á
+			/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«CSharpToolBarButtonã®é…åˆ—ã‚’è¿½åŠ 
 			/// </summary>
 			/// <param name="buttons"></param>
 			public void AddRange(CSharpToolBarButton[] buttons)
@@ -100,10 +100,10 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒc[ƒ‹ƒo[‚Ìw’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÌˆÊ’u‚Éƒ{ƒ^ƒ“‚ğ‘}“ü
+			/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ä½ç½®ã«ãƒœã‚¿ãƒ³ã‚’æŒ¿å…¥
 			/// </summary>
-			/// <param name="index">button‚ğ‘}“ü‚·‚é0‚©‚çn‚Ü‚éƒCƒ“ƒfƒbƒNƒX”Ô†</param>
-			/// <param name="button">‘}“ü‚·‚éCSharpToolBarButton</param>
+			/// <param name="index">buttonã‚’æŒ¿å…¥ã™ã‚‹0ã‹ã‚‰å§‹ã¾ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·</param>
+			/// <param name="button">æŒ¿å…¥ã™ã‚‹CSharpToolBarButton</param>
 			public void Insert(int index, CSharpToolBarButton button)
 			{
 				if (index < 0 || index > this.Count)
@@ -119,9 +119,9 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒ{ƒ^ƒ“‚ğƒc[ƒ‹ƒo[‚©‚çíœ
+			/// ãƒœã‚¿ãƒ³ã‚’ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‹ã‚‰å‰Šé™¤
 			/// </summary>
-			/// <param name="button">ƒc[ƒ‹ƒo[‚©‚çíœ‚·‚éCSharpToolBarButton</param>
+			/// <param name="button">ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‹ã‚‰å‰Šé™¤ã™ã‚‹CSharpToolBarButton</param>
 			public void Remove(CSharpToolBarButton button)
 			{
 				int index = this.innerList.IndexOf(button);
@@ -136,9 +136,9 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒc[ƒ‹ƒo[‚©‚çw’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚ ‚éƒ{ƒ^ƒ“‚ğíœ
+			/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‹ã‚‰æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ã‚‹ãƒœã‚¿ãƒ³ã‚’å‰Šé™¤
 			/// </summary>
-			/// <param name="index">íœ‚·‚éCSharpToolBarButton‚ÌƒCƒ“ƒfƒbƒNƒX</param>
+			/// <param name="index">å‰Šé™¤ã™ã‚‹CSharpToolBarButtonã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
 			public void RemoveAt(int index)
 			{
 				if (index < 0 || index >= this.Count)
@@ -155,7 +155,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ƒc[ƒ‹ƒo[‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“‚ğ‚·‚×‚Äíœ
+			/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³ã‚’ã™ã¹ã¦å‰Šé™¤
 			/// </summary>
 			public void Clear()
 			{
@@ -169,7 +169,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// button ‚Ì ‡”Ô‚ğ newIndex ‚É•ÏX‚µ‚Ü‚·B
+			/// button ã® é †ç•ªã‚’ newIndex ã«å¤‰æ›´ã—ã¾ã™ã€‚
 			/// </summary>
 			/// <param name="button"></param>
 			/// <param name="newIndex"></param>
@@ -177,7 +177,7 @@ namespace CSharpSamples
 			{
 				if (button.toolBar == null)
 				{
-					throw new ArgumentException("button ‚Ée‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ArgumentException("button ã«è¦ªãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 				}
 
 				if (newIndex < 0 || newIndex > this.Count)
@@ -207,7 +207,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// CSharpToolBarButtonCollection‚ÌƒZƒNƒVƒ‡ƒ“‚Ì—ñ‹“q‚ğ•Ô‚·
+			/// CSharpToolBarButtonCollectionã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆ—æŒ™å­ã‚’è¿”ã™
 			/// </summary>
 			/// <returns>IEnumerator</returns>
 			public IEnumerator GetEnumerator()
@@ -217,7 +217,7 @@ namespace CSharpSamples
 
 			#region ICollection
 			/// <summary>
-			/// q‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ö‚ÌƒAƒNƒZƒX‚ª“¯Šú‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+			/// å­ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒåŒæœŸã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 			/// </summary>
 			bool ICollection.IsSynchronized
 			{
@@ -228,7 +228,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// q‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ö‚ÌƒAƒNƒZƒX‚ğ“¯Šú‚·‚é‚½‚ß‚Ég—p‚·‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
+			/// å­ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’åŒæœŸã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 			/// </summary>
 			object ICollection.SyncRoot
 			{
@@ -239,7 +239,7 @@ namespace CSharpSamples
 			}
 
 			/// <summary>
-			/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğarray‚ÉƒRƒs[
+			/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’arrayã«ã‚³ãƒ”ãƒ¼
 			/// </summary>
 			/// <param name="array"></param>
 			/// <param name="index"></param>
@@ -313,7 +313,7 @@ namespace CSharpSamples
 		private object tag;
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒc[ƒ‹ƒo[‚ğæ“¾
+		/// ã“ã®ãƒœã‚¿ãƒ³ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’å–å¾—
 		/// </summary>
 		public CSharpToolBar ToolBar
 		{
@@ -324,7 +324,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚ÌRectangleÀ•W‚ğæ“¾
+		/// ã“ã®ãƒœã‚¿ãƒ³ã®Rectangleåº§æ¨™ã‚’å–å¾—
 		/// </summary>
 		public Rectangle Bounds
 		{
@@ -335,7 +335,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†‚ğæ“¾
+		/// ã“ã®ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã‚’å–å¾—
 		/// </summary>
 		public int Index
 		{
@@ -350,7 +350,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[ƒ{ƒ^ƒ“‚ÌƒXƒ^ƒCƒ‹Œ`®‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãƒœã‚¿ãƒ³ã®ã‚¹ã‚¿ã‚¤ãƒ«å½¢å¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public CSharpToolBarButtonStyle Style
 		{
@@ -369,7 +369,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚É•\¦‚³‚ê‚éƒeƒLƒXƒg‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒœã‚¿ãƒ³ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Text
 		{
@@ -399,7 +399,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒCƒ[ƒWƒŠƒXƒg‚ÌƒAƒCƒRƒ“”Ô†‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®ã‚¢ã‚¤ã‚³ãƒ³ç•ªå·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(-1)]
 		[TypeConverter(typeof(ImageIndexConverter))]
@@ -421,7 +421,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¿ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public object Tag
 		{
@@ -436,12 +436,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSharpToolBarButtonƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarButtonã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CSharpToolBarButton()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.imageIndex = -1;
 			this.bounds = Rectangle.Empty;
@@ -452,9 +452,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSharpToolBarButtonƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarButtonã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="text">•\¦‚³‚ê‚éƒ{ƒ^ƒ“ƒeƒLƒXƒg</param>
+		/// <param name="text">è¡¨ç¤ºã•ã‚Œã‚‹ãƒœã‚¿ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ</param>
 		public CSharpToolBarButton(string text)
 			: this()
 		{
@@ -467,10 +467,10 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSharpToolBarButtonƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarButtonã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="text">•\¦‚³‚ê‚éƒ{ƒ^ƒ“ƒeƒLƒXƒg</param>
-		/// <param name="imageIndex">ƒCƒ[ƒWƒŠƒXƒg‚ÌƒAƒCƒRƒ“”Ô†</param>
+		/// <param name="text">è¡¨ç¤ºã•ã‚Œã‚‹ãƒœã‚¿ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ</param>
+		/// <param name="imageIndex">ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã®ã‚¢ã‚¤ã‚³ãƒ³ç•ªå·</param>
 		public CSharpToolBarButton(string text, int imageIndex)
 			: this(text)
 		{
@@ -478,9 +478,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSharpToolBarButtonƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarButtonã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="button">ƒRƒs[Œ³‚Ìƒ{ƒ^ƒ“</param>
+		/// <param name="button">ã‚³ãƒ”ãƒ¼å…ƒã®ãƒœã‚¿ãƒ³</param>
 		private CSharpToolBarButton(CSharpToolBarButton button)
 			: this()
 		{
@@ -496,7 +496,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌƒRƒs[‚ğì¬
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
 		/// </summary>
 		/// <returns></returns>
 		public object Clone()
@@ -506,7 +506,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// e‚Ìƒc[ƒ‹ƒo[‚ÉXV‚³‚ê‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
+		/// è¦ªã®ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«æ›´æ–°ã•ã‚ŒãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
 		/// </summary>
 		protected void Update()
 		{

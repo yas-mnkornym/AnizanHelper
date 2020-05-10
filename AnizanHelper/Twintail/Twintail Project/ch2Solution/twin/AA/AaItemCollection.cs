@@ -6,12 +6,12 @@ namespace Twin.Aa
 	using System.Collections;
 
 	/// <summary>
-	/// AaItem‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// AaItemã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class AaItemCollection : CollectionBase
 	{
 		/// <summary>
-		/// w’è‚µ‚½indexˆÊ’u‚ÌƒAƒCƒeƒ€‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸindexä½ç½®ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public AaItem this[int index] {
 			set {
@@ -21,23 +21,23 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒAƒCƒeƒ€‚ª’Ç‰Á‚³‚ê‚½‚Æ‚«‚É”­¶
+		/// ã‚¢ã‚¤ãƒ†ãƒ ãŒè¿½åŠ ã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		internal event AaItemSetEventHandler ItemSet;
 
 		/// <summary>
-		/// AaItemCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaItemCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public AaItemCollection()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			InnerList.Capacity = 50;
 		}
 
 		/// <summary>
-		/// item‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -48,7 +48,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// items‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemsã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(AaItemCollection items)
@@ -58,7 +58,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// items‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemsã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(AaItem[] items)
@@ -69,7 +69,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚Ìw’è‚µ‚½index‚Éitem‚ğ‘}“ü
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã—ãŸindexã«itemã‚’æŒ¿å…¥
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="item"></param>
@@ -80,7 +80,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// item‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// itemã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="item"></param>
 		public void Remove(AaItem item)
@@ -90,7 +90,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// item‚ğŒŸõ‚µƒCƒ“ƒfƒbƒNƒX’l‚ğæ“¾
+		/// itemã‚’æ¤œç´¢ã—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -100,14 +100,14 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌAaItem‚ğƒ\[ƒg
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®AaItemã‚’ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		public void Sort()
 		{
 			InnerList.Sort(new AaComparer.AaItemComparer());
 		}
 
-//		‚È‚ñ‚©ŒÄ‚Î‚ê‚È‚¢c
+//		ãªã‚“ã‹å‘¼ã°ã‚Œãªã„â€¦
 		protected override void OnSetComplete(int index, object oldValue, object newValue)
 		{
 			base.OnSetComplete(index, oldValue, newValue);

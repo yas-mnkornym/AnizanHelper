@@ -9,7 +9,7 @@ using CSharpSamples;
 namespace Twin.Bbs
 {
 	/// <summary>
-	/// Be2chCookie ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// Be2chCookie ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	[Serializable]
 	[System.ComponentModel.TypeConverter(typeof(TwinExpandableConverter))]

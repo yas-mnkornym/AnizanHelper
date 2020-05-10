@@ -8,7 +8,7 @@ namespace Twin
 	{
 		private ThreadHeader headerInfo;
 		/// <summary>
-		/// �X���b�h�̃w�b�_�[�����擾���܂��B
+		/// スレッドのヘッダー情報を取得します。
 		/// </summary>
 		public ThreadHeader HeaderInfo
 		{
@@ -20,7 +20,7 @@ namespace Twin
 	
 		private bool retry = false;
 		/// <summary>
-		/// �ēx�擾�����݂邩�ǂ����������l���擾�܂��͐ݒ肵�܂��B
+		/// 再度取得を試みるかどうかを示す値を取得または設定します。
 		/// </summary>
 		public bool Retry
 		{

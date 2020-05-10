@@ -8,7 +8,7 @@ namespace Twin
 	using CSharpSamples;
 
 	/// <summary>
-	/// NGƒ[ƒh‚ðˆêŠ‡ŠÇ—
+	/// NGãƒ¯ãƒ¼ãƒ‰ã‚’ä¸€æ‹¬ç®¡ç†
 	/// </summary>
 	public class NGWords
 	{
@@ -19,7 +19,7 @@ namespace Twin
 		private NGWordCollection subj;
 
 		/// <summary>
-		/// –{•¶‚É“K—p‚·‚éNGƒ[ƒh‚Ì•¶Žš—ñƒRƒŒƒNƒVƒ‡ƒ“‚ðŽæ“¾
+		/// æœ¬æ–‡ã«é©ç”¨ã™ã‚‹NGãƒ¯ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public NGWordCollection Body
 		{
@@ -30,7 +30,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// –¼‘O—“‚É“K—p‚·‚éNGƒ[ƒh‚Ì•¶Žš—ñƒRƒŒƒNƒVƒ‡ƒ“‚ðŽæ“¾
+		/// åå‰æ¬„ã«é©ç”¨ã™ã‚‹NGãƒ¯ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public NGWordCollection Name
 		{
@@ -41,7 +41,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒ[ƒ‹—“‚É“K—p‚·‚éNGƒ[ƒh‚Ì•¶Žš—ñƒRƒŒƒNƒVƒ‡ƒ“‚ðŽæ“¾
+		/// ãƒ¡ãƒ¼ãƒ«æ¬„ã«é©ç”¨ã™ã‚‹NGãƒ¯ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public NGWordCollection Email
 		{
@@ -52,7 +52,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ID‚É“K—p‚·‚éNGƒ[ƒh‚Ì•¶Žš—ñƒRƒŒƒNƒVƒ‡ƒ“‚ðŽæ“¾
+		/// IDã«é©ç”¨ã™ã‚‹NGãƒ¯ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public NGWordCollection ID
 		{
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh–¼‚É“K—p‚·‚éNGƒ[ƒh‚Ì•¶Žš—ñƒRƒŒƒNƒVƒ‡ƒ“‚ðŽæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰åã«é©ç”¨ã™ã‚‹NGãƒ¯ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public NGWordCollection Subject
 		{
@@ -74,12 +74,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// NGWordsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú
+		/// NGWordsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸ
 		/// </summary>
 		public NGWords()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ð‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			email = new NGWordCollection();
 			name = new NGWordCollection();
@@ -89,7 +89,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// NGWordsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// NGWordsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public NGWords(string filePath)
 			: this()
@@ -98,7 +98,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚©‚çNGƒ[ƒh‚ð“Ç‚Ýž‚Þ
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰NGãƒ¯ãƒ¼ãƒ‰ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void Load(string filePath)
@@ -139,7 +139,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Žw’è‚µ‚½ƒtƒ@ƒCƒ‹‚É•Û‘¶
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void Save(string filePath)
@@ -159,7 +159,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// text‚ªNGƒ[ƒh‚Éˆê’v‚·‚é‚©‚Ç‚¤‚©‚ð”»’f
+		/// textãŒNGãƒ¯ãƒ¼ãƒ‰ã«ä¸€è‡´ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -222,7 +222,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Žw’è‚µ‚½ƒŒƒX‚Éˆê’v‚·‚é‚©‚Ç‚¤‚©‚ð”»’f
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ã«ä¸€è‡´ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="res"></param>
 		/// <returns></returns>
@@ -233,7 +233,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// subject‚ªNGƒXƒŒƒbƒh–¼‚Éˆê’v‚·‚é‚©‚Ç‚¤‚©‚ð”»’f
+		/// subjectãŒNGã‚¹ãƒ¬ãƒƒãƒ‰åã«ä¸€è‡´ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="subject"></param>
 		/// <returns></returns>
@@ -243,7 +243,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌNGƒ[ƒh‚ðíœ
+		/// ã™ã¹ã¦ã®NGãƒ¯ãƒ¼ãƒ‰ã‚’å‰Šé™¤
 		/// </summary>
 		public void Clear()
 		{

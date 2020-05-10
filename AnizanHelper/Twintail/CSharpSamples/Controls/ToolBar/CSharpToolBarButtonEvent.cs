@@ -5,20 +5,20 @@ namespace CSharpSamples
 	using System;
 
 	/// <summary>
-	/// CSharpToolBar.ButtonClickƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒfƒŠƒQ[ƒg
+	/// CSharpToolBar.ButtonClickã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void CSharpToolBarButtonEventHandler(
 			object sender, CSharpToolBarButtonEventArgs e);
 
 	/// <summary>
-	/// CSharpToolBar.ButtonClickƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// CSharpToolBar.ButtonClickã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class CSharpToolBarButtonEventArgs : EventArgs
 	{
 		private readonly CSharpToolBarButton button;
 
 		/// <summary>
-		/// ƒNƒŠƒbƒN‚³‚ê‚½ƒ{ƒ^ƒ“‚ğæ“¾
+		/// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public CSharpToolBarButton Button
 		{
@@ -29,9 +29,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSharpToolBarButtonEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarButtonEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="button">ƒNƒŠƒbƒN‚³‚ê‚½ƒ{ƒ^ƒ“</param>
+		/// <param name="button">ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸãƒœã‚¿ãƒ³</param>
 		public CSharpToolBarButtonEventArgs(CSharpToolBarButton button)
 		{
 			if (button == null)

@@ -11,14 +11,14 @@ namespace Twin
 	using System.Text;
 
 	/// <summary>
-	/// NGƒ[ƒh•¶š—ñ‚ğŒŸõ—p‚ÉƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// NGãƒ¯ãƒ¼ãƒ‰æ–‡å­—åˆ—ã‚’æ¤œç´¢ç”¨ã«ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class NGWordCollection
 	{
 		private List<ISearchable> iSearchers;
 
 		/// <summary>
-		/// NGWordCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// NGWordCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public NGWordCollection()
 		{
@@ -37,9 +37,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// word‚ªNGƒ[ƒh‚Éˆê’v‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// wordãŒNGãƒ¯ãƒ¼ãƒ‰ã«ä¸€è‡´ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="word">ŒŸõ‚·‚é’PŒê</param>
+		/// <param name="word">æ¤œç´¢ã™ã‚‹å˜èª</param>
 		/// <returns></returns>
 		public int Search(string word, out string matchWord)
 		{
@@ -57,7 +57,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// NGƒ[ƒhƒRƒŒƒNƒVƒ‡ƒ“‚É•¶š—ñ‚ğ’Ç‰Á
+		/// NGãƒ¯ãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ–‡å­—åˆ—ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -87,7 +87,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// •¡”‚ÌNGƒ[ƒh‚ğ’Ç‰Á
+		/// è¤‡æ•°ã®NGãƒ¯ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="array"></param>
 		public void AddRange(string[] array)
@@ -97,7 +97,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// •¡”‚ÌNGƒ[ƒh‚ğ’Ç‰Á
+		/// è¤‡æ•°ã®NGãƒ¯ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="strings"></param>
 		public void AddRange(StringCollection strings)
@@ -110,7 +110,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// nGWords‚ğ’Ç‰Á
+		/// nGWordsã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="nGWords"></param>
 		public void AddRange(NGWordCollection nGWords)
@@ -119,7 +119,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ˆê’[‚·‚×‚Ä‚Ì—v‘f‚ğíœ‚µarray‚ğ’Ç‰Á
+		/// ä¸€ç«¯ã™ã¹ã¦ã®è¦ç´ ã‚’å‰Šé™¤ã—arrayã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="array"></param>
 		public void SetRange(string[] array)
@@ -129,7 +129,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// ã™ã¹ã¦ã®æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		/// <returns></returns>
 		public string[] GetPatterns()
@@ -152,7 +152,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚ğƒNƒŠƒA
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -165,7 +165,7 @@ namespace Twin
 
 			sb.Append("$").Append(s.Pattern);
 
-			// ƒIƒvƒVƒ‡ƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡
+			// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆ
 			if (s.Regex.Options != RegexOptions.None)
 			{
 				sb.Append('\t');

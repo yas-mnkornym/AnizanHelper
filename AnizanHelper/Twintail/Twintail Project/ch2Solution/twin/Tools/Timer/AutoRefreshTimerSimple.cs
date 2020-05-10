@@ -7,8 +7,8 @@ namespace Twin.Tools
 	using System.Collections;
 
 	/// <summary>
-	/// ThreadControl‚ğƒ^ƒCƒ}[‚Å’èŠú“I‚ÉXV‚·‚é‹@”\‚ğ’ñ‹ŸB
-	/// “Á‚É¬×H‚È‚µ‚ÌƒVƒ“ƒvƒ‹‚È\‘¢B
+	/// ThreadControlã‚’ã‚¿ã‚¤ãƒãƒ¼ã§å®šæœŸçš„ã«æ›´æ–°ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›ã€‚
+	/// ç‰¹ã«å°ç´°å·¥ãªã—ã®ã‚·ãƒ³ãƒ—ãƒ«ãªæ§‹é€ ã€‚
 	/// </summary>
 	public class AutoRefreshTimerSimple : AutoRefreshTimerBase
 	{
@@ -17,8 +17,8 @@ namespace Twin.Tools
 		private int interval;
 
 		/// <summary>
-		/// XVŠÔŠu‚ğƒ~ƒŠ•b’PˆÊ‚Åæ“¾‚Ü‚½‚Íİ’èB
-		/// Å¬’l‚Í5000 (5•b)B
+		/// æ›´æ–°é–“éš”ã‚’ãƒŸãƒªç§’å˜ä½ã§å–å¾—ã¾ãŸã¯è¨­å®šã€‚
+		/// æœ€å°å€¤ã¯5000 (5ç§’)ã€‚
 		/// </summary>
 		public override int Interval {
 			set {
@@ -29,18 +29,18 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// AutoRefreshTimerSimpleƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AutoRefreshTimerSimpleã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public AutoRefreshTimerSimple()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			list = ArrayList.Synchronized(new ArrayList());
 			timer = new Timer();
 			timer.Elapsed += new ElapsedEventHandler(OnTimer);
 
-			// ‰Šú’l‚Í10•b
+			// åˆæœŸå€¤ã¯10ç§’
 			Interval = 10000;
 		}
 
@@ -58,10 +58,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒŠƒXƒg‚ÉƒNƒ‰ƒCƒAƒ“ƒg‚ğ’Ç‰ÁB
-		/// Šù‚É“¯‚¶ƒNƒ‰ƒCƒAƒ“ƒg‚ª“o˜^‚³‚ê‚Ä‚¢‚ê‚Î‰½‚à‚µ‚È‚¢B
+		/// ãƒªã‚¹ãƒˆã«ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’è¿½åŠ ã€‚
+		/// æ—¢ã«åŒã˜ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
 		/// </summary>
-		/// <param name="client">©“®XV‚Ì‘ÎÛ‚Æ‚·‚éƒNƒ‰ƒCƒAƒ“ƒg</param>
+		/// <param name="client">è‡ªå‹•æ›´æ–°ã®å¯¾è±¡ã¨ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
 		public override void Add(ThreadControl client)
 		{
 			if (client == null) {
@@ -70,7 +70,7 @@ namespace Twin.Tools
 
 			if (list.IndexOf(client) == -1)
 			{
-				// Š®—¹ƒCƒxƒ“ƒg‚É“o˜^
+				// å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆã«ç™»éŒ²
 				client.Complete += new CompleteEventHandler(OnComplete);
 				list.Add(client);
 			}
@@ -80,10 +80,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒŠƒXƒg‚©‚çƒNƒ‰ƒCƒAƒ“ƒg‚ğíœB
-		/// w’è‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ªƒŠƒXƒg‚É‘¶İ‚µ‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢B
+		/// ãƒªã‚¹ãƒˆã‹ã‚‰ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’å‰Šé™¤ã€‚
+		/// æŒ‡å®šã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒãƒªã‚¹ãƒˆã«å­˜åœ¨ã—ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
 		/// </summary>
-		/// <param name="client">©“®XV‚Ì‘ÎÛ‚©‚çŠO‚·ƒNƒ‰ƒCƒAƒ“ƒg</param>
+		/// <param name="client">è‡ªå‹•æ›´æ–°ã®å¯¾è±¡ã‹ã‚‰å¤–ã™ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
 		public override void Remove(ThreadControl client)
 		{
 			if (list.Contains(client))
@@ -97,17 +97,17 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ªƒŠƒXƒg“à‚É‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒãƒªã‚¹ãƒˆå†…ã«å­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="client">ŒŸõ‚·‚éƒNƒ‰ƒCƒAƒ“ƒg</param>
-		/// <returns>ƒŠƒXƒg“à‚É‘¶İ‚·‚ê‚ÎtrueA‘¶İ‚µ‚È‚¯‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="client">æ¤œç´¢ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
+		/// <returns>ãƒªã‚¹ãƒˆå†…ã«å­˜åœ¨ã™ã‚Œã°trueã€å­˜åœ¨ã—ãªã‘ã‚Œã°falseã‚’è¿”ã™</returns>
 		public override bool Contains(ThreadControl client)
 		{
 			return list.Contains(client);
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ìƒ^ƒCƒ}[‚ğíœ
+		/// ã™ã¹ã¦ã®ã‚¿ã‚¤ãƒãƒ¼ã‚’å‰Šé™¤
 		/// </summary>
 		public override void Clear()
 		{
@@ -116,7 +116,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒ^ƒCƒ}[‚ª”­¶‚µ‚½‚çƒLƒ…[‚©‚çæ‚èo‚µXV
+		/// ã‚¿ã‚¤ãƒãƒ¼ãŒç™ºç”Ÿã—ãŸã‚‰ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å–ã‚Šå‡ºã—æ›´æ–°
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -126,15 +126,15 @@ namespace Twin.Tools
 
 			if (list.Count > 0)
 			{
-				// XV‘ÎÛ‚ÌƒAƒCƒeƒ€‚ğæ“¾
+				// æ›´æ–°å¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
 				ThreadControl thread = (ThreadControl)list[0];
 
-				// ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚Ä‚¢‚ÄA“Ç‚İ‚İ’†‚Å‚È‚¢ê‡‚Ì‚İXV
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚Œã¦ã„ã¦ã€èª­ã¿è¾¼ã¿ä¸­ã§ãªã„å ´åˆã®ã¿æ›´æ–°
 				if (thread.IsOpen)
 				{
 					thread.Reload();
 				}
-				// ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚Ä‚¢‚È‚¯‚ê‚Îíœ
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚Œã¦ã„ãªã‘ã‚Œã°å‰Šé™¤
 				else {
 					list.Remove(thread);
 				}
@@ -142,13 +142,13 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// XV‚ªŠ®—¹‚µ‚½‚çÄ“xƒLƒ…[‚É’Ç‰Á
+		/// æ›´æ–°ãŒå®Œäº†ã—ãŸã‚‰å†åº¦ã‚­ãƒ¥ãƒ¼ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void OnComplete(object sender, CompleteEventArgs e)
 		{
-			// “Ç‚İ‚İŠ®—¹‚µ‚½‚ç––”ö‚É’Ç‰Á
+			// èª­ã¿è¾¼ã¿å®Œäº†ã—ãŸã‚‰æœ«å°¾ã«è¿½åŠ 
 			list.Remove(sender);
 			list.Add(sender);
 			timer.Start();

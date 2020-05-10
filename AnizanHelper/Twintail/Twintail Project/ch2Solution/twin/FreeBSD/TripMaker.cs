@@ -8,20 +8,20 @@ namespace Twin.Tools
 	using System.Text.RegularExpressions;
 
 	/// <summary>
-	/// ƒgƒŠƒbƒv‚ğ¶¬‚·‚éƒNƒ‰ƒX
+	/// ãƒˆãƒªãƒƒãƒ—ã‚’ç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹
 	/// http://www.egroups.co.jp/files/miscprj-dev/
-	/// http://www.egroups.co.jp/files/miscprj-dev/CSharp/Etc/TripMaker.zip‚ğg‚í‚¹‚Ä‚¢‚½‚¾‚«‚Ü‚µ‚½
-	/// «•Ï‚í‚Á‚½‚İ‚½‚¢
+	/// http://www.egroups.co.jp/files/miscprj-dev/CSharp/Etc/TripMaker.zipã‚’ä½¿ã‚ã›ã¦ã„ãŸã ãã¾ã—ãŸ
+	/// â†“å¤‰ã‚ã£ãŸã¿ãŸã„
 	/// http://www.gir-lab.com/pukiwiki/pukiwiki.php
-	/// «
-	/// Á‚¦‚¿‚á‚Á‚½‚İ‚½‚¢
-	/// «
-	/// NTwin23.105 2009/06/19 2‚¿‚á‚ñ‚Ë‚é‚P‚QŒ…ƒgƒŠƒbƒvd—l‚É‚æ‚è‘å••ÏX
+	/// â†“
+	/// æ¶ˆãˆã¡ã‚ƒã£ãŸã¿ãŸã„
+	/// â†“
+	/// NTwin23.105 2009/06/19 2ã¡ã‚ƒã‚“ã­ã‚‹ï¼‘ï¼’æ¡ãƒˆãƒªãƒƒãƒ—ä»•æ§˜ã«ã‚ˆã‚Šå¤§å¹…å¤‰æ›´
 	/// </summary>
 	public class Trip
 	{
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ğg—p‚µ‚ÄƒgƒŠƒbƒv‚ğ¶¬
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ãƒˆãƒªãƒƒãƒ—ã‚’ç”Ÿæˆ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>

@@ -11,16 +11,16 @@ namespace Twin.Util
 	using Twin.Text;
 
 	/// <summary>
-	/// ThreadUtil ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// ThreadUtil ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ThreadUtil
 	{
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğdatŒ`®‚Å•Û‘¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’datå½¢å¼ã§ä¿å­˜
 		/// </summary>
-		/// <param name="cache">ƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="header">•Û‘¶‚·‚éƒXƒŒƒbƒh</param>
-		/// <param name="filePath">•Û‘¶æƒtƒ@ƒCƒ‹ƒpƒX</param>
+		/// <param name="cache">ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="header">ä¿å­˜ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="filePath">ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 		public static void SaveDat(Cache cache, ThreadHeader header, string filePath)
 		{
 			if (cache == null)
@@ -32,7 +32,7 @@ namespace Twin.Util
 			if (filePath == null)
 				throw new ArgumentNullException("filePath");
 
-			// dat‚Ì‘¶İ‚·‚éƒpƒX‚ğæ“¾
+			// datã®å­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹ã‚’å–å¾—
 			string fromPath = cache.GetDatPath(header);
 
 			ThreadStorage reader = null;
@@ -42,12 +42,12 @@ namespace Twin.Util
 			X2chThreadFormatter formatter = new X2chThreadFormatter();
 
 			try {
-				// “Ç‚İ‚İƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+				// èª­ã¿è¾¼ã¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 				reader = new LocalThreadStorage(cache, header, StorageMode.Read);
-				// ‘‚«‚İƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+				// æ›¸ãè¾¼ã¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 				writer = new StreamWriter(filePath, false, Encoding.GetEncoding("Shift_Jis"));
 
-				// ‚·‚×‚Ä“Ç‚İ‚Ş
+				// ã™ã¹ã¦èª­ã¿è¾¼ã‚€
 				while (reader.Read(items) != 0);
 				writer.Write(formatter.Format(items));
 			}
@@ -58,11 +58,11 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğhtmlŒ`®‚Å•Û‘¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’htmlå½¢å¼ã§ä¿å­˜
 		/// </summary>
-		/// <param name="cache">ƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="header">•Û‘¶‚·‚éƒXƒŒƒbƒh</param>
-		/// <param name="filePath">•Û‘¶æƒtƒ@ƒCƒ‹ƒpƒX</param>
+		/// <param name="cache">ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="header">ä¿å­˜ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="filePath">ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 		public static void SaveHtml(Cache cache, ThreadHeader header, string filePath, ThreadSkinBase skin)
 		{
 			if (filePath == null)
@@ -74,16 +74,16 @@ namespace Twin.Util
 			if (header == null)
 				throw new ArgumentNullException("header");
 
-			// dat‚Ì‘¶İ‚·‚éƒpƒX‚ğæ“¾
+			// datã®å­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹ã‚’å–å¾—
 			string fromPath = cache.GetDatPath(header);
 
 			ThreadStorage reader = null;
 			StreamWriter writer = null;
 			
 			try {
-				// “Ç‚İ‚İƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+				// èª­ã¿è¾¼ã¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 				reader = new LocalThreadStorage(cache, header, StorageMode.Read);
-				// ‘‚«‚İƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+				// æ›¸ãè¾¼ã¿ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 				writer = new StreamWriter(filePath, false, TwinDll.DefaultEncoding);
 				
 				ResSetCollection items = new ResSetCollection();
@@ -91,14 +91,14 @@ namespace Twin.Util
 				if (skin == null)
 					skin = new HtmlSkin();
 
-				// ƒwƒbƒ_‚ğ‘‚«‚Ş
+				// ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãè¾¼ã‚€
 				writer.WriteLine(skin.GetHeader(header));
 
-				// –{•¶‚ğ‘‚«‚Ş
+				// æœ¬æ–‡ã‚’æ›¸ãè¾¼ã‚€
 				while (reader.Read(items) != 0);
 				writer.WriteLine(skin.Convert(items));
 
-				// ƒtƒbƒ^‚ğ‘‚«‚Ş
+				// ãƒ•ãƒƒã‚¿ã‚’æ›¸ãè¾¼ã‚€
 				writer.WriteLine(skin.GetFooter(header));
 			}
 			finally {
@@ -108,11 +108,11 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğmonalogŒ`®‚Å•Û‘¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’monalogå½¢å¼ã§ä¿å­˜
 		/// </summary>
-		/// <param name="cache">ƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="header">•Û‘¶‚·‚éƒXƒŒƒbƒh</param>
-		/// <param name="filePath">•Û‘¶æƒtƒ@ƒCƒ‹ƒpƒX</param>
+		/// <param name="cache">ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="header">ä¿å­˜ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="filePath">ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 		public static void SaveMonalog(Cache cache, ThreadHeader header, string filePath)
 		{
 			if (filePath == null)
@@ -124,7 +124,7 @@ namespace Twin.Util
 			if (header == null)
 				throw new ArgumentNullException("header");
 
-			// dat‚Ì‘¶İ‚·‚éƒpƒX‚ğæ“¾
+			// datã®å­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹ã‚’å–å¾—
 			string fromPath = cache.GetDatPath(header);
 			MonalogConverter conv = new MonalogConverter();
 
@@ -143,18 +143,18 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ’P“Æ‚Ìdatƒtƒ@ƒCƒ‹ŠJ‚«A‚ğŠù“¾ƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä•Û‘¶
+		/// å˜ç‹¬ã®datãƒ•ã‚¡ã‚¤ãƒ«é–‹ãã€ã‚’æ—¢å¾—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦ä¿å­˜
 		/// </summary>
 		/// <param name="cache"></param>
-		/// <param name="target">’P“Æ‚Ìdat‚ÆŠÖ˜A‚Ã‚¯‚é”Â</param>
-		/// <param name="filePath">datƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒpƒX</param>
-		/// <param name="datNumber">dat”Ô†</param>
-		/// <param name="gzip">datƒtƒ@ƒCƒ‹‚ªgzipˆ³k‚³‚ê‚Ä‚¢‚ê‚ÎtrueA‚»‚¤‚Å‚È‚¯‚ê‚Îfalse‚ğw’è‚·‚é</param>
-		/// <returns>ƒLƒƒƒbƒVƒ…‚³‚ê‚½ƒXƒŒƒbƒh‚Ìƒwƒbƒ_î•ñ‚ğ•Ô‚·</returns>
+		/// <param name="target">å˜ç‹¬ã®datã¨é–¢é€£ã¥ã‘ã‚‹æ¿</param>
+		/// <param name="filePath">datãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+		/// <param name="datNumber">datç•ªå·</param>
+		/// <param name="gzip">datãƒ•ã‚¡ã‚¤ãƒ«ãŒgzipåœ§ç¸®ã•ã‚Œã¦ã„ã‚Œã°trueã€ãã†ã§ãªã‘ã‚Œã°falseã‚’æŒ‡å®šã™ã‚‹</param>
+		/// <returns>ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’è¿”ã™</returns>
 		public static ThreadHeader OpenDat(Cache cache, BoardInfo target,
 			string filePath, string datNumber, bool gzip)
 		{
-			// ƒwƒbƒ_[î•ñ‚ğì¬
+			// ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±ã‚’ä½œæˆ
 			ThreadHeader header = TypeCreator.CreateThreadHeader(target.Bbs);
 			header.BoardInfo = target;
 			header.Key = datNumber;
@@ -172,15 +172,15 @@ namespace Twin.Util
 				int offset = 0, read, parsed;
 
 				do {
-					// ƒoƒbƒtƒ@‚É“Ç‚İ‚Ş
+					// ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã‚€
 					read = stream.Read(buffer, 0, buffer.Length);
 					offset += read;
 					
-					// ‰ğÍ‚µResSet\‘¢‘Ì‚Ì”z—ñ‚ğì¬
+					// è§£æã—ResSetæ§‹é€ ä½“ã®é…åˆ—ã‚’ä½œæˆ
 					ResSet[] array = parser.Parse(buffer, read, out parsed);
 					resItems.AddRange(array);
 
-					// ƒXƒŒƒ^ƒC‚ğæ“¾‚µ‚Ä‚¨‚­
+					// ã‚¹ãƒ¬ã‚¿ã‚¤ã‚’å–å¾—ã—ã¦ãŠã
 					if (first && array.Length > 0)
 					{
 						header.Subject = array[0].Tag as String;
@@ -189,29 +189,29 @@ namespace Twin.Util
 
 				} while (read != 0);
 
-				// Šù“¾ƒoƒCƒg”‚ÆƒŒƒX”‚ğİ’è
+				// æ—¢å¾—ãƒã‚¤ãƒˆæ•°ã¨ãƒ¬ã‚¹æ•°ã‚’è¨­å®š
 				header.GotByteCount = offset;
 				header.GotResCount = resItems.Count;
 			}
 
-			// datƒtƒ@ƒCƒ‹‚ÌÅIXV“ú‚ğæ“¾
+			// datãƒ•ã‚¡ã‚¤ãƒ«ã®æœ€çµ‚æ›´æ–°æ—¥ã‚’å–å¾—
 			header.LastModified = File.GetLastWriteTime(filePath);
 			
-			// “Ç‚İ‚ñ‚¾ƒŒƒX‚ğƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä•Û‘¶
+			// èª­ã¿è¾¼ã‚“ã ãƒ¬ã‚¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦ä¿å­˜
 			using (LocalThreadStorage storage = 
 					   new LocalThreadStorage(cache, header, StorageMode.Write))
 			{
 				storage.Write(resItems);
 			}
 
-			// ƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ¶¬
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’ç”Ÿæˆ
 			ThreadIndexer.Write(cache, header);
 
 			return header;
 		}
 
 		/// <summary>
-		/// monalogŒ`®‚ÌƒXƒŒƒbƒh‚ğƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä•Û‘¶
+		/// monalogå½¢å¼ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦ä¿å­˜
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="filePath"></param>

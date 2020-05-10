@@ -8,14 +8,14 @@ namespace Twin.Util
 	using System.Diagnostics;
 
 	/// <summary>
-	/// Trace‚âDebug‚ğƒtƒ@ƒCƒ‹‚Éo—Í‚·‚é‚½‚ß‚Ì‹@”\‚ğ’ñ‹Ÿ
+	/// Traceã‚„Debugã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã™ã‚‹ãŸã‚ã®æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class TraceOutput : IDisposable
 	{
 		private TraceListener listener;
 
 		/// <summary>
-		/// TraceOutputƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// TraceOutputã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="fileName"></param>
 		public TraceOutput(string fileName)
@@ -31,7 +31,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 		/// </summary>
 		public void Dispose()
 		{
@@ -40,7 +40,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚Æ•Â‚¶‚ÄƒgƒŒ[ƒXo—Í‚ğóM‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¨é–‰ã˜ã¦ãƒˆãƒ¬ãƒ¼ã‚¹å‡ºåŠ›ã‚’å—ä¿¡ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 		/// </summary>
 		public void Close()
 		{

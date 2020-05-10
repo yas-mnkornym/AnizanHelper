@@ -6,7 +6,7 @@ namespace CSharpSamples
 	using System.Text;
 
 	/// <summary>
-	/// Windows ‚Ì ini ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‘‚«‚·‚é APIB
+	/// Windows ã® ini ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿æ›¸ãã™ã‚‹ APIã€‚
 	/// </summary>
 	public class PrivateProfile
 	{

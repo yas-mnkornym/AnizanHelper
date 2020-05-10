@@ -11,22 +11,22 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// ‚¨‹C‚É“ü‚è‚ÌÅã‘w
+	/// ãŠæ°—ã«å…¥ã‚Šã®æœ€ä¸Šå±¤
 	/// </summary>
 	public class BookmarkRoot : BookmarkFolder
 	{
 		/// <summary>
-		/// BookmarkRootƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkRootã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		public BookmarkRoot() : this("‚¨‹C‚É“ü‚è")
+		public BookmarkRoot() : this("ãŠæ°—ã«å…¥ã‚Š")
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// BookmarkRootƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkRootã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="name"></param>
 		public BookmarkRoot(string name) : base(name, -1)
@@ -35,16 +35,16 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒƒ\ƒbƒh‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ
+		/// ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“
 		/// </summary>
 		/// <returns></returns>
 		public override BookmarkEntry Clone()
 		{
-			throw new NotSupportedException("ƒ‹[ƒgƒtƒHƒ‹ƒ_‚ğ•¡»‚·‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
+			throw new NotSupportedException("ãƒ«ãƒ¼ãƒˆãƒ•ã‚©ãƒ«ãƒ€ã‚’è¤‡è£½ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚èî•ñ‚ğxmlŒ`®‚Åƒtƒ@ƒCƒ‹‚É•Û‘¶
+		/// ãŠæ°—ã«å…¥ã‚Šæƒ…å ±ã‚’xmlå½¢å¼ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 		/// </summary>
 		/// <param name="filePath"></param>
 		public virtual void Save(string filePath)
@@ -56,11 +56,11 @@ namespace Twin
 			XmlDocument doc = new XmlDocument();
 			XmlElement root = doc.CreateElement("Bookmarks");
 
-			// Ä‹N‚Å‚·‚×‚Ä‚Ì€–Ú‚ğ’Ç‰Á
+			// å†èµ·ã§ã™ã¹ã¦ã®é …ç›®ã‚’è¿½åŠ 
 			AppendRecursive(doc, root, this);
 			doc.AppendChild(root);
 
-			// •Û‘¶
+			// ä¿å­˜
 			XmlTextWriter writer = new XmlTextWriter(filePath, Encoding.UTF8);
 			writer.Formatting = Formatting.Indented;
 
@@ -69,43 +69,43 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Ä‹NŒŸõ‚ğ—˜—p‚µ‚ÄƒTƒuƒtƒHƒ‹ƒ_‚Æ‚¨‹C‚É“ü‚è‚Ì—v‘f‚ğelement‚É’Ç‰Á
+		/// å†èµ·æ¤œç´¢ã‚’åˆ©ç”¨ã—ã¦ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã¨ãŠæ°—ã«å…¥ã‚Šã®è¦ç´ ã‚’elementã«è¿½åŠ 
 		/// </summary>
 		/// <param name="doc"></param>
 		/// <param name="parent"></param>
 		/// <param name="folders"></param>
 		private void AppendRecursive(XmlDocument doc, XmlElement parent, BookmarkFolder folder)
 		{
-			// ƒtƒHƒ‹ƒ_–¼‚Ì‘®«‚ğì¬
+			// ãƒ•ã‚©ãƒ«ãƒ€åã®å±æ€§ã‚’ä½œæˆ
 			XmlAttribute attr1 = doc.CreateAttribute("Name");
 			attr1.Value = folder.Name;
 
-			// ¯•ÊID‘®«‚ğì¬
+			// è­˜åˆ¥IDå±æ€§ã‚’ä½œæˆ
 			XmlAttribute attr2 = doc.CreateAttribute("ID");
 			attr2.Value = folder.Id.ToString();
 
-			// “WŠJ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì‘®«‚ğì¬
+			// å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®å±æ€§ã‚’ä½œæˆ
 			XmlAttribute attr3 = doc.CreateAttribute("Expanded");
 			attr3.Value = folder.Expanded.ToString();
 
-			// ƒTƒuƒtƒHƒ‹ƒ_ƒRƒŒƒNƒVƒ‡ƒ“ƒm[ƒh‚ğì¬
+			// ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ãƒãƒ¼ãƒ‰ã‚’ä½œæˆ
 			XmlElement children = doc.CreateElement("Children");
 
 			foreach (BookmarkEntry entry in folder.Children)
 			{
-				// ‚¨‹C‚É“ü‚è‚Ìê‡
+				// ãŠæ°—ã«å…¥ã‚Šã®å ´åˆ
 				if (entry.IsLeaf)
 				{
 					BookmarkThread item = (BookmarkThread)entry;
 
-					// URL‘®«‚ğì¬
+					// URLå±æ€§ã‚’ä½œæˆ
 					XmlAttribute url = doc.CreateAttribute("URL");
 					url.Value = item.HeaderInfo.Url;
 
 					//XmlAttribute id = doc.CreateAttribute("ID");
 					//id.Value = entry.Id.ToString();
 
-					// ‚¨‹C‚É“ü‚èƒm[ƒh‚ğì¬
+					// ãŠæ°—ã«å…¥ã‚Šãƒãƒ¼ãƒ‰ã‚’ä½œæˆ
 					XmlElement node = doc.CreateElement("Item");
 					node.Attributes.Append(url);
 					//node.Attributes.Append(id);
@@ -114,28 +114,28 @@ namespace Twin
 					//node.InnerText = item.HeaderInfo.Subject;
 					node.InnerText = item.Name;
 
-					// ‚¨‹C‚É“ü‚èƒRƒŒƒNƒVƒ‡ƒ“ƒm[ƒh‚É’Ç‰Á
+					// ãŠæ°—ã«å…¥ã‚Šã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ãƒãƒ¼ãƒ‰ã«è¿½åŠ 
 					children.AppendChild(node);
 				}
-				// ƒtƒHƒ‹ƒ_‚Å‚ ‚ê‚Îö‚é
+				// ãƒ•ã‚©ãƒ«ãƒ€ã§ã‚ã‚Œã°æ½œã‚‹
 				else {
 					AppendRecursive(doc, children, (BookmarkFolder)entry);
 				}
 			}
 
-			// ÅŒã‚ÉƒtƒHƒ‹ƒ_ƒm[ƒh‚Ìì¬
+			// æœ€å¾Œã«ãƒ•ã‚©ãƒ«ãƒ€ãƒãƒ¼ãƒ‰ã®ä½œæˆ
 			XmlElement folderNode = doc.CreateElement("Folder");
 			folderNode.Attributes.Append(attr1);
 			folderNode.Attributes.Append(attr2);
 			folderNode.Attributes.Append(attr3);
 			folderNode.AppendChild(children);
 
-			// eƒm[ƒh‚É’Ç‰Á
+			// è¦ªãƒãƒ¼ãƒ‰ã«è¿½åŠ 
 			parent.AppendChild(folderNode);
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚èƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+		/// ãŠæ°—ã«å…¥ã‚Šãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		public virtual void Load(string filePath)
@@ -144,7 +144,7 @@ namespace Twin
 				throw new ArgumentNullException("filePath");
 			}
 
-			// q‚ğ‚·‚×‚Äíœ‚µ‚Ä‚©‚ç“Ç‚İ‚Ş
+			// å­ã‚’ã™ã¹ã¦å‰Šé™¤ã—ã¦ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			Children.Clear();
 
 			if (File.Exists(filePath))
@@ -152,7 +152,7 @@ namespace Twin
 				XmlDocument doc = new XmlDocument();
 				doc.Load(filePath);
 
-				// Ä‹N‚ğ—˜—p‚µ‚Äƒm[ƒh‚ğŒŸõ
+				// å†èµ·ã‚’åˆ©ç”¨ã—ã¦ãƒãƒ¼ãƒ‰ã‚’æ¤œç´¢
 				XmlNode root = doc.DocumentElement.FirstChild;
 				LoadRecursive(root, this);
 			}
@@ -160,7 +160,7 @@ namespace Twin
 
 		private void LoadRecursive(XmlNode node, BookmarkFolder folder)
 		{
-			// ƒtƒHƒ‹ƒ_‚ğì¬
+			// ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆ
 			folder.Name = node.Attributes["Name"].Value;
 			folder.Expanded = Boolean.Parse(node.Attributes["Expanded"].Value);
 
@@ -168,7 +168,7 @@ namespace Twin
 			if (id != null)
 				BookmarkEntry.SetEntryId(folder, Int32.Parse(id.Value));
 
-			// qƒm[ƒh‚ğŒŸõ
+			// å­ãƒãƒ¼ãƒ‰ã‚’æ¤œç´¢
 			foreach (XmlNode subNode in node.SelectNodes("Children/Folder"))
 			{
 				BookmarkFolder subFolder = new BookmarkFolder();
@@ -176,7 +176,7 @@ namespace Twin
 				LoadRecursive(subNode, subFolder);
 			}
 
-			// ‚¨‹C‚É“ü‚èƒRƒŒƒNƒVƒ‡ƒ“‚ğŒŸõ
+			// ãŠæ°—ã«å…¥ã‚Šã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’æ¤œç´¢
 			foreach (XmlNode child in node.SelectNodes("Children/Item"))
 			{
 				string url = child.Attributes["URL"].Value;
@@ -200,7 +200,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Ä‹NŒŸõ‚Åw’è‚µ‚½‚¨‹C‚É“ü‚è‚ğŒŸõ
+		/// å†èµ·æ¤œç´¢ã§æŒ‡å®šã—ãŸãŠæ°—ã«å…¥ã‚Šã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -210,7 +210,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// header‚ğŒŸõ
+		/// headerã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="folder"></param>
 		/// <param name="header"></param>
@@ -236,7 +236,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚è‚Éitem‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ãŠæ°—ã«å…¥ã‚Šã«itemãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -246,7 +246,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚è‚©‚çitem‚ğíœ
+		/// ãŠæ°—ã«å…¥ã‚Šã‹ã‚‰itemã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="header"></param>
 		public void Remove(ThreadHeader header)
@@ -256,7 +256,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñ‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

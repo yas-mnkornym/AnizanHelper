@@ -5,27 +5,27 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// IPost.BeginPostƒƒ\ƒbƒh‚Ì”ñ“¯Šúˆ—‚ğ‚·‚é‚½‚ß‚ÌƒfƒŠƒQ[ƒg‚ğ•\‚·
+	/// IPost.BeginPostãƒ¡ã‚½ãƒƒãƒ‰ã®éåŒæœŸå‡¦ç†ã‚’ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã‚’è¡¨ã™
 	/// </summary>
 	internal delegate void PostThreadHandler(BoardInfo board, PostThread thread);
 
 	/// <summary>
-	/// IPost.BeginPostƒƒ\ƒbƒh‚Ì”ñ“¯Šúˆ—‚ğ‚·‚é‚½‚ß‚ÌƒfƒŠƒQ[ƒg‚ğ•\‚·
+	/// IPost.BeginPostãƒ¡ã‚½ãƒƒãƒ‰ã®éåŒæœŸå‡¦ç†ã‚’ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã‚’è¡¨ã™
 	/// </summary>
 	internal delegate void PostResHandler(ThreadHeader header, PostRes res);
 
 	/// <summary>
-	/// IPost.PostedƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// IPost.Postedã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void PostEventHandler(object sender, PostEventArgs e);
 
 	/// <summary>
-	/// IPost.ErrorƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// IPost.Errorã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void PostErrorEventHandler(object sender, PostErrorEventArgs e);
 
 	/// <summary>
-	/// IPost.PostedƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// IPost.Postedã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class PostEventArgs : EventArgs
 	{
@@ -37,7 +37,7 @@ namespace Twin
 		private bool retry;
 
 		/// <summary>
-		/// Ä“x“Še‚·‚éê‡‚Ítrue‚Éİ’è
+		/// å†åº¦æŠ•ç¨¿ã™ã‚‹å ´åˆã¯trueã«è¨­å®š
 		/// </summary>
 		public bool Retry
 		{
@@ -53,7 +53,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚©‚ç•Ô‚³‚ê‚½ƒNƒbƒL[‚ğæ“¾
+		/// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰è¿”ã•ã‚ŒãŸã‚¯ãƒƒã‚­ãƒ¼ã‚’å–å¾—
 		/// </summary>
 		public string Cookie
 		{
@@ -64,7 +64,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// SambaƒGƒ‰[‚Ì‚Ì‚İAƒT[ƒo[‚ÌSamba•b”‚ğæ“¾
+		/// Sambaã‚¨ãƒ©ãƒ¼æ™‚ã®æ™‚ã®ã¿ã€ã‚µãƒ¼ãƒãƒ¼ã®Sambaç§’æ•°ã‚’å–å¾—
 		/// </summary>
 		public int SambaCount
 		{
@@ -75,7 +75,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “Še‚ÉƒT[ƒo[‚©‚ç‹A‚Á‚Ä‚«‚½ó‘Ô‚ğæ“¾
+		/// æŠ•ç¨¿æ™‚ã«ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰å¸°ã£ã¦ããŸçŠ¶æ…‹ã‚’å–å¾—
 		/// </summary>
 		public PostResponse Response
 		{
@@ -86,7 +86,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒ^ƒCƒgƒ‹‚ğæ“¾
+		/// ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—
 		/// </summary>
 		public string Title
 		{
@@ -97,7 +97,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “Še‚ÉƒT[ƒo[‚©‚ç‹A‚Á‚Ä‚«‚½ƒƒbƒZ[ƒW‚ğæ“¾
+		/// æŠ•ç¨¿æ™‚ã«ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰å¸°ã£ã¦ããŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
 		/// </summary>
 		public string Text
 		{
@@ -108,15 +108,15 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="res">ƒT[ƒo[‚©‚ç‚Ì‰‘Îó‘Ô‚ğ•\‚·</param>
-		/// <param name="title">ƒƒbƒZ[ƒW‚Ìƒ^ƒCƒgƒ‹‚ğ•\‚·</param>
-		/// <param name="message">ƒƒbƒZ[ƒW‚Ì–{•ª‚ğ•\‚·</param>
+		/// <param name="res">ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œå¯¾çŠ¶æ…‹ã‚’è¡¨ã™</param>
+		/// <param name="title">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ã™</param>
+		/// <param name="message">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æœ¬åˆ†ã‚’è¡¨ã™</param>
 		public PostEventArgs(PostResponse res, string title, string message, string cookie, int samba)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.retry = false;
 			this.title = title;
@@ -128,14 +128,14 @@ namespace Twin
 	}
 
 	/// <summary>
-	/// IPost.ErrorƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// IPost.Errorã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class PostErrorEventArgs : EventArgs
 	{
 		private readonly Exception exception;
 
 		/// <summary>
-		/// ”­¶‚µ‚½—áŠO‚ğæ“¾
+		/// ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’å–å¾—
 		/// </summary>
 		public Exception Exception
 		{
@@ -146,13 +146,13 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostErrorEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostErrorEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="ex">—áŠOƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
+		/// <param name="ex">ä¾‹å¤–ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
 		public PostErrorEventArgs(Exception ex)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.exception = ex;
 		}

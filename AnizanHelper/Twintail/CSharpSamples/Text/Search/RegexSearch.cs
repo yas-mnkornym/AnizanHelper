@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
-	/// RegexƒNƒ‰ƒX‚ğg—p‚µ‚Ä³‹K•\Œ»ŒŸõ‚ğs‚¤
+	/// Regexã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã—ã¦æ­£è¦è¡¨ç¾æ¤œç´¢ã‚’è¡Œã†
 	/// </summary>
 	public class RegexSearch : ISearchable
 	{
@@ -11,7 +11,7 @@ namespace CSharpSamples.Text.Search
 		private readonly string pattern;
 
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public string Pattern
 		{
@@ -30,7 +30,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// RegexSearchƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// RegexSearchã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public RegexSearch(string key, RegexOptions options)
@@ -40,9 +40,9 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
-		/// <param name="text">ŒŸõ•¶š—ñ</param>
+		/// <param name="text">æ¤œç´¢æ–‡å­—åˆ—</param>
 		/// <returns></returns>
 		public int Search(string text)
 		{
@@ -50,10 +50,10 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚©‚ç•¶š—ñÆ‡‚ğs‚¤
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
-		/// <param name="text">ŒŸõ•¶š—ñ</param>
-		/// <param name="index">ŒŸõŠJnƒCƒ“ƒfƒbƒNƒX</param>
+		/// <param name="text">æ¤œç´¢æ–‡å­—åˆ—</param>
+		/// <param name="index">æ¤œç´¢é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
 		/// <returns></returns>
 		public int Search(string text, int index)
 		{

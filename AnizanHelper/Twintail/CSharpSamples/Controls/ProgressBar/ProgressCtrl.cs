@@ -6,7 +6,7 @@ namespace CSharpSamples
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ƒvƒƒOƒŒƒXƒo[‚ÌŠî–{
+	/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®åŸºæœ¬
 	/// </summary>
 	public abstract class ProgressCtrl : Control
 	{
@@ -17,7 +17,7 @@ namespace CSharpSamples
 		private Border3DStyle border;
 
 		/// <summary>
-		/// ƒvƒƒOƒŒƒXƒo[‚ÌÅ¬’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®æœ€å°å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Minimum
 		{
@@ -38,7 +38,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒvƒƒOƒŒƒXƒo[‚ÌÅ‘å’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®æœ€å¤§å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Maximum
 		{
@@ -59,7 +59,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒvƒƒOƒŒƒXƒo[‚ÌŒ»İ’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®ç¾åœ¨å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Position
 		{
@@ -80,7 +80,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// PerformStepƒƒ\ƒbƒh‚ğg—p‚µ‚½‚Ì‘—Ê•ª‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// PerformStepãƒ¡ã‚½ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ãŸæ™‚ã®å¢—é‡åˆ†ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Step
 		{
@@ -100,7 +100,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒvƒƒOƒŒƒXƒo[‚Ì‹«ŠEü‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®å¢ƒç•Œç·šã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Border3DStyle BorderStyle
 		{
@@ -116,7 +116,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// •S•ª—¦‚ğæ“¾
+		/// ç™¾åˆ†ç‡ã‚’å–å¾—
 		/// </summary>
 		protected int Percent
 		{
@@ -135,12 +135,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ProgressCtrlƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ProgressCtrlã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ProgressCtrl()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.SetStyle(ControlStyles.UserPaint, true);
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -155,7 +155,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌˆÊ’u‚©‚çStep‚Ì•ª‚¾‚¯i‚ß‚é
+		/// ç¾åœ¨ã®ä½ç½®ã‹ã‚‰Stepã®åˆ†ã ã‘é€²ã‚ã‚‹
 		/// </summary>
 		public virtual void PerformStep()
 		{
@@ -163,9 +163,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½—Ê‚¾‚¯Œ»İˆÊ’u‚ği‚ß‚é
+		/// æŒ‡å®šã—ãŸé‡ã ã‘ç¾åœ¨ä½ç½®ã‚’é€²ã‚ã‚‹
 		/// </summary>
-		/// <param name="value">Œ»İˆÊ’u‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é—Ê</param>
+		/// <param name="value">ç¾åœ¨ä½ç½®ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹é‡</param>
 		public virtual void Increment(int value)
 		{
 			if (this.Position + value >= this.Maximum)
@@ -179,7 +179,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Œ»İˆÊ’u‚ğÅ¬’l‚ÉƒŠƒZƒbƒg
+		/// ç¾åœ¨ä½ç½®ã‚’æœ€å°å€¤ã«ãƒªã‚»ãƒƒãƒˆ
 		/// </summary>
 		public virtual void Reset()
 		{

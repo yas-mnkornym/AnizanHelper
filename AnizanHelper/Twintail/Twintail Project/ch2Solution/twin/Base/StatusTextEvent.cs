@@ -5,33 +5,33 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ClientBase.StatusTextEventHandlerƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ClientBase.StatusTextEventHandlerã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void StatusTextEventHandler(object sender, 
 								StatusTextEventArgs e);
 
 	/// <summary>
-	/// ClientBase.StatusTextEventHandlerƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ClientBase.StatusTextEventHandlerã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class StatusTextEventArgs : EventArgs
 	{
 		private readonly string text;
 
 		/// <summary>
-		/// ƒXƒe[ƒ^ƒXƒƒbƒZ[ƒW‚ğæ“¾
+		/// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
 		/// </summary>
 		public string Text {
 			get { return text; }
 		}
 
 		/// <summary>
-		/// StatusTextEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// StatusTextEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="text">ƒXƒe[ƒ^ƒXƒƒbƒZ[ƒW</param>
+		/// <param name="text">ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public StatusTextEventArgs(string text)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.text = text;
 		}

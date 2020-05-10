@@ -7,7 +7,7 @@ namespace Twin.IO
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// Šù“¾Ï‚İƒXƒŒƒbƒh‚Ìˆê——‚ğ“Ç‚İ‚Ş‹@”\‚ğ’ñ‹Ÿ
+	/// æ—¢å¾—æ¸ˆã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class OfflineThreadListReader : ThreadListReaderBase
 	{
@@ -15,7 +15,7 @@ namespace Twin.IO
 		private string[] indexFiles;
 
 		/// <summary>
-		/// OfflineThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// OfflineThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public OfflineThreadListReader(Cache log) : base(null)
 		{
@@ -23,13 +23,13 @@ namespace Twin.IO
 				throw new ArgumentNullException("log");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			cache = log;
 		}
 
 		/// <summary>
-		/// ƒ[ƒJƒ‹‚É•Û‘¶‚³‚ê‚½ˆê——‚ğŒŸõ
+		/// ãƒ­ãƒ¼ã‚«ãƒ«ã«ä¿å­˜ã•ã‚ŒãŸä¸€è¦§ã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="board"></param>
 		public override bool Open(BoardInfo board)
@@ -38,13 +38,13 @@ namespace Twin.IO
 				throw new ArgumentNullException("board");
 			}
 			if (isOpen) {
-				throw new InvalidOperationException("ˆê——‚ğ“Ç‚İ‚İ’†‚Å‚·");
+				throw new InvalidOperationException("ä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã™");
 			}
 
-			// ƒƒOƒfƒBƒŒƒNƒgƒŠ
+			// ãƒ­ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 			string folder = cache.GetFolderPath(board);
 
-			// ‚·‚×‚Ä‚ÌƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğŒŸõ
+			// ã™ã¹ã¦ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œç´¢
 			indexFiles = Directory.GetFiles(folder, "*.idx");
 			length = indexFiles.Length;
 			boardinfo = board;
@@ -55,7 +55,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒ[ƒJƒ‹‚É‘¶İ‚·‚é‚·‚×‚Ä‚ÌƒXƒŒƒbƒhî•ñ‚ğŒŸõ
+		/// ãƒ­ãƒ¼ã‚«ãƒ«ã«å­˜åœ¨ã™ã‚‹ã™ã¹ã¦ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="headers"></param>
 		/// <returns></returns>
@@ -66,14 +66,14 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒ[ƒJƒ‹‚É‘¶İ‚·‚é‚·‚×‚Ä‚ÌƒXƒŒƒbƒhî•ñ‚ğŒŸõ
+		/// ãƒ­ãƒ¼ã‚«ãƒ«ã«å­˜åœ¨ã™ã‚‹ã™ã¹ã¦ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="headers"></param>
 		/// <returns></returns>
 		public override int Read(List<ThreadHeader> headers, out int cntParsed)
 		{
 			if (!isOpen) {
-				throw new InvalidOperationException("ŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("é–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 			if (headers == null) {
 				throw new ArgumentNullException("headers");

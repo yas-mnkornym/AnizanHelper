@@ -1,10 +1,10 @@
 // TwinDll.cs
 
 /*
- *	‚Q‚¿‚á‚ñ‚Ë‚éê—pƒuƒ‰ƒEƒU twintail—p ƒ‰ƒCƒuƒ‰ƒŠ
+ *	ï¼’ã¡ã‚ƒã‚“ã­ã‚‹å°‚ç”¨ãƒ–ãƒ©ã‚¦ã‚¶ twintailç”¨ ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
  * 
- *								ì¬“ú: 2003/10/21
- *								XV“ú: 2005/01/24
+ *								ä½œæˆæ—¥: 2003/10/21
+ *								æ›´æ–°æ—¥: 2005/01/24
  */
 
 namespace Twin
@@ -35,7 +35,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// args‚ğ‘®‰»‚µ‚ÄƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚É•\¦
+		/// argsã‚’æ›¸å¼åŒ–ã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã«è¡¨ç¤º
 		/// </summary>
 		/// <param name="obj"></param>
 		public static void ShowOutput(string format, params object[] args)
@@ -47,7 +47,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚Åobj‚ğ•\¦
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã§objã‚’è¡¨ç¤º
 		/// </summary>
 		/// <param name="obj"></param>
 		public static void ShowOutput(object obj)
@@ -59,7 +59,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒfƒoƒbƒO—p‚Ìo—Íƒƒ\ƒbƒh
+		/// ãƒ‡ãƒãƒƒã‚°ç”¨ã®å‡ºåŠ›ãƒ¡ã‚½ãƒƒãƒ‰
 		/// </summary>
 		/// <param name="format"></param>
 		/// <param name="arguments"></param>
@@ -69,7 +69,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒfƒoƒbƒO—p‚Ìo—Íƒƒ\ƒbƒh
+		/// ãƒ‡ãƒãƒƒã‚°ç”¨ã®å‡ºåŠ›ãƒ¡ã‚½ãƒƒãƒ‰
 		/// </summary>
 		/// <param name="format"></param>
 		/// <param name="arguments"></param>
@@ -92,7 +92,7 @@ namespace Twin
 		}
  
 		/// <summary>
-		/// ‹¤’Ê‚Ìƒ†[ƒU[ƒG[ƒWƒFƒ“ƒg‚ğæ“¾
+		/// å…±é€šã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		public static string UserAgent {
 			get {
@@ -101,7 +101,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// IE‚Ìƒ†[ƒU[ƒG[ƒWƒFƒ“ƒg‚ğæ“¾
+		/// IEã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		public static string IEUserAgent {
 			get {
@@ -110,7 +110,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// twin.dll‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾
+		/// twin.dllã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public static Version Version {
 			get {
@@ -119,7 +119,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “à•”‚Åg—p‚·‚éƒfƒtƒHƒ‹ƒg‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğæ“¾
+		/// å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’å–å¾—
 		/// </summary>
 		public static Encoding DefaultEncoding {
 			get {
@@ -128,7 +128,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Be2ch‚Ì“Še‚É‘—M‚·‚éƒNƒbƒL[‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// Be2chã®æŠ•ç¨¿æ™‚ã«é€ä¿¡ã™ã‚‹ã‚¯ãƒƒã‚­ãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		private static Be2chCookie be2chCookie = new Be2chCookie();
 

@@ -7,8 +7,8 @@ namespace Twin.Tools
 	using System.Collections;
 
 	/// <summary>
-	/// ThreadControl‚ğƒ^ƒCƒ}[‚Å©“®XV‚·‚é‹@”\‚ğ‚ÂB
-	/// AutoRefreshTimerSimple‚Æ‚Íˆá‚¢AƒXƒŒ‚Ì‘‚³‚É‚æ‚Á‚ÄXVŠÔŠu‚ğ‘Œ¸‚·‚é‚±‚Æ‚Å–³‘Ê‚ÈXV‚ğ”ğ‚¯‚éB
+	/// ThreadControlã‚’ã‚¿ã‚¤ãƒãƒ¼ã§è‡ªå‹•æ›´æ–°ã™ã‚‹æ©Ÿèƒ½ã‚’æŒã¤ã€‚
+	/// AutoRefreshTimerSimpleã¨ã¯é•ã„ã€ã‚¹ãƒ¬ã®æ—©ã•ã«ã‚ˆã£ã¦æ›´æ–°é–“éš”ã‚’å¢—æ¸›ã™ã‚‹ã“ã¨ã§ç„¡é§„ãªæ›´æ–°ã‚’é¿ã‘ã‚‹ã€‚
 	/// </summary>
 	public class AutoRefreshTimerCollection : AutoRefreshTimerBase
 	{
@@ -19,7 +19,7 @@ namespace Twin.Tools
 		private int index;
 
 		/// <summary>
-		/// XVŠÔŠu‚ğƒ~ƒŠ•b’PˆÊ‚Åæ“¾‚Ü‚½‚Íİ’èB
+		/// æ›´æ–°é–“éš”ã‚’ãƒŸãƒªç§’å˜ä½ã§å–å¾—ã¾ãŸã¯è¨­å®šã€‚
 		/// </summary>
 		public override int Interval {
 			set { interval = Math.Max(5000, value); }
@@ -28,7 +28,7 @@ namespace Twin.Tools
 
 		#region InnerClass
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğXV‚·‚éƒ^ƒCƒ}[‚ğŠÇ—
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ›´æ–°ã™ã‚‹ã‚¿ã‚¤ãƒãƒ¼ã‚’ç®¡ç†
 		/// </summary>
 		internal class TimerObject : IDisposable
 		{
@@ -38,7 +38,7 @@ namespace Twin.Tools
 			private bool disposed = false;
 
 			/// <summary>
-			/// ‚±‚ÌƒXƒŒƒbƒh‚ÌXVŠÔŠu‚ğæ“¾‚Ü‚½‚Íİ’è
+			/// ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ›´æ–°é–“éš”ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 			/// </summary>
 			public int Interval {
 				set { timer.Interval = Math.Max(defInterval, value); }
@@ -46,25 +46,25 @@ namespace Twin.Tools
 			}
 
 			/// <summary>
-			/// ƒ^ƒCƒ}[‚ª—LŒø‚©‚Ç‚¤‚©‚ğ”»’f
+			/// ã‚¿ã‚¤ãƒãƒ¼ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 			/// </summary>
 			public bool Enabled {
 				get { return timer.Enabled; }
 			}
 
 			/// <summary>
-			/// ƒXƒŒƒbƒhƒRƒ“ƒgƒ[ƒ‹‚ğæ“¾
+			/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’å–å¾—
 			/// </summary>
 			public ThreadControl Thread {
 				get { return thread; }
 			}
 
 			/// <summary>
-			/// TimerObjectƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+			/// TimerObjectã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 			/// </summary>
-			/// <param name="control">XV‘ÎÛ‚ÌƒXƒŒƒbƒhƒRƒ“ƒgƒ[ƒ‹</param>
-			/// <param name="interval">XVŠÔŠu‚Ì‰Šú’l (ƒ~ƒŠ•b)</param>
-			/// <param name="elapsed">ŠÔŒo‰ß‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰</param>
+			/// <param name="control">æ›´æ–°å¯¾è±¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+			/// <param name="interval">æ›´æ–°é–“éš”ã®åˆæœŸå€¤ (ãƒŸãƒªç§’)</param>
+			/// <param name="elapsed">æ™‚é–“çµŒéæ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©</param>
 			public TimerObject(ThreadControl control, int interval, ElapsedEventHandler elapsed)
 			{
 				timer = new Timer();
@@ -75,7 +75,7 @@ namespace Twin.Tools
 			}
 
 			/// <summary>
-			/// ƒ^ƒCƒ}[‚ğŠJn
+			/// ã‚¿ã‚¤ãƒãƒ¼ã‚’é–‹å§‹
 			/// </summary>
 			public void Start()
 			{
@@ -83,7 +83,7 @@ namespace Twin.Tools
 			}
 
 			/// <summary>
-			/// ƒ^ƒCƒ}[‚ğ’â~
+			/// ã‚¿ã‚¤ãƒãƒ¼ã‚’åœæ­¢
 			/// </summary>
 			public void Stop()
 			{
@@ -91,7 +91,7 @@ namespace Twin.Tools
 			}
 
 			/// <summary>
-			/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú
+			/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 			/// </summary>
 			public void Dispose()
 			{
@@ -107,7 +107,7 @@ namespace Twin.Tools
 		#endregion
 
 		/// <summary>
-		/// AutoRefreshTimerCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AutoRefreshTimerCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public AutoRefreshTimerCollection()
 		{
@@ -119,7 +119,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// Ÿ‚Ìƒ^ƒCƒ}[‚ÌˆÊ’u‚Öi‚ß‚é
+		/// æ¬¡ã®ã‚¿ã‚¤ãƒãƒ¼ã®ä½ç½®ã¸é€²ã‚ã‚‹
 		/// </summary>
 		private void Increment()
 		{
@@ -151,10 +151,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒŠƒXƒg‚ÉƒNƒ‰ƒCƒAƒ“ƒg‚ğ’Ç‰ÁB
-		/// Šù‚É“¯‚¶ƒNƒ‰ƒCƒAƒ“ƒg‚ª“o˜^‚³‚ê‚Ä‚¢‚ê‚Î‰½‚à‚µ‚È‚¢B
+		/// ãƒªã‚¹ãƒˆã«ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’è¿½åŠ ã€‚
+		/// æ—¢ã«åŒã˜ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
 		/// </summary>
-		/// <param name="client">©“®XV‚Ì‘ÎÛ‚Æ‚·‚éƒNƒ‰ƒCƒAƒ“ƒg</param>
+		/// <param name="client">è‡ªå‹•æ›´æ–°ã®å¯¾è±¡ã¨ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
 		public override void Add(ThreadControl client)
 		{
 			if (client == null) {
@@ -163,7 +163,7 @@ namespace Twin.Tools
 
 			if (IndexOf(client) == -1)
 			{
-				// ƒCƒxƒ“ƒg‚ğ“o˜^
+				// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™»éŒ²
 				client.Complete += new CompleteEventHandler(OnComplete);
 
 				timerCollection.Add(new TimerObject(client, Interval,
@@ -175,10 +175,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒŠƒXƒg‚©‚çƒNƒ‰ƒCƒAƒ“ƒg‚ğíœB
-		/// w’è‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ªƒŠƒXƒg‚É‘¶İ‚µ‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢B
+		/// ãƒªã‚¹ãƒˆã‹ã‚‰ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’å‰Šé™¤ã€‚
+		/// æŒ‡å®šã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒãƒªã‚¹ãƒˆã«å­˜åœ¨ã—ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
 		/// </summary>
-		/// <param name="client">©“®XV‚Ì‘ÎÛ‚©‚çŠO‚·ƒNƒ‰ƒCƒAƒ“ƒg</param>
+		/// <param name="client">è‡ªå‹•æ›´æ–°ã®å¯¾è±¡ã‹ã‚‰å¤–ã™ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
 		public override void Remove(ThreadControl client)
 		{
 			if (client  == null) {
@@ -189,7 +189,7 @@ namespace Twin.Tools
 
 			if (index != -1)
 			{
-				// ƒCƒxƒ“ƒg‚ğíœ
+				// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‰Šé™¤
 				client.Complete -= new CompleteEventHandler(OnComplete);
 
 				TimerObject timer = (TimerObject)timerCollection[index];
@@ -209,10 +209,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ªƒŠƒXƒg“à‚É‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒãƒªã‚¹ãƒˆå†…ã«å­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="client">ŒŸõ‚·‚éƒNƒ‰ƒCƒAƒ“ƒg</param>
-		/// <returns>ƒŠƒXƒg“à‚É‘¶İ‚·‚ê‚ÎtrueA‘¶İ‚µ‚È‚¯‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="client">æ¤œç´¢ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ</param>
+		/// <returns>ãƒªã‚¹ãƒˆå†…ã«å­˜åœ¨ã™ã‚Œã°trueã€å­˜åœ¨ã—ãªã‘ã‚Œã°falseã‚’è¿”ã™</returns>
 		public override bool Contains(ThreadControl client)
 		{
 			if (client  == null) {
@@ -222,7 +222,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ìƒ^ƒCƒ}[‚ğíœ
+		/// ã™ã¹ã¦ã®ã‚¿ã‚¤ãƒãƒ¼ã‚’å‰Šé™¤
 		/// </summary>
 		public override void Clear()
 		{
@@ -236,7 +236,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ÌƒRƒŒƒNƒVƒ‡ƒ““à‚ÌˆÊ’u‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		/// <param name="client"></param>
 		/// <returns></returns>
@@ -250,7 +250,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// XVƒCƒxƒ“ƒg”­¶
+		/// æ›´æ–°ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -272,7 +272,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhXVŠ®—¹ƒCƒxƒ“ƒg”­¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰æ›´æ–°å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -283,24 +283,24 @@ namespace Twin.Tools
 
 			if (e.Status == CompleteStatus.Success)
 			{
-				// “¯‚¶ƒCƒ“ƒXƒ^ƒ“ƒX‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+				// åŒã˜ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 				if (current.Thread.Equals(sender))
 				{
 					ThreadControl thread = current.Thread;
 
-					// V’…‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©
+					// æ–°ç€ãŒã‚ã£ãŸã‹ã©ã†ã‹
 					bool notmodified = (thread.HeaderInfo.NewResCount == 0);
 
-					// V’…‚ª‚ ‚ê‚ÎŠÔŠu‚ğk‚ß‚éA‚È‚¯‚ê‚ÎŠÔŠu‚ğ‚Ì‚Î‚·
+					// æ–°ç€ãŒã‚ã‚Œã°é–“éš”ã‚’ç¸®ã‚ã‚‹ã€ãªã‘ã‚Œã°é–“éš”ã‚’ã®ã°ã™
 					current.Interval += notmodified ? Interval : -Interval;
 
-					// Å‘åƒŒƒX”‚ğ‰z‚¦‚Ä‚¢‚ÄV’…‚ª‚È‚¯‚ê‚Îƒ^ƒCƒ}[‚©‚çŠO‚·
+					// æœ€å¤§ãƒ¬ã‚¹æ•°ã‚’è¶Šãˆã¦ã„ã¦æ–°ç€ãŒãªã‘ã‚Œã°ã‚¿ã‚¤ãƒãƒ¼ã‹ã‚‰å¤–ã™
 					if (thread.HeaderInfo.IsLimitOverThread && notmodified)
 						Remove(current.Thread);
 
 					current = null;
 
-					// Ÿ‚ÌƒXƒŒƒbƒh‚Ö
+					// æ¬¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¸
 					Increment();
 				}
 			}

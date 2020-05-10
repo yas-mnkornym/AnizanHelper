@@ -5,26 +5,26 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ResSetEventHandlerƒfƒŠƒQ[ƒg
+	/// ResSetEventHandlerãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void ResSetEventHandler(object sender, ResSetEventArgs e);
 
 	/// <summary>
-	/// ResSetEventHandlerƒƒ\ƒbƒh‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ResSetEventHandlerãƒ¡ã‚½ãƒƒãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class ResSetEventArgs : EventArgs
 	{
 		private readonly ResSetCollection resSets;
 
 		/// <summary>
-		/// ResSetƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ResSetã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public ResSetCollection Items {
 			get { return resSets; }
 		}
 
 		/// <summary>
-		/// ResSetEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ResSetEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="items"></param>
 		public ResSetEventArgs(ResSetCollection items)

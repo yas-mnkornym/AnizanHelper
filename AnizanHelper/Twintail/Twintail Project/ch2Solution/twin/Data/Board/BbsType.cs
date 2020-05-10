@@ -5,44 +5,44 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ‘Î‰‚µ‚Ä‚¢‚éŒf¦”Â‚Ìí—Ş‚ğ•\‚·
+	/// å¯¾å¿œã—ã¦ã„ã‚‹æ²ç¤ºæ¿ã®ç¨®é¡ã‚’è¡¨ã™
 	/// </summary>
 	public enum BbsType
 	{
 		/// <summary>
-		/// w’è‚È‚µ
+		/// æŒ‡å®šãªã—
 		/// </summary>
 		None,
 		/// <summary>
-		/// DATŒ`®‚ÌŒf¦”Â‚ğ•\‚· (Šî–{“I‚É2chŒİŠ·)
+		/// DATå½¢å¼ã®æ²ç¤ºæ¿ã‚’è¡¨ã™ (åŸºæœ¬çš„ã«2chäº’æ›)
 		/// </summary>
 		Dat,
 		/// <summary>
-		/// ‚Q‚¿‚á‚ñ‚Ë‚é (www.2ch.net)
+		/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ (www.2ch.net)
 		/// </summary>
 		X2ch,
 		/// <summary>
-		/// ‚Q‚¿‚á‚ñ‚Ë‚é‰ß‹ƒƒO(—v”FØ) (www.2ch.net)
+		/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹éå»ãƒ­ã‚°(è¦èªè¨¼) (www.2ch.net)
 		/// </summary>
 		X2chAuthenticate,
 		/// <summary>
-		/// ‚Q‚¿‚á‚ñ‚Ë‚é‰ß‹ƒƒO (www.2ch.net)
+		/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹éå»ãƒ­ã‚° (www.2ch.net)
 		/// </summary>
 		X2chKako,
 		/// <summary>
-		/// ZetaŒf¦”Â (www.zeta.org)
+		/// Zetaæ²ç¤ºæ¿ (www.zeta.org)
 		/// </summary>
 		Zeta,
 		/// <summary>
-		/// ‚Ü‚¿BBS (www.machibbs.com)
+		/// ã¾ã¡BBS (www.machibbs.com)
 		/// </summary>
 		Machi,
 		/// <summary>
-		/// ‚µ‚½‚ç‚ÎŒf¦”Â (www.shitaraba.com)
+		/// ã—ãŸã‚‰ã°æ²ç¤ºæ¿ (www.shitaraba.com)
 		/// </summary>
 		Shita,
 		/// <summary>
-		/// JBBS—‚µ‚½‚ç‚Î (jbbs.shitaraba.com)
+		/// JBBSï¼ ã—ãŸã‚‰ã° (jbbs.shitaraba.com)
 		/// </summary>
 		Jbbs,
 		/// <summary>
@@ -50,7 +50,7 @@ namespace Twin
 		/// </summary>
 		Be2ch,
 		/// <summary>
-		/// ƒ~ƒ‹ƒNƒJƒtƒF (www.milkcafe.net)
+		/// ãƒŸãƒ«ã‚¯ã‚«ãƒ•ã‚§ (www.milkcafe.net)
 		/// </summary>
 		MilkCafe,
 	}

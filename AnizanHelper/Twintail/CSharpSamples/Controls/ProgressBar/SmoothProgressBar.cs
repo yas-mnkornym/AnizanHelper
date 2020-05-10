@@ -7,8 +7,8 @@ namespace CSharpSamples
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ƒXƒ€[ƒX‚È•\¦•û®‚ÌƒvƒƒOƒŒƒXƒo[B
-	/// .NET 2.0 ‚Í•W€‚Å‚ ‚é‚Ì‚Å•K—v‚È‚­‚È‚Á‚½B
+	/// ã‚¹ãƒ ãƒ¼ã‚¹ãªè¡¨ç¤ºæ–¹å¼ã®ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã€‚
+	/// .NET 2.0 ã¯æ¨™æº–ã§ã‚ã‚‹ã®ã§å¿…è¦ãªããªã£ãŸã€‚
 	/// </summary>
 	public class SmoothProgressBar : ProgressCtrl
 	{
@@ -16,7 +16,7 @@ namespace CSharpSamples
 		private Color valueColor;
 
 		/// <summary>
-		/// ’l•”•ª‚ÌF‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// å€¤éƒ¨åˆ†ã®è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Color ValueColor
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒeƒLƒXƒg‚Ì•\¦ƒXƒ^ƒCƒ‹‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤ºã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public ProgressTextStyle TextStyle
 		{
@@ -41,12 +41,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// SmoothProgressBarƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// SmoothProgressBarã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public SmoothProgressBar() : base()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.ValueColor = SystemColors.Highlight;
 			this.ForeColor = Color.Black;
@@ -60,11 +60,11 @@ namespace CSharpSamples
 			Graphics g = e.Graphics;
 			Rectangle rect = e.ClipRectangle;
 
-			// ƒuƒ‰ƒV‚ğì¬
+			// ãƒ–ãƒ©ã‚·ã‚’ä½œæˆ
 			Brush brush = new SolidBrush(this.ValueColor);
 			Brush blank = new SolidBrush(SystemColors.Control);
 
-			// position(Œ»İˆÊ’u)‚©‚ç•`‰æ”ÍˆÍ‚ğŒvZ
+			// position(ç¾åœ¨ä½ç½®)ã‹ã‚‰æç”»ç¯„å›²ã‚’è¨ˆç®—
 			float range = (float)(Math.Abs(this.Minimum) + Math.Abs(this.Maximum));
 			float pos = range != 0 ? ((float)this.Position / range) : 0;
 			float right = rect.Width * pos;
@@ -72,7 +72,7 @@ namespace CSharpSamples
 			g.FillRectangle(brush, 0, 0, right, rect.Height);
 			g.FillRectangle(blank, right, 0, rect.Width - right, rect.Height);
 
-			// ”š‚ğ•`‰æ
+			// æ•°å­—ã‚’æç”»
 			StringFormat format = StringFormat.GenericDefault;
 			Brush textbrush = new SolidBrush(this.ForeColor);
 			string text = null;
@@ -92,34 +92,34 @@ namespace CSharpSamples
 					break;
 			}
 
-			// ‘S‘Ì‚Ì’†‰›‚É”z’u
+			// å…¨ä½“ã®ä¸­å¤®ã«é…ç½®
 			format.Alignment = StringAlignment.Center;
 			format.LineAlignment = StringAlignment.Center;
 
-			// •¶š—ñ‚ğ•`‰æ
+			// æ–‡å­—åˆ—ã‚’æç”»
 			g.DrawString(text, this.Font, textbrush, rect, format);
 
-			// ‹«ŠEü‚ğ•`‰æ
+			// å¢ƒç•Œç·šã‚’æç”»
 			Rectangle bounds = new Rectangle(0, 0, this.Width, this.Height);
 			ControlPaint.DrawBorder3D(g, bounds, this.BorderStyle);
 		}
 	}
 
 	/// <summary>
-	/// ƒvƒƒOƒŒƒX‚É•\¦‚·‚éƒeƒLƒXƒg‚Ì•\¦ƒXƒ^ƒCƒ‹‚ğ•\‚·
+	/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ã«è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤ºã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¡¨ã™
 	/// </summary>
 	public enum ProgressTextStyle
 	{
 		/// <summary>
-		/// ƒeƒLƒXƒg‚ğ•\¦‚µ‚È‚¢
+		/// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ãªã„
 		/// </summary>
 		None = 0,
 		/// <summary>
-		/// •S•ª—¦•\¦
+		/// ç™¾åˆ†ç‡è¡¨ç¤º
 		/// </summary>
 		Percent,
 		/// <summary>
-		/// ‘S‘Ì‚Ì’·‚³‚ğ•\¦
+		/// å…¨ä½“ã®é•·ã•ã‚’è¡¨ç¤º
 		/// </summary>
 		Length,
 	}

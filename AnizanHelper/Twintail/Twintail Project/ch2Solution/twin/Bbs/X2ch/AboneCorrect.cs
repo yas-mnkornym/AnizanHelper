@@ -8,7 +8,7 @@ namespace Twin.Bbs
 	public static class AboneCorrect
 	{
 		/// <summary>
-		/// ‚ ‚Ú[‚ñ‚³‚ê‚½ƒŒƒX‚ğŒ©‚Â‚¯o‚µA·•ªæ“¾‰Â”\‚ÈƒoƒCƒgƒIƒtƒZƒbƒg‚ğŒ©‚Â‚¯‚ÄAV‚µ‚¢ƒIƒtƒZƒbƒg‚É’ù³‚·‚é
+		/// ã‚ã¼ãƒ¼ã‚“ã•ã‚ŒãŸãƒ¬ã‚¹ã‚’è¦‹ã¤ã‘å‡ºã—ã€å·®åˆ†å–å¾—å¯èƒ½ãªãƒã‚¤ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¦‹ã¤ã‘ã¦ã€æ–°ã—ã„ã‚ªãƒ•ã‚»ãƒƒãƒˆã«è¨‚æ­£ã™ã‚‹
 		/// </summary>
 		/// <param name="oldItems"></param>
 		/// <param name="headerInfo"></param>
@@ -29,7 +29,7 @@ namespace Twin.Bbs
 
 					int correctlyOffset = AboneDetecting(oldItems, newItems);
 
-					// ’ù³‚³‚ê‚½V‚µ‚¢ƒIƒtƒZƒbƒg
+					// è¨‚æ­£ã•ã‚ŒãŸæ–°ã—ã„ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 					return correctlyOffset;
 				}
 
@@ -68,13 +68,13 @@ namespace Twin.Bbs
 
 			int newByteOffset = rawBytes.Length;
 
-			// ‚±‚ê‚ª³‚µ‚¢ƒoƒCƒgƒIƒtƒZƒbƒg‚É‚È‚é¥¥¥‚Í‚¸B
+			// ã“ã‚ŒãŒæ­£ã—ã„ãƒã‚¤ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã«ãªã‚‹ï½¥ï½¥ï½¥ã¯ãšã€‚
 			return newByteOffset;
 		}
 
 		private static bool IsAboned(ResSet resNew, ResSet resOld)
 		{
-			string[] aboneStr = { "‚ ‚Ú[‚ñ", "‚¤‚Ó`‚ñ" };
+			string[] aboneStr = { "ã‚ã¼ãƒ¼ã‚“", "ã†ãµï½ã‚“" };
 
 			foreach (string s in aboneStr)
 			{

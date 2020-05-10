@@ -3,14 +3,14 @@
 namespace CSharpSamples.Html
 {
 	/// <summary>
-	/// HtmlNode ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlNode ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public abstract class HtmlNode
 	{
 		private HtmlElement parent;
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ªÅã‘w‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ãŒæœ€ä¸Šå±¤ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public bool IsRoot
 		{
@@ -21,7 +21,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ªeƒm[ƒh‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ãŒè¦ªãƒãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public bool IsParent
 		{
@@ -33,7 +33,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ªqƒm[ƒh‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ãŒå­ãƒãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public bool IsChild
 		{
@@ -44,7 +44,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// eƒm[ƒh‚ğæ“¾
+		/// è¦ªãƒãƒ¼ãƒ‰ã‚’å–å¾—
 		/// </summary>
 		public HtmlElement Parent
 		{
@@ -55,7 +55,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‘O‚ÌŒZ’íƒm[ƒh‚ğæ“¾
+		/// å‰ã®å…„å¼Ÿãƒãƒ¼ãƒ‰ã‚’å–å¾—
 		/// </summary>
 		public HtmlNode Prev
 		{
@@ -73,7 +73,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// Ÿ‚ÌŒZ’íƒm[ƒh‚ğæ“¾
+		/// æ¬¡ã®å…„å¼Ÿãƒãƒ¼ãƒ‰ã‚’å–å¾—
 		/// </summary>
 		public HtmlNode Next
 		{
@@ -91,7 +91,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// Å‰‚Ìqƒm[ƒh‚ğæ“¾ (qƒm[ƒh‚ª‘¶İ‚µ‚È‚¯‚ê‚Înull‚ğ•Ô‚·)
+		/// æœ€åˆã®å­ãƒãƒ¼ãƒ‰ã‚’å–å¾— (å­ãƒãƒ¼ãƒ‰ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°nullã‚’è¿”ã™)
 		/// </summary>
 		public HtmlNode FirstChild
 		{
@@ -111,7 +111,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ÅŒã‚Ìqƒm[ƒh‚ğæ“¾ (qƒm[ƒh‚ª‘¶İ‚µ‚È‚¯‚ê‚Înull‚ğ•Ô‚·)
+		/// æœ€å¾Œã®å­ãƒãƒ¼ãƒ‰ã‚’å–å¾— (å­ãƒãƒ¼ãƒ‰ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°nullã‚’è¿”ã™)
 		/// </summary>
 		public HtmlNode LastChild
 		{
@@ -131,7 +131,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ““à‚ÌˆÊ’u‚ğæ“¾
+		/// ãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		public int Index
 		{
@@ -143,7 +143,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ğHtmlŒ`®‚Ì•¶š—ñ‚Åæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã‚’Htmlå½¢å¼ã®æ–‡å­—åˆ—ã§å–å¾—
 		/// </summary>
 		public abstract string Html
 		{
@@ -151,7 +151,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚Ì“à•”Html‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã®å†…éƒ¨Htmlã‚’å–å¾—
 		/// </summary>
 		public abstract string InnerHtml
 		{
@@ -159,7 +159,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚Ì“à•”ƒeƒLƒXƒg‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã®å†…éƒ¨ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 		/// </summary>
 		public abstract string InnerText
 		{
@@ -167,18 +167,18 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlNodeƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlNodeã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected HtmlNode()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.parent = null;
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ÉV‚µ‚¢e‚ğİ’è
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã«æ–°ã—ã„è¦ªã‚’è¨­å®š
 		/// </summary>
 		/// <param name="newParent"></param>
 		internal void SetParent(HtmlElement newParent)
@@ -187,7 +187,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğeƒm[ƒh‚©‚çíœ
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¦ªãƒãƒ¼ãƒ‰ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public void Remove()
 		{
@@ -198,9 +198,9 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
-		/// <returns>HtmlƒvƒƒpƒeƒB‚Ì’l‚ğ•Ô‚·</returns>
+		/// <returns>Htmlãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã‚’è¿”ã™</returns>
 		public override string ToString()
 		{
 			return this.Html;

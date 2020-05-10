@@ -5,20 +5,20 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// Š®—¹‚Ìó‘Ô‚ğ•\‚·
+	/// å®Œäº†æ™‚ã®çŠ¶æ…‹ã‚’è¡¨ã™
 	/// </summary>
 	public enum CompleteStatus
 	{
 		/// <summary>
-		/// ¬Œ÷
+		/// æˆåŠŸ
 		/// </summary>
 		Success,
 		/// <summary>
-		/// ƒGƒ‰[‚ª”­¶
+		/// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ
 		/// </summary>
 		Error,
 		/// <summary>
-		/// ’†~‚³‚ê‚½
+		/// ä¸­æ­¢ã•ã‚ŒãŸ
 		/// </summary>
 		Abort,
 	}

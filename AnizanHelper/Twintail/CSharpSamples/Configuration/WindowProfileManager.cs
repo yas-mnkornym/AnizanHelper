@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace CSharpSamples
 {
 	/// <summary>
-	/// Form ƒEƒCƒ“ƒhƒE‚Ìó‘Ô‚ğ .ini Œ`®‚Å•Û‘¶/•œŒ³‚·‚éƒNƒ‰ƒXB
+	/// Form ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®çŠ¶æ…‹ã‚’ .ini å½¢å¼ã§ä¿å­˜/å¾©å…ƒã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
 	/// </summary>
 	public class WindowProfileManager
 	{
@@ -15,7 +15,7 @@ namespace CSharpSamples
 		private Rectangle normalWindowRect = Rectangle.Empty;
 
 		/// <summary>
-		/// WindowProfileManager ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// WindowProfileManager ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>	
 		public WindowProfileManager(Form f)
 		{
@@ -24,7 +24,7 @@ namespace CSharpSamples
 				throw new ArgumentNullException("f");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 
 			this.normalWindowRect =

@@ -10,7 +10,7 @@ namespace Twin.Bbs
 	using System.Text;
 
 	/// <summary>
-	/// ”FØ‚ğg‚Á‚Ä‚Q‚¿‚á‚ñ‚Ë‚é (www.2ch.net) ‚ÌƒXƒŒƒbƒh‚ğ“Ç‚İ‚Ş‹@”\‚ğ’ñ‹Ÿ
+	/// èªè¨¼ã‚’ä½¿ã£ã¦ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ (www.2ch.net) ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã‚€æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chAuthenticateThreadReader : X2chThreadReader
 	{
@@ -26,7 +26,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="th"></param>
 		public override bool Open(ThreadHeader header)
@@ -37,7 +37,7 @@ namespace Twin.Bbs
 			}
 			if (IsOpen)
 			{
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
 			headerInfo = header;
@@ -58,10 +58,10 @@ namespace Twin.Bbs
 					req.UserAgent = UserAgent;
 					req.AllowAutoRedirect = false;
 
-					// ** 9/26 íœ **
+					// ** 9/26 å‰Šé™¤ **
 					// req.Headers.Add("Accept-Encoding", "gzip");
 
-					// ** 9/26 ’Ç‰Á **
+					// ** 9/26 è¿½åŠ  **
 					req.AutomaticDecompression = DecompressionMethods.GZip;
 
 					req.Headers.Add("Pragma", "no-cache");
@@ -81,7 +81,7 @@ namespace Twin.Bbs
 
 					if (_res.StatusCode == HttpStatusCode.OK)
 					{
-						/* 9 26íœ
+						/* 9 26å‰Šé™¤
 						using (GZipStream gzipInp = new GZipStream(_res.GetResponseStream(), CompressionMode.Decompress))
 						baseStream = FileUtility.CreateMemoryStream(gzipInp);
 						*/
@@ -99,7 +99,7 @@ namespace Twin.Bbs
 			else
 				OnPastlog(new PastlogEventArgs(header));
 
-			// ‰ß‹ƒƒO‚È‚Ì‚Ådat—‚¿‚Éİ’è
+			// éå»ãƒ­ã‚°ãªã®ã§datè½ã¡ã«è¨­å®š
 			headerInfo.Pastlog = true;
 
 			return isOpen;
@@ -115,7 +115,7 @@ namespace Twin.Bbs
 		// do
 		// {
 		// c = baseStream.Read( buf , 0 , buf.Length );
-		// // Å‰‚Ì‰üs‚ª—ˆ‚é‚Ü‚Å“Ç‚İ”ò‚Î‚·
+		// // æœ€åˆã®æ”¹è¡ŒãŒæ¥ã‚‹ã¾ã§èª­ã¿é£›ã°ã™
 		// } while ( c != 0 && buf[0] != '\n' );
 
 		// firstRead = false;
@@ -146,8 +146,8 @@ namespace Twin.Bbs
 			do
 			{
 				c = baseStream.Read(buf, 0, buf.Length);
-				// Å‰‚Ì‰üs‚ª—ˆ‚é‚Ü‚Å“Ç‚İ”ò‚Î‚·
-				// 2013/09/10 ‰‚ß‚Ìs‚ğˆ—Œ‹‰ÊƒR[ƒhƒGƒŠƒA‚Æ’è‹`•éŒ¾‚µ‚½‚Ì‚Å•¶š‚Éæ‚è‚ñ‚Å‚¨‚­
+				// æœ€åˆã®æ”¹è¡ŒãŒæ¥ã‚‹ã¾ã§èª­ã¿é£›ã°ã™
+				// 2013/09/10 åˆã‚ã®è¡Œã‚’å‡¦ç†çµæœã‚³ãƒ¼ãƒ‰ã‚¨ãƒªã‚¢ã¨å®šç¾©ï¼†å®£è¨€ã—ãŸã®ã§æ–‡å­—ã«å–ã‚Šè¾¼ã‚“ã§ãŠã
 				// http://qb5.2ch.net/test/read.cgi/operate/1366640919/119
 				statusbytes.Add(buf[0]);
 			} while (c != 0 && buf[0] != '\n');
@@ -162,7 +162,7 @@ namespace Twin.Bbs
 			//using ( StreamReader s = new StreamReader( responseStream ) )
 			//{
 			// string line = s.ReadLine();
-			//responseStream.Position += base.dataParser.Encoding.GetByteCount( line ); // Å‰‚Ì1s•ª‚¾‚¯ƒXƒgƒŠ[ƒ€‚ği‚ß‚Ä‚¨‚­
+			//responseStream.Position += base.dataParser.Encoding.GetByteCount( line ); // æœ€åˆã®1è¡Œåˆ†ã ã‘ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é€²ã‚ã¦ãŠã
 
 			if (line.StartsWith("Success")) return X2chRokkaResponseState.Success;
 			else if (line.StartsWith("Error 8008135")) return X2chRokkaResponseState.InvalidServerOrBoardOrThread;
@@ -171,7 +171,7 @@ namespace Twin.Bbs
 			else if (line.StartsWith("Error 420")) return X2chRokkaResponseState.TimeLimitError;
 			else
 			{
-				// ƒXƒe[ƒ^ƒX‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚ÍAƒXƒgƒŠ[ƒ€‚ÌˆÊ’u‚ğŒ³‚É–ß‚µ‚Ä‚¨‚­
+				// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ã€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ä½ç½®ã‚’å…ƒã«æˆ»ã—ã¦ãŠã
 				//responseStream.Position = firstpos;
 				return X2chRokkaResponseState.Unknown;
 			}
@@ -181,17 +181,17 @@ namespace Twin.Bbs
 
 
 	/*
-	"Success"@@- The process has successfuly done. Following lines are achieved message with dat format
+	"Success"ã€€ã€€- The process has successfuly done. Following lines are achieved message with dat format
 	Error codes:
-		inputError = "Error 8008135"@@@@@@invalid SERVER or BOARD or THREAD
-		authenticationError = "Error 69"@@@@invalid SID
-		urlError = "Error 666"@@@@@@@@@invalid OPTIONS
-		timeLimitError = "Error 420"@@@@@@ access too fast, interval between requests required
+		inputError = "Error 8008135"ã€€ã€€ã€€ã€€ã€€ã€€invalid SERVER or BOARD or THREAD
+		authenticationError = "Error 69"ã€€ã€€ã€€ã€€invalid SID
+		urlError = "Error 666"ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€invalid OPTIONS
+		timeLimitError = "Error 420"ã€€ã€€ã€€ã€€ã€€ã€€ access too fast, interval between requests required
 	*/
 	public enum X2chRokkaResponseState
 	{
 		None = -2,
-		Unknown = -1, // ƒXƒe[ƒ^ƒX‚ª•s–¾
+		Unknown = -1, // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¸æ˜
 		Success = 0,
 		InvalidServerOrBoardOrThread = 8008135,
 		AuthenticationError = 89,

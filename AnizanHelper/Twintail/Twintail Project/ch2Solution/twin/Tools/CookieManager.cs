@@ -11,7 +11,7 @@ namespace Twin.Tools
 	using CSharpSamples;
 
 	/// <summary>
-	/// Œf¦”Â‚É‘‚«‚ŞÛ‚É•K—v‚ÈƒNƒbƒL[‚ğŠÇ—
+	/// æ²ç¤ºæ¿ã«æ›¸ãè¾¼ã‚€éš›ã«å¿…è¦ãªã‚¯ãƒƒã‚­ãƒ¼ã‚’ç®¡ç†
 	/// </summary>
 	public class CookieManager
 	{
@@ -19,7 +19,7 @@ namespace Twin.Tools
 		private Cache cache;
 		
 		/// <summary>
-		/// CookieManagerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CookieManagerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		public CookieManager(Cache cache)
@@ -27,7 +27,7 @@ namespace Twin.Tools
 			if (cache == null)
 				throw new ArgumentNullException("cache");
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.cache = cache;
 		}
@@ -39,10 +39,10 @@ namespace Twin.Tools
 		}*/
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒNƒbƒL[î•ñ‚ğæ“¾
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚¯ãƒƒã‚­ãƒ¼æƒ…å ±ã‚’å–å¾—
 		/// </summary>
-		/// <param name="board">ƒNƒbƒL[æ“¾‘ÎÛ‚Ì”Â</param>
-		/// <returns>ƒNƒbƒL[‚ª‘¶İ‚µæ“¾‚Å‚«‚ê‚ÎtrueA‚»‚¤‚Å‚È‚¯‚ê‚Îfalse</returns>
+		/// <param name="board">ã‚¯ãƒƒã‚­ãƒ¼å–å¾—å¯¾è±¡ã®æ¿</param>
+		/// <returns>ã‚¯ãƒƒã‚­ãƒ¼ãŒå­˜åœ¨ã—å–å¾—ã§ãã‚Œã°trueã€ãã†ã§ãªã‘ã‚Œã°false</returns>
 		public bool GetCookie(BoardInfo board)
 		{
 			if (board == null)
@@ -69,9 +69,9 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒNƒbƒL[‚ğ•Û‘¶
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚¯ãƒƒã‚­ãƒ¼ã‚’ä¿å­˜
 		/// </summary>
-		/// <param name="board">ƒNƒbƒL[•Û‘¶‘ÎÛ‚Ì”Â</param>
+		/// <param name="board">ã‚¯ãƒƒã‚­ãƒ¼ä¿å­˜å¯¾è±¡ã®æ¿</param>
 		public void SetCookie(BoardInfo board)
 		{/*
 			if (board == null)

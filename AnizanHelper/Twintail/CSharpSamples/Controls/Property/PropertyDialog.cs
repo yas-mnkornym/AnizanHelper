@@ -7,7 +7,7 @@ namespace CSharpSamples
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// PropertyDialog ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// PropertyDialog ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class PropertyDialog : System.Windows.Forms.Form
 	{
@@ -15,7 +15,7 @@ namespace CSharpSamples
 		private System.Windows.Forms.Button buttonOK;
 		private System.Windows.Forms.TabControl tabControl;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
@@ -23,7 +23,7 @@ namespace CSharpSamples
 		private bool modified;
 
 		/// <summary>
-		/// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ•\‚·’l‚ğæ“¾
+		/// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’è¡¨ã™å€¤ã‚’å–å¾—
 		/// </summary>
 		[Browsable(false)]
 		public bool Modified
@@ -35,7 +35,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒvƒƒpƒeƒB‚Ìƒy[ƒWƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ãƒšãƒ¼ã‚¸ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public Property.PropertyCollection Pages
 		{
@@ -48,19 +48,19 @@ namespace CSharpSamples
 		public PropertyDialog()
 		{
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			this.InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.modified = false;
 			this.pages = new Property.PropertyCollection(this);
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose(bool disposing)
 		{
@@ -76,8 +76,8 @@ namespace CSharpSamples
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -94,7 +94,7 @@ namespace CSharpSamples
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(80, 20);
 			this.buttonCancel.TabIndex = 0;
-			this.buttonCancel.Text = "ƒLƒƒƒ“ƒZƒ‹";
+			this.buttonCancel.Text = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«";
 			// 
 			// buttonOK
 			// 

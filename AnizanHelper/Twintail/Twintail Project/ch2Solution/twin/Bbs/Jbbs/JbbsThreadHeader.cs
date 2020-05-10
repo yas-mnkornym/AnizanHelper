@@ -5,12 +5,12 @@ namespace Twin.Bbs
 	using System;
 
 	/// <summary>
-	/// JbbsThreadHeader ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// JbbsThreadHeader ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class JbbsThreadHeader : MachiThreadHeader
 	{
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public override string Url {
 			get {
@@ -29,21 +29,21 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ‘‚«‚İ‰Â”\‚ÈÅ‘åƒŒƒX”‚ğæ“¾
+		/// æ›¸ãè¾¼ã¿å¯èƒ½ãªæœ€å¤§ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public override int UpperLimitResCount {
 			get {
-				return 10000; // ‚µ‚½‚ç‚Î‚ÌÅ‘åƒŒƒX”‚ª‚í‚©‚ñ‚È‚¢‚Ì‚Å“K“–‚Éc
+				return 10000; // ã—ãŸã‚‰ã°ã®æœ€å¤§ãƒ¬ã‚¹æ•°ãŒã‚ã‹ã‚“ãªã„ã®ã§é©å½“ã«â€¦
 			}
 		}
 
 		/// <summary>
-		/// JbbsThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// JbbsThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public JbbsThreadHeader()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

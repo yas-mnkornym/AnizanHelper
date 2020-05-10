@@ -7,7 +7,7 @@ namespace Twin
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// Œf¦”Â‚Ì”Â‚ğ‚Ü‚Æ‚ß‚éƒJƒeƒSƒŠ‚ğ•\‚·
+	/// æ²ç¤ºæ¿ã®æ¿ã‚’ã¾ã¨ã‚ã‚‹ã‚«ãƒ†ã‚´ãƒªã‚’è¡¨ã™
 	/// </summary>
 	public class Category
 	{
@@ -16,7 +16,7 @@ namespace Twin
 		private bool isExpanded;
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚éqƒGƒ“ƒgƒŠ”‚ğæ“¾
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å­ã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count {
 			get {
@@ -25,7 +25,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒJƒeƒSƒŠ–¼‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚«ãƒ†ã‚´ãƒªåã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name {
 			set {
@@ -38,7 +38,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒJƒeƒSƒŠ‚ÌqƒGƒ“ƒgƒŠ‚ğæ“¾
+		/// ã“ã®ã‚«ãƒ†ã‚´ãƒªã®å­ã‚¨ãƒ³ãƒˆãƒªã‚’å–å¾—
 		/// </summary>
 		public BoardInfoCollection Children {
 			get {
@@ -47,7 +47,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒtƒHƒ‹ƒ_‚ª“WŠJ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ•ã‚©ãƒ«ãƒ€ãŒå±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsExpanded {
 			set {
@@ -58,7 +58,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// CategoryƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Categoryã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Category()
 		{
@@ -68,9 +68,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// CategoryƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Categoryã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="name">ƒJƒeƒSƒŠ–¼</param>
+		/// <param name="name">ã‚«ãƒ†ã‚´ãƒªå</param>
 		public Category(string name) : this()
 		{
 			if (name == null) {
@@ -81,7 +81,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒnƒbƒVƒ…ŠÖ”
+		/// ãƒãƒƒã‚·ãƒ¥é–¢æ•°
 		/// </summary>
 		/// <returns></returns>
 		public override int GetHashCode()
@@ -90,7 +90,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æobj‚ğ”äŠr
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨objã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
@@ -100,7 +100,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æcategory‚ğ”äŠr
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨categoryã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="category"></param>
 		/// <returns></returns>
@@ -122,7 +122,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

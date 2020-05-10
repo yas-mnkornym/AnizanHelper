@@ -6,14 +6,14 @@ using System.Runtime.InteropServices;
 namespace CSharpSamples
 {
 	/// <summary>
-	/// Lha�^���A�t�@�C�����𓀁^���k����@�\��񋟂��܂��B
-	/// ���̃N���X�̓X���b�h�A���Z�[�t�ł��B
+	/// Lha型式、ファイルを解凍／圧縮する機能を提供します。
+	/// このクラスはスレッドアンセーフです。
 	/// </summary>
 	public class Lha : IArchivable
 	{
 		/// <summary>
-		/// ���k�ɑΉ����Ă��邩�ǂ����������l��Ԃ��܂��B
-		/// ���̃v���p�e�B�͏�� true �ł��B
+		/// 圧縮に対応しているかどうかを示す値を返します。
+		/// このプロパティは常に true です。
 		/// </summary>
 		public bool CanCompress
 		{
@@ -24,8 +24,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �𓀂ɑΉ����Ă��邩�ǂ����������l��Ԃ��܂��B
-		/// ���̃v���p�e�B�͏�� true �ł��B
+		/// 解凍に対応しているかどうかを示す値を返します。
+		/// このプロパティは常に true です。
 		/// </summary>
 		public bool CanExtract
 		{
@@ -36,7 +36,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Unlha32.dll �̃o�[�W�������擾���܂��B
+		/// Unlha32.dll のバージョンを取得します。
 		/// </summary>
 		public float Version
 		{
@@ -48,7 +48,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ���� Unlha32.dll �����쒆���ǂ����𔻒f���܂��B
+		/// 現在 Unlha32.dll が動作中かどうかを判断します。
 		/// </summary>
 		public bool IsRunning
 		{
@@ -60,7 +60,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �o�b�N�O���E���h���[�h���ǂ������擾�܂��͐ݒ肵�܂��B
+		/// バックグラウンドモードかどうかを取得または設定します。
 		/// </summary>
 		public bool IsBackground
 		{
@@ -77,7 +77,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Unlha32.dll �̓��쒆�ɃJ�[�\����\�����郂�[�h���ǂ������擾�܂��͐ݒ肵�܂��B
+		/// Unlha32.dll の動作中にカーソルを表示するモードかどうかを取得または設定します。
 		/// </summary>
 		public bool CursorMode
 		{
@@ -94,14 +94,14 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Lha �N���X�̃C���X�^���X�����������܂��B
+		/// Lha クラスのインスタンスを初期化します。
 		/// </summary>
 		public Lha()
 		{
 		}
 
 		/// <summary>
-		/// Unlha �֐��𒼐ڌĂяo���܂��B
+		/// Unlha 関数を直接呼び出します。
 		/// </summary>
 		/// <param name="format"></param>
 		/// <param name="objects"></param>
@@ -113,7 +113,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Unlha �֐��𒼐ڌĂяo���܂��B
+		/// Unlha 関数を直接呼び出します。
 		/// </summary>
 		/// <param name="cmdline"></param>
 		/// <returns></returns>
@@ -128,11 +128,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �t�@�C�������k���܂��B
+		/// ファイルを圧縮します。
 		/// </summary>
-		/// <param name="archive">�쐬����A�[�J�C�u���B</param>
-		/// <param name="fileName">���k����t�@�C�����B</param>
-		/// <returns>����I���Ȃ� 0 ��Ԃ��A�ȏ�I���̏ꍇ�� 0 �ȊO�̒l��Ԃ��܂��B</returns>
+		/// <param name="archive">作成するアーカイブ名。</param>
+		/// <param name="fileName">圧縮するファイル名。</param>
+		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Compress(string archive, string fileName)
 		{
 			if (archive == null)
@@ -150,11 +150,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �����̃t�@�C�����܂Ƃ߂Ĉ��k���܂��B
+		/// 複数のファイルをまとめて圧縮します。
 		/// </summary>
-		/// <param name="archive">�쐬����A�[�J�C�u���B</param>
-		/// <param name="fileName">���k����t�@�C�����̔z��B</param>
-		/// <returns>����I���Ȃ� 0 ��Ԃ��A�ȏ�I���̏ꍇ�� 0 �ȊO�̒l��Ԃ��܂��B</returns>
+		/// <param name="archive">作成するアーカイブ名。</param>
+		/// <param name="fileName">圧縮するファイル名の配列。</param>
+		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Compress(string archive, string[] fileNames)
 		{
 			if (archive == null)
@@ -183,12 +183,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �A�[�J�C�u���𓀂��܂��B
+		/// アーカイブを解凍します。
 		/// </summary>
-		/// <param name="archive">�𓀂���A�[�J�C�u�B</param>
-		/// <param name="directory">�o�̓f�B���N�g���B</param>
-		/// <param name="fileName">�𓀂���t�@�C����</param>
-		/// <returns>����I���Ȃ� 0 ��Ԃ��A�ȏ�I���̏ꍇ�� 0 �ȊO�̒l��Ԃ��܂��B</returns>
+		/// <param name="archive">解凍するアーカイブ。</param>
+		/// <param name="directory">出力ディレクトリ。</param>
+		/// <param name="fileName">解凍するファイル名</param>
+		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Extract(string archive, string directory, string fileName)
 		{
 			if (archive == null)
@@ -211,11 +211,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// �A�[�J�C�u���𓀂��܂��B
+		/// アーカイブを解凍します。
 		/// </summary>
-		/// <param name="archive">�𓀂���A�[�J�C�u�B</param>
-		/// <param name="directory">�o�̓f�B���N�g���B</param>
-		/// <returns>����I���Ȃ� 0 ��Ԃ��A�ȏ�I���̏ꍇ�� 0 �ȊO�̒l��Ԃ��B</returns>
+		/// <param name="archive">解凍するアーカイブ。</param>
+		/// <param name="directory">出力ディレクトリ。</param>
+		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返す。</returns>
 		public int Extract(string archive, string directory)
 		{
 			if (archive == null)

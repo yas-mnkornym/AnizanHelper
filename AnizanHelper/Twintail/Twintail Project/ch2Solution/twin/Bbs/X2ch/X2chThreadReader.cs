@@ -16,7 +16,7 @@ namespace Twin.Bbs
 	using System.Threading;
 
 	/// <summary>
-	/// ‚Q‚¿‚á‚ñ‚Ë‚é (www.2ch.net) ‚ÌƒXƒŒƒbƒh‚ğ“Ç‚İ‚Ş‹@”\‚ğ’ñ‹Ÿ
+	/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ (www.2ch.net) ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã‚€æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chThreadReader : ThreadReaderBase
 	{
@@ -27,7 +27,7 @@ namespace Twin.Bbs
 		private HttpWebResponse _res = null;
 
 		/// <summary>
-		/// w’è‚µ‚½ƒp[ƒT‚ğg—p‚µ‚ÄX2chThreadReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// æŒ‡å®šã—ãŸãƒ‘ãƒ¼ã‚µã‚’ä½¿ç”¨ã—ã¦X2chThreadReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
 		/// <param name="dataParser"></param>
 		public X2chThreadReader(ThreadParser dataParser)
@@ -37,7 +37,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chThreadReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadReader()
 			: this(new X2chThreadParser())
@@ -45,21 +45,21 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chThreadReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»‚Æ“¯‚ÉA
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ğŠJ‚­B
+		/// X2chThreadReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã¨åŒæ™‚ã«ã€
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ãã€‚
 		/// </summary>
-		/// <param name="header">‰Šú‰»‚Æ“¯‚ÉŠJ‚­ƒXƒŒƒbƒh‚Ìî•ñ</param>
+		/// <param name="header">åˆæœŸåŒ–ã¨åŒæ™‚ã«é–‹ãã‚¹ãƒ¬ãƒƒãƒ‰ã®æƒ…å ±</param>
 		public X2chThreadReader(ThreadHeader header)
 			: this()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			Open(header);
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="th"></param>
 		public override bool Open(ThreadHeader header)
@@ -70,10 +70,10 @@ namespace Twin.Bbs
 			}
 			if (IsOpen)
 			{
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
-			// ·•ªæ“¾‚©‚Ç‚¤‚©
+			// å·®åˆ†å–å¾—ã‹ã©ã†ã‹
 			aboneCheck = (header.GotByteCount > 0) ? true : false;
 //		Retry:
 			_res = null;
@@ -130,22 +130,22 @@ namespace Twin.Bbs
 					position = 0;
 					isOpen = true;
 				}
-				// dat—‚¿‚µ‚½—\Š´
+				// datè½ã¡ã—ãŸäºˆæ„Ÿ
 				else
 				{
 					_res.Close();
 
 					if (_res.StatusCode == HttpStatusCode.Found)
 					{
-						// 10/05 ˆÚ“]’Ç”ö‚ğ‚·‚é‚Æ‰ß‹ƒƒO‘qŒÉ‚ª“Ç‚ß‚È‚­‚È‚Á‚Ä‚µ‚Ü‚¤–‚ª‚í‚©‚Á‚½‚Ì‚ÅAˆê“I‚ÉŠO‚µ‚Ä‚İ‚é
+						// 10/05 ç§»è»¢è¿½å°¾ã‚’ã™ã‚‹ã¨éå»ãƒ­ã‚°å€‰åº«ãŒèª­ã‚ãªããªã£ã¦ã—ã¾ã†äº‹ãŒã‚ã‹ã£ãŸã®ã§ã€ä¸€æ™‚çš„ã«å¤–ã—ã¦ã¿ã‚‹
 						//if (IsServerChanged(headerInfo))
 						//{
-						//    // ƒT[ƒo[‚ªˆÚ“]‚µ‚½‚çV‚µ‚¢”Âî•ñ‚ÅƒŠƒgƒ‰ƒCB
+						//    // ã‚µãƒ¼ãƒãƒ¼ãŒç§»è»¢ã—ãŸã‚‰æ–°ã—ã„æ¿æƒ…å ±ã§ãƒªãƒˆãƒ©ã‚¤ã€‚
 						//    goto Retry;
 						//}
 						//else
 						{
-							// ‚»‚¤‚Å‚È‚¯‚ê‚Î dat—‚¿‚Æ‚µ‚Ä”»’f
+							// ãã†ã§ãªã‘ã‚Œã° datè½ã¡ã¨ã—ã¦åˆ¤æ–­
 							//0324 headerInfo.Pastlog = true;
 
 							PastlogEventArgs argument = new PastlogEventArgs(headerInfo);
@@ -160,7 +160,7 @@ namespace Twin.Bbs
 			{
 				HttpWebResponse res = (HttpWebResponse)ex.Response;
 
-				// ‚ ‚Ú[‚ñ‚Ì—\Š´
+				// ã‚ã¼ãƒ¼ã‚“ã®äºˆæ„Ÿ
 				if (res != null &&
 					res.StatusCode == HttpStatusCode.RequestedRangeNotSatisfiable)
 				{
@@ -176,7 +176,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
 		/// <param name="byteParsed"></param>
@@ -188,7 +188,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
 		/// <param name="byteParsed"></param>
@@ -201,13 +201,13 @@ namespace Twin.Bbs
 			}
 			if (!isOpen)
 			{
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
-			// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			int byteCount = baseStream.Read(buffer, 0, buffer.Length);
 
-			// ‚ ‚Ú[‚ñƒ`ƒFƒbƒN
+			// ã‚ã¼ãƒ¼ã‚“ãƒã‚§ãƒƒã‚¯
 			if (aboneCheck && byteCount > 0)
 			{
 				if (buffer[0] != '\n')
@@ -226,7 +226,7 @@ namespace Twin.Bbs
 				aboneCheck = false;
 			}
 
-			// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+			// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 			ICollection collect = dataParser.Parse(buffer, byteCount, out byteParsed);
 
 			foreach (ResSet resSet in collect)
@@ -239,14 +239,14 @@ namespace Twin.Bbs
 					headerInfo.Subject = (string)res.Tag;
 			}
 
-			// ÀÛ‚É“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğŒvZ
+			// å®Ÿéš›ã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 			position += byteCount;
 
 			return byteCount;
 		}
 
 		/// <summary>
-		/// buffer‚Ìæ“ª•¶š‚ğæ‚èœ‚­
+		/// bufferã®å…ˆé ­æ–‡å­—ã‚’å–ã‚Šé™¤ã
 		/// </summary>
 		/// <param name="buffer"></param>
 		/// <param name="count"></param>

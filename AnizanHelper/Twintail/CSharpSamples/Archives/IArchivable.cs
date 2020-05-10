@@ -3,12 +3,12 @@
 namespace CSharpSamples
 {
 	/// <summary>
-	/// IArchivable ƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·B
+	/// IArchivable ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public interface IArchivable
 	{
 		/// <summary>
-		/// ‰ğ“€‚É‘Î‰‚µ‚Ä‚¢‚ê‚Î trueA–¢‘Î‰‚È‚ç false ‚ğ•Ô‚µ‚Ü‚·B
+		/// è§£å‡ã«å¯¾å¿œã—ã¦ã„ã‚Œã° trueã€æœªå¯¾å¿œãªã‚‰ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		bool CanExtract
 		{
@@ -16,7 +16,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ˆ³k‚É‘Î‰‚µ‚Ä‚¢‚ê‚Î trueA–¢‘Î‰‚È‚ç false ‚ğ•Ô‚µ‚Ü‚·B
+		/// åœ§ç¸®ã«å¯¾å¿œã—ã¦ã„ã‚Œã° trueã€æœªå¯¾å¿œãªã‚‰ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		bool CanCompress
 		{

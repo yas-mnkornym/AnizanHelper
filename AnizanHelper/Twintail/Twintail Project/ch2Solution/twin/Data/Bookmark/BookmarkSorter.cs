@@ -7,7 +7,7 @@ namespace Twin
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// BookmarkCollection‚Ì—v‘f‚ğƒ\[ƒg‚·‚éƒNƒ‰ƒX
+	/// BookmarkCollectionã®è¦ç´ ã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class BookmarkSorter : IComparer
 	{
@@ -15,21 +15,21 @@ namespace Twin
 		private SortOrder order;
 
 		/// <summary>
-		/// BookmarkSorterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkSorterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="order"></param>
 		public BookmarkSorter(BookmarkSortObject obj, SortOrder order)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.obj = obj;
 			this.order = order;
 		}
 
 		/// <summary>
-		/// x‚Æy‚ğ”äŠr
+		/// xã¨yã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="x"></param>
 		/// <param name="y"></param>
@@ -41,7 +41,7 @@ namespace Twin
 
 			switch (obj)
 			{
-				// –¼‘O‡‚Åƒ\[ƒg
+				// åå‰é †ã§ã‚½ãƒ¼ãƒˆ
 			case BookmarkSortObject.Name:
 				return CompareInternal(item_x, item_y);
 			}
@@ -50,15 +50,15 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// x‚Æy‚ğ”äŠr
+		/// xã¨yã‚’æ¯”è¼ƒ
 		/// </summary>
 		/// <param name="x"></param>
 		/// <param name="y"></param>
 		/// <returns></returns>
 		private int CompareInternal(BookmarkEntry entry1, BookmarkEntry entry2)
 		{
-			// ƒtƒHƒ‹ƒ_‘Î‚¨‹C‚É“ü‚èA‚Ü‚½‚Í‚¨‹C‚É“ü‚è‘ÎƒtƒHƒ‹ƒ_‚Ìê‡‚ÍA
-			// ƒtƒHƒ‹ƒ_‚ğ—Dæ‚·‚éB
+			// ãƒ•ã‚©ãƒ«ãƒ€å¯¾ãŠæ°—ã«å…¥ã‚Šã€ã¾ãŸã¯ãŠæ°—ã«å…¥ã‚Šå¯¾ãƒ•ã‚©ãƒ«ãƒ€ã®å ´åˆã¯ã€
+			// ãƒ•ã‚©ãƒ«ãƒ€ã‚’å„ªå…ˆã™ã‚‹ã€‚
 			if (entry1 is BookmarkFolder && entry2 is BookmarkThread)
 				return -1;
 
@@ -66,7 +66,7 @@ namespace Twin
 				return 1;
 			// ---------------------------------------
 
-			// ‚¨‹C‚É“ü‚è‘Î‚¨‹C‚É“ü‚è
+			// ãŠæ°—ã«å…¥ã‚Šå¯¾ãŠæ°—ã«å…¥ã‚Š
 			return (order == SortOrder.Ascending) ?
 				String.Compare(entry1.Name, entry2.Name) :
 				String.Compare(entry2.Name, entry1.Name);

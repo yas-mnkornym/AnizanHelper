@@ -12,7 +12,7 @@ namespace CSharpSamples
 	using TabButtonCollection = TabButton.TabButtonCollection;
 
 	/// <summary>
-	/// TabControl ‚Ìƒ^ƒu•”•ª‚¾‚¯‚Ì‹@”\‚ğ‚ÂƒNƒ‰ƒX‚Å‚·B
+	/// TabControl ã®ã‚¿ãƒ–éƒ¨åˆ†ã ã‘ã®æ©Ÿèƒ½ã‚’æŒã¤ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	[DefaultEvent("SelectedChanged")]
 	public class TabButtonControl : Control
@@ -29,9 +29,9 @@ namespace CSharpSamples
 		private bool autoAdjustButtonSize;
 		private bool wrappable;
 
-		private TabButton selected = null;      // Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚é TabButton
-		private TabButton focused = null;       // ’¼‘O‚ÉƒNƒŠƒbƒN‚³‚ê‚½ TabButton
-		private TabButton hot = null;           // ƒ}ƒEƒX’¼‰º‚É‚ ‚é TabButton
+		private TabButton selected = null;      // ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ TabButton
+		private TabButton focused = null;       // ç›´å‰ã«ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸ TabButton
+		private TabButton hot = null;           // ãƒã‚¦ã‚¹ç›´ä¸‹ã«ã‚ã‚‹ TabButton
 
 		private bool disposed = false;
 
@@ -44,7 +44,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// “o˜^‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğ•Ô‚µ‚Ü‚·B
+		/// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Editor(typeof(CollectionEditor), typeof(UITypeEditor))]
@@ -57,7 +57,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚É•\¦‚·‚é ImageList ‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ãƒœã‚¿ãƒ³ã«è¡¨ç¤ºã™ã‚‹ ImageList ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public ImageList ImageList
 		{
@@ -76,7 +76,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚ÌƒXƒ^ƒCƒ‹‚ğ•\‚· TabButtonStyle —ñ‹“‘Ì‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ãƒœã‚¿ãƒ³ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¡¨ã™ TabButtonStyle åˆ—æŒ™ä½“ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(TabButtonStyle), "Button")]
 		public TabButtonStyle Style
@@ -90,7 +90,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì‹«ŠEü‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å¢ƒç•Œç·šã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Border3DStyle), "Adjust")]
 		public Border3DStyle BorderStyle
@@ -107,8 +107,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ^ƒu‚ªˆês‚Éû‚Ü‚ç‚È‚¢‚Æ‚«‚ÉA
-		/// Ÿ‚Ìs‚ÉÜ‚è•Ô‚·‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¿ãƒ–ãŒä¸€è¡Œã«åã¾ã‚‰ãªã„ã¨ãã«ã€
+		/// æ¬¡ã®è¡Œã«æŠ˜ã‚Šè¿”ã™ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(true)]
 		public bool Wrappable
@@ -125,8 +125,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[ƒ{ƒ^ƒ“‚ÌŒÅ’èƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ğ—LŒø‚É‚·‚é‚É‚Í AutoAdjustButtonSize ƒvƒƒpƒeƒB‚ª false ‚Éİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãƒœã‚¿ãƒ³ã®å›ºå®šã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã«ã¯ AutoAdjustButtonSize ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒ false ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Size), "80, 20")]
 		public Size ButtonSize
@@ -140,7 +140,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// HotTrack ƒvƒƒpƒeƒB‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÉA•Ï‰»‚·‚éF‚ğİ’è‚µ‚Ü‚·B
+		/// HotTrack ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã«ã€å¤‰åŒ–ã™ã‚‹è‰²ã‚’è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlDark")]
 		public Color HotTrackColor
@@ -156,8 +156,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ}ƒEƒX‚ğƒ^ƒu‚Ìã‚É’u‚¢‚½‚Æ‚«A
-		/// ŠOŠÏ‚ª•Ï‰»‚·‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ãƒã‚¦ã‚¹ã‚’ã‚¿ãƒ–ã®ä¸Šã«ç½®ã„ãŸã¨ãã€
+		/// å¤–è¦³ãŒå¤‰åŒ–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(true)]
 		public bool HotTrack
@@ -170,7 +170,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒRƒ“ƒgƒ[ƒ‹‚Ì‚‚³‚ğ©“®‚Å’²®‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é«˜ã•ã‚’è‡ªå‹•ã§èª¿æ•´ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(true)]
 		public bool AutoAdjustControlHeight
@@ -187,7 +187,7 @@ namespace CSharpSamples
 
 		}
 		/// <summary>
-		/// ƒ^ƒuƒ{ƒ^ƒ“‚ÌƒTƒCƒY‚ğ©“®‚Å’²®‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã‚¿ãƒ–ãƒœã‚¿ãƒ³ã®ã‚µã‚¤ã‚ºã‚’è‡ªå‹•ã§èª¿æ•´ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[DefaultValue(true)]
 		public bool AutoAdjustButtonSize
@@ -204,7 +204,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚Ä‚¢‚é TabButton ‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// é¸æŠã•ã‚Œã¦ã„ã‚‹ TabButton ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		[Browsable(false)]
 		public TabButton Selected
@@ -225,17 +225,17 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ^ƒu‚ª•ÏX‚³‚ê‚½‚Æ‚«‚É”­¶‚µ‚Ü‚·B
+		/// é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒ–ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚
 		/// </summary>
 		public event TabButtonEventHandler SelectedChanged;
 
 		/// <summary>
-		/// TabButtonControl ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// TabButtonControl ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>	
 		public TabButtonControl()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.buttons = new TabButtonCollection(this);
 			this.borderStyle = Border3DStyle.Adjust;
@@ -248,7 +248,7 @@ namespace CSharpSamples
 			this.hotTrackColor = SystemColors.ControlDark;
 			this.buttonSize = new Size(80, 20);
 
-			// ‚¿‚ç‚Â‚«‚ğ‰Ÿ‚³‚¦‚é‚½‚ß‚ÉŠeƒXƒ^ƒCƒ‹‚ğİ’è
+			// ã¡ã‚‰ã¤ãã‚’æŠ¼ã•ãˆã‚‹ãŸã‚ã«å„ã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¨­å®š
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.DoubleBuffer |
 				ControlStyles.UserPaint, true);
@@ -369,7 +369,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğXV‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’æ›´æ–°ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="button"></param>
 		internal void UpdateButton(TabButton button)
@@ -382,7 +382,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğXV‚µ‚Ü‚·B
+		/// ã™ã¹ã¦ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’æ›´æ–°ã—ã¾ã™ã€‚
 		/// </summary>
 		internal void UpdateButtons()
 		{
@@ -397,7 +397,7 @@ namespace CSharpSamples
 
 			using (Graphics g = this.CreateGraphics())
 			{
-				// ‚·‚×‚Ä‚Ìƒ{ƒ^ƒ“‚ÌÀ•W‚ğXV
+				// ã™ã¹ã¦ã®ãƒœã‚¿ãƒ³ã®åº§æ¨™ã‚’æ›´æ–°
 				this.UpdateButtonRect(g);
 			}
 
@@ -417,7 +417,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// SelectedChanged ƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚Ü‚·B
+		/// SelectedChanged ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="button"></param>
 		private void OnSelectedChanged(TabButton button)
@@ -463,10 +463,10 @@ namespace CSharpSamples
 			Rectangle imageRect = new Rectangle(bounds.X + margin, bounds.Y + bounds.Height / 2 - imgSize.Height / 2, imgSize.Width, imgSize.Height);
 			Rectangle textRect = new Rectangle(imageRect.Right, bounds.Y, bounds.Width - imageRect.Width - margin, bounds.Height);
 
-			// ‹«ŠEü‚ğ•`‰æ
+			// å¢ƒç•Œç·šã‚’æç”»
 			this.DrawButtonBorder(g, button);
 
-			// ƒzƒbƒg‚È”wŒiF‚ğ•`‰æ
+			// ãƒ›ãƒƒãƒˆãªèƒŒæ™¯è‰²ã‚’æç”»
 			if (this.hotTrack && button.Equals(this.hot))
 			{
 				Rectangle rc = button.Bounds;
@@ -487,7 +487,7 @@ namespace CSharpSamples
 			}
 			else
 			{
-				// ’Êí‚Ì”wŒiF‚ğ•`‰æ			
+				// é€šå¸¸ã®èƒŒæ™¯è‰²ã‚’æç”»			
 				using (Brush brush = new SolidBrush(button.IsSelected ?
 						button.ActiveBackColor : button.InactiveBackColor))
 				{
@@ -500,14 +500,14 @@ namespace CSharpSamples
 				}
 			}
 
-			// ƒAƒCƒRƒ“‚ğ•`‰æ
+			// ã‚¢ã‚¤ã‚³ãƒ³ã‚’æç”»
 			if (this.imageList != null &&
 				button.ImageIndex >= 0 && button.ImageIndex < this.imageList.Images.Count)
 			{
 				g.DrawImage(this.imageList.Images[button.ImageIndex], imageRect);
 			}
 
-			// ƒeƒLƒXƒg‚ğ•`‰æ
+			// ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»
 			Brush foreBrush = new SolidBrush(button.IsSelected ?
 					button.ActiveForeColor : button.InactiveForeColor);
 
@@ -526,13 +526,13 @@ namespace CSharpSamples
 			switch (this.buttonStyle)
 			{
 				case TabButtonStyle.Flat:
-					// •½‚ç‚Èƒ^ƒuƒRƒ“ƒgƒ[ƒ‹
+					// å¹³ã‚‰ãªã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 					if (button.IsSelected)
 					{
 						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
 					}
 
-					// ƒ^ƒu‚Æƒ^ƒu‚ÌŠÔ‚É‹«ŠEü‚ğ•`‰æ
+					// ã‚¿ãƒ–ã¨ã‚¿ãƒ–ã®é–“ã«å¢ƒç•Œç·šã‚’æç”»
 					Size border = SystemInformation.Border3DSize;
 					Rectangle rect = button.Bounds;
 					rect.X = rect.Right + border.Width / 2;
@@ -541,7 +541,7 @@ namespace CSharpSamples
 					break;
 
 				case TabButtonStyle.Button:
-					// ƒ{ƒ^ƒ“®ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹
+					// ãƒœã‚¿ãƒ³å¼ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 					if (button.IsSelected)
 					{
 						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
@@ -556,7 +556,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ìƒ{ƒ^ƒ“‚Ì Rectangle À•W‚ğXV‚µ‚Ü‚·B
+		/// ã™ã¹ã¦ã®ãƒœã‚¿ãƒ³ã® Rectangle åº§æ¨™ã‚’æ›´æ–°ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="g"></param>
 		/// <param name="target"></param>
@@ -593,7 +593,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ{ƒ^ƒ“‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸãƒœã‚¿ãƒ³ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="g"></param>
 		/// <param name="button"></param>
@@ -608,11 +608,11 @@ namespace CSharpSamples
 
 			tempFont.Dispose();
 
-			// ‚¿‚å‚Á‚Æ‚¸‚ê‚é‚Ì‚Å“K“–‚É’²®
+			// ã¡ã‚‡ã£ã¨ãšã‚Œã‚‹ã®ã§é©å½“ã«èª¿æ•´
 			itemSize.Width += 8;
 			itemSize.Height += 5;
 
-			// ƒAƒCƒRƒ“‚ª‘¶İ‚·‚ê‚ÎƒAƒCƒRƒ“ƒTƒCƒY‚ğ‘«‚·
+			// ã‚¢ã‚¤ã‚³ãƒ³ãŒå­˜åœ¨ã™ã‚Œã°ã‚¢ã‚¤ã‚³ãƒ³ã‚µã‚¤ã‚ºã‚’è¶³ã™
 			if (button.ImageIndex != -1 && this.imageList != null)
 			{
 				Size imageSize = this.imageList.ImageSize;
@@ -624,8 +624,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½À•W‚É—L‚é TabButton ‚ğæ“¾‚µ‚Ü‚·B
-		/// ‘¶İ‚µ‚È‚¯‚ê‚Î null ‚ğ•Ô‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸåº§æ¨™ã«æœ‰ã‚‹ TabButton ã‚’å–å¾—ã—ã¾ã™ã€‚
+		/// å­˜åœ¨ã—ãªã‘ã‚Œã° null ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="pt"></param>
 		/// <returns></returns>
@@ -643,13 +643,13 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// TabButton ‚ÌŠOŠÏ‚ğ•\‚·—ñ‹“‘Ì‚Å‚·B
+	/// TabButton ã®å¤–è¦³ã‚’è¡¨ã™åˆ—æŒ™ä½“ã§ã™ã€‚
 	/// </summary>
 	public enum TabButtonStyle
 	{
-		/// <summary>•½‚ç‚Å‚·B</summary>
+		/// <summary>å¹³ã‚‰ã§ã™ã€‚</summary>
 		Flat,
-		/// <summary>ƒ{ƒ^ƒ“‚Å‚·B</summary>
+		/// <summary>ãƒœã‚¿ãƒ³ã§ã™ã€‚</summary>
 		Button,
 	}
 }

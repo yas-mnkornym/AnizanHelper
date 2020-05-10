@@ -3,14 +3,14 @@
 namespace CSharpSamples.Html
 {
 	/// <summary>
-	/// Html“à‚ÌƒeƒLƒXƒg‚ğ•\‚·
+	/// Htmlå†…ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ã™
 	/// </summary>
 	public class HtmlText : HtmlNode
 	{
 		private string text;
 
 		/// <summary>
-		/// ƒeƒLƒXƒg‚Ì“à—e‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ†ã‚­ã‚¹ãƒˆã®å†…å®¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Content
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ÍContentƒvƒƒpƒeƒB‚Æ“¯‚¶’l‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯Contentãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨åŒã˜å€¤ã‚’è¿”ã™
 		/// </summary>
 		public override string Html
 		{
@@ -36,7 +36,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ÍContentƒvƒƒpƒeƒB‚Æ“¯‚¶’l‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯Contentãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨åŒã˜å€¤ã‚’è¿”ã™
 		/// </summary>
 		public override string InnerHtml
 		{
@@ -47,7 +47,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ÍContentƒvƒƒpƒeƒB‚Æ“¯‚¶’l‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯Contentãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨åŒã˜å€¤ã‚’è¿”ã™
 		/// </summary>
 		public override string InnerText
 		{
@@ -58,7 +58,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlTextƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlTextã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="text"></param>
 		public HtmlText(string text)
@@ -67,12 +67,12 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlTextƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlTextã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlText() : this(string.Empty)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

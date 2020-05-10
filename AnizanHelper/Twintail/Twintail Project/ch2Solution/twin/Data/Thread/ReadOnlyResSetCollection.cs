@@ -6,7 +6,7 @@ namespace Twin
 	using System.Collections;
 
 	/// <summary>
-	/// “Ç‚İæ‚èê—p‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğ•\‚·
+	/// èª­ã¿å–ã‚Šå°‚ç”¨ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	public class ReadOnlyResSetCollection
 	{
@@ -31,13 +31,13 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ReadOnlyResSetCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ReadOnlyResSetCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="items"></param>
 		public ReadOnlyResSetCollection(ResSetCollection items)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			collection = items;
 			//list = ArrayList.ReadOnly(list);

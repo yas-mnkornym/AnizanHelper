@@ -11,11 +11,11 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// ‚Ü‚¿BBS‚Ìsubject.txt‚ğˆ—‚·‚é
+	/// ã¾ã¡BBSã®subject.txtã‚’å‡¦ç†ã™ã‚‹
 	/// </summary>
 	public class MachiThreadListParser : ThreadListParser
 	{
-		// ƒXƒŒƒbƒhˆê——‚ğ‰ğÍ‚·‚é³‹K•\Œ»
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’è§£æã™ã‚‹æ­£è¦è¡¨ç¾
 //		protected static readonly Regex Pattern =
 //			new Regex(@"^(?<key>.+?)\.cgi,(?<subj>.+?)\((?<res>\d+)\)$",
 //			RegexOptions.Multiline | RegexOptions.Compiled);
@@ -23,15 +23,15 @@ namespace Twin.Bbs
 		private ISearchable newline = new KmpSearch("\n");
 
 		/// <summary>
-		/// Œf¦”Â‚ÌŒ^‚ÆƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğw’è‚µ‚ÄA
-		/// MachiThreadListParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// æ²ç¤ºæ¿ã®å‹ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’æŒ‡å®šã—ã¦ã€
+		/// MachiThreadListParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadListParser(BbsType bbs, Encoding enc) : base(bbs, enc)
 		{
 		}
 
 		/// <summary>
-		/// MachiThreadListParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// MachiThreadListParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadListParser() : base(BbsType.Machi, Encoding.GetEncoding("Shift_Jis"))
 		{
@@ -44,7 +44,7 @@ namespace Twin.Bbs
 			int begin = 0, index;
 
 			try {
-				// 123456.cgi,ƒXƒŒƒbƒh–¼(123)
+				// 123456.cgi,ã‚¹ãƒ¬ãƒƒãƒ‰å(123)
 				while (begin < dataText.Length &&
 					(index = newline.Search(dataText, begin)) != -1)
 				{

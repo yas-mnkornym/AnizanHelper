@@ -1,8 +1,8 @@
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
-	/// ƒ‰ƒrƒ“-ƒJ[ƒv‚É‚æ‚é•¶š—ñÆ‡ƒAƒ‹ƒSƒŠƒYƒ€B‚±‚ê‚È‚ñ‚©’x‚¢‚Ì‚ÅA‚Ç‚±‚©‚É‘‚«ŠÔˆá‚¢‚ª‚ ‚é‚©‚àB
-	/// (QlURL: http://alfin.mine.utsunomiya-u.ac.jp/~niy/algo/r/rkMatch.html)
+	/// ãƒ©ãƒ“ãƒ³-ã‚«ãƒ¼ãƒ—ã«ã‚ˆã‚‹æ–‡å­—åˆ—ç…§åˆã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã€‚ã“ã‚Œãªã‚“ã‹é…ã„ã®ã§ã€ã©ã“ã‹ã«æ›¸ãé–“é•ã„ãŒã‚ã‚‹ã‹ã‚‚ã€‚
+	/// (å‚è€ƒURL: http://alfin.mine.utsunomiya-u.ac.jp/~niy/algo/r/rkMatch.html)
 	/// </summary>
 	public class RkSearch : ISearchable
 	{
@@ -14,7 +14,7 @@ namespace CSharpSamples.Text.Search
 		private ulong hash;
 
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public string Pattern
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// RkSearchƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// RkSearchã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public RkSearch(string key)
@@ -35,7 +35,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// ƒnƒbƒVƒ…’l‚Ìƒe[ƒuƒ‹‚ğì¬
+		/// ãƒãƒƒã‚·ãƒ¥å€¤ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="dm"></param>
@@ -59,7 +59,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
@@ -69,7 +69,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>

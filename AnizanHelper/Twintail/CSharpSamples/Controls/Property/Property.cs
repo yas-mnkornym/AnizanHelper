@@ -6,7 +6,7 @@ namespace CSharpSamples
 	using System.Collections;
 
 	/// <summary>
-	/// ‚P‚Â‚ÌƒvƒƒpƒeƒB‚ğ•\‚·
+	/// ï¼‘ã¤ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¡¨ã™
 	/// </summary>
 	public class Property
 	{
@@ -14,7 +14,7 @@ namespace CSharpSamples
 		private object data;
 
 		/// <summary>
-		/// ƒLƒƒƒvƒVƒ‡ƒ“‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚­ãƒ£ãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Caption
 		{
@@ -23,7 +23,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public object Data
 		{
@@ -33,7 +33,7 @@ namespace CSharpSamples
 
 
 		/// <summary>
-		/// PropertyƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+		/// Propertyã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 		/// </summary>
 		public class PropertyCollection : CollectionBase
 		{

@@ -6,17 +6,17 @@ namespace Twin.Text
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒhˆê——‚Ì‘Ž®‰»‚ðs‚¤Šî–{’ŠÛƒNƒ‰ƒX
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®æ›¸å¼åŒ–ã‚’è¡Œã†åŸºæœ¬æŠ½è±¡ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadListFormatter
 	{
 		/// <summary>
-		/// Žw’è‚µ‚½ƒwƒbƒ_[‚ð‘Ž®‰»‚µ‚Ä•¶Žš—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public abstract string Format(ThreadHeader header);
 
 		/// <summary>
-		/// Žw’è‚µ‚½ƒwƒbƒ_[ƒRƒŒƒNƒVƒ‡ƒ“‚ð‘Ž®‰»‚µ‚Ä•¶Žš—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public abstract string Format(List<ThreadHeader> items);
 	}

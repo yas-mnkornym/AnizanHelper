@@ -6,7 +6,7 @@ namespace CSharpSamples
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// シリアライズ可能な設定の基本クラス
+	/// 繧ｷ繝ｪ繧｢繝ｩ繧､繧ｺ蜿ｯ閭ｽ縺ｪ險ｭ螳壹�ｮ蝓ｺ譛ｬ繧ｯ繝ｩ繧ｹ
 	/// </summary>
 	[Serializable]
 	public abstract class SerializableSettings : ISerializable

@@ -8,14 +8,14 @@ namespace Twin
 	using Twin.IO;
 
 	/// <summary>
-	/// ƒƒO‚ÌƒLƒƒƒbƒVƒ…î•ñ‚ğŠÇ—
+	/// ãƒ­ã‚°ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’ç®¡ç†
 	/// </summary>
 	public class Cache
 	{
 		private string baseDirectory;
 
 		/// <summary>
-		/// Šî–{‚Æ‚È‚éƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// åŸºæœ¬ã¨ãªã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string BaseDirectory {
 			set {
@@ -42,9 +42,9 @@ namespace Twin
 		}
 	
 		/// <summary>
-		/// CacheƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Cacheã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="baseDir">Šî–{‚Æ‚È‚éƒfƒBƒŒƒNƒgƒŠ‚ğw’è</param>
+		/// <param name="baseDir">åŸºæœ¬ã¨ãªã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®š</param>
 		public Cache(string baseDir)
 		{
 			if (baseDir == null) {
@@ -54,7 +54,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒƒO‚ğíœ
+		/// ã™ã¹ã¦ã®ãƒ­ã‚°ã‚’å‰Šé™¤
 		/// </summary>
 		public virtual void Clear()
 		{
@@ -66,7 +66,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‹ó‚ÌƒtƒHƒ‹ƒ_‚ğíœ
+		/// ç©ºã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’å‰Šé™¤
 		/// </summary>
 		public virtual void ClearEmptyFolders()
 		{
@@ -76,18 +76,18 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒfƒBƒŒƒNƒgƒŠ“à‚Ì‹óƒtƒHƒ‹ƒ_‚ğíœ
+		/// æŒ‡å®šã—ãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã®ç©ºãƒ•ã‚©ãƒ«ãƒ€ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="directory"></param>
 		private void ClearEmptyFolders(string directory)
 		{
-			// Ä‹N‚ğ—˜—p‚µ‚ÄƒTƒuƒtƒHƒ‹ƒ_‚àŒŸõ
+			// å†èµ·ã‚’åˆ©ç”¨ã—ã¦ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚‚æ¤œç´¢
 			string[] subdirs = Directory.GetDirectories(directory);
 			foreach (string sub in subdirs)
 				ClearEmptyFolders(sub);
 
-			// idxƒtƒ@ƒCƒ‹‚ÆƒTƒuƒfƒBƒŒƒNƒgƒŠ‚ª‚P‚Â‚à‚È‚¯‚ê‚Î
-			// ƒtƒHƒ‹ƒ_‚ğíœ
+			// idxãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒï¼‘ã¤ã‚‚ãªã‘ã‚Œã°
+			// ãƒ•ã‚©ãƒ«ãƒ€ã‚’å‰Šé™¤
 			string[] indices = Directory.GetFiles(directory, "*.idx");
 			subdirs = Directory.GetDirectories(directory);
 
@@ -96,7 +96,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒƒO‚Æ‘—š—ğ‚ğíœ
+		/// æŒ‡å®šã—ãŸæ¿ã®ãƒ­ã‚°ã¨æ›¸è¾¼å±¥æ­´ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -115,20 +115,20 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ÌƒƒO‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ­ã‚°ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="header"></param>
 		public virtual bool Remove(ThreadHeader header)
 		{
 			if (header != null)
 			{
-				// Šù“¾ƒCƒ“ƒfƒbƒNƒXˆê——‚©‚çíœ
+				// æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ã‹ã‚‰å‰Šé™¤
 				GotThreadListIndexer.Remove(this, header);
 
-				// ‘‚«‚İ—š—ğƒCƒ“ƒfƒbƒNƒXˆê——‚©‚çíœ
+				// æ›¸ãè¾¼ã¿å±¥æ­´ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ã‹ã‚‰å‰Šé™¤
 //				WroteHistoryIndexer.Remove(this, new WroteThreadHeader(header));
 
-				// ƒƒOƒtƒ@ƒCƒ‹‚ğíœ
+				// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 				string idx = GetIndexPath(header);
 				string dat = GetDatPath(header);
 
@@ -152,11 +152,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ‚ ‚Ú[‚ñ
+		/// ãƒ¬ã‚¹ã‚’ã‚ã¼ãƒ¼ã‚“
 		/// </summary>
-		/// <param name="header">‚ ‚Ú[‚ñ‚·‚éƒXƒŒƒbƒhî•ñ</param>
-		/// <param name="indices">‚ ‚Ú[‚ñ‚·‚éƒŒƒX”Ô†‚Ì”z—ñ</param>
-		/// <param name="visible">“§–¾‚ ‚Ú[‚ñ‚Ìê‡‚ÍfalseA‚»‚¤‚Å‚È‚¢ê‡‚Ítrue</param>
+		/// <param name="header">ã‚ã¼ãƒ¼ã‚“ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±</param>
+		/// <param name="indices">ã‚ã¼ãƒ¼ã‚“ã™ã‚‹ãƒ¬ã‚¹ç•ªå·ã®é…åˆ—</param>
+		/// <param name="visible">é€æ˜ã‚ã¼ãƒ¼ã‚“ã®å ´åˆã¯falseã€ãã†ã§ãªã„å ´åˆã¯true</param>
 		public virtual void ResABone(ThreadHeader header, int[] indices, bool visible)
 		{
 			if (header == null) {
@@ -172,22 +172,22 @@ namespace Twin
 			try {
 				storage = new LocalThreadStorage(this);
 				
-				// ƒXƒŒƒbƒh‚ğ“Ç‚İ‚Ş
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã‚€
 				if (storage.Open(header, StorageMode.Read))
 				{
 					while (storage.Read(resSets) != 0);
 					storage.Close();
 				}
 
-				// ƒŒƒX‚Ìíœ
+				// ãƒ¬ã‚¹ã®å‰Šé™¤
 				foreach (int index in indices)
 					resSets.ABone(index, visible, visible ? ABoneType.Normal : ABoneType.Tomei, "");
 
-				// ƒƒO‚ğˆê’[íœ
+				// ãƒ­ã‚°ã‚’ä¸€ç«¯å‰Šé™¤
 				string dat = GetDatPath(header);
 				File.Delete(dat);
 
-				// ‘‚«‚Ş
+				// æ›¸ãè¾¼ã‚€
 				if (storage.Open(header, StorageMode.Write))
 				{
 					storage.Write(resSets);
@@ -202,7 +202,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒtƒHƒ‹ƒ_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸæ¿ã®ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -212,7 +212,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		///	w’è‚µ‚½”Â‚ÌŒf¦”Â‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾iBbsType=X2ch: basedir/2ch.net, BbsType=bbspink: basedir/bbspink.com)
+		///	æŒ‡å®šã—ãŸæ¿ã®æ²ç¤ºæ¿ã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ï¼ˆBbsType=X2ch: basedir/2ch.net, BbsType=bbspink: basedir/bbspink.com)
 		/// </summary>
 		/// <param name="bi"></param>
 		/// <returns></returns>
@@ -222,8 +222,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚Ìƒ[ƒJƒ‹ƒtƒHƒ‹ƒ_‚Ö‚ÌƒpƒX‚ğæ“¾
-		/// (ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚È‚¯‚ê‚Îì¬)
+		/// æŒ‡å®šã—ãŸæ¿ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚©ãƒ«ãƒ€ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—
+		/// (ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°ä½œæˆ)
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -233,10 +233,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚Ìƒ[ƒJƒ‹ƒtƒHƒ‹ƒ_‚Ö‚ÌƒpƒX‚ğæ“¾
+		/// æŒ‡å®šã—ãŸæ¿ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚©ãƒ«ãƒ€ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		/// <param name="board"></param>
-		/// <param name="create">ƒtƒHƒ‹ƒ_‚ğì¬‚·‚éê‡‚ÍtrueAì¬‚µ‚È‚¢ê‡‚Ífalse</param>
+		/// <param name="create">ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆã™ã‚‹å ´åˆã¯trueã€ä½œæˆã—ãªã„å ´åˆã¯false</param>
 		/// <returns></returns>
 		public virtual string GetFolderPath(BoardInfo board, bool create)
 		{
@@ -267,7 +267,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚Ìƒ[ƒJƒ‹ã‚ÌƒpƒX‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ­ãƒ¼ã‚«ãƒ«ä¸Šã®ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -287,7 +287,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		///  w’è‚µ‚½ƒXƒŒƒbƒh‚Ìî•ñ‚ª‘¶İ‚·‚éƒpƒX‚ğæ“¾
+		///  æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®æƒ…å ±ãŒå­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>

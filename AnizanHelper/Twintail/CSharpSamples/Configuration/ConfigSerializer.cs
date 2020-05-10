@@ -9,12 +9,12 @@ using System.Xml.Serialization;
 namespace CSharpSamples
 {
 	/// <summary>
-	/// XmlSerializer ‚ðŽg—p‚µ‚Ä“Á’è‚ÌŒ^‚ðƒtƒ@ƒCƒ‹‚ÉƒVƒŠƒAƒ‹‰»^‹tƒVƒŠƒAƒ‹‰»‚ðs‚¤ƒNƒ‰ƒX‚Å‚·B
+	/// XmlSerializer ã‚’ä½¿ç”¨ã—ã¦ç‰¹å®šã®åž‹ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚·ãƒªã‚¢ãƒ«åŒ–ï¼é€†ã‚·ãƒªã‚¢ãƒ«åŒ–ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public class ConfigSerializer
 	{
 		/// <summary>
-		/// ƒVƒŠƒAƒ‰ƒCƒY‚µ‚Ü‚·B
+		/// ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		/// <param name="type"></param>
@@ -25,7 +25,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒVƒŠƒAƒ‰ƒCƒY‚µ‚Ü‚·B
+		/// ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		/// <param name="type"></param>
@@ -71,7 +71,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒfƒVƒŠƒAƒ‰ƒCƒY‚µ‚Ü‚·B
+		/// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		/// <param name="type"></param>
@@ -82,7 +82,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒfƒVƒŠƒAƒ‰ƒCƒY‚µ‚Ü‚·B
+		/// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="fileName"></param>
 		/// <param name="type"></param>

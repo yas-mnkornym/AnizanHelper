@@ -7,7 +7,7 @@ namespace Twin.Aa
 	using System.IO;
 
 	/// <summary>
-	/// *.aaƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ•\‚·
+	/// *.aaãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	public class AaHeader
 	{
@@ -15,30 +15,30 @@ namespace Twin.Aa
 		private string fileName;
 
 		/// <summary>
-		/// ‚±‚Ìƒwƒbƒ_[î•ñ‚ª•Û‘¶‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+		/// ã“ã®ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±ãŒä¿å­˜ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 		/// </summary>
 		public string FileName {
 			get { return fileName; }
 		}
 
 		/// <summary>
-		/// AaItem‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// AaItemãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public AaItemCollection Items {
 			get { return items; }
 		}
 
 		/// <summary>
-		/// AaHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="filename">ì¬‚·‚éaaƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX</param>
+		/// <param name="filename">ä½œæˆã™ã‚‹aaãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹</param>
 		public AaHeader(string filename)
 		{
 			if (filename == null) {
 				throw new ArgumentNullException("filename");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			items = new AaItemCollection();
 			items.ItemSet += new AaItemSetEventHandler(OnItemSet);
@@ -46,7 +46,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_[î•ñ‚ğ“Ç‚İ‚ŞBƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡‚Í—áŠO‚ğo‚·
+		/// ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ã€‚ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ä¾‹å¤–ã‚’å‡ºã™
 		/// </summary>
 		public void Load()
 		{
@@ -73,7 +73,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// Œ»İ‚Ìƒwƒbƒ_[î•ñ‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶
+		/// ç¾åœ¨ã®ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 		/// </summary>
 		public void Save()
 		{
@@ -94,7 +94,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á‚³‚ê‚½ƒAƒCƒeƒ€‚Ìe‚ğ©•ª‚Éİ’è‚·‚é
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®è¦ªã‚’è‡ªåˆ†ã«è¨­å®šã™ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -104,7 +104,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

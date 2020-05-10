@@ -15,7 +15,7 @@ namespace Twin
 	using System.Threading;
 
 	/// <summary>
-	/// ‚©‚¿‚ã`‚µ‚áŒİŠ· (2channel.brdŒ`®) ƒ{[ƒhƒe[ƒuƒ‹
+	/// ã‹ã¡ã‚…ï½ã—ã‚ƒäº’æ› (2channel.brdå½¢å¼) ãƒœãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
 	/// </summary>
 	public class KatjuBoardTable : IBoardTable
 	{
@@ -50,10 +50,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒIƒ“ƒ‰ƒCƒ“‚Å”Âˆê——‚ğXV ([BBS MENU for 2ch]‚É‘Î‰)
+		/// ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã§æ¿ä¸€è¦§ã‚’æ›´æ–° ([BBS MENU for 2ch]ã«å¯¾å¿œ)
 		/// </summary>
-		/// <param name="url">XVæURL</param>
-		/// <param name="callback">”Â‚ªˆÚ“]‚µ‚Ä‚¢‚½ê‡‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN</param>
+		/// <param name="url">æ›´æ–°å…ˆURL</param>
+		/// <param name="callback">æ¿ãŒç§»è»¢ã—ã¦ã„ãŸå ´åˆã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯</param>
 		public void OnlineUpdate(string url, BoardUpdateEventHandler callback)
 		{
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
@@ -73,10 +73,10 @@ namespace Twin
 				res.Close();
 				res = null;
 
-				// 2012/12/05 MizutamaÀ‘•
-				// ”Âî•ñ‚ğ’Šo
-				// ƒBR„ƒBR„ƒB„ƒJƒeƒSƒŠ–¼ƒ/B„ƒBR„
-				// ƒA HREF=http://[ƒT[ƒo[]/[”Â–¼]/„–¼‘Oƒ/A„
+				// 2012/12/05 Mizutamaå®Ÿè£…
+				// æ¿æƒ…å ±ã‚’æŠ½å‡º
+				// ï¼œBRï¼ï¼œBRï¼ï¼œBï¼ã‚«ãƒ†ã‚´ãƒªåï¼œ/Bï¼ï¼œBRï¼
+				// ï¼œA HREF=http://[ã‚µãƒ¼ãƒãƒ¼]/[æ¿å]/ï¼åå‰ï¼œ/Aï¼
 				MatchCollection cats = Regex.Matches
 									   (
 										 htmlData,
@@ -95,7 +95,7 @@ namespace Twin
 											);
 					foreach (Match matchBrd in brds)
 					{
-						// ƒ{[ƒhî•ñ‚ğì¬
+						// ãƒœãƒ¼ãƒ‰æƒ…å ±ã‚’ä½œæˆ
 						BoardInfo newBoard = URLParser.ParseBoard(matchBrd.Groups["url"].Value);
 						if (newBoard != null)
 						{
@@ -104,16 +104,16 @@ namespace Twin
 
 							if (callback != null)
 							{
-								// V”Â•ˆÚ“]ƒ`ƒFƒbƒN
+								// æ–°æ¿ï¼†ç§»è»¢ãƒã‚§ãƒƒã‚¯
 								BoardInfo old = FromName(newBoard.Name, newBoard.DomainPath);
 								BoardUpdateEventArgs args = null;
 
-								// Œ©‚Â‚©‚ç‚È‚¯‚ê‚ÎV”Â‚Æ”»’f
+								// è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°æ–°æ¿ã¨åˆ¤æ–­
 								if (old == null)
 								{
 									args = new BoardUpdateEventArgs(BoardUpdateEvent.New, null, newBoard);
 								}
-								// Œ©‚Â‚©‚Á‚½‚ª”Â‚ÌURL‚ªˆá‚¤ê‡‚ÍˆÚ“]‚Æ”»’f
+								// è¦‹ã¤ã‹ã£ãŸãŒæ¿ã®URLãŒé•ã†å ´åˆã¯ç§»è»¢ã¨åˆ¤æ–­
 								else if (old.Server != newBoard.Server)
 								{
 									args = new BoardUpdateEventArgs(BoardUpdateEvent.Change, old, newBoard);
@@ -133,13 +133,13 @@ namespace Twin
 
 				if (newTable.Items.Count > 0)
 				{
-					// V‚µ‚¢”Âˆê——‚ğİ’è
+					// æ–°ã—ã„æ¿ä¸€è¦§ã‚’è¨­å®š
 					Items.Clear();
 					Items.AddRange(newTable.Items);
 				}
 				else
 				{
-					throw new ApplicationException("”Âˆê——‚ÌXV‚É¸”s‚µ‚Ü‚µ‚½");
+					throw new ApplicationException("æ¿ä¸€è¦§ã®æ›´æ–°ã«å¤±æ•—ã—ã¾ã—ãŸ");
 				}
 			}
 			catch (ThreadAbortException)
@@ -162,7 +162,7 @@ namespace Twin
 		{
 			if (fileName == null)
 			{
-				throw new ArgumentNullException("fileName", "fileName‚ªnullQÆ‚Å‚·");
+				throw new ArgumentNullException("fileName", "fileNameãŒnullå‚ç…§ã§ã™");
 			}
 
 			StreamWriter sw = null;
@@ -192,16 +192,16 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// 2‚¿‚á‚ñ‚Ë‚éƒ{[ƒhƒe[ƒuƒ‹(2channel.brdŒ^®)‚ğ“Ç‚İ‚Ş
+		/// 2ã¡ã‚ƒã‚“ã­ã‚‹ãƒœãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«(2channel.brdå‹å¼)ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
-		/// <param name="fileName">“Ç‚İ‚Şƒtƒ@ƒCƒ‹–¼</param>
-		/// <exception cref="System.ArgumentNullException">fileName‚ªnullQÆ‚Å‚·</exception>
-		/// <exception cref="System.IO.FileNotFoundException">fileName‚Í‘¶İ‚µ‚Ü‚¹‚ñ</exception>
+		/// <param name="fileName">èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <exception cref="System.ArgumentNullException">fileNameãŒnullå‚ç…§ã§ã™</exception>
+		/// <exception cref="System.IO.FileNotFoundException">fileNameã¯å­˜åœ¨ã—ã¾ã›ã‚“</exception>
 		public void LoadTable(string fileName)
 		{
 			if (fileName == null)
 			{
-				throw new ArgumentNullException("fileName", "fileName‚ªnullQÆ‚Å‚·");
+				throw new ArgumentNullException("fileName", "fileNameãŒnullå‚ç…§ã§ã™");
 			}
 
 			StreamReader sr = null;
@@ -220,7 +220,7 @@ namespace Twin
 					{
 
 					}
-					// ƒJƒeƒSƒŠŠJn
+					// ã‚«ãƒ†ã‚´ãƒªé–‹å§‹
 					else if (elems[0] != String.Empty)
 					{
 						int expandedBool;
@@ -230,7 +230,7 @@ namespace Twin
 							category.IsExpanded = Convert.ToBoolean(expandedBool);
 						items.Add(category);
 					}
-					// ƒ{[ƒh’Ç‰Á
+					// ãƒœãƒ¼ãƒ‰è¿½åŠ 
 					else if (elems.Length >= 4)
 					{
 						//if (BoardInfo.IsSupport(elems[1]))
@@ -289,10 +289,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Âˆê——‚Ì’†‚©‚çw’è‚µ‚½ URL ‚ğ‚Â”Âî•ñ‚ğŒŸõ‚µ‚Ü‚·B
+		/// æ¿ä¸€è¦§ã®ä¸­ã‹ã‚‰æŒ‡å®šã—ãŸ URL ã‚’æŒã¤æ¿æƒ…å ±ã‚’æ¤œç´¢ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="url"></param>
-		/// <returns>ˆê’v‚µ‚½”Âî•ñ‚ğ•Ô‚µ‚Ü‚·BŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î null ‚Å‚·B</returns>
+		/// <returns>ä¸€è‡´ã—ãŸæ¿æƒ…å ±ã‚’è¿”ã—ã¾ã™ã€‚è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° null ã§ã™ã€‚</returns>
 		public BoardInfo FromUrl(string url)
 		{
 			foreach (Category category in Items)
@@ -308,11 +308,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â–¼‚ğ‚Â”Â‚ğŒŸõ
+		/// æŒ‡å®šã—ãŸæ¿åã‚’æŒã¤æ¿ã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="domainPath"></param>
-		/// <returns>Œ©‚Â‚©‚ç‚È‚¯‚ê‚Înull‚ğ•Ô‚·</returns>
+		/// <returns>è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°nullã‚’è¿”ã™</returns>
 		public BoardInfo FromName(string name, string domainPath)
 		{
 			foreach (Category cate in Items)

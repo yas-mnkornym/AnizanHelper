@@ -5,7 +5,7 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚Ì‚¨‹C‚É“ü‚è‚ğ•\‚·
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãŠæ°—ã«å…¥ã‚Šã‚’è¡¨ã™
 	/// </summary>
 	public class BookmarkThread : BookmarkEntry
 	{
@@ -14,7 +14,7 @@ namespace Twin
 		private string name;
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ìe‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®è¦ªã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override BookmarkEntry Parent {
 			set { parent = value; }
@@ -22,21 +22,21 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚Íg—p‚Å‚«‚Ü‚¹‚ñ
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“
 		/// </summary>
 		public override BookmarkEntryCollection Children {
-			get { throw new NotSupportedException("ChildrenƒvƒƒpƒeƒB‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ"); }
+			get { throw new NotSupportedException("Childrenãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“"); }
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Étrue‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«trueã‚’è¿”ã™
 		/// </summary>
 		public override bool IsLeaf {
 			get { return true; }
 		}
 
 		/// <summary>
-		/// ‚±‚Ì‹C‚É“ü‚èƒXƒŒƒbƒh‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®æ°—ã«å…¥ã‚Šã‚¹ãƒ¬ãƒƒãƒ‰ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override string Name {
 			set {
@@ -48,21 +48,21 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚è‚ÌƒXƒŒƒbƒhî•ñ‚ğæ“¾
+		/// ãŠæ°—ã«å…¥ã‚Šã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public ThreadHeader HeaderInfo {
 			get { return header; }
 		}
 
 		/// <summary>
-		/// BookmarkThreadƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkThreadã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="header"></param>
 		/// <param name="id"></param>
 		public BookmarkThread(ThreadHeader header, int id) : base(id)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.header = header;
 			this.name = header.Subject;
@@ -70,7 +70,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkThreadƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkThreadã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="header"></param>
 		public BookmarkThread(ThreadHeader header) : this(header, -1)
@@ -78,7 +78,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğe‚©‚çíœ
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¦ªã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public override void Remove()
 		{
@@ -87,7 +87,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚Ì‚¨‹C‚É“ü‚èƒGƒ“ƒgƒŠ‚ğ•¡»
+		/// ã“ã®ãŠæ°—ã«å…¥ã‚Šã‚¨ãƒ³ãƒˆãƒªã‚’è¤‡è£½
 		/// </summary>
 		/// <returns></returns>
 		public override BookmarkEntry Clone()

@@ -6,7 +6,7 @@ namespace Twin.Bbs
 	using System.Timers;
 
 	/// <summary>
-	/// ƒ^ƒCƒ}[ƒCƒxƒ“ƒg‚ÉobjectŒ^‚ğ“n‚·ƒNƒ‰ƒX
+	/// ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã«objectå‹ã‚’æ¸¡ã™ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class ObjectTimer
 	{
@@ -14,7 +14,7 @@ namespace Twin.Bbs
 		private object tag;
 
 		/// <summary>
-		/// ƒ^ƒCƒ}[ŠÔŠu‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¿ã‚¤ãƒãƒ¼é–“éš”ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Interval {
 			set {
@@ -27,17 +27,17 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ŠÔ‚ªŒo‰ß‚µ‚½‚ç”­¶
+		/// æ™‚é–“ãŒçµŒéã—ãŸã‚‰ç™ºç”Ÿ
 		/// </summary>
 		public event ObjectTimerEventHandler Elapsed;
 
 		/// <summary>
-		/// ObjectTimerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ObjectTimerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ObjectTimer()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			timer = new Timer();
 			timer.Interval = 250;
@@ -45,7 +45,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒ^ƒCƒ}[ŠJn
+		/// ã‚¿ã‚¤ãƒãƒ¼é–‹å§‹
 		/// </summary>
 		public void Start(object obj)
 		{
@@ -54,7 +54,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒ^ƒCƒ}[I—¹
+		/// ã‚¿ã‚¤ãƒãƒ¼çµ‚äº†
 		/// </summary>
 		public void Stop()
 		{
@@ -71,26 +71,26 @@ namespace Twin.Bbs
 	}
 
 	/// <summary>
-	/// ObjectTimer.ElapsedƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ObjectTimer.Elapsedã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void ObjectTimerEventHandler(object sender, ObjectTimerEventArgs e);
 
 	/// <summary>
-	/// ObjectTimer.ElapsedƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ObjectTimer.Elapsedã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class ObjectTimerEventArgs : EventArgs
 	{
 		private readonly object tag;
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ“¾
+		/// ã‚¿ã‚°ã‚’å–å¾—
 		/// </summary>
 		public object Tag {
 			get { return tag; }
 		}
 
 		/// <summary>
-		/// ObjectTimerEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ObjectTimerEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="obj"></param>
 		public ObjectTimerEventArgs(object obj)

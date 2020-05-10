@@ -12,7 +12,7 @@ namespace CSharpSamples
 		CSharpToolBarButton.CSharpToolBarButtonCollection;
 
 	/// <summary>
-	/// C#‚Åì‚Á‚½Windows‚ÌToolBar‚à‚Ç‚«
+	/// C#ã§ä½œã£ãŸWindowsã®ToolBarã‚‚ã©ã
 	/// </summary>
 	[DefaultEvent("ButtonClick")]
 	public class CSharpToolBar : Control
@@ -28,7 +28,7 @@ namespace CSharpSamples
 		private bool wrappable;
 		private bool allowDragButton;
 
-		// ƒ{ƒ^ƒ“‚Ì—]”’B
+		// ãƒœã‚¿ãƒ³ã®ä½™ç™½ã€‚
 		private Rectangle _Margin = new Rectangle(2, 2, 2, 4);
 
 		private CSharpToolBarButton activeButton = null;
@@ -54,7 +54,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Editor(typeof(CollectionEditor), typeof(UITypeEditor))]
@@ -67,7 +67,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚Ì‹«ŠEü‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®å¢ƒç•Œç·šã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(typeof(Border3DStyle), "Adjust")]
 		public Border3DStyle BorderStyle
@@ -84,7 +84,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“ƒXƒ^ƒCƒ‹‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(typeof(CSharpToolBarAppearance), "Normal")]
 		public CSharpToolBarAppearance Appearance
@@ -101,7 +101,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“ƒeƒLƒXƒg”z’u‚ÌˆÊ’u‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒœã‚¿ãƒ³ãƒ†ã‚­ã‚¹ãƒˆé…ç½®ã®ä½ç½®ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(typeof(ToolBarTextAlign), "Underneath")]
 		public ToolBarTextAlign TextAlign
@@ -118,7 +118,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒCƒ[ƒWƒŠƒXƒg‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒªã‚¹ãƒˆã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public ImageList ImageList
 		{
@@ -140,8 +140,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[ƒ{ƒ^ƒ“‚ÌŒÅ’èƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’èB
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ğ—LŒø‚É‚·‚é‚É‚ÍautoAdjustSizeƒvƒƒpƒeƒB‚ªfalse‚Éİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚éB
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãƒœã‚¿ãƒ³ã®å›ºå®šã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®šã€‚
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã«ã¯autoAdjustSizeãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒfalseã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 		/// </summary>
 		[DefaultValue(typeof(Size), "80,25")]
 		public Size ButtonSize
@@ -155,7 +155,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚ÌƒTƒCƒY‚ğ©“®‚Å’²®‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ã‚ºã‚’è‡ªå‹•ã§èª¿æ•´ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(false)]
 		public bool AutoToolBarSize
@@ -172,7 +172,7 @@ namespace CSharpSamples
 
 		}
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚Ì•‚ğ©“®‚Å’²®‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒœã‚¿ãƒ³ã®å¹…ã‚’è‡ªå‹•ã§èª¿æ•´ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(true)]
 		public bool AutoAdjustSize
@@ -189,8 +189,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ªˆês‚Éû‚Ü‚ç‚È‚¢‚Æ‚«‚É
-		/// Ÿ‚Ìs‚ÉÜ‚è•Ô‚·‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ãŒä¸€è¡Œã«åã¾ã‚‰ãªã„ã¨ãã«
+		/// æ¬¡ã®è¡Œã«æŠ˜ã‚Šè¿”ã™ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		[DefaultValue(true)]
 		public bool Wrappable
@@ -207,7 +207,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚ğƒhƒ‰ƒbƒO‚ÅˆÚ“®‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’èB
+		/// ãƒœã‚¿ãƒ³ã‚’ãƒ‰ãƒ©ãƒƒã‚°ã§ç§»å‹•ã§ãã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã€‚
 		/// </summary>
 		[DefaultValue(false)]
 		public bool AllowDragButton
@@ -220,17 +220,17 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ªƒNƒŠƒbƒN‚³‚ê‚½‚É”­¶
+		/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸæ™‚ã«ç™ºç”Ÿ
 		/// </summary>
 		public event CSharpToolBarButtonEventHandler ButtonClick;
 
 		/// <summary>
-		/// CSharpToolBarƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSharpToolBarã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CSharpToolBar()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 
 			this.buttons = new CSharpToolBarButtonCollection(this);
@@ -244,7 +244,7 @@ namespace CSharpSamples
 			this.wrappable = true;
 			this.allowDragButton = true;
 
-			// ‚¿‚ç‚Â‚«‚ğ‰Ÿ‚³‚¦‚é‚½‚ß‚ÉŠeƒXƒ^ƒCƒ‹‚ğİ’è
+			// ã¡ã‚‰ã¤ãã‚’æŠ¼ã•ãˆã‚‹ãŸã‚ã«å„ã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¨­å®š
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.DoubleBuffer |
 				ControlStyles.UserPaint, true);
@@ -261,7 +261,7 @@ namespace CSharpSamples
 
 			var bg = new Bitmap(clientWidth, clientHeight);
 
-			// bg ‚É•¶š‚ğ•`‰æ
+			// bg ã«æ–‡å­—ã‚’æç”»
 			using (Graphics g = Graphics.FromImage(bg))
 			{
 				foreach (CSharpToolBarButton button in buttons)
@@ -306,7 +306,7 @@ namespace CSharpSamples
 				this.DrawButton(g, button, false, false);
 			}
 
-			// ‹«ŠEü‚ğ•`‰æ
+			// å¢ƒç•Œç·šã‚’æç”»
 			Rectangle rc = this.Bounds;
 
 			ControlPaint.DrawBorder3D(g, this.ClientRectangle, this.borderStyle);
@@ -330,13 +330,13 @@ namespace CSharpSamples
 
 			CSharpToolBarButton button = this.ButtonFromPoint(e.X, e.Y);
 
-			// ƒZƒpƒŒ[ƒ^‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+			// ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 			if (button != null && button.Style == CSharpToolBarButtonStyle.Separator)
 			{
 				return;
 			}
 
-			// ƒtƒ‰ƒbƒgŒ`®‚Ìê‡‚ÍA•‚‚«o‚é‹«ŠEü‚ğ•`‰æ
+			// ãƒ•ãƒ©ãƒƒãƒˆå½¢å¼ã®å ´åˆã¯ã€æµ®ãå‡ºã‚‹å¢ƒç•Œç·šã‚’æç”»
 			if (e.Button == MouseButtons.None)
 			{
 				if (button == this.activeButton)
@@ -366,7 +366,7 @@ namespace CSharpSamples
 				}
 
 			}
-			// ƒ{ƒ^ƒ“‚Ìƒhƒ‰ƒbƒO‘€ì
+			// ãƒœã‚¿ãƒ³ã®ãƒ‰ãƒ©ãƒƒã‚°æ“ä½œ
 			else if (e.Button == MouseButtons.Left && this.allowDragButton)
 			{
 				if (this.ClientRect.Contains(e.X, e.Y))
@@ -374,7 +374,7 @@ namespace CSharpSamples
 					this.DrawHorzLine(this.GetDropButtonIndex(e.X, e.Y));
 					this.Cursor = Cursors.Default;
 				}
-				// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚©‚ço‚Ä‚¢‚ê‚Îƒhƒ‰ƒbƒO‘€ì‚ğ’†~
+				// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‹ã‚‰å‡ºã¦ã„ã‚Œã°ãƒ‰ãƒ©ãƒƒã‚°æ“ä½œã‚’ä¸­æ­¢
 				else
 				{
 					this.DrawHorzLine(-1);
@@ -389,7 +389,7 @@ namespace CSharpSamples
 
 			this.activeButton = this.ButtonFromPoint(e.X, e.Y);
 
-			// ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚æ‚¤‚É•`‰æ
+			// ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚ˆã†ã«æç”»
 			if (e.Button == MouseButtons.Left &&
 				this.activeButton != null)
 			{
@@ -407,7 +407,7 @@ namespace CSharpSamples
 		{
 			base.OnMouseUp(e);
 
-			// ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚æ‚¤‚É•`‰æ
+			// ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚ˆã†ã«æç”»
 			if (e.Button == MouseButtons.Left &&
 				this.activeButton != null)
 			{
@@ -421,8 +421,8 @@ namespace CSharpSamples
 				this.UpdateButton(this.activeButton);
 				this.DrawHorzLine(-1);
 
-				// ƒNƒŠƒbƒN‚³‚ê‚½ƒ{ƒ^ƒ“‚ÆŒ»İ‚Ìƒ}ƒEƒXÀ•W‚É‚ ‚éƒ{ƒ^ƒ“‚ª•Ê‚Ì•¨‚Å‚ ‚ê‚ÎA
-				// activeButtons‚ğˆÚ“®
+				// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã¨ç¾åœ¨ã®ãƒã‚¦ã‚¹åº§æ¨™ã«ã‚ã‚‹ãƒœã‚¿ãƒ³ãŒåˆ¥ã®ç‰©ã§ã‚ã‚Œã°ã€
+				// activeButtonsã‚’ç§»å‹•
 				if (this.activeButton != button)
 				{
 					if (this.allowDragButton && this.ClientRect.Contains(e.X, e.Y))
@@ -438,7 +438,7 @@ namespace CSharpSamples
 				}
 				else
 				{
-					// ƒNƒŠƒbƒNƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+					// ã‚¯ãƒªãƒƒã‚¯ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 					this.OnButtonClick(new CSharpToolBarButtonEventArgs(this.activeButton));
 				}
 
@@ -454,13 +454,13 @@ namespace CSharpSamples
 		#endregion
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚ğÅV‚Ìó‘Ô‚ÉXV
+		/// ãƒœã‚¿ãƒ³ã‚’æœ€æ–°ã®çŠ¶æ…‹ã«æ›´æ–°
 		/// </summary>
 		internal void UpdateButtons()
 		{
 			int height = 0;
 
-			// ƒ{ƒ^ƒ“‚ÌRectangleÀ•W‚ğXV
+			// ãƒœã‚¿ãƒ³ã®Rectangleåº§æ¨™ã‚’æ›´æ–°
 			using (Graphics g = this.CreateGraphics())
 			{
 				foreach (CSharpToolBarButton button in this.buttons)
@@ -470,7 +470,7 @@ namespace CSharpSamples
 				}
 			}
 
-			// ‚‚³‚ğ’²® (3Dƒ{[ƒ_[‚ÌƒTƒCƒY‚à‘«‚·)
+			// é«˜ã•ã‚’èª¿æ•´ (3Dãƒœãƒ¼ãƒ€ãƒ¼ã®ã‚µã‚¤ã‚ºã‚‚è¶³ã™)
 			if (this.AutoToolBarSize)
 			{
 				this.Height = height + SystemInformation.Border3DSize.Height;
@@ -481,9 +481,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ{ƒ^ƒ“‚ğÄ•`‰æ
+		/// æŒ‡å®šã—ãŸãƒœã‚¿ãƒ³ã‚’å†æç”»
 		/// </summary>
-		/// <param name="button">Ä•`‰æ‚·‚éƒ{ƒ^ƒ“ (null‚ğw’è‚µ‚½ê‡‚Í‰½‚à‚µ‚È‚¢)</param>
+		/// <param name="button">å†æç”»ã™ã‚‹ãƒœã‚¿ãƒ³ (nullã‚’æŒ‡å®šã—ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„)</param>
 		protected void UpdateButton(CSharpToolBarButton button)
 		{
 			if (button != null)
@@ -494,7 +494,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒhƒƒbƒvæ‚Ìƒ{ƒ^ƒ“‚ğæ“¾
+		/// ãƒ‰ãƒ­ãƒƒãƒ—å…ˆã®ãƒœã‚¿ãƒ³ã‚’å–å¾—
 		/// </summary>
 		/// <param name="x"></param>
 		/// <param name="y"></param>
@@ -520,9 +520,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒhƒ‰ƒbƒOæ‚ğ•\‚·c‚Ìƒ‰ƒCƒ“‚ğ•`‰æ
+		/// ãƒ‰ãƒ©ãƒƒã‚°å…ˆã‚’è¡¨ã™ç¸¦ã®ãƒ©ã‚¤ãƒ³ã‚’æç”»
 		/// </summary>
-		/// <param name="index">•`‰æ‚·‚éƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX (-1‚È‚çü‚ğÁ‚·)</param>
+		/// <param name="index">æç”»ã™ã‚‹ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ (-1ãªã‚‰ç·šã‚’æ¶ˆã™)</param>
 		protected void DrawHorzLine(int index)
 		{
 			if (this.tempDropLine != Rectangle.Empty)
@@ -557,7 +557,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚ğ•`‰æ
+		/// ãƒœã‚¿ãƒ³ã‚’æç”»
 		/// </summary>
 		/// <param name="g"></param>
 		/// <param name="button"></param>
@@ -588,7 +588,7 @@ namespace CSharpSamples
 
 			if (button.Style == CSharpToolBarButtonStyle.Separator)
 			{
-				// ‹«ŠEü‚ğ•`‰æ
+				// å¢ƒç•Œç·šã‚’æç”»
 				Size border = SystemInformation.Border3DSize;
 				Rectangle rect = button.Bounds;
 				rect.X += rect.Width / 2 - border.Width / 2;
@@ -601,12 +601,12 @@ namespace CSharpSamples
 
 			switch (this.textAlign)
 			{
-				// ƒCƒ[ƒW‚ğã•ÓAƒeƒLƒXƒg‚ğ‰º•Ó‚É”z’u
+				// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¸Šè¾ºã€ãƒ†ã‚­ã‚¹ãƒˆã‚’ä¸‹è¾ºã«é…ç½®
 				case ToolBarTextAlign.Underneath:
 					imageRect = new Rectangle(bounds.X + bounds.Width / 2 - imgSize.Width / 2, bounds.Y + this._Margin.Y, imgSize.Width, imgSize.Height);
 					textRect = new Rectangle(bounds.X, imageRect.Bottom, bounds.Width, bounds.Height - imageRect.Height);
 					break;
-				// ƒCƒ[ƒW‚ğ¶•ÓAƒeƒLƒXƒg‚ğ‰E•Ó‚É”z’u
+				// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å·¦è¾ºã€ãƒ†ã‚­ã‚¹ãƒˆã‚’å³è¾ºã«é…ç½®
 				case ToolBarTextAlign.Right:
 					imageRect = new Rectangle(bounds.X + this._Margin.X, bounds.Y + bounds.Height / 2 - imgSize.Height / 2, imgSize.Width, imgSize.Height);
 					textRect = new Rectangle(imageRect.Right, bounds.Y, bounds.Width - imageRect.Width, bounds.Height);
@@ -617,13 +617,13 @@ namespace CSharpSamples
 			{
 				if (pushed)
 				{
-					// ’Êí‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ó‘Ô‚ğ•`‰æ
+					// é€šå¸¸ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸçŠ¶æ…‹ã‚’æç”»
 					ControlPaint.DrawButton(g,
 						this.activeButton.Bounds, ButtonState.Pushed);
 				}
 				else
 				{
-					// ’Êí‚Ìƒ{ƒ^ƒ“‚ğ•`‰æ
+					// é€šå¸¸ã®ãƒœã‚¿ãƒ³ã‚’æç”»
 					ControlPaint.DrawButton(g,
 						bounds, ButtonState.Normal);
 				}
@@ -632,7 +632,7 @@ namespace CSharpSamples
 			{
 				if (pushed)
 				{
-					// ƒtƒ‰ƒbƒgƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ó‘Ô‚ğ•`‰æ
+					// ãƒ•ãƒ©ãƒƒãƒˆãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸçŠ¶æ…‹ã‚’æç”»
 					ControlPaint.DrawBorder3D(g,
 						this.activeButton.Bounds, Border3DStyle.SunkenOuter);
 				}
@@ -665,23 +665,23 @@ namespace CSharpSamples
 			if (this.imageList != null &&
 				button.ImageIndex >= 0 && button.ImageIndex < this.imageList.Images.Count)
 			{
-				// ƒAƒCƒRƒ“‚ğ•`‰æ
+				// ã‚¢ã‚¤ã‚³ãƒ³ã‚’æç”»
 				g.DrawImage(this.imageList.Images[button.ImageIndex], imageRect.X, imageRect.Y);
 			}
 
 			if (button.Text.Length > 0)
 			{
-				// ƒeƒLƒXƒg‚ğ•`‰æ
+				// ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»
 				g.DrawString(button.Text, this.Font, SystemBrushes.ControlText, textRect, format);
 			}
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½À•W‚É‚ ‚éCSharpToolBarButton‚ğæ“¾
+		/// æŒ‡å®šã—ãŸåº§æ¨™ã«ã‚ã‚‹CSharpToolBarButtonã‚’å–å¾—
 		/// </summary>
-		/// <param name="x">ƒNƒ‰ƒCƒAƒ“ƒgÀ•W‚ÌX²</param>
-		/// <param name="y">ƒNƒ‰ƒCƒAƒ“ƒgÀ•W‚ÌY²</param>
-		/// <returns>w’è‚µ‚½À•W‚É‘¶İ‚·‚éCSharpToolBarButtonBŒ©‚Â‚©‚ç‚È‚¯‚ê‚Înull‚ğ•Ô‚·B</returns>
+		/// <param name="x">ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåº§æ¨™ã®Xè»¸</param>
+		/// <param name="y">ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåº§æ¨™ã®Yè»¸</param>
+		/// <returns>æŒ‡å®šã—ãŸåº§æ¨™ã«å­˜åœ¨ã™ã‚‹CSharpToolBarButtonã€‚è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°nullã‚’è¿”ã™ã€‚</returns>
 		public CSharpToolBarButton ButtonFromPoint(int x, int y)
 		{
 			foreach (CSharpToolBarButton button in this.buttons)
@@ -696,11 +696,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½button‚ÌRectangleÀ•W‚ğŒvZ
+		/// æŒ‡å®šã—ãŸbuttonã®Rectangleåº§æ¨™ã‚’è¨ˆç®—
 		/// </summary>
-		/// <param name="g">•¶š—ñ•‚ÌŒvZ‚Ég—p‚·‚éGraphicsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
-		/// <param name="button">ƒTƒCƒY‚ğŒvZ‚·‚éCSharpToolBarButton</param>
-		/// <returns>button‚ÌRectangleÀ•W‚ğ•Ô‚·</returns>
+		/// <param name="g">æ–‡å­—åˆ—å¹…ã®è¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹Graphicsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
+		/// <param name="button">ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹CSharpToolBarButton</param>
+		/// <returns>buttonã®Rectangleåº§æ¨™ã‚’è¿”ã™</returns>
 		protected Rectangle GetButtonRect(Graphics g, CSharpToolBarButton button)
 		{
 			Size borderSize = this.borderStyle == Border3DStyle.Adjust ? new Size(0, 0) : SystemInformation.Border3DSize;
@@ -724,8 +724,8 @@ namespace CSharpSamples
 				rect.Height = size.Height;
 				height = Math.Max(height, size.Height);
 
-				// À•W‚ªƒc[ƒ‹ƒo[‚Ì•‚ğ‚Í‚İo‚µ‚ÄA
-				// ‚È‚¨‚©‚ÂWrappableƒvƒƒpƒeƒB‚ªtrue‚Ìê‡
+				// åº§æ¨™ãŒãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®å¹…ã‚’ã¯ã¿å‡ºã—ã¦ã€
+				// ãªãŠã‹ã¤Wrappableãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒtrueã®å ´åˆ
 				if ((rect.X + rect.Width) > this.ClientSize.Width && this.Wrappable)
 				{
 					rect.X = borderSize.Width;
@@ -744,11 +744,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½button‚ÌƒTƒCƒY‚ğŒvZ
+		/// æŒ‡å®šã—ãŸbuttonã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 		/// </summary>
-		/// <param name="g">•¶š—ñ•‚ÌŒvZ‚Ég—p‚·‚éGraphicsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
-		/// <param name="button">ƒTƒCƒY‚ğŒvZ‚·‚éCSharpToolBarButton</param>
-		/// <returns>button‚ÌƒTƒCƒY‚ğ•Ô‚·</returns>
+		/// <param name="g">æ–‡å­—åˆ—å¹…ã®è¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹Graphicsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
+		/// <param name="button">ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹CSharpToolBarButton</param>
+		/// <returns>buttonã®ã‚µã‚¤ã‚ºã‚’è¿”ã™</returns>
 		protected Size GetButtonSize(Graphics g, CSharpToolBarButton button)
 		{
 			if (g == null)
@@ -762,7 +762,7 @@ namespace CSharpSamples
 
 			Size size, space = g.MeasureString(" ", this.Font).ToSize();
 
-			// ƒZƒpƒŒ[ƒ^
+			// ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿
 			if (button.Style == CSharpToolBarButtonStyle.Separator)
 			{
 				size = space;
@@ -773,7 +773,7 @@ namespace CSharpSamples
 					size.Height += space.Height;
 				}
 			}
-			// •¶šA‰æ‘œ‚Æ‚à‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢
+			// æ–‡å­—ã€ç”»åƒã¨ã‚‚ã«è¨­å®šã•ã‚Œã¦ã„ãªã„
 			else if (button.Text.Length == 0 && button.ImageIndex == -1)
 			{
 				size = space;
@@ -783,7 +783,7 @@ namespace CSharpSamples
 					size.Height += space.Height;
 				}
 			}
-			// •¶š‚Ì‚İİ’è‚³‚ê‚Ä‚¢‚é
+			// æ–‡å­—ã®ã¿è¨­å®šã•ã‚Œã¦ã„ã‚‹
 			else if (button.Text.Length > 0 && button.ImageIndex == -1)
 			{
 				size = g.MeasureString(button.Text, this.Font).ToSize();
@@ -793,7 +793,7 @@ namespace CSharpSamples
 					size.Height += space.Height;
 				}
 			}
-			// ‰æ‘œ‚Ì‚İİ’è‚³‚ê‚Ä‚¢‚é
+			// ç”»åƒã®ã¿è¨­å®šã•ã‚Œã¦ã„ã‚‹
 			else if (button.Text.Length == 0 && button.ImageIndex != -1)
 			{
 				if (this.imageList != null)
@@ -801,7 +801,7 @@ namespace CSharpSamples
 					size = this.imageList.ImageSize;
 				}
 				else
-				{// ‰æ‘œ‚ªİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚É ImageList ‚ª–³‚¢ê‡‚Í‹ó”’‚ÅƒTƒCƒY’²®
+				{// ç”»åƒãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã®ã« ImageList ãŒç„¡ã„å ´åˆã¯ç©ºç™½ã§ã‚µã‚¤ã‚ºèª¿æ•´
 					size = space;
 				}
 				if (this.textAlign == ToolBarTextAlign.Underneath)
@@ -813,19 +813,19 @@ namespace CSharpSamples
 			{
 				size = g.MeasureString(button.Text, this.Font).ToSize();
 
-				// ƒAƒCƒRƒ“‚ª‘¶İ‚·‚ê‚ÎƒAƒCƒRƒ“ƒTƒCƒY‚ğ‘«‚·
+				// ã‚¢ã‚¤ã‚³ãƒ³ãŒå­˜åœ¨ã™ã‚Œã°ã‚¢ã‚¤ã‚³ãƒ³ã‚µã‚¤ã‚ºã‚’è¶³ã™
 				if (this.imageList != null && button.ImageIndex != -1)
 				{
 					Size imageSize = this.imageList.ImageSize;
 
 					switch (this.textAlign)
 					{
-						// ƒeƒLƒXƒg‚ªƒCƒ[ƒW‚Ì‰º‚É”z’u‚³‚ê‚é
+						// ãƒ†ã‚­ã‚¹ãƒˆãŒã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä¸‹ã«é…ç½®ã•ã‚Œã‚‹
 						case ToolBarTextAlign.Underneath:
 							size.Width = Math.Max(size.Width, imageSize.Width);
 							size.Height += imageSize.Height;
 							break;
-						// ƒeƒLƒXƒg‚ªƒCƒ[ƒW‚Ì¶‚É”z’u‚³‚ê‚é
+						// ãƒ†ã‚­ã‚¹ãƒˆãŒã‚¤ãƒ¡ãƒ¼ã‚¸ã®å·¦ã«é…ç½®ã•ã‚Œã‚‹
 						case ToolBarTextAlign.Right:
 							size.Width += imageSize.Width;
 							size.Height = Math.Max(size.Height, imageSize.Height);
@@ -841,7 +841,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ButtonClickƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// ButtonClickã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnButtonClick(CSharpToolBarButtonEventArgs e)

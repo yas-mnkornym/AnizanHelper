@@ -7,12 +7,12 @@ namespace Twin.IO
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚ŞƒCƒ“ƒ^[ƒtƒF[ƒX‚Å‚·B
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public abstract class ThreadListReader
 	{
 		/// <summary>
-		/// óM—pƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract int BufferSize
 		{
@@ -21,7 +21,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì’·‚³‚ğæ“¾‚µ‚Ü‚·B
+		/// ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract int Length
 		{
@@ -29,7 +29,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ÌŒ»İˆÊ’u‚ğæ“¾‚µ‚Ü‚·B
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ä½ç½®ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract int Position
 		{
@@ -37,7 +37,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒŠ[ƒ_[‚ªŠJ‚©‚ê‚Ä‚¢‚ê‚Î trueA‚»‚êˆÈŠO‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+		/// ãƒªãƒ¼ãƒ€ãƒ¼ãŒé–‹ã‹ã‚Œã¦ã„ã‚Œã° trueã€ãã‚Œä»¥å¤–ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract bool IsOpen
 		{
@@ -45,7 +45,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// User-Agent ‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// User-Agent ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract string UserAgent
 		{
@@ -54,46 +54,46 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ”Â‚ªˆÚ“]‚µ‚Ä‚¢‚½ê‡‚É©“®‚Å’Ç”ö‚·‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// æ¿ãŒç§»è»¢ã—ã¦ã„ãŸå ´åˆã«è‡ªå‹•ã§è¿½å°¾ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract bool AutoRedirect {
 			set;
 			get;
 		}
 
-		/// <summary>ƒT[ƒo[‚ªˆÚ“]‚µ‚½‚Æ‚«‚É”­¶‚µ‚Ü‚·B</summary>
+		/// <summary>ã‚µãƒ¼ãƒãƒ¼ãŒç§»è»¢ã—ãŸã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚</summary>
 		public event EventHandler<ServerChangeEventArgs> ServerChange;
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ğŠJ‚«‚Ü‚·B
+		/// æŒ‡å®šã—ãŸæ¿ã‚’é–‹ãã¾ã™ã€‚
 		/// </summary>
 		/// <param name="board"></param>
 		public abstract bool Open(BoardInfo board);
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğóM‚µ‰ğÍ‚³‚ê‚½ƒf[ƒ^‚ğ items ‚É’Ç‰Á‚µ‚Ü‚·B
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—è§£æã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ items ã«è¿½åŠ ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public abstract int Read(List<ThreadHeader> items);
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğóM‚µ‰ğÍ‚³‚ê‚½ƒf[ƒ^‚ğ items ‚É’Ç‰Á‚µ‚Ü‚·B‰ğÍ‚³‚ê‚½ƒoƒCƒg”‚ª byteParsed ‚ÉŠi”[‚³‚ê‚Ü‚·B
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—è§£æã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ items ã«è¿½åŠ ã—ã¾ã™ã€‚è§£æã•ã‚ŒãŸãƒã‚¤ãƒˆæ•°ãŒ byteParsed ã«æ ¼ç´ã•ã‚Œã¾ã™ã€‚
 		/// </summary>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public abstract int Read(List<ThreadHeader> items, out int byteParsed);
 
 		/// <summary>
-		/// ’ÊMˆ—‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B
+		/// é€šä¿¡å‡¦ç†ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract void Cancel();
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú‚µAŠJ‚¢‚Ä‚¢‚éƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚Ü‚·B
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã€é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã¾ã™ã€‚
 		/// </summary>
 		public abstract void Close();
 
 		/// <summary>
-		/// ServerChangeƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚Ü‚·B
+		/// ServerChangeã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚
 		/// </summary>
 		protected void OnServerChange(ServerChangeEventArgs e)
 		{

@@ -10,7 +10,7 @@ namespace Twin.Bbs
 	using Twin.IO;
 
 	/// <summary>
-	/// Ú‘±§ŒÀ
+	/// æ¥ç¶šåˆ¶é™
 	/// </summary>
 	public sealed class Connect
 	{
@@ -18,7 +18,7 @@ namespace Twin.Bbs
 		private int interval;
 
 		/// <summary>
-		/// Œ»İŠÇ—‚µ‚Ä‚¢‚éÚ‘±”‚ğæ“¾
+		/// ç¾åœ¨ç®¡ç†ã—ã¦ã„ã‚‹æ¥ç¶šæ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count {
 			get {
@@ -27,23 +27,23 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ConnectƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Connectã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Connect()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			interval = 1000;
 			queue = 0;
 		}
 
 		/// <summary>
-		/// V‚µ‚¢Ú‘±‚ğ’Ç‰Á‚µA‹–‰Â‚³‚ê‚é‚Ü‚Å‘Ò‹@
+		/// æ–°ã—ã„æ¥ç¶šã‚’è¿½åŠ ã—ã€è¨±å¯ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ
 		/// </summary>
 		public void Wait(object id)
 		{
-			// ‘¼‚ÌƒLƒ…[‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+			// ä»–ã®ã‚­ãƒ¥ãƒ¼ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 			while (queue > 0)
 				Thread.Sleep(interval);
 
@@ -51,7 +51,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌÚ‘±‚ğ‰ğ•ú‚·‚é
+		/// ç¾åœ¨ã®æ¥ç¶šã‚’è§£æ”¾ã™ã‚‹
 		/// </summary>
 		//[MethodImpl(MethodImplOptions.Synchronized)]
 		public void Release(object id)

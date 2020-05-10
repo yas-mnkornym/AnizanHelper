@@ -7,13 +7,13 @@ namespace Twin.Aa
 	using System.IO;
 
 	/// <summary>
-	/// AaItem‚ğ”äŠr‚·‚éƒNƒ‰ƒX‚Ì’è‹`
+	/// AaItemã‚’æ¯”è¼ƒã™ã‚‹ã‚¯ãƒ©ã‚¹ã®å®šç¾©
 	/// </summary>
 	public class AaComparer
 	{
 		#region Inner Class
 		/// <summary>
-		/// AaHeader‚ğ”äŠr‚·‚éƒNƒ‰ƒX
+		/// AaHeaderã‚’æ¯”è¼ƒã™ã‚‹ã‚¯ãƒ©ã‚¹
 		/// </summary>
 		public class AaHeaderComparer : IComparer
 		{
@@ -23,7 +23,7 @@ namespace Twin.Aa
 				AaHeader item2 = y as AaHeader;
 
 				if (item1 == null || item2 == null) {
-					throw new ArgumentException("x‚Ü‚½‚Íy‚ªAaItemŒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
+					throw new ArgumentException("xã¾ãŸã¯yãŒAaItemå‹ã§ã¯ã‚ã‚Šã¾ã›ã‚“");
 				}
 
 				string fn1 = Path.GetFileNameWithoutExtension(item1.FileName);
@@ -34,7 +34,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// AaItem‚ğ”äŠr‚·‚éƒNƒ‰ƒX
+		/// AaItemã‚’æ¯”è¼ƒã™ã‚‹ã‚¯ãƒ©ã‚¹
 		/// </summary>
 		public class AaItemComparer : IComparer
 		{
@@ -44,7 +44,7 @@ namespace Twin.Aa
 				AaItem item2 = y as AaItem;
 
 				if (item1 == null || item2 == null) {
-					throw new ArgumentException("x‚Ü‚½‚Íy‚ªAaItemŒ^‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
+					throw new ArgumentException("xã¾ãŸã¯yãŒAaItemå‹ã§ã¯ã‚ã‚Šã¾ã›ã‚“");
 				}
 
 				return item1.Text.CompareTo(item2.Text);

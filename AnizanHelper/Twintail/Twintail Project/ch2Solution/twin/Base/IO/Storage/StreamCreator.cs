@@ -8,7 +8,7 @@ namespace Twin.IO
 	using Twin.Util;
 
 	/// <summary>
-	/// Gzipˆ³k‚ğ—˜—p‚µ‚½“üo—ÍƒXƒgƒŠ[ƒ€‚Ì‰Šú‰»‚ğs‚¤
+	/// Gzipåœ§ç¸®ã‚’åˆ©ç”¨ã—ãŸå…¥å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åˆæœŸåŒ–ã‚’è¡Œã†
 	/// </summary>
 	public class StreamCreator
 	{
@@ -24,10 +24,10 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞƒŠ[ƒ_[‚ğ‰Šú‰»
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãƒªãƒ¼ãƒ€ãƒ¼ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="filePath">ŠJ‚­ƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="useGzip">Gzipˆ³k‚³‚ê‚Ä‚¢‚é‚È‚çtrueA‚»‚¤‚Å‚È‚¯‚ê‚Îfalse</param>
+		/// <param name="filePath">é–‹ããƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="useGzip">Gzipåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãªã‚‰trueã€ãã†ã§ãªã‘ã‚Œã°false</param>
 		/// <returns></returns>
 		public static Stream CreateReader(string filePath, bool useGzip)
 		{
@@ -48,11 +48,11 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚É‘‚«‚ŞƒXƒgƒŠ[ƒ€‚ğ‰Šú‰»
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="filePath">‘‚«‚İæƒtƒ@ƒCƒ‹–¼</param>
-		/// <param name="useGzip">‘‚«‚İ‚ÉGzipˆ³k‚ğg—p‚·‚éê‡‚Ítrue</param>
-		/// <param name="append">’Ç‰Á‘‚«‚İ‚ğs‚¤‚È‚çtrue</param>
+		/// <param name="filePath">æ›¸ãè¾¼ã¿å…ˆãƒ•ã‚¡ã‚¤ãƒ«å</param>
+		/// <param name="useGzip">æ›¸ãè¾¼ã¿æ™‚ã«Gzipåœ§ç¸®ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯true</param>
+		/// <param name="append">è¿½åŠ æ›¸ãè¾¼ã¿ã‚’è¡Œã†ãªã‚‰true</param>
 		/// <returns></returns>
 		public static Stream CreateWriter(string filePath, bool useGzip, bool append)
 		{
@@ -65,7 +65,7 @@ namespace Twin.IO
 
 				if (append)
 				{
-					// ˆê’[‚·‚×‚Ä‰ğ“€‚µƒoƒbƒtƒ@‚É‹l‚ß‚é
+					// ä¸€ç«¯ã™ã¹ã¦è§£å‡ã—ãƒãƒƒãƒ•ã‚¡ã«è©°ã‚ã‚‹
 					baseStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
 					using (GZipStream inp = new GZipStream(baseStream, CompressionMode.Decompress))
 					{
@@ -74,12 +74,12 @@ namespace Twin.IO
 					}
 				}
 
-				// ‚·‚×‚Ä‰ğ“€‚ªI‚í‚Á‚½‚çÄ“xƒXƒgƒŠ[ƒ€‚ğŠJ‚«A
-				// “Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğˆ³k
+				// ã™ã¹ã¦è§£å‡ãŒçµ‚ã‚ã£ãŸã‚‰å†åº¦ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ãã€
+				// èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸®
 				baseStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
 				baseStream = new GZipStream(baseStream, CompressionMode.Compress);
 
-				// ‰ğ“€‚³‚ê‚½ƒoƒbƒtƒ@‚ğ‘‚«‚Ş
+				// è§£å‡ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚’æ›¸ãè¾¼ã‚€
 				if (append)
 				{
 					baseStream.Write(bytes, 0, bytes.Length);

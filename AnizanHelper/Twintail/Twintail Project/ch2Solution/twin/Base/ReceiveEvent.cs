@@ -5,12 +5,12 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ClientBase.ReceiveƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ClientBase.Receiveã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void ReceiveEventHandler(object sender, ReceiveEventArgs e);
 
 	/// <summary>
-	/// ClientBase.ReceiveƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ClientBase.Receiveã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class ReceiveEventArgs : EventArgs
 	{
@@ -19,36 +19,36 @@ namespace Twin
 		private readonly int receive;
 		
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚Ì’·‚³‚ğæ“¾
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®é•·ã•ã‚’å–å¾—
 		/// </summary>
 		public int Length {
 			get { return length; }
 		}
 		
 		/// <summary>
-		/// Œ»İ‚ÌƒXƒgƒŠ[ƒ€ˆÊ’u‚ğæ“¾
+		/// ç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		public int Position {
 			get { return position; }
 		}
 
 		/// <summary>
-		/// óM‚³‚ê‚½ƒTƒCƒY‚ğæ“¾
+		/// å—ä¿¡ã•ã‚ŒãŸã‚µã‚¤ã‚ºã‚’å–å¾—
 		/// </summary>
 		public int Receive {
 			get { return receive; }
 		}
 
 		/// <summary>
-		/// ReceiveEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ReceiveEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="len">óM‘ÎÛ‚Ì‘ƒTƒCƒY</param>
-		/// <param name="pos">óMÏ‚İƒTƒCƒY</param>
-		/// <param name="recv">¡‰ñ“Ç‚İ‚Ü‚ê‚½ƒTƒCƒY</param>
+		/// <param name="len">å—ä¿¡å¯¾è±¡ã®ç·ã‚µã‚¤ã‚º</param>
+		/// <param name="pos">å—ä¿¡æ¸ˆã¿ã‚µã‚¤ã‚º</param>
+		/// <param name="recv">ä»Šå›èª­ã¿è¾¼ã¾ã‚ŒãŸã‚µã‚¤ã‚º</param>
 		public ReceiveEventArgs(int len, int pos, int recv)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			length = len;
 			position = pos;

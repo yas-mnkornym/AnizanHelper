@@ -6,12 +6,12 @@ namespace Twin.Aa
 	using System.Collections;
 
 	/// <summary>
-	/// AaHeader‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// AaHeaderã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class AaHeaderCollection : CollectionBase
 	{
 		/// <summary>
-		/// w’è‚µ‚½indexˆÊ’u‚ÌƒAƒCƒeƒ€‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸindexä½ç½®ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public AaHeader this[int index] {
 			set {
@@ -21,18 +21,18 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// AaHeaderCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaHeaderCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public AaHeaderCollection()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			InnerList.Capacity = 50;
 		}
 
 		/// <summary>
-		/// item‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -42,7 +42,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// items‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemsã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(AaHeaderCollection items)
@@ -52,7 +52,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// items‚ğƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+		/// itemsã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(AaHeader[] items)
@@ -61,7 +61,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚Ìw’è‚µ‚½index‚Éitem‚ğ‘}“ü
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã—ãŸindexã«itemã‚’æŒ¿å…¥
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="item"></param>
@@ -71,7 +71,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// item‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// itemã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="item"></param>
 		public void Remove(AaHeader item)
@@ -80,7 +80,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ““à‚ÌAaItem‚ğƒ\[ƒg
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®AaItemã‚’ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		public void Sort()
 		{

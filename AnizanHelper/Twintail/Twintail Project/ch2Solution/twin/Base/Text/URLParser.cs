@@ -4,34 +4,34 @@ using System.Text.RegularExpressions;
 namespace Twin
 {
 	/// <summary>
-	/// ƒXƒŒƒbƒhˆê——‚âƒXƒŒƒbƒh‚ÌURL‚ğ‰ğÍ‚·‚é‚½‚ß‚Ìƒp[ƒT
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚„ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’è§£æã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ¼ã‚µ
 	/// </summary>
 	public class URLParser
 	{
 		/// <summary>
-		/// ƒXƒŒˆê——‚ÌURL‚ğ‰ğÍ‚·‚é‚½‚ß‚Ì³‹K•\Œ»ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•\‚·
-		/// (http://www.2ch.net/board/ ‚Ü‚½‚Í http://www.2ch.net/board/index.html ‚Éˆê’v
+		/// ã‚¹ãƒ¬ä¸€è¦§ã®URLã‚’è§£æã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¡¨ã™
+		/// (http://www.2ch.net/board/ ã¾ãŸã¯ http://www.2ch.net/board/index.html ã«ä¸€è‡´
 		/// </summary>
 		protected static readonly Regex[] ParseListRegexArray =
 			new Regex[] {
-				new Regex(@"^h?ttp://(?<host>jbbs\.(shitaraba|livedoor)\.(com|jp))/(?<path>\w+/\d+)/?$", RegexOptions.Compiled),	// ‚µ‚½‚ç‚Î‚Ì”ÂƒAƒhƒŒƒX
-				new Regex(@"^h?ttp://(?<host>.+)/(?<path>[^/]+)/(index\d*\.html|\s*$)", RegexOptions.Compiled),			// ‘S”Ê‚Ì”ÂƒAƒhƒŒƒX
+				new Regex(@"^h?ttp://(?<host>jbbs\.(shitaraba|livedoor)\.(com|jp))/(?<path>\w+/\d+)/?$", RegexOptions.Compiled),	// ã—ãŸã‚‰ã°ã®æ¿ã‚¢ãƒ‰ãƒ¬ã‚¹
+				new Regex(@"^h?ttp://(?<host>.+)/(?<path>[^/]+)/(index\d*\.html|\s*$)", RegexOptions.Compiled),			// å…¨èˆ¬ã®æ¿ã‚¢ãƒ‰ãƒ¬ã‚¹
 			};
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğ‰ğÍ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’è§£æã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		protected static readonly Regex[] ParseThreadRegexArray =
 			new Regex[] {
-				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/test/(read\.cgi|r\.i)/(?<path>[^/]+)/(?<key>[^/]+)/?", RegexOptions.Compiled),	// 2ch‚Ü‚½‚Í2chŒİŠ·‚ÌURL
-				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/test/read\.cgi\?bbs=(?<path>\w+?)&key=(?<key>\w+)", RegexOptions.Compiled),		// ‹Œ2chURL
-				new Regex(@"^h?ttp://(?<host>[^/]+)/(?<path>\w+?)/kako/[\d/]+?/(?<key>\d+)\.html", RegexOptions.Compiled),					// 2ch‰ß‹ƒƒOURL
-				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/bbs/read\.pl\?BBS=(?<path>\w+?)&KEY=(?<key>\w+)", RegexOptions.Compiled),			// ‚Ü‚¿BBS‚ÌURL
-				new Regex(@"^h?ttp://(?<host>\w+\.(shitaraba|livedoor)\.(com|jp))/bbs/read\.cgi/(?<path>\w+/\d+)/(?<key>[^/]+)/?", RegexOptions.Compiled),		// ‚µ‚½‚ç‚Î‚ÌURL
+				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/test/(read\.cgi|r\.i)/(?<path>[^/]+)/(?<key>[^/]+)/?", RegexOptions.Compiled),	// 2chã¾ãŸã¯2chäº’æ›ã®URL
+				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/test/read\.cgi\?bbs=(?<path>\w+?)&key=(?<key>\w+)", RegexOptions.Compiled),		// æ—§2chURL
+				new Regex(@"^h?ttp://(?<host>[^/]+)/(?<path>\w+?)/kako/[\d/]+?/(?<key>\d+)\.html", RegexOptions.Compiled),					// 2chéå»ãƒ­ã‚°URL
+				new Regex(@"^h?ttp://(?<host>[\w\-~/_.]+)/bbs/read\.pl\?BBS=(?<path>\w+?)&KEY=(?<key>\w+)", RegexOptions.Compiled),			// ã¾ã¡BBSã®URL
+				new Regex(@"^h?ttp://(?<host>\w+\.(shitaraba|livedoor)\.(com|jp))/bbs/read\.cgi/(?<path>\w+/\d+)/(?<key>[^/]+)/?", RegexOptions.Compiled),		// ã—ãŸã‚‰ã°ã®URL
 			};
 
 		/// <summary>
-		/// URL‚ğ‰ğÍ‚µBoardInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// URLã‚’è§£æã—BoardInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
@@ -53,7 +53,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// URL‚ğ‰ğÍ‚µThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// URLã‚’è§£æã—ThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
@@ -71,7 +71,7 @@ namespace Twin
 					if (board.Bbs == BbsType.None)
 						board.Bbs = BbsType.Dat;
 
-					// ‰ß‹ƒƒO‘qŒÉ‚ÌURL‚Ìê‡
+					// éå»ãƒ­ã‚°å€‰åº«ã®URLã®å ´åˆ
 					if (ParseThreadRegexArray[2].Equals(regex))
 						board.Bbs = BbsType.X2chKako;
 
@@ -86,7 +86,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// URL‚ğ‰ğÍ‚µBoardInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// URLã‚’è§£æã—BoardInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
@@ -102,7 +102,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// URL‚ğ‰ğÍ‚µThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// URLã‚’è§£æã—ThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>

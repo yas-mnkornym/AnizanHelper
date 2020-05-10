@@ -7,37 +7,37 @@ namespace Twin.Bbs
 	using System.Text.RegularExpressions;
 
 	/// <summary>
-	/// JbbsThreadParser ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// JbbsThreadParser ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class JbbsThreadParser : X2chThreadParser
 	{
 		/// <summary>
-		/// JbbsThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// JbbsThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public JbbsThreadParser()
 			: base(BbsType.Jbbs, Encoding.GetEncoding("EUC-JP"))
 		{
 			base.elements = new string[7];
 
-			// rawmode.cgi ƒtƒH[ƒ}ƒbƒg
+			// rawmode.cgi ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 			// http://blog.livedoor.jp/bbsnews/archives/50283526.html
-			// [ƒŒƒX”Ô†]<>[–¼‘O]<>[ƒ[ƒ‹]<>[“ú•t]<>[–{•¶]<>[ƒXƒŒƒbƒhƒ^ƒCƒgƒ‹]<>[ID]
+			// [ãƒ¬ã‚¹ç•ªå·]<>[åå‰]<>[ãƒ¡ãƒ¼ãƒ«]<>[æ—¥ä»˜]<>[æœ¬æ–‡]<>[ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¿ã‚¤ãƒˆãƒ«]<>[ID]
 
 			// BodyRegex =
 			//	new Regex("(?<num>.+?)<>(?<name>.+?)<>(?<email>.+?)<>(?<date>.+?)<>(?<body>.+?)<>(?<threadname>.*?)<>(?<id>.+?)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
 
-			// read.cgi ƒtƒH[ƒ}ƒbƒg
+			// read.cgi ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 			//BodyRegex =
-			//    new Regex("<dt><a.*?>(?<num>\\d+)</a> –¼‘OF((<font.*?><b>\\s?(?<name>.+?)\\s?</b></font>)|(<a href=\"mailto:(?<email>.+?)\"><b>\\s?(?<name>.+?)\\s?</B></a>))\\s*?“Še“úF\\s*(?<date>.+?)<dd>(?<body>.+)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
+			//    new Regex("<dt><a.*?>(?<num>\\d+)</a> åå‰ï¼š((<font.*?><b>\\s?(?<name>.+?)\\s?</b></font>)|(<a href=\"mailto:(?<email>.+?)\"><b>\\s?(?<name>.+?)\\s?</B></a>))\\s*?æŠ•ç¨¿æ—¥ï¼š\\s*(?<date>.+?)<dd>(?<body>.+)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline);
 		}
 
 		protected override ResSet ParseResSet(string[] elements)
 		{
-			ResSet resSet = new ResSet(-1, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]",
-				String.Empty, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]", "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]");
+			ResSet resSet = new ResSet(-1, "[ã“ã“å£Šã‚Œã¦ã¾ã™]",
+				String.Empty, "[ã“ã“å£Šã‚Œã¦ã¾ã™]", "[ã“ã“å£Šã‚Œã¦ã¾ã™]");
 
-			// [ƒŒƒX”Ô†]<>[–¼‘O]<>[ƒ[ƒ‹]<>[“ú•t]<>[–{•¶]<>[ƒXƒŒƒbƒhƒ^ƒCƒgƒ‹]<>[ID]
+			// [ãƒ¬ã‚¹ç•ªå·]<>[åå‰]<>[ãƒ¡ãƒ¼ãƒ«]<>[æ—¥ä»˜]<>[æœ¬æ–‡]<>[ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¿ã‚¤ãƒˆãƒ«]<>[ID]
 
 			int index;
 			Int32.TryParse(elements[0], out index);

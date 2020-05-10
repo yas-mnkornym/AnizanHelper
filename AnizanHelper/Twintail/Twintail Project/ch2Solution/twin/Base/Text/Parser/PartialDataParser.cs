@@ -9,7 +9,7 @@ namespace Twin.Text
 	using System.Diagnostics;
 
 	/// <summary>
-	/// •”•ª“I‚Èƒf[ƒ^‚ğ‰ğÍ‚·‚éƒp[ƒT
+	/// éƒ¨åˆ†çš„ãªãƒ‡ãƒ¼ã‚¿ã‚’è§£æã™ã‚‹ãƒ‘ãƒ¼ã‚µ
 	/// </summary>
 	public abstract class PartialDataParser<T>
 	{
@@ -21,11 +21,11 @@ namespace Twin.Text
 		protected int remainderLength;
 
 		/// <summary>
-		/// PartialDataParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PartialDataParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="bbs">‰ğÍ‚·‚éŒf¦”Â‚Ìí—Ş</param>
-		/// <param name="enc">ƒeƒLƒXƒg‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO</param>
-		/// <param name="type">‰Šú‰»‚·‚éƒNƒ‰ƒX‚ÌŒ^</param>
+		/// <param name="bbs">è§£æã™ã‚‹æ²ç¤ºæ¿ã®ç¨®é¡</param>
+		/// <param name="enc">ãƒ†ã‚­ã‚¹ãƒˆã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°</param>
+		/// <param name="type">åˆæœŸåŒ–ã™ã‚‹ã‚¯ãƒ©ã‚¹ã®å‹</param>
 		protected PartialDataParser(BbsType bbs, Encoding enc)
 		{
 			encoding = enc;
@@ -39,14 +39,14 @@ namespace Twin.Text
 		public Encoding Encoding { get { return this.encoding; } }
 
 		/// <summary>
-		/// ƒƒ‚ƒŠ“à‚Éc‚Á‚½—]‚è‚Ì’·‚³‚ğæ“¾
+		/// ãƒ¡ãƒ¢ãƒªå†…ã«æ®‹ã£ãŸä½™ã‚Šã®é•·ã•ã‚’å–å¾—
 		/// </summary>
 		public int RemainderLength {
 			get { return remainderLength; }
 		}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@‚ğ‹ó‚É‚·‚é
+		/// ãƒãƒƒãƒ•ã‚¡ã‚’ç©ºã«ã™ã‚‹
 		/// </summary>
 		public virtual void Empty()
 		{
@@ -55,11 +55,11 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// data‚ğ‰ğÍ‚µƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+		/// dataã‚’è§£æã—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 		/// </summary>
-		/// <param name="bytes">‰ğÍ‚·‚éƒoƒCƒgƒf[ƒ^</param>
-		/// <param name="length">data‚Ì’·‚³</param>
-		/// <param name="parsed">‰ğÍ‚³‚ê‚½ƒf[ƒ^‚Ì’·‚³</param>
+		/// <param name="bytes">è§£æã™ã‚‹ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="length">dataã®é•·ã•</param>
+		/// <param name="parsed">è§£æã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
 		/// <returns></returns>
 		public virtual T[] Parse(byte[] data, int length, out int parsed)
 		{
@@ -70,7 +70,7 @@ namespace Twin.Text
 			List<T> result = new List<T>();
 			int index = 0;
 
-			// ‘O‰ñ‚Ì—]‚èƒf[ƒ^‚Ædata‚ğŒ‹‡
+			// å‰å›ã®ä½™ã‚Šãƒ‡ãƒ¼ã‚¿ã¨dataã‚’çµåˆ
 			if (memory.Length > 0)
 			{			
 				memory.Write(data, 0, length);
@@ -78,19 +78,19 @@ namespace Twin.Text
 				length = data.Length;
 			}
 
-			// ‰ğÍ‰Â”\‚È•”•ª‚ÌI‚í‚è‚ğ’T‚·
+			// è§£æå¯èƒ½ãªéƒ¨åˆ†ã®çµ‚ã‚ã‚Šã‚’æ¢ã™
 			int tokenLength;
 			int token = GetEndToken(data, 0, length, out tokenLength);
 
 			if (token != -1)
 			{
-				// ‘O‰ñ‚Ì—]‚èƒf[ƒ^‚Ì––”ö‚É‘«‚µ‚Ä‚P‚Â‚Ìƒf[ƒ^‚É‚·‚é
+				// å‰å›ã®ä½™ã‚Šãƒ‡ãƒ¼ã‚¿ã®æœ«å°¾ã«è¶³ã—ã¦ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹
 				index = token + tokenLength;
 				
-				// —]‚è‚Ì’·‚³‚ğ‹‚ß‚é
+				// ä½™ã‚Šã®é•·ã•ã‚’æ±‚ã‚ã‚‹
 				remainderLength = length - index;
 
-				// •¶š—ñ‚É•ÏŠ·Œã‚É‰ğÍ
+				// æ–‡å­—åˆ—ã«å¤‰æ›å¾Œã«è§£æ
 				string dataText = encoding.GetString(data, 0, index);
 				T[] array = ParseData(dataText);
 
@@ -99,42 +99,42 @@ namespace Twin.Text
 					result.AddRange(array);
 				}
 				else {
-					TwinDll.Output("ƒf[ƒ^‚Ì‰ğÍ‚É¸”s: " + dataText);
+					TwinDll.Output("ãƒ‡ãƒ¼ã‚¿ã®è§£æã«å¤±æ•—: " + dataText);
 				}
 			}
 			else {
-				// ‰ğÍ‰Â”\‚È•”•ªƒf[ƒ^‚ª‚È‚¯‚ê‚Î‚·‚×‚Ä‚ğ—]‚èƒf[ƒ^‚Æ‚µ‚Ä
-				// ‘O‰ñ‚Ì—]‚èƒf[ƒ^‚É‘‚«‘«‚µŸ‰ñ‚Ì‰ğÍ‚Ég—p
+				// è§£æå¯èƒ½ãªéƒ¨åˆ†ãƒ‡ãƒ¼ã‚¿ãŒãªã‘ã‚Œã°ã™ã¹ã¦ã‚’ä½™ã‚Šãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦
+				// å‰å›ã®ä½™ã‚Šãƒ‡ãƒ¼ã‚¿ã«æ›¸ãè¶³ã—æ¬¡å›ã®è§£æã«ä½¿ç”¨
 				remainderLength = length;
 				index = 0;
 			}
 
-			// ‰ğÍ‚Å‚«‚È‚©‚Á‚½—]‚èƒf[ƒ^‚ğƒƒ‚ƒŠ‚É’™‚ß‚é
+			// è§£æã§ããªã‹ã£ãŸä½™ã‚Šãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªã«è²¯ã‚ã‚‹
 			memory.Close();
 			memory = new MemoryStream(capacity);
 			memory.Write(data, index, remainderLength);
 
-			// ÀÛ‚É‰ğÍ‚³‚ê‚½’·‚³‚ğæ“¾
+			// å®Ÿéš›ã«è§£æã•ã‚ŒãŸé•·ã•ã‚’å–å¾—
 			parsed = (length - remainderLength);
 
 			return result.ToArray();
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ‰ğÍ‚µƒIƒuƒWƒFƒNƒg‚ğì¬
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="lineData"></param>
 		/// <returns></returns>
 		protected abstract T[] ParseData(string dataText);
 
 		/// <summary>
-		/// ÅŒã‚Ìƒg[ƒNƒ“‚ÌˆÊ’u‚ğŒŸõ
+		/// æœ€å¾Œã®ãƒˆãƒ¼ã‚¯ãƒ³ã®ä½ç½®ã‚’æ¤œç´¢
 		/// </summary>
-		/// <param name="bytes">‰ğÍƒf[ƒ^</param>
-		/// <param name="index">ŒŸõŠJnˆÊ’u</param>
-		/// <param name="length">ƒf[ƒ^‚Ì’·‚³</param>
-		/// <param name="tokenLength">ƒg[ƒNƒ“‚ªŒ©‚Â‚©‚ê‚Î‚»‚Ì’·‚³‚ªŠi”[‚³‚ê‚é</param>
-		/// <returns>ƒg[ƒNƒ“‚ªŒ©‚Â‚©‚Á‚½ˆÊ’u</returns>
+		/// <param name="bytes">è§£æãƒ‡ãƒ¼ã‚¿</param>
+		/// <param name="index">æ¤œç´¢é–‹å§‹ä½ç½®</param>
+		/// <param name="length">ãƒ‡ãƒ¼ã‚¿ã®é•·ã•</param>
+		/// <param name="tokenLength">ãƒˆãƒ¼ã‚¯ãƒ³ãŒè¦‹ã¤ã‹ã‚Œã°ãã®é•·ã•ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
+		/// <returns>ãƒˆãƒ¼ã‚¯ãƒ³ãŒè¦‹ã¤ã‹ã£ãŸä½ç½®</returns>
 		protected abstract int GetEndToken(byte[] bytes, int index, int length, out int tokenLength);
 	}
 }

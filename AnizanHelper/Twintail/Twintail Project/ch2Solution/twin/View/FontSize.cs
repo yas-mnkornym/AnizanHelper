@@ -5,7 +5,7 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// FontSize ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// FontSize ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public enum FontSize
 	{

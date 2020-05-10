@@ -11,15 +11,15 @@ namespace CSharpSamples
 	using CSharpSamples.Winapi;
 
 	/// <summary>
-	/// ƒŠƒXƒgƒrƒ…[‚É‰æ‘œ‚ğk¬•\¦‚Å‚«‚é‹@”\‚ğ’Ç‰Á‚·‚éƒNƒ‰ƒX
+	/// ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ã«ç”»åƒã‚’ç¸®å°è¡¨ç¤ºã§ãã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã™ã‚‹ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class ThumbnailsControl : Control
 	{
 		private ListView listView;
 		private ImageList imageList;
 
-		private Dictionary<string, int> imageIndices; // key ‚Íƒtƒ@ƒCƒ‹–¼Avalue ‚Í ì¬Ï‚İƒTƒ€ƒlƒCƒ‹‚Ì ImageIndexB
-		private Queue<ListViewItem> queue; // ƒTƒ€ƒlƒCƒ‹–¢ì¬‚Ì ListViewItem ‚ğŠi”[‚·‚éƒLƒ…[B
+		private Dictionary<string, int> imageIndices; // key ã¯ãƒ•ã‚¡ã‚¤ãƒ«åã€value ã¯ ä½œæˆæ¸ˆã¿ã‚µãƒ ãƒã‚¤ãƒ«ã® ImageIndexã€‚
+		private Queue<ListViewItem> queue; // ã‚µãƒ ãƒã‚¤ãƒ«æœªä½œæˆã® ListViewItem ã‚’æ ¼ç´ã™ã‚‹ã‚­ãƒ¥ãƒ¼ã€‚
 		private ImageFilter filter;
 
 		private ManualResetEvent resetEvent = new ManualResetEvent(false);
@@ -28,7 +28,7 @@ namespace CSharpSamples
 		private bool disposed = false;
 
 		/// <summary>
-		/// ƒTƒ€ƒlƒCƒ‹‚Ì‰æ‘œƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚µãƒ ãƒã‚¤ãƒ«ã®ç”»åƒã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Size ImageSize
 		{
@@ -49,7 +49,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‰æ‘œ‚É‚©‚¯‚éƒtƒBƒ‹ƒ^[‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ç”»åƒã«ã‹ã‘ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public ImageFilter Filter
 		{
@@ -64,7 +64,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒTƒ€ƒlƒCƒ‹‚ÌŒ³ƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+		/// ã™ã¹ã¦ã®ã‚µãƒ ãƒã‚¤ãƒ«ã®å…ƒãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 		/// </summary>
 		public string[] AllItems
 		{
@@ -78,7 +78,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒTƒ€ƒlƒCƒ‹‚ÌŒ³ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğæ“¾
+		/// é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚µãƒ ãƒã‚¤ãƒ«ã®å…ƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public string[] SelectedItems
 		{
@@ -95,7 +95,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override ContextMenu ContextMenu
 		{
@@ -110,7 +110,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒTƒ€ƒlƒCƒ‹‰æ‘œƒf[ƒ^‚ğæ“¾
+		/// ã‚µãƒ ãƒã‚¤ãƒ«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		/// </summary>
 		public ImageList Thumbnails
 		{
@@ -124,12 +124,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ThumbnailsControlƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThumbnailsControlã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThumbnailsControl()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.imageList = new ImageList();
 			this.imageList.ColorDepth = ColorDepth.Depth32Bit;
@@ -150,7 +150,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 		/// </summary>
 		/// <param name="disposing"></param>
 		protected override void Dispose(bool disposing)
@@ -176,9 +176,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒ€ƒlƒCƒ‹‚ğì¬‚µ•\¦‚·‚é
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä½œæˆã—è¡¨ç¤ºã™ã‚‹
 		/// </summary>
-		/// <param name="fileName">ƒTƒ€ƒlƒCƒ‹•\¦‚·‚éƒtƒ@ƒCƒ‹–¼</param>
+		/// <param name="fileName">ã‚µãƒ ãƒã‚¤ãƒ«è¡¨ç¤ºã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å</param>
 		public void Add(string fileName)
 		{
 			if (fileName == null)
@@ -190,9 +190,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒ€ƒlƒCƒ‹‚ğì¬‚µ•\¦‚·‚é
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä½œæˆã—è¡¨ç¤ºã™ã‚‹
 		/// </summary>
-		/// <param name="fileNames">ƒTƒ€ƒlƒCƒ‹•\¦‚·‚éƒtƒ@ƒCƒ‹–¼‚Ì”z—ñ</param>
+		/// <param name="fileNames">ã‚µãƒ ãƒã‚¤ãƒ«è¡¨ç¤ºã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã®é…åˆ—</param>
 		public void AddRange(string[] fileNames)
 		{
 			if (fileNames == null)
@@ -202,7 +202,7 @@ namespace CSharpSamples
 
 			List<ListViewItem> list = new List<ListViewItem>();
 
-			// ˆê’[ƒAƒCƒeƒ€‚¾‚¯‚ğ’Ç‰Á
+			// ä¸€ç«¯ã‚¢ã‚¤ãƒ†ãƒ ã ã‘ã‚’è¿½åŠ 
 			foreach (string filename in fileNames)
 			{
 				ListViewItem item = new ListViewItem(Path.GetFileName(filename));
@@ -226,7 +226,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹–¼‚ÌƒTƒ€ƒlƒCƒ‹‚ğíœ
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«åã®ã‚µãƒ ãƒã‚¤ãƒ«ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="filename"></param>
 		public void Remove(string filename)
@@ -249,7 +249,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒTƒ€ƒlƒCƒ‹¶¬ƒXƒŒƒbƒh‚ğ‹N“®
+		/// ã‚µãƒ ãƒã‚¤ãƒ«ç”Ÿæˆã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•
 		/// </summary>
 		private void ThreadRun()
 		{
@@ -265,7 +265,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒTƒ€ƒlƒCƒ‹‚Ì¶¬‚ğ’†~‚·‚é
+		/// ã‚µãƒ ãƒã‚¤ãƒ«ã®ç”Ÿæˆã‚’ä¸­æ­¢ã™ã‚‹
 		/// </summary>
 		private void Abort()
 		{
@@ -278,7 +278,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒTƒ€ƒlƒCƒ‹‚ğƒNƒŠƒA
+		/// ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ã‚¯ãƒªã‚¢
 		/// </summary>
 		public void Clear()
 		{
@@ -315,21 +315,21 @@ namespace CSharpSamples
 					int imageIndex;
 					lock (this.imageIndices)
 					{
-						// Šù‚ÉƒTƒ€ƒlƒCƒ‹‚ªì¬‚³‚ê‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+						// æ—¢ã«ã‚µãƒ ãƒã‚¤ãƒ«ãŒä½œæˆã•ã‚Œã¦ã„ãªã„ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 						if (this.imageIndices.ContainsKey(filename))
 						{
 							imageIndex = this.imageIndices[filename];
 						}
-						// V‹K‚ÉƒTƒ€ƒlƒCƒ‹‚ğì¬‚µAì¬‚³‚ê‚½ƒTƒ€ƒlƒCƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾B
+						// æ–°è¦ã«ã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä½œæˆã—ã€ä½œæˆã•ã‚ŒãŸã‚µãƒ ãƒã‚¤ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã€‚
 						else
 						{
 							imageIndex = this.CreateThumbnail(filename);
 						}
-						// ì¬Ï‚İƒTƒ€ƒlƒCƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†‚ğ•Û‘¶
+						// ä½œæˆæ¸ˆã¿ã‚µãƒ ãƒã‚¤ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã‚’ä¿å­˜
 						this.imageIndices[filename] = imageIndex;
 					}
 
-					// ImageIndex ‚ğİ’è
+					// ImageIndex ã‚’è¨­å®š
 					MethodInvoker m = delegate { item.ImageIndex = imageIndex; };
 					this.Invoke(m);
 				}
@@ -341,7 +341,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒ€ƒlƒCƒ‹‰æ‘œ‚ğì¬
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ ãƒã‚¤ãƒ«ç”»åƒã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="fileName"></param>
 		/// <returns></returns>
@@ -424,7 +424,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½‰æ‘œ‚ÉƒtƒBƒ‹ƒ^‚ğ‚©‚¯‚é
+		/// æŒ‡å®šã—ãŸç”»åƒã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‹ã‘ã‚‹
 		/// </summary>
 		/// <param name="image"></param>
 		private bool _SetFilter(Bitmap image)
@@ -457,17 +457,17 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// ‰æ‘œ‚É‚©‚¯‚éƒtƒBƒ‹ƒ^[‚ğ•\‚·—ñ‹“‘Ì
+	/// ç”»åƒã«ã‹ã‘ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¡¨ã™åˆ—æŒ™ä½“
 	/// </summary>
 	public enum ImageFilter
 	{
-		/// <summary>w’è‚È‚µ</summary>
+		/// <summary>æŒ‡å®šãªã—</summary>
 		None,
-		/// <summary>ƒAƒ‹ƒtƒ@‡¬</summary>
+		/// <summary>ã‚¢ãƒ«ãƒ•ã‚¡åˆæˆ</summary>
 		Alpha,
-		/// <summary>ƒ‚ƒUƒCƒN</summary>
+		/// <summary>ãƒ¢ã‚¶ã‚¤ã‚¯</summary>
 		Mosaic,
-		/// <summary>ƒOƒŒ[ƒXƒP[ƒ‹</summary>
+		/// <summary>ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«</summary>
 		GrayScale,
 	}
 }

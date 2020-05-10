@@ -5,26 +5,26 @@ namespace Twin.Text
 	using System;
 
 	/// <summary>
-	/// ŒŸõƒIƒvƒVƒ‡ƒ“‚ð•\‚·
+	/// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	[Flags]
 	public enum SearchOptions
 	{
 		None = 0x000,
 		/// <summary>
-		/// ƒhƒLƒ…ƒƒ“ƒg‚ÌI‚í‚è‚©‚çŒŸõ‚ðŠJŽn‚·‚é
+		/// ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã®çµ‚ã‚ã‚Šã‹ã‚‰æ¤œç´¢ã‚’é–‹å§‹ã™ã‚‹
 		/// </summary>
 		RightToLeft = 0x001,
 		/// <summary>
-		/// ’PŒê’PˆÊ‚ÅŒŸõ
+		/// å˜èªžå˜ä½ã§æ¤œç´¢
 		/// </summary>
 		WholeWordsOnly = 0x002,
 		/// <summary>
-		/// ‘å•¶Žš‚Æ¬•¶Žš‚Ì‹æ•Ê
+		/// å¤§æ–‡å­—ã¨å°æ–‡å­—ã®åŒºåˆ¥
 		/// </summary>
 		MatchCase = 0x004,
 		/// <summary>
-		/// ³‹K•\Œ»ŒŸõ
+		/// æ­£è¦è¡¨ç¾æ¤œç´¢
 		/// </summary>
 		Regex = 0x008,
 	}

@@ -5,7 +5,7 @@ namespace CSharpSamples.Html
 	using System.Collections;
 
 	/// <summary>
-	/// HtmlNodeCollection ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlNodeCollection ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlNodeCollection
 	{
@@ -13,7 +13,7 @@ namespace CSharpSamples.Html
 		private HtmlElement parent;
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ““à‚Ìƒm[ƒh”‚ğæ“¾
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®ãƒãƒ¼ãƒ‰æ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count
 		{
@@ -24,7 +24,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚ ‚éƒm[ƒh‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ã‚‹ãƒãƒ¼ãƒ‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public HtmlNode this[int index]
 		{
@@ -40,27 +40,27 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlNodeCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlNodeCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="parent"></param>
 		public HtmlNodeCollection(HtmlElement parent)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.nodes = new ArrayList();
 			this.parent = parent;
 		}
 
 		/// <summary>
-		/// newNode‚ğƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É’Ç‰Á
+		/// newNodeã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="newNode"></param>
 		public void Add(HtmlNode newNode)
 		{
 			if (newNode.Parent != null)
 			{
-				throw new HtmlException();  // “¯ˆêƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¡”“o˜^‚·‚é‚±‚Æ‚Ío—ˆ‚È‚¢
+				throw new HtmlException();  // åŒä¸€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¤‡æ•°ç™»éŒ²ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ãªã„
 			}
 
 			this.nodes.Add(newNode);
@@ -68,7 +68,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// newNode‚ğw’è‚µ‚½ˆÊ’u‚É‘}“ü
+		/// newNodeã‚’æŒ‡å®šã—ãŸä½ç½®ã«æŒ¿å…¥
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="newNode"></param>
@@ -76,7 +76,7 @@ namespace CSharpSamples.Html
 		{
 			if (newNode.Parent != null)
 			{
-				throw new HtmlException();  // “¯ˆêƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¡”“o˜^‚·‚é‚±‚Æ‚Ío—ˆ‚È‚¢
+				throw new HtmlException();  // åŒä¸€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¤‡æ•°ç™»éŒ²ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ãªã„
 			}
 
 			this.nodes.Insert(index, newNode);
@@ -84,7 +84,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒm[ƒh‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="node"></param>
 		public void Remove(HtmlNode node)
@@ -94,7 +94,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ˆÊ’u‚É‚ ‚éƒm[ƒh‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// æŒ‡å®šã—ãŸä½ç½®ã«ã‚ã‚‹ãƒãƒ¼ãƒ‰ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="node"></param>
@@ -107,7 +107,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ìƒm[ƒh‚ğƒRƒŒƒNƒVƒ‡ƒ“‚©‚çíœ
+		/// ã™ã¹ã¦ã®ãƒãƒ¼ãƒ‰ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public void RemoveAll()
 		{
@@ -118,7 +118,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// node‚ÌƒRƒŒƒNƒVƒ‡ƒ““àƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
+		/// nodeã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>
@@ -128,7 +128,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// node‚ªƒRƒŒƒNƒVƒ‡ƒ““à‚É‘¶İ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// nodeãŒã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>
@@ -138,7 +138,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlNodeCollection‚ğ”½•œˆ—‚·‚é—ñ‹“q‚ğ•Ô‚·
+		/// HtmlNodeCollectionã‚’åå¾©å‡¦ç†ã™ã‚‹åˆ—æŒ™å­ã‚’è¿”ã™
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()

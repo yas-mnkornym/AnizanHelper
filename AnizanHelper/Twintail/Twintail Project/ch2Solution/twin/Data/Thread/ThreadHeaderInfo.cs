@@ -6,26 +6,26 @@ namespace Twin
 	using System.ComponentModel;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ÌŠeî•ñ‚ğŠÇ—
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„æƒ…å ±ã‚’ç®¡ç†
 	/// </summary>
 	public class ThreadHeaderInfo
 	{
 		private ThreadHeader header;
 
 		/// <summary>
-		/// ThreadHeaderInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadHeaderInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="h"></param>
 		public ThreadHeaderInfo(ThreadHeader h)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			header = h;
 		}
 
 		/// <summary>
-		/// 1“ú‚ ‚½‚è‚ÌƒŒƒX”‚ğæ“¾
+		/// 1æ—¥ã‚ãŸã‚Šã®ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public float ForceValueDay {
 			get {
@@ -35,7 +35,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// 1ŠÔ‚ ‚½‚è‚ÌƒŒƒX”‚ğæ“¾
+		/// 1æ™‚é–“ã‚ãŸã‚Šã®ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public float ForceValueHour {
 			get {
@@ -45,11 +45,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒXƒŒƒbƒh‚Ìd—v“x‚ğŒvZ
+		/// ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é‡è¦åº¦ã‚’è¨ˆç®—
 		/// </summary>
 		public int Valuable {
 			get {
-				// XVƒXƒŒ = 3A ‘SŠù“¾ƒXƒŒ = 2AV’…ƒXƒŒ = 1, ’ÊíƒXƒŒ = 0
+				// æ›´æ–°ã‚¹ãƒ¬ = 3ã€ å…¨æ—¢å¾—ã‚¹ãƒ¬ = 2ã€æ–°ç€ã‚¹ãƒ¬ = 1, é€šå¸¸ã‚¹ãƒ¬ = 0
 				if (header.IsNewThread) return 1;
 				if (header.GotResCount == 0) return 0;
 				if (header.ResCount == header.GotResCount) return 2;
@@ -60,14 +60,14 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒXƒŒƒbƒh‚ª24ŠÔˆÈ“à‚É—§‚Ä‚ç‚ê‚½ƒXƒŒƒbƒh‚©‚Ç‚¤‚©
+		/// ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒ24æ™‚é–“ä»¥å†…ã«ç«‹ã¦ã‚‰ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹
 		/// </summary>
 		public bool Within24Hours {
 			get { return IsWithinHours(24); }
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒXƒŒƒbƒh‚ªhoursŠÔˆÈ“à‚É—§‚Ä‚ç‚ê‚½ƒXƒŒƒbƒh‚©‚Ç‚¤‚©
+		/// ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒhoursæ™‚é–“ä»¥å†…ã«ç«‹ã¦ã‚‰ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹
 		/// </summary>
 		/// <param name="hours"></param>
 		/// <returns></returns>
@@ -78,7 +78,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ¨‚¢‚ğŒvZ‚µAŒ‹‰Ê‚ğ•¶š—ñŒ`®‚Å•Ô‚·
+		/// å‹¢ã„ã‚’è¨ˆç®—ã—ã€çµæœã‚’æ–‡å­—åˆ—å½¢å¼ã§è¿”ã™
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
@@ -101,19 +101,19 @@ namespace Twin
 
 	
 	/// <summary>
-	/// ¨‚¢‚ğŒvZ‚·‚é‚Æ‚«‚Ég—p‚·‚é’PˆÊ‚ğ•\‚·
+	/// å‹¢ã„ã‚’è¨ˆç®—ã™ã‚‹ã¨ãã«ä½¿ç”¨ã™ã‚‹å˜ä½ã‚’è¡¨ã™
 	/// </summary>
 	public enum ForceValueOf
 	{
 		/// <summary>
-		/// ˆêŠÔ‚ ‚½‚è‚Ì¨‚¢
+		/// ä¸€æ™‚é–“ã‚ãŸã‚Šã®å‹¢ã„
 		/// </summary>
-		[Description("1ŠÔ")]
+		[Description("1æ™‚é–“")]
 		Hour,
 		/// <summary>
-		/// ˆê“ú‚ ‚½‚è‚Ì¨‚¢
+		/// ä¸€æ—¥ã‚ãŸã‚Šã®å‹¢ã„
 		/// </summary>
-		[Description("1“ú")]
+		[Description("1æ—¥")]
 		Day,
 	}
 }

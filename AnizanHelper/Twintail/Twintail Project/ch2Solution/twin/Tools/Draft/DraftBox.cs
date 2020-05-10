@@ -9,7 +9,7 @@ namespace Twin.Tools
 	using System.IO;
 
 	/// <summary>
-	/// ‘‚«‚©‚¯‚ÌƒƒbƒZ[ƒW‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­‘e” 
+	/// æ›¸ãã‹ã‘ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠãè‰ç¨¿ç®±
 	/// </summary>
 	public class DraftBox
 	{
@@ -17,29 +17,29 @@ namespace Twin.Tools
 		private Cache cache;
 
 		/// <summary>
-		/// DraftBoxƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// DraftBoxã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public DraftBox(Cache cache)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.cache = cache;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½‘e‚Ìxml—v‘f‚ğì¬
+		/// æŒ‡å®šã—ãŸè‰ç¨¿ã®xmlè¦ç´ ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="doc"></param>
 		/// <param name="draft"></param>
 		/// <returns></returns>
 		private XmlNode CreateDraftElement(XmlDocument doc, Draft draft)
 		{
-			// ƒXƒŒƒbƒh”Ô†‚ğ•\‚·‘®«‚ğì¬
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã‚’è¡¨ã™å±æ€§ã‚’ä½œæˆ
 			XmlAttribute key = doc.CreateAttribute("key");
 			key.Value = draft.HeaderInfo.Key;
 
-			// “ŠeÒ–¼
+			// æŠ•ç¨¿è€…å
 			XmlElement from = doc.CreateElement("from");
 			from.AppendChild(doc.CreateCDataSection(draft.PostRes.From));
 
@@ -47,11 +47,11 @@ namespace Twin.Tools
 			XmlElement email = doc.CreateElement("email");
 			email.AppendChild(doc.CreateCDataSection(draft.PostRes.Email));
 
-			// –{•¶
+			// æœ¬æ–‡
 			XmlElement body = doc.CreateElement("message");
 			body.AppendChild(doc.CreateCDataSection(draft.PostRes.Body));
 
-			// ‘e‚Ì—v‘f‚ğì¬‚µAe‚É’Ç‰Á
+			// è‰ç¨¿ã®è¦ç´ ã‚’ä½œæˆã—ã€è¦ªã«è¿½åŠ 
 			XmlElement child = doc.CreateElement("thread");
 			child.Attributes.Append(key);
 			child.AppendChild(from);
@@ -62,7 +62,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚Ì‘e‚ğíœ
+		/// æŒ‡å®šã—ãŸæ¿ã®è‰ç¨¿ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="draft"></param>
@@ -86,10 +86,10 @@ namespace Twin.Tools
 				doc.Load(filePath);
 				root = doc.DocumentElement;
 
-				// “¯‚¶ƒXƒŒƒbƒh”Ô†‚ğ‚Â‘e—v‘f‚ğŒŸõ‚·‚é‚½‚ß‚ÌXPath
+				// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã‚’æŒã¤è‰ç¨¿è¦ç´ ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®XPath
 				string xpath = String.Format("draft/thread[@key=\"{0}\"]", draft.HeaderInfo.Key);
 
-				// Šù‚É“¯‚¶‘e‚ª‘¶İ‚µ‚½ê‡Aˆê’[íœ‚µ‚Ä‚©‚çV‚µ‚¢—v‘f‚ğ’Ç‰Á
+				// æ—¢ã«åŒã˜è‰ç¨¿ãŒå­˜åœ¨ã—ãŸå ´åˆã€ä¸€ç«¯å‰Šé™¤ã—ã¦ã‹ã‚‰æ–°ã—ã„è¦ç´ ã‚’è¿½åŠ 
 				XmlNode node = doc.SelectSingleNode(xpath);
 				if (node != null)
 					root.RemoveChild(node);
@@ -99,7 +99,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// Œ»İ‚Ì‘e” ‚Éã‘‚«•Û‘¶
+		/// ç¾åœ¨ã®è‰ç¨¿ç®±ã«ä¸Šæ›¸ãä¿å­˜
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="draft"></param>
@@ -118,7 +118,7 @@ namespace Twin.Tools
 			string filePath = cache.GetFolderPath(board);
 			filePath = Path.Combine(filePath, DraftFileName);
 
-			// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¯‚ê‚Îƒ‹[ƒg—v‘f‚ğì¬‚µ‚Ä‚¨‚­
+			// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°ãƒ«ãƒ¼ãƒˆè¦ç´ ã‚’ä½œæˆã—ã¦ãŠã
 			if (!File.Exists(filePath))
 			{
 				root = doc.CreateElement("draft");
@@ -129,13 +129,13 @@ namespace Twin.Tools
 				root = doc.DocumentElement;
 			}
 
-			// “¯‚¶ƒXƒŒƒbƒh”Ô†‚ğ‚Â‘e—v‘f‚ğŒŸõ‚·‚é‚½‚ß‚ÌXPath
+			// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã‚’æŒã¤è‰ç¨¿è¦ç´ ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®XPath
 			string xpath = String.Format("draft/thread[@key=\"{0}\"]", draft.HeaderInfo.Key);
 
-			// V‚µ‚¢‘e‚Ì—v‘f
+			// æ–°ã—ã„è‰ç¨¿ã®è¦ç´ 
 			XmlNode newChild = CreateDraftElement(doc, draft);
 
-			// Šù‚É“¯‚¶‘e‚ª‘¶İ‚µ‚½ê‡Aˆê’[íœ‚µ‚Ä‚©‚çV‚µ‚¢—v‘f‚ğ’Ç‰Á
+			// æ—¢ã«åŒã˜è‰ç¨¿ãŒå­˜åœ¨ã—ãŸå ´åˆã€ä¸€ç«¯å‰Šé™¤ã—ã¦ã‹ã‚‰æ–°ã—ã„è¦ç´ ã‚’è¿½åŠ 
 			XmlNode node = doc.SelectSingleNode(xpath);
 			if (node != null)
 				root.RemoveChild(node);
@@ -145,7 +145,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚Ì‘e‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®è‰ç¨¿ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -165,7 +165,7 @@ namespace Twin.Tools
 				XmlDocument doc = new XmlDocument();
 				doc.Load(filePath);
 				
-				// “¯‚¶ƒXƒŒƒbƒh”Ô†‚ğ‚Â‘e—v‘f‚ğŒŸõ‚·‚é‚½‚ß‚ÌXPath
+				// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã‚’æŒã¤è‰ç¨¿è¦ç´ ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®XPath
 				string xpath = String.Format("draft/thread[@key=\"{0}\"]", header.Key);
 				XmlNode node = doc.SelectSingleNode(xpath);
 
@@ -175,7 +175,7 @@ namespace Twin.Tools
 					string email = node.SelectSingleNode("email").InnerText;
 					string body = node.SelectSingleNode("message").InnerText;
 
-					// ‘eî•ñ‚ğì¬
+					// è‰ç¨¿æƒ…å ±ã‚’ä½œæˆ
 					PostRes res = new PostRes(name, email, body);
 					draft = new Draft(header, res);
 				}
@@ -185,7 +185,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚É‘¶İ‚·‚é‘e‚ğæ“¾
+		/// æŒ‡å®šã—ãŸæ¿ã«å­˜åœ¨ã™ã‚‹è‰ç¨¿ã‚’å–å¾—
 		/// </summary>
 		/// <param name="filePath"></param>
 		public Draft[] Load(BoardInfo board)
@@ -203,7 +203,7 @@ namespace Twin.Tools
 			try {
 				doc.Load(filePath);
 				
-				// ‘e—v‘f‚ğ‚·‚×‚Äæ“¾
+				// è‰ç¨¿è¦ç´ ã‚’ã™ã¹ã¦å–å¾—
 				XmlNodeList nodeList = doc.SelectNodes("draft/thread");
 				
 				foreach (XmlNode node in nodeList)
@@ -218,7 +218,7 @@ namespace Twin.Tools
 						string email = node.SelectSingleNode("email").InnerText;
 						string body = node.SelectSingleNode("message").InnerText;
 
-						// ‘eî•ñ‚ğì¬
+						// è‰ç¨¿æƒ…å ±ã‚’ä½œæˆ
 						PostRes res = new PostRes(name, email, body);
 						Draft draft = new Draft(header, res);
 						arrayList.Add(draft);

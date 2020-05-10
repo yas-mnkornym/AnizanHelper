@@ -7,14 +7,14 @@ namespace Twin
 	using System.Collections.ObjectModel;
 
 	/// <summary>
-	/// ThreadListEventArgs ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// ThreadListEventArgs ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ThreadListEventArgs : EventArgs
 	{
 		private ReadOnlyCollection<ThreadHeader> collection;
 
 		/// <summary>
-		/// ThreadHeader‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ThreadHeaderã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public ReadOnlyCollection<ThreadHeader> Items
 		{
@@ -29,7 +29,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ThreadListEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadListEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThreadListEventArgs(List<ThreadHeader> list)
 		{
@@ -38,13 +38,13 @@ namespace Twin
 				throw new ArgumentNullException("list");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			collection = new ReadOnlyCollection<ThreadHeader>(list);
 		}
 
 		/// <summary>
-		/// ThreadListEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadListEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ThreadListEventArgs(ThreadHeader header)
 		{

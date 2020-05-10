@@ -5,7 +5,7 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// “Še‚·‚éƒXƒŒƒbƒh‚ğ•\‚·
+	/// æŠ•ç¨¿ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public struct PostThread
 	{
@@ -15,7 +15,7 @@ namespace Twin
 		private string _body;
 
 		/// <summary>
-		/// “ŠeÒ‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŠ•ç¨¿è€…ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string From {
 			set {
@@ -28,7 +28,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “ŠeÒ‚ÌE-mail‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŠ•ç¨¿è€…ã®E-mailã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Email {
 			set {
@@ -41,7 +41,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// –{•ª‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æœ¬åˆ†ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Body {
 			set {
@@ -54,7 +54,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh–¼‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰åã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Subject {
 			set {
@@ -67,12 +67,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostThreadƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostThreadã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="subj">V‹KƒXƒŒƒbƒh–¼</param>
-		/// <param name="name">“ŠeÒ‚Ì–¼‘O</param>
-		/// <param name="email">“ŠeÒ‚ÌE-mail</param>
-		/// <param name="body">–{•ª</param>
+		/// <param name="subj">æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰å</param>
+		/// <param name="name">æŠ•ç¨¿è€…ã®åå‰</param>
+		/// <param name="email">æŠ•ç¨¿è€…ã®E-mail</param>
+		/// <param name="body">æœ¬åˆ†</param>
 		public PostThread(string subj, string from, string email, string body)
 		{
 			_subject = subj;
@@ -82,10 +82,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostThreadƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostThreadã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="subj">V‹KƒXƒŒƒbƒh–¼</param>
-		/// <param name="body">–{•ª</param>
+		/// <param name="subj">æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰å</param>
+		/// <param name="body">æœ¬åˆ†</param>
 		public PostThread(string subj, string body)
 			: this(subj, String.Empty, String.Empty, body)
 		{

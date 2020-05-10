@@ -6,7 +6,7 @@ namespace Twin
 	using System.Text;
 
 	/// <summary>
-	/// ‘‚«‚İ—š—ğ‚ğ•\‚·
+	/// æ›¸ãè¾¼ã¿å±¥æ­´ã‚’è¡¨ã™
 	/// </summary>
 	public class WroteRes
 	{
@@ -18,7 +18,7 @@ namespace Twin
 		public ThreadHeader HeaderInfo { get; set; }
 
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ğ‘‚¢‚½“ú•tE‚Åæ“¾
+		/// ã“ã®ãƒ¬ã‚¹ã‚’æ›¸ã„ãŸæ—¥ä»˜ãƒ»æ™‚åˆ»ã§å–å¾—
 		/// </summary>
 		public DateTime Date {
 			set { date = value; }
@@ -26,7 +26,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “ŠeÒ‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŠ•ç¨¿è€…ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string From {
 			set {
@@ -39,7 +39,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “ŠeÒ‚ÌEmail‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŠ•ç¨¿è€…ã®Emailã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Email {
 			set {
@@ -52,7 +52,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Message {
 			set {
@@ -65,7 +65,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// MessageƒvƒƒpƒeƒB‚Ì’·‚³‚ğƒoƒCƒg’PˆÊ‚Åæ“¾
+		/// Messageãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®é•·ã•ã‚’ãƒã‚¤ãƒˆå˜ä½ã§å–å¾—
 		/// </summary>
 		public int Length {
 			get {
@@ -74,12 +74,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// WroteResƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// WroteResã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public WroteRes()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.HeaderInfo = null;
 			this.from = String.Empty;
@@ -88,12 +88,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// WroteResƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// WroteResã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="date">“Še“ú</param>
-		/// <param name="from">“ŠeÒ–¼</param>
-		/// <param name="email">“ŠeÒ‚Ìemail</param>
-		/// <param name="msg">ƒƒbƒZ[ƒW</param>
+		/// <param name="date">æŠ•ç¨¿æ—¥</param>
+		/// <param name="from">æŠ•ç¨¿è€…å</param>
+		/// <param name="email">æŠ•ç¨¿è€…ã®email</param>
+		/// <param name="msg">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public WroteRes(ThreadHeader header, DateTime date, string from, string email, string msg) : this()
 		{
 			this.HeaderInfo = header;

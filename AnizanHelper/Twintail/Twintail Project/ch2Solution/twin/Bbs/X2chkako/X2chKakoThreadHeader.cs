@@ -6,12 +6,12 @@ namespace Twin.Bbs
 	using System.IO;
 
 	/// <summary>
-	/// X2chKakoThreadHeader ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// X2chKakoThreadHeader ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class X2chKakoThreadHeader : X2chThreadHeader
 	{
 		/// <summary>
-		/// datƒtƒ@ƒCƒ‹‚Ì‘¶İ‚·‚éURL‚ğæ“¾
+		/// datãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ã™ã‚‹URLã‚’å–å¾—
 		/// </summary>
 		public override string DatUrl {
 			get {
@@ -26,7 +26,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// GZipˆ³k‚³‚ê‚Ä‚¢‚éƒXƒŒƒbƒh‚ğæ“¾‚·‚éê‡‚Í trueA‚»‚¤‚Å‚È‚¯‚ê‚Î falseB
+		/// GZipåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å–å¾—ã™ã‚‹å ´åˆã¯ trueã€ãã†ã§ãªã‘ã‚Œã° falseã€‚
 		/// </summary>
 		public bool GzipCompress {
 			set {
@@ -40,7 +40,7 @@ namespace Twin.Bbs
 		private bool gzipCompress = true;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public override string Url {
 			get {
@@ -60,17 +60,17 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chKakoThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chKakoThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chKakoThreadHeader()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// X2chKakoThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chKakoThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chKakoThreadHeader(X2chThreadHeader source) : base(source)
 		{

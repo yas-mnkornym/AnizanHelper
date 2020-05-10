@@ -8,7 +8,7 @@ namespace CSharpSamples.Html
 	using System.Text.RegularExpressions;
 
 	/// <summary>
-	/// HtmlParser ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlParser ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlParser
 	{
@@ -16,17 +16,17 @@ namespace CSharpSamples.Html
 		private readonly char[] QuoteChars = ("\"\'").ToCharArray();
 
 		/// <summary>
-		/// HtmlParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlParser()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// Html‚ğ‰ğÍ‚µ‚Äƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ“‚ğ¶¬
+		/// Htmlã‚’è§£æã—ã¦ãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç”Ÿæˆ
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -37,7 +37,7 @@ namespace CSharpSamples.Html
 				throw new ArgumentNullException("html");
 			}
 
-			// ‰üs•¶š‚È‚Ç‚ğíœ
+			// æ”¹è¡Œæ–‡å­—ãªã©ã‚’å‰Šé™¤
 			html = this.RemoveWhiteSpace(html);
 
 			HtmlNodeCollection root = new HtmlNodeCollection(null);
@@ -45,12 +45,12 @@ namespace CSharpSamples.Html
 
 			while (index < html.Length)
 			{
-				// ƒRƒƒ“ƒg‚Í–³‹‚·‚é
+				// ã‚³ãƒ¡ãƒ³ãƒˆã¯ç„¡è¦–ã™ã‚‹
 				if (this.is_match(html, index, "<!--"))
 				{
 					index += 4;
 
-					// ƒRƒƒ“ƒg‚ªI‚í‚é‚Ü‚Åindex‚ği‚ß‚é
+					// ã‚³ãƒ¡ãƒ³ãƒˆãŒçµ‚ã‚ã‚‹ã¾ã§indexã‚’é€²ã‚ã‚‹
 					while (index < html.Length)
 					{
 						if (this.is_match(html, index, "-->"))
@@ -61,19 +61,19 @@ namespace CSharpSamples.Html
 						index++;
 					}
 				}
-				// •Â‚¶‚éƒ^ƒO‚Ìê‡
+				// é–‰ã˜ã‚‹ã‚¿ã‚°ã®å ´åˆ
 				else if (this.is_match(html, index, "</"))
 				{
 					index += 2;
 
-					// ‹ó”’“Ç‚İ”ò‚Î‚µ
+					// ç©ºç™½èª­ã¿é£›ã°ã—
 					this.SkipWhiteSpace(html, ref index);
 
-					// ƒ^ƒO–¼‚ğæ“¾
+					// ã‚¿ã‚°åã‚’å–å¾—
 					Match m = this.rexTagName.Match(html, index);
 					if (m.Success)
 					{
-						// “¯‚¶–¼‘O‚ÌŠJnƒ^ƒO‚ğæ“¾
+						// åŒã˜åå‰ã®é–‹å§‹ã‚¿ã‚°ã‚’å–å¾—
 						int nodeidx = this.BackFindOpenElement(root, m.Value);
 						if (nodeidx != -1)
 						{
@@ -86,7 +86,7 @@ namespace CSharpSamples.Html
 						index += m.Length;
 					}
 
-					// I—¹ƒ^ƒO‚ª—ˆ‚é‚Ü‚ÅƒXƒLƒbƒv
+					// çµ‚äº†ã‚¿ã‚°ãŒæ¥ã‚‹ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
 					this.SkipChars(html, ref index, "<>".ToCharArray());
 
 					if (this.is_match(html, index, ">"))
@@ -94,15 +94,15 @@ namespace CSharpSamples.Html
 						index++;
 					}
 				}
-				// ŠJnƒ^ƒO‚Ìê‡
+				// é–‹å§‹ã‚¿ã‚°ã®å ´åˆ
 				else if (this.is_match(html, index, "<"))
 				{
 					index += 1;
 
-					// ‹ó”’“Ç‚İ”ò‚Î‚µ
+					// ç©ºç™½èª­ã¿é£›ã°ã—
 					this.SkipWhiteSpace(html, ref index);
 
-					// ƒ^ƒO–¼‚ğæ“¾
+					// ã‚¿ã‚°åã‚’å–å¾—
 					Match m = this.rexTagName.Match(html, index);
 					if (m.Success)
 					{
@@ -111,34 +111,34 @@ namespace CSharpSamples.Html
 
 						index = m.Index + m.Length;
 
-						// ‹ó”’“Ç‚İ”ò‚Î‚µ
+						// ç©ºç™½èª­ã¿é£›ã°ã—
 						this.SkipWhiteSpace(html, ref index);
 
-						// ‘®«‚Ì“Ç‚İ‚İ
+						// å±æ€§ã®èª­ã¿è¾¼ã¿
 						if (this.not_match(html, index, "/>") &&
 							this.not_match(html, index, ">"))
 						{
 							this.ParseAttributes(html, ref index, e.Attributes);
 						}
 
-						// ‚P‚Â‚ÅŠ®Œ‹‚·‚éƒ^ƒO‚Ìˆ—
+						// ï¼‘ã¤ã§å®Œçµã™ã‚‹ã‚¿ã‚°ã®å‡¦ç†
 						if (this.is_match(html, index, "/>"))
 						{
 							e.IsEmptyElementTag = true;
 							index += 2;
 						}
-						// I—¹ƒ^ƒO‚Ìê‡
+						// çµ‚äº†ã‚¿ã‚°ã®å ´åˆ
 						else if (this.is_match(html, index, ">"))
 						{
 							index++;
 						}
 					}
 				}
-				// ƒeƒLƒXƒgˆ—
+				// ãƒ†ã‚­ã‚¹ãƒˆå‡¦ç†
 				else
 				{
 
-					// ŠJnƒ^ƒO‚ğŒŸõ‚µA‚»‚±‚Ü‚Å‚ğƒeƒLƒXƒg‚Æ‚·‚é
+					// é–‹å§‹ã‚¿ã‚°ã‚’æ¤œç´¢ã—ã€ãã“ã¾ã§ã‚’ãƒ†ã‚­ã‚¹ãƒˆã¨ã™ã‚‹
 					int next = html.IndexOf("<", index);
 					HtmlText text;
 
@@ -161,7 +161,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚Æ“¯‚¶ƒ^ƒO—v‘f‚ğŒŸõ
+		/// æŒ‡å®šã—ãŸåå‰ã¨åŒã˜ã‚¿ã‚°è¦ç´ ã‚’æ¤œç´¢
 		/// </summary>
 		/// <param name="nodes"></param>
 		/// <param name="name"></param>
@@ -174,7 +174,7 @@ namespace CSharpSamples.Html
 
 				if (e != null && !e.IsTerminated)
 				{
-					// ‘å•¶š¬•¶š‚Í‹æ•Ê‚µ‚È‚¢
+					// å¤§æ–‡å­—å°æ–‡å­—ã¯åŒºåˆ¥ã—ãªã„
 					if (e.Name.ToLower() == name.ToLower())
 					{
 						return i;
@@ -185,7 +185,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‘®«‚ğ‰ğÍ‚µattributes•Ï”‚ÉŠi”[
+		/// å±æ€§ã‚’è§£æã—attributeså¤‰æ•°ã«æ ¼ç´
 		/// </summary>
 		/// <param name="html"></param>
 		/// <param name="index"></param>
@@ -195,10 +195,10 @@ namespace CSharpSamples.Html
 		{
 			while (index < html.Length)
 			{
-				// ‹ó”’“Ç‚İ”ò‚Î‚µ
+				// ç©ºç™½èª­ã¿é£›ã°ã—
 				this.SkipWhiteSpace(html, ref index);
 
-				// ƒ^ƒO‚ÌI‚í‚è‚È‚çI—¹
+				// ã‚¿ã‚°ã®çµ‚ã‚ã‚Šãªã‚‰çµ‚äº†
 				if (this.is_match(html, index, "/>") || this.is_match(html, index, ">"))
 				{
 					break;
@@ -206,7 +206,7 @@ namespace CSharpSamples.Html
 
 				int attrSt = index;
 
-				// ‘®«–¼‚ğŒŸõ
+				// å±æ€§åã‚’æ¤œç´¢
 				if (this.SkipChars(html, ref index, "=".ToCharArray()))
 				{
 					string attrName, attrVal = string.Empty;
@@ -214,10 +214,10 @@ namespace CSharpSamples.Html
 					attrName = html.Substring(attrSt, index - attrSt).ToLower();
 					index++;
 
-					// ‹ó”’“Ç‚İ”ò‚Î‚µ
+					// ç©ºç™½èª­ã¿é£›ã°ã—
 					this.SkipWhiteSpace(html, ref index);
 
-					// ƒNƒI[ƒe[ƒVƒ‡ƒ“‚©‚çn‚Ü‚éê‡‚ÍA“¯‚¶ƒNƒI[ƒe[ƒVƒ‡ƒ“‚ªo‚é‚Ü‚Å‚ğ’l‚Æ‚·‚é
+					// ã‚¯ã‚ªãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã‚‰å§‹ã¾ã‚‹å ´åˆã¯ã€åŒã˜ã‚¯ã‚ªãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãŒå‡ºã‚‹ã¾ã§ã‚’å€¤ã¨ã™ã‚‹
 					if (index < html.Length && this.IsQuote(html[index]))
 					{
 						char quote = html[index];
@@ -232,10 +232,10 @@ namespace CSharpSamples.Html
 							index++;
 						}
 					}
-					// ‚·‚®‚É’l‚ªn‚Ü‚Á‚Ä‚¢‚éê‡
+					// ã™ãã«å€¤ãŒå§‹ã¾ã£ã¦ã„ã‚‹å ´åˆ
 					else
 					{
-						// ‹ó”’‚©ƒ^ƒO‚ÌI‚í‚è‚ª—ˆ‚é‚Ü‚Åindex‚ği‚ß‚é
+						// ç©ºç™½ã‹ã‚¿ã‚°ã®çµ‚ã‚ã‚ŠãŒæ¥ã‚‹ã¾ã§indexã‚’é€²ã‚ã‚‹
 						for (int i = index; i < html.Length; i++)
 						{
 							if (this.is_match(html, i, " ") ||
@@ -249,7 +249,7 @@ namespace CSharpSamples.Html
 						}
 					}
 
-					// ’l‚ğŒŸõ
+					// å€¤ã‚’æ¤œç´¢
 					HtmlAttribute attr = new HtmlAttribute(attrName, attrVal);
 					attributes.Add(attr);
 				}
@@ -261,7 +261,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½•¶š‚ªƒNƒI[ƒe[ƒVƒ‡ƒ“‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸæ–‡å­—ãŒã‚¯ã‚ªãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="ch"></param>
 		/// <returns></returns>
@@ -278,7 +278,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// input‚Ìindex‚©‚çstopChars‚Ì‚Ç‚ê‚©‚ª—ˆ‚é‚Ü‚Åindex‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		/// inputã®indexã‹ã‚‰stopCharsã®ã©ã‚Œã‹ãŒæ¥ã‚‹ã¾ã§indexã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>
@@ -301,7 +301,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‹ó”’•¶š‚ª–³‚­‚È‚é‚Ü‚Åindex‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		/// ç©ºç™½æ–‡å­—ãŒç„¡ããªã‚‹ã¾ã§indexã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>
@@ -319,7 +319,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// elementˆÈ~‚Ìƒm[ƒh‚ğelement‚Ìq‚Éİ’è‚·‚é
+		/// elementä»¥é™ã®ãƒãƒ¼ãƒ‰ã‚’elementã®å­ã«è¨­å®šã™ã‚‹
 		/// </summary>
 		/// <param name="element"></param>
 		private void NodesDown(HtmlNodeCollection nodes, int index, HtmlElement parent)
@@ -341,7 +341,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‹ó”’•¶š‚ğíœ‚µ‚½Html‚ğ•Ô‚·
+		/// ç©ºç™½æ–‡å­—ã‚’å‰Šé™¤ã—ãŸHtmlã‚’è¿”ã™
 		/// </summary>
 		/// <param name="html"></param>
 		/// <returns></returns>
@@ -356,7 +356,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// input‚Ìindex‚©‚çkey‚ªˆê’v‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// inputã®indexã‹ã‚‰keyãŒä¸€è‡´ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>
@@ -379,7 +379,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// input‚Ìindex‚©‚çkey‚ªˆê’v‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğ”»’f
+		/// inputã®indexã‹ã‚‰keyãŒä¸€è‡´ã—ãªã„ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>

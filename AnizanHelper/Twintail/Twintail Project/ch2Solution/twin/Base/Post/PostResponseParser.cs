@@ -8,7 +8,7 @@ namespace Twin
 using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒT[ƒo[‚©‚ç‚ÌƒŒƒXƒ|ƒ“ƒXƒƒbƒZ[ƒW‚ğ‰ğÍ‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è§£æã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class PostResponseParser
 	{
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 		protected PostResponse response;
 
 		/// <summary>
-		/// ƒ^ƒCƒgƒ‹‚ğæ“¾
+		/// ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—
 		/// </summary>
 		public string Title
 		{
@@ -30,7 +30,7 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// HtmlŒ`®‚Ì–{•ª‚ğæ“¾
+		/// Htmlå½¢å¼ã®æœ¬åˆ†ã‚’å–å¾—
 		/// </summary>
 		public string HtmlText
 		{
@@ -41,7 +41,7 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// ƒeƒLƒXƒgŒ`®‚Ì–{•ª‚ğæ“¾
+		/// ãƒ†ã‚­ã‚¹ãƒˆå½¢å¼ã®æœ¬åˆ†ã‚’å–å¾—
 		/// </summary>
 		public string PlainText
 		{
@@ -52,7 +52,7 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚ÌSamba•b”‚ğæ“¾
+		/// ã‚µãƒ¼ãƒãƒ¼ã®Sambaç§’æ•°ã‚’å–å¾—
 		/// </summary>
 		public int SambaCount
 		{
@@ -63,7 +63,7 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚©‚ç‚Ì‰‘Îó‘Ô‚ğæ“¾
+		/// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œå¯¾çŠ¶æ…‹ã‚’å–å¾—
 		/// </summary>
 		public PostResponse Response
 		{
@@ -84,13 +84,13 @@ using System.Collections.Generic;
 	
 
 		/// <summary>
-		/// PostResponseParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostResponseParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="htmlData">‰ğÍ‚·‚éƒf[ƒ^</param>
+		/// <param name="htmlData">è§£æã™ã‚‹ãƒ‡ãƒ¼ã‚¿</param>
 		public PostResponseParser(string htmlData)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			htmlText = htmlData;
 			response = PostResponse.Error;
@@ -99,7 +99,7 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// text‚ğ‰ğÍ
+		/// textã‚’è§£æ
 		/// </summary>
 		/// <param name="data"></param>
 		/// <returns></returns>
@@ -112,19 +112,19 @@ using System.Collections.Generic;
 
 			try
 			{
-				// 2ch_X‚ğŒŸõ‚·‚é³‹K•\Œ»
+				// 2ch_Xã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 				Regex regex2chx = new Regex(@"<!--\s*?(2ch_X:\w+)\s*?-->",
 					RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-				// ƒ^ƒCƒgƒ‹‚ğŒŸõ‚·‚é³‹K•\Œ»
+				// ã‚¿ã‚¤ãƒˆãƒ«ã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 				Regex regext = new Regex(@"<title>(?<t>.+?)</title>",
 					RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-				// –{•¶‚ğŒŸõ‚·‚é³‹K•\Œ»
+				// æœ¬æ–‡ã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 				Regex regexb = new Regex(@"(<body.*?>(?<b>.+)</body>)|(</head>(?<b>.+)</body>)",
 					RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-				// ƒ^ƒCƒgƒ‹‚ğæ“¾
+				// ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—
 				Match match0 = regext.Match(text);
 				if (match0.Success)
 				{
@@ -132,26 +132,26 @@ using System.Collections.Generic;
 					response = TitleToStatus(title);
 				}
 
-				// 2ch_X‚ğæ“¾
+				// 2ch_Xã‚’å–å¾—
 				Match match1 = regex2chx.Match(text);
 				if (match1.Success)
 				{
 					response = x2chXToStatus(match1.Value);
 				}
 
-				// –{•¶‚ğæ“¾iƒ^ƒO‚ğæ‚èœ‚­j
+				// æœ¬æ–‡ã‚’å–å¾—ï¼ˆã‚¿ã‚°ã‚’å–ã‚Šé™¤ãï¼‰
 				Match match2 = regexb.Match(text);
 				if (match2.Success)
 				{
 					string result = match2.Groups["b"].Value;
 
-					if (result.IndexOf("‘‚«‚İŠm”F") != -1)
+					if (result.IndexOf("æ›¸ãè¾¼ã¿ç¢ºèª") != -1)
 						response = PostResponse.Cookie;
 
-					else if (result.IndexOf("ƒNƒbƒL[‚ğƒIƒ“‚É‚µ‚Ä‚¿‚å") != -1)
+					else if (result.IndexOf("ã‚¯ãƒƒã‚­ãƒ¼ã‚’ã‚ªãƒ³ã«ã—ã¦ã¡ã‚‡") != -1)
 						response = PostResponse.Cookie;
 
-					else if (result.IndexOf("‚d‚q‚q‚n‚q - 593") != -1)
+					else if (result.IndexOf("ï¼¥ï¼²ï¼²ï¼¯ï¼² - 593") != -1)
 					{
 						response = PostResponse.Samba;
 
@@ -197,31 +197,31 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// 2ch_X‚ğPostResponse—ñ‹“‘Ì‚Åæ“¾
+		/// 2ch_Xã‚’PostResponseåˆ—æŒ™ä½“ã§å–å¾—
 		/// </summary>
 		/// <param name="x2chx"></param>
 		/// <returns></returns>
 		public static PostResponse x2chXToStatus(string x2chx)
 		{
 			/* http://members.jcom.home.ne.jp/monazilla/document/2ch_x.html
-			‚PAƒGƒ‰[•\¦‚Éƒ^ƒO‚ğ“ü‚ê‚Ü‚µ‚½B 
-@				<html>‚Ì’¼Œã‚É<!-- 2ch_X:***** -->‚Æ‚¢‚¤Œ`‚Å“ü‚Á‚Ä‚¢‚Ü‚·B 
-@				‹æ•Ê‚É‚Â‚¢‚Ä‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B 
-@@@			³íI—¹F<!-- 2ch_X:true -->i³í‚É‘‚«‚İ‚ªI—¹j 
-@@@			’ˆÓI—¹F<!-- 2ch_X:false -->i‘‚«‚İ‚Í‚µ‚½‚ª’ˆÓ‚Â‚«j 
-@@@			ƒGƒ‰[•\¦F<!-- 2ch_X:error -->i¡‚Í‚d‚q‚q‚n‚qI‚Ìƒ^ƒCƒgƒ‹j 
-@@@			‘‚«‚İŠm”FF<!-- 2ch_X:check -->iƒXƒŒ—§‚Ä‚È‚Ç‘‚«‚İ•Ê‰æ–Êj 
-@@@			ƒNƒbƒL[Šm”FF<!-- 2ch_X:cookie -->iƒNƒbƒL[‚ğH‚×‚³‚¹‚é‰æ–Êj 
-			‚QA‘—Ê‹K§‚ğ’ˆÓ”­¶‚Ìê‡‚¾‚¯“ü‚ê‚Ü‚µ‚½B 
-@				‚½‚¾•b”‚Å’ˆÓ‚·‚é‚Ì‚Å‚Í‚È‚­A‚±‚Ì‹K§‚ª”­¶‚·‚é‚Ù‚Ç¬‚ñ‚Å‚¢‚éŠÔ‘Ñ‚ÉA 
-@				‚`‚`‚È‚Ç‚Ì‘å—Ê‘‚«‚İ‚â˜A‘±‘‚«‚İ‚È‚ÇA•‰‰×‚ğã‚°‚ésˆ×‚ğ‚µ‚½ê‡A 
-@				‘‚«‚İƒƒO‚ğæ‚Á‚½ãAƒGƒ‰[‚Å‘‚«‚ß‚Ü‚¹‚ñB 
-@				ƒƒOƒCƒ“‚µ‚Ä‚¢‚él‚ÍŠÉ˜a‚³‚ê‚é‚Ì‚ÅA‚ ‚Ü‚èƒc[ƒ‹‚É‚ÍŠÖŒW‚ ‚è‚Ü‚¹‚ñ‚ªA 
-@				ƒGƒ‰[‚É‚È‚Á‚½ê‡‚ÌƒAƒNƒZƒX‹K§ğŒ‚Í“¯‚¶‚È‚Ì‚ÅA 
-@				•K‚¸’ˆÓ‚ğ•\¦‚µ‚Ä‚¢‚½‚¾‚¯‚ê‚Î‚Æv‚¢‚Ü‚·B 
-@				ŠÖ˜A‚µ‚Ä‚¢‚é‚Ì‚ÍˆÈ‰º‚Ì‚Q‚Â‚Å‚·B 
-@@@			<!-- 2ch_X:check -->F‚±‚êˆÈã‘‚­‚ÆƒAƒNƒZƒX‹Ö~‚É‚È‚è‚Ü‚·BBB 
-@@@			<!-- 2ch_X:false -->F‘‚«‚İ‚ÍŠ®—¹‚µ‚Ü‚µ‚½‚ªAˆÈ‰º‚Ì’ˆÓ‚ªo‚Ä‚¢‚Ü‚·BBB 
+			ï¼‘ã€ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã«ã‚¿ã‚°ã‚’å…¥ã‚Œã¾ã—ãŸã€‚ 
+ã€€				<html>ã®ç›´å¾Œã«<!-- 2ch_X:***** -->ã¨ã„ã†å½¢ã§å…¥ã£ã¦ã„ã¾ã™ã€‚ 
+ã€€				åŒºåˆ¥ã«ã¤ã„ã¦ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã™ã€‚ 
+ã€€ã€€ã€€			æ­£å¸¸çµ‚äº†ï¼š<!-- 2ch_X:true -->ï¼ˆæ­£å¸¸ã«æ›¸ãè¾¼ã¿ãŒçµ‚äº†ï¼‰ 
+ã€€ã€€ã€€			æ³¨æ„çµ‚äº†ï¼š<!-- 2ch_X:false -->ï¼ˆæ›¸ãè¾¼ã¿ã¯ã—ãŸãŒæ³¨æ„ã¤ãï¼‰ 
+ã€€ã€€ã€€			ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºï¼š<!-- 2ch_X:error -->ï¼ˆä»Šã¯ï¼¥ï¼²ï¼²ï¼¯ï¼²ï¼ã®ã‚¿ã‚¤ãƒˆãƒ«ï¼‰ 
+ã€€ã€€ã€€			æ›¸ãè¾¼ã¿ç¢ºèªï¼š<!-- 2ch_X:check -->ï¼ˆã‚¹ãƒ¬ç«‹ã¦ãªã©æ›¸ãè¾¼ã¿åˆ¥ç”»é¢ï¼‰ 
+ã€€ã€€ã€€			ã‚¯ãƒƒã‚­ãƒ¼ç¢ºèªï¼š<!-- 2ch_X:cookie -->ï¼ˆã‚¯ãƒƒã‚­ãƒ¼ã‚’é£Ÿã¹ã•ã›ã‚‹ç”»é¢ï¼‰ 
+			ï¼’ã€ç·é‡è¦åˆ¶ã‚’æ³¨æ„ç™ºç”Ÿã®å ´åˆã ã‘å…¥ã‚Œã¾ã—ãŸã€‚ 
+ã€€				ãŸã ç§’æ•°ã§æ³¨æ„ã™ã‚‹ã®ã§ã¯ãªãã€ã“ã®è¦åˆ¶ãŒç™ºç”Ÿã™ã‚‹ã»ã©æ··ã‚“ã§ã„ã‚‹æ™‚é–“å¸¯ã«ã€ 
+ã€€				ï¼¡ï¼¡ãªã©ã®å¤§é‡æ›¸ãè¾¼ã¿ã‚„é€£ç¶šæ›¸ãè¾¼ã¿ãªã©ã€è² è·ã‚’ä¸Šã’ã‚‹è¡Œç‚ºã‚’ã—ãŸå ´åˆã€ 
+ã€€				æ›¸ãè¾¼ã¿ãƒ­ã‚°ã‚’å–ã£ãŸä¸Šã€ã‚¨ãƒ©ãƒ¼ã§æ›¸ãè¾¼ã‚ã¾ã›ã‚“ã€‚ 
+ã€€				ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ã‚‹äººã¯ç·©å’Œã•ã‚Œã‚‹ã®ã§ã€ã‚ã¾ã‚Šãƒ„ãƒ¼ãƒ«ã«ã¯é–¢ä¿‚ã‚ã‚Šã¾ã›ã‚“ãŒã€ 
+ã€€				ã‚¨ãƒ©ãƒ¼ã«ãªã£ãŸå ´åˆã®ã‚¢ã‚¯ã‚»ã‚¹è¦åˆ¶æ¡ä»¶ã¯åŒã˜ãªã®ã§ã€ 
+ã€€				å¿…ãšæ³¨æ„ã‚’è¡¨ç¤ºã—ã¦ã„ãŸã ã‘ã‚Œã°ã¨æ€ã„ã¾ã™ã€‚ 
+ã€€				é–¢é€£ã—ã¦ã„ã‚‹ã®ã¯ä»¥ä¸‹ã®ï¼’ã¤ã§ã™ã€‚ 
+ã€€ã€€ã€€			<!-- 2ch_X:check -->ï¼šã“ã‚Œä»¥ä¸Šæ›¸ãã¨ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢ã«ãªã‚Šã¾ã™ã€‚ã€‚ã€‚ 
+ã€€ã€€ã€€			<!-- 2ch_X:false -->ï¼šæ›¸ãè¾¼ã¿ã¯å®Œäº†ã—ã¾ã—ãŸãŒã€ä»¥ä¸‹ã®æ³¨æ„ãŒå‡ºã¦ã„ã¾ã™ã€‚ã€‚ã€‚ 
 			*/
 
 			Match m = Regex.Match(x2chx, "(?<a>\\w+:\\w+)");
@@ -247,26 +247,26 @@ using System.Collections.Generic;
 		}
 
 		/// <summary>
-		/// ƒ^ƒCƒgƒ‹‚ğPostResponse—ñ‹“‘Ì‚Åæ“¾
+		/// ã‚¿ã‚¤ãƒˆãƒ«ã‚’PostResponseåˆ—æŒ™ä½“ã§å–å¾—
 		/// </summary>
 		/// <param name="title"></param>
 		/// <returns></returns>
 		public static PostResponse TitleToStatus(string title)
 		{
-			if (title.IndexOf("‘‚«‚±‚İ‚Ü‚µ‚½") >= 0)
+			if (title.IndexOf("æ›¸ãã“ã¿ã¾ã—ãŸ") >= 0)
 			{
 				return PostResponse.Success;
 			}
 
-			if (title.IndexOf("‘‚«‚İŠm”F") >= 0 ||
-				title.IndexOf("ƒNƒbƒL[Šm”F") >= 0 ||
-				title.IndexOf("“ŠeŠm”F") >= 0)
+			if (title.IndexOf("æ›¸ãè¾¼ã¿ç¢ºèª") >= 0 ||
+				title.IndexOf("ã‚¯ãƒƒã‚­ãƒ¼ç¢ºèª") >= 0 ||
+				title.IndexOf("æŠ•ç¨¿ç¢ºèª") >= 0)
 			{
 				return PostResponse.Cookie;
 			}
 
-			if (title.IndexOf("‚d‚q‚q‚n‚q") >= 0 ||
-				title.IndexOf("‚¨’ƒ‚Å‚àˆù‚İ‚Ü‚µ‚å‚¤") >= 0)
+			if (title.IndexOf("ï¼¥ï¼²ï¼²ï¼¯ï¼²") >= 0 ||
+				title.IndexOf("ãŠèŒ¶ã§ã‚‚é£²ã¿ã¾ã—ã‚‡ã†") >= 0)
 			{
 				return PostResponse.Error;
 			}
@@ -276,18 +276,18 @@ using System.Collections.Generic;
 			/*
 			switch (title)
 			{
-			case "‘‚«‚±‚İ‚Ü‚µ‚½B":
+			case "æ›¸ãã“ã¿ã¾ã—ãŸã€‚":
 				return PostResponse.Success;
 
-			case "¡ ‘‚«‚İŠm”F ¡":
-			case "ƒNƒbƒL[Šm”FI":
-			case "‘‚«‚İŠm”F":
-			case "‘‚«‚İŠm”FB":
-			case "“ŠeŠm”F":
+			case "â–  æ›¸ãè¾¼ã¿ç¢ºèª â– ":
+			case "ã‚¯ãƒƒã‚­ãƒ¼ç¢ºèªï¼":
+			case "æ›¸ãè¾¼ã¿ç¢ºèª":
+			case "æ›¸ãè¾¼ã¿ç¢ºèªã€‚":
+			case "æŠ•ç¨¿ç¢ºèª":
 				return PostResponse.Cookie;
 
-			case "‚d‚q‚q‚n‚qI":
-			case "‚¨’ƒ‚Å‚àˆù‚İ‚Ü‚µ‚å‚¤B":
+			case "ï¼¥ï¼²ï¼²ï¼¯ï¼²ï¼":
+			case "ãŠèŒ¶ã§ã‚‚é£²ã¿ã¾ã—ã‚‡ã†ã€‚":
 				return PostResponse.Error;
 
 			default:

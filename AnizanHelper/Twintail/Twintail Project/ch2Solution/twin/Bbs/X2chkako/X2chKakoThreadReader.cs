@@ -14,7 +14,7 @@ namespace Twin.Bbs
 	using Twin.IO;
 
 	/// <summary>
-	/// ‚Q‚¿‚á‚ñ‚Ì‰ß‹ƒƒO‚ğ“Ç‚İ‚Ş
+	/// ï¼’ã¡ã‚ƒã‚“ã®éå»ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€
 	/// </summary>
 	public class X2chKakoThreadReader : X2chThreadReader
 	{
@@ -23,7 +23,7 @@ namespace Twin.Bbs
 		private int retryCount = 0;
 
 		/// <summary>
-		/// ‰ß‹ƒƒO‚ğæ“¾‚Å‚«‚È‚©‚Á‚½ê‡AÄs‚ğs‚¤ƒT[ƒo‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// éå»ãƒ­ã‚°ã‚’å–å¾—ã§ããªã‹ã£ãŸå ´åˆã€å†è©¦è¡Œã‚’è¡Œã†ã‚µãƒ¼ãƒã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public BoardInfo[] RetryServers {
 			set {
@@ -35,14 +35,14 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chThreadReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chKakoThreadReader() : base()
 		{
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="th"></param>
 		public override bool Open(ThreadHeader header)
@@ -51,7 +51,7 @@ namespace Twin.Bbs
 				throw new ArgumentNullException("header");
 			}
 			if (IsOpen) {
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
 			X2chKakoThreadHeader kakoheader = header as X2chKakoThreadHeader;
@@ -61,7 +61,7 @@ namespace Twin.Bbs
 				kakoheader.GzipCompress = true;
 
 Retry:
-			// ƒlƒbƒgƒ[ƒNƒXƒgƒŠ[ƒ€‚ğ‰Šú‰»
+			// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’åˆæœŸåŒ–
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(header.DatUrl);
 			req.Timeout = 30000;
 			req.AllowAutoRedirect = false;
@@ -88,7 +88,7 @@ Retry:
 			{
 				bool encGzip = _res.ContentEncoding.EndsWith("gzip");
 
-				// Gzip‚ğg—p‚·‚éê‡‚Í‚·‚×‚Ä“Ç‚İ‚Ş
+				// Gzipã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã™ã¹ã¦èª­ã¿è¾¼ã‚€
 				if (encGzip)
 				{
 					using (GZipStream gzipInp = new GZipStream(_res.GetResponseStream(), CompressionMode.Decompress))
@@ -132,7 +132,7 @@ Retry:
 				}
 			}
 
-			// ‰ß‹ƒƒO‚È‚Ì‚Ådat—‚¿‚Éİ’è
+			// éå»ãƒ­ã‚°ãªã®ã§datè½ã¡ã«è¨­å®š
 			//0324 headerInfo.Pastlog = true;
 
 			retryCount = 0;
@@ -141,7 +141,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
 		/// <param name="byteParsed"></param>
@@ -153,7 +153,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
 		/// <param name="byteParsed"></param>
@@ -164,13 +164,13 @@ Retry:
 				throw new ArgumentNullException("resSets");
 			}
 			if (!isOpen) {
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
-			// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			int byteCount = baseStream.Read(buffer, 0, buffer.Length);
 
-			// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+			// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 			ICollection collect = dataParser.Parse(buffer, byteCount, out byteParsed);
 
 			foreach (ResSet resSet in collect)
@@ -183,7 +183,7 @@ Retry:
 					headerInfo.Subject = (string)res.Tag;
 			}
 
-			// ÀÛ‚É“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğŒvZ
+			// å®Ÿéš›ã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 			position += byteCount;
 
 			return byteCount;

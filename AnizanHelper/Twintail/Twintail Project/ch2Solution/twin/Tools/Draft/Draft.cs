@@ -5,7 +5,7 @@ namespace Twin.Tools
 	using System;
 
 	/// <summary>
-	/// ƒƒbƒZ[ƒW‚Ì‘e‚ğ•\‚·
+	/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è‰ç¨¿ã‚’è¡¨ã™
 	/// </summary>
 	public class Draft
 	{
@@ -13,28 +13,28 @@ namespace Twin.Tools
 		private PostRes postRes;
 
 		/// <summary>
-		/// “Šeæ‚ÌƒXƒŒƒbƒhî•ñ‚ğæ“¾
+		/// æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public ThreadHeader HeaderInfo {
 			get { return headerInfo; }
 		}
 
 		/// <summary>
-		/// “Še‚·‚éƒƒbƒZ[ƒW‚ğæ“¾
+		/// æŠ•ç¨¿ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
 		/// </summary>
 		public PostRes PostRes {
 			get { return postRes; }
 		}
 
 		/// <summary>
-		/// DraftƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Draftã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒhî•ñ</param>
-		/// <param name="res">“ŠeƒƒbƒZ[ƒW</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±</param>
+		/// <param name="res">æŠ•ç¨¿ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
 		public Draft(ThreadHeader header, PostRes res)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.headerInfo = header;
 			this.postRes = res;

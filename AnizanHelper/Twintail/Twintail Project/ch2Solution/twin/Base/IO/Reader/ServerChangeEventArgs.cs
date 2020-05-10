@@ -6,7 +6,7 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ThreadListReader.ServerChange ƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ‚µ‚Ü‚·B
+	/// ThreadListReader.ServerChange ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›ã—ã¾ã™ã€‚
 	/// </summary>
 	public class ServerChangeEventArgs : EventArgs
 	{
@@ -15,7 +15,7 @@ namespace Twin
 		private BoardInfoCollection traceList;
 
 		/// <summary>
-		/// ˆÚ“]Œ³‚Ì”Âî•ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// ç§»è»¢å…ƒã®æ¿æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public BoardInfo OldBoard
 		{
@@ -26,7 +26,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ˆÚ“]æ‚Ì”Âî•ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// ç§»è»¢å…ˆã®æ¿æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public BoardInfo NewBoard
 		{
@@ -37,7 +37,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Â‚ğ’ÇÕ‚µ‚½ê‡‚Í‚±‚±‚É’ÇÕ—š—ğ‚ªŠi”[‚³‚ê‚Ü‚·B
+		/// æ¿ã‚’è¿½è·¡ã—ãŸå ´åˆã¯ã“ã“ã«è¿½è·¡å±¥æ­´ãŒæ ¼ç´ã•ã‚Œã¾ã™ã€‚
 		/// </summary>
 		public BoardInfoCollection TraceList
 		{
@@ -48,14 +48,14 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ServerChangeEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ServerChangeEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="old"></param>
 		/// <param name="_new"></param>
 		public ServerChangeEventArgs(BoardInfo old, BoardInfo _new)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.old = old;
 			this._new = _new;
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ServerChangeEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ServerChangeEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="old"></param>
 		/// <param name="_new"></param>
@@ -72,7 +72,7 @@ namespace Twin
 			: this(old, _new)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.traceList = history;
 		}

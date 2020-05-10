@@ -5,7 +5,7 @@ using System;
 namespace Twin.Bbs
 {
 	/// <summary>
-	/// X2chRetryKakologException ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// X2chRetryKakologException ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class X2chRetryKakologException : ApplicationException
 	{
@@ -18,12 +18,12 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chRetryKakologException ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chRetryKakologException ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chRetryKakologException(BoardInfo board)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.retryBoard = board;
 		}

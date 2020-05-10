@@ -7,12 +7,12 @@ namespace Twin.Bbs
 	using System.Web;
 
 	/// <summary>
-	/// ‚Q‚¿‚á‚ñ‚Ë‚é‚ÌƒXƒŒƒbƒhƒwƒbƒ_î•ñ‚ğ•\‚·
+	/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	public class X2chThreadHeader : ThreadHeader
 	{
 		/// <summary>
-		/// datƒtƒ@ƒCƒ‹‚Ì‘¶İ‚·‚éURL‚ğæ“¾
+		/// datãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ã™ã‚‹URLã‚’å–å¾—
 		/// </summary>
 		public override string DatUrl {
 			get {
@@ -22,7 +22,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public override string Url {
 			get {
@@ -32,19 +32,19 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ”FØg—p‚ÌƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// èªè¨¼ä½¿ç”¨æ™‚ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public string AuthenticateUrl
 		{
 			get
 			{
-				// ** …‹Ê‚³‚ñ‚É‚æ‚é’ñ‹Ÿ **
-				// 2013/09/10 œdatæ“¾d—l•ÏX
+				// ** æ°´ç‰ã•ã‚“ã«ã‚ˆã‚‹æä¾› **
+				// 2013/09/10 â—datå–å¾—ä»•æ§˜å¤‰æ›´
 				// http://qb5.2ch.net/test/read.cgi/operate/1366640919/87-88 
 				// http://stream.bbspink.com/update.txt 
-				//@@http://rokka.<SITENAME>.<COM or NET>/<SERVER NAME>/<BOARD NAME>/<DAT NUMBER>/<OPTIONS>?raw=0.0&sid=<SID>
+				//ã€€ã€€http://rokka.<SITENAME>.<COM or NET>/<SERVER NAME>/<BOARD NAME>/<DAT NUMBER>/<OPTIONS>?raw=0.0&sid=<SID>
 				//return AddSessionId( String.Format( "http://{0}/test/offlaw.cgi/{1}/{2}/" ,
-				//@@BoardInfo.Server , BoardInfo.Path , Key ) );
+				//ã€€ã€€BoardInfo.Server , BoardInfo.Path , Key ) );
 				var site = BoardInfo.DomainPath.Substring(0, BoardInfo.DomainPath.IndexOf("/"));
 				return AddSessionId(string.Format("http://rokka.{3}/{0}/{1}/{2}/",
 				  BoardInfo.ServerName, BoardInfo.Path, Key, site));
@@ -65,7 +65,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ‘‚«‚İ‰Â”\‚ÈÅ‘åƒŒƒX”‚ğæ“¾
+		/// æ›¸ãè¾¼ã¿å¯èƒ½ãªæœ€å¤§ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public override int UpperLimitResCount {
 			get {
@@ -74,12 +74,12 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadHeader()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
@@ -87,7 +87,7 @@ namespace Twin.Bbs
 			: base(source.BoardInfo, source.Key, source.Subject)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

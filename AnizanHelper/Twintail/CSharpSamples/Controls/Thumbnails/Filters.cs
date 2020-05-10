@@ -1,4 +1,4 @@
-//	ƒ\[ƒXŒ³
+//	ã‚½ãƒ¼ã‚¹å…ƒ
 //	http://www.codeproject.com/cs/media/displacementfilters.asp
 //
 

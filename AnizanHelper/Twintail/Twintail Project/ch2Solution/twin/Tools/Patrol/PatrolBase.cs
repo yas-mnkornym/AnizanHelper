@@ -7,12 +7,12 @@ namespace Twin.Tools
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// „‰ñ‚·‚é‚½‚ß‚ÌŠî–{ƒNƒ‰ƒX‚ğ•\‚·
+	/// å·¡å›ã™ã‚‹ãŸã‚ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’è¡¨ã™
 	/// </summary>
 	public abstract class PatrolBase
 	{
 		/// <summary>
-		/// ”ñ“¯Šú„‰ñ—p‚ÌƒfƒŠƒQ[ƒg
+		/// éåŒæœŸå·¡å›ç”¨ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 		/// </summary>
 		protected delegate void PatrolInvoker();
 
@@ -22,14 +22,14 @@ namespace Twin.Tools
 		private Cache cache;
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…î•ñ‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		protected Cache Cache {
 			get { return cache; }
 		}
 
 		/// <summary>
-		/// „‰ñ‘ÎÛ‚ÌƒXƒŒƒbƒhƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// å·¡å›å¯¾è±¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public List<ThreadHeader> Items {
 			get { return itemColleciton; }
@@ -46,22 +46,22 @@ namespace Twin.Tools
 	
 
 		/// <summary>
-		/// ó‘Ô‚ªXV‚³‚ê‚½‚Æ‚«‚É”­¶
+		/// çŠ¶æ…‹ãŒæ›´æ–°ã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event StatusTextEventHandler StatusTextChanged;
 
 		/// <summary>
-		/// ƒAƒCƒeƒ€‚ğ„‰ñ’†‚É”­¶
+		/// ã‚¢ã‚¤ãƒ†ãƒ ã‚’å·¡å›ä¸­ã«ç™ºç”Ÿ
 		/// </summary>
 		public event PatrolEventHandler Patroling;
 
 		/// <summary>
-		/// XV‚³‚ê‚½ƒAƒCƒeƒ€‚ª‚ ‚Á‚½‚Æ‚«‚É”­¶
+		/// æ›´æ–°ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã£ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event PatrolEventHandler Updated;
 
 		/// <summary>
-		/// PatrolBaseƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PatrolBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cacheInfo"></param>
 		protected PatrolBase(Cache cacheInfo)
@@ -73,7 +73,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// „‰ñ‘ÎÛ‚ÌƒXƒŒƒbƒhƒAƒCƒeƒ€‚ğİ’è
+		/// å·¡å›å¯¾è±¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¨­å®š
 		/// </summary>
 		/// <param name="items"></param>
 		public void SetItems(List<ThreadHeader> items)
@@ -84,18 +84,18 @@ namespace Twin.Tools
 			itemColleciton.Clear();
 			itemColleciton.AddRange(items);
 
-			// ƒXƒŒƒbƒhî•ñ‚ğÅV‚Ìó‘Ô‚É‚·‚é
+			// ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’æœ€æ–°ã®çŠ¶æ…‹ã«ã™ã‚‹
 			for (int i = 0; i < itemColleciton.Count; i++)
 				ThreadIndexer.Read(cache, itemColleciton[i]);
 		}
 
 		/// <summary>
-		/// „‰ñŠJn
+		/// å·¡å›é–‹å§‹
 		/// </summary>
 		public abstract void Patrol();
 
 		/// <summary>
-		/// ”ñ“¯Šú‚Å„‰ñ‚·‚é
+		/// éåŒæœŸã§å·¡å›ã™ã‚‹
 		/// </summary>
 		public IAsyncResult BeginPatrol(AsyncCallback callback, object stateObject)
 		{
@@ -105,7 +105,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ”ñ“¯Šú‚È„‰ñ‚ğI—¹‚·‚é‚Ü‚ÅƒuƒƒbƒN
+		/// éåŒæœŸãªå·¡å›ã‚’çµ‚äº†ã™ã‚‹ã¾ã§ãƒ–ãƒ­ãƒƒã‚¯
 		/// </summary>
 		public void EndPatrol(IAsyncResult ar)
 		{
@@ -113,7 +113,7 @@ namespace Twin.Tools
 				throw new ArgumentNullException("ar");
 			}
 			if (method == null) {
-				throw new InvalidOperationException("”ñ“¯Šú‚Å„‰ñ‚ªŠJn‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("éåŒæœŸã§å·¡å›ãŒé–‹å§‹ã•ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
 			method.EndInvoke(ar);
@@ -122,7 +122,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// StatusTextChangedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// StatusTextChangedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnStatusTextChanged(string text)
@@ -132,7 +132,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// PatrolingƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Patrolingã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnPatroling(PatrolEventArgs e)
@@ -142,7 +142,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// UpdatedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Updatedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnUpdated(PatrolEventArgs e)

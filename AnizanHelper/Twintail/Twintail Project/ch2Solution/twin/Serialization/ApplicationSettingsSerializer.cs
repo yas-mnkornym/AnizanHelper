@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Twintail3
 {
 	/// <summary>
-	/// 様々な型のPublicプロパティ値のシリアライズ/デシリアライズを行うクラスです。
+	/// 讒倥・↑蝙九・Public繝励Ο繝代ユ繧｣蛟､縺ｮ繧ｷ繝ｪ繧｢繝ｩ繧､繧ｺ/繝・す繝ｪ繧｢繝ｩ繧､繧ｺ繧定｡後≧繧ｯ繝ｩ繧ｹ縺ｧ縺吶・
 	/// </summary>
 	public abstract class ApplicationSettingsSerializer
 	{
@@ -18,7 +18,7 @@ namespace Twintail3
 		protected Encoding encoding = Encoding.UTF8;
 
 		/// <summary>
-		/// 設定の保存先ファイル名を取得します。
+		/// 險ｭ螳壹・菫晏ｭ伜・繝輔ぃ繧､繝ｫ蜷阪ｒ蜿門ｾ励＠縺ｾ縺吶・
 		/// </summary>
 		private string fileName;
 		[XmlIgnore]
@@ -36,7 +36,7 @@ namespace Twintail3
 //		{ get; protected set; }
 
 		/// <summary>
-		/// 現在のデータが復元された状態であるかどうかを示します。
+		/// 迴ｾ蝨ｨ縺ｮ繝・・繧ｿ縺悟ｾｩ蜈・＆繧後◆迥ｶ諷九〒縺ゅｋ縺九←縺・°繧堤､ｺ縺励∪縺吶・
 		/// </summary>
 		private bool deserialized;
 		[XmlIgnore]
@@ -119,7 +119,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// DefaultValueAttribute 属性が設定されているプロパティすべてを DefaultValueAttribute 属性で指定された値に設定します。
+		/// DefaultValueAttribute 螻樊ｧ縺瑚ｨｭ螳壹＆繧後※縺・ｋ繝励Ο繝代ユ繧｣縺吶∋縺ｦ繧・DefaultValueAttribute 螻樊ｧ縺ｧ謖・ｮ壹＆繧後◆蛟､縺ｫ險ｭ螳壹＠縺ｾ縺吶・
 		/// </summary>
 		public virtual void Reset()
 		{
@@ -160,7 +160,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// 自身の設定ファイルを削除し、Reset メソッドによってプロパティの値をリセットします。
+		/// 閾ｪ霄ｫ縺ｮ險ｭ螳壹ヵ繧｡繧､繝ｫ繧貞炎髯､縺励ヽeset 繝｡繧ｽ繝・ラ縺ｫ繧医▲縺ｦ繝励Ο繝代ユ繧｣縺ｮ蛟､繧偵Μ繧ｻ繝・ヨ縺励∪縺吶・
 		/// </summary>
 		public virtual void Remove()
 		{
@@ -171,7 +171,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// ファイルから設定を復元します。ファイルが存在しない場合は何もしません。
+		/// 繝輔ぃ繧､繝ｫ縺九ｉ險ｭ螳壹ｒ蠕ｩ蜈・＠縺ｾ縺吶ゅヵ繧｡繧､繝ｫ縺悟ｭ伜惠縺励↑縺・ｴ蜷医・菴輔ｂ縺励∪縺帙ｓ縲・
 		/// </summary>
 		public virtual void Load()
 		{
@@ -201,7 +201,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// Load メソッドによって設定が正常にデシリアライズされたときに呼ばれるメソッドです。
+		/// Load 繝｡繧ｽ繝・ラ縺ｫ繧医▲縺ｦ險ｭ螳壹′豁｣蟶ｸ縺ｫ繝・す繝ｪ繧｢繝ｩ繧､繧ｺ縺輔ｌ縺溘→縺阪↓蜻ｼ縺ｰ繧後ｋ繝｡繧ｽ繝・ラ縺ｧ縺吶・
 		/// </summary>
 		protected virtual void OnDeserialized()
 		{
@@ -266,7 +266,7 @@ namespace Twintail3
 						}
 						else
 						{
-							// set メソッドがないプロパティは処理しない
+							// set 繝｡繧ｽ繝・ラ縺後↑縺・・繝ｭ繝代ユ繧｣縺ｯ蜃ｦ逅・＠縺ｪ縺・
 							if (property.GetSetMethod() == null)
 								continue;
 
@@ -280,7 +280,7 @@ namespace Twintail3
 		}
 
 		/// <summary>
-		/// 現在の設定をファイルに保存します。
+		/// 迴ｾ蝨ｨ縺ｮ險ｭ螳壹ｒ繝輔ぃ繧､繝ｫ縺ｫ菫晏ｭ倥＠縺ｾ縺吶・
 		/// </summary>
 		public virtual void Save()
 		{

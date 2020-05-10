@@ -7,22 +7,22 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// ResSet‚ğ‹¤’Ê‚ÌDatŒ`®‚É•ÏŠ·‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// ResSetã‚’å…±é€šã®Datå½¢å¼ã«å¤‰æ›ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chThreadFormatter : ThreadFormatter
 	{
 		/// <summary>
-		/// X2chThreadFormatterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadFormatterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadFormatter()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// resSet‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// resSetã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <returns></returns>
@@ -44,7 +44,7 @@ namespace Twin.Bbs
 		}
 	
 		/// <summary>
-		/// resCollection‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// resCollectionã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resCollection"></param>
 		/// <returns></returns>

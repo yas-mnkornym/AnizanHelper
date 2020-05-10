@@ -7,7 +7,7 @@ namespace Twin
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ‚¨‹C‚É“ü‚èƒtƒHƒ‹ƒ_‚ğŠÇ—
+	/// ãŠæ°—ã«å…¥ã‚Šãƒ•ã‚©ãƒ«ãƒ€ã‚’ç®¡ç†
 	/// </summary>
 	public class BookmarkFolder : BookmarkEntry
 	{
@@ -18,7 +18,7 @@ namespace Twin
 		private bool expanded;
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÌeƒtƒHƒ‹ƒ_‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®è¦ªãƒ•ã‚©ãƒ«ãƒ€ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override BookmarkEntry Parent
 		{
@@ -33,7 +33,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒ“ƒgƒŠ‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ã“ã®ã‚¨ãƒ³ãƒˆãƒªã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public override BookmarkEntryCollection Children
 		{
@@ -44,7 +44,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Éfalse‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«falseã‚’è¿”ã™
 		/// </summary>
 		public override bool IsLeaf
 		{
@@ -55,7 +55,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚Ì‹C‚É“ü‚èƒtƒHƒ‹ƒ_‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®æ°—ã«å…¥ã‚Šãƒ•ã‚©ãƒ«ãƒ€ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override string Name
 		{
@@ -74,7 +74,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒtƒHƒ‹ƒ_‚ª“WŠJó‘Ô‚©‚Ç‚¤‚©‚ğ•\‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ãŒå±•é–‹çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’è¡¨ã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool Expanded
 		{
@@ -90,7 +90,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkFolderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkFolderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BookmarkFolder()
 			: this(String.Empty, -1)
@@ -98,7 +98,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkFolderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkFolderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BookmarkFolder(string name, int id)
 			: base(id)
@@ -111,7 +111,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkFolderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkFolderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="id"></param>
 		public BookmarkFolder(int id)
@@ -120,7 +120,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkFolderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkFolderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BookmarkFolder(string name)
 			: this(name, -1)
@@ -128,19 +128,19 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğe‚©‚çíœ
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¦ªã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public override void Remove()
 		{
 			if (parent == null)
 			{
-				throw new InvalidOperationException("‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Ée‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«è¦ªãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 			parent.Children.Remove(this);
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒtƒHƒ‹ƒ_‚ğ•¡»
+		/// ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’è¤‡è£½
 		/// </summary>
 		/// <returns></returns>
 		public override BookmarkEntry Clone()
@@ -152,7 +152,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ\[ƒg•û–@‚Åî•ñ‚ğƒ\[ƒg
+		/// æŒ‡å®šã—ãŸã‚½ãƒ¼ãƒˆæ–¹æ³•ã§æƒ…å ±ã‚’ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="order"></param>
@@ -163,7 +163,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒ\[ƒg•û–@‚Åî•ñ‚ğƒ\[ƒg
+		/// æŒ‡å®šã—ãŸã‚½ãƒ¼ãƒˆæ–¹æ³•ã§æƒ…å ±ã‚’ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="order"></param>
@@ -174,9 +174,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒtƒHƒ‹ƒ_‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éq‚Ì”‚ğæ“¾
+		/// ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã«å«ã¾ã‚Œã¦ã„ã‚‹å­ã®æ•°ã‚’å–å¾—
 		/// </summary>
-		/// <param name="includeSubChilren">ƒTƒuƒtƒHƒ‹ƒ_‚àŠÜ‚ß‚éê‡‚Ítrue</param>
+		/// <param name="includeSubChilren">ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚‚å«ã‚ã‚‹å ´åˆã¯true</param>
 		/// <returns></returns>
 		public int GetChildCount(bool includeSubChildren)
 		{
@@ -191,9 +191,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒtƒHƒ‹ƒ_‚Ì‚¨‹C‚É“ü‚è‚ğæ“¾
+		/// ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã®ãŠæ°—ã«å…¥ã‚Šã‚’å–å¾—
 		/// </summary>
-		/// <param name="includeSubChildren">ƒTƒuƒtƒHƒ‹ƒ_‚àŠÜ‚ß‚éê‡‚Ítrue</param>
+		/// <param name="includeSubChildren">ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚‚å«ã‚ã‚‹å ´åˆã¯true</param>
 		/// <returns></returns>
 		public List<ThreadHeader> GetBookmarks(bool includeSubChildren)
 		{

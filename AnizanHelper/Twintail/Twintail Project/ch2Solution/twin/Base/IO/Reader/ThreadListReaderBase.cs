@@ -10,7 +10,7 @@ namespace Twin.IO
 	using System.Threading;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş‚½‚ß‚ÌŠî–{ƒNƒ‰ƒX‚Å‚·B
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public abstract class ThreadListReaderBase : ThreadListReader
 	{
@@ -64,8 +64,8 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ÌóMƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
-		/// Å¬’l‚Í 1024 byte ‚Å‚·B
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
+		/// æœ€å°å€¤ã¯ 1024 byte ã§ã™ã€‚
 		/// </summary>
 		public override int BufferSize
 		{
@@ -138,14 +138,14 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ThreadListReaderBaseƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadListReaderBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="parser">ƒXƒŒƒbƒhˆê——‚Ì‰ğÍ‚Ég—p‚·‚éƒp[ƒT[</param>
+		/// <param name="parser">ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®è§£æã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¼ã‚µãƒ¼</param>
 		public ThreadListReaderBase(ThreadListParser parser)
 			: this()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			dataParser = parser;
 		}
@@ -165,10 +165,10 @@ namespace Twin.IO
 
 			if (!isOpen)
 			{
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
-			// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			int readCount = baseStream.Read(buffer, 0, buffer.Length);
 
 			//IAsyncResult ar =
@@ -185,18 +185,18 @@ namespace Twin.IO
 			//}
 			//int readCount = baseStream.EndRead(ar);
 
-			// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+			// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 			ThreadHeader[] items = dataParser.Parse(buffer, readCount, out byteParsed);
 			headers.AddRange(items);
 
-			// ’l‚ğİ’è
+			// å€¤ã‚’è¨­å®š
 			foreach (ThreadHeader h in items)
 			{
 				h.No = index++;
 				h.BoardInfo = boardinfo;
 			}
 
-			// ÀÛ‚É“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğŒvZ
+			// å®Ÿéš›ã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 			position += readCount;
 
 			return readCount;

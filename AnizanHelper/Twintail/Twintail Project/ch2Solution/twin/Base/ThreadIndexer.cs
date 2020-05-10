@@ -13,7 +13,7 @@ namespace Twin
 	using Twin.IO;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒXî•ñ‚ğŠÇ—Eì¬
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’ç®¡ç†ãƒ»ä½œæˆ
 	/// </summary>
 	public class ThreadIndexer
 	{
@@ -77,11 +77,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌŠù“¾î•ñ‚ğ‹L˜^‚·‚éƒCƒ“ƒfƒbƒNƒX‚ğì¬‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ—¢å¾—æƒ…å ±ã‚’è¨˜éŒ²ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="filePath">ì¬‚·‚éƒCƒ“ƒfƒbƒNƒXî•ñ‚Ö‚ÌƒpƒX</param>
-		/// <param name="header">ì¬‚·‚éƒCƒ“ƒfƒbƒNƒXî•ñ‚ªŠi”[‚³‚ê‚½ThreadHeaderƒNƒ‰ƒX</param>
-		/// <returns>ì¬‚É¬Œ÷‚·‚ê‚ÎtrueA¸”s‚·‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="filePath">ä½œæˆã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã¸ã®ãƒ‘ã‚¹</param>
+		/// <param name="header">ä½œæˆã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸThreadHeaderã‚¯ãƒ©ã‚¹</param>
+		/// <returns>ä½œæˆã«æˆåŠŸã™ã‚Œã°trueã€å¤±æ•—ã™ã‚Œã°falseã‚’è¿”ã™</returns>
 		public static bool Write(string filePath, ThreadHeader header)
 		{
 			if (filePath == null)
@@ -98,13 +98,13 @@ namespace Twin
 			{
 				CSPrivateProfile profile = new CSPrivateProfile();
 
-				// ”Âî•ñ
+				// æ¿æƒ…å ±
 				profile.SetValue("Board", "Server", header.BoardInfo.Server);
 				profile.SetValue("Board", "Path", header.BoardInfo.Path);
 				profile.SetValue("Board", "Name", header.BoardInfo.Name);
 				profile.SetValue("Board", "BBS", header.BoardInfo.Bbs);
 
-				// ƒXƒŒƒbƒhî•ñ
+				// ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±
 				profile.SetValue("Thread", "ETag", header.ETag);
 				profile.SetValue("Thread", "LastModified", header.LastModified);
 				profile.SetValue("Thread", "LastWritten", header.LastWritten);
@@ -115,7 +115,7 @@ namespace Twin
 				profile.SetValue("Thread", "NewResCount", header.NewResCount);
 				profile.SetValue("Thread", "Key", header.Key);
 
-				// Šg’£î•ñ
+				// æ‹¡å¼µæƒ…å ±
 				profile.SetValue("Option", "UseGzip", header.UseGzip);
 				profile.SetValue("Option", "Pastlog", header.Pastlog);
 				profile.SetValue("Option", "Position", header.Position);
@@ -130,11 +130,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX‚ğì¬
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="cache"></param>
-		/// <param name="header">ì¬‚·‚éƒCƒ“ƒfƒbƒNƒXî•ñ‚ªŠi”[‚³‚ê‚½ThreadHeaderƒNƒ‰ƒX</param>
-		/// <returns>ì¬‚É¬Œ÷‚·‚ê‚ÎtrueA¸”s‚·‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="header">ä½œæˆã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸThreadHeaderã‚¯ãƒ©ã‚¹</param>
+		/// <returns>ä½œæˆã«æˆåŠŸã™ã‚Œã°trueã€å¤±æ•—ã™ã‚Œã°falseã‚’è¿”ã™</returns>
 		public static bool Write(Cache cache, ThreadHeader header)
 		{
 			if (cache == null)
@@ -144,7 +144,7 @@ namespace Twin
 
 			string filePath = cache.GetIndexPath(header);
 
-			// ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚µ‚È‚¯‚ê‚Îì¬
+			// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã—ãªã‘ã‚Œã°ä½œæˆ
 			string dir = Path.GetDirectoryName(filePath);
 
 			if (!Directory.Exists(dir))
@@ -156,10 +156,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX‚ğ“Ç‚İ‚Ş
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
-		/// <param name="header">Šî–{“I‚Èî•ñ‚ªŠi”[‚³‚ê‚½ThreadHeader</param>
-		/// <returns>“Ç‚İ‚İ‚É¬Œ÷‚·‚ê‚ÎThreadHeader‚ÌƒCƒ“ƒXƒ^ƒ“ƒXA¸”s‚·‚ê‚Înull</returns>
+		/// <param name="header">åŸºæœ¬çš„ãªæƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸThreadHeader</param>
+		/// <returns>èª­ã¿è¾¼ã¿ã«æˆåŠŸã™ã‚Œã°ThreadHeaderã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€å¤±æ•—ã™ã‚Œã°null</returns>
 		public static ThreadHeader Read(Cache cache, ThreadHeader header)
 		{
 			if (cache == null)
@@ -172,13 +172,13 @@ namespace Twin
 				throw new ArgumentNullException("header");
 			}
 
-			// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
 			string filePath = cache.GetIndexPath(header);
 			ThreadHeader result = Read(filePath);
 
 			if (result != null)
 			{
-				// QÆ‚Í‚»‚Ì‚Ü‚Ü‚Å’l‚¾‚¯‚ğƒRƒs[‚·‚é
+				// å‚ç…§ã¯ãã®ã¾ã¾ã§å€¤ã ã‘ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 				result.Tag = header.Tag;
 				result.CopyTo(header);
 			}
@@ -191,10 +191,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX‚ğ“Ç‚İ‚Ş
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
-		/// <param name="filePath">ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ö‚Ìƒtƒ@ƒCƒ‹ƒpƒX</param>
-		/// <returns>“Ç‚İ‚İ‚É¬Œ÷‚·‚ê‚ÎThreadHeader‚ÌƒCƒ“ƒXƒ^ƒ“ƒXA¸”s‚·‚ê‚Înull</returns>
+		/// <param name="filePath">ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+		/// <returns>èª­ã¿è¾¼ã¿ã«æˆåŠŸã™ã‚Œã°ThreadHeaderã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€å¤±æ•—ã™ã‚Œã°null</returns>
 		public static ThreadHeader Read(string filePath)
 		{
 			if (filePath == null)
@@ -206,7 +206,7 @@ namespace Twin
 
 			lock (typeof(ThreadIndexer))
 			{
-				// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
 
 				if (File.Exists(filePath))
 				{
@@ -215,7 +215,7 @@ namespace Twin
 						CSPrivateProfile profile = new CSPrivateProfile();
 						profile.Read(filePath);
 
-						// d—v‚ÈƒZƒNƒVƒ‡ƒ“‚ª‚È‚¯‚ê‚ÎƒGƒ‰[
+						// é‡è¦ãªã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 						if (!profile.Sections.ContainsSection("Board") ||
 							!profile.Sections.ContainsSection("Thread"))
 						{
@@ -224,14 +224,14 @@ namespace Twin
 
 						BbsType bbs = (BbsType)Enum.Parse(typeof(BbsType), profile.GetString("Board", "BBS", "X2ch"));
 
-						// ”Âî•ñ
+						// æ¿æƒ…å ±
 						result = TypeCreator.CreateThreadHeader(bbs);
 						result.BoardInfo.Server = profile.GetString("Board", "Server", "Error");
 						result.BoardInfo.Path = profile.GetString("Board", "Path", "Error");
 						result.BoardInfo.Name = profile.GetString("Board", "Name", "Error");
 						result.BoardInfo.Bbs = bbs;
 
-						// ƒXƒŒƒbƒhî•ñ
+						// ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±
 						result.ETag = profile.GetString("Thread", "ETag", String.Empty);
 						result.LastWritten = profile.GetDateTime("Thread", "LastWritten");
 						result.LastModified = profile.GetDateTime("Thread", "LastModified");
@@ -242,7 +242,7 @@ namespace Twin
 						result.NewResCount = profile.GetInt("Thread", "NewResCount", 0);
 						result.Key = profile.GetString("Thread", "Key", "Error");
 
-						// ‚»‚Ì‚Ù‚©‚Ìî•ñ
+						// ãã®ã»ã‹ã®æƒ…å ±
 						result.Position = profile.GetFloat("Option", "Position", 0);
 						result.Pastlog = profile.GetBool("Option", "Pastlog", false);
 						result.UseGzip = profile.GetBool("Option", "UseGzip", false);
@@ -261,7 +261,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒX‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å‰Šé™¤
 		/// </summary>
 		public static void Delete(Cache cache, ThreadHeader header)
 		{
@@ -276,17 +276,17 @@ namespace Twin
 
 			lock (typeof(ThreadIndexer))
 			{
-				// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
 				string filePath = cache.GetIndexPath(header);
 				File.Delete(filePath);
 			}
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="header">Šî–{“I‚Èî•ñ‚ªŠi”[‚³‚ê‚½ThreadHeader</param>
-		/// <returns>‘¶İ‚·‚ê‚ÎtrueA‘¶İ‚µ‚È‚¯‚ê‚Îfalse‚ğ•Ô‚·</returns>
+		/// <param name="header">åŸºæœ¬çš„ãªæƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸThreadHeader</param>
+		/// <returns>å­˜åœ¨ã™ã‚Œã°trueã€å­˜åœ¨ã—ãªã‘ã‚Œã°falseã‚’è¿”ã™</returns>
 		public static bool Exists(Cache cache, ThreadHeader header)
 		{
 			if (cache == null)
@@ -302,7 +302,7 @@ namespace Twin
 
 			lock (typeof(ThreadIndexer))
 			{
-				// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
 				string filePath = cache.GetIndexPath(header);
 				exists = File.Exists(filePath);
 			}
@@ -311,7 +311,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒCƒ“ƒfƒbƒNƒX‚ğì¬‚µ’¼‚·
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆã—ç›´ã™
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="board"></param>
@@ -322,19 +322,19 @@ namespace Twin
 
 			if (reader.Open(board))
 			{
-				// ƒ[ƒJƒ‹‚É‘¶İ‚·‚é‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+				// ãƒ­ãƒ¼ã‚«ãƒ«ã«å­˜åœ¨ã™ã‚‹ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 				while (reader.Read(items) != 0)
 					;
 				reader.Close();
 
-				// ƒT[ƒo[î•ñ‚ğ‚·‚×‚Ä‘‚«Š·‚¦‚é
+				// ã‚µãƒ¼ãƒãƒ¼æƒ…å ±ã‚’ã™ã¹ã¦æ›¸ãæ›ãˆã‚‹
 				foreach (ThreadHeader h in items)
 				{
 					h.BoardInfo.Server = board.Server;
 					ThreadIndexer.SaveServerInfo(cache, h);
 				}
 
-				// “Ç‚İ‚ñ‚¾ƒXƒŒƒbƒhî•ñ‚ğŒ³‚ÉŠù“¾ƒCƒ“ƒfƒbƒNƒXˆê——‚ğì¬
+				// èª­ã¿è¾¼ã‚“ã ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’å…ƒã«æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ã‚’ä½œæˆ
 				GotThreadListIndexer.Write(cache, board, items);
 			}
 		}

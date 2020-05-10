@@ -9,18 +9,18 @@ namespace Twin.Conv
 	using System.Diagnostics;
 
 	/// <summary>
-	/// Monalog/1.0 ‚Ì’†ŠÔŒ`®‚Ì‘ŠŒİƒRƒ“ƒo[ƒ^[
-	/// QlURL: http://logconvert.s28.xrea.com/
+	/// Monalog/1.0 ã®ä¸­é–“å½¢å¼ã®ç›¸äº’ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼
+	/// å‚è€ƒURL: http://logconvert.s28.xrea.com/
 	/// </summary>
 	public class MonalogConverter : IConvertible
 	{
 		/// <summary>
-		/// MonalogConverterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// MonalogConverterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MonalogConverter()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
@@ -33,45 +33,45 @@ namespace Twin.Conv
 			header = TypeCreator.CreateThreadHeader(BbsType.X2ch);
 			resCollection = new ResSetCollection();
 
-			// ƒ‹[ƒg—v‘f‚ğæ“¾
+			// ãƒ«ãƒ¼ãƒˆè¦ç´ ã‚’å–å¾—
 			XmlNode root = doc.DocumentElement;
 
-			// <thread>—v‘f‚Ìˆ—
+			// <thread>è¦ç´ ã®å‡¦ç†
 			XmlNode thread = root.SelectSingleNode("thread");
 			if (thread == null)
-				throw new ConvertException("<thread>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("<thread>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			XmlNode serv = thread.Attributes.GetNamedItem("server");
 			if (serv == null)
-				throw new ConvertException("server‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("serverå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			XmlNode board = thread.Attributes.GetNamedItem("board");
 			if (board == null)
-				throw new ConvertException("board‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("boardå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			XmlNode key = thread.Attributes.GetNamedItem("key");
 			if (key == null)
-				throw new ConvertException("key‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("keyå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
-			// ƒXƒŒƒbƒhƒ^ƒCƒgƒ‹‚ğæ“¾
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—
 			XmlNode title = thread.SelectSingleNode("title");
 			if (title == null)
-				throw new ConvertException("<title>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("<title>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
-			// <info>—v‘f‚Ìˆ—
+			// <info>è¦ç´ ã®å‡¦ç†
 			XmlNode info = thread.SelectSingleNode("info");
 			if (info == null)
-				throw new ConvertException("<info>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("<info>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			XmlNode lastmod = info.Attributes.GetNamedItem("last-modified");
 			if (lastmod == null)
-				throw new ConvertException("last-modified‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("last-modifiedå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			XmlNode size = info.Attributes.GetNamedItem("size");
 			if (size == null)
-				throw new ConvertException("size‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("sizeå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
-			// ƒXƒŒƒbƒh‚Ìî•ñ‚ğİ’è
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æƒ…å ±ã‚’è¨­å®š
 			header.Key = key.Value;
 			header.BoardInfo.Server = serv.Value;
 			header.BoardInfo.Path = board.Value;
@@ -82,10 +82,10 @@ namespace Twin.Conv
 			if (Int32.TryParse(size.Value, out gotByteCount))
 				header.GotByteCount = gotByteCount;
 
-			// <res-set>—v‘f‚Ìˆ—
+			// <res-set>è¦ç´ ã®å‡¦ç†
 			XmlNode children = thread.SelectSingleNode("res-set");
 			if (children == null)
-				throw new ConvertException("<res-set>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ConvertException("<res-set>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 			resCollection = GetResCollection(doc, children);
 			header.GotResCount = resCollection.Count;
@@ -99,26 +99,26 @@ namespace Twin.Conv
 			{
 				XmlNode num = child.Attributes.GetNamedItem("num");
 				if (num == null)
-					throw new ConvertException("num‘®«‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ConvertException("numå±æ€§ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
-				// state‘®«‚Í–³‹
+				// stateå±æ€§ã¯ç„¡è¦–
 				// ...
 
 				XmlNode name = child.SelectSingleNode("name");
 				if (name == null)
-					throw new ConvertException("<name>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ConvertException("<name>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 				XmlNode email = child.SelectSingleNode("email");
 				if (email == null)
-					throw new ConvertException("<email>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ConvertException("<email>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 				XmlNode timestamp = child.SelectSingleNode("timestamp");
 				if (timestamp == null)
-					throw new ConvertException("<timestamp>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ConvertException("<timestamp>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 				XmlNode message = child.SelectSingleNode("message");
 				if (message == null)
-					throw new ConvertException("<message>—v‘f‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+					throw new ConvertException("<message>è¦ç´ ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
 				int index;
 				Int32.TryParse(num.Value, out index);
@@ -141,20 +141,20 @@ namespace Twin.Conv
 		{
 			XmlDocument doc = new XmlDocument();
 
-			// ƒo[ƒWƒ‡ƒ“‘®«‚ğì¬
+			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³å±æ€§ã‚’ä½œæˆ
 			XmlAttribute version = doc.CreateAttribute("version");
 			version.Value = "1.0";
 
-			// ƒ‹[ƒg‚ğì¬
+			// ãƒ«ãƒ¼ãƒˆã‚’ä½œæˆ
 			XmlNode root = doc.CreateElement("monalog", "http://www.monazilla.org/Monalog/1.0");
 			root.Attributes.Append(version);
 
-			// ƒXƒŒƒbƒh—v‘f‚ğì¬
+			// ã‚¹ãƒ¬ãƒƒãƒ‰è¦ç´ ã‚’ä½œæˆ
 			XmlNode thread = CreateThreadElement(doc, header, resCollection);
 			root.AppendChild(thread);
 			doc.AppendChild(root);
 
-			// ƒGƒ“ƒR[ƒ_‚ğShift_Jis‚Å•Û‘¶
+			// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã‚’Shift_Jisã§ä¿å­˜
 			XmlTextWriter writer = null;
 			try {
 				writer = new XmlTextWriter(filePath, Encoding.GetEncoding("Shift_Jis"));
@@ -170,32 +170,32 @@ namespace Twin.Conv
 		private XmlNode CreateThreadElement(XmlDocument doc,
 			ThreadHeader header, ResSetCollection resCollection)
 		{
-			// ƒT[ƒo[‘®«‚ğì¬
+			// ã‚µãƒ¼ãƒãƒ¼å±æ€§ã‚’ä½œæˆ
 			XmlAttribute serv = doc.CreateAttribute("server");
 			serv.Value = header.BoardInfo.Server;
 
-			// ”Â‘®«‚ğì¬
+			// æ¿å±æ€§ã‚’ä½œæˆ
 			XmlAttribute board = doc.CreateAttribute("board");
 			board.Value = header.BoardInfo.Path;
 
-			// key‘®«‚ğì¬
+			// keyå±æ€§ã‚’ä½œæˆ
 			XmlAttribute key = doc.CreateAttribute("key");
 			key.Value = header.Key;
 
-			// <thread></thread>—v‘f‚ğì¬
+			// <thread></thread>è¦ç´ ã‚’ä½œæˆ
 			XmlNode thread = doc.CreateElement("thread");
 			thread.Attributes.Append(serv);
 			thread.Attributes.Append(board);
 			thread.Attributes.Append(key);
 
-			// ƒ^ƒCƒgƒ‹—v‘f‚ğì¬
+			// ã‚¿ã‚¤ãƒˆãƒ«è¦ç´ ã‚’ä½œæˆ
 			XmlNode title = doc.CreateElement("title");
 			title.AppendChild(doc.CreateCDataSection(header.Subject));
 			thread.AppendChild(title);
 
-			// info—v‘f‚ğì¬
+			// infoè¦ç´ ã‚’ä½œæˆ
 			XmlAttribute lastmod = doc.CreateAttribute("last-modified");
-			lastmod.Value = header.LastModified.ToString("R"); // RFC1123 ƒpƒ^[ƒ“
+			lastmod.Value = header.LastModified.ToString("R"); // RFC1123 ãƒ‘ã‚¿ãƒ¼ãƒ³
 
 			XmlAttribute size = doc.CreateAttribute("size");
 			size.Value = header.GotByteCount.ToString();
@@ -205,7 +205,7 @@ namespace Twin.Conv
 			info.Attributes.Append(size);
 			thread.AppendChild(info);
 
-			// <res-set></res-set>—v‘f‚ğì¬
+			// <res-set></res-set>è¦ç´ ã‚’ä½œæˆ
 			XmlNode children = CreateResSetChildren(doc, resCollection);
 			thread.AppendChild(children);
 
@@ -214,25 +214,25 @@ namespace Twin.Conv
 
 		private XmlNode CreateResSetChildren(XmlDocument doc, ResSetCollection resCollection)
 		{
-			// ƒŒƒXƒRƒŒƒNƒVƒ‡ƒ“—v‘f‚ğì¬
+			// ãƒ¬ã‚¹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³è¦ç´ ã‚’ä½œæˆ
 			XmlNode children = doc.CreateElement("res-set");
 
 			foreach (ResSet res in resCollection)
 			{
-				// ƒŒƒX”Ô†‚ğ•\‚·Anum‘®«‚ğì¬
+				// ãƒ¬ã‚¹ç•ªå·ã‚’è¡¨ã™ã€numå±æ€§ã‚’ä½œæˆ
 				XmlAttribute num = doc.CreateAttribute("num");
 				num.Value = res.Index.ToString();
 
-				// ƒŒƒX‚Ìó‘Ô‚ğ•\‚·Astate‘®«‚ğì¬
+				// ãƒ¬ã‚¹ã®çŠ¶æ…‹ã‚’è¡¨ã™ã€stateå±æ€§ã‚’ä½œæˆ
 				XmlAttribute state = doc.CreateAttribute("state");
 				state.Value = "normal";
 
-				// ƒŒƒX—v‘f‚ğì¬
+				// ãƒ¬ã‚¹è¦ç´ ã‚’ä½œæˆ
 				XmlNode child = doc.CreateElement("res");
 				child.Attributes.Append(num);
 				child.Attributes.Append(state);
 
-				// –¼‘O
+				// åå‰
 				XmlNode name = doc.CreateElement("name");
 				name.AppendChild(doc.CreateCDataSection(res.Name));
 				
@@ -240,11 +240,11 @@ namespace Twin.Conv
 				XmlNode email = doc.CreateElement("email");
 				email.AppendChild(doc.CreateCDataSection(res.Email));
 
-				// “ú•t
+				// æ—¥ä»˜
 				XmlNode timestamp = doc.CreateElement("timestamp");
 				timestamp.AppendChild(doc.CreateCDataSection(res.DateString));
 
-				// ƒƒbƒZ[ƒW
+				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 				XmlNode message = doc.CreateElement("message");
 				message.AppendChild(doc.CreateCDataSection(res.Body));
 

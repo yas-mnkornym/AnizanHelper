@@ -8,26 +8,26 @@ namespace Twin.Tools
 	using Twin.Util;
 
 	/// <summary>
-	/// �������ݗ������쐬�E�Ǘ�
+	/// 書き込み履歴を作成・管理
 	/// </summary>
 	public class KakikomiRireki
 	{
 		private string baseDir;
 		
 		/// <summary>
-		/// KakikomiRireki�N���X�̃C���X�^���X��������
+		/// KakikomiRirekiクラスのインスタンスを初期化
 		/// </summary>
-		/// <param name="dir">�������ݗ���ۑ��t�H���_</param>
+		/// <param name="dir">書き込み履歴保存フォルダ</param>
 		public KakikomiRireki(string dir)
 		{
 			// 
-			// TODO: �R���X�g���N�^ ���W�b�N�������ɒǉ����Ă��������B
+			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
 			baseDir = dir;
 		}
 
 		/// <summary>
-		/// �w�肵���̏������ݗ����t�@�C���̃p�X���擾
+		/// 指定した板の書き込み履歴ファイルのパスを取得
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -37,7 +37,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̏������ݗ�����ǂݍ���
+		/// 指定した板の書き込み履歴を読み込む
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -48,7 +48,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̏������ݗ����ɒǉ�
+		/// 指定した板の書き込み履歴に追加
 		/// </summary>
 		/// <param name="board"></param>
 		/// <param name="res"></param>
@@ -69,7 +69,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̏������ݗ������폜
+		/// 指定した板の書き込み履歴を削除
 		/// </summary>
 		/// <param name="board"></param>
 		public void Delete(BoardInfo board)
@@ -79,7 +79,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̏������ݗ��������݂��邩�ǂ����𔻒f
+		/// 指定した板の書き込み履歴が存在するかどうかを判断
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>

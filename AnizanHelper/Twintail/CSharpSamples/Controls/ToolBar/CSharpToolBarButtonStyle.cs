@@ -3,20 +3,20 @@
 namespace CSharpSamples
 {
 	/// <summary>
-	/// CSharpToolBarButton�̃X�^�C����\���B
+	/// CSharpToolBarButtonのスタイルを表す。
 	/// </summary>
 	public enum CSharpToolBarButtonStyle
 	{
 		/// <summary>
-		/// �{�^�����ł��B
+		/// ボタン式です。
 		/// </summary>
 		Button,
 		/// <summary>
-		/// �h���b�v�_�E�����ł��B
+		/// ドロップダウン式です。
 		/// </summary>
 		DropDown,
 		/// <summary>
-		/// �{�^���̋�؂�ł��B
+		/// ボタンの区切りです。
 		/// </summary>
 		Separator,
 	}

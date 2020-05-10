@@ -11,19 +11,19 @@ namespace Twin.Conv
 	using Twin.Bbs;
 
 	/// <summary>
-	/// twintail2 ‚ÌƒƒO‘ŠŒİƒRƒ“ƒo[ƒ^[
+	/// twintail2 ã®ãƒ­ã‚°ç›¸äº’ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼
 	/// </summary>
 	public class Twin2Converter : IConvertible
 	{
 		private bool useGzip;
 
 		/// <summary>
-		/// Twin2ConverterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// Twin2Converterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public Twin2Converter()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			useGzip = false;
 		}
@@ -31,16 +31,16 @@ namespace Twin.Conv
 		public void Read(string filePath, out ThreadHeader header,
 			out ResSetCollection resCollection)
 		{
-			// .idxƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX‚ğ‹‚ß‚é
+			// .idxãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ã‚’æ±‚ã‚ã‚‹
 			string indexPath = GetIndexPath(filePath);
 
 			if (!File.Exists(indexPath))
-				throw new FileNotFoundException("ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new FileNotFoundException("ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 
-			// ƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ“Ç‚İ‚Ş
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 			header = ThreadIndexer.Read(indexPath);
 			if (header == null)
-				throw new ConvertException("ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½");
+				throw new ConvertException("ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ");
 
 			resCollection = ReadFile(filePath, header.UseGzip);
 		}
@@ -56,11 +56,11 @@ namespace Twin.Conv
 				int readCount = 0, index = 1;
 
 				do {
-					// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+					// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 					readCount = stream.Read(buffer, 0, buffer.Length);
 					int parsed;
 
-					// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+					// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 					ICollection collect = dataParser.Parse(buffer, readCount, out parsed);
 
 					foreach (ResSet resSet in collect)
@@ -90,8 +90,8 @@ namespace Twin.Conv
 			else if (filePath.EndsWith(".dat"))
 				indexPath = filePath.Substring(0, filePath.Length - 4);
 			
-			else { // •s³‚ÈŠg’£q
-				throw new NotSupportedException(filePath + "\r\n‚±‚Ìƒtƒ@ƒCƒ‹‚ÌŠg’£q‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+			else { // ä¸æ­£ãªæ‹¡å¼µå­
+				throw new NotSupportedException(filePath + "\r\nã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®æ‹¡å¼µå­ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“");
 			}
 
 			indexPath += ".idx";
@@ -116,7 +116,7 @@ namespace Twin.Conv
 					stream.Close();
 			}
 
-			// ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ğì¬
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
 			string indexPath = GetIndexPath(filePath);
 			ThreadIndexer.Write(indexPath, header);
 		}

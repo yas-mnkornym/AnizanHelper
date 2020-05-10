@@ -9,7 +9,7 @@ namespace Twin
 	using System.Web;
 
 	/// <summary>
-	/// “ŠeƒNƒ‰ƒX‚ÌŠî–{ƒNƒ‰ƒX
+	/// æŠ•ç¨¿ã‚¯ãƒ©ã‚¹ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class PostBase
 	{
@@ -22,7 +22,7 @@ namespace Twin
 		private string userAgent;
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚Ì“Še‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã®æŠ•ç¨¿ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public abstract bool CanPostThread
 		{
@@ -30,7 +30,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚Ì“Še‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ãƒ¬ã‚¹ã®æŠ•ç¨¿ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public abstract bool CanPostRes
 		{
@@ -38,7 +38,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒT[ƒo[‚©‚ç‚Ì‰‘Î‚ğæ“¾
+		/// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œå¯¾ã‚’å–å¾—
 		/// </summary>
 		public abstract PostResponse Response
 		{
@@ -46,7 +46,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Encoding Encoding
 		{
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// g—p‚·‚éƒvƒƒLƒV‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public IWebProxy Proxy
 		{
@@ -79,7 +79,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// g—p‚·‚éUser-Agentƒwƒbƒ_‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ä½¿ç”¨ã™ã‚‹User-Agentãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string UserAgent
 		{
@@ -96,7 +96,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒ—§‚Ä‚Ég—p‚·‚é‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒ¬ç«‹ã¦æ™‚ã«ä½¿ç”¨ã™ã‚‹æ™‚åˆ»ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public DateTime Time
 		{
@@ -111,17 +111,17 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “Še‚µ‚½‚Æ‚«‚É”­¶
+		/// æŠ•ç¨¿ã—ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event PostEventHandler Posted;
 
 		/// <summary>
-		/// “ŠeƒGƒ‰[‚ª”­¶‚µ‚½‚Æ‚«‚É”­¶
+		/// æŠ•ç¨¿ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event PostErrorEventHandler Error;
 
 		/// <summary>
-		/// PostBaseƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PostBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected PostBase()
 		{
@@ -132,31 +132,31 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚ğ“Še
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public abstract void Post(BoardInfo board, PostThread thread);
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ“Še
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public abstract void Post(ThreadHeader header, PostRes res);
 
 		/// <summary>
-		/// “Še‚ğƒLƒƒƒ“ƒZƒ‹
+		/// æŠ•ç¨¿ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		/// </summary>
 		public abstract void Cancel();
 
 		/// <summary>
-		/// ”ñ“¯Šú‚ÅV‹KƒXƒŒƒbƒh‚ğ“Še
+		/// éåŒæœŸã§æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
-		/// <param name="callback">“ŠeŠ®—¹‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN</param>
-		/// <param name="state">ƒ†[ƒU[w’è‚ÌƒIƒuƒWƒFƒNƒg</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
+		/// <param name="callback">æŠ•ç¨¿å®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯</param>
+		/// <param name="state">ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
 		/// <returns></returns>
 		public virtual IAsyncResult BeginPost(BoardInfo board, PostThread thread,
 			AsyncCallback callback, object state)
@@ -167,7 +167,7 @@ namespace Twin
 			if (methodR != null ||
 				methodT != null)
 			{
-				throw new InvalidOperationException("ˆê“x‚É•¡”‚Ì”ñ“¯ŠúŒÄ‚Ño‚µ‚Ío—ˆ‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ä¸€åº¦ã«è¤‡æ•°ã®éåŒæœŸå‘¼ã³å‡ºã—ã¯å‡ºæ¥ã¾ã›ã‚“");
 			}
 
 			methodT = new PostThreadHandler(Post);
@@ -175,12 +175,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”ñ“¯Šú‚ÅƒƒbƒZ[ƒW‚ğ“Še
+		/// éåŒæœŸã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
-		/// <param name="callback">“ŠeŠ®—¹‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN</param>
-		/// <param name="state">ƒ†[ƒU[w’è‚ÌƒIƒuƒWƒFƒNƒg</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
+		/// <param name="callback">æŠ•ç¨¿å®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯</param>
+		/// <param name="state">ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
 		/// <returns></returns>
 		public virtual IAsyncResult BeginPost(ThreadHeader header, PostRes res,
 			AsyncCallback callback, object state)
@@ -191,7 +191,7 @@ namespace Twin
 			if (methodR != null ||
 				methodT != null)
 			{
-				throw new InvalidOperationException("ˆê“x‚É•¡”‚Ì”ñ“¯ŠúŒÄ‚Ño‚µ‚Ío—ˆ‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ä¸€åº¦ã«è¤‡æ•°ã®éåŒæœŸå‘¼ã³å‡ºã—ã¯å‡ºæ¥ã¾ã›ã‚“");
 			}
 
 			methodR = new PostResHandler(Post);
@@ -199,7 +199,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “Še‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‹@
+		/// æŠ•ç¨¿ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…æ©Ÿ
 		/// </summary>
 		/// <param name="ar"></param>
 		public virtual void EndPost(IAsyncResult ar)
@@ -217,7 +217,7 @@ namespace Twin
 
 			else
 			{
-				throw new InvalidOperationException("”ñ“¯ŠúŒÄ‚Ño‚µ‚ªs‚í‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("éåŒæœŸå‘¼ã³å‡ºã—ãŒè¡Œã‚ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
 			methodR = null;
@@ -225,7 +225,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Postedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -236,7 +236,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ErrorƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Errorã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -247,7 +247,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// HttpUtility.UrlEncode‚ğg—p‚µ‚Ätext‚ğƒGƒ“ƒR[ƒh‚·‚é
+		/// HttpUtility.UrlEncodeã‚’ä½¿ç”¨ã—ã¦textã‚’ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -257,9 +257,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “Še‚Ìtime’l‚ğæ“¾
+		/// æŠ•ç¨¿æ™‚ã®timeå€¤ã‚’å–å¾—
 		/// </summary>
-		/// <param name="baseTime">Šî‚É‚È‚é“ú</param>
+		/// <param name="baseTime">åŸºã«ãªã‚‹æ—¥æ™‚</param>
 		/// <returns></returns>
 		public static int GetTime(DateTime baseTime)
 		{

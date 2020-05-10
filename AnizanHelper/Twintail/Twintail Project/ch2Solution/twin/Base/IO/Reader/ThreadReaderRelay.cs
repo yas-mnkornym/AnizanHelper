@@ -11,7 +11,7 @@ namespace Twin.IO
 	using Twin.Bbs;
 
 	/// <summary>
-	/// ƒŠ[ƒ_[‚©‚ç“Ç‚İæ‚Á‚½ƒXƒŒƒbƒh‚ğƒLƒƒƒbƒVƒ…‚·‚é‚½‚ß‚Ì’†Œp
+	/// ãƒªãƒ¼ãƒ€ãƒ¼ã‹ã‚‰èª­ã¿å–ã£ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹ãŸã‚ã®ä¸­ç¶™
 	/// </summary>
 	public class ThreadReaderRelay : ThreadReader
 	{
@@ -26,7 +26,7 @@ namespace Twin.IO
 		private int position;
 
 		/// <summary>
-		/// Šî‚É‚È‚éƒLƒƒƒbƒVƒ…î•ñ‚ğæ“¾
+		/// åŸºã«ãªã‚‹ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public Cache Cache
 		{
@@ -37,7 +37,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ìƒwƒbƒ_î•ñ‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public ThreadHeader Header
 		{
@@ -48,7 +48,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚Ì’·‚³‚ğæ“¾
+		/// ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å–å¾—
 		/// </summary>
 		public override int Length
 		{
@@ -59,7 +59,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ÌŒ»İˆÊ’u‚ğæ“¾
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ä½ç½®ã‚’å–å¾—
 		/// </summary>
 		public override int Position
 		{
@@ -70,7 +70,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‚İ‚Ég—p‚·‚éƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override int BufferSize
 		{
@@ -85,7 +85,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public override bool IsOpen
 		{
@@ -96,7 +96,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚ğ“Ç‚İ‚Ş‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’èª­ã¿è¾¼ã‚€ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool ReadCache
 		{
@@ -112,7 +112,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// User-Agent‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// User-Agentã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override string UserAgent
 		{
@@ -127,7 +127,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ·•ªæ“¾‚É‚ ‚Ú[‚ñ‚ğŒŸo‚µ‚½‚Æ‚«‚É”­¶
+		/// å·®åˆ†å–å¾—æ™‚ã«ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œå‡ºã—ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public override event EventHandler ABone
 		{
@@ -142,7 +142,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// dat—‚¿‚µ‚Ä‚¢‚é‚Æ‚«‚É”­¶
+		/// datè½ã¡ã—ã¦ã„ã‚‹ã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public override event EventHandler<PastlogEventArgs> Pastlog
 		{
@@ -157,7 +157,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚Ì“Ç‚İ‚İ‚ğŠ®—¹‚µ‚½‚Æ‚«‚É”­¶
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®èª­ã¿è¾¼ã¿ã‚’å®Œäº†ã—ãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event EventHandler CacheComplete;
 
@@ -192,20 +192,20 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ThreadReaderRelayƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadReaderRelayã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="cache">Šî‚É‚È‚éƒLƒƒƒbƒVƒ…î•ñ</param>
-		/// <param name="baseReader">Šî‚É‚È‚éƒŠ[ƒ_[‚ÌƒCƒ“ƒXƒ^ƒ“ƒX</param>
+		/// <param name="cache">åŸºã«ãªã‚‹ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±</param>
+		/// <param name="baseReader">åŸºã«ãªã‚‹ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹</param>
 		public ThreadReaderRelay(Cache cache, ThreadReader baseReader)
 			: this(cache, baseReader, new LocalThreadStorage(cache))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="th"></param>
 		public override bool Open(ThreadHeader header)
@@ -217,7 +217,7 @@ namespace Twin.IO
 
 retry:
 
-			// ƒwƒbƒ_‚ª‘¶İ‚·‚éê‡‚ÍƒLƒƒƒbƒVƒ…ƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+			// ãƒ˜ãƒƒãƒ€ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 			if (ThreadIndexer.Exists(cache, header))
 			{
 				int resCount = header.ResCount;
@@ -256,16 +256,16 @@ retry:
 		}
 
 		/// <summary>
-		/// ƒfƒBƒXƒN‚ÉƒLƒƒƒbƒVƒ…‚µ‚È‚ª‚çƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ‡ã‚£ã‚¹ã‚¯ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ãªãŒã‚‰ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
-		/// <param name="byteParsed">‰ğÍ‚³‚ê‚½‘ƒoƒCƒg”‚ªŠi”[‚³‚ê‚é</param>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğ•Ô‚·</returns>
+		/// <param name="byteParsed">è§£æã•ã‚ŒãŸç·ãƒã‚¤ãƒˆæ•°ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™</returns>
 		public override int Read(ResSetCollection resSets, out int byteParsed)
 		{
 			if (!isOpen)
 			{
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
 			byteParsed = 0;
@@ -274,13 +274,13 @@ retry:
 			int byteCount = 0;
 			int writeCount = 0;
 
-			// ƒLƒƒƒbƒVƒ…‚ğ“Ç‚Ş
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’èª­ã‚€
 			if (storage.IsOpen && storage.CanRead)
 			{
 				byteCount = storage.Read(tempCollection, out byteParsed);
 				tempCollection.IsNew = false;
 
-				// ƒf[ƒ^‚ª‚È‚¯‚ê‚ÎƒLƒƒƒbƒVƒ…ƒXƒgƒŠ[ƒ€‚Í•Â‚¶‚é
+				// ãƒ‡ãƒ¼ã‚¿ãŒãªã‘ã‚Œã°ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¯é–‰ã˜ã‚‹
 				if (byteCount == 0)
 				{
 					storage.Close();
@@ -289,13 +289,13 @@ retry:
 				}
 			}
 
-			// ƒLƒƒƒbƒVƒ…‚ª‚È‚¯‚ê‚ÎÀÛ‚ÉŠî–{ƒXƒgƒŠ[ƒ€‚©‚ç“Ç‚İ‚Ş
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒãªã‘ã‚Œã°å®Ÿéš›ã«åŸºæœ¬ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			if (baseReader.IsOpen)
 			{
 				byteCount = baseReader.Read(tempCollection, out byteParsed);
 				tempCollection.IsNew = true;
 
-				// ‚ ‚Ú[‚ñ‚ª‚ ‚Á‚½ê‡Aˆ—‚ğ’†~B
+				// ã‚ã¼ãƒ¼ã‚“ãŒã‚ã£ãŸå ´åˆã€å‡¦ç†ã‚’ä¸­æ­¢ã€‚
 				if (byteCount == -1)
 					return -1;
 
@@ -319,7 +319,7 @@ retry:
 		}
 
 		/// <summary>
-		/// ƒfƒBƒXƒN‚ÉƒLƒƒƒbƒVƒ…‚µ‚È‚ª‚çƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş
+		/// ãƒ‡ã‚£ã‚¹ã‚¯ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã—ãªãŒã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
 		/// <returns></returns>
@@ -338,7 +338,7 @@ retry:
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶ƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ•Û‘¶
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’ä¿å­˜
 		/// </summary>
 		public override void Close()
 		{
@@ -346,11 +346,11 @@ retry:
 			{
 				if (isOpen)
 				{
-					// ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒX‚ğì¬
+					// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 					bool success = ThreadIndexer.Write(cache, headerInfo);
 					Debug.Assert(success);
 
-					// Šù“¾ƒCƒ“ƒfƒbƒNƒX‚ğì¬
+					// æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 					GotThreadListIndexer.Write(Cache, headerInfo);
 				}
 			}
@@ -365,19 +365,19 @@ retry:
 		}
 
 		/// <summary>
-		/// Šî–{ƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+		/// åŸºæœ¬ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 		/// </summary>
 		protected bool OpenBaseStream(ThreadHeader headerInfo)
 		{
 			if (baseReader.IsOpen)
 				return false;
 
-			// ‰ß‹ƒƒO—‚¿‚µ‚Ä‚¢‚È‚¢ê‡‚Ì‚İŠJ‚­
+			// éå»ãƒ­ã‚°è½ã¡ã—ã¦ã„ãªã„å ´åˆã®ã¿é–‹ã
 			//0324 if (!headerInfo.Pastlog)
 			{
 				baseReader.Open(headerInfo);
 
-				// ƒXƒŒƒbƒh‚ğŠJ‚­‚Ì‚É¬Œ÷‚µ‚½ê‡AƒXƒgƒŒ[ƒW‚àŠJ‚­
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ãã®ã«æˆåŠŸã—ãŸå ´åˆã€ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã‚‚é–‹ã
 				if (baseReader.IsOpen)
 				{
 					length = baseReader.Length;
@@ -389,7 +389,7 @@ retry:
 		}
 
 		/// <summary>
-		/// CacheCompleteƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// CacheCompleteã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>

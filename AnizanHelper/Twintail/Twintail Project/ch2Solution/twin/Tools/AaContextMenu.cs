@@ -10,7 +10,7 @@ namespace Twin.Tools
 	using System.ComponentModel;
 
 	/// <summary>
-	/// AA“ü—Íx‰‡‚ÌƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[
+	/// AAå…¥åŠ›æ”¯æ´ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	/// </summary>
 	public sealed class AaContextMenu : IDisposable
 	{
@@ -36,14 +36,14 @@ namespace Twin.Tools
 
 
 		/// <summary>
-		/// AAƒAƒCƒeƒ€‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«‚É”­¶
+		/// AAã‚¢ã‚¤ãƒ†ãƒ ãŒé¸æŠã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event AaItemEventHandler Selected;
 
 		/// <summary>
-		/// AaContextMenuƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaContextMenuã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="aafolder">AA‚ª‘¶İ‚·‚éƒtƒHƒ‹ƒ_ƒpƒX</param>
+		/// <param name="aafolder">AAãŒå­˜åœ¨ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹</param>
 		public AaContextMenu(string aafolder)
 		{
 			if (aafolder == null)
@@ -51,7 +51,7 @@ namespace Twin.Tools
 				throw new ArgumentNullException("aafolder");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯
 			//
 			this.folderPath = aafolder;
 			this.headerCollection = new AaHeaderCollection();
@@ -168,7 +168,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚ğ•\¦
+		/// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
 		/// </summary>
 		/// <param name="control"></param>
 		/// <param name="location"></param>
@@ -184,7 +184,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// AAƒtƒ@ƒCƒ‹‚ğ‚·‚×‚Ä“Ç‚İ‚Ş
+		/// AAãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã™ã¹ã¦èª­ã¿è¾¼ã‚€
 		/// </summary>
 		public void Load()
 		{

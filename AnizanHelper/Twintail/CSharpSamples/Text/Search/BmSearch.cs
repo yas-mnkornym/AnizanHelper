@@ -5,8 +5,8 @@ using System.Text;
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
-	/// BM–@‚É‚æ‚é•¶š—ñÆ‡ƒAƒ‹ƒSƒŠƒYƒ€B‘å—Ê‚Ìƒƒ‚ƒŠ‚ğg—p‚·‚é‚Ì‚Å‚¾‚ß‚ÛcB
-	/// (QlURL: http://www2.starcat.ne.jp/~fussy/algo/algo7-4.htm)
+	/// BMæ³•ã«ã‚ˆã‚‹æ–‡å­—åˆ—ç…§åˆã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã€‚å¤§é‡ã®ãƒ¡ãƒ¢ãƒªã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã ã‚ã½â€¦ã€‚
+	/// (å‚è€ƒURL: http://www2.starcat.ne.jp/~fussy/algo/algo7-4.htm)
 	/// </summary>
 	[Obsolete]
 	public class BmSearch : ISearchable
@@ -15,7 +15,7 @@ namespace CSharpSamples.Text.Search
 		private readonly string pattern;
 
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public string Pattern
 		{
@@ -26,7 +26,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// BmSearchƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BmSearchã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public BmSearch(string key)
@@ -36,7 +36,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// ˆÚ“®—Êƒe[ƒuƒ‹‚ğì¬
+		/// ç§»å‹•é‡ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="patt"></param>
 		private void makeTable(string key)
@@ -56,7 +56,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
@@ -66,7 +66,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>
@@ -96,13 +96,13 @@ namespace CSharpSamples.Text.Search
 					}
 				}
 
-				// ‚·‚×‚Äˆê’v
+				// ã™ã¹ã¦ä¸€è‡´
 				if (i < 0)
 				{
 					return index;
 				}
 
-				// ƒe[ƒuƒ‹‚©‚çˆÚ“®—Ê‚ğ‹‚ß‚é(•‰”‚È‚çˆÚ“®—Ê‚Í2)	
+				// ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ç§»å‹•é‡ã‚’æ±‚ã‚ã‚‹(è² æ•°ãªã‚‰ç§»å‹•é‡ã¯2)	
 				int move = this.skip[input[index + i]] - (patlen - i);
 				index += (move > 0) ? move : 2;
 			}
@@ -112,8 +112,8 @@ namespace CSharpSamples.Text.Search
 	}
 
 	/// <summary>
-	/// BM–@‚É‚æ‚é•¶š—ñÆ‡ƒAƒ‹ƒSƒŠƒYƒ€BBmSearchƒNƒ‰ƒX‚Æ‚Íˆá‚¢AƒoƒCƒg’PˆÊ‚Å”äŠr‚ğs‚¤B
-	/// (QlURL: http://www2.starcat.ne.jp/~fussy/algo/algo7-4.htm)
+	/// BMæ³•ã«ã‚ˆã‚‹æ–‡å­—åˆ—ç…§åˆã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã€‚BmSearchã‚¯ãƒ©ã‚¹ã¨ã¯é•ã„ã€ãƒã‚¤ãƒˆå˜ä½ã§æ¯”è¼ƒã‚’è¡Œã†ã€‚
+	/// (å‚è€ƒURL: http://www2.starcat.ne.jp/~fussy/algo/algo7-4.htm)
 	/// </summary>
 	public class BmSearch2 : ISearchable
 	{
@@ -122,7 +122,7 @@ namespace CSharpSamples.Text.Search
 		private readonly string patternS;
 
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public string Pattern
 		{
@@ -133,7 +133,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// BmSearch2ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BmSearch2ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public BmSearch2(string key)
@@ -144,7 +144,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// ˆÚ“®—Êƒe[ƒuƒ‹‚ğì¬
+		/// ç§»å‹•é‡ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="key"></param>
 		private void makeTable(byte[] key)
@@ -164,7 +164,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
@@ -174,10 +174,10 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
-		/// <param name="index">ŒŸõŠJnƒCƒ“ƒfƒbƒNƒX</param>
+		/// <param name="index">æ¤œç´¢é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
 		/// <returns></returns>
 		public unsafe int Search(string input, int index)
 		{
@@ -214,13 +214,13 @@ namespace CSharpSamples.Text.Search
 						}
 					}
 
-					// ‚·‚×‚Äˆê’v
+					// ã™ã¹ã¦ä¸€è‡´
 					if (i < 0)
 					{
 						return (int)(p - st) / 2;
 					}
 
-					// ƒe[ƒuƒ‹‚©‚çˆÚ“®—Ê‚ğ‹‚ß‚é(•‰”‚È‚ç2•¶š•ªˆÚ“®)	
+					// ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ç§»å‹•é‡ã‚’æ±‚ã‚ã‚‹(è² æ•°ãªã‚‰2æ–‡å­—åˆ†ç§»å‹•)	
 					int move = this.skip[p[i]] - (keylen - i);
 					p += (move > 0) ? move : 4;
 				}

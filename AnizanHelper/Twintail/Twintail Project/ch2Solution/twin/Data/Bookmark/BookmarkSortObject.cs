@@ -5,12 +5,12 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ƒ\[ƒg‚Ì‘ÎÛ‚ğ•\‚·
+	/// ã‚½ãƒ¼ãƒˆã®å¯¾è±¡ã‚’è¡¨ã™
 	/// </summary>
 	public enum BookmarkSortObject
 	{
 		/// <summary>
-		/// –¼‘O‚Åƒ\[ƒg
+		/// åå‰ã§ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		Name,
 	}

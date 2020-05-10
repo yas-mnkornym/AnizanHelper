@@ -3,12 +3,12 @@
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
-	/// ŒŸõƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ•\‚·
+	/// æ¤œç´¢ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¡¨ã™
 	/// </summary>
 	public interface ISearchable
 	{
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		string Pattern
 		{
@@ -16,17 +16,17 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
-		/// <param name="text">ŒŸõ•¶š—ñ</param>
+		/// <param name="text">æ¤œç´¢æ–‡å­—åˆ—</param>
 		/// <returns></returns>
 		int Search(string text);
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚©‚ç•¶š—ñÆ‡‚ğs‚¤
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
-		/// <param name="text">ŒŸõ•¶š—ñ</param>
-		/// <param name="index">ŒŸõŠJnƒCƒ“ƒfƒbƒNƒX</param>
+		/// <param name="text">æ¤œç´¢æ–‡å­—åˆ—</param>
+		/// <param name="index">æ¤œç´¢é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
 		/// <returns></returns>
 		int Search(string text, int index);
 	}

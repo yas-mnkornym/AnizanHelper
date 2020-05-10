@@ -5,21 +5,21 @@ namespace Twin.Bbs
 	using System;
 
 	/// <summary>
-	/// ‚Ü‚¿BBS‚ÌƒXƒŒƒbƒhƒwƒbƒ_î•ñ‚ğ•\‚·
+	/// ã¾ã¡BBSã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	public class MachiThreadHeader : ThreadHeader
 	{
 		/// <summary>
-		/// datƒtƒ@ƒCƒ‹‚Ì‘¶İ‚·‚éURL‚ğæ“¾
+		/// datãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ã™ã‚‹URLã‚’å–å¾—
 		/// </summary>
 		public override string DatUrl {
 			get {
-				throw new NotSupportedException("‚Ü‚¿BBS‚Ídat“Ç‚İ‚ğƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new NotSupportedException("ã¾ã¡BBSã¯datèª­ã¿ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“");
 			}
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌURL‚ğæ“¾
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®URLã‚’å–å¾—
 		/// </summary>
 		public override string Url {
 			get {
@@ -29,7 +29,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ‘‚«‚İ‰Â”\‚ÈÅ‘åƒŒƒX”‚ğæ“¾
+		/// æ›¸ãè¾¼ã¿å¯èƒ½ãªæœ€å¤§ãƒ¬ã‚¹æ•°ã‚’å–å¾—
 		/// </summary>
 		public override int UpperLimitResCount {
 			get {
@@ -38,12 +38,12 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// MachiThreadHeaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// MachiThreadHeaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public MachiThreadHeader() : base()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

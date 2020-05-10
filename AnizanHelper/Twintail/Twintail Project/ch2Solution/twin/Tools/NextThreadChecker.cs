@@ -16,7 +16,7 @@ namespace Twin.Tools
 	using Twin.Text;
 
 	/// <summary>
-	/// ŸƒXƒŒˆÄ“à‹@”\
+	/// æ¬¡ã‚¹ãƒ¬æ¡ˆå†…æ©Ÿèƒ½
 	/// </summary>
 	public class NextThreadChecker
 	{
@@ -34,7 +34,7 @@ namespace Twin.Tools
 		private static readonly Regex hankaku = new Regex("[\uFF61-\uFF9F]", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ‘OƒXƒŒ‚Ìî•ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// å‰ã‚¹ãƒ¬ã®æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public ThreadHeader Item
 		{
@@ -45,7 +45,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ˆê’v”»’f’PŒê”‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B0ˆÈ‰º‚Ìê‡A©“®‚Å”»’fB
+		/// ä¸€è‡´åˆ¤æ–­å˜èªæ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚0ä»¥ä¸‹ã®å ´åˆã€è‡ªå‹•ã§åˆ¤æ–­ã€‚
 		/// </summary>
 		public int MatchLevel
 		{
@@ -60,7 +60,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒpƒ^[ƒ“‚Éˆê’v‚µ‚½ŸƒXƒŒ‚Æv‚í‚ê‚éƒXƒŒƒbƒhî•ñ‚ğ‚·‚×‚ÄŠi”[‚µ‚½ List ‚ğæ“¾‚µ‚Ü‚·B
+		/// ãƒ‘ã‚¿ãƒ¼ãƒ³ã«ä¸€è‡´ã—ãŸæ¬¡ã‚¹ãƒ¬ã¨æ€ã‚ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’ã™ã¹ã¦æ ¼ç´ã—ãŸ List ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public List<ThreadHeader> MatchItems
 		{
@@ -70,7 +70,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ŸƒXƒŒ‚ğƒ`ƒFƒbƒN’†‚Å‚ ‚ê‚Î trueA‚»‚êˆÈŠO‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+		/// æ¬¡ã‚¹ãƒ¬ã‚’ãƒã‚§ãƒƒã‚¯ä¸­ã§ã‚ã‚Œã° trueã€ãã‚Œä»¥å¤–ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsChecking
 		{
@@ -81,12 +81,12 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// MatchLevel ƒvƒƒpƒeƒB‚Ì’l‚ğ 0 (©“®) ‚É‚µ‚½ê‡‚Ì‚İAˆê’v¸“x‚ğ‚‚­‚·‚éê‡‚Í trueAˆê‚Â‚Å‚àˆê’v‚µ‚½ƒXƒŒ‚ğŠÜ‚ß‚é‚È‚ç falseB
+		/// MatchLevel ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã‚’ 0 (è‡ªå‹•) ã«ã—ãŸå ´åˆã®ã¿ã€ä¸€è‡´ç²¾åº¦ã‚’é«˜ãã™ã‚‹å ´åˆã¯ trueã€ä¸€ã¤ã§ã‚‚ä¸€è‡´ã—ãŸã‚¹ãƒ¬ã‚’å«ã‚ã‚‹ãªã‚‰ falseã€‚
 		/// </summary>
 		public bool HighLevelMatching { get; set; }
 
 		/// <summary>
-		/// ŸƒXƒŒ‚ÌŒŸõ‚É¬Œ÷‚µ‚½‚Æ‚«‚É”­¶‚µ‚Ü‚·B
+		/// æ¬¡ã‚¹ãƒ¬ã®æ¤œç´¢ã«æˆåŠŸã—ãŸã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚
 		/// </summary>
 		public event ThreadHeaderEventHandler Success;
 
@@ -96,7 +96,7 @@ namespace Twin.Tools
 		public NextThreadChecker()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			matchItems = new List<ThreadHeader>();
 			matchLevel = 0;
@@ -104,9 +104,9 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ÅV‚ÌƒXƒŒƒbƒhˆê——‚ğæ“¾‚µAitem ‚ÌŸƒXƒŒ‚Æv‚í‚ê‚éƒXƒŒƒbƒh‚ğŒŸõ‚µ‚Ü‚·B
+		/// æœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å–å¾—ã—ã€item ã®æ¬¡ã‚¹ãƒ¬ã¨æ€ã‚ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ¤œç´¢ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="item">ŸƒXƒŒ‚ğƒ`ƒFƒbƒN‚·‚éƒXƒŒƒbƒhB</param>
+		/// <param name="item">æ¬¡ã‚¹ãƒ¬ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã€‚</param>
 		public void Check(ThreadHeader item)
 		{
 			if (item == null)
@@ -115,7 +115,7 @@ namespace Twin.Tools
 			}
 			if (IsChecking)
 			{
-				throw new InvalidOperationException("ƒ`ƒFƒbƒN’†‚Å‚·");
+				throw new InvalidOperationException("ãƒã‚§ãƒƒã‚¯ä¸­ã§ã™");
 			}
 
 			header = item;
@@ -125,7 +125,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ”ñ“¯Šú‚Åƒ`ƒFƒbƒN‚ğn‚ß‚é
+		/// éåŒæœŸã§ãƒã‚§ãƒƒã‚¯ã‚’å§‹ã‚ã‚‹
 		/// </summary>
 		/// <param name="item"></param>
 		public void CheckBegin(ThreadHeader item)
@@ -136,7 +136,7 @@ namespace Twin.Tools
 			}
 			if (IsChecking)
 			{
-				throw new InvalidOperationException("ƒ`ƒFƒbƒN’†‚Å‚·");
+				throw new InvalidOperationException("ãƒã‚§ãƒƒã‚¯ä¸­ã§ã™");
 			}
 
 			header = item;
@@ -150,7 +150,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// í‚ÉŒ»sƒXƒŒ‚ğŒ©‚é‚æ‚¤‚É‚·‚é
+		/// å¸¸ã«ç¾è¡Œã‚¹ãƒ¬ã‚’è¦‹ã‚‹ã‚ˆã†ã«ã™ã‚‹
 		/// </summary>
 		private BbsType EnsureCurrentBbs(BbsType bbs)
 		{
@@ -158,7 +158,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒ`ƒFƒbƒN‚ğI—¹‚³‚¹‚½‚¢‚ÉŒÄ‚Ô
+		/// ãƒã‚§ãƒƒã‚¯ã‚’çµ‚äº†ã•ã›ãŸã„æ™‚ã«å‘¼ã¶
 		/// </summary>
 		public void CheckEnd()
 		{
@@ -167,7 +167,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// items ‚ğŒŸõ‚µAheader ‚ÌŸƒXƒŒ‚Æv‚í‚ê‚éƒXƒŒƒbƒh‚ğ‚·‚×‚Ä•Ô‚µ‚Ü‚·B
+		/// items ã‚’æ¤œç´¢ã—ã€header ã®æ¬¡ã‚¹ãƒ¬ã¨æ€ã‚ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã™ã¹ã¦è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="header"></param>
 		/// <param name="items"></param>
@@ -213,11 +213,11 @@ namespace Twin.Tools
 			}
 			while (isAutoLevel && result.Count == 0 && --currentLevel >= 2);
 
-			// Å‚ƒŒƒxƒ‹‚ğ’²‚×‚ÄA‚»‚Ì”¼•ª‚É–‚½‚È‚¢ˆê’vƒXƒŒ‚ğœ‚­
+			// æœ€é«˜ãƒ¬ãƒ™ãƒ«ã‚’èª¿ã¹ã¦ã€ãã®åŠåˆ†ã«æº€ãŸãªã„ä¸€è‡´ã‚¹ãƒ¬ã‚’é™¤ã
 			int removeLevel = maxLevel / 2;
 			result.RemoveAll((s) => (((int)s.Tag) < removeLevel));
 
-			// ˆê’vƒŒƒxƒ‹‚Åƒ\[ƒg
+			// ä¸€è‡´ãƒ¬ãƒ™ãƒ«ã§ã‚½ãƒ¼ãƒˆ
 			ThreadHeader[] temp = result.ToArray();
 			Array.Sort(temp, new LevelComparer());
 
@@ -228,7 +228,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ŸƒXƒŒƒ`ƒFƒbƒNƒXƒŒƒbƒh
+		/// æ¬¡ã‚¹ãƒ¬ãƒã‚§ãƒƒã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰
 		/// </summary>
 		protected virtual void Checking()
 		{
@@ -261,12 +261,12 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ŸƒXƒŒ‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æ¬¡ã‚¹ãƒ¬ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
-		/// <param name="sourceItem">‘OƒXƒŒî•ñ</param>
-		/// <param name="checkItem">”»’f‚·‚éƒXƒŒƒbƒhƒAƒCƒeƒ€</param>
-		/// <param name="level">ˆê’v”»’f’PŒê”iˆê’v‚µ‚½ê‡‚Íˆê’vƒŒƒxƒ‹‚ª‘ã“ü‚³‚ê‚éj</param>
-		/// <returns>ˆê’v‚µ‚½‚È‚çtrue</returns>
+		/// <param name="sourceItem">å‰ã‚¹ãƒ¬æƒ…å ±</param>
+		/// <param name="checkItem">åˆ¤æ–­ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¢ã‚¤ãƒ†ãƒ </param>
+		/// <param name="level">ä¸€è‡´åˆ¤æ–­å˜èªæ•°ï¼ˆä¸€è‡´ã—ãŸå ´åˆã¯ä¸€è‡´ãƒ¬ãƒ™ãƒ«ãŒä»£å…¥ã•ã‚Œã‚‹ï¼‰</param>
+		/// <returns>ä¸€è‡´ã—ãŸãªã‚‰true</returns>
 		protected virtual bool IsMatch(ThreadHeader sourceItem, ThreadHeader checkItem, ref int level)
 		{
 			return IsMatch(GetWords(sourceItem.Subject), checkItem, ref level);
@@ -286,7 +286,7 @@ namespace Twin.Tools
 				WordType type = ws.Key;
 				string key = ws.Value;
 
-				// ‚Ğ‚ç‚ª‚È1•¶š‚Í–³‹
+				// ã²ã‚‰ãŒãª1æ–‡å­—ã¯ç„¡è¦–
 				if (key.Length == 1 && type == WordType.Hira)
 					continue;
 
@@ -302,15 +302,15 @@ namespace Twin.Tools
 					}
 				}
 
-				// key ‚ğ’¼‘O‚Ì’PŒê backWord ‚ÆŒ‹‡‚µA‚Ğ‚Æ‚Â‚Ìƒ[ƒh‚Æ‚µ‚ÄŒŸõB
-				// "BS11 3691" ‚Æ "BSƒtƒW 1125" ‚ª—¼•û‚Æ‚à "BS" ‚Æ "11" ‚ªˆê’v‚µA“¯‚¶ˆê’vƒŒƒxƒ‹‚Æ‚³‚ê‚Ä‚µ‚Ü‚¤–â‘è‚ª‚ ‚Á‚½‚½‚½‚ß
+				// key ã‚’ç›´å‰ã®å˜èª backWord ã¨çµåˆã—ã€ã²ã¨ã¤ã®ãƒ¯ãƒ¼ãƒ‰ã¨ã—ã¦æ¤œç´¢ã€‚
+				// "BS11 3691" ã¨ "BSãƒ•ã‚¸ 1125" ãŒä¸¡æ–¹ã¨ã‚‚ "BS" ã¨ "11" ãŒä¸€è‡´ã—ã€åŒã˜ä¸€è‡´ãƒ¬ãƒ™ãƒ«ã¨ã•ã‚Œã¦ã—ã¾ã†å•é¡ŒãŒã‚ã£ãŸãŸãŸã‚
 				if (backWord != "" && Regex.IsMatch(input, Regex.Escape(backWord + key), RegexOptions.IgnoreCase))
 				{
 					string longKey = backWord + key;
 					matchCount += longKey.Length * 1.5f;
 				}
 			
-				// ƒXƒŒ‚ÌƒJƒEƒ“ƒg+1@‚Ì”š‚ª‘¶İ‚µ‚½‚ç—L—ÍŒó•âcH
+				// ã‚¹ãƒ¬ã®ã‚«ã‚¦ãƒ³ãƒˆ+1ã€€ã®æ•°å­—ãŒå­˜åœ¨ã—ãŸã‚‰æœ‰åŠ›å€™è£œâ€¦ï¼Ÿ
 				if (type == WordType.Decimal)
 				{
 					int dec;
@@ -325,7 +325,7 @@ namespace Twin.Tools
 				backWord = key;
 			}
 		
-			// ƒXƒŒ‚Ì¨‚¢‚ª‚ ‚ê‚Î‚ ‚é‚Ù‚Ç
+			// ã‚¹ãƒ¬ã®å‹¢ã„ãŒã‚ã‚Œã°ã‚ã‚‹ã»ã©
 			matchCount += new ThreadHeaderInfo(checkItem).ForceValueDay / 10000;
 
 			if (level - matchCount <= 0)
@@ -339,11 +339,11 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ƒAƒ‹ƒtƒ@ƒxƒbƒgA”šAŠ¿šAƒJƒ^ƒJƒiA‚Ğ‚ç‚ª‚ÈŠe’PˆÊ‚²‚Æ‚Ì
-		/// ’PŒê‚ğØ‚èo‚µ‚Ä”z—ñ‚ÉŠi”[
+		/// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã€æ•°å­—ã€æ¼¢å­—ã€ã‚«ã‚¿ã‚«ãƒŠã€ã²ã‚‰ãŒãªå„å˜ä½ã”ã¨ã®
+		/// å˜èªã‚’åˆ‡ã‚Šå‡ºã—ã¦é…åˆ—ã«æ ¼ç´
 		/// </summary>
-		/// <param name="text">’PŒê‚ğØ‚èo‚·•¶š—ñ</param>
-		/// <returns>’PŒê‚ªŠi”[‚³‚ê‚½stringƒNƒ‰ƒX‚Ì”z—ñ</returns>
+		/// <param name="text">å˜èªã‚’åˆ‡ã‚Šå‡ºã™æ–‡å­—åˆ—</param>
+		/// <returns>å˜èªãŒæ ¼ç´ã•ã‚ŒãŸstringã‚¯ãƒ©ã‚¹ã®é…åˆ—</returns>
 		public static List<__WordSet> GetWords(string text)
 		{
 			List<__WordSet> words = new List<KeyValuePair<WordType, string>>();
@@ -437,23 +437,23 @@ namespace Twin.Tools
 				int levela = (int)itemA.Tag;
 				int levelb = (int)itemB.Tag;
 
-				// itemA ‚ª itemB ‚æ‚èã‚É•\¦‚³‚¹‚é‚È‚çƒ}ƒCƒiƒX‚Ì’lAitemB ‚Ì•û‚ªã‚É•\¦‚³‚¹‚é‚È‚çƒvƒ‰ƒX‚Ì’l‚ğ•Ô‚·cH
+				// itemA ãŒ itemB ã‚ˆã‚Šä¸Šã«è¡¨ç¤ºã•ã›ã‚‹ãªã‚‰ãƒã‚¤ãƒŠã‚¹ã®å€¤ã€itemB ã®æ–¹ãŒä¸Šã«è¡¨ç¤ºã•ã›ã‚‹ãªã‚‰ãƒ—ãƒ©ã‚¹ã®å€¤ã‚’è¿”ã™â€¦ï¼Ÿ
 				int ret = (levelb - levela);
 				if (ret == 0)
 				{
-					// ƒŒƒxƒ‹‚ª“¯ˆê‚Ìê‡AƒŒƒX”‚ÆƒXƒŒ‚Ì¨‚¢‚Å”»’è‚·‚é
+					// ãƒ¬ãƒ™ãƒ«ãŒåŒä¸€ã®å ´åˆã€ãƒ¬ã‚¹æ•°ã¨ã‚¹ãƒ¬ã®å‹¢ã„ã§åˆ¤å®šã™ã‚‹
 					int a_resCount = itemA.ResCount, b_resCount = itemB.ResCount,
 						a_no = itemA.No, b_no = itemB.No;
 					float a_force = new ThreadHeaderInfo(itemA).ForceValueDay,  b_force = new ThreadHeaderInfo(itemB).ForceValueDay;
 
-					// ƒŒƒX”‚Í‘½‚¢‚Ù‚¤‚ª—Dæ
+					// ãƒ¬ã‚¹æ•°ã¯å¤šã„ã»ã†ãŒå„ªå…ˆ
 					int compareValue = 0;
 					if (a_resCount != b_resCount)
 						compareValue += (a_resCount - b_resCount) < 0 ? 1 : -1;
-					// ¨‚¢‚Í‘½‚¢‚Ù‚¤‚ª—Dæ
+					// å‹¢ã„ã¯å¤šã„ã»ã†ãŒå„ªå…ˆ
 					if (a_force != b_force)
 						compareValue += (a_force - b_force) < 0 ? 1 : -1;
-					// ƒXƒŒNO‚Í¬‚³‚¢‚Ù‚¤‚ª—Dæ
+					// ã‚¹ãƒ¬NOã¯å°ã•ã„ã»ã†ãŒå„ªå…ˆ
 					if (a_no != b_no)
 						compareValue += (a_no - b_no) < 0 ? -1 : 1;
 

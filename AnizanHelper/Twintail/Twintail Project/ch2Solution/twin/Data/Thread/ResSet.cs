@@ -11,7 +11,7 @@ namespace Twin
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ‚P‚Â‚ÌƒŒƒX‚ğ•\‚·\‘¢‘Ì
+	/// ï¼‘ã¤ã®ãƒ¬ã‚¹ã‚’è¡¨ã™æ§‹é€ ä½“
 	/// </summary>
 	public struct ResSet
 	{
@@ -19,11 +19,11 @@ namespace Twin
 			new ResSet(0, String.Empty, String.Empty, String.Empty, String.Empty);
 
 		/// <summary>
-		/// ID‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// IDã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		private static readonly Regex IDRegex =
 			new Regex(@"(ID:(?<id>[^\s]+))|(\[(?<id>[^\\]]+)\])", RegexOptions.Compiled);
-			//new Regex(@"(ID:(?<id>[^\sœ]+))|(\[(?<id>[^\\]]+)\])", RegexOptions.Compiled);
+			//new Regex(@"(ID:(?<id>[^\sâ—]+))|(\[(?<id>[^\\]]+)\])", RegexOptions.Compiled);
 
 		private static readonly Regex BERegex =
 			new Regex(@"BE:(?<id>\d+)\-(?<rank>.+)", RegexOptions.Compiled);
@@ -32,7 +32,7 @@ namespace Twin
 			new Regex(@"<font size=1>\[\s(?<host>[^\s]+)\s]</font>", RegexOptions.Compiled);
 
 		private static readonly Regex Host2ch =
-			new Regex(@"HOST:.+|”­MŒ³:[^\s]+", RegexOptions.Compiled);
+			new Regex(@"HOST:.+|ç™ºä¿¡å…ƒ:[^\s]+", RegexOptions.Compiled);
 
 		private int index;
 		private string name;
@@ -53,7 +53,7 @@ namespace Twin
 		private object tag;
 
 		/// <summary>
-		/// ƒŒƒX”Ô†‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¬ã‚¹ç•ªå·ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int Index
 		{
@@ -68,7 +68,7 @@ namespace Twin
 		}
 		
 		/// <summary>
-		/// “ŠeÒ‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŠ•ç¨¿è€…ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name
 		{
@@ -87,7 +87,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// E-mail‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// E-mailã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Email
 		{
@@ -106,7 +106,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ID‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// IDã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public string ID
 		{
@@ -150,7 +150,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚Ì“ŠeÒ‚ÌƒzƒXƒg–¼‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ãƒ¬ã‚¹ã®æŠ•ç¨¿è€…ã®ãƒ›ã‚¹ãƒˆåã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public string Host
 		{
@@ -175,7 +175,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// –{•ª‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æœ¬åˆ†ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Body
 		{
@@ -194,7 +194,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// “ú•t‚ğ•¶š—ñ‚Ì‚Ü‚Üæ“¾‚Ü‚½‚Íİ’è
+		/// æ—¥ä»˜ã‚’æ–‡å­—åˆ—ã®ã¾ã¾å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string DateString
 		{
@@ -213,7 +213,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// V’…ƒŒƒX‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ–°ç€ãƒ¬ã‚¹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsNew
 		{
@@ -231,7 +231,7 @@ namespace Twin
 
 		private bool serverAboned;
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ªƒT[ƒo[‘¤‚Å‚ ‚Ú[‚ñ‚³‚ê‚½ƒŒƒX‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// ã“ã®ãƒ¬ã‚¹ãŒã‚µãƒ¼ãƒãƒ¼å´ã§ã‚ã¼ãƒ¼ã‚“ã•ã‚ŒãŸãƒ¬ã‚¹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsServerAboned
 		{
@@ -246,7 +246,7 @@ namespace Twin
 		}
 	
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ÉƒuƒbƒNƒ}[ƒN‚ğİ’è‚Ü‚½‚Íæ“¾
+		/// ã“ã®ãƒ¬ã‚¹ã«ãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚’è¨­å®šã¾ãŸã¯å–å¾—
 		/// </summary>
 		public bool Bookmark
 		{
@@ -262,7 +262,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ãƒ¬ã‚¹ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool Visible
 		{
@@ -278,7 +278,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// –{•ª‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒŠƒ“ƒNƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// æœ¬åˆ†ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒªãƒ³ã‚¯ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public LinkCollection Links
 		{
@@ -291,7 +291,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ªQÆ‚µ‚Ä‚¢‚éƒŒƒX”Ô†‚Ì”z—ñ‚ğæ“¾
+		/// ã“ã®ãƒ¬ã‚¹ãŒå‚ç…§ã—ã¦ã„ã‚‹ãƒ¬ã‚¹ç•ªå·ã®é…åˆ—ã‚’å–å¾—
 		/// </summary>
 		public int[] RefIndices
 		{
@@ -304,7 +304,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‹tQÆ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾‚µ‚Ü‚·B
+		/// é€†å‚ç…§ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsBackReferenced
 		{
@@ -315,7 +315,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‹tQÆ‚³‚ê‚Ä‚¢‚é‰ñ”‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+		/// é€†å‚ç…§ã•ã‚Œã¦ã„ã‚‹å›æ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public int BackReferencedCount
 		{
@@ -342,7 +342,7 @@ namespace Twin
 		}
 	
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ª‚ ‚Ú[‚ñƒŒƒX‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã“ã®ãƒ¬ã‚¹ãŒã‚ã¼ãƒ¼ã‚“ãƒ¬ã‚¹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsABone
 		{
@@ -357,7 +357,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¿ã‚°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public object Tag
 		{
@@ -372,19 +372,19 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚ ‚Ú[‚ñ—p‚ÌƒŒƒX‚ğæ“¾
+		/// ã‚ã¼ãƒ¼ã‚“ç”¨ã®ãƒ¬ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public static readonly ResSet ABoneResSet =
 			ResSet.ABone(ResSet.Empty, false, ABoneType.Tomei, "");
 
 		/// <summary>
-		/// ResSetƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ResSetã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="index">ƒŒƒX”Ô†</param>
-		/// <param name="name">“ŠeÒ‚Ì–¼‘O</param>
-		/// <param name="email">“ŠeÒ‚ÌE-mail</param>
-		/// <param name="dateString">“Še“ú</param>
-		/// <param name="body">–{•ª</param>
+		/// <param name="index">ãƒ¬ã‚¹ç•ªå·</param>
+		/// <param name="name">æŠ•ç¨¿è€…ã®åå‰</param>
+		/// <param name="email">æŠ•ç¨¿è€…ã®E-mail</param>
+		/// <param name="dateString">æŠ•ç¨¿æ—¥</param>
+		/// <param name="body">æœ¬åˆ†</param>
 		public ResSet(int index, string name,
 			string email, string dateString, string body) : this()
 		{
@@ -425,7 +425,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒŒƒX‚ğ‚ ‚Ú[‚ñ
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ã‚’ã‚ã¼ãƒ¼ã‚“
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <param name="abone"></param>
@@ -438,41 +438,41 @@ namespace Twin
 			if (type == ABoneType.Tomei)
 			{
 				resSet.visible = false;
-				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "“§–¾‚ ‚Ú[‚ñ";
+				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "é€æ˜ã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.Normal)
 			{
 				resSet.visible = true;
-				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "‚ ‚Ú[‚ñ";
+				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "ã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.NG)
 			{
-				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "<i>NG‚ ‚Ú[‚ñ</i>";
+				resSet.Name = resSet.Email = resSet.DateString = resSet.Body = "<i>NGã‚ã¼ãƒ¼ã‚“</i>";
 			}
 			else if (type == ABoneType.Chain)
 			{
-				resSet.Body = "˜A½‚ ‚Ú[‚ñ";
+				resSet.Body = "é€£é–ã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.Syria)
 			{
-				resSet.Body = "¼Ø±Œê‚ ‚Ú[‚ñ";
-				resSet.Name = resSet.Email = "<i>‚ ‚Ú[‚ñ</i>";
+				resSet.Body = "ï½¼ï¾˜ï½±èªã‚ã¼ãƒ¼ã‚“";
+				resSet.Name = resSet.Email = "<i>ã‚ã¼ãƒ¼ã‚“</i>";
 			}
 			else if (type == ABoneType.NGBody)
 			{
-				resSet.Body = "–{•¶‚ ‚Ú[‚ñ";
+				resSet.Body = "æœ¬æ–‡ã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.NGID)
 			{
-				resSet.Body = "NGID‚ ‚Ú[‚ñ";
+				resSet.Body = "NGIDã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.NGMail)
 			{
-				resSet.Body = "NGMail‚ ‚Ú[‚ñ";
+				resSet.Body = "NGMailã‚ã¼ãƒ¼ã‚“";
 			}
 			else if (type == ABoneType.NGName)
 			{
-				resSet.Body = "NGName‚ ‚Ú[‚ñ";
+				resSet.Body = "NGNameã‚ã¼ãƒ¼ã‚“";
 			}
 
 			if (!String.IsNullOrEmpty(description))
@@ -484,7 +484,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// –{•ª‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é•¶š—ñ‚©‚çƒŠƒ“ƒNƒRƒŒƒNƒVƒ‡ƒ“‚ğì¬
+		/// æœ¬åˆ†ã«å«ã¾ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ã‹ã‚‰ãƒªãƒ³ã‚¯ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½œæˆ
 		/// </summary>
 		/// <returns></returns>
 		private LinkCollection CreateLinks()
@@ -496,7 +496,7 @@ namespace Twin
 			{
 				string link = m.Value;
 
-				// h”²‚«‚Å‚ ‚ê‚ÎC³
+				// hæŠœãã§ã‚ã‚Œã°ä¿®æ­£
 				if (HtmlTextUtility.IsShortHttpUrl.IsMatch(link))
 					link = "http://" + m.Groups["url"].Value;
 
@@ -507,7 +507,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒŒƒX‚ªQÆ‚µ‚Ä‚¢‚éƒŒƒX”Ô†‚Ì”z—ñ‚ğì¬
+		/// ã“ã®ãƒ¬ã‚¹ãŒå‚ç…§ã—ã¦ã„ã‚‹ãƒ¬ã‚¹ç•ªå·ã®é…åˆ—ã‚’ä½œæˆ
 		/// </summary>
 		/// <returns></returns>
 		private int[] Createrefidx()
@@ -532,7 +532,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒLƒ“‚ğg—p‚µ‚Ä•¶š—ñŒ`®‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸã‚¹ã‚­ãƒ³ã‚’ä½¿ç”¨ã—ã¦æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <param name="skin"></param>
 		/// <returns></returns>
@@ -545,7 +545,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½—v‘f‚ğ•¶š—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸè¦ç´ ã‚’æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="element"></param>
 		/// <returns></returns>

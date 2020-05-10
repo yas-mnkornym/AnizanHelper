@@ -11,14 +11,14 @@ namespace Twin
 	using System.IO;
 
 	/// <summary>
-	/// X2chThreadUtil ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// X2chThreadUtil ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class X2chThreadUtil
 	{
 		public X2chThreadUtil()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
@@ -43,7 +43,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‰ß‹ƒƒO‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚Ä‚İ‚é
+		/// éå»ãƒ­ã‚°ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã¦ã¿ã‚‹
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -52,8 +52,8 @@ namespace Twin
 			X2chKakoThreadHeader kako = new X2chKakoThreadHeader();
 			header.CopyTo(kako);
 
-			// ‚Ü‚¸.dat.gz‚ğæ“¾‚µ‚Ä‚İ‚ÄA‚¾‚ß‚È‚ç.datƒ’æ“¾‚·‚éB
-			// ‚»‚ê‚Å‚à‚¾‚ß‚È‚ç’ú‚ß‚éB
+			// ã¾ãš.dat.gzã‚’å–å¾—ã—ã¦ã¿ã¦ã€ã ã‚ãªã‚‰.datãƒ²å–å¾—ã™ã‚‹ã€‚
+			// ãã‚Œã§ã‚‚ã ã‚ãªã‚‰è«¦ã‚ã‚‹ã€‚
 			kako.GzipCompress = true;
 			bool retried = false;
 Retry:
@@ -85,7 +85,7 @@ Retry:
 
 		/*
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚Ìó‘Ô‚ğŠm”F
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®çŠ¶æ…‹ã‚’ç¢ºèª
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -101,16 +101,16 @@ Retry:
 			byte[] data = FileUtility.ReadBytes(res.GetResponseStream());
 			string html = Encoding.GetEncoding("Shift_Jis").GetString(data);
 
-			if (html.IndexOf("‚»‚ñ‚È”ÂorƒXƒŒƒbƒh‚È‚¢‚Å‚·") >= 0)
+			if (html.IndexOf("ãã‚“ãªæ¿orã‚¹ãƒ¬ãƒƒãƒ‰ãªã„ã§ã™") >= 0)
 			{
-				if (html.IndexOf("‘à’·! ‰ß‹ƒƒO‘qŒÉ‚Å") >= 0)
+				if (html.IndexOf("éšŠé•·! éå»ãƒ­ã‚°å€‰åº«ã§") >= 0)
 					return ThreadState.Kakolog;
 
-				if (html.IndexOf("‰ß‹ƒƒO‘qŒÉ‚É‚à‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½") >= 0)
+				if (html.IndexOf("éå»ãƒ­ã‚°å€‰åº«ã«ã‚‚ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ") >= 0)
 					return ThreadState.NotExists;
 			}
-			else if (html.IndexOf("‚±‚ÌƒXƒŒƒbƒh‚Í‰ß‹ƒƒO‘qŒÉ‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·") >= 0 ||
-					html.IndexOf("‚à‚¤‚¸‚Á‚Æl‘å™") >= 0)
+			else if (html.IndexOf("ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯éå»ãƒ­ã‚°å€‰åº«ã«æ ¼ç´ã•ã‚Œã¦ã„ã¾ã™") >= 0 ||
+					html.IndexOf("ã‚‚ã†ãšã£ã¨äººå¤§æ‰") >= 0)
 			{
 				return ThreadState.Pastlog;
 			}
@@ -119,8 +119,8 @@ Retry:
 		}*/
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ÌresStart‚©‚çresEnd‚Ü‚Å‚Ì”ÍˆÍ‚ğæ“¾B
-		/// Šù“¾ƒƒO‚É‘¶İ‚·‚ê‚Îƒ[ƒJƒ‹‚©‚ç“Ç‚İ‚ŞB
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®resStartã‹ã‚‰resEndã¾ã§ã®ç¯„å›²ã‚’å–å¾—ã€‚
+		/// æ—¢å¾—ãƒ­ã‚°ã«å­˜åœ¨ã™ã‚Œã°ãƒ­ãƒ¼ã‚«ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€ã€‚
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="header"></param>
@@ -136,19 +136,19 @@ Retry:
 				throw new ArgumentNullException("header");
 
 			if (resStart > resEnd)
-				throw new ArgumentException("resStart‚ÍresEndˆÈ‰º‚É‚µ‚Ä‚­‚¾‚³‚¢", "resStart");
+				throw new ArgumentException("resStartã¯resEndä»¥ä¸‹ã«ã—ã¦ãã ã•ã„", "resStart");
 
 			string address = header.Url + ((resStart == resEnd) ? 
 			resStart.ToString() : String.Format("{0}-{1}", resStart, resEnd));
 
-			// ƒT[ƒo[‚©‚çƒf[ƒ^‚ğƒ_ƒEƒ“ƒ[ƒh
+			// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 			WebClient webClient = new WebClient();
 			webClient.Headers.Add("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT; DigExt)");
 			
 			byte[] data = webClient.DownloadData(address);
 			int byteParsed;
 
-			// ResSet[]Œ^‚É‰ğÍ
+			// ResSet[]å‹ã«è§£æ
 			ThreadParser parser = new X2chHtmlThreadParser(BbsType.X2ch, Encoding.GetEncoding("Shift_Jis"));
 			ResSet[] array = parser.Parse(data, data.Length, out byteParsed);
 
@@ -160,28 +160,28 @@ Retry:
 	}
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚Ìó‘Ô‚ğ•\‚·—ñ‹“‘Ì
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®çŠ¶æ…‹ã‚’è¡¨ã™åˆ—æŒ™ä½“
 	/// </summary>
 	public enum ThreadState
 	{
 		/// <summary>
-		/// w’è‚È‚µ
+		/// æŒ‡å®šãªã—
 		/// </summary>
 		None,
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Í‘¶İ‚·‚é
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã¯å­˜åœ¨ã™ã‚‹
 		/// </summary>
 		Exists,
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 		/// </summary>
 		NotExists,
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Í‰ß‹ƒƒO‚ÉŠi”[‚³‚ê‚Ä‚¢‚é
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã¯éå»ãƒ­ã‚°ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹
 		/// </summary>
 		Kakolog,
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ídat—‚¿‚µ‚Ä‚¢‚é
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã¯datè½ã¡ã—ã¦ã„ã‚‹
 		/// </summary>
 		Pastlog,
 	}

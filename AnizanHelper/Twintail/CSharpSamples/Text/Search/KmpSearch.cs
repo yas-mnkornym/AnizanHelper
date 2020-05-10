@@ -1,8 +1,8 @@
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
-	/// Knuth-Morris-Pratt‚É‚æ‚é•¶š—ñÆ‡ƒAƒ‹ƒSƒŠƒYƒ€B
-	/// (QlURL: http://alfin.mine.utsunomiya-u.ac.jp/~niy/algo/k/kmpMatch.html)
+	/// Knuth-Morris-Prattã«ã‚ˆã‚‹æ–‡å­—åˆ—ç…§åˆã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã€‚
+	/// (å‚è€ƒURL: http://alfin.mine.utsunomiya-u.ac.jp/~niy/algo/k/kmpMatch.html)
 	/// </summary>
 	public class KmpSearch : ISearchable
 	{
@@ -10,7 +10,7 @@ namespace CSharpSamples.Text.Search
 		private readonly string pattern;
 
 		/// <summary>
-		/// ŒŸõƒpƒ^[ƒ“‚ğæ“¾
+		/// æ¤œç´¢ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public string Pattern
 		{
@@ -21,7 +21,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// KmpSearchƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// KmpSearchã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public KmpSearch(string key)
@@ -31,7 +31,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// ˆÚ“®—Êƒe[ƒuƒ‹‚ğì¬
+		/// ç§»å‹•é‡ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -52,7 +52,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
@@ -62,7 +62,7 @@ namespace CSharpSamples.Text.Search
 		}
 
 		/// <summary>
-		/// •¶š—ñÆ‡‚ğs‚¤
+		/// æ–‡å­—åˆ—ç…§åˆã‚’è¡Œã†
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="index"></param>

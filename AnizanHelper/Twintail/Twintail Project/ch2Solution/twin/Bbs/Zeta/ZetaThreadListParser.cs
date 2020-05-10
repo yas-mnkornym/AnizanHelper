@@ -7,18 +7,18 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// Zetabbs‚ÌƒXƒŒƒbƒhˆê——‚ğ‰ğÍ (2chŒİŠ·)
+	/// Zetabbsã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’è§£æ (2chäº’æ›)
 	/// </summary>
 	public class ZetaThreadListParser : X2chThreadListParser
 	{
 		/// <summary>
-		/// ZetaThreadListParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ZetaThreadListParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ZetaThreadListParser()
 			: base(BbsType.Zeta, Encoding.GetEncoding("Shift_Jis"))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

@@ -6,7 +6,7 @@ namespace Twin
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// ƒŠƒ“ƒN‚Æ‚»‚Ìà–¾‚ğ•\‚·
+	/// ãƒªãƒ³ã‚¯ã¨ãã®èª¬æ˜ã‚’è¡¨ã™
 	/// </summary>
 	[Serializable]
 	public class LinkInfo : ISerializable
@@ -15,7 +15,7 @@ namespace Twin
 		private string text;
 
 		/// <summary>
-		/// ƒŠƒ“ƒN‚ÌURI‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒªãƒ³ã‚¯ã®URIã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Uri {
 			set {
@@ -28,7 +28,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒŠƒ“ƒN‚ÉŠÖ‚µ‚Ä‚Ìà–¾‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒªãƒ³ã‚¯ã«é–¢ã—ã¦ã®èª¬æ˜ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Text {
 			set {
@@ -41,28 +41,28 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// LinkInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LinkInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="uri"></param>
 		/// <param name="text"></param>
 		public LinkInfo()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.uri = String.Empty;
 			this.text = String.Empty;
 		}
 
 		/// <summary>
-		/// LinkInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// LinkInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="uri"></param>
 		/// <param name="text"></param>
 		public LinkInfo(string uri, string text)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.uri = uri;
 			this.text = text;

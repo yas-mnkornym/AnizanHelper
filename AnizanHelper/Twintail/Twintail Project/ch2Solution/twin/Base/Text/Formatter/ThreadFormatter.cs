@@ -5,17 +5,17 @@ namespace Twin.Text
 	using System;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚Ì‘Ž®‰»‚ðs‚¤Šî–{’ŠÛƒNƒ‰ƒX
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ›¸å¼åŒ–ã‚’è¡Œã†åŸºæœ¬æŠ½è±¡ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadFormatter
 	{
 		/// <summary>
-		/// Žw’è‚µ‚½ƒŒƒX‚ð‘Ž®‰»‚µ‚Ä•¶Žš—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public abstract string Format(ResSet resSet);
 
 		/// <summary>
-		/// Žw’è‚µ‚½ƒŒƒXƒRƒŒƒNƒVƒ‡ƒ“‚ð‘Ž®‰»‚µ‚Ä•¶Žš—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public abstract string Format(ResSetCollection resCollection);
 	}

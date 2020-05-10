@@ -7,7 +7,7 @@ namespace Twin
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ‚¨‹C‚É“ü‚èƒGƒ“ƒgƒŠ‚ÌƒRƒŒƒNƒVƒ‡ƒ“
+	/// ãŠæ°—ã«å…¥ã‚Šã‚¨ãƒ³ãƒˆãƒªã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³
 	/// </summary>
 	public class BookmarkEntryCollection
 	{
@@ -15,7 +15,7 @@ namespace Twin
 		private BookmarkEntry parent;
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ““à‚Ì—v‘f”‚ğæ“¾
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®è¦ç´ æ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count {
 			get {
@@ -24,7 +24,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Ì‚¨‹C‚É“ü‚èƒtƒHƒ‹ƒ_‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãŠæ°—ã«å…¥ã‚Šãƒ•ã‚©ãƒ«ãƒ€ã‚’å–å¾—
 		/// </summary>
 		public BookmarkEntry this[int index] {
 			get {
@@ -33,7 +33,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BookmarkEntryCollection(BookmarkEntry parent)
 		{
@@ -41,14 +41,14 @@ namespace Twin
 				throw new ArgumentNullException("parent");
 			}
 			if (parent.IsLeaf) {
-				throw new ArgumentException("—t‚ğe‚É‚·‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
+				throw new ArgumentException("è‘‰ã‚’è¦ªã«ã™ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
 			}
 			this.innerList = ArrayList.Synchronized(new ArrayList());
 			this.parent = parent;
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚èƒGƒ“ƒgƒŠ‚ğ’Ç‰Á
+		/// ãŠæ°—ã«å…¥ã‚Šã‚¨ãƒ³ãƒˆãƒªã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -59,7 +59,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// •¡”‚Ì‚¨‹C‚É“ü‚èƒGƒ“ƒgƒŠ‚ğ’Ç‰Á
+		/// è¤‡æ•°ã®ãŠæ°—ã«å…¥ã‚Šã‚¨ãƒ³ãƒˆãƒªã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(BookmarkEntryCollection items)
@@ -69,7 +69,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚¨‹C‚É“ü‚è‚ğ‘}“ü
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãŠæ°—ã«å…¥ã‚Šã‚’æŒ¿å…¥
 		/// </summary>
 		/// <param name="index"></param>
 		/// <param name="item"></param>
@@ -80,7 +80,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚©‚çw’è‚µ‚½‚¨‹C‚É“ü‚è‚ğíœ
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰æŒ‡å®šã—ãŸãŠæ°—ã«å…¥ã‚Šã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="item"></param>
 		public void Remove(BookmarkEntry item)
@@ -93,7 +93,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚É‚ ‚é—v‘f‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ã‚‹è¦ç´ ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="index"></param>
 		public void RemoveAt(int index)
@@ -108,7 +108,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒGƒ“ƒgƒŠ‚ªƒRƒŒƒNƒVƒ‡ƒ““à‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚¨ãƒ³ãƒˆãƒªãŒã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -118,7 +118,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒGƒ“ƒgƒŠ‚ÌƒRƒŒƒNƒVƒ‡ƒ““àƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¨ãƒ³ãƒˆãƒªã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -128,7 +128,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚è‚ğƒ\[ƒg
+		/// ãŠæ°—ã«å…¥ã‚Šã‚’ã‚½ãƒ¼ãƒˆ
 		/// </summary>
 		/// <param name="sorter"></param>
 		public void Sort(BookmarkSorter sorter)
@@ -137,7 +137,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚¨‹C‚É“ü‚è‚ğ‚·‚×‚Äíœ
+		/// ãŠæ°—ã«å…¥ã‚Šã‚’ã™ã¹ã¦å‰Šé™¤
 		/// </summary>
 		public void Clear()
 		{
@@ -148,7 +148,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BookmarkEntryCollection‚ğ”½•œˆ—‚·‚é‚½‚ß‚Ì—ñ‹“‚ğ•Ô‚·
+		/// BookmarkEntryCollectionã‚’åå¾©å‡¦ç†ã™ã‚‹ãŸã‚ã®åˆ—æŒ™æ°ã‚’è¿”ã™
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()

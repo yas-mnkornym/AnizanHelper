@@ -7,12 +7,12 @@ namespace Twin
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ResSet�\���̂��R���N�V�����Ǘ�
+	/// ResSet構造体をコレクション管理
 	/// </summary>
 	public class ResSetCollection : CollectionBase, IEnumerable<ResSet>
 	{
 		/// <summary>
-		/// �R���N�V�����𓯊������邽�߂̃I�u�W�F�N�g���擾
+		/// コレクションを同期させるためのオブジェクトを取得
 		/// </summary>
 		public object SyncRoot {
 			get {
@@ -21,7 +21,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// �w�肵���C���f�b�N�X�̃��X���擾�܂��͐ݒ�
+		/// 指定したインデックスのレスを取得または設定
 		/// </summary>
 		public ResSet this[int index] {
 			set {
@@ -33,7 +33,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ���ׂĂ�Visible�t���O��ݒ�
+		/// すべてのVisibleフラグを設定
 		/// </summary>
 		public bool Visible {
 			set {
@@ -48,7 +48,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ���ׂĂ̐V���t���O��ݒ�
+		/// すべての新着フラグを設定
 		/// </summary>
 		public bool IsNew {
 			set {
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ResSetCollection�N���X�̃C���X�^���X��������
+		/// ResSetCollectionクラスのインスタンスを初期化
 		/// </summary>
 		public ResSetCollection()
 		{
@@ -77,17 +77,17 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ���X���R���N�V�����ɒǉ�
+		/// レスをコレクションに追加
 		/// </summary>
-		/// <param name="resSet">�ǉ�����ResSet�\����</param>
-		/// <returns>�ǉ������C���f�b�N�X�l</returns>
+		/// <param name="resSet">追加するResSet構造体</param>
+		/// <returns>追加したインデックス値</returns>
 		public int Add(ResSet resSet)
 		{
 			return List.Add(resSet);
 		}
 
 		/// <summary>
-		/// ResSet�\���̂̔z����R���N�V�����ɒǉ�
+		/// ResSet構造体の配列をコレクションに追加
 		/// </summary>
 		public void AddRange(ResSet[] items)
 		{
@@ -95,7 +95,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ResSet�R���N�V�������R���N�V�����ɒǉ�
+		/// ResSetコレクションをコレクションに追加
 		/// </summary>
 		public void AddRange(ResSetCollection resCollection)
 		{
@@ -103,7 +103,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ���ׂẴ��X�̋t�Q�Ɖ� (BackReferenceCount �v���p�e�B) �����Z�b�g���܂��B
+		/// すべてのレスの逆参照回数 (BackReferenceCount プロパティ) をリセットします。
 		/// </summary>
 		public void ResetBackReferenceCount()
 		{
@@ -117,10 +117,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// �w�肵�� 1 ����n�܂郌�X�ԍ����w�肵�ă��X���擾�B
-		/// ���̃��\�b�h�́A�R���N�V�����̏����ƃ��X�ԍ��̏�������v���Ă���ꍇ�݂̂Ɏg�p�B
-		/// �����łȂ��ꍇ�́Aindices �Ŏw�肵�Ă��A�Ԃ����R���N�V�����̃��X�ԍ��ƈ�v���Ă���ۏ؂͖����B
-		/// �w�肵�����X�ԍ��̃f�[�^���~�����ꍇ�́AGetRangeOfNumber ���\�b�h���g�p����B
+		/// 指定した 1 から始まるレス番号を指定してレスを取得。
+		/// このメソッドは、コレクションの順序とレス番号の順序が一致している場合のみに使用。
+		/// そうでない場合は、indices で指定しても、返されるコレクションのレス番号と一致している保証は無い。
+		/// 指定したレス番号のデータが欲しい場合は、GetRangeOfNumber メソッドを使用する。
 		/// </summary>
 		/// <param name="indices"></param>
 		/// <returns></returns>
@@ -145,10 +145,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// 1 ����n�܂郌�X�ԍ��̎w�肵���͈͂��擾�B
-		/// ���̃��\�b�h�́A�R���N�V�����̏����ƃ��X�ԍ��̏�������v���Ă���ꍇ�݂̂Ɏg�p�B
-		/// �����łȂ��ꍇ�́AbeginIndex �� endIndex �Ŏw�肵�Ă��A�Ԃ����R���N�V�����̃��X�ԍ��ƈ�v���Ă���ۏ؂͖����B
-		/// �w�肵�����X�ԍ��̃f�[�^���~�����ꍇ�́AGetRangeOfNumber ���\�b�h���g�p����B
+		/// 1 から始まるレス番号の指定した範囲を取得。
+		/// このメソッドは、コレクションの順序とレス番号の順序が一致している場合のみに使用。
+		/// そうでない場合は、beginIndex と endIndex で指定しても、返されるコレクションのレス番号と一致している保証は無い。
+		/// 指定したレス番号のデータが欲しい場合は、GetRangeOfNumber メソッドを使用する。
 		/// </summary>
 		/// <param name="beginIndex"></param>
 		/// <param name="endIndex"></param>
@@ -192,10 +192,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// �w�肵���C���f�b�N�X�����ځ[��
+		/// 指定したインデックスをあぼーん
 		/// </summary>
-		/// <param name="index">�폜���郌�X�ԍ�</param>
-		/// <param name="visible">�����ځ[��Ȃ�true</param>
+		/// <param name="index">削除するレス番号</param>
+		/// <param name="visible">可視あぼーんならtrue</param>
 		public ResSet ABone(int index, bool visible, ABoneType type, string description)
 		{
 			int st = 0;
@@ -216,7 +216,7 @@ namespace Twin
 				}
 			}
 
-			// ���ځ[��
+			// あぼーん
 			this[st] = ResSet.ABone(this[st], visible, type, description);
 
 			return this[st];

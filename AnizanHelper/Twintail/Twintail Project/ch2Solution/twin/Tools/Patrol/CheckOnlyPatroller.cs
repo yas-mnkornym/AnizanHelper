@@ -9,27 +9,27 @@ namespace Twin.Tools
 	using Twin.IO;
 
 	/// <summary>
-	/// subject.txt‚Ì”äŠr‚É‚æ‚èXVƒ`ƒFƒbƒN‚Ì‚İ‚ğs‚¤ƒNƒ‰ƒX
+	/// subject.txtã®æ¯”è¼ƒã«ã‚ˆã‚Šæ›´æ–°ãƒã‚§ãƒƒã‚¯ã®ã¿ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class CheckOnlyPatroller : PatrolBase
 	{
 		/// <summary>
-		/// CheckOnlyPatrollerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CheckOnlyPatrollerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		public CheckOnlyPatroller(Cache cache) : base(cache)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// „‰ñ‚ğŠJn (XVƒ`ƒFƒbƒN‚Ì‚İ)
+		/// å·¡å›ã‚’é–‹å§‹ (æ›´æ–°ãƒã‚§ãƒƒã‚¯ã®ã¿)
 		/// </summary>
 		public override void Patrol()
 		{
-			// XV‘ÎÛ‚Ì”Â‚ğ‚·‚×‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚É‹l‚ß‚é
+			// æ›´æ–°å¯¾è±¡ã®æ¿ã‚’ã™ã¹ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è©°ã‚ã‚‹
 			Hashtable boardList = new Hashtable();
 
 			foreach (ThreadHeader item1 in Items)
@@ -37,10 +37,10 @@ namespace Twin.Tools
 				BoardInfo board = item1.BoardInfo;
 				OnPatroling(new PatrolEventArgs(item1));
 
-				// ƒXƒŒƒbƒhˆê——‚ğóM
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å—ä¿¡
 				if (!boardList.Contains(board.Url))
 				{
-					OnStatusTextChanged(board.Url + "subject.txt ‚ğæ“¾’†...");
+					OnStatusTextChanged(board.Url + "subject.txt ã‚’å–å¾—ä¸­...");
 
 					List<ThreadHeader> headers = new List<ThreadHeader>();
 					ThreadListReader listReader = TypeCreator.CreateThreadListReader(board.Bbs);
@@ -64,7 +64,7 @@ namespace Twin.Tools
 					boardList[board.Url] = headers;
 				}
 
-				// ƒŒƒX”‚ª‘‚¦‚Ä‚¢‚ê‚ÎXV‚³‚ê‚Ä‚¢‚éA‘¶İ‚µ‚È‚¯‚ê‚Îdat—‚¿
+				// ãƒ¬ã‚¹æ•°ãŒå¢—ãˆã¦ã„ã‚Œã°æ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã€å­˜åœ¨ã—ãªã‘ã‚Œã°datè½ã¡
 				List<ThreadHeader> targetList = (List<ThreadHeader>)boardList[board.Url];
 				int index = targetList.IndexOf(item1);
 

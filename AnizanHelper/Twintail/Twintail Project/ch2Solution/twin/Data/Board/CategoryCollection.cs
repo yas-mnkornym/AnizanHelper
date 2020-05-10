@@ -7,12 +7,12 @@ namespace Twin
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// CategoryƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// Categoryã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class CategoryCollection : CollectionBase
 	{
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚Ìƒ{[ƒhƒAƒCƒeƒ€‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒœãƒ¼ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
 		/// </summary>
 		public Category this[int index] {
 			get {
@@ -21,24 +21,24 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// CategoryCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CategoryCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CategoryCollection() 
 		{
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚ÉƒJƒeƒSƒŠ‚ğ’Ç‰Á
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«ã‚«ãƒ†ã‚´ãƒªã‚’è¿½åŠ 
 		/// </summary>
-		/// <param name="item">’Ç‰Á‚·‚éCategoryƒNƒ‰ƒX</param>
-		/// <returns>’Ç‰Á‚³‚ê‚½ˆÊ’u</returns>
+		/// <param name="item">è¿½åŠ ã™ã‚‹Categoryã‚¯ãƒ©ã‚¹</param>
+		/// <returns>è¿½åŠ ã•ã‚ŒãŸä½ç½®</returns>
 		public int Add(Category item)
 		{
 			return List.Add(item);
 		}
 
 		/// <summary>
-		/// •¡”‚ÌƒJƒeƒSƒŠ‚ğ’Ç‰Á
+		/// è¤‡æ•°ã®ã‚«ãƒ†ã‚´ãƒªã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="items"></param>
 		public void AddRange(CategoryCollection items)
@@ -47,19 +47,19 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ÉƒJƒeƒSƒŠ‚ğ‘}“ü
+		/// æŒ‡å®šã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚«ãƒ†ã‚´ãƒªã‚’æŒ¿å…¥
 		/// </summary>
-		/// <param name="index">‘}“ü‚·‚éƒCƒ“ƒfƒbƒNƒX</param>
-		/// <param name="item">‘}“ü‚·‚éCategoryƒNƒ‰ƒX</param>
+		/// <param name="index">æŒ¿å…¥ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</param>
+		/// <param name="item">æŒ¿å…¥ã™ã‚‹Categoryã‚¯ãƒ©ã‚¹</param>
 		public void Insert(int index, Category item)
 		{
 			List.Insert(index, item);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒJƒeƒSƒŠ‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚«ãƒ†ã‚´ãƒªã‚’å‰Šé™¤
 		/// </summary>
-		/// <param name="item">íœ‚·‚éƒJƒeƒSƒŠ</param>
+		/// <param name="item">å‰Šé™¤ã™ã‚‹ã‚«ãƒ†ã‚´ãƒª</param>
 		public void Remove(Category item)
 		{
 			List.Remove(item);

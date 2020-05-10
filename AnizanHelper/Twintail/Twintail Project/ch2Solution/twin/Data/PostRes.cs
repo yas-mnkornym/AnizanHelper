@@ -5,7 +5,7 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// 搳峞偡傞儗僗偺撪梕傪昞偡
+	/// 鎶曠ǹ銇欍倠銉偣銇唴瀹广倰琛ㄣ仚
 	/// </summary>
 	public struct PostRes
 	{
@@ -14,7 +14,7 @@ namespace Twin
 		private string _body;
 
 		/// <summary>
-		/// 搳峞幰偺柤慜傪庢摼傑偨偼愝掕
+		/// 鎶曠ǹ鑰呫伄鍚嶅墠銈掑彇寰椼伨銇熴伅瑷畾
 		/// </summary>
 		public string From {
 			set {
@@ -27,7 +27,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// 搳峞幰偺E-mail傪庢摼傑偨偼愝掕
+		/// 鎶曠ǹ鑰呫伄E-mail銈掑彇寰椼伨銇熴伅瑷畾
 		/// </summary>
 		public string Email {
 			set {
@@ -40,7 +40,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// 杮暘傪庢摼傑偨偼愝掕
+		/// 鏈垎銈掑彇寰椼伨銇熴伅瑷畾
 		/// </summary>
 		public string Body {
 			set {
@@ -53,11 +53,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostRes僋儔僗偺僀儞僗僞儞僗傪弶婜壔
+		/// PostRes銈儵銈广伄銈ゃ兂銈广偪銉炽偣銈掑垵鏈熷寲
 		/// </summary>
-		/// <param name="name">搳峞幰偺柤慜</param>
-		/// <param name="email">搳峞幰偺E-mail</param>
-		/// <param name="body">杮暘</param>
+		/// <param name="name">鎶曠ǹ鑰呫伄鍚嶅墠</param>
+		/// <param name="email">鎶曠ǹ鑰呫伄E-mail</param>
+		/// <param name="body">鏈垎</param>
 		public PostRes(string from, string email, string body)
 		{
 			_from = from;
@@ -66,9 +66,9 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// PostRes僋儔僗偺僀儞僗僞儞僗傪弶婜壔
+		/// PostRes銈儵銈广伄銈ゃ兂銈广偪銉炽偣銈掑垵鏈熷寲
 		/// </summary>
-		/// <param name="body">杮暘</param>
+		/// <param name="body">鏈垎</param>
 		public PostRes(string body)
 			: this(String.Empty, String.Empty, body)
 		{

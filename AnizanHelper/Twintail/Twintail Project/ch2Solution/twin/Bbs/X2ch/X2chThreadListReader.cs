@@ -15,23 +15,23 @@ namespace Twin.Bbs
 	using System.Threading;
 
 	/// <summary>
-	/// ‚Q‚¿‚á‚ñ‚Ë‚é (www.2ch.net) ‚ÌƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş‹@”\‚ğ’ñ‹Ÿ
+	/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ (www.2ch.net) ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chThreadListReader : ThreadListReaderBase
 	{
 		private HttpWebResponse _res = null;
 
 		/// <summary>
-		/// ƒp[ƒT‚ğw’è‚µ‚ÄAX2chThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ãƒ‘ãƒ¼ã‚µã‚’æŒ‡å®šã—ã¦ã€X2chThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="dataParser">ƒf[ƒ^‚Ì‰ğÍ‚Ég—p‚·‚éƒp[ƒT[</param>
+		/// <param name="dataParser">ãƒ‡ãƒ¼ã‚¿ã®è§£æã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¼ã‚µãƒ¼</param>
 		public X2chThreadListReader(ThreadListParser dataParser)
 			: base(dataParser)
 		{
 		}
 
 		/// <summary>
-		/// X2chThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadListReader()
 			: base(new X2chThreadListParser())
@@ -39,20 +39,20 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// X2chThreadListReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadListReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="board"></param>
 		public X2chThreadListReader(BoardInfo board)
 			: this()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			Open(board);
 		}
 
 		/// <summary>
-		/// ”Â‚ğŠJ‚­
+		/// æ¿ã‚’é–‹ã
 		/// </summary>
 		/// <param name="info"></param>
 		public override bool Open(BoardInfo info)
@@ -61,11 +61,11 @@ namespace Twin.Bbs
 				throw new ArgumentNullException("info");
 			}
 			if (isOpen) {
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
 Redirect:
-			// ”Â‚ÌˆÚ“]ƒ`ƒFƒbƒN
+			// æ¿ã®ç§»è»¢ãƒã‚§ãƒƒã‚¯
 			bool trace = false;
 
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(info.Url + "subject.txt");
@@ -96,8 +96,8 @@ Redirect:
 
 			boardinfo = info;
 
-			// Subject.txt‚ªæ“¾‚Å‚«‚ÄContent-Length‚ª0A
-			// ‚Ü‚½‚ÍStatusCode‚ªFound‚Ìê‡‚Í”Â‚ªˆÚ“]‚µ‚½‚©‚à
+			// Subject.txtãŒå–å¾—ã§ãã¦Content-LengthãŒ0ã€
+			// ã¾ãŸã¯StatusCodeãŒFoundã®å ´åˆã¯æ¿ãŒç§»è»¢ã—ãŸã‹ã‚‚
 			if (_res.StatusCode == HttpStatusCode.OK)
 			{
 				position = 0;
@@ -127,7 +127,7 @@ Redirect:
 
 			if (trace)
 			{
-				// ”ÂˆÚ“]‚Ì‰Â”\«
+				// æ¿ç§»è»¢ã®å¯èƒ½æ€§
 				X2chServerTracer tracer = new X2chServerTracer();
 				if (tracer.Trace(boardinfo, true))
 				{

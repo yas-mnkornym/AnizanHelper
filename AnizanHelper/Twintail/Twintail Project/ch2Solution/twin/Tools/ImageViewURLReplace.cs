@@ -32,7 +32,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// ImageViewURLReplace.dat ‚ğ .NET ‚Ì Regex—p³‹K•\Œ»‚É’¼‚·
+		/// ImageViewURLReplace.dat ã‚’ .NET ã® Regexç”¨æ­£è¦è¡¨ç¾ã«ç›´ã™
 		/// </summary>
 		/// <param name="pattern"></param>
 		/// <returns></returns>
@@ -50,7 +50,7 @@ namespace Twin.Tools
 
 
 			// sample
-			//  Œ³‚ÌURL(³‹K•\Œ») ƒ^ƒu•¶š(\t) ’uŠ·æURL(³‹K•\Œ») ƒ^ƒu•¶š(\t) ’uŠ·æURL‚É“n‚·ƒŠƒtƒ@ƒ‰[
+			//  å…ƒã®URL(æ­£è¦è¡¨ç¾) ã‚¿ãƒ–æ–‡å­—(\t) ç½®æ›å…ˆURL(æ­£è¦è¡¨ç¾) ã‚¿ãƒ–æ–‡å­—(\t) ç½®æ›å…ˆURLã«æ¸¡ã™ãƒªãƒ•ã‚¡ãƒ©ãƒ¼
 			// "http://www.sage.com/\thttp://www.age.com/\thttp://www.age.com/index.html"
 
 			list.Clear();

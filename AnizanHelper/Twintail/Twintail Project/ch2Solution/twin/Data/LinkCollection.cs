@@ -8,13 +8,13 @@ namespace Twin
 	using System.IO;
 
 	/// <summary>
-	/// ƒŠƒ“ƒN•¶Žš—ñ‚ðƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// ãƒªãƒ³ã‚¯æ–‡å­—åˆ—ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class LinkCollection : StringCollection
 	{
 		/// <summary>
-		/// Žw’è‚µ‚½Šg’£Žq‚ÌƒŠƒ“ƒN‚ðŽæ“¾ (OR‰‰ŽZŽq‚Å•¡”Žw’è‰Â”\)
-		/// —á: LinkCollection[".jpg|.gif"]
+		/// æŒ‡å®šã—ãŸæ‹¡å¼µå­ã®ãƒªãƒ³ã‚¯ã‚’å–å¾— (ORæ¼”ç®—å­ã§è¤‡æ•°æŒ‡å®šå¯èƒ½)
+		/// ä¾‹: LinkCollection[".jpg|.gif"]
 		/// </summary>
 		public string[] this[string extension]
 		{
@@ -25,7 +25,7 @@ namespace Twin
 
 				if (array.Length > 0 && Count > 0)
 				{
-					// “¯‚¶Šg’£Žq‚ðŽ‚ÂƒŠƒ“ƒN‚ðŒŸõ
+					// åŒã˜æ‹¡å¼µå­ã‚’æŒã¤ãƒªãƒ³ã‚¯ã‚’æ¤œç´¢
 					foreach (string link in this)
 					{
 						foreach (string ext in array)
@@ -40,12 +40,12 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// LinkCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// LinkCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public LinkCollection()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ð‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 	}

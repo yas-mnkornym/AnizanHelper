@@ -5,32 +5,32 @@ namespace Twin.Aa
 	using System;
 
 	/// <summary>
-	/// AaItemEventHandler ƒfƒŠƒQ[ƒg
+	/// AaItemEventHandler ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void AaItemEventHandler(object sender, AaItemEventArgs e);
 
 	/// <summary>
-	/// AaItemEventArgs ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// AaItemEventArgs ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class AaItemEventArgs : EventArgs
 	{
 		private readonly AaItem item;
 
 		/// <summary>
-		/// AaItem‚ğæ“¾
+		/// AaItemã‚’å–å¾—
 		/// </summary>
 		public AaItem Item {
 			get { return item; }
 		}
 
 		/// <summary>
-		/// AaItemEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaItemEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="aa"></param>
 		public AaItemEventArgs(AaItem aa)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			item = aa;
 		}

@@ -9,9 +9,9 @@ namespace CSharpSamples
 	using System.Text;
 
 	/// <summary>
-	/// KeyValues ƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—B
+	/// KeyValues ã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†ã€‚
 	/// 
-	/// —á
+	/// ä¾‹
 	/// [section1]
 	/// key1
 	/// key2
@@ -23,7 +23,7 @@ namespace CSharpSamples
 		private Hashtable hash;
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ğ‚Â’l‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã‚’æŒã¤å€¤ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public StringCollection this[string key]
 		{
@@ -39,18 +39,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// KeyValuesCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// KeyValuesCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public KeyValuesCollection()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.hash = new Hashtable();
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void Read(string filePath)
@@ -71,7 +71,7 @@ namespace CSharpSamples
 
 				while ((text = sr.ReadLine()) != null)
 				{
-					// ‹ó•¶š‚Í–³‹
+					// ç©ºæ–‡å­—ã¯ç„¡è¦–
 					if (text == string.Empty)
 					{
 						continue;
@@ -98,7 +98,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ•Û‘¶
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 		/// </summary>
 		/// <param name="filePath"></param>
 		public void Write(string filePath)
@@ -139,7 +139,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒL[‚ğ’Ç‰Á
+		/// ã‚­ãƒ¼ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="obj"></param>
 		public void Add(KeyValues obj)
@@ -153,7 +153,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ğ‚Âİ’è‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã‚’æŒã¤è¨­å®šã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="key"></param>
 		public void Remove(string key)
@@ -162,7 +162,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ’l‚ğ‚·‚×‚Äæ“¾
+		/// å€¤ã‚’ã™ã¹ã¦å–å¾—
 		/// </summary>
 		public void Clear()
 		{
@@ -170,7 +170,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// KeyValuesCollection‚ğ”½•œˆ—‚·‚é—ñ‹“q‚ğ•Ô‚·
+		/// KeyValuesCollectionã‚’åå¾©å‡¦ç†ã™ã‚‹åˆ—æŒ™å­ã‚’è¿”ã™
 		/// </summary>
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()
@@ -180,7 +180,7 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// ƒL[‚Æ’lƒRƒŒƒNƒVƒ‡ƒ“‚ÌƒZƒbƒg
+	/// ã‚­ãƒ¼ã¨å€¤ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆ
 	/// </summary>
 	[Serializable]
 	public class KeyValues// : ISerializable
@@ -189,7 +189,7 @@ namespace CSharpSamples
 		private StringCollection values;
 
 		/// <summary>
-		/// ƒL[–¼‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚­ãƒ¼åã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Key
 		{
@@ -206,7 +206,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ’l‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// å€¤ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public StringCollection Values
 		{
@@ -217,7 +217,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// KeyValuesƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// KeyValuesã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public KeyValues()
 		{
@@ -226,7 +226,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// KeyValuesƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// KeyValuesã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		public KeyValues(string key) : this()
@@ -240,7 +240,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// KeyValuesƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// KeyValuesã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="array"></param>

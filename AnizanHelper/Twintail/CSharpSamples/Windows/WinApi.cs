@@ -10,17 +10,17 @@ namespace CSharpSamples.Winapi
 	using System.Text;
 
 	/// <summary>
-	/// shlwapi.dll‚ÌPathŒnŠÖ”ŒQ
-	/// QlURL: http://nienie.com/~masapico/
+	/// shlwapi.dllã®Pathç³»é–¢æ•°ç¾¤
+	/// å‚è€ƒURL: http://nienie.com/~masapico/
 	/// </summary>
 	public class Shlwapi
 	{
 		/// <summary>
-		/// fromPath‚©‚çtoPath‚Ö‚Ì‘Š‘ÎƒpƒX‚ğæ“¾
+		/// fromPathã‹ã‚‰toPathã¸ã®ç›¸å¯¾ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
-		/// <param name="fromPath">QÆŒ³‚ÌƒpƒX</param>
-		/// <param name="toPath">QÆæ‚ÌƒpƒX</param>
-		/// <returns>‘Š‘ÎƒpƒX (ƒGƒ‰[‚Å‚ ‚ê‚Înull‚ğ•Ô‚·)</returns>
+		/// <param name="fromPath">å‚ç…§å…ƒã®ãƒ‘ã‚¹</param>
+		/// <param name="toPath">å‚ç…§å…ˆã®ãƒ‘ã‚¹</param>
+		/// <returns>ç›¸å¯¾ãƒ‘ã‚¹ (ã‚¨ãƒ©ãƒ¼ã§ã‚ã‚Œã°nullã‚’è¿”ã™)</returns>
 		public static string GetRelativePath(
 			string fromPath, string toPath)
 		{
@@ -33,16 +33,16 @@ namespace CSharpSamples.Winapi
 				return sb.ToString();
 			}
 
-			// ¸”s
+			// å¤±æ•—
 			return null;
 		}
 
 		/// <summary>
-		/// •¶š”‚ğw’è‚µ‚ÄƒpƒX‚ğk‚ß‚é
+		/// æ–‡å­—æ•°ã‚’æŒ‡å®šã—ã¦ãƒ‘ã‚¹ã‚’ç¸®ã‚ã‚‹
 		/// </summary>
-		/// <param name="path">k‚ß‚éƒpƒX</param>
-		/// <param name="count">‰½•¶š‚Ék‚ß‚é‚©‚ğw’è</param>
-		/// <returns>count•¶š‚Ék‚ß‚ç‚ê‚½ƒpƒX</returns>
+		/// <param name="path">ç¸®ã‚ã‚‹ãƒ‘ã‚¹</param>
+		/// <param name="count">ä½•æ–‡å­—ã«ç¸®ã‚ã‚‹ã‹ã‚’æŒ‡å®š</param>
+		/// <returns>countæ–‡å­—ã«ç¸®ã‚ã‚‰ã‚ŒãŸãƒ‘ã‚¹</returns>
 		public static string GetCompactPath(string path, int count)
 		{
 			StringBuilder sb = new StringBuilder(512);
@@ -56,10 +56,10 @@ namespace CSharpSamples.Winapi
 		}
 
 		/// <summary>
-		/// ..\ ‚È‚Ç‚ğŠÜ‚ŞƒpƒX‚Ì•ÏŠ·
+		/// ..\ ãªã©ã‚’å«ã‚€ãƒ‘ã‚¹ã®å¤‰æ›
 		/// </summary>
-		/// <param name="path">•ÏŠ·‘ÎÛ‚ÌƒpƒX</param>
-		/// <returns>•ÏŠ·Œã‚ÌƒpƒX</returns>
+		/// <param name="path">å¤‰æ›å¯¾è±¡ã®ãƒ‘ã‚¹</param>
+		/// <returns>å¤‰æ›å¾Œã®ãƒ‘ã‚¹</returns>
 		public static string Canonicalize(string path)
 		{
 			StringBuilder sb = new StringBuilder(512);
@@ -73,10 +73,10 @@ namespace CSharpSamples.Winapi
 		}
 
 		/// <summary>
-		/// path‚Ìƒtƒ‹ƒpƒX‚ğ‹‚ß‚é
+		/// pathã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’æ±‚ã‚ã‚‹
 		/// </summary>
-		/// <param name="path">ƒtƒ‹ƒpƒX‚ğ‹‚ß‚éƒpƒX</param>
-		/// <returns>‹‚ß‚½ƒtƒ‹ƒpƒX</returns>
+		/// <param name="path">ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’æ±‚ã‚ã‚‹ãƒ‘ã‚¹</param>
+		/// <returns>æ±‚ã‚ãŸãƒ•ãƒ«ãƒ‘ã‚¹</returns>
 		public static string GetFullPath(string path)
 		{
 			StringBuilder sb = new StringBuilder(512);
@@ -106,11 +106,11 @@ namespace CSharpSamples.Winapi
 	}
 
 	/// <summary>
-	/// WinAPI ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// WinAPI ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class WinApi
 	{
-		/// <summary>ƒAƒvƒŠƒP[ƒVƒ‡ƒ“—p’è‹`ƒƒbƒZ[ƒW</summary>
+		/// <summary>ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç”¨å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</summary>
 		public const int WM_APP = 0x8000;
 
 		[DllImport("user32.dll")]
@@ -158,28 +158,28 @@ namespace CSharpSamples.Winapi
 	}
 
 	/// <summary>
-	/// WindowsAPI‚Ì‚¿‚å‚Á‚Æ‚µ‚½ƒ‰ƒbƒv
+	/// WindowsAPIã®ã¡ã‚‡ã£ã¨ã—ãŸãƒ©ãƒƒãƒ—
 	/// </summary>
 	public class WrapApi
 	{
 		/// <summary>
-		/// ƒr[ƒv‰¹‚ğ–Â‚ç‚·
+		/// ãƒ“ãƒ¼ãƒ—éŸ³ã‚’é³´ã‚‰ã™
 		/// </summary>
-		/// <param name="type">Ä¶‚·‚éƒr[ƒv‚Ìí—Ş‚ğ•\‚·BeepSound—ñ‹“‘Ì</param>
-		/// <returns>Ä¶‚É¬Œ÷‚µ‚½‚çtrueA¸”s‚µ‚½‚çfalse</returns>
+		/// <param name="type">å†ç”Ÿã™ã‚‹ãƒ“ãƒ¼ãƒ—ã®ç¨®é¡ã‚’è¡¨ã™BeepSoundåˆ—æŒ™ä½“</param>
+		/// <returns>å†ç”Ÿã«æˆåŠŸã—ãŸã‚‰trueã€å¤±æ•—ã—ãŸã‚‰false</returns>
 		public static bool Beep(BeepSound type)
 		{
 			return WinApi.MessageBeep((uint)type) != 0 ? true : false;
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğÅ‘O–Ê‚É•\¦B
-		/// Å¬‰»‚³‚ê‚Ä‚¢‚½ê‡‚ÍŒ³‚ÌƒTƒCƒY‚É–ß‚·B
+		/// æŒ‡å®šã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’æœ€å‰é¢ã«è¡¨ç¤ºã€‚
+		/// æœ€å°åŒ–ã•ã‚Œã¦ã„ãŸå ´åˆã¯å…ƒã®ã‚µã‚¤ã‚ºã«æˆ»ã™ã€‚
 		/// </summary>
-		/// <param name="hwnd">Å‘O–Ê‚É•\¦‚·‚éƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹</param>
+		/// <param name="hwnd">æœ€å‰é¢ã«è¡¨ç¤ºã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«</param>
 		public static void SetForegroundWindow(IntPtr hwnd)
 		{
-			// ‚È‚º‚©¸”s‚·‚é
+			// ãªãœã‹å¤±æ•—ã™ã‚‹
 			if (WinApi.IsIconic(hwnd) != 0)
 			{
 				Debug.Assert(WinApi.OpenIcon(hwnd) != 0);
@@ -192,38 +192,38 @@ namespace CSharpSamples.Winapi
 	}
 
 	/// <summary>
-	/// ƒr[ƒv‰¹‚Ìí—Ş‚ğ•\‚·
+	/// ãƒ“ãƒ¼ãƒ—éŸ³ã®ç¨®é¡ã‚’è¡¨ã™
 	/// </summary>
 	public enum BeepSound : long
 	{
 		/// <summary>
-		/// ƒRƒ“ƒsƒ…[ƒ^‚ÌƒXƒs[ƒJ‚©‚ç”­¶‚·‚é•W€“I‚Èƒr[ƒv‰¹
+		/// ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®ã‚¹ãƒ”ãƒ¼ã‚«ã‹ã‚‰ç™ºç”Ÿã™ã‚‹æ¨™æº–çš„ãªãƒ“ãƒ¼ãƒ—éŸ³
 		/// </summary>
 		Default = 0xFFFFFFFF,
 		/// <summary>
-		/// ˆê”Ê‚ÌŒx‰¹
+		/// ä¸€èˆ¬ã®è­¦å‘ŠéŸ³
 		/// </summary>
 		OK = 0x00000000L,
 		/// <summary>
-		/// ƒVƒXƒeƒ€ƒGƒ‰[
+		/// ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼
 		/// </summary>
 		Hand = 0x00000010L,
 		/// <summary>
-		/// ƒƒbƒZ[ƒWi–â‚¢‡‚í‚¹j
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆå•ã„åˆã‚ã›ï¼‰
 		/// </summary>
 		Question = 0x00000020L,
 		/// <summary>
-		/// ƒƒbƒZ[ƒWiŒxj
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆè­¦å‘Šï¼‰
 		/// </summary>
 		Exclamation = 0x00000030L,
 		/// <summary>
-		/// ƒƒbƒZ[ƒWiî•ñj
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆæƒ…å ±ï¼‰
 		/// </summary>
 		Asterisk = 0x00000040L,
 	}
 
 	/// <summary>
-	/// WindowsƒƒbƒZ[ƒW‚ğ•\‚·
+	/// Windowsãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ã™
 	/// </summary>
 	public enum Wm
 	{
@@ -232,7 +232,7 @@ namespace CSharpSamples.Winapi
 	}
 
 	/// <summary>
-	/// ƒRƒ‚ƒ“ƒRƒ“ƒgƒ[ƒ‹ƒƒbƒZ[ƒW
+	/// ã‚³ãƒ¢ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	/// </summary>
 	public enum Ccm
 	{

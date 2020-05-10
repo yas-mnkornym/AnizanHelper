@@ -7,7 +7,7 @@ namespace Twin.Util
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ŠÈ’P‚ÈƒJƒEƒ“ƒ^[ƒNƒ‰ƒX
+	/// ç°¡å˜ãªã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class Counter
 	{
@@ -16,7 +16,7 @@ namespace Twin.Util
 		private static int position = 0;
 
 		/// <summary>
-		/// ƒJƒEƒ“ƒg‚ğŠJn
+		/// ã‚«ã‚¦ãƒ³ãƒˆã‚’é–‹å§‹
 		/// </summary>
 		public static void Start(string name)
 		{
@@ -26,7 +26,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒJƒEƒ“ƒg’†~
+		/// ã‚«ã‚¦ãƒ³ãƒˆä¸­æ­¢
 		/// </summary>
 		public static void Stop()
 		{
@@ -34,7 +34,7 @@ namespace Twin.Util
 		}
 
 		/// <summary>
-		/// ƒJƒEƒ“ƒg’†~
+		/// ã‚«ã‚¦ãƒ³ãƒˆä¸­æ­¢
 		/// </summary>
 		public static void Stop(bool msgBox)
 		{

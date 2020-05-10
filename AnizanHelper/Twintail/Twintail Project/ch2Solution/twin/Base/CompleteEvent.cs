@@ -5,33 +5,33 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ClientBase.CompleteƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ClientBase.Completeã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void CompleteEventHandler(object sender,
 					CompleteEventArgs e);
 
 	/// <summary>
-	/// ClientBase.CompleteƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ClientBase.Completeã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class CompleteEventArgs : EventArgs
 	{
 		private CompleteStatus status;
 
 		/// <summary>
-		/// Š®—¹ó‘Ô‚ğ•\‚·
+		/// å®Œäº†çŠ¶æ…‹ã‚’è¡¨ã™
 		/// </summary>
 		public CompleteStatus Status {
 			get { return status; }
 		}
 
 		/// <summary>
-		/// CompleteEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CompleteEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="status">ƒNƒ‰ƒCƒAƒ“ƒg‚ÌŠ®—¹ó‘Ô</param>
+		/// <param name="status">ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å®Œäº†çŠ¶æ…‹</param>
 		public CompleteEventArgs(CompleteStatus status)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.status = status;
 		}

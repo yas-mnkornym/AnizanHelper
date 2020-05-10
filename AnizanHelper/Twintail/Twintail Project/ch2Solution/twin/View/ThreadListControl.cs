@@ -16,34 +16,34 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒhˆê——‚ğ‘€ìE•\¦‚·‚é‚½‚ß‚ÌŠî–{ƒRƒ“ƒgƒ[ƒ‹ƒNƒ‰ƒX
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’æ“ä½œãƒ»è¡¨ç¤ºã™ã‚‹ãŸã‚ã®åŸºæœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadListControl : ClientBaseEx<BoardInfo>
 	{
-		private Thread thread;					// ƒlƒbƒgƒ[ƒN‚©‚çƒf[ƒ^‚ğóM‚·‚é‚½‚ß‚ÌƒXƒŒƒbƒh‚Å‚·B
+		private Thread thread;					// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ãŸã‚ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã™ã€‚
 
-		private BbsType bbsType;				// Œ»İŠJ‚¢‚Ä‚¢‚éŒf¦”Â‚Ìí—Ş‚Å‚·B
-		private bool online;					// true ‚Ìê‡‚ÍÅV‚ÌƒXƒŒƒbƒhˆê——‚ğæ“¾‚µAfalse ‚Ìê‡‚ÍƒLƒƒƒbƒVƒ…‚³‚ê‚½ˆê——‚ğ“Ç‚İ‚İ‚Ü‚·B
+		private BbsType bbsType;				// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹æ²ç¤ºæ¿ã®ç¨®é¡ã§ã™ã€‚
+		private bool online;					// true ã®å ´åˆã¯æœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å–å¾—ã—ã€false ã®å ´åˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚ŒãŸä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚
 
-		protected List<ThreadHeader> headerList;	// óM‚µ‚½ÅV‚ÌƒXƒŒƒbƒhˆê——‚ğŠi”[‚µ‚Ü‚·B
+		protected List<ThreadHeader> headerList;	// å—ä¿¡ã—ãŸæœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-		protected ThreadHeader[] oldItems;			// ƒLƒƒƒbƒVƒ…‚³‚ê‚½‘O‰ñ‚ÌƒXƒŒƒbƒhˆê——‚ğŠi”[‚µ‚Ü‚·B
+		protected ThreadHeader[] oldItems;			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚ŒãŸå‰å›ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-		// Šî–{‚Æ‚È‚éƒŠ[ƒ_[‚Å‚·B
-		// online ‚Ì’l‚ª true ‚Ìê‡‚Í networkReaderAfalse ‚Ìê‡‚Í offlineReader ‚ªŠi”[‚³‚ê‚Ü‚·B
+		// åŸºæœ¬ã¨ãªã‚‹ãƒªãƒ¼ãƒ€ãƒ¼ã§ã™ã€‚
+		// online ã®å€¤ãŒ true ã®å ´åˆã¯ networkReaderã€false ã®å ´åˆã¯ offlineReader ãŒæ ¼ç´ã•ã‚Œã¾ã™ã€‚
 		protected ThreadListReader baseReader;
 
-		protected ThreadListReader offlineReader;	// ƒLƒƒƒbƒVƒ…‚³‚ê‚½ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş‚½‚ß‚ÌƒŠ[ƒ_[‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Å‚·B
-		protected ThreadListReader networkReader;	// ÅV‚ÌƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Ş‚½‚ß‚ÌƒŠ[ƒ_[‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Å‚·B
+		protected ThreadListReader offlineReader;	// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã™ã€‚
+		protected ThreadListReader networkReader;	// æœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã™ã€‚
 
-		protected BoardInfo boardInfo;				// Œ»İŠJ‚¢‚Ä‚¢‚é”Â‚Ìî•ñ‚Å‚·B”Â‚ªŠJ‚©‚ê‚Ä‚¢‚È‚¢ê‡‚Í null ‚Å‚·B
-		protected bool isOpen;						// ”Â‚ªŠJ‚©‚ê‚Ä‚¢‚ê‚Î trueA‚»‚êˆÈŠO‚Í false ‚Å‚·B
-		protected int bufferSize;					// ƒŠ[ƒ_[‚ÌóMƒoƒbƒtƒ@ƒTƒCƒY‚Å‚·B
+		protected BoardInfo boardInfo;				// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹æ¿ã®æƒ…å ±ã§ã™ã€‚æ¿ãŒé–‹ã‹ã‚Œã¦ã„ãªã„å ´åˆã¯ null ã§ã™ã€‚
+		protected bool isOpen;						// æ¿ãŒé–‹ã‹ã‚Œã¦ã„ã‚Œã° trueã€ãã‚Œä»¥å¤–ã¯ false ã§ã™ã€‚
+		protected int bufferSize;					// ãƒªãƒ¼ãƒ€ãƒ¼ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã§ã™ã€‚
 
-		private bool canceled = false;				// ƒXƒŒƒbƒhˆê——‚Ìæ“¾‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½ê‡‚Í true ‚Å‚·B
+		private bool canceled = false;				// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®å–å¾—ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸå ´åˆã¯ true ã§ã™ã€‚
 
 		/// <summary>
-		/// Œ»İŠJ‚¢‚Ä‚¢‚é”Â‚Ìî•ñ‚ğ•Ô‚µ‚Ü‚·BŠJ‚©‚ê‚Ä‚¢‚È‚¢ê‡‚Í null ‚Å‚·B
+		/// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹æ¿ã®æƒ…å ±ã‚’è¿”ã—ã¾ã™ã€‚é–‹ã‹ã‚Œã¦ã„ãªã„å ´åˆã¯ null ã§ã™ã€‚
 		/// </summary>
 		public BoardInfo BoardInfo
 		{
@@ -61,7 +61,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚İ’†‚Å‚ ‚ê‚Î trueA‚»‚êˆÈŠO‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã‚ã‚Œã° trueã€ãã‚Œä»¥å¤–ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsReading
 		{
@@ -75,7 +75,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚ªŠJ‚©‚ê‚Ä‚¢‚ê‚Î trueA‚»‚êˆÈŠO‚Í false ‚ğ•Ô‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ãŒé–‹ã‹ã‚Œã¦ã„ã‚Œã° trueã€ãã‚Œä»¥å¤–ã¯ false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public bool IsOpen
 		{
@@ -85,7 +85,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñB
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“ã€‚
 		/// </summary>
 		public bool IsPackageReception
 		{
@@ -98,8 +98,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ÅV‚ÌƒXƒŒƒbƒhˆê——‚ğæ“¾‚·‚éê‡‚Í trueA
-		/// ‘O‰ñƒLƒƒƒbƒVƒ…‚³‚ê‚½ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚Şê‡‚Í false ‚ğİ’è‚µ‚Ü‚·B
+		/// æœ€æ–°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å–å¾—ã™ã‚‹å ´åˆã¯ trueã€
+		/// å‰å›ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã‚€å ´åˆã¯ false ã‚’è¨­å®šã—ã¾ã™ã€‚
 		/// </summary>
 		public bool Online
 		{
@@ -112,7 +112,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ“Ç‚İ‚Ü‚ê‚Ä‚¢‚é•ÏX•s‰Â‚ÈƒXƒŒƒbƒhˆê——‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚·B
+		/// ç¾åœ¨èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹å¤‰æ›´ä¸å¯ãªã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public ReadOnlyCollection<ThreadHeader> Items
 		{
@@ -122,7 +122,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‘O‰ñ“Ç‚İ‚Ü‚ê‚½ƒXƒŒƒbƒhˆê——‚Ì”z—ñ‚ğæ“¾‚µ‚Ü‚·B
+		/// å‰å›èª­ã¿è¾¼ã¾ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®é…åˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public ThreadHeader[] OldItems {
 			get {
@@ -131,7 +131,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒAƒCƒeƒ€ƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚Ü‚·B
+		/// é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract ReadOnlyCollection<ThreadHeader> SelectedItems
 		{
@@ -139,24 +139,24 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// €–Ú‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«‚É”­¶‚µ‚Ü‚·B
+		/// é …ç›®ãŒé¸æŠã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚
 		/// </summary>
 		public event EventHandler<ThreadListEventArgs> Selected;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ª•Â‚¶‚ç‚ê‚½‚Æ‚«‚É”­¶‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‰ã˜ã‚‰ã‚ŒãŸã¨ãã«ç™ºç”Ÿã—ã¾ã™ã€‚
 		/// </summary>
 		public event EventHandler Closed;
 
 		/// <summary>
-		/// ThreadListControlƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// ThreadListControlã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
 		/// <param name="cache"></param>
 		protected ThreadListControl(Cache cache) : base(cache)
 		{
 			headerList = new List<ThreadHeader>();
 
-			// ƒIƒtƒ‰ƒCƒ“—p‚ÌƒŠ[ƒ_[‚ğì¬
+			// ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ç”¨ã®ãƒªãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
 			offlineReader = new OfflineThreadListReader(cache);
 
 			oldItems = new ThreadHeader[0];
@@ -169,7 +169,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚É‘Î‰‚·‚éƒŠ[ƒ_[‚ğì¬‚µAŠJ‚«‚Ü‚·B
+		/// æŒ‡å®šã—ãŸæ¿ã«å¯¾å¿œã™ã‚‹ãƒªãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã—ã€é–‹ãã¾ã™ã€‚
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -198,7 +198,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ“Ç‚İ‚İAisó‘Ô‚ğ’Ê’m‚µ‚Ü‚·B
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã€é€²è¡ŒçŠ¶æ…‹ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
 		/// </summary>
 		private List<ThreadHeader> Reading()
 		{
@@ -216,7 +216,7 @@ namespace Twin
 					baseReader.Length, baseReader.Position, read));
 
 				OnStatusTextChanged(
-					String.Format("{0}”Â óM’† ({1}/{2})",
+					String.Format("{0}æ¿ å—ä¿¡ä¸­ ({1}/{2})",
 						boardInfo.Name, baseReader.Position, baseReader.Length));
 			}
 
@@ -224,11 +224,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// •ÊƒXƒŒƒbƒh‚Æ‚µ‚ÄóMˆ—‚ğs‚¤ƒƒ\ƒbƒh‚Å‚·B
+		/// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã—ã¦å—ä¿¡å‡¦ç†ã‚’è¡Œã†ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚
 		/// </summary>
 		private void OpenInternal()
 		{
-			// Š®—¹ó‘Ô‚ğ•\‚·
+			// å®Œäº†çŠ¶æ…‹ã‚’è¡¨ã™
 			CompleteStatus status = CompleteStatus.Success;
 
 			List<ThreadHeader> items = null;
@@ -274,7 +274,7 @@ namespace Twin
 				if (status == CompleteStatus.Success)
 				{
 					OnStatusTextChanged(
-						String.Format("{0}”Â‚Ì“Ç‚İ‚İ‚ğŠ®—¹ (‘”: {1})",
+						String.Format("{0}æ¿ã®èª­ã¿è¾¼ã¿ã‚’å®Œäº† (ç·æ•°: {1})",
 							boardInfo.Name, headerList.Count));
 				}
 			}
@@ -290,7 +290,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ClosedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚Ü‚·B
+		/// Closedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnClosed(EventArgs e)
@@ -300,7 +300,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚ÌóM—pƒXƒŒƒbƒh‚ğ‹N“®‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®å—ä¿¡ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•ã—ã¾ã™ã€‚
 		/// </summary>
 		protected void ThreadRun()
 		{
@@ -312,7 +312,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// SelectedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚Ü‚·B
+		/// Selectedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnSelected(ThreadListEventArgs e)
@@ -322,7 +322,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Â‚ªˆÚ“]‚³‚ê‚Ä‚¢‚½Û‚ÉŒÄ‚Î‚ê‚Ü‚·B
+		/// æ¿ãŒç§»è»¢ã•ã‚Œã¦ã„ãŸéš›ã«å‘¼ã°ã‚Œã¾ã™ã€‚
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -331,31 +331,31 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒwƒbƒ_‚ğ‚ÂƒAƒCƒeƒ€‚ğXV‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ã‚’æŒã¤ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ›´æ–°ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="header"></param>
 		public abstract void UpdateItem(ThreadHeader header);
 
 		/// <summary>
-		/// ‘‚«‚İŠJn‘O‚ÉŒÄ‚Î‚ê‚éŠÖ”‚Å‚·B
+		/// æ›¸ãè¾¼ã¿é–‹å§‹å‰ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã™ã€‚
 		/// </summary>
 		protected virtual void WriteBegin()
 		{}
 
 		/// <summary>
-		/// ‘‚«‚İŠ®—¹‚ÉŒÄ‚Î‚ê‚éŠÖ”‚Å‚·B
+		/// æ›¸ãè¾¼ã¿å®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã™ã€‚
 		/// </summary>
 		protected virtual void WriteEnd()
 		{}
 
 		/// <summary>
-		/// Œp³æ‚ÅAitems ‚ğ•\¦‚·‚éˆ—‚ğ‹Lq‚µ‚Ü‚·B
+		/// ç¶™æ‰¿å…ˆã§ã€items ã‚’è¡¨ç¤ºã™ã‚‹å‡¦ç†ã‚’è¨˜è¿°ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="items"></param>
 		protected abstract void Write(List<ThreadHeader> items);
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ğŠJ‚«AƒXƒŒƒbƒhˆê——‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸæ¿ã‚’é–‹ãã€ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="board"></param>
 		public virtual void Open(BoardInfo board)
@@ -364,7 +364,7 @@ namespace Twin
 				throw new ArgumentNullException("board");
 			}
 			if (IsReading)
-				throw new InvalidOperationException("ƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚İ’†‚Å‚·");
+				throw new InvalidOperationException("ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã™");
 
 			if (IsOpen)
 				Close();
@@ -372,14 +372,14 @@ namespace Twin
 			isOpen = true;
 			boardInfo = board;
 
-			// ŠJ‚­ˆ—‚ğs‚¤
-			OnStatusTextChanged(board.Name + "”Â‚ğŠJ‚¢‚Ä‚¢‚Ü‚·");
+			// é–‹ãå‡¦ç†ã‚’è¡Œã†
+			OnStatusTextChanged(board.Name + "æ¿ã‚’é–‹ã„ã¦ã„ã¾ã™");
 
 			ThreadRun();
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚ğÅV‚Ìó‘Ô‚ÉXV‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’æœ€æ–°ã®çŠ¶æ…‹ã«æ›´æ–°ã—ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Reload()
 		{
@@ -391,7 +391,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚Ì“Ç‚İ‚İ‚ğ’†~‚µ‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®èª­ã¿è¾¼ã¿ã‚’ä¸­æ­¢ã—ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Stop()
 		{
@@ -404,12 +404,12 @@ namespace Twin
 					baseReader.Cancel();
 
 				thread = null;
-				OnStatusTextChanged(boardInfo.Name + "”Â‚Ì“Ç‚ğ’†~");
+				OnStatusTextChanged(boardInfo.Name + "æ¿ã®èª­è¾¼ã‚’ä¸­æ­¢");
 			}
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒhˆê——‚ğ•Â‚¶‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’é–‰ã˜ã¾ã™ã€‚
 		/// </summary>
 		public virtual void Close()
 		{
@@ -434,20 +434,20 @@ namespace Twin
 		//-------------------------------
 
 		/// <summary>
-		/// Œ»İ‚ÌƒŠƒXƒg‚ÉƒAƒCƒeƒ€‚ğ’Ç‰ÁB
-		/// ƒŠƒXƒg‚ğ“Ç‚İ‚ñ‚Å‚¢‚éÅ’†‚É‚±‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ô‚Æ—áŠO‚ğ“Š‚°‚éB
+		/// ç¾åœ¨ã®ãƒªã‚¹ãƒˆã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã€‚
+		/// ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹æœ€ä¸­ã«ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã¶ã¨ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
 		/// </summary>
 		/// <param name="items"></param>
 		public virtual void AddItems(List<ThreadHeader> items)
 		{
 			if (boardInfo == null) {
-				throw new InvalidOperationException("”Â‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("æ¿ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 			if (items == null) {
 				throw new ArgumentNullException("items");
 			}
 			if (IsReading) {
-				throw new InvalidOperationException("ƒŠƒXƒg‚ğ“Ç‚İ‚İ’†‚Å‚·");
+				throw new InvalidOperationException("ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã™");
 			}
 
 			headerList.AddRange(items);
@@ -455,7 +455,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// •\¦‚³‚ê‚Ä‚¢‚éƒŠƒXƒgˆê——‚©‚çw’è‚³‚ê‚½ƒXƒŒƒbƒh‚ğíœ
+		/// è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒªã‚¹ãƒˆä¸€è¦§ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="items"></param>
 		public virtual void RemoveItems(List<ThreadHeader> items)
@@ -464,8 +464,8 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒŠƒXƒg‚ğ•Â‚¶‚ÄAw’è‚µ‚½ƒŠƒXƒgİ’èB
-		/// ƒŠƒXƒg‚ğ“Ç‚İ‚ñ‚Å‚¢‚éÅ’†‚É‚±‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ô‚Æ—áŠO‚ğ“Š‚°‚éB
+		/// ç¾åœ¨ã®ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã¦ã€æŒ‡å®šã—ãŸãƒªã‚¹ãƒˆè¨­å®šã€‚
+		/// ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹æœ€ä¸­ã«ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã¶ã¨ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
 		/// </summary>
 		/// <param name="items"></param>
 		public virtual void SetItems(BoardInfo board, List<ThreadHeader> items)
@@ -477,7 +477,7 @@ namespace Twin
 				throw new ArgumentNullException("items");
 			}
 			if (IsReading) {
-				throw new InvalidOperationException("ƒŠƒXƒg‚ğ“Ç‚İ‚İ’†‚Å‚·");
+				throw new InvalidOperationException("ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã™");
 			}
 
 			if (IsOpen)
@@ -493,21 +493,21 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Œp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh‚³‚ê‚ê‚ÎA•\¦’†‚ÌƒXƒŒƒbƒhˆê——‚ğˆóü
+		/// ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã•ã‚Œã‚Œã°ã€è¡¨ç¤ºä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’å°åˆ·
 		/// </summary>
 		public virtual void Print()
 		{
-			throw new NotSupportedException("ˆóü‚ÍƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+			throw new NotSupportedException("å°åˆ·ã¯ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ã¾ã›ã‚“");
 		}
 
 //		/// <summary>
-//		/// w’è‚µ‚½”Â‚Ì‘‚«‚İ—š—ğˆê——‚ğ•\¦
+//		/// æŒ‡å®šã—ãŸæ¿ã®æ›¸ãè¾¼ã¿å±¥æ­´ä¸€è¦§ã‚’è¡¨ç¤º
 //		/// </summary>
 //		/// <param name="board"></param>
 //		public abstract void OpenHistory(BoardInfo board);
 
 		/// <summary>
-		/// ŒŸõ‚·‚é‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·
+		/// æ¤œç´¢ã™ã‚‹ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™
 		/// </summary>
 		/// <returns></returns>
 		public abstract AbstractSearcher BeginSearch();

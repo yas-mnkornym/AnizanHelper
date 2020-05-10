@@ -12,12 +12,12 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// Šù“¾ƒXƒŒƒbƒhˆê——‚ÌƒCƒ“ƒfƒbƒNƒX‚ğì¬EŠÇ—‚·‚é
+	/// æ—¢å¾—ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆãƒ»ç®¡ç†ã™ã‚‹
 	/// </summary>
 	public class GotThreadListIndexer
 	{
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒCƒ“ƒfƒbƒNƒX•Û‘¶æƒpƒX‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¿å­˜å…ˆãƒ‘ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="board"></param>
@@ -40,7 +40,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌŠù“¾ƒCƒ“ƒfƒbƒNƒX‚ğ“Ç‚İ‚Ş
+		/// æŒ‡å®šã—ãŸæ¿ã®æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="board"></param>
@@ -97,7 +97,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒCƒ“ƒfƒbƒNƒX‚ğì¬
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="board"></param>
@@ -120,7 +120,7 @@ namespace Twin
 			string indicesPath =
 				GetIndicesPath(cache, board);
 
-			// ƒwƒbƒ_î•ñ‚ğ‘®‰»‚µ‚Äƒtƒ@ƒCƒ‹‚É•Û‘¶
+			// ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’æ›¸å¼åŒ–ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 			ThreadListFormatter formatter = new GotThreadListFormatter();
 
 			lock (typeof(GotThreadListIndexer))
@@ -130,7 +130,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒX‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="header"></param>
@@ -158,7 +158,7 @@ namespace Twin
 					if (node != null)
 						document.DocumentElement.RemoveChild(node);
 
-					// ‚P‚Â‚à—v‘f‚ª–³‚­‚È‚Á‚½‚çƒtƒ@ƒCƒ‹©‘Ì‚ğíœ
+					// ï¼‘ã¤ã‚‚è¦ç´ ãŒç„¡ããªã£ãŸã‚‰ãƒ•ã‚¡ã‚¤ãƒ«è‡ªä½“ã‚’å‰Šé™¤
 					if (document.DocumentElement.ChildNodes.Count == 0)
 					{
 						File.Delete(indicesPath);
@@ -177,7 +177,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒX‚ğì¬
+		/// æŒ‡å®šã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="header"></param>
@@ -204,26 +204,26 @@ namespace Twin
 					XmlNode node = document.SelectSingleNode("indices/item[@key=\"" + header.Key + "\"]");
 					if (node != null)
 					{
-						// ƒŒƒX”‚ğXV
+						// ãƒ¬ã‚¹æ•°ã‚’æ›´æ–°
 						node.SelectSingleNode("resCount").InnerText = header.ResCount.ToString();
 						overwrite = true;
 					}
 				}
 				else
 				{
-					// ƒ‹[ƒg‚ğì¬
+					// ãƒ«ãƒ¼ãƒˆã‚’ä½œæˆ
 					document.AppendChild(
 						document.CreateElement("indices"));
 				}
 
-				// ‘¶İ‚µ‚È‚¯‚ê‚ÎV‚µ‚­ì¬
+				// å­˜åœ¨ã—ãªã‘ã‚Œã°æ–°ã—ãä½œæˆ
 				if (!overwrite)
 				{
 					GotThreadListFormatter formatter = new GotThreadListFormatter();
 					formatter.AppendChild(document, document.DocumentElement, header);
 				}
 
-				// ƒhƒLƒ…ƒƒ“ƒg‚ğ•Û‘¶
+				// ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’ä¿å­˜
 				XmlTextWriter writer = new XmlTextWriter(indicesPath, TwinDll.DefaultEncoding);
 				writer.Formatting = Formatting.Indented;
 

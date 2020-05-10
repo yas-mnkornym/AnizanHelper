@@ -5,16 +5,16 @@ namespace Twin.IO
 	using System;
 
 	/// <summary>
-	/// �X�g���[�W���J���ۂ̓����\��
+	/// ストレージを開く際の動作を表す
 	/// </summary>
 	public enum StorageMode
 	{
 		/// <summary>
-		/// �ǂݍ��ݗp�ɊJ��
+		/// 読み込み用に開く
 		/// </summary>
 		Read,
 		/// <summary>
-		/// �������݂悤�ɊJ��
+		/// 書き込みように開く
 		/// </summary>
 		Write,
 	}

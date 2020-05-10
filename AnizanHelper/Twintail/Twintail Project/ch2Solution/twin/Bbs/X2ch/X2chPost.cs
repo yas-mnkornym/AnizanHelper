@@ -13,7 +13,7 @@ namespace Twin.Bbs
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ‚Q‚¿‚á‚ñ‚Ë‚é‚É“Še‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// ï¼’ã¡ã‚ƒã‚“ã­ã‚‹ã«æŠ•ç¨¿ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chPost : PostBase
 	{
@@ -28,33 +28,33 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚Ì“Še‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã®æŠ•ç¨¿ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public override bool CanPostThread {
 			get { return true; }
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚Ì“Še‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		/// ãƒ¬ã‚¹ã®æŠ•ç¨¿ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		/// </summary>
 		public override bool CanPostRes {
 			get { return true; }
 		}
 
 		/// <summary>
-		/// “Še‚ÌƒT[ƒo[‚©‚ç‚ÌƒŒƒXƒ|ƒ“ƒX‚ğ•\‚·’l‚ğæ“¾
+		/// æŠ•ç¨¿æ™‚ã®ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’è¡¨ã™å€¤ã‚’å–å¾—
 		/// </summary>
 		public override PostResponse Response {
 			get { return response; }
 		}
 
 		/// <summary>
-		/// X2chPostƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chPostã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chPost()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			sendBeID = false;
 			postCGIPath = "test/bbs.cgi";
@@ -68,29 +68,29 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚ğ“Še
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(BoardInfo board, PostThread thread)
 		{
 			try {
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(Time);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				bool retried = false;
 Retry:
 				if (retried)
 					Thread.Sleep(1000);
 
-				// CGI‚Ì‘¶İ‚·‚éURL‚ğì¬
+				// CGIã®å­˜åœ¨ã™ã‚‹URLã‚’ä½œæˆ
 				string uri = String.Format("http://{0}/{1}", board.Server, postCGIPath);
 
 				StringBuilder sb = new StringBuilder();
 				sb.Append("subject=" + UrlEncode(thread.Subject));
-//				sb.Append("&submit=" + (retried ? UrlEncode("‘SÓ”C‚ğ•‰‚¤‚±‚Æ‚ğ³‘ø‚µ‚Ä‘‚«‚Ş") : UrlEncode("V‹KƒXƒŒƒbƒhì¬")));
-				sb.Append("&submit=" + UrlEncode("V‹KƒXƒŒƒbƒhì¬"));
+//				sb.Append("&submit=" + (retried ? UrlEncode("å…¨è²¬ä»»ã‚’è² ã†ã“ã¨ã‚’æ‰¿è«¾ã—ã¦æ›¸ãè¾¼ã‚€") : UrlEncode("æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆ")));
+				sb.Append("&submit=" + UrlEncode("æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆ"));
 				sb.Append("&FROM=" + UrlEncode(thread.From));
 				sb.Append("&mail=" + UrlEncode(thread.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(thread.Body));
@@ -124,10 +124,10 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ“Še
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(ThreadHeader header, PostRes res)
 		{
 			if (header == null) {
@@ -135,10 +135,10 @@ Retry:
 			}
 
 			try {
-				// “Še‚ğì¬
+				// æŠ•ç¨¿æ™‚åˆ»ã‚’ä½œæˆ
 				int time = GetTime(header.LastModified);
 
-				// ‘—Mƒf[ƒ^‚ğì¬
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 				bool retried = false;
 Retry:
 				if (retried)
@@ -146,8 +146,8 @@ Retry:
 
 				string uri = String.Format("http://{0}/{1}", header.BoardInfo.Server, postCGIPath);
 				StringBuilder sb = new StringBuilder();
-//				sb.Append("submit=" + (retried ? UrlEncode("‘SÓ”C‚ğ•‰‚¤‚±‚Æ‚ğ³‘ø‚µ‚Ä‘‚«‚Ş") : UrlEncode("‘‚«‚Ş")));
-				sb.Append("submit=" + UrlEncode("‘‚«‚Ş"));
+//				sb.Append("submit=" + (retried ? UrlEncode("å…¨è²¬ä»»ã‚’è² ã†ã“ã¨ã‚’æ‰¿è«¾ã—ã¦æ›¸ãè¾¼ã‚€") : UrlEncode("æ›¸ãè¾¼ã‚€")));
+				sb.Append("submit=" + UrlEncode("æ›¸ãè¾¼ã‚€"));
 				sb.Append("&FROM=" + UrlEncode(res.From));
 				sb.Append("&mail=" + UrlEncode(res.Email));
 				sb.Append("&MESSAGE=" + UrlEncode(res.Body));
@@ -174,7 +174,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// data‚ğƒT[ƒo[‚É‘—M‚µƒŒƒXƒ|ƒ“ƒX‚ğ“¾‚é
+		/// dataã‚’ã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡ã—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å¾—ã‚‹
 		/// </summary>
 		/// <param name="data"></param>
 		protected virtual PostResponse Posting(BoardInfo board, byte[] data, string uri, ref bool retried)
@@ -189,10 +189,10 @@ Retry:
 			HttpWebResponse res = null;
 			PostResponseParser parser = null;
 
-			// ƒ^ƒCƒ€ƒAƒEƒg’l
-			const int timeout = 15000; // 15•b
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå€¤
+			const int timeout = 15000; // 15ç§’
 
-			// Äs‚ğs‚¤‚©‚Ç‚¤‚©
+			// å†è©¦è¡Œã‚’è¡Œã†ã‹ã©ã†ã‹
 			bool is_retry = true;
 
 			try
@@ -228,7 +228,7 @@ Retry:
 
 				res = (HttpWebResponse)req.GetResponse();
 
-				// ƒŒƒXƒ|ƒ“ƒX‚ğ‰ğÍ‚·‚é‚½‚ß‚Ìƒp[ƒT‚ğ‰Šú‰»B
+				// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’è§£æã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ¼ã‚µã‚’åˆæœŸåŒ–ã€‚
 				using (TextReader reader = new StreamReader(res.GetResponseStream(), Encoding))
 				{
 					parser = new PostResponseParser(reader.ReadToEnd());
@@ -273,7 +273,7 @@ Retry:
 					board.CookieContainer.Add(res.Cookies);
 				}*/
 
-				// “ŠeƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+				// æŠ•ç¨¿ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 				PostEventArgs e = new PostEventArgs(response, parser.Title,
 					parser.PlainText, null, parser.SambaCount);
 
@@ -294,7 +294,7 @@ Retry:
 					TwinDll.ShowOutput(ex);
 				}
 #endif
-				// ƒ^ƒCƒ€ƒAƒEƒg‚â‚»‚êˆÈŠO‚Ì—áŠO‚ª”­¶‚µ‚½‚ç–³ğŒ‚ÅƒŠƒgƒ‰ƒC‚ğ’†~
+				// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚„ãã‚Œä»¥å¤–ã®ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸã‚‰ç„¡æ¡ä»¶ã§ãƒªãƒˆãƒ©ã‚¤ã‚’ä¸­æ­¢
 				//is_retry = false;
 				OnError(this, new PostErrorEventArgs(ex));
 			}
@@ -302,8 +302,8 @@ Retry:
 				if (res != null)
 					res.Close();
 
-				// ƒNƒbƒL[Šm”F‚È‚Ç‚Å‚ÌÄsˆ—
-				// ¦Šù‚ÉÄs‚³‚ê‚Ä‚¢‚½‚ç–³ŒÀƒ‹[ƒv–h~‚Ì‚½‚ßfalse‚Éİ’è
+				// ã‚¯ãƒƒã‚­ãƒ¼ç¢ºèªãªã©ã§ã®å†è©¦è¡Œå‡¦ç†
+				// â€»æ—¢ã«å†è©¦è¡Œã•ã‚Œã¦ã„ãŸã‚‰ç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢ã®ãŸã‚falseã«è¨­å®š
 				if (retried)
 				{
 					retried = false;
@@ -317,7 +317,7 @@ Retry:
 		}
 		
 		/// <summary>
-		/// “Še‚ğƒLƒƒƒ“ƒZƒ‹ (–¢‘Î‰)
+		/// æŠ•ç¨¿ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ« (æœªå¯¾å¿œ)
 		/// </summary>
 		public override void Cancel()
 		{

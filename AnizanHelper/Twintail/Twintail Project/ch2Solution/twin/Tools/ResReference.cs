@@ -9,18 +9,18 @@ namespace Twin.Tools
 	using Twin.Text;
 
 	/// <summary>
-	/// ƒŒƒXQÆ‚ÉŠÖ˜A‚µ‚½‹@”\‚ğ’ñ‹Ÿ
+	/// ãƒ¬ã‚¹å‚ç…§ã«é–¢é€£ã—ãŸæ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class ResReference
 	{
 		/// <summary>
-		/// QÆƒAƒ“ƒJ[ >>XX ‚ğŒŸõ‚·‚é³‹K•\Œ»
+		/// å‚ç…§ã‚¢ãƒ³ã‚«ãƒ¼ >>XX ã‚’æ¤œç´¢ã™ã‚‹æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex RefAnchor =
-			new Regex(@"(„|&gt;)(?<num>[,\d\-\+]+)", RegexOptions.Compiled);
+			new Regex(@"(ï¼|&gt;)(?<num>[,\d\-\+]+)", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ƒŒƒXQÆ‚Ì”Ô†(—á: 1,2,3,4-5,6+7 Œ`®)‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		/// ãƒ¬ã‚¹å‚ç…§ã®ç•ªå·(ä¾‹: 1,2,3,4-5,6+7 å½¢å¼)ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		/// </summary>
 		public static readonly Regex RefRegex =
 			new Regex(@"(?<num>[,\d\-\+]+)n?$", RegexOptions.Compiled);
@@ -29,8 +29,8 @@ namespace Twin.Tools
 			new Regex(@"(?<num>\d+\-?\d*)$", RegexOptions.Compiled);
 
 		/// <summary>
-		/// text“à‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒŒƒXQÆ‚Ì”Ô†‚ğ‚·‚×‚Ä”’l”z—ñ‚É•ÏŠ·
-		/// (—á: http://.../10-20 ¨ 10,11,12...20)
+		/// textå†…ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ¬ã‚¹å‚ç…§ã®ç•ªå·ã‚’ã™ã¹ã¦æ•°å€¤é…åˆ—ã«å¤‰æ›
+		/// (ä¾‹: http://.../10-20 â†’ 10,11,12...20)
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -40,7 +40,7 @@ namespace Twin.Tools
 				throw new ArgumentNullException("text");
 			}
 
-			if (Regex.IsMatch(text, @"/\d{5,}/?$") || Regex.IsMatch(text, "(=|l)\\d+$"))// "/50l" ‚È‚Ç‚Í–³‹‚·‚é
+			if (Regex.IsMatch(text, @"/\d{5,}/?$") || Regex.IsMatch(text, "(=|l)\\d+$"))// "/50l" ãªã©ã¯ç„¡è¦–ã™ã‚‹
 				return (new int[0]);
 
 			ArrayList list = new ArrayList();
@@ -59,11 +59,11 @@ namespace Twin.Tools
 					{
 						int st=0, ed=0;
 
-						// ”š‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+						// æ•°å­—ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 						if (Int32.TryParse(array[0], out st))
 						{
-							// "100-" (100”Ô–ÚˆÈ~) ‚Æ‚¢‚¤”š‚Ìê‡Aarray[1] ‚É‚Í‹ó•¶š—ñ‚ªŠi”[‚³‚ê‚éB
-							// ‚±‚ÌŒ`®‚Ìê‡‚Í 100”Ô–Ú‚©‚çÅŒã‚ÌƒŒƒX(1001”Ô–Ú)‚Ü‚Å‚ğŠÜ‚ß‚é‚æ‚¤‚É‚·‚é
+							// "100-" (100ç•ªç›®ä»¥é™) ã¨ã„ã†æ•°å­—ã®å ´åˆã€array[1] ã«ã¯ç©ºæ–‡å­—åˆ—ãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
+							// ã“ã®å½¢å¼ã®å ´åˆã¯ 100ç•ªç›®ã‹ã‚‰æœ€å¾Œã®ãƒ¬ã‚¹(1001ç•ªç›®)ã¾ã§ã‚’å«ã‚ã‚‹ã‚ˆã†ã«ã™ã‚‹
 							if (array[1] == String.Empty)
 								ed = 1001;
 							else

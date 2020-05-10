@@ -8,38 +8,38 @@ namespace Twin
 	using Twin.Text;
 
 	/// <summary>
-	/// ƒeƒLƒXƒgŒ`®‚ÌƒXƒLƒ“‚ğ•\‚·
+	/// ãƒ†ã‚­ã‚¹ãƒˆå½¢å¼ã®ã‚¹ã‚­ãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	public class PlainTextSkin : StandardHtmlSkin
 	{
 		/// <summary>
-		/// ƒfƒtƒHƒ‹ƒg‚ÌƒeƒLƒXƒgƒXƒLƒ“‚ğ•\‚·
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ†ã‚­ã‚¹ãƒˆã‚¹ã‚­ãƒ³ã‚’è¡¨ã™
 		/// </summary>
 		public static readonly PlainTextSkin Default = new PlainTextSkin();
 
 		private StringBuilder buffer = new StringBuilder(128);
 
 		/// <summary>
-		/// ƒXƒLƒ“–¼‚ğæ“¾
+		/// ã‚¹ã‚­ãƒ³åã‚’å–å¾—
 		/// </summary>
 		public override string Name {
 			get { return "plainskin"; }
 		}
 
 		/// <summary>
-		/// PlainTextSkinƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PlainTextSkinã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public PlainTextSkin() : base()
 		{
 			headerSkin = String.Empty;
 			footerSkin = String.Empty;
-			resSkin = "<PLAINNUMBER/> –¼‘OF<NAME/> [<MAIL/>] <DATE/>\r\n<MESSAGE/>";
-			newResSkin = "<PLAINNUMBER/> –¼‘OF<NAME/> [<MAIL/>] <DATE/>\r\n<MESSAGE/>";
+			resSkin = "<PLAINNUMBER/> åå‰ï¼š<NAME/> [<MAIL/>] <DATE/>\r\n<MESSAGE/>";
+			newResSkin = "<PLAINNUMBER/> åå‰ï¼š<NAME/> [<MAIL/>] <DATE/>\r\n<MESSAGE/>";
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ResSet‚ğ
-		/// İ’è‚³‚ê‚Ä‚¢‚éƒXƒLƒ“‚ğg—p‚µ‚Ä•¶š—ñŒ`®‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸResSetã‚’
+		/// è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚¹ã‚­ãƒ³ã‚’ä½¿ç”¨ã—ã¦æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <returns></returns>
@@ -48,7 +48,7 @@ namespace Twin
 			if (!resSet.Visible)
 				return String.Empty;
 
-			if (resSet.DateString == "“§–¾‚ ‚Ú[‚ñ")
+			if (resSet.DateString == "é€æ˜ã‚ã¼ãƒ¼ã‚“")
 				return String.Empty;
 
 			/*
@@ -57,24 +57,24 @@ namespace Twin
 				resSet.Email = String.Empty;
 			}*/
 
-			// g—p‚·‚éƒXƒLƒ“
+			// ä½¿ç”¨ã™ã‚‹ã‚¹ã‚­ãƒ³
 			string skinhtml = resSet.IsNew ? newResSkin : resSkin;
 			string dateonly, body;
 
-			// –{•ª‚©‚çtag‚ğæ‚èœ‚­
+			// æœ¬åˆ†ã‹ã‚‰tagã‚’å–ã‚Šé™¤ã
 			body = resSet.Body;
 			body = Regex.Replace(body, "<a[^>]+>(?<uri>[^<]*)</a>", "${uri}", RegexOptions.IgnoreCase);
 			body = Regex.Replace(body, "<(?!br|hr)[^>]+>", "");
 
 			buffer.Append(body);
 			buffer.Replace("<br>", "\r\n");
-			buffer.Replace("<hr>", "\r\n \\\\\\\\\\\\\\\\\\\\\r\n");
+			buffer.Replace("<hr>", "\r\n â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•â€•\r\n");
 			buffer.Replace("&gt;", ">");
 			buffer.Replace("&lt;", "<");
 			body = buffer.ToString();
 			buffer.Remove(0, buffer.Length);
 
-			#region “ú•t‚ÆID‚ğì¬
+			#region æ—¥ä»˜ã¨IDã‚’ä½œæˆ
 			dateonly = resSet.DateString;
 			Match m = Regex.Match(resSet.DateString, "( ID:)|(\\[)");
 

@@ -11,13 +11,13 @@ namespace CSharpSamples
 	using System.Text;
 
 	/// <summary>
-	/// Windows‚Ìiniƒtƒ@ƒCƒ‹Œ`®‚ğ“Ç‚İ‘‚«‚·‚éƒNƒ‰ƒXB
-	/// ‹ó‚Ì‰üs‚âƒRƒƒ“ƒgAİ’è‚Ì‡”Ô‚Í‚»‚Ì‚Ü‚ÜˆÛ‚·‚é‚æ‚¤‚É•ÏXB
+	/// Windowsã®iniãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã‚’èª­ã¿æ›¸ãã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+	/// ç©ºã®æ”¹è¡Œã‚„ã‚³ãƒ¡ãƒ³ãƒˆã€è¨­å®šã®é †ç•ªã¯ãã®ã¾ã¾ç¶­æŒã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 	/// 
-	/// —á
+	/// ä¾‹
 	/// -------------------------
 	/// #
-	/// # ƒRƒƒ“ƒg‚Å‚·
+	/// # ã‚³ãƒ¡ãƒ³ãƒˆã§ã™
 	/// #
 	/// [section1]
 	/// key1=value1
@@ -29,7 +29,7 @@ namespace CSharpSamples
 		private CSPrivateProfileSectionCollection sections = null;
 
 		/// <summary>
-		/// ƒZƒNƒVƒ‡ƒ“‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public CSPrivateProfileSectionCollection Sections
 		{
@@ -40,18 +40,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSPrivateProfileƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSPrivateProfileã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CSPrivateProfile()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.sections = new CSPrivateProfileSectionCollection();
 		}
 
 		/// <summary>
-		/// text‚ªƒZƒNƒVƒ‡ƒ“‚©‚Ç‚¤‚©‚ğ”»’f
+		/// textãŒã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
@@ -72,8 +72,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒZƒNƒVƒ‡ƒ“î•ñ‚ğƒNƒŠƒA‚µ‚ÄAƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
-		/// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¯‚ê‚Î‚È‚É‚à‚µ‚È‚¢B
+		/// ç¾åœ¨ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°ãªã«ã‚‚ã—ãªã„ã€‚
 		/// </summary>
 		/// <param name="filePath"></param>
 		public virtual void Read(string filePath)
@@ -140,7 +140,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		public virtual void Write(string filePath)
@@ -191,7 +191,7 @@ namespace CSharpSamples
 		{
 			foreach (string text in comments)
 			{
-				// null ‚Ìê‡‚Í‰üs‚Ì‚İ
+				// null ã®å ´åˆã¯æ”¹è¡Œã®ã¿
 				if (text == null)
 				{
 					w.WriteLine();
@@ -205,7 +205,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒZƒNƒVƒ‡ƒ“‚ğíœ
+		/// ã™ã¹ã¦ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
 		/// </summary>
 		public void RemoveAll()
 		{
@@ -213,7 +213,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚Ìw’è‚µ‚½ƒL[‚É’l‚ğİ’è
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã—ãŸã‚­ãƒ¼ã«å€¤ã‚’è¨­å®š
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -244,7 +244,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// byte[]Œ^ƒf[ƒ^‚ğbase64‚ÉƒGƒ“ƒR[ƒhŒã‚É’l‚ğİ’è
+		/// byte[]å‹ãƒ‡ãƒ¼ã‚¿ã‚’base64ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å¾Œã«å€¤ã‚’è¨­å®š
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -256,7 +256,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éstring’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹stringå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -284,18 +284,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// •¶š—ñŒ^‚Ì’l‚ğæ“¾
+		/// æ–‡å­—åˆ—å‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™</returns>
 		public string GetString(string section, string key)
 		{
 			return this.GetString(section, key, null);
 		}
 
 		/// <summary>
-		/// •¶š—ñŒ^‚Ì’l‚ğæ“¾
+		/// æ–‡å­—åˆ—å‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -308,18 +308,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éint’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹intå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í0‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯0ã‚’è¿”ã™</returns>
 		public int GetInt(string section, string key)
 		{
 			return this.GetInt(section, key, 0);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éint’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹intå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -332,18 +332,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚ébool’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹boolå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>‘å‰Í‘¶İ‚µ‚È‚¢ê‡‚Í false ‚ğ•Ô‚·</returns>
+		/// <returns>å¤§æ²³å­˜åœ¨ã—ãªã„å ´åˆã¯ false ã‚’è¿”ã™</returns>
 		public bool GetBool(string section, string key)
 		{
 			return this.GetBool(section, key, false);
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚ébool’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹boolå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -356,11 +356,11 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éfloat’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹floatå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í0‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯0ã‚’è¿”ã™</returns>
 		public float GetFloat(string section, string key)
 		{
 			return this.GetFloat(section, key, 0.0f);
@@ -368,7 +368,7 @@ namespace CSharpSamples
 
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éfloat’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹floatå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -381,18 +381,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// charŒ^‚Ì’l‚ğæ“¾
+		/// charå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í\0‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯\0ã‚’è¿”ã™</returns>
 		public char GetChar(string section, string key)
 		{
 			return this.GetChar(section, key, '\0');
 		}
 
 		/// <summary>
-		/// charŒ^‚Ì’l‚ğæ“¾
+		/// charå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -405,18 +405,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// byteŒ^‚Ì’l‚ğæ“¾
+		/// byteå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í0‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯0ã‚’è¿”ã™</returns>
 		public byte GetByte(string section, string key)
 		{
 			return this.GetByte(section, key, 0);
 		}
 
 		/// <summary>
-		/// byteŒ^‚Ì’l‚ğæ“¾
+		/// byteå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -429,18 +429,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// DateTimeŒ^‚Ì’l‚ğæ“¾
+		/// DateTimeå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í DateTime.MinValue ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ DateTime.MinValue ã‚’è¿”ã™</returns>
 		public DateTime GetDateTime(string section, string key)
 		{
 			return this.GetDateTime(section, key, DateTime.MinValue);
 		}
 
 		/// <summary>
-		/// DateTimeŒ^‚Ì’l‚ğæ“¾
+		/// DateTimeå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -463,18 +463,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// PointŒ^‚Ì’l‚ğæ“¾
+		/// Pointå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í Point.Empty ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ Point.Empty ã‚’è¿”ã™</returns>
 		public Point GetPoint(string section, string key)
 		{
 			return this.GetPoint(section, key, Point.Empty);
 		}
 
 		/// <summary>
-		/// PointŒ^‚Ì’l‚ğæ“¾
+		/// Pointå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -496,18 +496,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// SizeŒ^‚Ì’l‚ğæ“¾
+		/// Sizeå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í Size.Empty ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ Size.Empty ã‚’è¿”ã™</returns>
 		public Size GetSize(string section, string key)
 		{
 			return this.GetSize(section, key, Size.Empty);
 		}
 
 		/// <summary>
-		/// SizeŒ^‚Ì’l‚ğæ“¾
+		/// Sizeå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -529,18 +529,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// RectangleŒ^‚Ì’l‚ğæ“¾
+		/// Rectangleå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í Rectangle.Empty ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ Rectangle.Empty ã‚’è¿”ã™</returns>
 		public Rectangle GetRect(string section, string key)
 		{
 			return this.GetRect(section, key, Rectangle.Empty);
 		}
 
 		/// <summary>
-		/// RectangleŒ^‚Ì’l‚ğæ“¾
+		/// Rectangleå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -562,18 +562,18 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ColorŒ^‚Ì’l‚ğæ“¾
+		/// Colorå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í Color.Empty ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ Color.Empty ã‚’è¿”ã™</returns>
 		public Color GetColor(string section, string key)
 		{
 			return this.GetColor(section, key, Color.Empty);
 		}
 
 		/// <summary>
-		/// ColorŒ^‚Ì’l‚ğæ“¾
+		/// Colorå‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -595,12 +595,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// —ñ‹“Œ^‚Ì’l‚ğæ“¾
+		/// åˆ—æŒ™å‹ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
 		/// <param name="def"></param>
-		/// <returns>’l‚ª‘¶İ‚µ‚È‚¢ê‡‚Í def ‚ğ•Ô‚·</returns>
+		/// <returns>å€¤ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯ def ã‚’è¿”ã™</returns>
 		public Enum GetEnum(string section, string key, Enum def)
 		{
 			string val = this.GetValueInternal(section, key);
@@ -617,8 +617,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// base64‚Ì”š‚Å\¬‚³‚ê‚½’l‚ğbyte[]Œ^‚É•ÏŠ·‚µ‚Äæ“¾B
-		/// ƒZƒNƒVƒ‡ƒ“‚Ü‚½‚ÍƒL[‚ª‘¶İ‚µ‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
+		/// base64ã®æ•°å­—ã§æ§‹æˆã•ã‚ŒãŸå€¤ã‚’byte[]å‹ã«å¤‰æ›ã—ã¦å–å¾—ã€‚
+		/// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¾ãŸã¯ã‚­ãƒ¼ãŒå­˜åœ¨ã—ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -630,7 +630,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÌƒL[‚É’l‚ğİ’è
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼ã«å€¤ã‚’è¨­å®š
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -642,7 +642,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÌƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éstring’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹stringå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -658,7 +658,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ÌƒL[‚Éİ’è‚³‚ê‚Ä‚¢‚éint’l‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹intå€¤ã‚’å–å¾—
 		/// </summary>
 		/// <param name="section"></param>
 		/// <param name="key"></param>
@@ -672,7 +672,7 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// CSPrivateProfile‚ÌƒZƒNƒVƒ‡ƒ“‚ğ•\‚·
+	/// CSPrivateProfileã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¡¨ã™
 	/// </summary>
 	public class CSPrivateProfileSection : IEnumerable
 	{
@@ -681,7 +681,7 @@ namespace CSharpSamples
 		private List<string> comments;
 
 		/// <summary>
-		/// “o˜^‚³‚ê‚Ä‚¢‚éƒL[”‚ğæ“¾
+		/// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ¼æ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count
 		{
@@ -700,7 +700,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚Ì’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã®å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string this[string key]
 		{
@@ -734,7 +734,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒZƒNƒVƒ‡ƒ“–¼‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚»ã‚¯ã‚·ãƒ§ãƒ³åã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name
 		{
@@ -751,7 +751,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒL[‚ğæ“¾
+		/// ã™ã¹ã¦ã®ã‚­ãƒ¼ã‚’å–å¾—
 		/// </summary>
 		public List<string> Keys
 		{
@@ -765,7 +765,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚Ì’l‚ğæ“¾
+		/// ã™ã¹ã¦ã®å€¤ã‚’å–å¾—
 		/// </summary>
 		public List<string> Values
 		{
@@ -779,7 +779,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSPrivateProfileSectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSPrivateProfileSectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CSPrivateProfileSection()
 		{
@@ -789,9 +789,9 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSPrivateProfileSectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSPrivateProfileSectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="name">ƒZƒNƒVƒ‡ƒ“–¼</param>
+		/// <param name="name">ã‚»ã‚¯ã‚·ãƒ§ãƒ³å</param>
 		public CSPrivateProfileSection(string name) : this()
 		{
 			this.name = name;
@@ -832,7 +832,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -851,14 +851,14 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// CSPrivateProfileSection‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—
+	/// CSPrivateProfileSectionã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†
 	/// </summary>
 	public class CSPrivateProfileSectionCollection : System.Collections.IEnumerable
 	{
 		private List<CSPrivateProfileSection> sections;
 
 		/// <summary>
-		/// “o˜^‚³‚ê‚Ä‚¢‚éƒZƒNƒVƒ‡ƒ“”‚ğæ“¾
+		/// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚»ã‚¯ã‚·ãƒ§ãƒ³æ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count
 		{
@@ -869,7 +869,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ğ‚ÂƒZƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã‚’æŒã¤ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public CSPrivateProfileSection this[string key]
 		{
@@ -890,7 +890,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// CSPrivateProfileSectionCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CSPrivateProfileSectionCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public CSPrivateProfileSectionCollection()
 		{
@@ -898,7 +898,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒZƒNƒVƒ‡ƒ“‚ğ’Ç‰Á
+		/// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
@@ -913,7 +913,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒZƒNƒVƒ‡ƒ“‚Ì”z—ñ‚ğ’Ç‰Á
+		/// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®é…åˆ—ã‚’è¿½åŠ 
 		/// </summary>
 		/// <param name="array"></param>
 		public void AddRange(CSPrivateProfileSection[] array)
@@ -927,7 +927,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒL[‚ğ‚ÂƒZƒNƒVƒ‡ƒ“‚ğíœ
+		/// æŒ‡å®šã—ãŸã‚­ãƒ¼ã‚’æŒã¤ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
 		/// </summary>
 		/// <param name="key"></param>
 		public void Remove(string key)
@@ -939,7 +939,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒZƒNƒVƒ‡ƒ“‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// æŒ‡å®šã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
@@ -952,7 +952,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‚·‚×‚Ä‚ÌƒZƒNƒVƒ‡ƒ“‚ğíœ
+		/// ã™ã¹ã¦ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
 		/// </summary>
 		public void Clear()
 		{
@@ -960,7 +960,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚ğ”½•œˆ—‚Å‚«‚é—ñ‹“q‚ğæ“¾
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’åå¾©å‡¦ç†ã§ãã‚‹åˆ—æŒ™å­ã‚’å–å¾—
 		/// </summary>
 		public System.Collections.IEnumerator GetEnumerator()
 		{
@@ -969,7 +969,7 @@ namespace CSharpSamples
 	}
 
 	/// <summary>
-	/// ƒL[‚Æ’lAƒRƒƒ“ƒg‚ğŠÇ—‚µ‚Ü‚·B
+	/// ã‚­ãƒ¼ã¨å€¤ã€ã‚³ãƒ¡ãƒ³ãƒˆã‚’ç®¡ç†ã—ã¾ã™ã€‚
 	/// </summary>
 	public class CSPrivateProfileKeyValue
 	{

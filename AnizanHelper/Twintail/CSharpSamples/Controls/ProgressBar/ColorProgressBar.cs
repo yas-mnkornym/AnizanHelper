@@ -7,7 +7,7 @@ namespace CSharpSamples
 	using System.Windows.Forms;
 
 	/// <summary>
-	/// ƒJƒ‰ƒtƒ‹‚ÈƒvƒƒOƒŒƒXƒo[
+	/// ã‚«ãƒ©ãƒ•ãƒ«ãªãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼
 	/// </summary>
 	public class ColorProgressBar : ProgressCtrl
 	{
@@ -17,7 +17,7 @@ namespace CSharpSamples
 		private int borderSize;
 
 		/// <summary>
-		/// –Ú·‚è‚ÌƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ç›®ç››ã‚Šã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int ScaleSize
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples
 			{
 				if (value < 1)
 				{
-					throw new ArgumentOutOfRangeException("ScaleSize‚Í1ˆÈã‚Ì’l‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñ");
+					throw new ArgumentOutOfRangeException("ScaleSizeã¯1ä»¥ä¸Šã®å€¤ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“");
 				}
 				this.scaleSize = value;
 			}
@@ -33,7 +33,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ‹«ŠE‚ÌF‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// å¢ƒç•Œã®è‰²ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Color BorderColor
 		{
@@ -42,7 +42,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ƒvƒƒOƒŒƒXƒo[‚ÌF”z—ñ‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®è‰²é…åˆ—ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public Color[] Colors
 		{
@@ -59,12 +59,12 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// ColorProgressBarƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ColorProgressBarã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ColorProgressBar() : base()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.scaleSize = 8;
 			this.borderSize = 1;
@@ -75,7 +75,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// –Ú·‚è‚ğ•`‚­
+		/// ç›®ç››ã‚Šã‚’æã
 		/// </summary>
 		/// <param name="g"></param>
 		private void DrawScale(Graphics g)
@@ -83,10 +83,10 @@ namespace CSharpSamples
 			Pen pen = new Pen(this.borderColor, this.borderSize);
 			Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
 
-			// lŠp‚ğ•`‚­
+			// å››è§’ã‚’æã
 			g.DrawRectangle(pen, rect);
 
-			// cü‚ğ•`‚­
+			// ç¸¦ç·šã‚’æã
 			Point from = new Point(0, 0);
 			Point to = new Point(0, this.Height);
 
@@ -103,13 +103,13 @@ namespace CSharpSamples
 			base.OnPaint(e);
 			Graphics g = e.Graphics;
 
-			// –Ú·‚è‚ğ•`‚­
+			// ç›®ç››ã‚Šã‚’æã
 			this.DrawScale(g);
 
-			// ‚P‚Â‚ÌF‚É‘Î‚µ‚Ä‚Ìƒƒ‚ƒŠ”‚ğŒvZ
+			// ï¼‘ã¤ã®è‰²ã«å¯¾ã—ã¦ã®ãƒ¡ãƒ¢ãƒªæ•°ã‚’è¨ˆç®—
 			int clrCount = this.Maximum / this.colors.Length;
 
-			// À•W
+			// åº§æ¨™
 			Rectangle rect = new Rectangle(this.borderSize, this.borderSize,
 				this.scaleSize, this.Height - this.borderSize * 2);
 			SolidBrush brush = null;
@@ -125,7 +125,7 @@ namespace CSharpSamples
 
 				Color color = this.colors[clridx];
 
-				// ƒuƒ‰ƒV‚ğì¬
+				// ãƒ–ãƒ©ã‚·ã‚’ä½œæˆ
 				if (brush == null || brush.Color != color)
 				{
 					brush = new SolidBrush(color);
@@ -135,13 +135,13 @@ namespace CSharpSamples
 				rect.X += this.scaleSize + this.borderSize;
 			}
 
-			// ‹«ŠEü‚ğ•`‰æ
+			// å¢ƒç•Œç·šã‚’æç”»
 			Rectangle bounds = new Rectangle(0, 0, this.Width, this.Height);
 			ControlPaint.DrawBorder3D(g, bounds, this.BorderStyle);
 		}
 
 		/// <summary>
-		/// –Ú·‚è‚Æ•‚ğ’š“x‡‚¤‚æ‚¤‚ÉƒŠƒTƒCƒY
+		/// ç›®ç››ã‚Šã¨å¹…ã‚’ä¸åº¦åˆã†ã‚ˆã†ã«ãƒªã‚µã‚¤ã‚º
 		/// </summary>
 		public void ResizeBar()
 		{

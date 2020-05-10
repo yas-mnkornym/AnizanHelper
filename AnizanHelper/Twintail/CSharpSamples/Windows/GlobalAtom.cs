@@ -5,7 +5,7 @@ namespace CSharpSamples.Winapi
 	using System.Text;
 
 	/// <summary>
-	/// GlobalAtom ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// GlobalAtom ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class GlobalAtom
 	{

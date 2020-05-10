@@ -7,7 +7,7 @@ namespace Twin.Aa
 	using System.Text;
 
 	/// <summary>
-	/// ‚P‚Â‚ÌAA‚ğ•\‚·
+	/// ï¼‘ã¤ã®AAã‚’è¡¨ã™
 	/// </summary>
 	public class AaItem
 	{
@@ -16,14 +16,14 @@ namespace Twin.Aa
 		private bool single;
 
 		/// <summary>
-		/// ‚±‚ÌAA‚ª’è‹`‚³‚ê‚Ä‚¢‚éƒwƒbƒ_[‚ğæ“¾
+		/// ã“ã®AAãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’å–å¾—
 		/// </summary>
 		public AaHeader Parent {
 			get { return parent; }
 		}
 
 		/// <summary>
-		/// AA‚Ì•\¦–¼‚ğæ“¾
+		/// AAã®è¡¨ç¤ºåã‚’å–å¾—
 		/// </summary>
 		public string Text {
 			set {
@@ -31,7 +31,7 @@ namespace Twin.Aa
 					throw new ArgumentNullException("Text");
 				}
 				if (value.IndexOf('\n') != -1) {
-					throw new ArgumentException("Text‚É‰üs•¶š‚ğŠÜ‚ß‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
+					throw new ArgumentException("Textã«æ”¹è¡Œæ–‡å­—ã‚’å«ã‚ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
 				}
 				text = value;
 			}
@@ -39,7 +39,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// AA‚Ìƒf[ƒ^‚ğæ“¾
+		/// AAã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		/// </summary>
 		public string Data {
 			set {
@@ -50,12 +50,12 @@ namespace Twin.Aa
 				if (Single) 
 				{
 					if (value.IndexOf('\n') != -1) {
-						throw new ArgumentException("‚PsAA‚É‰üs•¶š‚ğŠÜ‚ß‚é‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ");
+						throw new ArgumentException("ï¼‘è¡ŒAAã«æ”¹è¡Œæ–‡å­—ã‚’å«ã‚ã‚‹ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“");
 					}
 					text = value;
 				}
 				else {
-					// •¡”sAA‚Ö‚ÌƒpƒX
+					// è¤‡æ•°è¡ŒAAã¸ã®ãƒ‘ã‚¹
 					string aaPath = Path.Combine(
 						Path.GetDirectoryName(parent.FileName), text);
 
@@ -80,10 +80,10 @@ namespace Twin.Aa
 				}
 				else {
 					if (parent == null) {
-						throw new InvalidOperationException("Parent‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+						throw new InvalidOperationException("ParentãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
 					}
 
-					// •¡”sAA‚Ö‚ÌƒpƒX
+					// è¤‡æ•°è¡ŒAAã¸ã®ãƒ‘ã‚¹
 					string aaPath = Path.Combine(
 						Path.GetDirectoryName(parent.FileName), text);
 
@@ -106,28 +106,28 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ‚PsAA‚Ìê‡‚ÍtrueA•¡”sAA‚Ìê‡‚Ífalse‚ğ•Ô‚·
+		/// ï¼‘è¡ŒAAã®å ´åˆã¯trueã€è¤‡æ•°è¡ŒAAã®å ´åˆã¯falseã‚’è¿”ã™
 		/// </summary>
 		public bool Single {
 			get { return single; }
 		}
 
 		/// <summary>
-		/// AaItemƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaItemã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="text">ƒwƒbƒ_[ƒtƒ@ƒCƒ‹“à‚Ì•\¦–¼</param>
-		/// <param name="single">‚PsAA‚È‚çtrueA•¡”sAA‚È‚çfalse‚ğw’è</param>
+		/// <param name="text">ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®è¡¨ç¤ºå</param>
+		/// <param name="single">ï¼‘è¡ŒAAãªã‚‰trueã€è¤‡æ•°è¡ŒAAãªã‚‰falseã‚’æŒ‡å®š</param>
 		public AaItem(string text, bool single)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.text = text;
 			this.single = single;
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒwƒbƒ_[‚©‚çíœ
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		public void Remove()
 		{
@@ -136,7 +136,7 @@ namespace Twin.Aa
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

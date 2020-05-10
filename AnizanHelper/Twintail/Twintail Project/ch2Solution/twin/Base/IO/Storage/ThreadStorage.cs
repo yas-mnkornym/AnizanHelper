@@ -5,7 +5,7 @@ namespace Twin.IO
 	using System;
 
 	/// <summary>
-	/// ƒ[ƒJƒ‹‚ÉƒXƒŒƒbƒh‚ğ•Û‘¶EŠÇ—‚·‚éƒCƒ“ƒ^[ƒtƒF[ƒX
+	/// ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¿å­˜ãƒ»ç®¡ç†ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	/// </summary>
 	public abstract class ThreadStorage : IDisposable
 	{
@@ -29,7 +29,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public abstract bool IsOpen
 		{
@@ -37,7 +37,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…ƒf[ƒ^‚ÌƒTƒCƒY
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 		/// </summary>
 		public abstract int Length
 		{
@@ -45,7 +45,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒXƒgƒŠ[ƒ€‚ÌˆÊ’u
+		/// ç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ä½ç½®
 		/// </summary>
 		public abstract int Position
 		{
@@ -53,7 +53,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract int BufferSize
 		{
@@ -62,7 +62,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚·
+		/// èª­ã¿è¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã™
 		/// </summary>
 		public abstract bool CanRead
 		{
@@ -70,7 +70,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ‘‚«‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚·
+		/// æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã™
 		/// </summary>
 		public abstract bool CanWrite
 		{
@@ -78,37 +78,37 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="header"></param>
 		public abstract bool Open(ThreadHeader header, StorageMode mode);
 
 		/// <summary>
-		/// resCollection‚ÉƒLƒƒƒbƒVƒ…î•ñ‚ğ“Ç‚İ‚Ş
+		/// resCollectionã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resCollection"></param>
 		/// <returns></returns>
 		public abstract int Read(ResSetCollection resCollection);
 
 		/// <summary>
-		/// resCollection‚ÉƒLƒƒƒbƒVƒ…î•ñ‚ğ“Ç‚İ‚Ş
+		/// resCollectionã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resCollection"></param>
 		/// <returns></returns>
 		public abstract int Read(ResSetCollection resCollection, out int byteParsed);
 
 		/// <summary>
-		/// resCollection‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+		/// resCollectionã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
 		/// </summary>
 		public abstract int Write(ResSetCollection resCollection);
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 		/// </summary>
 		public abstract void Close();
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 		/// </summary>
 		public abstract void Dispose();
 	}

@@ -11,7 +11,7 @@ namespace Twin.IO
 	using System.Threading;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ğ“Ç‚İ‚Ş‚½‚ß‚ÌŠî–{ƒNƒ‰ƒX
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadReaderBase : ThreadReader
 	{
@@ -47,7 +47,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ìƒf[ƒ^ƒTƒCƒY
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		/// </summary>
 		public override int Length
 		{
@@ -58,7 +58,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ÌŒ»İˆÊ’u
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç¾åœ¨ä½ç½®
 		/// </summary>
 		public override int Position
 		{
@@ -69,7 +69,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‘‚«‚Ég—p‚·‚éƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿æ›¸ãã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override int BufferSize
 		{
@@ -84,7 +84,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İ’†‚©‚Ç‚¤‚©‚ğ”»’f
+		/// èª­ã¿è¾¼ã¿ä¸­ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		public override bool IsOpen
 		{
@@ -95,7 +95,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// User-Agent‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// User-Agentã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public override string UserAgent
 		{
@@ -125,9 +125,9 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ThreadReaderBaseƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadReaderBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="parser">“Ç‚İ‚İ‚É‰ğÍ‚ğs‚¤‚½‚ß‚Ìƒp[ƒT[</param>
+		/// <param name="parser">èª­ã¿è¾¼ã¿æ™‚ã«è§£æã‚’è¡Œã†ãŸã‚ã®ãƒ‘ãƒ¼ã‚µãƒ¼</param>
 		protected ThreadReaderBase(ThreadParser parser)
 			: this()
 		{
@@ -139,10 +139,10 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½‘byte”‚ğ•Ô‚·</returns>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸç·byteæ•°ã‚’è¿”ã™</returns>
 		public override int Read(ResSetCollection resSets)
 		{
 			int temp;
@@ -150,11 +150,11 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒŒƒX‚ğ“Ç‚İ‚Ş
+		/// ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="resSets"></param>
-		/// <param name="byteParsed">‰ğÍ‚³‚ê‚½ƒoƒCƒg”‚ªŠi”[‚³‚ê‚é</param>
-		/// <returns>“Ç‚İ‚Ü‚ê‚½‘byte”‚ğ•Ô‚·</returns>
+		/// <param name="byteParsed">è§£æã•ã‚ŒãŸãƒã‚¤ãƒˆæ•°ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
+		/// <returns>èª­ã¿è¾¼ã¾ã‚ŒãŸç·byteæ•°ã‚’è¿”ã™</returns>
 		public override int Read(ResSetCollection resSets, out int byteParsed)
 		{
 			if (resSets == null)
@@ -163,13 +163,13 @@ namespace Twin.IO
 			}
 			if (!isOpen)
 			{
-				throw new InvalidOperationException("ƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+				throw new InvalidOperationException("ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 			}
 
-			// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			int readCount = baseStream.Read(buffer, 0, buffer.Length);
 
-			// ‰ğÍ‚µ‚ÄƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠi”[
+			// è§£æã—ã¦ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«æ ¼ç´
 			ResSet[] items = dataParser.Parse(buffer, readCount, out byteParsed);
 
 			foreach (ResSet resSet in items)
@@ -179,7 +179,7 @@ namespace Twin.IO
 				resSets.Add(res);
 			}
 
-			// ÀÛ‚É“Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”‚ğŒvZ
+			// å®Ÿéš›ã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 			position += readCount;
 
 			return readCount;
@@ -191,7 +191,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+		/// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 		/// </summary>
 		public override void Close()
 		{
@@ -203,7 +203,7 @@ namespace Twin.IO
 
 				if (dataParser != null)
 				{
-					// ³íI—¹‚·‚é‚Æ‚«‚Í•K‚¸0‚É‚È‚é‚Í‚¸
+					// æ­£å¸¸çµ‚äº†ã™ã‚‹ã¨ãã¯å¿…ãš0ã«ãªã‚‹ã¯ãš
 					//System.Diagnostics.Debug.Assert(dataParser.RemainderLength == 0);
 					dataParser.Empty();
 				}

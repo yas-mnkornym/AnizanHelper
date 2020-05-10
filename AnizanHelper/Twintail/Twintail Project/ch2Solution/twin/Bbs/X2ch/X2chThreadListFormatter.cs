@@ -9,12 +9,12 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// ThreadHeader‚ğsubject.txtŒ`®‚É•ÏŠ·‚·‚é‹@”\‚ğ’ñ‹Ÿ
+	/// ThreadHeaderã‚’subject.txtå½¢å¼ã«å¤‰æ›ã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›
 	/// </summary>
 	public class X2chThreadListFormatter : ThreadListFormatter
 	{
 		/// <summary>
-		/// w’è‚µ‚½ƒwƒbƒ_[‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public override string Format(ThreadHeader header)
 		{
@@ -26,7 +26,7 @@ namespace Twin.Bbs
 			StringBuilder sb =
 				new StringBuilder(128);
 
-			// ‘®: key.dat<>subject (rescount)
+			// æ›¸å¼: key.dat<>subject (rescount)
 			sb.Append(header.Key);
 			sb.Append(".dat");
 			sb.Append("<>");
@@ -39,7 +39,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒwƒbƒ_[ƒRƒŒƒNƒVƒ‡ƒ“‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public override string Format(List<ThreadHeader> items)
 		{

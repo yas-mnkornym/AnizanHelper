@@ -5,18 +5,18 @@ using System;
 namespace CSharpSamples
 {
 	/// <summary>
-	/// TabButtonControl.SelectedChanged ƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚Å‚·B
+	/// TabButtonControl.SelectedChanged ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚
 	/// </summary>
 	public delegate void TabButtonEventHandler(object sender,
 		TabButtonEventArgs e);
 
 	/// <summary>
-	/// TabButtonEventHandler ƒƒ\ƒbƒh‚Ìˆø”‚ğ•\‚µ‚Ü‚·B
+	/// TabButtonEventHandler ãƒ¡ã‚½ãƒƒãƒ‰ã®å¼•æ•°ã‚’è¡¨ã—ã¾ã™ã€‚
 	/// </summary>
 	public class TabButtonEventArgs : EventArgs
 	{
 		/// <summary>
-		/// V‚µ‚­‘I‘ğ‚³‚ê‚½ TabButton ‚ğæ“¾‚µ‚Ü‚·B
+		/// æ–°ã—ãé¸æŠã•ã‚ŒãŸ TabButton ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public TabButton Button
 		{
@@ -28,12 +28,12 @@ namespace CSharpSamples
 		private TabButton button;
 
 		/// <summary>
-		/// TabButtonEventEventArgs ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// TabButtonEventEventArgs ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>	
 		public TabButtonEventArgs(TabButton button)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.button = button;
 		}

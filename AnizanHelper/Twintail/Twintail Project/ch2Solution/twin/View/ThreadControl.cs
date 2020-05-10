@@ -16,7 +16,7 @@ namespace Twin
 using System.Xml;
 
 	/// <summary>
-	/// ƒXƒŒƒbƒh‚ğ‘€ìE•\¦‚·‚é‚½‚ß‚ÌŠî–{ƒRƒ“ƒgƒ[ƒ‹ƒNƒ‰ƒX
+	/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ“ä½œãƒ»è¡¨ç¤ºã™ã‚‹ãŸã‚ã®åŸºæœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadControl : ClientBaseEx<ThreadHeader>
 	{
@@ -35,7 +35,7 @@ using System.Xml;
 		protected ThreadHeader headerInfo;
 		protected bool modeOpen;				// true=Open, false=Reload
 		protected int bufferSize;
-		protected bool canceled = false;		// ’ÊMˆ—‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚É true ‚É‚È‚é
+		protected bool canceled = false;		// é€šä¿¡å‡¦ç†ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸæ™‚ã« true ã«ãªã‚‹
 		protected bool retried = false;
 
 		private object syncObject = new object();
@@ -43,7 +43,7 @@ using System.Xml;
 
 		private DateTime lastCompletedDateTime = DateTime.MinValue;
 		/// <summary>
-		/// ‘O‰ñˆ—Š®—¹‚ÌŠÔ‚ğæ“¾‚µ‚Ü‚·B
+		/// å‰å›å‡¦ç†å®Œäº†æ™‚ã®æ™‚é–“ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public DateTime LastCompletedDateTime
 		{
@@ -56,7 +56,7 @@ using System.Xml;
 
 		private bool aboneDetected = false;
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÌóM’†‚É‚ ‚Ú[‚ñ‚ğŒŸ’m‚µ‚½ê‡Atrue ‚ğ•Ô‚µ‚Ü‚·B‚»‚êˆÈŠO‚Íí‚É false ‚Å‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å—ä¿¡ä¸­ã«ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œçŸ¥ã—ãŸå ´åˆã€true ã‚’è¿”ã—ã¾ã™ã€‚ãã‚Œä»¥å¤–ã¯å¸¸ã« false ã§ã™ã€‚
 		/// </summary>
 		public bool AboneDetected
 		{
@@ -68,8 +68,8 @@ using System.Xml;
 
 	
 		/// <summary>
-		/// Œ»İŠJ‚¢‚Ä‚¢‚éƒXƒŒƒbƒh‚Ìƒwƒbƒ_î•ñ‚ğæ“¾
-		/// (ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚Ä‚¢‚È‚¯‚ê‚Înull‚ğ•Ô‚·)
+		/// ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’å–å¾—
+		/// (ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚Œã¦ã„ãªã‘ã‚Œã°nullã‚’è¿”ã™)
 		/// </summary>
 		public override ThreadHeader HeaderInfo
 		{
@@ -81,14 +81,14 @@ using System.Xml;
 
 		private bool __isReading = false;
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ì“Ç‚İ‚İˆ—’†‚Ìê‡‚Í trueB‚±‚Ì‚ÍƒXƒŒƒbƒh‚ª‹N“®‚µ‚Ä‚¢‚ÄAƒf[ƒ^‚É•ÏX‚ª‰Á‚¦‚ç‚ê‚Ä‚¢‚éó‘ÔB
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®èª­ã¿è¾¼ã¿å‡¦ç†ä¸­ã®å ´åˆã¯ trueã€‚ã“ã®æ™‚ã¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒèµ·å‹•ã—ã¦ã„ã¦ã€ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›´ãŒåŠ ãˆã‚‰ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã€‚
 		/// </summary>
 		public bool IsReading
 		{
 			protected set
 			{
 				if (value && IsOpen == false)
-					throw new InvalidOperationException("‚Ü‚¾ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+					throw new InvalidOperationException("ã¾ã ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã›ã‚“");
 				__isReading = value;
 			}
 			get
@@ -99,7 +99,7 @@ using System.Xml;
 
 		private bool isWaiting = false;
 		/// <summary>
-		/// “Ç‚İ‚İˆ—‚ğ‘Ò‹@’†‚©‚Ç‚¤‚©‚ğ”»’fBOpenƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚Ä‚©‚ç OnLoadƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‚Ü‚Å‚ÌŠÔ‚Í trueB‚»‚êˆÈŠO‚Í falseB
+		/// èª­ã¿è¾¼ã¿å‡¦ç†ã‚’å¾…æ©Ÿä¸­ã‹ã©ã†ã‹ã‚’åˆ¤æ–­ã€‚Openãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã¦ã‹ã‚‰ OnLoadãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã¾ã§ã®é–“ã¯ trueã€‚ãã‚Œä»¥å¤–ã¯ falseã€‚
 		/// </summary>
 		public bool IsWaiting
 		{
@@ -111,7 +111,7 @@ using System.Xml;
 
 		private bool __isOpen = false;
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’fBOpenƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚Ä‚©‚çACloseƒƒ\ƒbƒh‚ªŒÄ‚Î‚ê‚é‚Ü‚Å‚ÌŠÔ‚Í trueB‚»‚êˆÈŠO‚Í falseB
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­ã€‚Openãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã¦ã‹ã‚‰ã€Closeãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã°ã‚Œã‚‹ã¾ã§ã®é–“ã¯ trueã€‚ãã‚Œä»¥å¤–ã¯ falseã€‚
 		/// </summary>
 		public bool IsOpen
 		{
@@ -119,7 +119,7 @@ using System.Xml;
 			{
 #if DEBUG
 				if (IsReading)
-					throw new InvalidOperationException("IsReading == true ‚Ì‚É‚±‚Ì•Ï”‚ğ•ÏX‚·‚é‚Ì‚¨‚©‚µ‚¢‚Å‚·");
+					throw new InvalidOperationException("IsReading == true ã®æ™‚ã«ã“ã®å¤‰æ•°ã‚’å¤‰æ›´ã™ã‚‹ã®ãŠã‹ã—ã„ã§ã™");
 #endif
 				__isOpen = value;
 			}
@@ -130,7 +130,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ˆêŠ‡óM‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ä¸€æ‹¬å—ä¿¡ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsPackageReception
 		{
@@ -146,7 +146,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚ÌGzipˆ³k‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®Gzipåœ§ç¸®ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool UseGzip
 		{
@@ -162,7 +162,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ‰ß‹ƒƒOæ“¾¸”s‚ÉÄæ“¾‚ğ‚İ‚éƒT[ƒo[î•ñ‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// éå»ãƒ­ã‚°å–å¾—å¤±æ•—æ™‚ã«å†å–å¾—ã‚’è©¦ã¿ã‚‹ã‚µãƒ¼ãƒãƒ¼æƒ…å ±ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public BoardInfo RetryServer
 		{
@@ -177,7 +177,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// “Ç‚İæ‚èê—p‚ÌƒŒƒXƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// èª­ã¿å–ã‚Šå°‚ç”¨ã®ãƒ¬ã‚¹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public ReadOnlyResSetCollection ResSets
 		{
@@ -188,7 +188,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// •¶šƒTƒCƒY‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ–‡å­—ã‚µã‚¤ã‚ºã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract FontSize FontSize
 		{
@@ -197,7 +197,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚Ä‚¢‚é•¶š—ñ‚ğæ“¾
+		/// é¸æŠã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ã‚’å–å¾—
 		/// </summary>
 		public abstract string SelectedText
 		{
@@ -205,7 +205,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// V’…‚Ü‚ÅƒXƒNƒ[ƒ‹‚ªOn‚È‚ç trueAOff‚È‚ç false ‚ğ•\‚·B
+		/// æ–°ç€ã¾ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒOnãªã‚‰ trueã€Offãªã‚‰ false ã‚’è¡¨ã™ã€‚
 		/// </summary>
 		public abstract bool ScrollToNewRes
 		{
@@ -214,7 +214,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒI[ƒgƒXƒNƒ[ƒ‹‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚ªãƒ¼ãƒˆã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract bool AutoScroll
 		{
@@ -223,7 +223,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒI[ƒgƒŠƒ[ƒh‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚ªãƒ¼ãƒˆãƒªãƒ­ãƒ¼ãƒ‰ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract bool AutoReload
 		{
@@ -232,7 +232,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// •\¦ƒŒƒX”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// è¡¨ç¤ºãƒ¬ã‚¹æ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract int ViewResCount
 		{
@@ -241,29 +241,29 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒŒƒX”Ô†‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚É”­¶
+		/// ãƒ¬ã‚¹ç•ªå·ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event NumberClickEventHandler NumberClick;
 
 		/// <summary>
-		/// URI‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚É”­¶
+		/// URIãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event UriClickEventHandler UriClick;
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ª•Â‚¶‚ç‚ê‚½‚Æ‚«‚É”­¶
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‰ã˜ã‚‰ã‚ŒãŸã¨ãã«ç™ºç”Ÿ
 		/// </summary>
 		public event EventHandler Closed;
 
 		/// <summary>
-		/// ThreadControlƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ThreadControlã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		protected ThreadControl(Cache cache)
 			: base(cache)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			resCollection = new ResSetCollection();
 			indicesValues = new SortedValueCollection<int>();
@@ -273,9 +273,9 @@ using System.Xml;
 			isPackageReception = false;
 		}
 
-		#region Privateƒƒ\ƒbƒh
+		#region Privateãƒ¡ã‚½ãƒƒãƒ‰
 		/// <summary>
-		/// ‚ ‚Ú[‚ñ‚ª”­¶‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+		/// ã‚ã¼ãƒ¼ã‚“ãŒç™ºç”Ÿã—ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹
 		/// </summary>
 		private void OnABoneInternal(object sender, EventArgs e)
 		{
@@ -283,7 +283,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// dat—‚¿
+		/// datè½ã¡æ™‚
 		/// </summary>
 		private void OnPastlogInternal(object sender, PastlogEventArgs e)
 		{
@@ -301,8 +301,8 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// newbbs‚É‘Î‰‚µ‚½ƒŠ[ƒ_[‚ğì¬
-		/// (Šù‚Éì¬Ï‚İ‚Å‚ ‚ê‚Î‰½‚à‚µ‚È‚¢)
+		/// newbbsã«å¯¾å¿œã—ãŸãƒªãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
+		/// (æ—¢ã«ä½œæˆæ¸ˆã¿ã§ã‚ã‚Œã°ä½•ã‚‚ã—ãªã„)
 		/// </summary>
 		/// <param name="newbbs"></param>
 		private ThreadReader CreateBaseReader(BbsType newbbs)
@@ -327,7 +327,7 @@ using System.Xml;
 
 		private void ReadCache(ResSetCollection buff)
 		{
-			// V‹K‚ÉŠJ‚­ê‡‚Ì‚İƒLƒƒƒbƒVƒ…‚ğ“Ç‚İ‚Ş
+			// æ–°è¦ã«é–‹ãå ´åˆã®ã¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’èª­ã¿è¾¼ã‚€
 			if (modeOpen)
 			{
 				if (ThreadIndexer.Exists(Cache, headerInfo))
@@ -339,7 +339,7 @@ using System.Xml;
 						storage = new LocalThreadStorage(Cache, headerInfo, StorageMode.Read);
 						storage.BufferSize = bufferSize;
 
-						// ‚·‚×‚Ä‚ÌƒŒƒX‚ğ“Ç‚İ‚İ•\¦
+						// ã™ã¹ã¦ã®ãƒ¬ã‚¹ã‚’èª­ã¿è¾¼ã¿è¡¨ç¤º
 						while (storage.Read(buff) != 0)
 							;
 					}
@@ -358,22 +358,22 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒŠ[ƒ_[‚ğŠJ‚­
+		/// ãƒªãƒ¼ãƒ€ãƒ¼ã‚’é–‹ã
 		/// </summary>
 		private bool OpenReader()
 		{
 			aboneDetected = false;
 			retried = false;
 
-			// –¢æ“¾ƒXƒŒƒbƒh‚È‚çŒ»İ‚Ìİ’è‚ğ”½‰f‚³‚¹‚é
+			// æœªå–å¾—ã‚¹ãƒ¬ãƒƒãƒ‰ãªã‚‰ç¾åœ¨ã®è¨­å®šã‚’åæ˜ ã•ã›ã‚‹
 			if (!ThreadIndexer.Exists(Cache, headerInfo))
 			{
 				headerInfo.UseGzip = useGzip;
 			}
-			// Šî–{ƒŠ[ƒ_[‚ğì¬
+			// åŸºæœ¬ãƒªãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
 			reader = CreateBaseReader(headerInfo.BoardInfo.Bbs);
 
-			// ƒŠ[ƒ_[‚ğŠJ‚­
+			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚’é–‹ã
 			reader.BufferSize = bufferSize;
 			reader.Open(headerInfo);
 
@@ -381,7 +381,7 @@ using System.Xml;
 		}
 
 		/// <summary>
-		/// ƒf[ƒ^‚ğ“Ç‚İ‚Ş•‘‚«‚Ş
+		/// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ï¼†æ›¸ãè¾¼ã‚€
 		/// </summary>
 		private void Reading()
 		{
@@ -396,7 +396,7 @@ using System.Xml;
 
 				read = reader.Read(buffer, out byteParsed);
 
-				// ‚ ‚Ú[‚ñ‚ğŒŸ’m‚µ‚½ê‡Aˆ—‚ğ’†~B
+				// ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œçŸ¥ã—ãŸå ´åˆã€å‡¦ç†ã‚’ä¸­æ­¢ã€‚
 				if (read == -1)
 				{
 					aboneDetected = true;
@@ -407,7 +407,7 @@ using System.Xml;
 
 				items.AddRange(buffer);
 
-				// ’€ŸóM‚Ìê‡‚Íƒrƒ…[ƒA‚É‘‚«‚Ş
+				// é€æ¬¡å—ä¿¡ã®å ´åˆã¯ãƒ“ãƒ¥ãƒ¼ã‚¢ã«æ›¸ãè¾¼ã‚€
 				if (!isPackageReception)
 				{
 					if (canceled)
@@ -421,11 +421,11 @@ using System.Xml;
 					reader.Length, reader.Position, read));
 
 				OnStatusTextChanged(
-					String.Format("{0} óM’† ({1}/{2})",
+					String.Format("{0} å—ä¿¡ä¸­ ({1}/{2})",
 						headerInfo.Subject, reader.Position, reader.Length));
 			}
 
-			// ˆêŠ‡óM‚Ìê‡‚Í‚±‚±‚Åˆê‹C‚Éƒtƒ‰ƒbƒVƒ…
+			// ä¸€æ‹¬å—ä¿¡ã®å ´åˆã¯ã“ã“ã§ä¸€æ°—ã«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 			if (isPackageReception)
 			{
 				if (canceled)
@@ -436,7 +436,7 @@ using System.Xml;
 
 			try
 			{
-				// ƒXƒŒƒbƒh‚ÌƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ•Û‘¶
+				// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’ä¿å­˜
 				storage = new LocalThreadStorage(Cache, headerInfo, StorageMode.Write);
 				storage.BufferSize = bufferSize;
 				storage.Write(items);
@@ -458,7 +458,7 @@ using System.Xml;
 			SaveThreadListIndices();
 		}
 
-		// ƒXƒŒƒbƒhˆê——‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶B‰ó‚ê‚Ä‚¢‚é‚±‚Æ‚ª‚½‚Ü‚É‚ ‚é‚Ì‚ÅAÄ¶¬‚Å‚«‚é‚æ‚¤‚É‚·‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜ã€‚å£Šã‚Œã¦ã„ã‚‹ã“ã¨ãŒãŸã¾ã«ã‚ã‚‹ã®ã§ã€å†ç”Ÿæˆã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 		private void SaveThreadListIndices()
 		{
 			try
@@ -467,11 +467,11 @@ using System.Xml;
 			}
 			catch (XmlException ex)
 			{
-				if (ex.Message.IndexOf("ƒ‹[ƒg—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ") >= 0)
+				if (ex.Message.IndexOf("ãƒ«ãƒ¼ãƒˆè¦ç´ ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“") >= 0)
 				{
 					DialogResult r = MessageBox.Show(
-						headerInfo.BoardInfo.Name + "”Â‚ÌƒCƒ“ƒfƒbƒNƒX‚ª‰ó‚ê‚Ä‚¢‚Ü‚·B¡‚·‚®Ä¶¬‚µ‚Ü‚·‚©H\r\n(‚â‚½‚çŠÔ‚©‚©‚éê‡‚ª‚ ‚è‚Ü‚·)",
-						"ƒCƒ“ƒfƒbƒNƒX‚È‚ñ‚¾‚æ`", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+						headerInfo.BoardInfo.Name + "æ¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå£Šã‚Œã¦ã„ã¾ã™ã€‚ä»Šã™ãå†ç”Ÿæˆã—ã¾ã™ã‹ï¼Ÿ\r\n(ã‚„ãŸã‚‰æ™‚é–“ã‹ã‹ã‚‹å ´åˆãŒã‚ã‚Šã¾ã™)",
+						"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚“ã ã‚ˆï½", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 					if (r == DialogResult.Yes)
 					{
@@ -512,11 +512,11 @@ using System.Xml;
 				if (canceled)
 					return;
 
-				// ŠJ‚­ˆ—‚ğs‚¤
+				// é–‹ãå‡¦ç†ã‚’è¡Œã†
 				if (modeOpen)
 					Invoke(new MethodInvoker(Opening));
 
-				// ƒLƒƒƒbƒVƒ…‚ğ“Ç‚İ‚İ•\¦
+				// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’èª­ã¿è¾¼ã¿è¡¨ç¤º
 				ReadCache(resCollection);
 
 				if (canceled)
@@ -531,7 +531,7 @@ using System.Xml;
 				{
 					Invoke(new WriteResMethodInvoker(Write), new object[] { resCollection });
 
-					// ƒXƒNƒ[ƒ‹ˆÊ’u‚ğ•œŒ³ (’l‚ª0‚Ìê‡‚Í•œŒ³‚µ‚È‚¢)
+					// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®ã‚’å¾©å…ƒ (å€¤ãŒ0ã®å ´åˆã¯å¾©å…ƒã—ãªã„)
 					if (modeOpen && headerInfo.Position != 0.0f)
 					{
 						Invoke(new PositionMethodInvoker(SetScrollPosition),
@@ -542,7 +542,7 @@ using System.Xml;
 Retry:
 				try
 				{
-					// ƒT[ƒo[‚ÉÚ‘±
+					// ã‚µãƒ¼ãƒãƒ¼ã«æ¥ç¶š
 					if (OpenReader())
 					{
 						if (canceled)
@@ -550,7 +550,7 @@ Retry:
 
 						Reading();
 
-						// ‚ ‚Ú[‚ñ‚ğŒŸ’m‚µ‚½ê‡
+						// ã‚ã¼ãƒ¼ã‚“ã‚’æ¤œçŸ¥ã—ãŸå ´åˆ
 						if (aboneDetected)
 						{
 						}
@@ -567,7 +567,7 @@ Retry:
 						reader.Close();
 				}
 
-				// Äs‚ª—v‹‚³‚ê‚½ê‡AÅ‰‚©‚ç
+				// å†è©¦è¡ŒãŒè¦æ±‚ã•ã‚ŒãŸå ´åˆã€æœ€åˆã‹ã‚‰
 				if (retried)
 					goto Retry;
 
@@ -587,7 +587,7 @@ Retry:
 			finally
 			{
 
-				// ’†~‚³‚ê‚½ê‡‚ÍETag‚ğƒŠƒZƒbƒg
+				// ä¸­æ­¢ã•ã‚ŒãŸå ´åˆã¯ETagã‚’ãƒªã‚»ãƒƒãƒˆ
 				if (canceled)
 					headerInfo.ETag = String.Empty;
 
@@ -601,10 +601,10 @@ Retry:
 				if (status == CompleteStatus.Success)
 				{
 					OnStatusTextChanged(
-						String.Format("{0}‚Ì“Ç‚İ‚İ‚ğŠ®—¹ (V’…: {1}Œ)",
+						String.Format("{0}ã®èª­ã¿è¾¼ã¿ã‚’å®Œäº† (æ–°ç€: {1}ä»¶)",
 							headerInfo.Subject, headerInfo.NewResCount));
 				}
-				/** 9/26 ’Ç‰Á **/
+				/** 9/26 è¿½åŠ  **/
 				else if (reader is X2chAuthenticateThreadReader)
 				{
 					X2chRokkaResponseState rokkaState = ((X2chAuthenticateThreadReader)reader).RokkaResponseState;
@@ -621,9 +621,9 @@ Retry:
 		}
 		#endregion
 
-		#region Protectedƒƒ\ƒbƒh
+		#region Protectedãƒ¡ã‚½ãƒƒãƒ‰
 		/// <summary>
-		/// ClosedƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// Closedã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnClosed(EventArgs e)
@@ -633,7 +633,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İƒXƒŒƒbƒh‚ğŠJn
+		/// èª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
 		/// </summary>
 		protected void ThreadRun()
 		{
@@ -649,7 +649,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// NumberClickƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// NumberClickã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnNumberClick(NumberClickEventArgs e)
@@ -659,7 +659,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// UriClickƒCƒxƒ“ƒg‚ğ”­¶‚³‚¹‚é
+		/// UriClickã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç”Ÿã•ã›ã‚‹
 		/// </summary>
 		/// <param name="e"></param>
 		protected void OnUriClick(UriClickEventArgs e)
@@ -669,7 +669,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒXƒNƒ[ƒ‹ˆÊ’u‚ğİ’è‚ğs‚¤
+		/// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®ã‚’è¨­å®šã‚’è¡Œã†
 		/// </summary>
 		/// <param name="value"></param>
 		protected virtual void SetScrollPosition(float value)
@@ -677,49 +677,49 @@ Retry:
 		}
 
 		/// <summary>
-		/// ‚ ‚Ú[‚ñ‚ª”­¶‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+		/// ã‚ã¼ãƒ¼ã‚“ãŒç™ºç”Ÿã—ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹
 		/// </summary>
 		protected virtual void OnABone()
 		{
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ªdat—‚¿‚µ‚Ä‚¢‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒdatè½ã¡ã—ã¦ã„ã‚‹ã¨ãã«å‘¼ã°ã‚Œã‚‹
 		/// </summary>
 		protected virtual void OnPastlog(PastlogEventArgs e)
 		{
 		}
 
 		/// <summary>
-		/// ƒŠ[ƒ_[‰Šú‰»Œã‚ÉŒÄ‚Î‚ê‚éŠÖ” (Openƒƒ\ƒbƒh‚ÅƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚½‚Æ‚«‚Ì‚İ)
+		/// ãƒªãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–å¾Œã«å‘¼ã°ã‚Œã‚‹é–¢æ•° (Openãƒ¡ã‚½ãƒƒãƒ‰ã§ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚ŒãŸã¨ãã®ã¿)
 		/// </summary>
 		protected virtual void Opening()
 		{
 		}
 
 		/// <summary>
-		/// ‘‚«‚İŠJn‚ÉŒÄ‚Î‚ê‚é
+		/// æ›¸ãè¾¼ã¿é–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹
 		/// </summary>
 		protected virtual void WriteBegin()
 		{
 		}
 
 		/// <summary>
-		/// ‘‚«‚İŠ®—¹‚ÉŒÄ‚Î‚ê‚é
+		/// æ›¸ãè¾¼ã¿å®Œäº†æ™‚ã«å‘¼ã°ã‚Œã‚‹
 		/// </summary>
 		protected virtual void WriteEnd()
 		{
 		}
 
 		/// <summary>
-		/// items‚ğ‘‚«‚Ş
+		/// itemsã‚’æ›¸ãè¾¼ã‚€
 		/// </summary>
 		/// <param name="items"></param>
 		protected abstract void Write(ResSetCollection items);
 		#endregion
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="header"></param>
 		public virtual void Open(ThreadHeader header, int[] indices)
@@ -732,7 +732,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="header"></param>
 		public virtual void Open(ThreadHeader header)
@@ -742,29 +742,29 @@ Retry:
 				throw new ArgumentNullException("header");
 			}
 			if (IsReading)
-				throw new InvalidOperationException("ƒXƒŒƒbƒh‚ğ“Ç‚İ‚İ’†‚Å‚·");
+				throw new InvalidOperationException("ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã¿ä¸­ã§ã™");
 
 			Close();
 
-			// Šeƒtƒ‰ƒO‚ğİ’è
+			// å„ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
 			IsOpen = true;
 			IsReading = true;
 
 			modeOpen = true;
 			headerInfo = header;
 
-			// ƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ“Ç‚İ‚Ş
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 			if (ThreadIndexer.Exists(Cache, header))
 				ThreadIndexer.Read(Cache, header);
 
-			string subj = (header.Subject != String.Empty) ? header.Subject : "[ƒXƒŒƒbƒh–¼•s–¾]";
-			OnStatusTextChanged(subj + "‚ğŠJ‚¢‚Ä‚¢‚Ü‚·");
+			string subj = (header.Subject != String.Empty) ? header.Subject : "[ã‚¹ãƒ¬ãƒƒãƒ‰åä¸æ˜]";
+			OnStatusTextChanged(subj + "ã‚’é–‹ã„ã¦ã„ã¾ã™");
 
 			ThreadRun();
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğXV (ƒXƒŒƒbƒh‚ğ“Ç‚İ‚İ’†‚È‚ç‰½‚à‚µ‚È‚¢)
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ›´æ–° (ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èª­ã¿è¾¼ã¿ä¸­ãªã‚‰ä½•ã‚‚ã—ãªã„)
 		/// </summary>
 		public virtual void Reload()
 		{
@@ -774,8 +774,8 @@ Retry:
 			if (IsOpen)
 			{
 				IsReading = true;
-				modeOpen = false;	// XV‚·‚éê‡‚Ífalse
-				OnStatusTextChanged(headerInfo.Subject + "‚ğXV‚µ‚Ü‚·");
+				modeOpen = false;	// æ›´æ–°ã™ã‚‹å ´åˆã¯false
+				OnStatusTextChanged(headerInfo.Subject + "ã‚’æ›´æ–°ã—ã¾ã™");
 
 				ThreadRun();
 			}
@@ -786,7 +786,7 @@ Retry:
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚Ì“Ç‚İ‚İ‚ğ’†~ (“Ç‚İ‚İ’†‚Å‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢)
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã®èª­ã¿è¾¼ã¿ã‚’ä¸­æ­¢ (èª­ã¿è¾¼ã¿ä¸­ã§ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„)
 		/// </summary>
 		public virtual void Stop()
 		{
@@ -801,13 +801,13 @@ Retry:
 				//	thread = null;
 
 				if (headerInfo != null)
-					OnStatusTextChanged(headerInfo.Subject + "‚Ì“Ç‚İ‚İ‚ğ’†~");
+					OnStatusTextChanged(headerInfo.Subject + "ã®èª­ã¿è¾¼ã¿ã‚’ä¸­æ­¢");
 			}
 			IsReading = false;
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 		/// </summary>
 		public virtual void Close()
 		{
@@ -825,103 +825,103 @@ Retry:
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½1‚©‚çn‚Ü‚éƒŒƒX”Ô†‚Ì”z—ñ‚ğƒ|ƒbƒvƒAƒbƒv‚Å•\¦
+		/// æŒ‡å®šã—ãŸ1ã‹ã‚‰å§‹ã¾ã‚‹ãƒ¬ã‚¹ç•ªå·ã®é…åˆ—ã‚’ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã§è¡¨ç¤º
 		/// </summary>
 		/// <param name="indices"></param>
 		public abstract void Popup(int[] indices);
 
 		/// <summary>
-		/// w’è‚µ‚½ƒŒƒXƒRƒŒƒNƒVƒ‡ƒ“‚ğƒ|ƒbƒvƒAƒbƒv‚Å•\¦
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã§è¡¨ç¤º
 		/// </summary>
 		/// <param name="resSets"></param>
 		public abstract void Popup(ResSetCollection resSets);
 
 		/// <summary>
-		/// w’è‚µ‚½ index ”Ô†‚ğQÆ‚µ‚Ä‚¢‚éƒŒƒX‚ğƒ|ƒbƒvƒAƒbƒv‚Å•\¦B
+		/// æŒ‡å®šã—ãŸ index ç•ªå·ã‚’å‚ç…§ã—ã¦ã„ã‚‹ãƒ¬ã‚¹ã‚’ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã§è¡¨ç¤ºã€‚
 		/// </summary>
 		/// <param name="index"></param>
 		public abstract void PopupBackReferences(int index);
 
 		/// <summary>
-		/// •\¦’†‚ÌƒXƒŒƒbƒh‚ğˆóü‚·‚é‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh
+		/// è¡¨ç¤ºä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å°åˆ·ã™ã‚‹ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		/// </summary>
 		public abstract void Print();
 
 		/// <summary>
-		/// w’è‚µ‚½ˆÊ’u‚É‚µ‚¨‚è‚ğ‹²‚Ş‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒhB
-		/// Šù‚É“¯‚¶”Ô†‚É‚µ‚¨‚è‚ªİ’è‚³‚ê‚Ä‚¢‚½‚çA‚µ‚¨‚è‚ğ‰ğœB
+		/// æŒ‡å®šã—ãŸä½ç½®ã«ã—ãŠã‚Šã‚’æŒŸã‚€ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã€‚
+		/// æ—¢ã«åŒã˜ç•ªå·ã«ã—ãŠã‚ŠãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰ã€ã—ãŠã‚Šã‚’è§£é™¤ã€‚
 		/// </summary>
 		/// <param name="shiroi"></param>
 		public abstract void Bookmark(int shiroi);
 
 		/// <summary>
-		/// ‚µ‚¨‚è‚ğŠJ‚­
+		/// ã—ãŠã‚Šã‚’é–‹ã
 		/// </summary>
 		public abstract void OpenBookmark();
 
 		/// <summary>
-		/// w’è‚µ‚½ sirusi ”Ô†‚ÌƒŒƒX‚Éˆó‚ğ•t‚¯‚éB
-		/// “¯‚¶”Ô†‚Éˆó‚·‚é‚ÆAˆó‚ª‰ğœ‚³‚ê‚éB
+		/// æŒ‡å®šã—ãŸ sirusi ç•ªå·ã®ãƒ¬ã‚¹ã«å°ã‚’ä»˜ã‘ã‚‹ã€‚
+		/// åŒã˜ç•ªå·ã«å°ã™ã‚‹ã¨ã€å°ãŒè§£é™¤ã•ã‚Œã‚‹ã€‚
 		/// </summary>
 		/// <param name="sirusi"></param>
 		public abstract void Sirusi(int sirusi, bool redraw);
 
 		/// <summary>
-		/// ˆó‚³‚ê‚½ƒŒƒX‚ğ•\¦
+		/// å°ã•ã‚ŒãŸãƒ¬ã‚¹ã‚’è¡¨ç¤º
 		/// </summary>
 		public abstract void OpenSirusi();
 
 		/// <summary>
-		/// w’è‚µ‚½ˆÊ’u‚ÉƒXƒNƒ[ƒ‹‚·‚é‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh
+		/// æŒ‡å®šã—ãŸä½ç½®ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		/// </summary>
 		/// <param name="position"></param>
 		public abstract void ScrollTo(ScrollPosition position);
 
 		/// <summary>
-		/// w’è‚µ‚½ƒŒƒX”Ô†‚Ü‚ÅƒXƒNƒ[ƒ‹‚·‚é‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh
+		/// æŒ‡å®šã—ãŸãƒ¬ã‚¹ç•ªå·ã¾ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		/// </summary>
 		/// <param name="resNumber"></param>
 		public abstract void ScrollTo(int resNumber);
 
 		/// <summary>
-		/// w’è‚µ‚½”ÍˆÍ‚Ì‚İ‚ğ•\¦‚·‚é‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh
+		/// æŒ‡å®šã—ãŸç¯„å›²ã®ã¿ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		/// </summary>
 		/// <param name="begin"></param>
 		/// <param name="end"></param>
 		public abstract void Range(int begin, int end);
 
 		/// <summary>
-		/// w’è‚µ‚½ˆÊ’u‚ÉˆÚ“®‚·‚é‚æ‚¤‚ÉŒp³æ‚ÅƒI[ƒo[ƒ‰ƒCƒh
+		/// æŒ‡å®šã—ãŸä½ç½®ã«ç§»å‹•ã™ã‚‹ã‚ˆã†ã«ç¶™æ‰¿å…ˆã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 		/// </summary>
 		/// <param name="movement"></param>
 		public abstract void Range(RangeMovement movement);
 
 		/// <summary>
-		/// •\¦‚ğˆê’[ƒNƒŠƒA‚µ‚Äw’è‚µ‚½items‚ğ‘‚«‚Ş
+		/// è¡¨ç¤ºã‚’ä¸€ç«¯ã‚¯ãƒªã‚¢ã—ã¦æŒ‡å®šã—ãŸitemsã‚’æ›¸ãè¾¼ã‚€
 		/// </summary>
 		/// <param name="items"></param>
 		public abstract void WriteResColl(ResSetCollection items);
 
 		/// <summary>
-		/// w’è‚µ‚½•¶š—ñ‚ğ‘‚«‚Ş
+		/// æŒ‡å®šã—ãŸæ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 		/// </summary>
 		/// <param name="html"></param>
 		public abstract void WriteText(string text);
 
 		/// <summary>
-		/// •\¦‚ğƒNƒŠƒA
+		/// è¡¨ç¤ºã‚’ã‚¯ãƒªã‚¢
 		/// </summary>
 		public abstract void Clear();
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚«ƒŒƒX‚ğ’Šo
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ããƒ¬ã‚¹ã‚’æŠ½å‡º
 		/// </summary>
 		/// <param name="hezder"></param>
 		/// <param name="info"></param>
 		public abstract int OpenExtract(ThreadHeader hezder, ThreadExtractInfo info);
 
 		/// <summary>
-		/// ŒŸõ‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// æ¤œç´¢ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <param name="flags"></param>
@@ -929,7 +929,7 @@ Retry:
 		public abstract AbstractSearcher BeginSearch();
 
 		/// <summary>
-		/// ’Šo‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// æŠ½å‡ºã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <param name="flags"></param>
@@ -939,26 +939,26 @@ Retry:
 	}
 
 	/// <summary>
-	/// ”ÍˆÍİ’è‚ÌˆÊ’u‚ğ•\‚·
+	/// ç¯„å›²è¨­å®šæ™‚ã®ä½ç½®ã‚’è¡¨ã™
 	/// </summary>
 	public enum RangeMovement
 	{
-		/// <summary>Œã‚ë‚ÖˆÚ“®</summary>
+		/// <summary>å¾Œã‚ã¸ç§»å‹•</summary>
 		Back,
-		/// <summary>‘O‚ÖˆÚ“®</summary>
+		/// <summary>å‰ã¸ç§»å‹•</summary>
 		Forward,
 	}
 
 	/// <summary>
-	/// ƒXƒNƒ[ƒ‹‚·‚éˆÊ’u‚ğ•\‚·
+	/// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ä½ç½®ã‚’è¡¨ã™
 	/// </summary>
 	public enum ScrollPosition
 	{
-		/// <summary>ˆê”Ôã‚ÖƒXƒNƒ[ƒ‹</summary>
+		/// <summary>ä¸€ç•ªä¸Šã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«</summary>
 		Top,
-		/// <summary>ˆê”Ô‰º‚ÖƒXƒNƒ[ƒ‹</summary>
+		/// <summary>ä¸€ç•ªä¸‹ã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«</summary>
 		Bottom,
-		/// <summary>ˆê‚Â‘O‚ÌˆÊ’u‚É–ß‚é</summary>
+		/// <summary>ä¸€ã¤å‰ã®ä½ç½®ã«æˆ»ã‚‹</summary>
 		Prev,
 	}
 }

@@ -5,24 +5,24 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ƒŒƒX‚Ì—v‘f‚ğ•\‚·
+	/// ãƒ¬ã‚¹ã®è¦ç´ ã‚’è¡¨ã™
 	/// </summary>
 	public enum ResSetElement
 	{
 		Unknown = -1,
 
-		/// <summary>‚·‚×‚Ä‘ÎÛ</summary>
+		/// <summary>ã™ã¹ã¦å¯¾è±¡</summary>
 		All = 0,
-		/// <summary>Name‚ª‘ÎÛ</summary>
+		/// <summary>NameãŒå¯¾è±¡</summary>
 		Name,
-		/// <summary>Email‚ª‘ÎÛ</summary>
+		/// <summary>EmailãŒå¯¾è±¡</summary>
 		Email,
-		/// <summary>ID‚ª‘ÎÛ</summary>
+		/// <summary>IDãŒå¯¾è±¡</summary>
 		ID,
-		/// <summary>–{•ª‚ª‘ÎÛ</summary>
+		/// <summary>æœ¬åˆ†ãŒå¯¾è±¡</summary>
 		Body,
 
-		/// <summary>“ú•t•¶š—ñ‚ª‘ÎÛ</summary>
+		/// <summary>æ—¥ä»˜æ–‡å­—åˆ—ãŒå¯¾è±¡</summary>
 		DateString,
 
 	}

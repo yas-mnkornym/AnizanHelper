@@ -12,22 +12,22 @@ namespace Twin.Tools
 	using CSharpSamples;
 
 	/// <summary>
-	/// ƒfƒtƒHƒ‹ƒg‚Ì„‰ñƒNƒ‰ƒX
+	/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å·¡å›ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class DefaultPatroller : PatrolBase
 	{
 		/// <summary>
-		/// DefaultPatrollerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// DefaultPatrollerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public DefaultPatroller(Cache cacheInfo) : base(cacheInfo)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// „‰ñŠJn
+		/// å·¡å›é–‹å§‹
 		/// </summary>
 		public override void Patrol()
 		{
@@ -43,7 +43,7 @@ namespace Twin.Tools
 					ResSetCollection temp = new ResSetCollection();
 					BoardInfo board = header.BoardInfo;
 
-					// ƒŠ[ƒ_[‚ğì¬
+					// ãƒªãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
 					if (bbs != board.Bbs)
 					{
 						reader = null;
@@ -51,11 +51,11 @@ namespace Twin.Tools
 						bbs = board.Bbs;
 					}
 
-					// æ“¾‘O‚ÌV’…‚ğ•Û‘¶
+					// å–å¾—å‰ã®æ–°ç€ã‚’ä¿å­˜
 					int newResCount = header.NewResCount;
 
 					try {
-						OnStatusTextChanged(header.Subject + " ‚Ì„‰ñ’†...");
+						OnStatusTextChanged(header.Subject + " ã®å·¡å›ä¸­...");
 
 						ClientBase.Connect.WaitOne();
 
@@ -64,7 +64,7 @@ namespace Twin.Tools
 
 						if (!e.Cancel)
 						{
-							// V’…‚Ì‚İ‚ğ“Ç‚İæ‚é
+							// æ–°ç€ã®ã¿ã‚’èª­ã¿å–ã‚‹
 							reader.ReadCache = false;
 
 							if (reader.Open(header))
@@ -80,14 +80,14 @@ namespace Twin.Tools
 
 					if (header.NewResCount > 0)
 					{
-						// ‘O‰ñ‚ÌV’…‚ğ‘«‚µ‚ÄAƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶
+						// å‰å›ã®æ–°ç€ã‚’è¶³ã—ã¦ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
 						header.NewResCount += newResCount;
 						OnUpdated(new PatrolEventArgs(header));
 					}
 				}
 			}
 			finally {
-				OnStatusTextChanged("„‰ñ‚ğŠ®—¹‚µ‚Ü‚µ‚½");
+				OnStatusTextChanged("å·¡å›ã‚’å®Œäº†ã—ã¾ã—ãŸ");
 			}
 		}
 	}

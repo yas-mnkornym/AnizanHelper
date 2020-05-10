@@ -6,7 +6,7 @@ namespace Twin
 	using System.IO;
 
 	/// <summary>
-	/// ”Â‚ÌƒLƒƒƒbƒVƒ…î•ñ‚ğ•\‚·
+	/// æ¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	public class CacheInfo
 	{
@@ -15,35 +15,35 @@ namespace Twin
 		private int totalCount;
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…ƒtƒHƒ‹ƒ_‚Ö‚ÌƒpƒX‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ•ã‚©ãƒ«ãƒ€ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
 		public string FolderPath {
 			get { return folderPath; }
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚Ì‡ŒvƒTƒCƒY‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®åˆè¨ˆã‚µã‚¤ã‚ºã‚’å–å¾—
 		/// </summary>
 		public long TotalSize {
 			get { return totalSize; }
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚Ì‡Œv”‚ğæ“¾
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®åˆè¨ˆæ•°ã‚’å–å¾—
 		/// </summary>
 		public int TotalCount {
 			get { return totalCount; }
 		}
 
 		/// <summary>
-		/// CacheInfoƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// CacheInfoã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		/// <param name="board"></param>
 		public CacheInfo(Cache cache, BoardInfo board)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			if (cache == null) {
 				throw new ArgumentNullException("cache");
@@ -52,17 +52,17 @@ namespace Twin
 				throw new ArgumentNullException("board");
 			}
 
-			// ”Â‚Ö‚ÌƒpƒX‚ğæ“¾
+			// æ¿ã¸ã®ãƒ‘ã‚¹ã‚’å–å¾—
 			folderPath = cache.GetFolderPath(board);
 
 			DirectoryInfo dir = new DirectoryInfo(folderPath);
 			FileInfo[] fileInfoArray = dir.GetFiles("*.idx");
 
-			// ‡Œv”‚ğæ“¾
+			// åˆè¨ˆæ•°ã‚’å–å¾—
 			totalCount = fileInfoArray.Length;
 			totalSize = 0;
 
-			// ‡ŒvƒTƒCƒY‚ğæ“¾
+			// åˆè¨ˆã‚µã‚¤ã‚ºã‚’å–å¾—
 			foreach (FileInfo info in fileInfoArray)
 				totalSize += info.Length;
 		}

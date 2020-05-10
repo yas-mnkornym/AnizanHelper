@@ -5,22 +5,22 @@ namespace CSharpSamples.Html
 	using System;
 
 	/// <summary>
-	/// HtmlException ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlException ã®æ¦‚è¦ã®èª¬æ˜Žã§ã™ã€‚
 	/// </summary>
 	public class HtmlException : ApplicationException
 	{
 		/// <summary>
-		/// HtmlExceptionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// HtmlExceptionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlException() : base()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ð‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// HtmlExceptionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// HtmlExceptionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="message"></param>
 		public HtmlException(string message) : base(message)
@@ -28,7 +28,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlExceptionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ð‰Šú‰»
+		/// HtmlExceptionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>

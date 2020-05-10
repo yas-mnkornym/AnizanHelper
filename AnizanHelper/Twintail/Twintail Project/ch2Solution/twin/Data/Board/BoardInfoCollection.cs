@@ -10,14 +10,14 @@ namespace Twin
 	using System.ComponentModel;
 
 	/// <summary>
-	/// BoardInfo ƒNƒ‰ƒX‚ğƒRƒŒƒNƒVƒ‡ƒ“ŠÇ—‚µ‚Ü‚·B
+	/// BoardInfo ã‚¯ãƒ©ã‚¹ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†ã—ã¾ã™ã€‚
 	/// </summary>
 	[Serializable]
 	[TypeConverter(typeof(BoardInfoCollectionConverter))]
 	public class BoardInfoCollection : List<BoardInfo>, ISerializable
 	{
 		/// <summary>
-		/// BoardInfoCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BoardInfoCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BoardInfoCollection() 
 		{
@@ -37,10 +37,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ”Â–¼‚ª boardName ‚Æˆê’v‚µ‚½”Â‚ÌƒRƒŒƒNƒVƒ‡ƒ““àƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚µ‚Ü‚·B
+		/// æ¿åãŒ boardName ã¨ä¸€è‡´ã—ãŸæ¿ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="boardName">ŒŸõ‚·‚é”Â–¼</param>
-		/// <returns>‘¶İ‚·‚ê‚Î‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚µAŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î -1 ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="boardName">æ¤œç´¢ã™ã‚‹æ¿å</param>
+		/// <returns>å­˜åœ¨ã™ã‚Œã°ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã—ã€è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° -1 ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public int IndexOfName(string boardName)
 		{
 			return FindIndex(new Predicate<BoardInfo>(delegate (BoardInfo bi)
@@ -50,10 +50,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ url ‚Éˆê’v‚·‚é”Â‚ÌƒRƒŒƒNƒVƒ‡ƒ““àƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸ url ã«ä¸€è‡´ã™ã‚‹æ¿ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="url">ŒŸõ‚·‚éURL</param>
-		/// <returns>‘¶İ‚·‚ê‚Î‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚µAŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î -1 ‚ğ•Ô‚µ‚Ü‚·B</returns>
+		/// <param name="url">æ¤œç´¢ã™ã‚‹URL</param>
+		/// <returns>å­˜åœ¨ã™ã‚Œã°ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã—ã€è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° -1 ã‚’è¿”ã—ã¾ã™ã€‚</returns>
 		public int IndexOfUrl(string url)
 		{
 			return FindIndex(new Predicate<BoardInfo>(delegate(BoardInfo bi)
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// Ši”[‚³‚ê‚Ä‚¢‚é”Â–¼‚ğ˜AŒ‹‚µ‚½•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
+		/// æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ¿åã‚’é€£çµã—ãŸæ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

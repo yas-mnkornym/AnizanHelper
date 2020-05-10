@@ -7,7 +7,7 @@ namespace Twin.IO
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒ[ƒJƒ‹‚ÉƒXƒŒƒbƒhˆê——‚ğ•Û‘¶EŠÇ—‚·‚éƒCƒ“ƒ^[ƒtƒF[ƒXB
+	/// ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’ä¿å­˜ãƒ»ç®¡ç†ã™ã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
 	/// </summary>
 	public abstract class ThreadListStorage : IDisposable
 	{
@@ -31,7 +31,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒtƒ@ƒCƒ‹‚ªŠJ‚©‚ê‚Ä‚¢‚ê‚Î trueA•Â‚¶‚ç‚ê‚Ä‚¢‚ê‚Î false ‚ğ•Ô‚µ‚Ü‚·B
+		/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‹ã‚Œã¦ã„ã‚Œã° trueã€é–‰ã˜ã‚‰ã‚Œã¦ã„ã‚Œã° false ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract bool IsOpen
 		{
@@ -39,7 +39,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…ƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·B
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract int Length
 		{
@@ -47,7 +47,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// Œ»İ‚ÌƒXƒgƒŠ[ƒ€‚ÌˆÊ’u‚ğ•Ô‚µ‚Ü‚·B
+		/// ç¾åœ¨ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ä½ç½®ã‚’è¿”ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract int Position
 		{
@@ -55,7 +55,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// “Ç‚İ‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚µ‚Ü‚·B
+		/// èª­ã¿è¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract bool CanRead
 		{
@@ -63,7 +63,7 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// ‘‚«‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•\‚µ‚Ü‚·B
+		/// æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¡¨ã—ã¾ã™ã€‚
 		/// </summary>
 		public abstract bool CanWrite
 		{
@@ -71,8 +71,8 @@ namespace Twin.IO
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”Â‚ÌƒLƒƒƒbƒVƒ…‚ğAStorageMode.Read ‚È‚ç“Ç‚İ‚Æ‚èƒ‚[ƒhA
-		/// StorageMode.Write ‚È‚ç‘‚«‚İƒ‚[ƒh‚ÅŠJ‚«‚Ü‚·B
+		/// æŒ‡å®šã—ãŸæ¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ã€StorageMode.Read ãªã‚‰èª­ã¿ã¨ã‚Šãƒ¢ãƒ¼ãƒ‰ã€
+		/// StorageMode.Write ãªã‚‰æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ãã¾ã™ã€‚
 		/// </summary>
 		/// <param name="board"></param>
 		/// <param name="mode"></param>
@@ -80,16 +80,16 @@ namespace Twin.IO
 		public abstract bool Open(BoardInfo board, StorageMode mode);
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚©‚çƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚İ headerList ‚ÉŠi”[‚µ‚Ü‚·B
-		/// “Ç‚İ‚Æ‚èƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ headerList ã«æ ¼ç´ã—ã¾ã™ã€‚
+		/// èª­ã¿ã¨ã‚Šãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		/// </summary>
 		/// <param name="headerList"></param>
 		/// <returns></returns>
 		public abstract int Read(List<ThreadHeader> headerList);
 
 		/// <summary>
-		/// ƒLƒƒƒbƒVƒ…‚©‚çƒXƒŒƒbƒhˆê——‚ğ“Ç‚İ‚İ headerList ‚ÉŠi”[‚µ‚Ü‚·B
-		/// “Ç‚İ‚Æ‚èƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+		/// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’èª­ã¿è¾¼ã¿ headerList ã«æ ¼ç´ã—ã¾ã™ã€‚
+		/// èª­ã¿ã¨ã‚Šãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		/// </summary>
 		/// <param name="headerList"></param>
 		/// <param name="byteParsed"></param>
@@ -97,18 +97,18 @@ namespace Twin.IO
 		public abstract int Read(List<ThreadHeader> headerList, out int byteParsed);
 
 		/// <summary>
-		/// headerList ‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒXƒŒƒbƒhˆê——‚ğƒLƒƒƒbƒVƒ…‚É‘‚«‚İ‚Ü‚·B
-		/// ‘‚«‚İƒ‚[ƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+		/// headerList ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ›¸ãè¾¼ã¿ã¾ã™ã€‚
+		/// æ›¸ãè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		/// </summary>
 		public abstract int Write(List<ThreadHeader> headerList);
 
 		/// <summary>
-		/// Open ƒƒ\ƒbƒh‚ÅŠJ‚©‚ê‚Ä‚¢‚éƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚Ü‚·B
+		/// Open ãƒ¡ã‚½ãƒƒãƒ‰ã§é–‹ã‹ã‚Œã¦ã„ã‚‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã¾ã™ã€‚
 		/// </summary>
 		public abstract void Close();
 
 		/// <summary>
-		/// g—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú‚µAŠJ‚©‚ê‚Ä‚¢‚éƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚Ü‚·B
+		/// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã€é–‹ã‹ã‚Œã¦ã„ã‚‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã¾ã™ã€‚
 		/// </summary>
 		public abstract void Dispose();
 	}

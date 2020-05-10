@@ -6,14 +6,14 @@ namespace Twin.Text
 	using CSharpSamples;
 
 	/// <summary>
-	/// ŒŸõ‹@”\‚ğÀ‘•‚·‚éŠî–{ƒNƒ‰ƒX
+	/// æ¤œç´¢æ©Ÿèƒ½ã‚’å®Ÿè£…ã™ã‚‹åŸºæœ¬ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class AbstractSearcher
 	{
 		private SearchOptions options;
 
 		/// <summary>
-		/// ŒŸõƒIƒvƒVƒ‡ƒ“‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public SearchOptions Options {
 			set {
@@ -25,28 +25,28 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// AbstractSearcherƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AbstractSearcherã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected AbstractSearcher()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			options = SearchOptions.None;
 		}
 		/// <summary>
-		/// ŒŸõ‚ğƒŠƒZƒbƒg
+		/// æ¤œç´¢ã‚’ãƒªã‚»ãƒƒãƒˆ
 		/// </summary>
 		public abstract void Reset();
 
 		/// <summary>
-		/// ŒŸõŠJn
+		/// æ¤œç´¢é–‹å§‹
 		/// </summary>
 		/// <param name="keyword"></param>
 		public abstract bool Search(string keyword);
 
 		/// <summary>
-		/// ’PŒê‚ğ‚·‚×‚ÄƒnƒCƒ‰ƒCƒg•\¦
+		/// å˜èªã‚’ã™ã¹ã¦ãƒã‚¤ãƒ©ã‚¤ãƒˆè¡¨ç¤º
 		/// </summary>
 		public abstract void Highlights(string keyword);
 	}

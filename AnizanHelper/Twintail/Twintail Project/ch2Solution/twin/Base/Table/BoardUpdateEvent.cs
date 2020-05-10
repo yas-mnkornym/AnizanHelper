@@ -5,12 +5,12 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// IBoardTable.OnlineUpdateƒƒ\ƒbƒh‚Ég—p‚·‚éƒfƒŠƒQ[ƒg
+	/// IBoardTable.OnlineUpdateãƒ¡ã‚½ãƒƒãƒ‰ã«ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒªã‚²ãƒ¼ãƒˆ
 	/// </summary>
 	public delegate void BoardUpdateEventHandler(object sender, BoardUpdateEventArgs e);
 
 	/// <summary>
-	/// BoardUpdateEventHandlerƒƒ\ƒbƒh‚ÌƒCƒxƒ“ƒgƒf[ƒ^
+	/// BoardUpdateEventHandlerãƒ¡ã‚½ãƒƒãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	/// </summary>
 	public class BoardUpdateEventArgs : EventArgs
 	{
@@ -19,7 +19,7 @@ namespace Twin
 		private BoardInfo newBoard;
 
 		/// <summary>
-		/// ”Âˆê——ƒCƒxƒ“ƒg‚Ì“à—e‚ğæ“¾
+		/// æ¿ä¸€è¦§ã‚¤ãƒ™ãƒ³ãƒˆã®å†…å®¹ã‚’å–å¾—
 		/// </summary>
 		public BoardUpdateEvent Event
 		{
@@ -30,7 +30,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// XV‘O‚Ì”Âî•ñ‚ğæ“¾ (Event‚ªChange‚Ì‚Ì‚İ)
+		/// æ›´æ–°å‰ã®æ¿æƒ…å ±ã‚’å–å¾— (EventãŒChangeã®æ™‚ã®ã¿)
 		/// </summary>
 		public BoardInfo OldBoard
 		{
@@ -41,7 +41,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// V‚µ‚¢”Âî•ñ‚ğæ“¾
+		/// æ–°ã—ã„æ¿æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public BoardInfo NewBoard
 		{
@@ -52,11 +52,11 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// BoardUpdateEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BoardUpdateEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="_event">ƒCƒxƒ“ƒg‚Ì“à—e</param>
-		/// <param name="old">”Â‚ªˆÚ“]‚µ‚½‚Æ‚«‚Ì‚İˆÚ“]‘O‚Ì”Âî•ñ‚ğw’è</param>
-		/// <param name="_new">V‚µ‚¢”Âî•ñ</param>
+		/// <param name="_event">ã‚¤ãƒ™ãƒ³ãƒˆã®å†…å®¹</param>
+		/// <param name="old">æ¿ãŒç§»è»¢ã—ãŸã¨ãã®ã¿ç§»è»¢å‰ã®æ¿æƒ…å ±ã‚’æŒ‡å®š</param>
+		/// <param name="_new">æ–°ã—ã„æ¿æƒ…å ±</param>
 		public BoardUpdateEventArgs(BoardUpdateEvent _event, BoardInfo old, BoardInfo _new)
 		{
 			if (_event == BoardUpdateEvent.Change &&
@@ -72,20 +72,20 @@ namespace Twin
 	}
 
 	/// <summary>
-	/// ”ÂXVƒCƒxƒ“ƒg‚Ì“à—e
+	/// æ¿æ›´æ–°ã‚¤ãƒ™ãƒ³ãƒˆã®å†…å®¹
 	/// </summary>
 	public enum BoardUpdateEvent
 	{
 		/// <summary>
-		/// ”Â‚ÌURL‚ª•ÏX‚³‚ê‚½
+		/// æ¿ã®URLãŒå¤‰æ›´ã•ã‚ŒãŸ
 		/// </summary>
 		Change,
 		/// <summary>
-		/// V‚µ‚­‚¢‚½‚ª’Ç‰Á‚³‚ê‚½
+		/// æ–°ã—ãã„ãŸãŒè¿½åŠ ã•ã‚ŒãŸ
 		/// </summary>
 		New,
 		/// <summary>
-		/// ”Â‚ÌXV‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+		/// æ¿ã®æ›´æ–°ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 		/// </summary>
 		Cancelled,
 	}

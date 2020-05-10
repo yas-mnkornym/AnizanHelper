@@ -7,7 +7,7 @@ using Twintail3;
 namespace Twintail.Serialization
 {
 	/// <summary>
-	/// ‚È‚ñ‚©•W€‚ÌToolStripManager.LoadSettings‚ª‚¿‚á‚ñ‚Æ•œŒ³‚³‚ê‚È‚¢‚Ì‚Å©‘O‚Å•Û‘¶E•œŒ³‚·‚éƒNƒ‰ƒX‚Å‚·B
+	/// ãªã‚“ã‹æ¨™æº–ã®ToolStripManager.LoadSettingsãŒã¡ã‚ƒã‚“ã¨å¾©å…ƒã•ã‚Œãªã„ã®ã§è‡ªå‰ã§ä¿å­˜ãƒ»å¾©å…ƒã™ã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	/// </summary>
 	public class ToolStripContainerSerializer
 	{
@@ -23,7 +23,7 @@ namespace Twintail.Serialization
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ ToolStripContainer “à‚Ì‚·‚×‚Ä‚Ìƒpƒlƒ‹“à‚Éq‚Æ‚µ‚Ä‘¶İ‚·‚é  ToolStrip ƒRƒ“ƒgƒ[ƒ‹‚ÌˆÊ’uî•ñ‚ğƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·B
+		/// æŒ‡å®šã—ãŸ ToolStripContainer å†…ã®ã™ã¹ã¦ã®ãƒ‘ãƒãƒ«å†…ã«å­ã¨ã—ã¦å­˜åœ¨ã™ã‚‹  ToolStrip ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ä½ç½®æƒ…å ±ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="Container"></param>
 		/// <param name="fileName"></param>
@@ -55,11 +55,11 @@ namespace Twintail.Serialization
 		}
 
 		/// <summary>
-		/// İ’èƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İAw’è‚µ‚½ƒRƒ“ƒeƒi‚Ìó‘Ô‚ğ•œŒ³‚µ‚Ü‚·B
+		/// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€æŒ‡å®šã—ãŸã‚³ãƒ³ãƒ†ãƒŠã®çŠ¶æ…‹ã‚’å¾©å…ƒã—ã¾ã™ã€‚
 		/// </summary>
-		/// <param name="parentCtrl">Container‚ğq‚É‚ÂÅãˆÊ‚ÌeƒRƒ“ƒgƒ[ƒ‹A‚Ü‚½‚ÍƒƒCƒ“ƒtƒH[ƒ€B</param>
-		/// <param name="Container">ó‘Ô‚ğ•œŒ³‚·‚éƒRƒ“ƒeƒi</param>
-		/// <param name="fileName">İ’èƒtƒ@ƒCƒ‹‚Ì•Û‘¶æƒtƒ@ƒCƒ‹ƒpƒX</param>
+		/// <param name="parentCtrl">Containerã‚’å­ã«æŒã¤æœ€ä¸Šä½ã®è¦ªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã€ã¾ãŸã¯ãƒ¡ã‚¤ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã€‚</param>
+		/// <param name="Container">çŠ¶æ…‹ã‚’å¾©å…ƒã™ã‚‹ã‚³ãƒ³ãƒ†ãƒŠ</param>
+		/// <param name="fileName">è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
 		public static void Load(Control parentCtrl, ToolStripContainer Container, string fileName)
 		{		
 			ToolStripdockContainerSetting dockContainerSetting = new ToolStripdockContainerSetting(fileName);
@@ -73,7 +73,7 @@ namespace Twintail.Serialization
 
 			Dictionary<ToolStrip, ToolStripPanel> remainds = new Dictionary<ToolStrip, ToolStripPanel>();
 
-			// ‘Sƒpƒlƒ‹“à‚ÌToolStripƒRƒ“ƒgƒ[ƒ‹‚ğ‚·‚×‚Ä tsDic ‚É“ü‚êAˆê“xƒRƒ“ƒgƒ[ƒ‹ƒRƒŒƒNƒVƒ‡ƒ“‚ğƒNƒŠƒA‚·‚é
+			// å…¨ãƒ‘ãƒãƒ«å†…ã®ToolStripã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’ã™ã¹ã¦ tsDic ã«å…¥ã‚Œã€ä¸€åº¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 			foreach (ToolStripPanel panel in allPanels.Values)
 			{
 				foreach (Control c in panel.Controls)
@@ -87,7 +87,7 @@ namespace Twintail.Serialization
 				panel.Controls.Clear();
 			}
 
-			// •Û‘¶‚³‚ê‚Ä‚¢‚é‡‚ÉÄ“xƒpƒlƒ‹‚ÉToolStrip‚ğ’Ç‰Á‚µ‚Ä‚¢‚­
+			// ä¿å­˜ã•ã‚Œã¦ã„ã‚‹é †ã«å†åº¦ãƒ‘ãƒãƒ«ã«ToolStripã‚’è¿½åŠ ã—ã¦ã„ã
 			foreach (ToolStripPanelSetting panelSetting in dockContainerSetting.Panels)
 			{
 				if (!allPanels.ContainsKey(panelSetting.Alignment))
@@ -104,7 +104,7 @@ namespace Twintail.Serialization
 					}
 					else if (parentCtrl != null)
 					{
-						// Œ»İ‚ÌToolStripContainer“à‚ÉƒRƒ“ƒgƒ[ƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢ê‡‚Íe‚ÌƒRƒ“ƒgƒ[ƒ‹“à‚©‚ç’T‚·
+						// ç¾åœ¨ã®ToolStripContainerå†…ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯è¦ªã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å†…ã‹ã‚‰æ¢ã™
 						foreach (Control c in parentCtrl.Controls.Find(setting.Name, true))
 						{
 							if (c is ToolStrip)
@@ -123,7 +123,7 @@ namespace Twintail.Serialization
 				}
 			}
 
-			// ‚Ç‚±‚É‚à’Ç‰Á‚³‚ê‚¸‚Éc‚Á‚½ToolStrip‚ğ‚à‚Æ‚à‚Æ‚ ‚Á‚½ƒpƒlƒ‹‚É’Ç‰Á‚·‚é
+			// ã©ã“ã«ã‚‚è¿½åŠ ã•ã‚Œãšã«æ®‹ã£ãŸToolStripã‚’ã‚‚ã¨ã‚‚ã¨ã‚ã£ãŸãƒ‘ãƒãƒ«ã«è¿½åŠ ã™ã‚‹
 			foreach (KeyValuePair<ToolStrip, ToolStripPanel> pair in remainds)
 				pair.Value.Join(pair.Key, Point.Empty);
 		}
@@ -240,7 +240,7 @@ namespace Twintail.Serialization
 			this.Location = location;
 		}
 
-		#region IComparable<ToolStripSettings> ƒƒ“ƒo
+		#region IComparable<ToolStripSettings> ãƒ¡ãƒ³ãƒ
 
 		public int CompareTo(ToolStripSetting item)
 		{

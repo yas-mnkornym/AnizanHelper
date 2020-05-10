@@ -5,25 +5,25 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// “ŠeŽž‚ÌƒT[ƒo[‚©‚ç‚Ì‰ž‘Î‚ð•\‚·
+	/// æŠ•ç¨¿æ™‚ã®ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œå¯¾ã‚’è¡¨ã™
 	/// </summary>
 	public enum PostResponse
 	{
-		/// <summary>Žw’è‚È‚µ</summary>
+		/// <summary>æŒ‡å®šãªã—</summary>
 		None,
-		/// <summary>“Še‚É¬Œ÷</summary>
+		/// <summary>æŠ•ç¨¿ã«æˆåŠŸ</summary>
 		Success,
-		/// <summary>ƒNƒbƒL[Šm”F</summary>
+		/// <summary>ã‚¯ãƒƒã‚­ãƒ¼ç¢ºèª</summary>
 		Cookie,
-		/// <summary>ƒ^ƒCƒ€ƒAƒEƒg‚Å“Še‚Å‚«‚È‚¢</summary>
+		/// <summary>ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã§æŠ•ç¨¿ã§ããªã„</summary>
 		Timeout,
-		/// <summary>‘‚«ž‚Ý‚Ío—ˆ‚½‚ª’ˆÓ•t‚«</summary>
+		/// <summary>æ›¸ãè¾¼ã¿ã¯å‡ºæ¥ãŸãŒæ³¨æ„ä»˜ã</summary>
 		Attention,
-		/// <summary>‰½‚ç‚©‚ÌŒx‚ª”­¶</summary>
+		/// <summary>ä½•ã‚‰ã‹ã®è­¦å‘ŠãŒç™ºç”Ÿ</summary>
 		Warning,
-		/// <summary>‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶</summary>
+		/// <summary>ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ</summary>
 		Error,
-		/// <summary>SambaƒGƒ‰[</summary>
+		/// <summary>Sambaã‚¨ãƒ©ãƒ¼</summary>
 		Samba,
 	}
 }

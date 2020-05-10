@@ -9,28 +9,28 @@ namespace CSharpSamples
 	using System.Xml;
 
 	/// <summary>
-	/// ƒƒjƒ…[‚Ìî•ñ‚ğƒtƒ@ƒCƒ‹‚ÉƒVƒŠƒAƒ‹‰»‚Ü‚½‚Í‹tƒVƒŠƒAƒ‹‰»‚ğs‚¤ƒNƒ‰ƒX
+	/// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æƒ…å ±ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚·ãƒªã‚¢ãƒ«åŒ–ã¾ãŸã¯é€†ã‚·ãƒªã‚¢ãƒ«åŒ–ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class MenuSerializer
 	{
 		/// <summary>
-		/// obj“à‚ÉŠÜ‚Ü‚ê‚éMenuItemƒtƒB[ƒ‹ƒh‚Ìî•ñ‚ğXML‚ÉƒVƒŠƒAƒ‹‰»
+		/// objå†…ã«å«ã¾ã‚Œã‚‹MenuItemãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æƒ…å ±ã‚’XMLã«ã‚·ãƒªã‚¢ãƒ«åŒ–
 		/// </summary>
-		/// <param name="filePath">•Û‘¶æƒtƒ@ƒCƒ‹ƒpƒX</param>
-		/// <param name="obj">ƒVƒŠƒAƒ‹‰»‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg</param>
+		/// <param name="filePath">ä¿å­˜å…ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+		/// <param name="obj">ã‚·ãƒªã‚¢ãƒ«åŒ–å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
 		public static void Serialize(string filePath, object obj)
 		{
 			XmlDocument doc = new XmlDocument();
 
-			// menu‚ÌŒ^î•ñ‚ğ‘®«‚É
+			// menuã®å‹æƒ…å ±ã‚’å±æ€§ã«
 			XmlAttribute attrType = doc.CreateAttribute("Type");
 			attrType.Value = obj.GetType().FullName;
 
-			// ƒƒjƒ…[‚Ìƒ‹[ƒgî•ñ
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ«ãƒ¼ãƒˆæƒ…å ±
 			XmlElement root = doc.CreateElement("Menu");
 			root.Attributes.Append(attrType);
 
-			// obj‚É‘¶İ‚·‚é‚·‚×‚Ä‚ÌMenuItem‚ğxml‚É‘‚«o‚·
+			// objã«å­˜åœ¨ã™ã‚‹ã™ã¹ã¦ã®MenuItemã‚’xmlã«æ›¸ãå‡ºã™
 			FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.Instance |
 				BindingFlags.NonPublic | BindingFlags.Public);
 
@@ -45,15 +45,15 @@ namespace CSharpSamples
 
 				if (menu != null)
 				{
-					// Text‘®«
+					// Textå±æ€§
 					XmlAttribute attrText = doc.CreateAttribute("Text");
 					attrText.Value = menu.Text;
 
-					// Visible‘®«
+					// Visibleå±æ€§
 					//XmlAttribute attrVisible = doc.CreateAttribute("Visible");
 					//attrVisible.Value = menu.Visible.ToString();
 
-					// Shortcut‘®«
+					// Shortcutå±æ€§
 					XmlAttribute attrShortcut = doc.CreateAttribute("Shortcut");
 					attrShortcut.Value = menu.ShortcutKeys.ToString();
 
@@ -88,7 +88,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚É•Û‘¶‚³‚ê‚Ä‚¢‚éXML‚ğƒfƒVƒŠƒAƒ‹‰»‚µobj‚É“Ç‚İ‚Ş
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã•ã‚Œã¦ã„ã‚‹XMLã‚’ãƒ‡ã‚·ãƒªã‚¢ãƒ«åŒ–ã—objã«èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="obj"></param>
@@ -102,7 +102,7 @@ namespace CSharpSamples
 			XmlAttribute attrType = root.Attributes["Type"];
 			if (attrType == null)
 			{
-				throw new ApplicationException("ƒ‹[ƒg‚ÉŒ^î•ñ‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+				throw new ApplicationException("ãƒ«ãƒ¼ãƒˆã«å‹æƒ…å ±ãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 			}
 
 			string typeName = attrType.Value;

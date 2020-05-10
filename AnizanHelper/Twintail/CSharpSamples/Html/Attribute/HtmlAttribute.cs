@@ -3,7 +3,7 @@
 namespace CSharpSamples.Html
 {
 	/// <summary>
-	/// ‘®«‚ğ•\‚·ƒNƒ‰ƒX
+	/// å±æ€§ã‚’è¡¨ã™ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class HtmlAttribute
 	{
@@ -11,7 +11,7 @@ namespace CSharpSamples.Html
 		private string _value;
 
 		/// <summary>
-		/// ‘®«‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// å±æ€§ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name
 		{
@@ -26,7 +26,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‘®«‚Ì’l‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// å±æ€§ã®å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Value
 		{
@@ -41,7 +41,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‘®«‚ğHtmlŒ`®‚Åæ“¾
+		/// å±æ€§ã‚’Htmlå½¢å¼ã§å–å¾—
 		/// </summary>
 		public string Html
 		{
@@ -52,30 +52,30 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlAttributeƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlAttributeã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
-		/// <param name="name">‘®«–¼</param>
-		/// <param name="val">‘®«’l</param>
+		/// <param name="name">å±æ€§å</param>
+		/// <param name="val">å±æ€§å€¤</param>
 		public HtmlAttribute(string name, string val)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.name = name;
 			this._value = val;
 		}
 
 		/// <summary>
-		/// HtmlAttributeƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlAttributeã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlAttribute() : this(string.Empty, string.Empty)
 		{
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
-		/// <returns>HtmlƒvƒƒpƒeƒB‚Ì’l‚ğ•Ô‚·</returns>
+		/// <returns>Htmlãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã‚’è¿”ã™</returns>
 		public override string ToString()
 		{
 			return this.Html;

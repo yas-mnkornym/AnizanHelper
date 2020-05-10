@@ -8,7 +8,7 @@ namespace Twin.Bbs
 	using Twin.IO;
 
 	/// <summary>
-	/// JbbsThreadReader ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// JbbsThreadReader ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class JbbsThreadReader : MachiThreadReader
 	{
@@ -16,7 +16,7 @@ namespace Twin.Bbs
 
 		private JbbsErrorStatus _errorStatus = JbbsErrorStatus.None;
 		/// <summary>
-		/// JBBS“Á—L‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğæ“¾‚µ‚Ü‚·B
+		/// JBBSç‰¹æœ‰ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—ã—ã¾ã™ã€‚
 		/// </summary>
 		public JbbsErrorStatus ErrorStatus
 		{
@@ -27,7 +27,7 @@ namespace Twin.Bbs
 		}
 	
 		/// <summary>
-		/// JbbsThreadReaderƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// JbbsThreadReaderã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public JbbsThreadReader()
 			: base(new JbbsThreadParser())
@@ -35,7 +35,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ğŠJ‚­
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹ã
 		/// </summary>
 		/// <param name="th"></param>
 		public override bool Open(ThreadHeader header)
@@ -46,18 +46,18 @@ namespace Twin.Bbs
 			}
 			if (IsOpen)
 			{
-				throw new InvalidOperationException("Šù‚ÉƒXƒgƒŠ[ƒ€‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·");
+				throw new InvalidOperationException("æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™");
 			}
 
 			string url = header.DatUrl;
 
 			if (header.GotByteCount > 0)
 			{
-				// ·•ªæ“¾—p‚ÉURL‚ÉC³‚ğ‰Á‚¦‚é
+				// å·®åˆ†å–å¾—ç”¨ã«URLã«ä¿®æ­£ã‚’åŠ ãˆã‚‹
 				url += String.Format("{0}-n", header.GotResCount + 1);
 			}
 
-			// ƒlƒbƒgƒ[ƒNƒXƒgƒŠ[ƒ€‚ğ‰Šú‰»
+			// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’åˆæœŸåŒ–
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
 			req.Timeout = 15000;
 			req.IfModifiedSince = header.LastModified;
@@ -88,7 +88,7 @@ namespace Twin.Bbs
 			{
 				if (_errorStatus == JbbsErrorStatus.StorageIn)
 				{
-					// dat—‚¿‚µ‚½—\Š´
+					// datè½ã¡ã—ãŸäºˆæ„Ÿ
 					headerInfo.Pastlog = true;
 				}
 				_res.Close();
@@ -110,7 +110,7 @@ namespace Twin.Bbs
 		}
 
 		/// <summary>
-		/// ‚µ‚½‚ç‚Î‚ª•Ô‚·ƒGƒ‰[ƒXƒe[ƒ^ƒX‚ğ‰ğÍ‚µ‚ÄAJbbsErrorStatus —ñ‹“‘Ì‚É•ÏŠ·‚µ‚Ü‚·B
+		/// ã—ãŸã‚‰ã°ãŒè¿”ã™ã‚¨ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è§£æã—ã¦ã€JbbsErrorStatus åˆ—æŒ™ä½“ã«å¤‰æ›ã—ã¾ã™ã€‚
 		/// </summary>
 		/// <param name="errorStatusString"></param>
 		/// <returns></returns>
@@ -125,7 +125,7 @@ namespace Twin.Bbs
 					return (JbbsErrorStatus)Enum.Parse(
 						typeof(JbbsErrorStatus), errorStatusString, true);
 				}
-				// ’è‹`‚³‚ê‚Ä‚¢‚È‚¢’l‚Ìê‡‚Í–³‹
+				// å®šç¾©ã•ã‚Œã¦ã„ãªã„å€¤ã®å ´åˆã¯ç„¡è¦–
 				catch (ArgumentException)
 				{
 				}
@@ -136,15 +136,15 @@ namespace Twin.Bbs
 
 	public enum JbbsErrorStatus
 	{
-		/// <summary>‰½‚à‚ ‚è‚Ü‚¹‚ñ</summary>
+		/// <summary>ä½•ã‚‚ã‚ã‚Šã¾ã›ã‚“</summary>
 		None,
-		/// <summary>Œf¦”Â”Ô†‚ª•s³‚©A‚Ü‚½‚Íƒpƒ‰ƒ[ƒ^‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·</summary>
+		/// <summary>æ²ç¤ºæ¿ç•ªå·ãŒä¸æ­£ã‹ã€ã¾ãŸã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒé–“é•ã£ã¦ã„ã¾ã™</summary>
 		BBSNotFound,
-		/// <summary>ƒXƒŒƒbƒh”Ô†‚ª•s³‚©A‚Ü‚½‚Íƒpƒ‰ƒ[ƒ^‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·</summary>
+		/// <summary>ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ãŒä¸æ­£ã‹ã€ã¾ãŸã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒé–“é•ã£ã¦ã„ã¾ã™</summary>
 		KeyNotFound,
-		/// <summary>URL‚ªŠÔˆá‚Á‚Ä‚¢‚é‚© ‰ß‹ƒƒO‚ÉˆÚ“®‚¹‚¸‚Éíœ‚³‚ê‚Ä‚¢‚Ü‚·</summary>
+		/// <summary>URLãŒé–“é•ã£ã¦ã„ã‚‹ã‹ éå»ãƒ­ã‚°ã«ç§»å‹•ã›ãšã«å‰Šé™¤ã•ã‚Œã¦ã„ã¾ã™</summary>
 		ThreadNotFound,
-		/// <summary>ŠY“–‚ÌƒXƒŒƒbƒh‚ÍA‰ß‹ƒƒO‘qŒÉ‚ÉˆÚ“®‚³‚ê‚Ä‚¢‚Ü‚·</summary>
+		/// <summary>è©²å½“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯ã€éå»ãƒ­ã‚°å€‰åº«ã«ç§»å‹•ã•ã‚Œã¦ã„ã¾ã™</summary>
 		StorageIn,
 	}
 }

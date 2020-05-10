@@ -10,36 +10,36 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// 2ch‚Ìsubject.txt‚ğˆ—‚·‚é
+	/// 2chã®subject.txtã‚’å‡¦ç†ã™ã‚‹
 	/// </summary>
 	public class X2chThreadListParser : ThreadListParser
 	{
-		// ƒXƒŒƒbƒhˆê——‚ğ‰ğÍ‚·‚é³‹K•\Œ»
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ä¸€è¦§ã‚’è§£æã™ã‚‹æ­£è¦è¡¨ç¾
 		protected static readonly Regex Pattern =
 			new Regex(@"^(?<key>.+?)<>(?<subj>.+?)\((?<res>\d+)\)\r?$",
 			RegexOptions.Multiline | RegexOptions.Compiled);
 
 		/// <summary>
-		/// Œf¦”Â‚ÌŒ^‚ÆƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğw’è‚µ‚ÄA
-		/// X2chThreadListParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»B
+		/// æ²ç¤ºæ¿ã®å‹ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’æŒ‡å®šã—ã¦ã€
+		/// X2chThreadListParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–ã€‚
 		/// </summary>
 		/// <param name="bbs"></param>
 		/// <param name="enc"></param>
 		public X2chThreadListParser(BbsType bbs, Encoding enc) : base(bbs, enc)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// X2chThreadListParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadListParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadListParser() 
 			: base(BbsType.X2ch, Encoding.GetEncoding("Shift_Jis"))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 

@@ -6,7 +6,7 @@ namespace CSharpSamples.Html
 	using System.Text;
 
 	/// <summary>
-	/// HtmlFormatter ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlFormatter ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlFormatter
 	{
@@ -14,10 +14,10 @@ namespace CSharpSamples.Html
 		private char indentChar;
 		private int indentCount;
 
-		private int indent; // Œ»İ‚ÌƒCƒ“ƒfƒ“ƒg”‚ğ•\‚·
+		private int indent; // ç¾åœ¨ã®ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ•°ã‚’è¡¨ã™
 
 		/// <summary>
-		/// ‰üsƒR[ƒh‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string NewLine
 		{
@@ -32,7 +32,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒ“ƒg‚Ég—p‚·‚é•¶š‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã«ä½¿ç”¨ã™ã‚‹æ–‡å­—ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public char IndentChar
 		{
@@ -47,7 +47,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒ“ƒg”‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public int IndentCount
 		{
@@ -67,13 +67,13 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlFormatterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlFormatterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="elem"></param>
 		public HtmlFormatter()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.newline = Environment.NewLine;
 			this.indentChar = ' ';
@@ -82,7 +82,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ“‚ÌƒtƒH[ƒ}ƒbƒgÏ‚İHtml‚ğ•Ô‚·
+		/// æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ¸ˆã¿Htmlã‚’è¿”ã™
 		/// </summary>
 		/// <param name="nodeCollection"></param>
 		/// <returns></returns>
@@ -112,7 +112,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒm[ƒh‚ÌƒtƒH[ƒ}ƒbƒgÏ‚İHtml‚ğ•Ô‚·
+		/// æŒ‡å®šã—ãŸãƒãƒ¼ãƒ‰ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ¸ˆã¿Htmlã‚’è¿”ã™
 		/// </summary>
 		/// <param name="element"></param>
 		/// <returns></returns>
@@ -126,10 +126,10 @@ namespace CSharpSamples.Html
 			StringBuilder sb = new StringBuilder();
 			bool format = false;
 
-			// ŠJnƒ^ƒO
+			// é–‹å§‹ã‚¿ã‚°
 			sb.Append("<").Append(element.Name);
 
-			// ‘®«‚ğ•t‰Á
+			// å±æ€§ã‚’ä»˜åŠ 
 			foreach (HtmlAttribute attr in element.Attributes)
 			{
 				sb.Append(" ").Append(attr.Html);
@@ -141,7 +141,7 @@ namespace CSharpSamples.Html
 
 				this.indent++;
 
-				// qƒm[ƒh‚ÌHtml‚ğ¶¬
+				// å­ãƒãƒ¼ãƒ‰ã®Htmlã‚’ç”Ÿæˆ
 				foreach (HtmlNode child in element.Nodes)
 				{
 					if (child is HtmlText)
@@ -203,7 +203,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½”‚¾‚¯ƒCƒ“ƒfƒ“ƒg
+		/// æŒ‡å®šã—ãŸæ•°ã ã‘ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ
 		/// </summary>
 		/// <param name="sb"></param>
 		/// <param name="count"></param>

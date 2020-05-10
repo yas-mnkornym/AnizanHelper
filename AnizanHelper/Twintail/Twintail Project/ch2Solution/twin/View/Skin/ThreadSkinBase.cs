@@ -5,58 +5,58 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ƒXƒLƒ“‚ÌŠî–{ƒNƒ‰ƒX
+	/// ã‚¹ã‚­ãƒ³ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public abstract class ThreadSkinBase
 	{
 		/// <summary>
-		/// ƒŒƒXQÆ‚ÌŠî–{‚Æ‚È‚éURL‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ¬ã‚¹å‚ç…§ã®åŸºæœ¬ã¨ãªã‚‹URLã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public abstract string BaseUri {
 			set;
 			get;
 		}
 	
-		// ƒXƒLƒ“–¼‚ğæ“¾
+		// ã‚¹ã‚­ãƒ³åã‚’å–å¾—
 		public abstract string Name {
 			get;
 		}
 
 		/// <summary>
-		/// ƒwƒbƒ_[‚ğæ“¾
+		/// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
 		public abstract string GetHeader(ThreadHeader header);
 
 		/// <summary>
-		/// ƒtƒbƒ^[‚ğæ“¾
+		/// ãƒ•ãƒƒã‚¿ãƒ¼ã‚’å–å¾—
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
 		public abstract string GetFooter(ThreadHeader header);
 
 		/// <summary>
-		/// ResSet‚ğƒXƒLƒ“‚ğ—˜—p‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// ResSetã‚’ã‚¹ã‚­ãƒ³ã‚’åˆ©ç”¨ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSet"></param>
 		/// <returns></returns>
 		public abstract string Convert(ResSet resSet);
 
 		/// <summary>
-		/// ResSet‚ğˆê“x‚É•ÏŠ·
+		/// ResSetã‚’ä¸€åº¦ã«å¤‰æ›
 		/// </summary>
 		/// <param name="resSetCollection"></param>
 		/// <returns></returns>
 		public abstract string Convert(ResSetCollection resSetCollection);
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ªŠJ‚©‚ê‚½Aˆê“x‚¾‚¯ŒÄ‚Î‚ê‚Ü‚·B
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‹ã‹ã‚ŒãŸæ™‚ã€ä¸€åº¦ã ã‘å‘¼ã°ã‚Œã¾ã™ã€‚
 		/// </summary>
 		public abstract void Reset();
 
 		/// <summary>
-		/// ƒXƒLƒ“‚ğ“Ç‚İ‚Ş
+		/// ã‚¹ã‚­ãƒ³ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="skinFolder"></param>
 		public abstract void Load(string skinFolder);

@@ -7,7 +7,7 @@ namespace CSharpSamples.Html
 	using System.Text;
 
 	/// <summary>
-	/// HtmlElement ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlElement ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlElement : HtmlNode
 	{
@@ -19,7 +19,7 @@ namespace CSharpSamples.Html
 		private string name;
 
 		/// <summary>
-		/// qƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// å­ãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public HtmlNodeCollection Nodes
 		{
@@ -30,7 +30,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‘®«ƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// å±æ€§ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public HtmlAttributeCollection Attributes
 		{
@@ -41,7 +41,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚P‚Â‚Ìƒ^ƒO‚ÅŠ®Œ‹‚·‚éƒ^ƒO‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ï¼‘ã¤ã®ã‚¿ã‚°ã§å®Œçµã™ã‚‹ã‚¿ã‚°ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsEmptyElementTag
 		{
@@ -56,7 +56,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‹²‚ŞŒ`®‚Ìƒ^ƒO‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// æŒŸã‚€å½¢å¼ã®ã‚¿ã‚°ã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool IsTerminated
 		{
@@ -71,7 +71,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒ^ƒO‚Ì–¼‘O‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ã‚¿ã‚°ã®åå‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public string Name
 		{
@@ -91,7 +91,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ğqƒm[ƒh‚àŠÜ‚ßHtmlŒ`®‚É•ÏŠ·
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã‚’å­ãƒãƒ¼ãƒ‰ã‚‚å«ã‚Htmlå½¢å¼ã«å¤‰æ›
 		/// </summary>
 		public override string Html
 		{
@@ -138,7 +138,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚Ì“à•”Html‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã®å†…éƒ¨Htmlã‚’å–å¾—
 		/// </summary>
 		public override string InnerHtml
 		{
@@ -156,7 +156,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚Ì“à•”ƒeƒLƒXƒg‚ğæ“¾
+		/// ã“ã®ãƒãƒ¼ãƒ‰ã®å†…éƒ¨ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 		/// </summary>
 		public override string InnerText
 		{
@@ -174,13 +174,13 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlElementƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlElementã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="name"></param>
 		public HtmlElement(string name)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.nodes = new HtmlNodeCollection(this);
 			this.attributes = new HtmlAttributeCollection(this);
@@ -190,14 +190,14 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlElementƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlElementã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlElement() : this(string.Empty)
 		{
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒGƒŒƒƒ“ƒg‚ªnode‚Ìe‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã“ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆãŒnodeã®è¦ªã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>
@@ -216,7 +216,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚Ìƒm[ƒh‚ªnode‚Ìq‘·‚©‚Ç‚¤‚©‚ğ”»’f
+		/// ã“ã®ãƒãƒ¼ãƒ‰ãŒnodeã®å­å­«ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns></returns>
@@ -227,7 +227,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚Ìƒ^ƒO‚ğ‚·‚×‚Äæ“¾
+		/// æŒ‡å®šã—ãŸåå‰ã®ã‚¿ã‚°ã‚’ã™ã¹ã¦å–å¾—
 		/// </summary>
 		/// <param name="tagName"></param>
 		/// <returns></returns>
@@ -237,7 +237,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ID‚ğ‚ÂƒGƒŒƒƒ“ƒg‚ğæ“¾
+		/// æŒ‡å®šã—ãŸIDã‚’æŒã¤ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -247,7 +247,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ““à‚Ìw’è‚µ‚½ƒ^ƒO–¼‘O‚ğ‚Â‚·‚×‚Ä‚ÌƒGƒŒƒƒ“ƒg‚ğæ“¾
+		/// ãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®æŒ‡å®šã—ãŸã‚¿ã‚°åå‰ã‚’æŒã¤ã™ã¹ã¦ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		/// <param name="nodes"></param>
 		/// <param name="tagName"></param>
@@ -276,7 +276,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ““à‚Ìw’è‚µ‚½ID‚ğ‚ÂƒGƒŒƒƒ“ƒg‚ğæ“¾
+		/// ãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã®æŒ‡å®šã—ãŸIDã‚’æŒã¤ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		/// <param name="nodes"></param>
 		/// <param name="id"></param>

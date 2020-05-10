@@ -5,12 +5,12 @@ namespace Twin
 	using System;
 
 	/// <summary>
-	/// ThreadViewer.UriClickƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// ThreadViewer.UriClickã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	public delegate void UriClickEventHandler(object sender, UriClickEventArgs e);
 
 	/// <summary>
-	/// ThreadViewer.UriClickƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// ThreadViewer.UriClickã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class UriClickEventArgs : EventArgs
 	{
@@ -18,38 +18,38 @@ namespace Twin
 		private readonly LinkInfo info;
 
 		/// <summary>
-		/// ƒNƒŠƒbƒN‚³‚ê‚½URI‚ğæ“¾
+		/// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸURIã‚’å–å¾—
 		/// </summary>
 		public string Uri {
 			get { return uri; }
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒŠƒ“ƒN‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚Ä‚¢‚éî•ñ‚ğæ“¾
+		/// ã“ã®ãƒªãƒ³ã‚¯ã«é–¢é€£ã¥ã‘ã‚‰ã‚Œã¦ã„ã‚‹æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public LinkInfo Information {
 			get { return info; }
 		}
 
 		/// <summary>
-		/// UriClickEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// UriClickEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public UriClickEventArgs(string uri)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.uri = uri;
 			this.info = null;
 		}
 
 		/// <summary>
-		/// UriClickEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// UriClickEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public UriClickEventArgs(string uri, LinkInfo info)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.uri = uri;
 			this.info = info;

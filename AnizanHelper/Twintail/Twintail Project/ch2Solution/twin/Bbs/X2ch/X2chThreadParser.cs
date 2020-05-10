@@ -11,22 +11,22 @@ namespace Twin.Bbs
 	using Twin.Text;
 
 	/// <summary>
-	/// 2ch‚ÌDatŒ`®‚ğˆ—‚·‚é
+	/// 2chã®Datå½¢å¼ã‚’å‡¦ç†ã™ã‚‹
 	/// </summary>
 	public class X2chThreadParser : ThreadParser
 	{
 		//		/// <summary>
-		//		/// “ú•t‚ğŒŸõ‚·‚é‚½‚ß‚Ì³‹K•\Œ»
+		//		/// æ—¥ä»˜ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ­£è¦è¡¨ç¾
 		//		/// </summary>
 		//		protected static readonly Regex DateRegex =
 		//			new Regex(@"(?<date>[\d\s/:\(\)\p{IsCJKUnifiedIdeographs}]+)", RegexOptions.Compiled);
 
 		/// <summary>
-		/// ‰üs‚ğŒŸõ‚·‚é‚½‚ß‚ÌŒŸõƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// æ”¹è¡Œã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ¤œç´¢ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected readonly ISearchable searcher = new KmpSearch("\n");
 		/// <summary>
-		/// <>‚ğŒŸõ‚·‚é‚½‚ß‚ÌŒŸõƒNƒ‰ƒX‚ğ‰Šú‰»
+		/// <>ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ¤œç´¢ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		protected readonly ISearchable s_token = new KmpSearch("<>");
 
@@ -36,33 +36,33 @@ namespace Twin.Bbs
 
 
 		//		/// <summary>
-		//		/// <>‚ğŒŸõ‚·‚é‚½‚ß‚ÌŒŸõƒNƒ‰ƒX‚ğ‰Šú‰»
+		//		/// <>ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®æ¤œç´¢ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 		//		/// </summary>
 		//		protected static readonly Regex splitRegex = new Regex("<>", RegexOptions.Compiled);
 
 		/// <summary>
-		/// Œf¦”Â‚ÌŒ^‚ÆƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğw’è‚µ‚ÄA
-		/// X2chThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// æ²ç¤ºæ¿ã®å‹ã¨ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’æŒ‡å®šã—ã¦ã€
+		/// X2chThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="enc"></param>
 		public X2chThreadParser(BbsType bbs, Encoding enc)
 			: base(bbs, enc)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			elements = new string[5];
 			resCount = 0;
 		}
 
 		/// <summary>
-		/// X2chThreadParserƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chThreadParserã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chThreadParser()
 			: this(BbsType.X2ch, Encoding.GetEncoding("Shift_Jis"))
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
@@ -75,11 +75,11 @@ namespace Twin.Bbs
 			List<ResSet> list = new List<ResSet>(100);
 			int begin = 0, index;
 
-			// ƒŒƒX“à‚É'\0'•¶š‚ğŠÜ‚Şê‡‚ª‚ ‚é‚Ì‚ÅA‚»‚ê‚ğ*‚É’u‚«Š·‚¦‚é
+			// ãƒ¬ã‚¹å†…ã«'\0'æ–‡å­—ã‚’å«ã‚€å ´åˆãŒã‚ã‚‹ã®ã§ã€ãã‚Œã‚’*ã«ç½®ãæ›ãˆã‚‹
 			if (dataText.IndexOf('\0') >= 0)
 				dataText = dataText.Replace('\0', '*');
 
-			// ‹Œ®ƒŒƒXƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Ì“Áêˆ—
+			// æ—§å¼ãƒ¬ã‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã®ç‰¹æ®Šå‡¦ç†
 			if (dataText.IndexOf("<>") < 0)
 				dataText = dataText.Replace(",", "<>");
 
@@ -95,10 +95,10 @@ namespace Twin.Bbs
 					}
 				}
 
-				// Ÿ‚ÌŒŸõŠJnˆÊ’u‚ğİ’è
+				// æ¬¡ã®æ¤œç´¢é–‹å§‹ä½ç½®ã‚’è¨­å®š
 				begin = index + searcher.Pattern.Length;
 
-				// ³‹K•\Œ»g‚í‚È‚¢•û‚ª‘¬‚¢
+				// æ­£è¦è¡¨ç¾ä½¿ã‚ãªã„æ–¹ãŒé€Ÿã„
 				//string[] elements = splitRegex.Split(lineData);
 				
 				for (int i = 0; i < elements.Length; i++)
@@ -124,12 +124,12 @@ namespace Twin.Bbs
 
 		protected virtual ResSet ParseResSet(string[] elements)
 		{
-			ResSet resSet = new ResSet(-1, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]",
-				String.Empty, "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]", "[‚±‚±‰ó‚ê‚Ä‚Ü‚·]");
+			ResSet resSet = new ResSet(-1, "[ã“ã“å£Šã‚Œã¦ã¾ã™]",
+				String.Empty, "[ã“ã“å£Šã‚Œã¦ã¾ã™]", "[ã“ã“å£Šã‚Œã¦ã¾ã™]");
 
 			try
 			{
-				// name=0Aemail=1Adate=2Amessage=3Asubject=4
+				// name=0ã€email=1ã€date=2ã€message=3ã€subject=4
 				resSet.Name = elements[0];
 				resSet.Email = elements[1];
 				resSet.DateString = elements[2];

@@ -11,7 +11,7 @@ namespace CSharpSamples
 	public class Serializer
 	{
 		/// <summary>
-		/// obj‚ÌƒtƒB[ƒ‹ƒh‚ðƒVƒŠƒAƒ‰ƒCƒY
+		/// objã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="info"></param>
@@ -27,8 +27,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// obj‚ÌƒtƒB[ƒ‹ƒh‚ðƒVƒŠƒAƒ‰ƒCƒY
-		/// ƒfƒtƒHƒ‹ƒg‚Å‚ÍƒpƒuƒŠƒbƒN•ƒCƒ“ƒXƒ^ƒ“ƒX‚Èƒƒ“ƒo‚Ì‚ÝŒŸõB
+		/// objã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯ï¼†ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãªãƒ¡ãƒ³ãƒã®ã¿æ¤œç´¢ã€‚
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="info"></param>
@@ -38,7 +38,7 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// info‚ðŽg—p‚µ‚Ä‹tƒVƒŠƒAƒ‰ƒCƒY‚µobj‚É’l‚ðÝ’è
+		/// infoã‚’ä½¿ç”¨ã—ã¦é€†ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—objã«å€¤ã‚’è¨­å®š
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="info"></param>
@@ -58,8 +58,8 @@ namespace CSharpSamples
 		}
 
 		/// <summary>
-		/// info‚ðŽg—p‚µ‚Ä‹tƒVƒŠƒAƒ‰ƒCƒY‚µobj‚É’l‚ðÝ’èB
-		/// ƒfƒtƒHƒ‹ƒg‚Å‚ÍƒpƒuƒŠƒbƒN•ƒCƒ“ƒXƒ^ƒ“ƒX‚Èƒƒ“ƒo‚Ì‚ÝŒŸõB
+		/// infoã‚’ä½¿ç”¨ã—ã¦é€†ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—objã«å€¤ã‚’è¨­å®šã€‚
+		/// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ãƒ‘ãƒ–ãƒªãƒƒã‚¯ï¼†ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãªãƒ¡ãƒ³ãƒã®ã¿æ¤œç´¢ã€‚
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="info"></param>

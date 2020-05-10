@@ -5,52 +5,52 @@ namespace Twin.Bbs
 	using System;
 
 	/// <summary>
-	/// X2chKakoPost ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// X2chKakoPost ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class X2chKakoPost : X2chPost
 	{
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Éfalse‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«falseã‚’è¿”ã™
 		/// </summary>
 		public override bool CanPostRes {
 			get { return false; }
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒvƒƒpƒeƒB‚Íí‚Éfalse‚ğ•Ô‚·
+		/// ã“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯å¸¸ã«falseã‚’è¿”ã™
 		/// </summary>
 		public override bool CanPostThread {
 			get { return false; }
 		}
 
 		/// <summary>
-		/// X2chKakoPostƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// X2chKakoPostã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public X2chKakoPost()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 		}
 
 		/// <summary>
-		/// V‹KƒXƒŒƒbƒh‚ğ“Še
+		/// æ–°è¦ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="board">“Šeæ‚Ì”Â</param>
-		/// <param name="thread">“Še‚·‚é“à—e</param>
+		/// <param name="board">æŠ•ç¨¿å…ˆã®æ¿</param>
+		/// <param name="thread">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(BoardInfo board, PostThread thread)
 		{
-			throw new NotSupportedException("‚±‚Ìƒƒ\ƒbƒh‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+			throw new NotSupportedException("ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“");
 		}
 
 		/// <summary>
-		/// ƒƒbƒZ[ƒW‚ğ“Še
+		/// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŠ•ç¨¿
 		/// </summary>
-		/// <param name="header">“Šeæ‚ÌƒXƒŒƒbƒh</param>
-		/// <param name="res">“Še‚·‚é“à—e</param>
+		/// <param name="header">æŠ•ç¨¿å…ˆã®ã‚¹ãƒ¬ãƒƒãƒ‰</param>
+		/// <param name="res">æŠ•ç¨¿ã™ã‚‹å†…å®¹</param>
 		public override void Post(ThreadHeader header, PostRes res)
 		{
-			throw new NotSupportedException("‰ß‹ƒƒO‚É‚Í‘‚«‚İ‚Å‚«‚Ü‚¹‚ñ");
+			throw new NotSupportedException("éå»ãƒ­ã‚°ã«ã¯æ›¸ãè¾¼ã¿ã§ãã¾ã›ã‚“");
 		}
 	}
 }

@@ -10,14 +10,14 @@ namespace Twin
 	using Twin.IO;
 
 	/// <summary>
-	/// ”Â‚Æ”Â‚ğƒŠƒ“ƒN‚µŠÖ˜A‚Ã‚¯‚éƒNƒ‰ƒX
+	/// æ¿ã¨æ¿ã‚’ãƒªãƒ³ã‚¯ã—é–¢é€£ã¥ã‘ã‚‹ã‚¯ãƒ©ã‚¹
 	/// </summary>
 	public class BoardLinker
 	{
 		private Cache cache;
 
 		/// <summary>
-		/// BoardLinkerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BoardLinkerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="cache"></param>
 		public BoardLinker(Cache cache)
@@ -29,10 +29,10 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒƒO‚ÌˆÚ“]‚ÆAŒÃ‚¢”Â‚ÉˆÚ“]—š—ğ‚ğc‚·
+		/// ãƒ­ã‚°ã®ç§»è»¢ã¨ã€å¤ã„æ¿ã«ç§»è»¢å±¥æ­´ã‚’æ®‹ã™
 		/// </summary>
-		/// <param name="oldBoardˆÚ“]Œ³‚Ì”Â</param>
-		/// <param name="newBoard">ˆÚ“]æ‚Ì”Â</param>
+		/// <param name="oldBoardç§»è»¢å…ƒã®æ¿</param>
+		/// <param name="newBoard">ç§»è»¢å…ˆã®æ¿</param>
 		public void Replace(BoardInfo oldBoard, BoardInfo newBoard)
 		{
 			if (oldBoard == null) {
@@ -42,39 +42,39 @@ namespace Twin
 				throw new ArgumentNullException("newBoard");
 			}
 
-			// dat—‚¿ƒXƒŒ‚Æ¶‚«‚Ä‚¢‚éƒXƒŒ‚ğ•ª—£
+			// datè½ã¡ã‚¹ãƒ¬ã¨ç”Ÿãã¦ã„ã‚‹ã‚¹ãƒ¬ã‚’åˆ†é›¢
 			//List<ThreadHeader> leaveItems, liveItems;
 			//Separate(oldBoard, newBoard, out leaveItems, out liveItems);
 
-			//// Šù“¾ƒCƒ“ƒfƒbƒNƒX‚ğXV
+			//// æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ›´æ–°
 			//GotThreadListIndexer.Write(cache, oldBoard, leaveItems);
 			//GotThreadListIndexer.Write(cache, newBoard, liveItems);
 
 			ThreadIndexer.Indexing(cache, newBoard);
 /*
-			// ˆÚ“]‘O‚ÌŠù“¾ƒƒO‚ğæ“¾
+			// ç§»è»¢å‰ã®æ—¢å¾—ãƒ­ã‚°ã‚’å–å¾—
 			List<ThreadHeader> gotItems = GotThreadListIndexer.Read(cache, oldBoard);
 			
-			// V‚µ‚¢”Âî•ñ‚É•ÏX
+			// æ–°ã—ã„æ¿æƒ…å ±ã«å¤‰æ›´
 			foreach (ThreadHeader h in gotItems)
 				h.BoardInfo = newBoard;
 
-			// V‚µ‚¢”Â‚ÉŠù“¾ƒCƒ“ƒfƒbƒNƒX‚ğì¬
+			// æ–°ã—ã„æ¿ã«æ—¢å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 			GotThreadListIndexer.Write(cache, newBoard, gotItems);
 
-			// ƒƒO‚àˆÚ“®
+			// ãƒ­ã‚°ã‚‚ç§»å‹•
 			CopyDatFiles(oldBoard, newBoard);
 */
 		}
 
 
 		/// <summary>
-		/// ¶‚«‚Ä‚¢‚éƒXƒŒ‚Ædat—‚¿‚µ‚Ä‚¢‚éƒXƒŒ‚ğ•ª—£
+		/// ç”Ÿãã¦ã„ã‚‹ã‚¹ãƒ¬ã¨datè½ã¡ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ã‚’åˆ†é›¢
 		/// </summary>
-		/// <param name="oldBoard">ƒƒO‚ª‘¶İ‚·‚é”Â</param>
-		/// <param name="newBoard">¶‚«‚Ä‚¢‚éƒXƒŒ‚ÌˆÚ“]æ</param>
-		/// <param name="leaveItems">dat—‚¿‚µ‚Ä‚¢‚éƒXƒŒ‚ªŠi”[‚³‚ê‚é</param>
-		/// <param name="liveItems">¶‚«‚Ä‚¢‚éƒXƒŒ‚ªŠi”[‚³‚ê‚é</param>
+		/// <param name="oldBoard">ãƒ­ã‚°ãŒå­˜åœ¨ã™ã‚‹æ¿</param>
+		/// <param name="newBoard">ç”Ÿãã¦ã„ã‚‹ã‚¹ãƒ¬ã®ç§»è»¢å…ˆ</param>
+		/// <param name="leaveItems">datè½ã¡ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
+		/// <param name="liveItems">ç”Ÿãã¦ã„ã‚‹ã‚¹ãƒ¬ãŒæ ¼ç´ã•ã‚Œã‚‹</param>
 		private void Separate(BoardInfo oldBoard, BoardInfo newBoard,
 			out List<ThreadHeader> leaveItems, out List<ThreadHeader> liveItems)
 		{
@@ -95,7 +95,7 @@ namespace Twin
 
 						while (listReader.Read(newItems) != 0);
 
-						// ˆÚ“]æ‚ÌƒXƒŒˆê——‚É‘¶İ‚·‚éƒƒO‚Ì‚İˆÚ“] (dat—‚¿‚µ‚Ä‚¢‚éƒXƒŒ‚ÍˆÚ“]‚µ‚È‚¢)
+						// ç§»è»¢å…ˆã®ã‚¹ãƒ¬ä¸€è¦§ã«å­˜åœ¨ã™ã‚‹ãƒ­ã‚°ã®ã¿ç§»è»¢ (datè½ã¡ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ã¯ç§»è»¢ã—ãªã„)
 						foreach (ThreadHeader header in oldItems)
 						{
 							Predicate<ThreadHeader> p = new Predicate<ThreadHeader>(delegate (ThreadHeader h)
@@ -105,7 +105,7 @@ namespace Twin
 
 							if (newItems.Exists(p))
 							{
-								// ¶‚«‚Ä‚¢‚éƒXƒŒ‚Ì”Âî•ñ‚ğˆÚ“]æ”Â‚É‘‚«Š·‚¦‚é
+								// ç”Ÿãã¦ã„ã‚‹ã‚¹ãƒ¬ã®æ¿æƒ…å ±ã‚’ç§»è»¢å…ˆæ¿ã«æ›¸ãæ›ãˆã‚‹
 								if  (ThreadIndexer.Read(cache, header) != null)
 								{
 									ThreadIndexer.Delete(cache, header);
@@ -130,7 +130,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// oldBoard‚©‚çnewBoard‚ÉƒƒO‚ğˆÚ“®
+		/// oldBoardã‹ã‚‰newBoardã«ãƒ­ã‚°ã‚’ç§»å‹•
 		/// </summary>
 		/// <param name="oldItems"></param>
 		/// <param name="newBoard"></param>
@@ -139,7 +139,7 @@ namespace Twin
 			string fromFolder = cache.GetFolderPath(oldItems);
 			string toFolder = cache.GetFolderPath(newBoard, true);
 
-			string[] fileNames = Directory.GetFiles(fromFolder, "*.dat*");// .dat .dat.gz ‚ğŒŸõ
+			string[] fileNames = Directory.GetFiles(fromFolder, "*.dat*");// .dat .dat.gz ã‚’æ¤œç´¢
 
 			foreach (string fromPath in fileNames)
 			{
@@ -177,14 +177,14 @@ namespace Twin
 		}
 
 //		/// <summary>
-//		/// board‚ÉƒŠƒ“ƒNî•ñ‚ğì¬
+//		/// boardã«ãƒªãƒ³ã‚¯æƒ…å ±ã‚’ä½œæˆ
 //		/// </summary>
 //		/// <param name="cache"></param>
 //		/// <param name="board"></param>
 //		private void CreateLinkInfo(Cache cache, BoardInfo oldBoard, BoardInfo newBoard)
 //		{
 //			try {
-//				// ˆÚ“]Œ³‚ÉƒŠƒ“ƒNî•ñ‚ğc‚·
+//				// ç§»è»¢å…ƒã«ãƒªãƒ³ã‚¯æƒ…å ±ã‚’æ®‹ã™
 //				string filePath = 
 //					Path.Combine(cache.GetFolderPath(oldBoard), "moved.txt");
 //
@@ -207,12 +207,12 @@ namespace Twin
 //				doc.Save(filePath);
 //			}
 //			catch (Exception ex) {
-//				throw new ApplicationException("ƒŠƒ“ƒNî•ñ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½", ex);
+//				throw new ApplicationException("ãƒªãƒ³ã‚¯æƒ…å ±ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ", ex);
 //			}
 //		}
 
 //		/// <summary>
-//		/// w’è‚µ‚½”Â‚ªƒŠƒ“ƒN‚³‚ê‚Ä‚¢‚é”Â‚ğæ“¾
+//		/// æŒ‡å®šã—ãŸæ¿ãŒãƒªãƒ³ã‚¯ã•ã‚Œã¦ã„ã‚‹æ¿ã‚’å–å¾—
 //		/// </summary>
 //		/// <param name="board"></param>
 //		/// <param name="recursive"></param>

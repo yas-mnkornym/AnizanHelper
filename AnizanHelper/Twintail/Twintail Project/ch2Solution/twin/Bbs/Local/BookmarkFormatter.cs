@@ -10,19 +10,19 @@ namespace Twin.Text
 	using System.Xml;
 
 	/// <summary>
-	/// ‚¨‹C‚É“ü‚èî•ñ‚ğƒCƒ“ƒfƒbƒNƒX‰»‚·‚é
+	/// ãŠæ°—ã«å…¥ã‚Šæƒ…å ±ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹åŒ–ã™ã‚‹
 	/// </summary>
 	public class BookmarkFormatter : ThreadListFormatter
 	{
 		/// <summary>
-		/// BookmarkFormatterƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// BookmarkFormatterã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public BookmarkFormatter()
 		{
 		}
 
 		/// <summary>
-		/// qƒm[ƒh‚ğì¬
+		/// å­ãƒãƒ¼ãƒ‰ã‚’ä½œæˆ
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -47,7 +47,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒwƒbƒ_[‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public override string Format(ThreadHeader header)
 		{
@@ -63,7 +63,7 @@ namespace Twin.Text
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒwƒbƒ_[ƒRƒŒƒNƒVƒ‡ƒ“‚ğ‘®‰»‚µ‚Ä•¶š—ñ‚É•ÏŠ·
+		/// æŒ‡å®šã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’æ›¸å¼åŒ–ã—ã¦æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		public override string Format(List<ThreadHeader> headerList)
 		{
@@ -82,13 +82,13 @@ namespace Twin.Text
 			}
 
 			MemoryStream memory = new MemoryStream();
-			XmlTextWriter writer = new XmlTextWriter(memory, TwinDll.DefaultEncoding); // UTF8‚É‚·‚é‚Æ‚È‚º‚©æ“ª‚ÉƒSƒ~‚ª•t‚­c
+			XmlTextWriter writer = new XmlTextWriter(memory, TwinDll.DefaultEncoding); // UTF8ã«ã™ã‚‹ã¨ãªãœã‹å…ˆé ­ã«ã‚´ãƒŸãŒä»˜ãâ€¦
 
 			writer.Formatting = Formatting.Indented;
 			document.Save(writer);
 			writer.Close();
 
-			// •¶š—ñ‚É•ÏŠ·
+			// æ–‡å­—åˆ—ã«å¤‰æ›
 			return TwinDll.DefaultEncoding.GetString(memory.ToArray());
 		}
 	}

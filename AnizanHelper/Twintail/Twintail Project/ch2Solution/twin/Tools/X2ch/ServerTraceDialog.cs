@@ -10,7 +10,7 @@ namespace Twin.Tools
 	using System.Threading;
 
 	/// <summary>
-	/// ServerTraceDialog ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// ServerTraceDialog ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class ServerTraceDialog : System.Windows.Forms.Form
 	{
@@ -30,37 +30,37 @@ namespace Twin.Tools
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		/// <summary>
-		/// •K—v‚ÈƒfƒUƒCƒi•Ï”‚Å‚·B
+		/// å¿…è¦ãªãƒ‡ã‚¶ã‚¤ãƒŠå¤‰æ•°ã§ã™ã€‚
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 		#endregion
 
 		/// <summary>
-		/// ’ÇÕŒ‹‰Ê‚ğæ“¾
+		/// è¿½è·¡çµæœã‚’å–å¾—
 		/// </summary>
 		public BoardInfo Result {
 			get { return tracer.Result; }
 		}
 
 		/// <summary>
-		/// ’ÇÕ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©‚ğ¦‚·’l‚ğæ“¾
+		/// è¿½è·¡æˆåŠŸã—ãŸã‹ã©ã†ã‹ã‚’ç¤ºã™å€¤ã‚’å–å¾—
 		/// </summary>
 		public bool Success {
 			get { return success; }
 		}
 
 		/// <summary>
-		/// ServerTraceDialogƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ServerTraceDialogã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ServerTraceDialog(BoardInfo target)
 		{
 			//
-			// Windows ƒtƒH[ƒ€ ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Å‚·B
+			// Windows ãƒ•ã‚©ãƒ¼ãƒ  ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ã§ã™ã€‚
 			//
 			InitializeComponent();
 
 			//
-			// TODO: InitializeComponent ŒÄ‚Ño‚µ‚ÌŒã‚ÉAƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: InitializeComponent å‘¼ã³å‡ºã—ã®å¾Œã«ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			tracer = new X2chServerTracer();
 			tracer.Tracing += new EventHandler<ServerChangeEventArgs>(OnTracing);
@@ -78,7 +78,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// g—p‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ÉŒãˆ—‚ğÀs‚µ‚Ü‚·B
+		/// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã«å¾Œå‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -94,8 +94,8 @@ namespace Twin.Tools
 
 		#region Windows Form Designer generated code
 		/// <summary>
-		/// ƒfƒUƒCƒi ƒTƒ|[ƒg‚É•K—v‚Èƒƒ\ƒbƒh‚Å‚·B‚±‚Ìƒƒ\ƒbƒh‚Ì“à—e‚ğ
-		/// ƒR[ƒh ƒGƒfƒBƒ^‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+		/// ãƒ‡ã‚¶ã‚¤ãƒŠ ã‚µãƒãƒ¼ãƒˆã«å¿…è¦ãªãƒ¡ã‚½ãƒƒãƒ‰ã§ã™ã€‚ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã®å†…å®¹ã‚’
+		/// ã‚³ãƒ¼ãƒ‰ ã‚¨ãƒ‡ã‚£ã‚¿ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -116,7 +116,7 @@ namespace Twin.Tools
 			this.buttonGo.Name = "buttonGo";
 			this.buttonGo.Size = new System.Drawing.Size(172, 20);
 			this.buttonGo.TabIndex = 0;
-			this.buttonGo.Text = "‘I‘ğ‚³‚ê‚Ä‚¢‚é”Â‚ÉˆÚ“®";
+			this.buttonGo.Text = "é¸æŠã•ã‚Œã¦ã„ã‚‹æ¿ã«ç§»å‹•";
 			this.buttonGo.Click += new System.EventHandler(this.buttonGo_Click);
 			// 
 			// listBoxServ
@@ -135,7 +135,7 @@ namespace Twin.Tools
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 12);
 			this.label1.TabIndex = 2;
-			this.label1.Text = "ˆÚ“]—š—ğ";
+			this.label1.Text = "ç§»è»¢å±¥æ­´";
 			// 
 			// labelNewUrl
 			// 
@@ -171,7 +171,7 @@ namespace Twin.Tools
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(28, 16);
 			this.label2.TabIndex = 7;
-			this.label2.Text = "”Â–¼";
+			this.label2.Text = "æ¿å";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// ServerTraceDialog
@@ -191,7 +191,7 @@ namespace Twin.Tools
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "ServerTraceDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "”Â‚ğ’ÇÕ";
+			this.Text = "æ¿ã‚’è¿½è·¡";
 			this.ResumeLayout(false);
 
 		}
@@ -223,7 +223,7 @@ namespace Twin.Tools
 		{
 			if (success)
 			{
-				// ’ÇÕ¬Œ÷
+				// è¿½è·¡æˆåŠŸ
 			}
 			buttonGo.Enabled = true;
 			thread = null;

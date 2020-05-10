@@ -5,12 +5,12 @@ namespace Twin.Tools
 	using System;
 
 	/// <summary>
-	/// ThreadControl���^�C�}�[�Œ���I�ɍX�V�����{�N���X
+	/// ThreadControlをタイマーで定期的に更新する基本クラス
 	/// </summary>
 	public abstract class AutoRefreshTimerBase
 	{
 		/// <summary>
-		/// �X�V�Ԋu���~���b�P�ʂŎ擾�܂��͐ݒ�B
+		/// 更新間隔をミリ秒単位で取得または設定。
 		/// </summary>
 		public abstract int Interval {
 			set;
@@ -18,52 +18,52 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// AutoRefreshTimerBase�N���X�̃C���X�^���X��������
+		/// AutoRefreshTimerBaseクラスのインスタンスを初期化
 		/// </summary>
 		protected AutoRefreshTimerBase()
 		{}
 
 		/// <summary>
-		/// ���X�g�ɃN���C�A���g��ǉ��B
-		/// ���ɓ����N���C�A���g���o�^����Ă���Ή������Ȃ��B
+		/// リストにクライアントを追加。
+		/// 既に同じクライアントが登録されていれば何もしない。
 		/// </summary>
-		/// <param name="client">�����X�V�̑ΏۂƂ���N���C�A���g</param>
+		/// <param name="client">自動更新の対象とするクライアント</param>
 		public abstract void Add(ThreadControl client);
 
 		/// <summary>
-		/// ���X�g����N���C�A���g���폜�B
-		/// �w�肵���N���C�A���g�����X�g�ɑ��݂��Ȃ���Ή������Ȃ��B
+		/// リストからクライアントを削除。
+		/// 指定したクライアントがリストに存在しなければ何もしない。
 		/// </summary>
-		/// <param name="client">�����X�V�̑Ώۂ���O���N���C�A���g</param>
+		/// <param name="client">自動更新の対象から外すクライアント</param>
 		public abstract void Remove(ThreadControl client);
 
 		/// <summary>
-		/// �w�肵���N���C�A���g�����X�g���ɑ��݂��邩�ǂ����𔻒f
+		/// 指定したクライアントがリスト内に存在するかどうかを判断
 		/// </summary>
-		/// <param name="client">��������N���C�A���g</param>
-		/// <returns>���X�g���ɑ��݂����true�A���݂��Ȃ����false��Ԃ�</returns>
+		/// <param name="client">検索するクライアント</param>
+		/// <returns>リスト内に存在すればtrue、存在しなければfalseを返す</returns>
 		public abstract bool Contains(ThreadControl client);
 
 		/// <summary>
-		/// �w�肵���N���C�A���g�̍X�V�Ԋu���擾�B
+		/// 指定したクライアントの更新間隔を取得。
 		/// </summary>
 		/// <param name="client"></param>
-		/// <returns>���̍X�V�܂ł̕b���Bclient ���^�C�}�[�ɓo�^����Ă��Ȃ��A
-		/// �܂��̓^�C�}�[����~���Ă���ꍇ�� -1 ��Ԃ��B</returns>
+		/// <returns>次の更新までの秒数。client がタイマーに登録されていない、
+		/// またはタイマーが停止している場合は -1 を返す。</returns>
 		public abstract int GetInterval(ThreadControl client);
 
 		/// <summary>
-		/// �w�肵���N���C�A���g�̎��̍X�V�܂ł̎c��b����Ԃ��B
+		/// 指定したクライアントの次の更新までの残り秒数を返す。
 		/// </summary>
 		/// <param name="client"></param>
-		/// <returns>���̍X�V�܂ł̕b���Bclient ���^�C�}�[�ɓo�^����Ă��Ȃ��A
-		/// �܂��̓^�C�}�[����~���Ă���ꍇ�� -1 ��Ԃ��B</returns>
+		/// <returns>次の更新までの秒数。client がタイマーに登録されていない、
+		/// またはタイマーが停止している場合は -1 を返す。</returns>
 		public abstract int GetTimeleft(ThreadControl client);
 
 		public abstract ITimerObject GetTimerObject(ThreadControl client);
 
 		/// <summary>
-		/// ���ׂẴ^�C�}�[���폜
+		/// すべてのタイマーを削除
 		/// </summary>
 		public abstract void Clear();
 	}

@@ -6,7 +6,7 @@ namespace CSharpSamples.Html
 	using System.Text;
 
 	/// <summary>
-	/// HtmlDocument ‚ÌŠT—v‚Ìà–¾‚Å‚·B
+	/// HtmlDocument ã®æ¦‚è¦ã®èª¬æ˜ã§ã™ã€‚
 	/// </summary>
 	public class HtmlDocument
 	{
@@ -14,7 +14,7 @@ namespace CSharpSamples.Html
 		private bool formatted;
 
 		/// <summary>
-		/// ƒ‹[ƒgƒm[ƒhƒRƒŒƒNƒVƒ‡ƒ“‚ğæ“¾
+		/// ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 		/// </summary>
 		public HtmlNodeCollection Root
 		{
@@ -25,7 +25,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlƒhƒLƒ…ƒƒ“ƒg‚ğæ“¾
+		/// Htmlãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		public string Html
 		{
@@ -51,7 +51,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ƒtƒH[ƒ}ƒbƒg‚³‚ê‚½Html‚©‚Ç‚¤‚©‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã•ã‚ŒãŸHtmlã‹ã©ã†ã‹ã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
 		public bool Formatted
 		{
@@ -69,13 +69,13 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlDocumentƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlDocumentã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="html"></param>
 		public HtmlDocument(string html)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.root = null;
 			this.formatted = true;
@@ -84,14 +84,14 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// HtmlDocumentƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// HtmlDocumentã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public HtmlDocument() : this(string.Empty)
 		{
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½HtmlŒ`®‚Ì•¶š—ñ‚ğ“Ç‚İ‚Ş
+		/// æŒ‡å®šã—ãŸHtmlå½¢å¼ã®æ–‡å­—åˆ—ã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="html"></param>
 		public void LoadHtml(string html)
@@ -101,7 +101,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ƒtƒ@ƒCƒ‹‚©‚çHtml‚ğ“Ç‚İ‚Ş
+		/// æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰Htmlã‚’èª­ã¿è¾¼ã‚€
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="encoding"></param>
@@ -114,7 +114,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// Html‚ğƒXƒgƒŠ[ƒ€‚É‘‚«‚Ş
+		/// Htmlã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãè¾¼ã‚€
 		/// </summary>
 		/// <param name="writer"></param>
 		public void Save(string filePath)
@@ -126,7 +126,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½–¼‘O‚Ìƒ^ƒO‚ğ‚·‚×‚Äæ“¾
+		/// æŒ‡å®šã—ãŸåå‰ã®ã‚¿ã‚°ã‚’ã™ã¹ã¦å–å¾—
 		/// </summary>
 		/// <param name="tagName"></param>
 		/// <returns></returns>
@@ -136,7 +136,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// w’è‚µ‚½ID‚ğ‚ÂƒGƒŒƒƒ“ƒg‚ğæ“¾
+		/// æŒ‡å®šã—ãŸIDã‚’æŒã¤ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -146,7 +146,7 @@ namespace CSharpSamples.Html
 		}
 
 		/// <summary>
-		/// ‚±‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğHtmlŒ`®‚Ì•¶š—ñ‚É•ÏŠ·
+		/// ã“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’Htmlå½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()

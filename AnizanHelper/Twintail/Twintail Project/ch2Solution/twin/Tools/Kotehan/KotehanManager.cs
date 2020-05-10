@@ -9,14 +9,14 @@ namespace Twin.Tools
 	using CSharpSamples.Text.Search;
 
 	/// <summary>
-	/// �R�e�n�����Ǘ�
+	/// コテハンを管理
 	/// </summary>
 	public class KotehanManager
 	{
 		private CSPrivateProfile profile;
 
 		/// <summary>
-		/// �f�t�H���g�̃R�e�n�����擾�܂��͐ݒ�
+		/// デフォルトのコテハンを取得または設定
 		/// </summary>
 		public Kotehan Default {
 			set {
@@ -36,7 +36,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �ݒ肳��Ă���R�e�n�������ׂĎ擾
+		/// 設定されているコテハンをすべて取得
 		/// </summary>
 		public Kotehan[] All {
 			get {
@@ -53,7 +53,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// KotehanManager�N���X�̃C���X�^���X��������
+		/// KotehanManagerクラスのインスタンスを初期化
 		/// </summary>
 		public KotehanManager()
 		{
@@ -61,7 +61,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̃Z�N�V���������擾
+		/// 指定した板のセクション名を取得
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -71,7 +71,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���X���b�h�̃Z�N�V���������擾
+		/// 指定したスレッドのセクション名を取得
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -81,7 +81,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���Z�N�V�����̃R�e�n�����擾�B���݂��Ȃ����null��Ԃ��B
+		/// 指定したセクションのコテハンを取得。存在しなければnullを返す。
 		/// </summary>
 		/// <param name="section"></param>
 		/// <returns></returns>
@@ -96,10 +96,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���Z�N�V�����ɃR�e�n����ݒ�
+		/// 指定したセクションにコテハンを設定
 		/// </summary>
 		/// <param name="section"></param>
-		/// <param name="kotehan">null�܂��͋�̃R�e�n�����w�肷��ƃZ�N�V�������폜</param>
+		/// <param name="kotehan">nullまたは空のコテハンを指定するとセクションを削除</param>
 		private void SetInternal(string section, Kotehan kotehan)
 		{
 			if (kotehan == null || kotehan.IsEmpty)
@@ -114,7 +114,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �R�e�n���ɐݒ肳��Ă���̃T�[�o�[�������������܂��B
+		/// コテハンに設定されている板のサーバー情報を書き換えます。
 		/// </summary>
 		/// <param name="oldBoard"></param>
 		/// <param name="newBoard"></param>
@@ -132,7 +132,7 @@ namespace Twin.Tools
 		}
 		
 		/// <summary>
-		/// �w�肵���t�@�C������R�e�n������ǂݍ���
+		/// 指定したファイルからコテハン情報を読み込む
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <returns></returns>
@@ -145,7 +145,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���t�@�C���ɃR�e�n������ۑ�
+		/// 指定したファイルにコテハン情報を保存
 		/// </summary>
 		/// <param name="filePath"></param>
 		/// <param name="kotehan"></param>
@@ -155,7 +155,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���ɃR�e�n�����ݒ肳��Ă��邩�ǂ����𔻒f
+		/// 指定した板にコテハンが設定されているかどうかを判断
 		/// </summary>
 		/// <param name="board"></param>
 		/// <returns></returns>
@@ -166,7 +166,7 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���X���b�h�ɃR�e�n�����ݒ肳��Ă��邩�ǂ����𔻒f
+		/// 指定したスレッドにコテハンが設定されているかどうかを判断
 		/// </summary>
 		/// <param name="header"></param>
 		/// <returns></returns>
@@ -177,10 +177,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���ɐݒ肳��Ă���R�e�n�����擾
+		/// 指定した板に設定されているコテハンを取得
 		/// </summary>
-		/// <param name="board">�R�e�n�����擾�����</param>
-		/// <returns>���݂����Kotehan�N���X�̃C���X�^���X��Ԃ��B���݂��Ȃ���΃f�t�H���g�l</returns>
+		/// <param name="board">コテハンを取得する板</param>
+		/// <returns>存在すればKotehanクラスのインスタンスを返す。存在しなければデフォルト値</returns>
 		public Kotehan Get(BoardInfo board)
 		{
 			if (board == null) {
@@ -197,10 +197,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���X���b�h�ɐݒ肳��Ă���R�e�n�����擾
+		/// 指定したスレッドに設定されているコテハンを取得
 		/// </summary>
-		/// <param name="header">�X���b�h���</param>
-		/// <returns>���݂����Kotehan�N���X�̃C���X�^���X��Ԃ��B���݂��Ȃ���΃f�t�H���g�l</returns>
+		/// <param name="header">スレッド情報</param>
+		/// <returns>存在すればKotehanクラスのインスタンスを返す。存在しなければデフォルト値</returns>
 		public Kotehan Get(ThreadHeader header)
 		{
 			if (header == null) {
@@ -217,10 +217,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// �w�肵���̃R�e�n����ݒ�
+		/// 指定した板のコテハンを設定
 		/// </summary>
-		/// <param name="board">�R�e�n����ݒ肷���</param>
-		/// <param name="kotehan">�ݒ肷��l���i�[���ꂽ�R�e�n��</param>
+		/// <param name="board">コテハンを設定する板</param>
+		/// <param name="kotehan">設定する値が格納されたコテハン</param>
 		public void Set(BoardInfo board, Kotehan kotehan)
 		{
 			if (board == null) {
@@ -232,10 +232,10 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// Set�N���X�̃C���X�^���X��������
+		/// Setクラスのインスタンスを初期化
 		/// </summary>
-		/// <param name="header">�R�e�n����ݒ肷��X���b�h���</param>
-		/// <param name="kotehan">�ݒ肷��l���i�[���ꂽ�R�e�n��</param>
+		/// <param name="header">コテハンを設定するスレッド情報</param>
+		/// <param name="kotehan">設定する値が格納されたコテハン</param>
 		public void Set(ThreadHeader header, Kotehan kotehan)
 		{
 			if (header == null) {

@@ -8,14 +8,14 @@ namespace Twin
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// ƒ\[ƒg‚³‚ê‚½”’lŒ^‚ğŠÇ—‚·‚éƒRƒŒƒNƒVƒ‡ƒ“
+	/// ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸæ•°å€¤å‹ã‚’ç®¡ç†ã™ã‚‹ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³
 	/// </summary>
 	public class SortedValueCollection<T> : IEnumerable<T>
 	{
 		private List<T> values;
 
 		/// <summary>
-		/// —v‘f”‚ğæ“¾
+		/// è¦ç´ æ•°ã‚’å–å¾—
 		/// </summary>
 		public int Count
 		{
@@ -26,18 +26,18 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// SortedValueCollectionƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// SortedValueCollectionã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public SortedValueCollection()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			values = new List<T>();
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒXindex‚ğƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É’Ç‰Á
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹indexã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="index"></param>
 		public void Add(T index)
@@ -47,7 +47,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒCƒ“ƒfƒbƒNƒX”z—ñarray‚ğƒRƒŒƒNƒVƒ‡ƒ“‚Ì––”ö‚É’Ç‰Á
+		/// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é…åˆ—arrayã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®æœ«å°¾ã«è¿½åŠ 
 		/// </summary>
 		/// <param name="array"></param>
 		public void AddRange(T[] array)
@@ -63,7 +63,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// index‚ªƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// indexãŒã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="index"></param>
 		/// <returns></returns>
@@ -74,7 +74,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// array‚Ì’†‚Ì‚¢‚¸‚ê‚©1‚Â‚ªƒRƒŒƒNƒVƒ‡ƒ“‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’f
+		/// arrayã®ä¸­ã®ã„ãšã‚Œã‹1ã¤ãŒã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤æ–­
 		/// </summary>
 		/// <param name="array"></param>
 		/// <returns></returns>
@@ -87,7 +87,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// val ‚ğƒRƒŒƒNƒVƒ‡ƒ““à‚©‚çíœ
+		/// val ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã‹ã‚‰å‰Šé™¤
 		/// </summary>
 		/// <param name="val"></param>
 		public void Remove(T val)
@@ -96,7 +96,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚ğ‚·‚×‚Äíœ
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã™ã¹ã¦å‰Šé™¤
 		/// </summary>
 		public void Clear()
 		{
@@ -110,7 +110,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ƒRƒŒƒNƒVƒ‡ƒ“‚É“o˜^‚³‚ê‚Ä‚¢‚é”Ô†‚ğ•¶š—ñŒ`®‚É•ÏŠ·
+		/// ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç•ªå·ã‚’æ–‡å­—åˆ—å½¢å¼ã«å¤‰æ›
 		/// </summary>
 		/// <returns></returns>
 		public string ToArrayString()
@@ -124,7 +124,7 @@ namespace Twin
 		}
 
 		/// <summary>
-		/// ToArrayString ‚Å•¶š—ñ‚É•ÏŠ·‚³‚ê‚½ SortedValueCollection ‚Ì’l‚ğ•œŒ³
+		/// ToArrayString ã§æ–‡å­—åˆ—ã«å¤‰æ›ã•ã‚ŒãŸ SortedValueCollection ã®å€¤ã‚’å¾©å…ƒ
 		/// </summary>
 		/// <param name="arrayString"></param>
 		public void FromArrayString(string arrayString)

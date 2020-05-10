@@ -5,12 +5,12 @@ namespace Twin.Tools
 	using System;
 
 	/// <summary>
-	/// PatrolBaseƒNƒ‰ƒX‚ÌƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh
+	/// PatrolBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 	/// </summary>
 	public delegate void PatrolEventHandler(object sender, PatrolEventArgs e);
 
 	/// <summary>
-	/// PatrolBaseƒNƒ‰ƒX‚ÌƒCƒxƒ“ƒgƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// PatrolBaseã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	public class PatrolEventArgs : EventArgs
 	{
@@ -18,14 +18,14 @@ namespace Twin.Tools
 		private bool cancel;
 
 		/// <summary>
-		/// „‰ñ‘ÎÛ‚ÌƒXƒŒƒbƒhî•ñ‚ğæ“¾
+		/// å·¡å›å¯¾è±¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã‚’å–å¾—
 		/// </summary>
 		public ThreadHeader HeaderInfo {
 			get { return header; }
 		}
 
 		/// <summary>
-		/// „‰ñ‚ğƒLƒƒƒ“ƒZƒ‹‚·‚éê‡‚Ítrue‚Éİ’è
+		/// å·¡å›ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹å ´åˆã¯trueã«è¨­å®š
 		/// </summary>
 		public bool Cancel {
 			set { cancel = value; }
@@ -33,13 +33,13 @@ namespace Twin.Tools
 		}
 
 		/// <summary>
-		/// PatrolEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// PatrolEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="header"></param>
 		public PatrolEventArgs(ThreadHeader header)
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.header = header;
 			this.cancel = false;

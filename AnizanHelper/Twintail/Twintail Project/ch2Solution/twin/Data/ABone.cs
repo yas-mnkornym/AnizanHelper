@@ -6,7 +6,7 @@ namespace Twin
 	using System.Runtime.Serialization;
 
 	/// <summary>
-	/// ‚ ‚Ú[‚ñî•ñ‚ğ•\‚·
+	/// ã‚ã¼ãƒ¼ã‚“æƒ…å ±ã‚’è¡¨ã™
 	/// </summary>
 	[Serializable]
 	[System.ComponentModel.TypeConverter(typeof(TwinExpandableConverter))]
@@ -16,19 +16,19 @@ namespace Twin
 		public bool Chain;
 
 		/// <summary>
-		/// ABoneƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ABoneã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public ABone()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			this.Visible = true;
 			this.Chain = false;
 		}
 
 		/// <summary>
-		/// ABoneƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// ABoneã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="visible"></param>
 		/// <param name="chain"></param>

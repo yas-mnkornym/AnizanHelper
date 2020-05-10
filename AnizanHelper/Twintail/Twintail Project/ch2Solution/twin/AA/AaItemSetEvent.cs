@@ -5,26 +5,26 @@ namespace Twin.Aa
 	using System;
 
 	/// <summary>
-	/// AaItemCollection.ItemSetƒCƒxƒ“ƒg‚ğˆ—‚·‚éƒƒ\ƒbƒh‚ğ•\‚·
+	/// AaItemCollection.ItemSetã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã™
 	/// </summary>
 	internal delegate void AaItemSetEventHandler(object sender, AaItemSetEventArgs e);
 
 	/// <summary>
-	/// AaItemCollection.ItemSetƒCƒxƒ“ƒg‚Ìƒf[ƒ^‚ğ’ñ‹Ÿ
+	/// AaItemCollection.ItemSetã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’æä¾›
 	/// </summary>
 	internal class AaItemSetEventArgs : EventArgs
 	{
 		private readonly AaItem item;
 
 		/// <summary>
-		/// V‚µ‚­’Ç‰Á‚³‚ê‚½AaItemƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+		/// æ–°ã—ãè¿½åŠ ã•ã‚ŒãŸAaItemã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 		/// </summary>
 		public AaItem Item {
 			get { return item; }
 		}
 
 		/// <summary>
-		/// AaItemSetEventArgsƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// AaItemSetEventArgsã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		/// <param name="aa"></param>
 		public AaItemSetEventArgs(AaItem aa)
@@ -33,7 +33,7 @@ namespace Twin.Aa
 				throw new ArgumentNullException("aa");
 			}
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
 			item = aa;
 		}
