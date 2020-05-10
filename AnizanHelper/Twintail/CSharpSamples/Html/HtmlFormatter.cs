@@ -14,44 +14,55 @@ namespace CSharpSamples.Html
 		private char indentChar;
 		private int indentCount;
 
-		private int indent;	// 現在のインデント数を表す
+		private int indent; // 現在のインデント数を表す
 
 		/// <summary>
 		/// 改行コードを取得または設定
 		/// </summary>
-		public string NewLine {
-			set {
-				newline = value;
+		public string NewLine
+		{
+			set
+			{
+				this.newline = value;
 			}
-			get {
-				return newline;
+			get
+			{
+				return this.newline;
 			}
 		}
 
 		/// <summary>
 		/// インデントに使用する文字を取得または設定
 		/// </summary>
-		public char IndentChar {
-			set {
-				indentChar = value;
+		public char IndentChar
+		{
+			set
+			{
+				this.indentChar = value;
 			}
-			get {
-				return indentChar;
+			get
+			{
+				return this.indentChar;
 			}
 		}
 
 		/// <summary>
 		/// インデント数を取得または設定
 		/// </summary>
-		public int IndentCount {
-			set {
+		public int IndentCount
+		{
+			set
+			{
 				if (value < 1)
+				{
 					throw new ArgumentOutOfRangeException("IndentCount");
+				}
 
-				indentCount = value;
+				this.indentCount = value;
 			}
-			get {
-				return indentCount;
+			get
+			{
+				return this.indentCount;
 			}
 		}
 
@@ -78,7 +89,9 @@ namespace CSharpSamples.Html
 		public virtual string Format(HtmlNodeCollection nodeCollection)
 		{
 			if (nodeCollection == null)
+			{
 				throw new ArgumentNullException("nodeCollection");
+			}
 
 			StringBuilder sb = new StringBuilder();
 
@@ -88,8 +101,9 @@ namespace CSharpSamples.Html
 				{
 					sb.Append(((HtmlText)node).Content);
 				}
-				else {
-					string html = Format((HtmlElement)node);
+				else
+				{
+					string html = this.Format((HtmlElement)node);
 					sb.Append(html);
 				}
 			}
@@ -105,7 +119,9 @@ namespace CSharpSamples.Html
 		public virtual string Format(HtmlElement element)
 		{
 			if (element == null)
+			{
 				throw new ArgumentNullException("element");
+			}
 
 			StringBuilder sb = new StringBuilder();
 			bool format = false;
@@ -123,7 +139,7 @@ namespace CSharpSamples.Html
 			{
 				sb.Append(">");
 
-				indent++;
+				this.indent++;
 
 				// 子ノードのHtmlを生成
 				foreach (HtmlNode child in element.Nodes)
@@ -135,36 +151,40 @@ namespace CSharpSamples.Html
 
 						format = false;
 					}
-					else {
+					else
+					{
 						HtmlElement childElem = (HtmlElement)child;
 
 						if (childElem.IsTerminated)
+						{
 							format = true;
+						}
 
 						if (format)
 						{
-							sb.Append(newline);
-							InsertSpace(sb, indent);
+							sb.Append(this.newline);
+							this.InsertSpace(sb, this.indent);
 						}
 
-						string html = Format(childElem);
+						string html = this.Format(childElem);
 						sb.Append(html);
-						
+
 						format = true;
 					}
 				}
 
-				--indent;
+				--this.indent;
 
 				if (format)
 				{
-					sb.Append(newline);
-					InsertSpace(sb, indent);
+					sb.Append(this.newline);
+					this.InsertSpace(sb, this.indent);
 				}
 
 				sb.Append("</").Append(element.Name).Append(">");
 			}
-			else {
+			else
+			{
 				if (element.IsEmptyElementTag)
 				{
 					sb.Append("/>");
@@ -173,7 +193,8 @@ namespace CSharpSamples.Html
 				{
 					sb.Append("></").Append(element.Name).Append(">");
 				}
-				else {
+				else
+				{
 					sb.Append(">");
 				}
 			}
@@ -188,7 +209,7 @@ namespace CSharpSamples.Html
 		/// <param name="count"></param>
 		private StringBuilder InsertSpace(StringBuilder sb, int indent)
 		{
-			return sb.Append(new String(indentChar, indent * indentCount));
+			return sb.Append(new string(this.indentChar, indent * this.indentCount));
 		}
 	}
 }

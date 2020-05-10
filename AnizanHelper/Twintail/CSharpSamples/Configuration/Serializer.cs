@@ -2,7 +2,6 @@
 
 namespace CSharpSamples
 {
-	using System;
 	using System.Reflection;
 	using System.Runtime.Serialization;
 
@@ -49,11 +48,12 @@ namespace CSharpSamples
 			FieldInfo[] fields = obj.GetType().GetFields(flags);
 			foreach (FieldInfo field in fields)
 			{
-				try {
+				try
+				{
 					object data = info.GetValue(field.Name, field.FieldType);
 					field.SetValue(obj, data);
 				}
-				catch (SerializationException) {}
+				catch (SerializationException) { }
 			}
 		}
 

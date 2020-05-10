@@ -21,41 +21,50 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// コレクションに登録されている属性の数を返す
 		/// </summary>
-		public int Count {
-			get {
-				return attributes.Count;
+		public int Count
+		{
+			get
+			{
+				return this.attributes.Count;
 			}
 		}
 
 		/// <summary>
 		/// 指定したインデックスにある属性を取得または設定
 		/// </summary>
-		public HtmlAttribute this[int index] {
-			set {
-				attributes[index] = value;
+		public HtmlAttribute this[int index]
+		{
+			set
+			{
+				this.attributes[index] = value;
 			}
-			get {
-				return (HtmlAttribute)attributes[index];
+			get
+			{
+				return (HtmlAttribute)this.attributes[index];
 			}
 		}
 
 		/// <summary>
 		/// 指定した名前を持つ属性の値を取得または設定
 		/// </summary>
-		public string this[string name] {
-			set {
-				HtmlAttribute attr = FindByName(name);
+		public string this[string name]
+		{
+			set
+			{
+				HtmlAttribute attr = this.FindByName(name);
 
 				if (attr == null)
 				{
-					Add(new HtmlAttribute(name, value));
+					this.Add(new HtmlAttribute(name, value));
 				}
-				else {
+				else
+				{
 					attr.Value = value;
 				}
 			}
-			get {
-				HtmlAttribute attr = FindByName(name);
+			get
+			{
+				HtmlAttribute attr = this.FindByName(name);
 				return (attr != null) ? attr.Value : null;
 			}
 		}
@@ -80,10 +89,12 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public int Add(HtmlAttribute attr)
 		{
-			if (attributes.Contains(attr))
-				throw new HtmlException();	// 同一インスタンスを複数登録することは出来ない
+			if (this.attributes.Contains(attr))
+			{
+				throw new HtmlException();  // 同一インスタンスを複数登録することは出来ない
+			}
 
-			return attributes.Add(attr);
+			return this.attributes.Add(attr);
 		}
 
 		/// <summary>
@@ -93,10 +104,12 @@ namespace CSharpSamples.Html
 		/// <param name="attr"></param>
 		public void Insert(int index, HtmlAttribute attr)
 		{
-			if (attributes.Contains(attr))
-				throw new HtmlException();	// 同一インスタンスを複数登録することは出来ない
+			if (this.attributes.Contains(attr))
+			{
+				throw new HtmlException();  // 同一インスタンスを複数登録することは出来ない
+			}
 
-			attributes.Insert(index, attr);
+			this.attributes.Insert(index, attr);
 		}
 
 		/// <summary>
@@ -105,7 +118,7 @@ namespace CSharpSamples.Html
 		/// <param name="attr"></param>
 		public void Remove(HtmlAttribute attr)
 		{
-			attributes.Remove(attr);
+			this.attributes.Remove(attr);
 		}
 
 		/// <summary>
@@ -114,7 +127,7 @@ namespace CSharpSamples.Html
 		/// <param name="index"></param>
 		public void RemoveAt(int index)
 		{
-			attributes.RemoveAt(index);
+			this.attributes.RemoveAt(index);
 		}
 
 		/// <summary>
@@ -122,7 +135,7 @@ namespace CSharpSamples.Html
 		/// </summary>
 		public void RemoveAll()
 		{
-			attributes.Clear();
+			this.attributes.Clear();
 		}
 
 		/// <summary>
@@ -133,12 +146,16 @@ namespace CSharpSamples.Html
 		public HtmlAttribute FindByName(string name)
 		{
 			if (name == null)
+			{
 				throw new ArgumentNullException("name");
+			}
 
-			foreach (HtmlAttribute attr in attributes)
+			foreach (HtmlAttribute attr in this.attributes)
 			{
 				if (attr.Name.ToLower().Equals(name))
+				{
 					return attr;
+				}
 			}
 
 			return null;
@@ -149,7 +166,7 @@ namespace CSharpSamples.Html
 		/// </summary>
 		public IEnumerator GetEnumerator()
 		{
-			return attributes.GetEnumerator();
+			return this.attributes.GetEnumerator();
 		}
 	}
 }

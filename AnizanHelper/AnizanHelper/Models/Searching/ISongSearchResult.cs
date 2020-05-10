@@ -1,5 +1,3 @@
-using System.Security.Policy;
-
 namespace AnizanHelper.Models.Searching
 {
 	public interface ISongSearchResult

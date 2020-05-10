@@ -3,8 +3,8 @@
 namespace CSharpSamples.Html
 {
 	using System;
-	using System.Text;
 	using System.Drawing;
+	using System.Text;
 
 	/// <summary>
 	/// HtmlUtility ÇÃäTóvÇÃê‡ñæÇ≈Ç∑ÅB
@@ -37,8 +37,8 @@ namespace CSharpSamples.Html
 			{
 				unesc_replacement = new string[]
 				{
-					"&copy;", new String((char)169, 1),
-					"&reg;", new String((char)174, 1),
+					"&copy;", new string((char)169, 1),
+					"&reg;", new string((char)174, 1),
 					"&yen;", "\\",
 					"&nbsp;", " ",
 					"&lt;", "<",
@@ -49,7 +49,9 @@ namespace CSharpSamples.Html
 			StringBuilder sb = new StringBuilder(html);
 
 			for (int i = 0; i < unesc_replacement.Length; i += 2)
-				sb.Replace(unesc_replacement[i], unesc_replacement[i+1]);
+			{
+				sb.Replace(unesc_replacement[i], unesc_replacement[i + 1]);
+			}
 
 			return sb.ToString();
 		}
@@ -62,7 +64,9 @@ namespace CSharpSamples.Html
 		public static Color ColorFromHtml(string html)
 		{
 			if (html == null)
+			{
 				throw new ArgumentNullException("html");
+			}
 
 			return html.StartsWith("#") ?
 				ColorTranslator.FromHtml(html) : Color.FromName(html);

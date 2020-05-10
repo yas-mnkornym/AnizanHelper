@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 
 namespace CSharpSamples
@@ -21,7 +18,7 @@ namespace CSharpSamples
 			{
 				try
 				{
-					string localPath = Path.Combine(this.CacheDataFolderPath, String.Format("{0:x}.ich", uri.GetHashCode()));
+					string localPath = Path.Combine(this.CacheDataFolderPath, string.Format("{0:x}.ich", uri.GetHashCode()));
 					if (!File.Exists(localPath))
 					{
 						using (WebClient w = new WebClient())
@@ -36,15 +33,15 @@ namespace CSharpSamples
 								return w.DownloadData(uri);
 							}
 						}
-					}				
+					}
 				}
-				catch{}
+				catch { }
 			}
 			else if (File.Exists(uri))
 			{
 				return base.LoadData(uri);
 			}
-			
+
 			return null;
 		}
 

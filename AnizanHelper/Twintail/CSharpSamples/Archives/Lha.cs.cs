@@ -1,8 +1,6 @@
 // Lha.cs
 
 using System;
-using System.IO;
-using System.Text;
 using System.Runtime.InteropServices;
 
 namespace CSharpSamples
@@ -17,8 +15,10 @@ namespace CSharpSamples
 		/// 圧縮に対応しているかどうかを示す値を返します。
 		/// このプロパティは常に true です。
 		/// </summary>
-		public bool CanCompress {
-			get {
+		public bool CanCompress
+		{
+			get
+			{
 				return true;
 			}
 		}
@@ -27,8 +27,10 @@ namespace CSharpSamples
 		/// 解凍に対応しているかどうかを示す値を返します。
 		/// このプロパティは常に true です。
 		/// </summary>
-		public bool CanExtract {
-			get {
+		public bool CanExtract
+		{
+			get
+			{
 				return true;
 			}
 		}
@@ -36,8 +38,10 @@ namespace CSharpSamples
 		/// <summary>
 		/// Unlha32.dll のバージョンを取得します。
 		/// </summary>
-		public float Version {
-			get {
+		public float Version
+		{
+			get
+			{
 				int ver = UnlhaGetVersion();
 				return Convert.ToSingle(ver / 100);
 			}
@@ -46,8 +50,10 @@ namespace CSharpSamples
 		/// <summary>
 		/// 現在 Unlha32.dll が動作中かどうかを判断します。
 		/// </summary>
-		public bool IsRunning {
-			get {
+		public bool IsRunning
+		{
+			get
+			{
 				int ret = UnlhaGetRunning();
 				return Convert.ToBoolean(ret);
 			}
@@ -56,12 +62,15 @@ namespace CSharpSamples
 		/// <summary>
 		/// バックグラウンドモードかどうかを取得または設定します。
 		/// </summary>
-		public bool IsBackground {
-			set {
+		public bool IsBackground
+		{
+			set
+			{
 				int boolean = Convert.ToInt32(value);
 				UnlhaSetBackGroundMode(boolean);
 			}
-			get {
+			get
+			{
 				int ret = UnlhaGetBackGroundMode();
 				return Convert.ToBoolean(ret);
 			}
@@ -70,12 +79,15 @@ namespace CSharpSamples
 		/// <summary>
 		/// Unlha32.dll の動作中にカーソルを表示するモードかどうかを取得または設定します。
 		/// </summary>
-		public bool CursorMode {
-			set {
+		public bool CursorMode
+		{
+			set
+			{
 				int boolean = Convert.ToInt32(value);
 				UnlhaSetCursorMode(boolean);
 			}
-			get {
+			get
+			{
 				int ret = UnlhaGetCursorMode();
 				return Convert.ToBoolean(ret);
 			}
@@ -96,8 +108,8 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public int Unlha(string format, params object[] objects)
 		{
-			string cmdline = String.Format(format, objects);
-			return Unlha(cmdline);
+			string cmdline = string.Format(format, objects);
+			return this.Unlha(cmdline);
 		}
 
 		/// <summary>
@@ -107,7 +119,8 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public int Unlha(string cmdline)
 		{
-			if (cmdline == null) {
+			if (cmdline == null)
+			{
 				throw new ArgumentNullException("cmdline");
 			}
 
@@ -122,14 +135,16 @@ namespace CSharpSamples
 		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Compress(string archive, string fileName)
 		{
-			if (archive == null) {
+			if (archive == null)
+			{
 				throw new ArgumentNullException("archive");
 			}
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
 
-			string cmdline = String.Format("a \"{0}\" \"{1}\"", archive, fileName);
+			string cmdline = string.Format("a \"{0}\" \"{1}\"", archive, fileName);
 
 			return Unlha(IntPtr.Zero, cmdline, null, 0);
 		}
@@ -142,10 +157,12 @@ namespace CSharpSamples
 		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Compress(string archive, string[] fileNames)
 		{
-			if (archive == null) {
+			if (archive == null)
+			{
 				throw new ArgumentNullException("archive");
 			}
-			if (fileNames == null) {
+			if (fileNames == null)
+			{
 				throw new ArgumentNullException("fileNames");
 			}
 
@@ -153,11 +170,13 @@ namespace CSharpSamples
 
 			foreach (string fileName in fileNames)
 			{
-				string cmdline = String.Format("a \"{0}\" \"{1}\"", archive, fileName);
+				string cmdline = string.Format("a \"{0}\" \"{1}\"", archive, fileName);
 				ret = Unlha(IntPtr.Zero, cmdline, null, 0);
 
 				if (ret != 0)
+				{
 					break;
+				}
 			}
 
 			return ret;
@@ -172,17 +191,20 @@ namespace CSharpSamples
 		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返します。</returns>
 		public int Extract(string archive, string directory, string fileName)
 		{
-			if (archive == null) {
+			if (archive == null)
+			{
 				throw new ArgumentNullException("archive");
 			}
-			if (directory == null) {
+			if (directory == null)
+			{
 				throw new ArgumentNullException("directory");
 			}
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
 
-			string cmdline = String.Format("e \"{0}\" \"{1}\" \"{2}\"",
+			string cmdline = string.Format("e \"{0}\" \"{1}\" \"{2}\"",
 				archive, directory, fileName);
 
 			return Unlha(IntPtr.Zero, cmdline, null, 0);
@@ -196,14 +218,16 @@ namespace CSharpSamples
 		/// <returns>正常終了なら 0 を返し、以上終了の場合は 0 以外の値を返す。</returns>
 		public int Extract(string archive, string directory)
 		{
-			if (archive == null) {
+			if (archive == null)
+			{
 				throw new ArgumentNullException("archive");
 			}
-			if (directory == null) {
+			if (directory == null)
+			{
 				throw new ArgumentNullException("directory");
 			}
 
-			string cmdline = String.Format("e \"{0}\" -c -y \"{1}\" *.*",
+			string cmdline = string.Format("e \"{0}\" -c -y \"{1}\" *.*",
 				archive, directory);
 
 			return Unlha(IntPtr.Zero, cmdline, null, 0);
@@ -217,7 +241,7 @@ namespace CSharpSamples
 
 		[DllImport("Unlha32.dll")]
 		private static extern int UnlhaGetBackGroundMode();
-		
+
 		[DllImport("Unlha32.dll")]
 		private static extern int UnlhaSetBackGroundMode(int backGroundMode);
 

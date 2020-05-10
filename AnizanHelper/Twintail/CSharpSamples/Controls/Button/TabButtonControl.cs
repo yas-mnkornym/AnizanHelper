@@ -1,10 +1,10 @@
 // TabButtonControl.cs
 
 using System;
-using System.Drawing;
-using System.Drawing.Design;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace CSharpSamples
@@ -29,14 +29,16 @@ namespace CSharpSamples
 		private bool autoAdjustButtonSize;
 		private bool wrappable;
 
-		private TabButton selected = null;		// 現在選択されている TabButton
-		private TabButton focused = null;		// 直前にクリックされた TabButton
-		private TabButton hot = null;			// マウス直下にある TabButton
+		private TabButton selected = null;      // 現在選択されている TabButton
+		private TabButton focused = null;       // 直前にクリックされた TabButton
+		private TabButton hot = null;           // マウス直下にある TabButton
 
 		private bool disposed = false;
 
-		protected override Size DefaultSize {
-			get {
+		protected override Size DefaultSize
+		{
+			get
+			{
 				return new Size(200, 50);
 			}
 		}
@@ -46,51 +48,62 @@ namespace CSharpSamples
 		/// </summary>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Editor(typeof(CollectionEditor), typeof(UITypeEditor))]
-		public TabButtonCollection Buttons {
-			get {
-				return buttons;
+		public TabButtonCollection Buttons
+		{
+			get
+			{
+				return this.buttons;
 			}
 		}
 
 		/// <summary>
 		/// ボタンに表示する ImageList を取得または設定します。
 		/// </summary>
-		public ImageList ImageList {
-			set {
-				imageList = value;
+		public ImageList ImageList
+		{
+			set
+			{
+				this.imageList = value;
 
-				foreach (TabButton b in buttons)
+				foreach (TabButton b in this.buttons)
+				{
 					b.imageList = value;
+				}
 
-				UpdateButtons();
+				this.UpdateButtons();
 			}
-			get { return imageList; }
+			get { return this.imageList; }
 		}
 
 		/// <summary>
 		/// ボタンのスタイルを表す TabButtonStyle 列挙体を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(TabButtonStyle), "Button")]
-		public TabButtonStyle Style {
-			set {
-				buttonStyle = value;
-				Refresh();
+		public TabButtonStyle Style
+		{
+			set
+			{
+				this.buttonStyle = value;
+				this.Refresh();
 			}
-			get { return buttonStyle; }
+			get { return this.buttonStyle; }
 		}
 
 		/// <summary>
 		/// タブコントロールの境界線を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(Border3DStyle), "Adjust")]
-		public Border3DStyle BorderStyle {
-			set {
-				if (borderStyle != value) {
-					borderStyle = value;
-					Refresh();
+		public Border3DStyle BorderStyle
+		{
+			set
+			{
+				if (this.borderStyle != value)
+				{
+					this.borderStyle = value;
+					this.Refresh();
 				}
 			}
-			get { return borderStyle; }
+			get { return this.borderStyle; }
 		}
 
 		/// <summary>
@@ -98,15 +111,17 @@ namespace CSharpSamples
 		/// 次の行に折り返すかどうかを示す値を取得または設定します。
 		/// </summary>
 		[DefaultValue(true)]
-		public bool Wrappable {
-			set {
-				if (wrappable != value) 
+		public bool Wrappable
+		{
+			set
+			{
+				if (this.wrappable != value)
 				{
-					wrappable = value;
+					this.wrappable = value;
 					throw new NotImplementedException();
 				}
 			}
-			get { return wrappable; }
+			get { return this.wrappable; }
 		}
 
 		/// <summary>
@@ -114,24 +129,29 @@ namespace CSharpSamples
 		/// このプロパティを有効にするには AutoAdjustButtonSize プロパティが false に設定されている必要があります。
 		/// </summary>
 		[DefaultValue(typeof(Size), "80, 20")]
-		public Size ButtonSize {
-			set {
-				buttonSize = value;
-				UpdateButtons();
+		public Size ButtonSize
+		{
+			set
+			{
+				this.buttonSize = value;
+				this.UpdateButtons();
 			}
-			get { return buttonSize; }
+			get { return this.buttonSize; }
 		}
 
 		/// <summary>
 		/// HotTrack プロパティが有効になっている場合に、変化する色を設定します。
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlDark")]
-		public Color HotTrackColor {
-			set {
-				hotTrackColor = value;
+		public Color HotTrackColor
+		{
+			set
+			{
+				this.hotTrackColor = value;
 			}
-			get {
-				return hotTrackColor;
+			get
+			{
+				return this.hotTrackColor;
 			}
 		}
 
@@ -140,56 +160,67 @@ namespace CSharpSamples
 		/// 外観が変化するかどうかを示す値を取得または設定します。
 		/// </summary>
 		[DefaultValue(true)]
-		public bool HotTrack {
-			set {
-				hotTrack = value;
+		public bool HotTrack
+		{
+			set
+			{
+				this.hotTrack = value;
 			}
-			get { return hotTrack; }
+			get { return this.hotTrack; }
 		}
-	
+
 		/// <summary>
 		/// コントロールの高さを自動で調整するかどうかを取得または設定します。
 		/// </summary>
 		[DefaultValue(true)]
-		public bool AutoAdjustControlHeight {
-			set {
-				if (autoAdjustControlHeight != value)
+		public bool AutoAdjustControlHeight
+		{
+			set
+			{
+				if (this.autoAdjustControlHeight != value)
 				{
-					autoAdjustControlHeight = value;
-					UpdateButtons();
+					this.autoAdjustControlHeight = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return autoAdjustControlHeight; }
+			get { return this.autoAdjustControlHeight; }
 
 		}
 		/// <summary>
 		/// タブボタンのサイズを自動で調整するかどうかを取得または設定します。
 		/// </summary>
 		[DefaultValue(true)]
-		public bool AutoAdjustButtonSize {
-			set {
-				if (autoAdjustButtonSize != value)
+		public bool AutoAdjustButtonSize
+		{
+			set
+			{
+				if (this.autoAdjustButtonSize != value)
 				{
-					autoAdjustButtonSize = value;
-					UpdateButtons();
+					this.autoAdjustButtonSize = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return autoAdjustButtonSize; }
+			get { return this.autoAdjustButtonSize; }
 		}
 
 		/// <summary>
 		/// 選択されている TabButton を取得または設定します。
 		/// </summary>
 		[Browsable(false)]
-		public TabButton Selected {
-			set {
+		public TabButton Selected
+		{
+			set
+			{
 				if (value == null)
+				{
 					throw new ArgumentNullException();
+				}
 
-				SetSelected(value);
+				this.SetSelected(value);
 			}
-			get {
-				return selected;
+			get
+			{
+				return this.selected;
 			}
 		}
 
@@ -206,19 +237,19 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			buttons = new TabButtonCollection(this);
-			borderStyle = Border3DStyle.Adjust;
-			buttonStyle = TabButtonStyle.Flat;
-			autoAdjustButtonSize = true;
-			autoAdjustControlHeight = true;
-			wrappable = true;
-			imageList = null;
-			hotTrack = true;
-			hotTrackColor = SystemColors.ControlDark;
-			buttonSize = new Size(80, 20);
-			
+			this.buttons = new TabButtonCollection(this);
+			this.borderStyle = Border3DStyle.Adjust;
+			this.buttonStyle = TabButtonStyle.Flat;
+			this.autoAdjustButtonSize = true;
+			this.autoAdjustControlHeight = true;
+			this.wrappable = true;
+			this.imageList = null;
+			this.hotTrack = true;
+			this.hotTrackColor = SystemColors.ControlDark;
+			this.buttonSize = new Size(80, 20);
+
 			// ちらつきを押さえるために各スタイルを設定
-			SetStyle(ControlStyles.AllPaintingInWmPaint |
+			this.SetStyle(ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.DoubleBuffer |
 				ControlStyles.UserPaint, true);
 		}
@@ -227,9 +258,9 @@ namespace CSharpSamples
 		{
 			if (disposing)
 			{
-				if (!disposed)
+				if (!this.disposed)
 				{
-					disposed = true;
+					this.disposed = true;
 				}
 			}
 			base.Dispose(disposing);
@@ -239,19 +270,21 @@ namespace CSharpSamples
 		{
 			base.OnPaint(e);
 
-			foreach (TabButton button in buttons)
+			foreach (TabButton button in this.buttons)
 			{
 				if (button.Bounds.IntersectsWith(e.ClipRectangle))
-					DrawButton(e.Graphics, button);
+				{
+					this.DrawButton(e.Graphics, button);
+				}
 			}
 
-			ControlPaint.DrawBorder3D(e.Graphics, ClientRectangle, borderStyle);
+			ControlPaint.DrawBorder3D(e.Graphics, this.ClientRectangle, this.borderStyle);
 		}
 
 		protected override void OnSizeChanged(EventArgs e)
 		{
 			base.OnSizeChanged(e);
-			UpdateButtons();
+			this.UpdateButtons();
 		}
 
 		protected override void OnMouseDown(MouseEventArgs e)
@@ -260,12 +293,12 @@ namespace CSharpSamples
 
 			if (e.Button == MouseButtons.Left)
 			{
-				TabButton button = GetButtonAt(new Point(e.X, e.Y));
+				TabButton button = this.GetButtonAt(new Point(e.X, e.Y));
 
 				if (button != null)
 				{
-					focused = button;
-					SetSelected(focused);
+					this.focused = button;
+					this.SetSelected(this.focused);
 				}
 			}
 		}
@@ -274,25 +307,28 @@ namespace CSharpSamples
 		{
 			base.OnMouseMove(e);
 
-			TabButton button = GetButtonAt(new Point(e.X, e.Y));
+			TabButton button = this.GetButtonAt(new Point(e.X, e.Y));
 
 			if (button != null)
 			{
 				Region region = new Region(button.Bounds);
-				if (hot != null) region.Union(hot.Bounds);
+				if (this.hot != null)
+				{
+					region.Union(this.hot.Bounds);
+				}
 
-				hot = button;
+				this.hot = button;
 
-				Invalidate(region);
-				Update();
+				this.Invalidate(region);
+				this.Update();
 			}
-			else if (hot != null)
+			else if (this.hot != null)
 			{
-				Rectangle rc = hot.Bounds;
-				hot = null;
+				Rectangle rc = this.hot.Bounds;
+				this.hot = null;
 
-				Invalidate(rc);
-				Update();
+				this.Invalidate(rc);
+				this.Update();
 			}
 
 		}
@@ -303,25 +339,27 @@ namespace CSharpSamples
 
 			if (e.Button == MouseButtons.Left)
 			{
-				TabButton button = GetButtonAt(new Point(e.X, e.Y));
+				TabButton button = this.GetButtonAt(new Point(e.X, e.Y));
 
-				if (button != null && focused != null && focused != button)
-					buttons.InsertBefore(focused, button);
+				if (button != null && this.focused != null && this.focused != button)
+				{
+					this.buttons.InsertBefore(this.focused, button);
+				}
 			}
-			focused = null;
+			this.focused = null;
 		}
 
 		protected override void OnMouseLeave(EventArgs e)
 		{
 			base.OnMouseLeave(e);
 
-			if (hot != null)
+			if (this.hot != null)
 			{
-				Rectangle rc = hot.Bounds;
-				hot = null;
+				Rectangle rc = this.hot.Bounds;
+				this.hot = null;
 
-				Invalidate(rc);
-				Update();
+				this.Invalidate(rc);
+				this.Update();
 			}
 		}
 
@@ -338,8 +376,8 @@ namespace CSharpSamples
 		{
 			if (button != null)
 			{
-				Invalidate(button.Bounds);
-				Update();
+				this.Invalidate(button.Bounds);
+				this.Update();
 			}
 		}
 
@@ -348,29 +386,34 @@ namespace CSharpSamples
 		/// </summary>
 		internal void UpdateButtons()
 		{
-			if (buttons.Count > 0 && selected == null)
-				selected = buttons[0];
+			if (this.buttons.Count > 0 && this.selected == null)
+			{
+				this.selected = this.buttons[0];
+			}
+			else if (this.buttons.Count == 0)
+			{
+				this.selected = null;
+			}
 
-			else if (buttons.Count == 0)
-				selected = null;
-
-			using (Graphics g = CreateGraphics())
+			using (Graphics g = this.CreateGraphics())
 			{
 				// すべてのボタンの座標を更新
-				UpdateButtonRect(g);
+				this.UpdateButtonRect(g);
 			}
 
 			int height = 0;
 
-			foreach (TabButton button in buttons)
-				height = Math.Max(height, button.Bounds.Bottom);	
+			foreach (TabButton button in this.buttons)
+			{
+				height = Math.Max(height, button.Bounds.Bottom);
+			}
 
-			if (AutoAdjustControlHeight)
+			if (this.AutoAdjustControlHeight)
 			{
 				this.Height = height + SystemInformation.Border3DSize.Height;
 			}
 
-			Refresh();
+			this.Refresh();
 		}
 
 		/// <summary>
@@ -380,27 +423,30 @@ namespace CSharpSamples
 		private void OnSelectedChanged(TabButton button)
 		{
 			if (SelectedChanged != null)
+			{
 				SelectedChanged(this, new TabButtonEventArgs(button));
+			}
 		}
 
 		private void SetSelected(TabButton button)
 		{
-			if (selected != null)
+			if (this.selected != null)
 			{
-				Region region = new Region(selected.Bounds);
+				Region region = new Region(this.selected.Bounds);
 				region.Union(button.Bounds);
 
-				selected = button;
-				Invalidate(region);
+				this.selected = button;
+				this.Invalidate(region);
 			}
-			else {
-				selected = button;
-				Invalidate(selected.Bounds);
+			else
+			{
+				this.selected = button;
+				this.Invalidate(this.selected.Bounds);
 			}
 
-			Update();
+			this.Update();
 
-			OnSelectedChanged(selected);
+			this.OnSelectedChanged(this.selected);
 		}
 
 		private void DrawButton(Graphics g, TabButton button)
@@ -411,17 +457,17 @@ namespace CSharpSamples
 			format.FormatFlags = StringFormatFlags.NoWrap;
 
 			Rectangle bounds = button.Bounds;
-			Size imgSize = (imageList != null) ? imageList.ImageSize : new Size(0, 0);
+			Size imgSize = (this.imageList != null) ? this.imageList.ImageSize : new Size(0, 0);
 
 			int margin = (button.ImageIndex != -1) ? 5 : 0;
 			Rectangle imageRect = new Rectangle(bounds.X + margin, bounds.Y + bounds.Height / 2 - imgSize.Height / 2, imgSize.Width, imgSize.Height);
 			Rectangle textRect = new Rectangle(imageRect.Right, bounds.Y, bounds.Width - imageRect.Width - margin, bounds.Height);
 
 			// 境界線を描画
-			DrawButtonBorder(g, button);
-			
+			this.DrawButtonBorder(g, button);
+
 			// ホットな背景色を描画
-			if (hotTrack && button.Equals(hot))
+			if (this.hotTrack && button.Equals(this.hot))
 			{
 				Rectangle rc = button.Bounds;
 				Size size = SystemInformation.Border3DSize;
@@ -429,15 +475,20 @@ namespace CSharpSamples
 				rc.Width -= 2;
 				rc.Height -= 2;
 
-				using (Brush b = new SolidBrush(Color.FromArgb(50, HotTrackColor)))
+				using (Brush b = new SolidBrush(Color.FromArgb(50, this.HotTrackColor)))
+				{
 					g.FillRectangle(b, rc);
+				}
 
-				using (Pen pen = new Pen(HotTrackColor))
+				using (Pen pen = new Pen(this.HotTrackColor))
+				{
 					g.DrawRectangle(pen, rc);
+				}
 			}
-			else {
+			else
+			{
 				// 通常の背景色を描画			
-				using (Brush brush = new SolidBrush(button.IsSelected ? 
+				using (Brush brush = new SolidBrush(button.IsSelected ?
 						button.ActiveBackColor : button.InactiveBackColor))
 				{
 					Rectangle rc = button.Bounds;
@@ -450,56 +501,57 @@ namespace CSharpSamples
 			}
 
 			// アイコンを描画
-			if (imageList != null &&
-				button.ImageIndex >= 0 && button.ImageIndex < imageList.Images.Count)
+			if (this.imageList != null &&
+				button.ImageIndex >= 0 && button.ImageIndex < this.imageList.Images.Count)
 			{
-				g.DrawImage(imageList.Images[button.ImageIndex], imageRect);
+				g.DrawImage(this.imageList.Images[button.ImageIndex], imageRect);
 			}
 
 			// テキストを描画
 			Brush foreBrush = new SolidBrush(button.IsSelected ?
 					button.ActiveForeColor : button.InactiveForeColor);
 
-			Font textFont = button.IsSelected ? 
-				new Font(button.ActiveFontFamily, Font.Size, button.ActiveFontStyle) :
-				new Font(button.InactiveFontFamily, Font.Size, button.InactiveFontStyle);
+			Font textFont = button.IsSelected ?
+				new Font(button.ActiveFontFamily, this.Font.Size, button.ActiveFontStyle) :
+				new Font(button.InactiveFontFamily, this.Font.Size, button.InactiveFontStyle);
 
 			g.DrawString(button.Text, textFont, foreBrush, textRect, format);
-			
+
 			textFont.Dispose();
 			foreBrush.Dispose();
 		}
 
 		private void DrawButtonBorder(Graphics g, TabButton button)
 		{
-			switch (buttonStyle)
+			switch (this.buttonStyle)
 			{
-			case TabButtonStyle.Flat:
-				// 平らなタブコントロール
-				if (button.IsSelected)
-				{
-					ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
-				}
+				case TabButtonStyle.Flat:
+					// 平らなタブコントロール
+					if (button.IsSelected)
+					{
+						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
+					}
 
-				// タブとタブの間に境界線を描画
-				Size border = SystemInformation.Border3DSize;
-				Rectangle rect = button.Bounds;
-				rect.X = rect.Right + border.Width / 2;
-				rect.Width = border.Width;
-				ControlPaint.DrawBorder3D(g, rect, Border3DStyle.Etched, Border3DSide.Right);
-				break;
+					// タブとタブの間に境界線を描画
+					Size border = SystemInformation.Border3DSize;
+					Rectangle rect = button.Bounds;
+					rect.X = rect.Right + border.Width / 2;
+					rect.Width = border.Width;
+					ControlPaint.DrawBorder3D(g, rect, Border3DStyle.Etched, Border3DSide.Right);
+					break;
 
-			case TabButtonStyle.Button:
-				// ボタン式タブコントロール
-				if (button.IsSelected)
-				{
-					ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
-				}
-				else {
-					ControlPaint.DrawButton(g,
-						button.Bounds, ButtonState.Normal);
-				}
-				break;
+				case TabButtonStyle.Button:
+					// ボタン式タブコントロール
+					if (button.IsSelected)
+					{
+						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.Sunken);
+					}
+					else
+					{
+						ControlPaint.DrawButton(g,
+							button.Bounds, ButtonState.Normal);
+					}
+					break;
 			}
 		}
 
@@ -512,22 +564,22 @@ namespace CSharpSamples
 		private void UpdateButtonRect(Graphics g)
 		{
 			Size borderSize = SystemInformation.Border3DSize;
-			Rectangle rect = new Rectangle(borderSize.Width, borderSize.Height,0,0);
+			Rectangle rect = new Rectangle(borderSize.Width, borderSize.Height, 0, 0);
 			int height = 0;
 
-			foreach (TabButton button in buttons)
+			foreach (TabButton button in this.buttons)
 			{
-				Size size = AutoAdjustButtonSize ?
-					GetButtonSize(g, button) : ButtonSize;
+				Size size = this.AutoAdjustButtonSize ?
+					this.GetButtonSize(g, button) : this.ButtonSize;
 
 				rect.Width = size.Width;
 				rect.Height = size.Height;
 
 				height = Math.Max(height, size.Height);
 
-				if (rect.Right > Width)
+				if (rect.Right > this.Width)
 				{
-					if (Wrappable)
+					if (this.Wrappable)
 					{
 						rect.X = borderSize.Width;
 						rect.Y += height + 2;
@@ -549,7 +601,7 @@ namespace CSharpSamples
 		private Size GetButtonSize(Graphics g, TabButton button)
 		{
 			Font tempFont = new Font(
-				button.IsSelected ? button.ActiveFontFamily : button.InactiveFontFamily, Font.Size,
+				button.IsSelected ? button.ActiveFontFamily : button.InactiveFontFamily, this.Font.Size,
 				button.IsSelected ? button.ActiveFontStyle : button.InactiveFontStyle);
 
 			Size itemSize = g.MeasureString(button.Text, tempFont).ToSize();
@@ -557,13 +609,13 @@ namespace CSharpSamples
 			tempFont.Dispose();
 
 			// ちょっとずれるので適当に調整
-			itemSize.Width += 8; 
+			itemSize.Width += 8;
 			itemSize.Height += 5;
 
 			// アイコンが存在すればアイコンサイズを足す
-			if (button.ImageIndex != -1 && imageList != null)
+			if (button.ImageIndex != -1 && this.imageList != null)
 			{
-				Size imageSize = imageList.ImageSize;
+				Size imageSize = this.imageList.ImageSize;
 				itemSize.Width += imageSize.Width;
 				itemSize.Height = Math.Max(itemSize.Height, imageSize.Height);
 			}
@@ -579,10 +631,12 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public TabButton GetButtonAt(Point pt)
 		{
-			foreach (TabButton b in buttons)
+			foreach (TabButton b in this.buttons)
 			{
 				if (b.Bounds.Contains(pt))
+				{
 					return b;
+				}
 			}
 			return null;
 		}

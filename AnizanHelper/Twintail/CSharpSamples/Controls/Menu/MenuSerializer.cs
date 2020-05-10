@@ -3,12 +3,10 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.IO;
-	using System.Xml;
+	using System.Reflection;
 	using System.Text;
 	using System.Windows.Forms;
-	using System.Reflection;
-	using System.Collections;
+	using System.Xml;
 
 	/// <summary>
 	/// メニューの情報をファイルにシリアル化または逆シリアル化を行うクラス
@@ -39,7 +37,9 @@ namespace CSharpSamples
 			foreach (FieldInfo field in fields)
 			{
 				if (field.FieldType != typeof(ToolStripMenuItem))
+				{
 					continue;
+				}
 
 				ToolStripMenuItem menu = (ToolStripMenuItem)field.GetValue(obj);
 
@@ -70,16 +70,20 @@ namespace CSharpSamples
 			doc.AppendChild(root);
 
 			XmlTextWriter writer = null;
-			try {
+			try
+			{
 				writer = new XmlTextWriter(filePath, Encoding.UTF8);
 				writer.Indentation = 1;
 				writer.IndentChar = '\t';
 				writer.Formatting = Formatting.Indented;
 				doc.Save(writer);
 			}
-			finally {
+			finally
+			{
 				if (writer != null)
+				{
 					writer.Close();
+				}
 			}
 		}
 
@@ -97,14 +101,18 @@ namespace CSharpSamples
 
 			XmlAttribute attrType = root.Attributes["Type"];
 			if (attrType == null)
+			{
 				throw new ApplicationException("ルートに型情報が存在しません");
+			}
 
 			string typeName = attrType.Value;
 			if (typeName.Contains("Version"))
 			{
 				int token = typeName.IndexOf(",");
 				if (token >= 0)
+				{
 					typeName = typeName.Substring(0, token);
+				}
 			}
 
 			Type type = Type.GetType(typeName);
@@ -116,7 +124,7 @@ namespace CSharpSamples
 				XmlAttribute attrVisible = node.Attributes["Visible"];
 				XmlAttribute attrShortcut = node.Attributes["Shortcut"];
 
-				FieldInfo field = type.GetField(node.InnerText, 
+				FieldInfo field = type.GetField(node.InnerText,
 					BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
 				if (field != null)
@@ -124,10 +132,10 @@ namespace CSharpSamples
 					ToolStripMenuItem menu = (ToolStripMenuItem)field.GetValue(obj);
 					menu.Text = attrText.Value;
 					menu.ShortcutKeys = (Keys)Enum.Parse(typeof(Keys), attrShortcut.Value);
-					
+
 					if (attrVisible != null)
 					{
-						menu.Visible = Boolean.Parse(attrVisible.Value);
+						menu.Visible = bool.Parse(attrVisible.Value);
 					}
 				}
 			}

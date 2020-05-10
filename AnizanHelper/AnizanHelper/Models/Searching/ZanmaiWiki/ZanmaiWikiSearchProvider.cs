@@ -91,7 +91,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 						score += 4;
 					}
 
-					if(song.Artists.Any(x => CultureInfo.InvariantCulture.CompareInfo.IndexOf(x, searchTerm, compareOptions) >= 0))
+					if (song.Artists.Any(x => CultureInfo.InvariantCulture.CompareInfo.IndexOf(x, searchTerm, compareOptions) >= 0))
 					{
 						score += 2;
 					}

@@ -3,10 +3,10 @@
 namespace CSharpSamples
 {
 	using System;
+	using System.ComponentModel;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Xml;
-	using System.Diagnostics;
-	using System.ComponentModel;
 
 	/// <summary>
 	/// プログラム設定などの情報を Xml 形式で管理する機能を提供します。
@@ -22,7 +22,8 @@ namespace CSharpSamples
 		/// <param name="fileName">設定情報のファイル名。</param>
 		public ProgramSettings(string fileName)
 		{
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
 			// 
@@ -31,18 +32,21 @@ namespace CSharpSamples
 			this.fileName = fileName;
 			this.document = new XmlDocument();
 
-			try {
+			try
+			{
 				if (File.Exists(fileName))
 				{
-					document.Load(fileName);
+					this.document.Load(fileName);
 				}
-				else {
-					CreateRoot();
+				else
+				{
+					this.CreateRoot();
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				Debug.WriteLine(ex.ToString());
-				CreateRoot();
+				this.CreateRoot();
 			}
 		}
 
@@ -51,8 +55,8 @@ namespace CSharpSamples
 		/// </summary>
 		private void CreateRoot()
 		{
-			XmlNode root = document.CreateElement("Settings");
-			document.AppendChild(root);
+			XmlNode root = this.document.CreateElement("Settings");
+			this.document.AppendChild(root);
 		}
 
 		/// <summary>
@@ -63,19 +67,22 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public object Get(string key, Type type)
 		{
-			if (key == null) {
+			if (key == null)
+			{
 				throw new ArgumentNullException("key");
 			}
 
-			XmlElement element = document.DocumentElement;
+			XmlElement element = this.document.DocumentElement;
 			XmlNode node = element.SelectSingleNode(key);
-			
+
 			if (node != null)
 			{
 				TypeConverter converter = TypeDescriptor.GetConverter(type);
-				
+
 				if (converter == null)
+				{
 					throw new ArgumentException(type + "型に対応する TypeConverter が見つかりません。", "type");
+				}
 
 				return converter.ConvertFromString(node.InnerText);
 			}
@@ -91,22 +98,26 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public object Get(string section, string key, Type type)
 		{
-			if (section == null) {
+			if (section == null)
+			{
 				throw new ArgumentNullException("section");
 			}
-			if (key == null) {
+			if (key == null)
+			{
 				throw new ArgumentNullException("key");
 			}
 
-			XmlElement element = document.DocumentElement;
+			XmlElement element = this.document.DocumentElement;
 			XmlNode node = element.SelectSingleNode(section + "/" + key);
-			
+
 			if (node != null)
 			{
 				TypeConverter converter = TypeDescriptor.GetConverter(type);
-				
+
 				if (converter == null)
+				{
 					throw new ArgumentException(type + "型に対応する TypeConverter が見つかりません。", "type");
+				}
 
 				return converter.ConvertFromString(node.InnerText);
 			}
@@ -121,27 +132,31 @@ namespace CSharpSamples
 		/// <param name="value"></param>
 		public void Set(string key, object value)
 		{
-			if (key == null) {
+			if (key == null)
+			{
 				throw new ArgumentNullException("key");
 			}
-			if (value == null) {
+			if (value == null)
+			{
 				throw new ArgumentNullException("value");
 			}
 
 			TypeConverter converter = TypeDescriptor.GetConverter(value.GetType());
-			
+
 			if (converter == null)
+			{
 				throw new ArgumentException("指定したオブジェクトに対応する TypeConverter が見つかりません。", "value");
+			}
 
 			// ルート要素を取得
-			XmlElement root = document.DocumentElement;
+			XmlElement root = this.document.DocumentElement;
 
 			// セクションが存在するノードを取得
 			XmlNode node = root.SelectSingleNode(key);
 			if (node == null)
 			{
 				node = root.AppendChild(
-					document.CreateElement(key));
+					this.document.CreateElement(key));
 			}
 
 			node.InnerText = converter.ConvertToString(value);
@@ -155,30 +170,35 @@ namespace CSharpSamples
 		/// <param name="value">設定する値</param>
 		public void Set(string section, string key, object value)
 		{
-			if (section == null) {
+			if (section == null)
+			{
 				throw new ArgumentNullException("section");
 			}
-			if (key == null) {
+			if (key == null)
+			{
 				throw new ArgumentNullException("key");
 			}
-			if (value == null) {
+			if (value == null)
+			{
 				throw new ArgumentNullException("value");
 			}
 
 			TypeConverter converter = TypeDescriptor.GetConverter(value.GetType());
-			
+
 			if (converter == null)
+			{
 				throw new ArgumentException("指定したオブジェクトに対応する TypeConverter が見つかりません。", "value");
+			}
 
 			// ルート要素を取得
-			XmlElement root = document.DocumentElement;
+			XmlElement root = this.document.DocumentElement;
 
 			// セクションが存在するノードを取得
 			XmlNode parent = root.SelectSingleNode(section);
 			if (parent == null)
 			{
 				parent = root.AppendChild(
-					document.CreateElement(section));
+					this.document.CreateElement(section));
 			}
 
 			// 値を格納するノードを取得
@@ -186,7 +206,7 @@ namespace CSharpSamples
 			if (child == null)
 			{
 				child = parent.AppendChild(
-					document.CreateElement(key));
+					this.document.CreateElement(key));
 			}
 
 			child.InnerText = converter.ConvertToString(value);
@@ -197,7 +217,7 @@ namespace CSharpSamples
 		/// </summary>
 		public void Save()
 		{
-			document.Save(fileName);
+			this.document.Save(this.fileName);
 		}
 	}
 }

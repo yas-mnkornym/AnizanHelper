@@ -2,9 +2,7 @@
 
 namespace CSharpSamples.Html
 {
-	using System;
 	using System.Collections;
-	using System.Diagnostics;
 
 	/// <summary>
 	/// HtmlNodeCollection の概要の説明です。
@@ -17,22 +15,27 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// コレクション内のノード数を取得
 		/// </summary>
-		public int Count {
-			get {
-				return nodes.Count;
+		public int Count
+		{
+			get
+			{
+				return this.nodes.Count;
 			}
 		}
 
 		/// <summary>
 		/// 指定したインデックスにあるノードを取得または設定
 		/// </summary>
-		public HtmlNode this[int index] {
-			set {
-				RemoveAt(index);
-				Insert(index, value);
+		public HtmlNode this[int index]
+		{
+			set
+			{
+				this.RemoveAt(index);
+				this.Insert(index, value);
 			}
-			get {
-				return (HtmlNode)nodes[index];
+			get
+			{
+				return (HtmlNode)this.nodes[index];
 			}
 		}
 
@@ -56,10 +59,12 @@ namespace CSharpSamples.Html
 		public void Add(HtmlNode newNode)
 		{
 			if (newNode.Parent != null)
-				throw new HtmlException();	// 同一インスタンスを複数登録することは出来ない
+			{
+				throw new HtmlException();  // 同一インスタンスを複数登録することは出来ない
+			}
 
-			nodes.Add(newNode);
-			newNode.SetParent(parent);
+			this.nodes.Add(newNode);
+			newNode.SetParent(this.parent);
 		}
 
 		/// <summary>
@@ -70,10 +75,12 @@ namespace CSharpSamples.Html
 		public void Insert(int index, HtmlNode newNode)
 		{
 			if (newNode.Parent != null)
-				throw new HtmlException();	// 同一インスタンスを複数登録することは出来ない
+			{
+				throw new HtmlException();  // 同一インスタンスを複数登録することは出来ない
+			}
 
-			nodes.Insert(index, newNode);
-			newNode.SetParent(parent);
+			this.nodes.Insert(index, newNode);
+			newNode.SetParent(this.parent);
 		}
 
 		/// <summary>
@@ -82,7 +89,7 @@ namespace CSharpSamples.Html
 		/// <param name="node"></param>
 		public void Remove(HtmlNode node)
 		{
-			nodes.Remove(node);
+			this.nodes.Remove(node);
 			node.SetParent(null);
 		}
 
@@ -93,9 +100,9 @@ namespace CSharpSamples.Html
 		/// <param name="node"></param>
 		public void RemoveAt(int index)
 		{
-			HtmlNode node = (HtmlNode)nodes[index];
+			HtmlNode node = (HtmlNode)this.nodes[index];
 
-			nodes.RemoveAt(index);
+			this.nodes.RemoveAt(index);
 			node.SetParent(null);
 		}
 
@@ -104,8 +111,10 @@ namespace CSharpSamples.Html
 		/// </summary>
 		public void RemoveAll()
 		{
-			while (Count > 0)
-				RemoveAt(0);
+			while (this.Count > 0)
+			{
+				this.RemoveAt(0);
+			}
 		}
 
 		/// <summary>
@@ -115,7 +124,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public int IndexOf(HtmlNode node)
 		{
-			return nodes.IndexOf(node);
+			return this.nodes.IndexOf(node);
 		}
 
 		/// <summary>
@@ -125,7 +134,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public bool Contains(HtmlNode node)
 		{
-			return nodes.Contains(node);
+			return this.nodes.Contains(node);
 		}
 
 		/// <summary>
@@ -134,7 +143,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()
 		{
-			return nodes.GetEnumerator();
+			return this.nodes.GetEnumerator();
 		}
 	}
 }

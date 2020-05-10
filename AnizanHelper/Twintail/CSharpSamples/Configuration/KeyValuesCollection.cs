@@ -3,11 +3,10 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.IO;
-	using System.Text;
 	using System.Collections;
 	using System.Collections.Specialized;
-	using System.Runtime.Serialization;
+	using System.IO;
+	using System.Text;
 
 	/// <summary>
 	/// KeyValues クラスをコレクション管理。
@@ -26,11 +25,13 @@ namespace CSharpSamples
 		/// <summary>
 		/// 指定したキーを持つ値のコレクションを取得
 		/// </summary>
-		public StringCollection this[string key] {
-			get {
-				if (hash.ContainsKey(key))
+		public StringCollection this[string key]
+		{
+			get
+			{
+				if (this.hash.ContainsKey(key))
 				{
-					KeyValues kv = (KeyValues)hash[key];
+					KeyValues kv = (KeyValues)this.hash[key];
 					return kv.Values;
 				}
 				return null;
@@ -45,7 +46,7 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			hash = new Hashtable();
+			this.hash = new Hashtable();
 		}
 
 		/// <summary>
@@ -55,26 +56,31 @@ namespace CSharpSamples
 		public void Read(string filePath)
 		{
 			if (filePath == null)
+			{
 				throw new ArgumentNullException("filePath");
+			}
 
 			StreamReader sr = null;
 			KeyValues keyset = null;
 			string text;
 
-			try {
+			try
+			{
 				sr = new StreamReader(filePath, Encoding.Default);
-				Clear();
+				this.Clear();
 
 				while ((text = sr.ReadLine()) != null)
 				{
 					// 空文字は無視
-					if (text == String.Empty)
+					if (text == string.Empty)
+					{
 						continue;
+					}
 
 					if (text.StartsWith("[") && text.EndsWith("]"))
 					{
-						keyset = new KeyValues(text.Substring(1, text.Length-2));
-						Add(keyset);
+						keyset = new KeyValues(text.Substring(1, text.Length - 2));
+						this.Add(keyset);
 					}
 					else if (keyset != null)
 					{
@@ -82,9 +88,12 @@ namespace CSharpSamples
 					}
 				}
 			}
-			finally {
+			finally
+			{
 				if (sr != null)
+				{
 					sr.Close();
+				}
 			}
 		}
 
@@ -95,13 +104,16 @@ namespace CSharpSamples
 		public void Write(string filePath)
 		{
 			if (filePath == null)
+			{
 				throw new ArgumentNullException("filePath");
+			}
 
 			StreamWriter sw = null;
-			try {
+			try
+			{
 				sw = new StreamWriter(filePath, false, Encoding.Default);
 
-				foreach (KeyValues _set in hash.Values)
+				foreach (KeyValues _set in this.hash.Values)
 				{
 					sw.Write('[');
 					sw.Write(_set.Key);
@@ -110,14 +122,19 @@ namespace CSharpSamples
 					sw.WriteLine();
 
 					foreach (string val in _set.Values)
+					{
 						sw.WriteLine(val);
+					}
 
 					sw.WriteLine();
 				}
 			}
-			finally {
+			finally
+			{
 				if (sw != null)
+				{
 					sw.Close();
+				}
 			}
 		}
 
@@ -128,9 +145,11 @@ namespace CSharpSamples
 		public void Add(KeyValues obj)
 		{
 			if (obj == null)
+			{
 				throw new ArgumentNullException("obj");
+			}
 
-			hash.Add(obj.Key, obj);
+			this.hash.Add(obj.Key, obj);
 		}
 
 		/// <summary>
@@ -139,7 +158,7 @@ namespace CSharpSamples
 		/// <param name="key"></param>
 		public void Remove(string key)
 		{
-			hash.Remove(key);
+			this.hash.Remove(key);
 		}
 
 		/// <summary>
@@ -147,7 +166,7 @@ namespace CSharpSamples
 		/// </summary>
 		public void Clear()
 		{
-			hash.Clear();
+			this.hash.Clear();
 		}
 
 		/// <summary>
@@ -156,7 +175,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public IEnumerator GetEnumerator()
 		{
-			return hash.Values.GetEnumerator();
+			return this.hash.Values.GetEnumerator();
 		}
 	}
 
@@ -172,22 +191,28 @@ namespace CSharpSamples
 		/// <summary>
 		/// キー名を取得または設定
 		/// </summary>
-		public string Key {
-			set {
+		public string Key
+		{
+			set
+			{
 				if (value == null)
+				{
 					throw new ArgumentNullException("Key");
+				}
 
-				key = value;
+				this.key = value;
 			}
-			get { return key; }
+			get { return this.key; }
 		}
 
 		/// <summary>
 		/// 値のコレクションを取得
 		/// </summary>
-		public StringCollection Values {
-			get {
-				return values;
+		public StringCollection Values
+		{
+			get
+			{
+				return this.values;
 			}
 		}
 
@@ -196,8 +221,8 @@ namespace CSharpSamples
 		/// </summary>
 		public KeyValues()
 		{
-			key = null;
-			values = new StringCollection();
+			this.key = null;
+			this.values = new StringCollection();
 		}
 
 		/// <summary>
@@ -207,7 +232,9 @@ namespace CSharpSamples
 		public KeyValues(string key) : this()
 		{
 			if (key == null)
+			{
 				throw new ArgumentNullException("key");
+			}
 
 			this.key = key;
 		}
@@ -220,9 +247,14 @@ namespace CSharpSamples
 		public KeyValues(string key, string[] array) : this()
 		{
 			if (key == null)
+			{
 				throw new ArgumentNullException("key");
+			}
+
 			if (array == null)
+			{
 				throw new ArgumentNullException("array");
+			}
 
 			this.key = key;
 			this.values.AddRange(array);

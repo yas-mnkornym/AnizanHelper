@@ -3,8 +3,8 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.Windows.Forms;
 	using System.Drawing;
+	using System.Windows.Forms;
 
 	/// <summary>
 	/// スムースな表示方式のプログレスバー。
@@ -18,22 +18,26 @@ namespace CSharpSamples
 		/// <summary>
 		/// 値部分の色を取得または設定
 		/// </summary>
-		public Color ValueColor {
-			set { valueColor = value; }
-			get { return valueColor; }
+		public Color ValueColor
+		{
+			set { this.valueColor = value; }
+			get { return this.valueColor; }
 		}
 
 		/// <summary>
 		/// テキストの表示スタイルを取得または設定
 		/// </summary>
-		public ProgressTextStyle TextStyle {
-			set {
-				if (value != style) {
-					style = value;
-					Refresh();
+		public ProgressTextStyle TextStyle
+		{
+			set
+			{
+				if (value != this.style)
+				{
+					this.style = value;
+					this.Refresh();
 				}
 			}
-			get { return style; }
+			get { return this.style; }
 		}
 
 		/// <summary>
@@ -44,9 +48,9 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			ValueColor = SystemColors.Highlight;
-			ForeColor = Color.Black;
-			style = ProgressTextStyle.Percent;
+			this.ValueColor = SystemColors.Highlight;
+			this.ForeColor = Color.Black;
+			this.style = ProgressTextStyle.Percent;
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
@@ -57,12 +61,12 @@ namespace CSharpSamples
 			Rectangle rect = e.ClipRectangle;
 
 			// ブラシを作成
-			Brush brush = new SolidBrush(ValueColor);
+			Brush brush = new SolidBrush(this.ValueColor);
 			Brush blank = new SolidBrush(SystemColors.Control);
 
 			// position(現在位置)から描画範囲を計算
-			float range = (float)(Math.Abs(Minimum) + Math.Abs(Maximum));
-			float pos = range != 0 ? ((float)Position / range) : 0;
+			float range = (float)(Math.Abs(this.Minimum) + Math.Abs(this.Maximum));
+			float pos = range != 0 ? ((float)this.Position / range) : 0;
 			float right = rect.Width * pos;
 
 			g.FillRectangle(brush, 0, 0, right, rect.Height);
@@ -70,22 +74,22 @@ namespace CSharpSamples
 
 			// 数字を描画
 			StringFormat format = StringFormat.GenericDefault;
-			Brush textbrush = new SolidBrush(ForeColor);
+			Brush textbrush = new SolidBrush(this.ForeColor);
 			string text = null;
 
-			switch (style) 
+			switch (this.style)
 			{
-			case ProgressTextStyle.Percent:
-				text = Percent + "%";
-				break;
+				case ProgressTextStyle.Percent:
+					text = this.Percent + "%";
+					break;
 
-			case ProgressTextStyle.Length:
-				text = String.Format("{0}/{1}", Position, Maximum);
-				break;
+				case ProgressTextStyle.Length:
+					text = string.Format("{0}/{1}", this.Position, this.Maximum);
+					break;
 
-			case ProgressTextStyle.None:
-				text = String.Empty;
-				break;
+				case ProgressTextStyle.None:
+					text = string.Empty;
+					break;
 			}
 
 			// 全体の中央に配置
@@ -96,8 +100,8 @@ namespace CSharpSamples
 			g.DrawString(text, this.Font, textbrush, rect, format);
 
 			// 境界線を描画
-			Rectangle bounds = new Rectangle(0, 0, Width, Height);
-			ControlPaint.DrawBorder3D(g, bounds, BorderStyle);
+			Rectangle bounds = new Rectangle(0, 0, this.Width, this.Height);
+			ControlPaint.DrawBorder3D(g, bounds, this.BorderStyle);
 		}
 	}
 

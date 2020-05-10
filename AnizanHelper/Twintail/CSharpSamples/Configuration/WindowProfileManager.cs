@@ -20,32 +20,34 @@ namespace CSharpSamples
 		public WindowProfileManager(Form f)
 		{
 			if (f == null)
+			{
 				throw new ArgumentNullException("f");
+			}
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			
-			normalWindowRect = 
+
+			this.normalWindowRect =
 				new Rectangle(f.Location, f.ClientSize);
 
-			form = f;
-			form.Move += new EventHandler(OnResize);
-			form.Resize += new EventHandler(OnResize);
+			this.form = f;
+			this.form.Move += new EventHandler(this.OnResize);
+			this.form.Resize += new EventHandler(this.OnResize);
 		}
 
 		private void OnResize(object sender, EventArgs e)
 		{
-			if (form.WindowState == FormWindowState.Normal)
+			if (this.form.WindowState == FormWindowState.Normal)
 			{
-				normalWindowRect = new Rectangle(
-					form.Location, form.ClientSize);
+				this.normalWindowRect = new Rectangle(
+					this.form.Location, this.form.ClientSize);
 			}
 		}
 
 		public void Serialize(string fileName)
 		{
 			CSPrivateProfile prof = new CSPrivateProfile();
-			Save(prof);
+			this.Save(prof);
 
 			prof.Write(fileName);
 		}
@@ -55,23 +57,23 @@ namespace CSharpSamples
 			CSPrivateProfile prof = new CSPrivateProfile();
 			prof.Read(fileName);
 
-			Load(prof);
+			this.Load(prof);
 		}
 
 		public virtual void Save(CSPrivateProfile prof)
 		{
-			prof.SetValue("Window", "Bounds", normalWindowRect);
-			prof.SetValue("Window", "State", form.WindowState);
+			prof.SetValue("Window", "Bounds", this.normalWindowRect);
+			prof.SetValue("Window", "State", this.form.WindowState);
 		}
 
 		public virtual void Load(CSPrivateProfile prof)
 		{
-			form.WindowState = (FormWindowState)
-				prof.GetEnum("Window", "State", form.WindowState);
-			
-			Rectangle rc = prof.GetRect("Window", "Bounds", normalWindowRect);
-			form.Location = rc.Location;
-			form.ClientSize = rc.Size;
+			this.form.WindowState = (FormWindowState)
+				prof.GetEnum("Window", "State", this.form.WindowState);
+
+			Rectangle rc = prof.GetRect("Window", "Bounds", this.normalWindowRect);
+			this.form.Location = rc.Location;
+			this.form.ClientSize = rc.Size;
 		}
 	}
 }

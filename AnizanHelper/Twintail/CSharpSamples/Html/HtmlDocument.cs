@@ -2,10 +2,8 @@
 
 namespace CSharpSamples.Html
 {
-	using System;
 	using System.IO;
 	using System.Text;
-	using System.Collections;
 
 	/// <summary>
 	/// HtmlDocument の概要の説明です。
@@ -18,27 +16,34 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// ルートノードコレクションを取得
 		/// </summary>
-		public HtmlNodeCollection Root {
-			get {
-				return root;
+		public HtmlNodeCollection Root
+		{
+			get
+			{
+				return this.root;
 			}
 		}
 
 		/// <summary>
 		/// Htmlドキュメントを取得
 		/// </summary>
-		public string Html {
-			get {
-				if (formatted)
+		public string Html
+		{
+			get
+			{
+				if (this.formatted)
 				{
 					HtmlFormatter f = new HtmlFormatter();
-					return f.Format(root);
+					return f.Format(this.root);
 				}
-				else {
+				else
+				{
 					StringBuilder sb = new StringBuilder();
 
-					foreach (HtmlNode node in root)
+					foreach (HtmlNode node in this.root)
+					{
 						sb.Append(node.Html);
+					}
 
 					return sb.ToString();
 				}
@@ -48,13 +53,18 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// フォーマットされたHtmlかどうかを取得または設定
 		/// </summary>
-		public bool Formatted {
-			set {
-				if (formatted != value)
-					formatted = value;
+		public bool Formatted
+		{
+			set
+			{
+				if (this.formatted != value)
+				{
+					this.formatted = value;
+				}
 			}
-			get {
-				return formatted;
+			get
+			{
+				return this.formatted;
 			}
 		}
 
@@ -67,16 +77,16 @@ namespace CSharpSamples.Html
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			root = null;
-			formatted = true;
+			this.root = null;
+			this.formatted = true;
 
-			LoadHtml(html);
+			this.LoadHtml(html);
 		}
 
 		/// <summary>
 		/// HtmlDocumentクラスのインスタンスを初期化
 		/// </summary>
-		public HtmlDocument() : this(String.Empty)
+		public HtmlDocument() : this(string.Empty)
 		{
 		}
 
@@ -87,7 +97,7 @@ namespace CSharpSamples.Html
 		public void LoadHtml(string html)
 		{
 			HtmlParser p = new HtmlParser();
-			root = p.Parse(html);
+			this.root = p.Parse(html);
 		}
 
 		/// <summary>
@@ -98,7 +108,9 @@ namespace CSharpSamples.Html
 		public void Load(string filePath, Encoding encoding)
 		{
 			using (StreamReader sr = new StreamReader(filePath, encoding))
-				LoadHtml(sr.ReadToEnd());
+			{
+				this.LoadHtml(sr.ReadToEnd());
+			}
 		}
 
 		/// <summary>
@@ -108,7 +120,9 @@ namespace CSharpSamples.Html
 		public void Save(string filePath)
 		{
 			using (StreamWriter sw = new StreamWriter(filePath, false, Encoding.Default))
-				sw.Write(Html);
+			{
+				sw.Write(this.Html);
+			}
 		}
 
 		/// <summary>
@@ -118,7 +132,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public HtmlElement[] GetElementsByName(string tagName)
 		{
-			return HtmlElement.Sta_GetElementsByName(root, tagName);
+			return HtmlElement.Sta_GetElementsByName(this.root, tagName);
 		}
 
 		/// <summary>
@@ -128,7 +142,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public HtmlElement GetElementById(string id)
 		{
-			return HtmlElement.Sta_GetElementById(root, id);
+			return HtmlElement.Sta_GetElementById(this.root, id);
 		}
 
 		/// <summary>
@@ -137,7 +151,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return Html;
+			return this.Html;
 		}
 	}
 }

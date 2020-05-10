@@ -18,9 +18,11 @@ namespace CSharpSamples
 		/// <summary>
 		/// V‚µ‚­‘I‘ğ‚³‚ê‚½ TabButton ‚ğæ“¾‚µ‚Ü‚·B
 		/// </summary>
-		public TabButton Button {
-			get {
-				return button;
+		public TabButton Button
+		{
+			get
+			{
+				return this.button;
 			}
 		}
 		private TabButton button;

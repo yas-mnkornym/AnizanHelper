@@ -2,8 +2,6 @@
 
 namespace CSharpSamples.Html
 {
-	using System;
-
 	/// <summary>
 	/// HtmlNode の概要の説明です。
 	/// </summary>
@@ -14,17 +12,21 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// このノードが最上層かどうかを取得
 		/// </summary>
-		public bool IsRoot {
-			get {
-				return (parent == null);
+		public bool IsRoot
+		{
+			get
+			{
+				return (this.parent == null);
 			}
 		}
 
 		/// <summary>
 		/// このノードが親ノードかどうかを取得
 		/// </summary>
-		public bool IsParent {
-			get {
+		public bool IsParent
+		{
+			get
+			{
 				HtmlElement e = this as HtmlElement;
 				return (e != null && e.Nodes.Count > 0) ? true : false;
 			}
@@ -33,30 +35,38 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// このノードが子ノードかどうかを取得
 		/// </summary>
-		public bool IsChild {
-			get {
-				return (parent != null);
+		public bool IsChild
+		{
+			get
+			{
+				return (this.parent != null);
 			}
 		}
 
 		/// <summary>
 		/// 親ノードを取得
 		/// </summary>
-		public HtmlElement Parent {
-			get {
-				return parent;
+		public HtmlElement Parent
+		{
+			get
+			{
+				return this.parent;
 			}
 		}
 
 		/// <summary>
 		/// 前の兄弟ノードを取得
 		/// </summary>
-		public HtmlNode Prev {
-			get {
-				if (Index != -1 && Parent != null)
+		public HtmlNode Prev
+		{
+			get
+			{
+				if (this.Index != -1 && this.Parent != null)
 				{
-					if (Index > 0)
-						return Parent.Nodes[Index-1];
+					if (this.Index > 0)
+					{
+						return this.Parent.Nodes[this.Index - 1];
+					}
 				}
 				return null;
 			}
@@ -65,12 +75,16 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// 次の兄弟ノードを取得
 		/// </summary>
-		public HtmlNode Next {
-			get {
-				if (Index != -1 && Parent != null)
+		public HtmlNode Next
+		{
+			get
+			{
+				if (this.Index != -1 && this.Parent != null)
 				{
-					if (Index+1 < Parent.Nodes.Count)
-						return Parent.Nodes[Index+1];
+					if (this.Index + 1 < this.Parent.Nodes.Count)
+					{
+						return this.Parent.Nodes[this.Index + 1];
+					}
 				}
 				return null;
 			}
@@ -79,15 +93,18 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// 最初の子ノードを取得 (子ノードが存在しなければnullを返す)
 		/// </summary>
-		public HtmlNode FirstChild {
-			get {
+		public HtmlNode FirstChild
+		{
+			get
+			{
 				HtmlElement e = this as HtmlElement;
-				
+
 				if (e == null || e.Nodes.Count == 0)
 				{
 					return null;
 				}
-				else {
+				else
+				{
 					return e.Nodes[0];
 				}
 			}
@@ -96,16 +113,19 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// 最後の子ノードを取得 (子ノードが存在しなければnullを返す)
 		/// </summary>
-		public HtmlNode LastChild {
-			get {
+		public HtmlNode LastChild
+		{
+			get
+			{
 				HtmlElement e = this as HtmlElement;
 
 				if (e == null || e.Nodes.Count == 0)
 				{
 					return null;
 				}
-				else {
-					return e.Nodes[e.Nodes.Count-1];
+				else
+				{
+					return e.Nodes[e.Nodes.Count - 1];
 				}
 			}
 		}
@@ -113,31 +133,36 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// ノードコレクション内の位置を取得
 		/// </summary>
-		public int Index {
-			get {
-				return (Parent != null) ?
-					Parent.Nodes.IndexOf(this) : -1;
+		public int Index
+		{
+			get
+			{
+				return (this.Parent != null) ?
+					this.Parent.Nodes.IndexOf(this) : -1;
 			}
 		}
 
 		/// <summary>
 		/// このノードをHtml形式の文字列で取得
 		/// </summary>
-		public abstract string Html {
+		public abstract string Html
+		{
 			get;
 		}
 
 		/// <summary>
 		/// このノードの内部Htmlを取得
 		/// </summary>
-		public abstract string InnerHtml {
+		public abstract string InnerHtml
+		{
 			get;
 		}
 
 		/// <summary>
 		/// このノードの内部テキストを取得
 		/// </summary>
-		public abstract string InnerText {
+		public abstract string InnerText
+		{
 			get;
 		}
 
@@ -158,7 +183,7 @@ namespace CSharpSamples.Html
 		/// <param name="newParent"></param>
 		internal void SetParent(HtmlElement newParent)
 		{
-			parent = newParent;
+			this.parent = newParent;
 		}
 
 		/// <summary>
@@ -166,8 +191,10 @@ namespace CSharpSamples.Html
 		/// </summary>
 		public void Remove()
 		{
-			if (Parent != null)
-				Parent.Nodes.Remove(this);
+			if (this.Parent != null)
+			{
+				this.Parent.Nodes.Remove(this);
+			}
 		}
 
 		/// <summary>

@@ -1,38 +1,38 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net472</TargetFrameworks>
-    <LangVersion>preview</LangVersion>
-    <RootNamespace>Twin</RootNamespace>
+	<PropertyGroup>
+		<TargetFrameworks>net472</TargetFrameworks>
+		<LangVersion>preview</LangVersion>
+		<RootNamespace>Twin</RootNamespace>
 
-    <AssemblyName>twin</AssemblyName>
-    <Version>2.5.1</Version>
-	  <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <AssemblyTitle>twindll</AssemblyTitle>
-    <Product>twindll</Product>
-    <Copyright>nullpo0@yahoo.co.jp</Copyright>
-    <ProductVersion>8.0.50727</ProductVersion>
-  </PropertyGroup>
+		<AssemblyName>twin</AssemblyName>
+		<Version>2.5.1</Version>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyTitle>twindll</AssemblyTitle>
+		<Product>twindll</Product>
+		<Copyright>nullpo0@yahoo.co.jp</Copyright>
+		<ProductVersion>8.0.50727</ProductVersion>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CSharpSamples\CSharpSamples.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+		<Reference Include="System.Web" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\CSharpSamples\CSharpSamples.csproj" />
+	</ItemGroup>
 </Project>

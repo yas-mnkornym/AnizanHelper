@@ -2,8 +2,6 @@
 
 namespace CSharpSamples
 {
-	using System;
-
 	/// <summary>
 	/// CSharpToolBarButtonのスタイルを表す。
 	/// </summary>

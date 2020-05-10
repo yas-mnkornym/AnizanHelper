@@ -2,8 +2,6 @@
 
 namespace CSharpSamples.Html
 {
-	using System;
-
 	/// <summary>
 	/// Html内のテキストを表す
 	/// </summary>
@@ -14,39 +12,48 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// テキストの内容を取得または設定
 		/// </summary>
-		public string Content {
-			set {
-				text = value;
+		public string Content
+		{
+			set
+			{
+				this.text = value;
 			}
-			get {
-				return text;
-			}
-		}
-
-		/// <summary>
-		/// このプロパティはContentプロパティと同じ値を返す
-		/// </summary>
-		public override string Html {
-			get {
-				return text;
+			get
+			{
+				return this.text;
 			}
 		}
 
 		/// <summary>
 		/// このプロパティはContentプロパティと同じ値を返す
 		/// </summary>
-		public override string InnerHtml {
-			get {
-				return text;
+		public override string Html
+		{
+			get
+			{
+				return this.text;
 			}
 		}
 
 		/// <summary>
 		/// このプロパティはContentプロパティと同じ値を返す
 		/// </summary>
-		public override string InnerText {
-			get {
-				return text;
+		public override string InnerHtml
+		{
+			get
+			{
+				return this.text;
+			}
+		}
+
+		/// <summary>
+		/// このプロパティはContentプロパティと同じ値を返す
+		/// </summary>
+		public override string InnerText
+		{
+			get
+			{
+				return this.text;
 			}
 		}
 
@@ -62,7 +69,7 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// HtmlTextクラスのインスタンスを初期化
 		/// </summary>
-		public HtmlText() : this(String.Empty)
+		public HtmlText() : this(string.Empty)
 		{
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。

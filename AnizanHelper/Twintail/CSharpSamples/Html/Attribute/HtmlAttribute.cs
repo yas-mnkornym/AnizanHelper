@@ -2,8 +2,6 @@
 
 namespace CSharpSamples.Html
 {
-	using System;
-
 	/// <summary>
 	/// 属性を表すクラス
 	/// </summary>
@@ -15,33 +13,41 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// 属性の名前を取得または設定
 		/// </summary>
-		public string Name {
-			set {
-				name = value;
+		public string Name
+		{
+			set
+			{
+				this.name = value;
 			}
-			get {
-				return name;
+			get
+			{
+				return this.name;
 			}
 		}
 
 		/// <summary>
 		/// 属性の値を取得または設定
 		/// </summary>
-		public string Value {
-			set {
-				_value = value;
+		public string Value
+		{
+			set
+			{
+				this._value = value;
 			}
-			get {
-				return _value;
+			get
+			{
+				return this._value;
 			}
 		}
 
 		/// <summary>
 		/// 属性をHtml形式で取得
 		/// </summary>
-		public string Html {
-			get {
-				return String.Format("{0}=\"{1}\"", name, _value);
+		public string Html
+		{
+			get
+			{
+				return string.Format("{0}=\"{1}\"", this.name, this._value);
 			}
 		}
 
@@ -62,7 +68,7 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// HtmlAttributeクラスのインスタンスを初期化
 		/// </summary>
-		public HtmlAttribute() : this(String.Empty, String.Empty)
+		public HtmlAttribute() : this(string.Empty, string.Empty)
 		{
 		}
 

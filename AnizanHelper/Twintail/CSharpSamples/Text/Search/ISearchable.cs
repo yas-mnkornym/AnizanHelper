@@ -2,9 +2,6 @@
 
 namespace CSharpSamples.Text.Search
 {
-	using System;
-	using System.Text;
-
 	/// <summary>
 	/// 検索インターフェースを表す
 	/// </summary>
@@ -13,7 +10,8 @@ namespace CSharpSamples.Text.Search
 		/// <summary>
 		/// 検索パターンを取得
 		/// </summary>
-		string Pattern {
+		string Pattern
+		{
 			get;
 		}
 

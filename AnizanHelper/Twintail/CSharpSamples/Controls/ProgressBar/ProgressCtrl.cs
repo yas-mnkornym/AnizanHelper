@@ -4,7 +4,6 @@ namespace CSharpSamples
 {
 	using System;
 	using System.Windows.Forms;
-	using System.Drawing;
 
 	/// <summary>
 	/// プログレスバーの基本
@@ -20,98 +19,117 @@ namespace CSharpSamples
 		/// <summary>
 		/// プログレスバーの最小値を取得または設定
 		/// </summary>
-		public int Minimum {
-			set {
-				if (value > maximum) {
+		public int Minimum
+		{
+			set
+			{
+				if (value > this.maximum)
+				{
 					throw new ArgumentOutOfRangeException("Minimum");
 				}
 
-				if (minimum != value)
+				if (this.minimum != value)
 				{
-					minimum = value;
-					Refresh();
+					this.minimum = value;
+					this.Refresh();
 				}
 			}
-			get { return minimum; }
+			get { return this.minimum; }
 		}
 
 		/// <summary>
 		/// プログレスバーの最大値を取得または設定
 		/// </summary>
-		public int Maximum {
-			set {
-				if (value < minimum) {
+		public int Maximum
+		{
+			set
+			{
+				if (value < this.minimum)
+				{
 					throw new ArgumentOutOfRangeException("Maximum");
 				}
 
-				if (maximum != value)
+				if (this.maximum != value)
 				{
-					maximum = value;
-					Refresh();
+					this.maximum = value;
+					this.Refresh();
 				}
 			}
-			get { return maximum; }
+			get { return this.maximum; }
 		}
 
 		/// <summary>
 		/// プログレスバーの現在値を取得または設定
 		/// </summary>
-		public int Position {
-			set {
-				if (value < 0 || value > maximum) {
+		public int Position
+		{
+			set
+			{
+				if (value < 0 || value > this.maximum)
+				{
 					throw new ArgumentOutOfRangeException("Position");
 				}
 
-				if (position != value)
+				if (this.position != value)
 				{
-					position = value;
-					Refresh();
+					this.position = value;
+					this.Refresh();
 				}
 			}
-			get { return position; }
+			get { return this.position; }
 		}
 
 		/// <summary>
 		/// PerformStepメソッドを使用した時の増量分を取得または設定
 		/// </summary>
-		public int Step {
-			set {
-				if (value > maximum) {
+		public int Step
+		{
+			set
+			{
+				if (value > this.maximum)
+				{
 					throw new ArgumentOutOfRangeException("Step");
 				}
 
-				if (step != value)
+				if (this.step != value)
 				{
-					step = value;
+					this.step = value;
 				}
 			}
-			get { return step; }
+			get { return this.step; }
 		}
 
 		/// <summary>
 		/// プログレスバーの境界線を取得または設定
 		/// </summary>
-		public Border3DStyle BorderStyle {
-			set {
-				if (value != border) {
-					border = value;
-					Refresh();
+		public Border3DStyle BorderStyle
+		{
+			set
+			{
+				if (value != this.border)
+				{
+					this.border = value;
+					this.Refresh();
 				}
 			}
-			get { return border; }
+			get { return this.border; }
 		}
 
 		/// <summary>
 		/// 百分率を取得
 		/// </summary>
-		protected int Percent {
-			get {
-				float range = (float)(Math.Abs(minimum) + Math.Abs(maximum));
+		protected int Percent
+		{
+			get
+			{
+				float range = (float)(Math.Abs(this.minimum) + Math.Abs(this.maximum));
 
 				if (range == 0)
+				{
 					return 0;
-				
-				float result = (float)position / range * 100.0f;
+				}
+
+				float result = (float)this.position / range * 100.0f;
 				return (int)result;
 			}
 		}
@@ -124,16 +142,16 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			SetStyle(ControlStyles.UserPaint, true);
-			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-			SetStyle(ControlStyles.DoubleBuffer, true);
-			SetStyle(ControlStyles.ResizeRedraw, true);
+			this.SetStyle(ControlStyles.UserPaint, true);
+			this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+			this.SetStyle(ControlStyles.DoubleBuffer, true);
+			this.SetStyle(ControlStyles.ResizeRedraw, true);
 
-			border = Border3DStyle.SunkenOuter;
-			minimum = 0;
-			position = 0;
-			maximum = 100;
-			step = 1;
+			this.border = Border3DStyle.SunkenOuter;
+			this.minimum = 0;
+			this.position = 0;
+			this.maximum = 100;
+			this.step = 1;
 		}
 
 		/// <summary>
@@ -141,7 +159,7 @@ namespace CSharpSamples
 		/// </summary>
 		public virtual void PerformStep()
 		{
-			Increment(Step);
+			this.Increment(this.Step);
 		}
 
 		/// <summary>
@@ -150,12 +168,13 @@ namespace CSharpSamples
 		/// <param name="value">現在位置をインクリメントする量</param>
 		public virtual void Increment(int value)
 		{
-			if (Position + value >= Maximum)
+			if (this.Position + value >= this.Maximum)
 			{
-				Position = Maximum;
+				this.Position = this.Maximum;
 			}
-			else {
-				Position += value;
+			else
+			{
+				this.Position += value;
 			}
 		}
 
@@ -164,7 +183,7 @@ namespace CSharpSamples
 		/// </summary>
 		public virtual void Reset()
 		{
-			Position = 0;
+			this.Position = 0;
 		}
 	}
 }

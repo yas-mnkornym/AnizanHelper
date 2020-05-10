@@ -33,10 +33,12 @@ namespace CSharpSamples
 		/// <param name="enc"></param>
 		public static void Serialize(string fileName, Type type, object o, Encoding enc)
 		{
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
-			if (type == null) {
+			if (type == null)
+			{
 				throw new ArgumentNullException("type");
 			}
 
@@ -44,7 +46,8 @@ namespace CSharpSamples
 			XmlTextWriter writer = null;
 			XmlSerializer serial = null;
 
-			try {
+			try
+			{
 				sw = new StreamWriter(fileName, false, enc);
 				writer = new XmlTextWriter(sw);
 				writer.Formatting = Formatting.Indented;
@@ -53,11 +56,17 @@ namespace CSharpSamples
 				serial = new XmlSerializer(type);
 				serial.Serialize(writer, o);
 			}
-			finally {
+			finally
+			{
 				if (writer != null)
+				{
 					writer.Close();
+				}
+
 				if (sw != null)
+				{
 					sw.Close();
+				}
 			}
 		}
 
@@ -81,10 +90,12 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public static object Deserialize(string fileName, Type type, Encoding enc)
 		{
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
-			if (type == null) {
+			if (type == null)
+			{
 				throw new ArgumentNullException("type");
 			}
 
@@ -93,17 +104,24 @@ namespace CSharpSamples
 			StreamReader sr = null;
 			object result = null;
 
-			try {
+			try
+			{
 				sr = new StreamReader(fileName, enc);
 				xmlreader = new XmlTextReader(sr);
 				serial = new XmlSerializer(type);
 				result = serial.Deserialize(xmlreader);
 			}
-			finally {
+			finally
+			{
 				if (xmlreader != null)
+				{
 					xmlreader.Close();
+				}
+
 				if (sr != null)
+				{
 					sr.Close();
+				}
 			}
 
 			return result;

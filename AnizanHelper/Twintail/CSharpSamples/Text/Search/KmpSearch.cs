@@ -1,8 +1,3 @@
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
@@ -21,7 +16,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return pattern;
+				return this.pattern;
 			}
 		}
 
@@ -31,8 +26,8 @@ namespace CSharpSamples.Text.Search
 		/// <param name="key"></param>
 		public KmpSearch(string key)
 		{
-			shift = makeTable(key);
-			pattern = key;
+			this.shift = this.makeTable(key);
+			this.pattern = key;
 		}
 
 		/// <summary>
@@ -49,7 +44,9 @@ namespace CSharpSamples.Text.Search
 			{
 				table[t] = p;
 				if (key[t] == key[p])
+				{
 					p++;
+				}
 			}
 			return table;
 		}
@@ -61,7 +58,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string input)
 		{
-			return Search(input, 0);
+			return this.Search(input, 0);
 		}
 
 		/// <summary>
@@ -72,25 +69,30 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string input, int index)
 		{
-			if (input.Length < pattern.Length)
+			if (input.Length < this.pattern.Length)
+			{
 				return -1;
+			}
 
 			int endPos = input.Length;
-			int patEnd = pattern.Length;
+			int patEnd = this.pattern.Length;
 			int patIdx = 0;
 
 			while (index != endPos)
 			{
-				if (input[index++] == pattern[patIdx])
+				if (input[index++] == this.pattern[patIdx])
+				{
 					patIdx++;
-
+				}
 				else if (patIdx != 0)
 				{
-					patIdx = shift[patIdx];
+					patIdx = this.shift[patIdx];
 					index--;
 				}
 				if (patIdx == patEnd)
-					return (index - pattern.Length);
+				{
+					return (index - this.pattern.Length);
+				}
 			}
 			return -1;
 		}

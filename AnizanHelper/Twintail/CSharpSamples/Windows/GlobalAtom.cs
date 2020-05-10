@@ -2,10 +2,7 @@
 
 namespace CSharpSamples.Winapi
 {
-	using System;
 	using System.Text;
-	using System.Collections;
-	using CSharpSamples.Winapi;
 
 	/// <summary>
 	/// GlobalAtom ‚ÌŠT—v‚Ìà–¾‚Å‚·B

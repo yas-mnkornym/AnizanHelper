@@ -3,73 +3,78 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.Windows.Forms.Design;
 	using System.Windows.Forms;
+	using System.Windows.Forms.Design;
 
 	// ----------------------------------------------------------------
-	// StartLocation ‚ÍADesktop, Favorites, MyComputer, MyDocuments,
+	// StartLocation ã¯ã€Desktop, Favorites, MyComputer, MyDocuments,
 	//   MyPictures, NetAndDialUpConnections, NetworkNeighborhood,
-	//   Printers, Recent, SendTo, StartMenu, Templates@‚æ‚è‘I‘ğ‚·‚éB
+	//   Printers, Recent, SendTo, StartMenu, Templatesã€€ã‚ˆã‚Šé¸æŠã™ã‚‹ã€‚
 	//   
-	// Styles ‚ÍABrowseForComputer, BrowseForEverything, BrowseForPrinter,
+	// Styles ã¯ã€BrowseForComputer, BrowseForEverything, BrowseForPrinter,
 	//   RestrictToDomain, RestrictToFilesystem, RestrictToSubfolders,
-	//   ShowTextBox @‚æ‚è‘I‘ğ‚·‚éB
+	//   ShowTextBox ã€€ã‚ˆã‚Šé¸æŠã™ã‚‹ã€‚
 	// ----------------------------------------------------------------
 
 	/// <summary>
-	/// ƒfƒBƒŒƒNƒgƒŠ‘I‘ğƒ_ƒCƒAƒƒO
+	/// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªé¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 	/// </summary>
-	[Obsolete("System.Windows.Forms.FolderBrowserDialog ƒNƒ‰ƒX‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B")]
+	[Obsolete("System.Windows.Forms.FolderBrowserDialog ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚")]
 	public class DirectoryPicker : FolderNameEditor
 	{
 		private FolderNameEditor.FolderBrowser _folderBrowser;
-	
+
 		/// <summary>
-		/// ‘I‘ğ‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾
+		/// é¸æŠã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—
 		/// </summary>
-		public string DirectoryPath {
-			get {
-				return _folderBrowser.DirectoryPath;
+		public string DirectoryPath
+		{
+			get
+			{
+				return this._folderBrowser.DirectoryPath;
 			}
 		}
 
 		/// <summary>
-		/// •\¦‚³‚ê‚éƒeƒLƒXƒg‚ğæ“¾‚Ü‚½‚Íİ’è
+		/// è¡¨ç¤ºã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã¾ãŸã¯è¨­å®š
 		/// </summary>
-		public string Text {
-			set {
-				_folderBrowser.Description = value;
+		public string Text
+		{
+			set
+			{
+				this._folderBrowser.Description = value;
 			}
-			get {
-				return _folderBrowser.Description;
+			get
+			{
+				return this._folderBrowser.Description;
 			}
 		}
 
 		/// <summary>
-		/// DirectoryPickerƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰Šú‰»
+		/// DirectoryPickerã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’åˆæœŸåŒ–
 		/// </summary>
 		public DirectoryPicker()
 		{
 			// 
-			// TODO: ƒRƒ“ƒXƒgƒ‰ƒNƒ^ ƒƒWƒbƒN‚ğ‚±‚±‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+			// TODO: ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ ãƒ­ã‚¸ãƒƒã‚¯ã‚’ã“ã“ã«è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 			//
-			_folderBrowser = new FolderNameEditor.FolderBrowser();
-			_folderBrowser.StartLocation = FolderNameEditor.FolderBrowserFolder.Desktop;
-			_folderBrowser.Style = FolderNameEditor.FolderBrowserStyles.ShowTextBox;
+			this._folderBrowser = new FolderNameEditor.FolderBrowser();
+			this._folderBrowser.StartLocation = FolderNameEditor.FolderBrowserFolder.Desktop;
+			this._folderBrowser.Style = FolderNameEditor.FolderBrowserStyles.ShowTextBox;
 		}
 
 		~DirectoryPicker()
 		{
-			_folderBrowser.Dispose();
+			this._folderBrowser.Dispose();
 		}
 
 		/// <summary>
-		/// ƒfƒBƒŒƒNƒgƒŠ‘I‘ğƒ_ƒCƒAƒƒO‚ğ•\¦
+		/// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªé¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
 		/// </summary>
-		/// <returns>‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“</returns>
+		/// <returns>æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³</returns>
 		public DialogResult ShowDialog()
 		{
-			return _folderBrowser.ShowDialog();
+			return this._folderBrowser.ShowDialog();
 		}
 	}
 }

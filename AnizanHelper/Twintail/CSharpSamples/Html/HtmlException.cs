@@ -32,7 +32,7 @@ namespace CSharpSamples.Html
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>
-		public HtmlException(string message, Exception exception) 
+		public HtmlException(string message, Exception exception)
 			: base(message, exception)
 		{
 		}

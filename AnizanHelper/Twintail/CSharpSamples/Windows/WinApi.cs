@@ -3,11 +3,11 @@
 namespace CSharpSamples.Winapi
 {
 	using System;
-	using System.Runtime.InteropServices;
-	using System.Drawing;
 	using System.Diagnostics;
-	using System.Text;
+	using System.Drawing;
 	using System.IO;
+	using System.Runtime.InteropServices;
+	using System.Text;
 
 	/// <summary>
 	/// shlwapi.dllのPath系関数群
@@ -29,7 +29,9 @@ namespace CSharpSamples.Winapi
 			FileAttributes attrto = File.GetAttributes(toPath);
 
 			if (PathRelativePathTo(sb, fromPath, (uint)attrfrom, toPath, (uint)attrto) != 0)
+			{
 				return sb.ToString();
+			}
 
 			// 失敗
 			return null;
@@ -46,7 +48,9 @@ namespace CSharpSamples.Winapi
 			StringBuilder sb = new StringBuilder(512);
 
 			if (PathCompactPathEx(sb, path, (uint)count, '\\') != 0)
+			{
 				return sb.ToString();
+			}
 
 			return null;
 		}
@@ -61,7 +65,9 @@ namespace CSharpSamples.Winapi
 			StringBuilder sb = new StringBuilder(512);
 
 			if (PathCanonicalize(sb, path) != 0)
+			{
 				return sb.ToString();
+			}
 
 			return null;
 		}
@@ -76,7 +82,9 @@ namespace CSharpSamples.Winapi
 			StringBuilder sb = new StringBuilder(512);
 
 			if (PathSearchAndQualify(path, sb, 512) != 0)
+			{
 				return sb.ToString();
+			}
 
 			return null;
 		}
@@ -101,7 +109,7 @@ namespace CSharpSamples.Winapi
 	/// WinAPI の概要の説明です。
 	/// </summary>
 	public class WinApi
-	{		
+	{
 		/// <summary>アプリケーション用定義メッセージ</summary>
 		public const int WM_APP = 0x8000;
 
@@ -130,10 +138,10 @@ namespace CSharpSamples.Winapi
 		public static extern long SetWindowLong(IntPtr hwnd, int index, ulong newLong);
 
 		[DllImport("kernel32.dll")]
-		public static extern int GlobalFindAtom(String atomString);
+		public static extern int GlobalFindAtom(string atomString);
 
 		[DllImport("kernel32.dll")]
-		public static extern int GlobalAddAtom(String atomString);
+		public static extern int GlobalAddAtom(string atomString);
 
 		[DllImport("kernel32.dll")]
 		public static extern int GlobalDeleteAtom(int atom);
@@ -144,8 +152,8 @@ namespace CSharpSamples.Winapi
 		[DllImport("gdi32.dll")]
 		public static extern int GetTextExtentPoint32(IntPtr hdc, string lpString, int cbString, ref Size size);
 
-		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]  
-		public static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);  
+		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+		public static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 
 	}
 
@@ -172,8 +180,14 @@ namespace CSharpSamples.Winapi
 		public static void SetForegroundWindow(IntPtr hwnd)
 		{
 			// なぜか失敗する
-			if (WinApi.IsIconic(hwnd) != 0)	Debug.Assert(WinApi.OpenIcon(hwnd) != 0);
-			else							Debug.Assert(WinApi.SetForegroundWindow(hwnd) != 0);
+			if (WinApi.IsIconic(hwnd) != 0)
+			{
+				Debug.Assert(WinApi.OpenIcon(hwnd) != 0);
+			}
+			else
+			{
+				Debug.Assert(WinApi.SetForegroundWindow(hwnd) != 0);
+			}
 		}
 	}
 
@@ -222,8 +236,8 @@ namespace CSharpSamples.Winapi
 	/// </summary>
 	public enum Ccm
 	{
-		First       = 0x2000,
-		SetBkColor  = 0x2000 + 1,
+		First = 0x2000,
+		SetBkColor = 0x2000 + 1,
 	}
 
 	/// <summary>
@@ -231,12 +245,12 @@ namespace CSharpSamples.Winapi
 	/// </summary>
 	public enum WindowLong
 	{
-		WndProc        = (-4),
-		hInstance      = (-6),
-		HwndParent     = (-8),
-		Style          = (-16),
-		ExStyle        = (-20),
-		UserData       = (-21),
-		ID             = (-12),
+		WndProc = (-4),
+		hInstance = (-6),
+		HwndParent = (-8),
+		Style = (-16),
+		ExStyle = (-20),
+		UserData = (-21),
+		ID = (-12),
 	}
 }

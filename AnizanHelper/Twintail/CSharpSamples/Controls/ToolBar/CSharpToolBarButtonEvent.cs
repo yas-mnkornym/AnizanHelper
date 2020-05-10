@@ -20,9 +20,11 @@ namespace CSharpSamples
 		/// <summary>
 		/// クリックされたボタンを取得
 		/// </summary>
-		public CSharpToolBarButton Button {
-			get {
-				return button;
+		public CSharpToolBarButton Button
+		{
+			get
+			{
+				return this.button;
 			}
 		}
 
@@ -32,7 +34,8 @@ namespace CSharpSamples
 		/// <param name="button">クリックされたボタン</param>
 		public CSharpToolBarButtonEventArgs(CSharpToolBarButton button)
 		{
-			if (button == null) {
+			if (button == null)
+			{
 				throw new ArgumentNullException("button");
 			}
 			this.button = button;

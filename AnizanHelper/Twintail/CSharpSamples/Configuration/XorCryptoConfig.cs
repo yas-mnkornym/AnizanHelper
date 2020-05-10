@@ -3,12 +3,11 @@
 namespace CSharpSamples
 {
 	using System;
+	using System.Collections;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Text;
 	using System.Text.RegularExpressions;
-	using System.Collections;
-	using System.Security.Cryptography;
-	using System.Diagnostics;
 
 	/// <summary>
 	/// データを簡単なXOR暗号化して保存、または暗号化されたデータを復元します。
@@ -21,7 +20,7 @@ namespace CSharpSamples
 		/// <summary>
 		/// CryptoConfigクラスのインスタンスを初期化。
 		/// </summary>
-		public XorCryptoConfig() : 
+		public XorCryptoConfig() :
 			this("mc$r[olUa`![c|k5yt:]SW@#{xx,6!dt=8sGq]n#xl)5CFf(<Hd")
 		{
 		}
@@ -34,17 +33,18 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			_hash = new Hashtable();
-			_key = Encoding.Default.GetBytes(key);
+			this._hash = new Hashtable();
+			this._key = Encoding.Default.GetBytes(key);
 		}
 
 		protected string GetBase(string key)
 		{
-			if (_hash.Contains(key))
+			if (this._hash.Contains(key))
 			{
-				return (string)_hash[key];
+				return (string)this._hash[key];
 			}
-			else {
+			else
+			{
 				return null;
 			}
 		}
@@ -57,7 +57,7 @@ namespace CSharpSamples
 		/// <returns>キーが存在すれば取得した文字列、エラーなら def を返します。</returns>
 		public string Get(string key, string def)
 		{
-			string ret = GetBase(key);
+			string ret = this.GetBase(key);
 			return (ret != null) ? ret : def;
 		}
 
@@ -69,8 +69,8 @@ namespace CSharpSamples
 		/// <returns>キーが存在すれば取得した数値、エラーなら def を返します。</returns>
 		public int GetInt(string key, int def)
 		{
-			string ret = GetBase(key);
-			return (ret != null) ? Int32.Parse(ret) : def;
+			string ret = this.GetBase(key);
+			return (ret != null) ? int.Parse(ret) : def;
 		}
 
 		/// <summary>
@@ -80,12 +80,13 @@ namespace CSharpSamples
 		/// <param name="value"></param>
 		public void Set(string key, object value)
 		{
-			if (_hash.Contains(key))
+			if (this._hash.Contains(key))
 			{
-				_hash[key] = value;
+				this._hash[key] = value;
 			}
-			else {
-				_hash.Add(key, value);
+			else
+			{
+				this._hash.Add(key, value);
 			}
 		}
 
@@ -94,7 +95,7 @@ namespace CSharpSamples
 		/// </summary>
 		public void Clear()
 		{
-			_hash.Clear();
+			this._hash.Clear();
 		}
 
 		/// <summary>
@@ -103,7 +104,8 @@ namespace CSharpSamples
 		/// <param name="fileName"></param>
 		public void Save(string fileName)
 		{
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
 
@@ -112,27 +114,32 @@ namespace CSharpSamples
 			Stream fileStream = null;
 			StringBuilder sb = new StringBuilder();
 
-			try {
+			try
+			{
 				fileStream = new FileStream(
 					fileName, FileMode.Create, FileAccess.Write);
 
-				foreach (string key in _hash.Keys)
+				foreach (string key in this._hash.Keys)
 				{
-					string data = String.Format("{0}={1}\r\n", key, _hash[key]);
+					string data = string.Format("{0}={1}\r\n", key, this._hash[key]);
 					sb.Append(data);
 				}
-				
+
 				byte[] bytes = Encoding.Default.GetBytes(sb.ToString());
-				bytes = Xor(bytes, _key);
-				
+				bytes = Xor(bytes, this._key);
+
 				fileStream.Write(bytes, 0, bytes.Length);
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				Debug.WriteLine(ex.ToString());
 			}
-			finally {
+			finally
+			{
 				if (fileStream != null)
+				{
 					fileStream.Close();
+				}
 			}
 		}
 
@@ -142,7 +149,8 @@ namespace CSharpSamples
 		/// <param name="fileName"></param>
 		public void Load(string fileName)
 		{
-			if (fileName == null) {
+			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
 			}
 
@@ -152,14 +160,15 @@ namespace CSharpSamples
 			StreamReader reader = null;
 			MemoryStream mem = new MemoryStream();
 
-			try {
+			try
+			{
 				fileStream = new FileStream(
 					fileName, FileMode.OpenOrCreate, FileAccess.Read);
-				
+
 				byte[] buffer = new byte[fileStream.Length];
 				int read = fileStream.Read(buffer, 0, buffer.Length);
 
-				buffer = Xor(buffer, _key);
+				buffer = Xor(buffer, this._key);
 				mem.Write(buffer, 0, buffer.Length);
 				mem.Seek(0L, SeekOrigin.Begin);
 
@@ -174,19 +183,25 @@ namespace CSharpSamples
 						string key = m.Groups["key"].Value;
 						string val = m.Groups["value"].Value;
 
-						Set(key, val);
+						this.Set(key, val);
 					}
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				Debug.WriteLine(ex.ToString());
 			}
-			finally {
+			finally
+			{
 				if (reader != null)
+				{
 					reader.Close();
+				}
 
 				if (fileStream != null)
+				{
 					fileStream.Close();
+				}
 			}
 		}
 
@@ -198,23 +213,27 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public static byte[] Xor(byte[] data, byte[] key)
 		{
-			if (data == null) {
+			if (data == null)
+			{
 				throw new ArgumentNullException("data");
 			}
-			if (key == null) {
+			if (key == null)
+			{
 				throw new ArgumentNullException("key");
 			}
 
 			byte[] result = new byte[data.Length];
-			
+
 			for (int i = 0, k = 0; i < data.Length; i++)
 			{
 				result[i] = (byte)(data[i] ^ key[k++]);
-				
+
 				if (k >= key.Length)
+				{
 					k = 0;
+				}
 			}
-			
+
 			return result;
 		}
 	}

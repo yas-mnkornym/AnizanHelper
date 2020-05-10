@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace CSharpSamples.Text.Search
 {
 	/// <summary>
@@ -24,7 +20,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return pattern;
+				return this.pattern;
 			}
 		}
 
@@ -34,8 +30,8 @@ namespace CSharpSamples.Text.Search
 		/// <param name="key"></param>
 		public RkSearch(string key)
 		{
-			pattern = key;
-			hash = makeHash(key, out dm);
+			this.pattern = key;
+			this.hash = this.makeHash(key, out this.dm);
 		}
 
 		/// <summary>
@@ -50,9 +46,15 @@ namespace CSharpSamples.Text.Search
 			int i;
 
 			for (i = 1, dm = 1; i < key.Length; i++)
+			{
 				dm = (dm << LOG2D) % Q;
+			}
+
 			for (i = 0, h1 = 0; i < key.Length; i++)
+			{
 				h1 = ((h1 << LOG2D) + key[i]) % Q;
+			}
+
 			return h1;
 		}
 
@@ -63,7 +65,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string input)
 		{
-			return Search(input, 0);
+			return this.Search(input, 0);
 		}
 
 		/// <summary>
@@ -76,24 +78,37 @@ namespace CSharpSamples.Text.Search
 		{
 			ulong h2 = 0;
 
-			if (pattern.Length == 0)
+			if (this.pattern.Length == 0)
+			{
 				return 0;
-			if (input.Length < pattern.Length)
+			}
+
+			if (input.Length < this.pattern.Length)
+			{
 				return -1;
+			}
 
-			for (int i = 0; i < pattern.Length; i++)
+			for (int i = 0; i < this.pattern.Length; i++)
+			{
 				h2 = ((h2 << LOG2D) + input[index + i]) % Q;
+			}
 
-			int endPos = index + ((input.Length - index) - pattern.Length) + 1;
+			int endPos = index + ((input.Length - index) - this.pattern.Length) + 1;
 
 			while (index != endPos)
 			{
-				if (h2 == hash)
+				if (h2 == this.hash)
+				{
 					return index;
-				if (index + pattern.Length >= input.Length)
+				}
+
+				if (index + this.pattern.Length >= input.Length)
+				{
 					break;
-				h2 = (h2 + (Q << LOG2D) - input[index] * dm) % Q;
-				h2 = ((h2 << LOG2D) + input[index + pattern.Length]) % Q;
+				}
+
+				h2 = (h2 + (Q << LOG2D) - input[index] * this.dm) % Q;
+				h2 = ((h2 << LOG2D) + input[index + this.pattern.Length]) % Q;
 				index++;
 			}
 			return -1;

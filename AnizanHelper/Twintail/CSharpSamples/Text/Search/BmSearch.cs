@@ -1,6 +1,5 @@
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CSharpSamples.Text.Search
@@ -12,7 +11,7 @@ namespace CSharpSamples.Text.Search
 	[Obsolete]
 	public class BmSearch : ISearchable
 	{
-		private readonly int[] skip = new int[Char.MaxValue + 1];
+		private readonly int[] skip = new int[char.MaxValue + 1];
 		private readonly string pattern;
 
 		/// <summary>
@@ -22,7 +21,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return pattern;
+				return this.pattern;
 			}
 		}
 
@@ -32,8 +31,8 @@ namespace CSharpSamples.Text.Search
 		/// <param name="key"></param>
 		public BmSearch(string key)
 		{
-			pattern = key;
-			makeTable(key);
+			this.pattern = key;
+			this.makeTable(key);
 		}
 
 		/// <summary>
@@ -44,12 +43,16 @@ namespace CSharpSamples.Text.Search
 		{
 			int len = key.Length;
 
-			for (int i = 0; i < skip.Length; i++)
-				skip[i] = len;
+			for (int i = 0; i < this.skip.Length; i++)
+			{
+				this.skip[i] = len;
+			}
 
 			int idx = 0;
 			while (len > 0)
-				skip[key[idx++]] = --len;
+			{
+				this.skip[key[idx++]] = --len;
+			}
 		}
 
 		/// <summary>
@@ -59,7 +62,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string input)
 		{
-			return Search(input, 0);
+			return this.Search(input, 0);
 		}
 
 		/// <summary>
@@ -79,22 +82,28 @@ namespace CSharpSamples.Text.Search
 				throw new ArgumentOutOfRangeException("index");
 			}
 
-			int patlen = pattern.Length - 1;
+			int patlen = this.pattern.Length - 1;
 			int endPos = (input.Length - index) - patlen;
 
 			while (index < endPos)
 			{
 				int i;
 				for (i = patlen; i >= 0; i--)
-					if (input[index + i] != pattern[i])
+				{
+					if (input[index + i] != this.pattern[i])
+					{
 						break;
+					}
+				}
 
 				// すべて一致
 				if (i < 0)
+				{
 					return index;
+				}
 
 				// テーブルから移動量を求める(負数なら移動量は2)	
-				int move = skip[input[index + i]] - (patlen - i);
+				int move = this.skip[input[index + i]] - (patlen - i);
 				index += (move > 0) ? move : 2;
 			}
 
@@ -108,7 +117,7 @@ namespace CSharpSamples.Text.Search
 	/// </summary>
 	public class BmSearch2 : ISearchable
 	{
-		private readonly int[] skip = new int[Byte.MaxValue + 1];
+		private readonly int[] skip = new int[byte.MaxValue + 1];
 		private readonly byte[] pattern;
 		private readonly string patternS;
 
@@ -119,7 +128,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return patternS;
+				return this.patternS;
 			}
 		}
 
@@ -129,9 +138,9 @@ namespace CSharpSamples.Text.Search
 		/// <param name="key"></param>
 		public BmSearch2(string key)
 		{
-			patternS = key;
-			pattern = Encoding.Unicode.GetBytes(key);
-			makeTable(pattern);
+			this.patternS = key;
+			this.pattern = Encoding.Unicode.GetBytes(key);
+			this.makeTable(this.pattern);
 		}
 
 		/// <summary>
@@ -142,12 +151,16 @@ namespace CSharpSamples.Text.Search
 		{
 			int len = key.Length;
 
-			for (int i = 0; i < skip.Length; i++)
-				skip[i] = len;
+			for (int i = 0; i < this.skip.Length; i++)
+			{
+				this.skip[i] = len;
+			}
 
 			int idx = 0;
 			while (len > 0)
-				skip[key[idx++]] = --len;
+			{
+				this.skip[key[idx++]] = --len;
+			}
 		}
 
 		/// <summary>
@@ -157,7 +170,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string input)
 		{
-			return Search(input, 0);
+			return this.Search(input, 0);
 		}
 
 		/// <summary>
@@ -182,7 +195,7 @@ namespace CSharpSamples.Text.Search
 			}
 
 			int length = Encoding.Unicode.GetByteCount(input);
-			int keylen = pattern.Length - 1;
+			int keylen = this.pattern.Length - 1;
 
 			fixed (char* lpsz = input)
 			{
@@ -194,15 +207,21 @@ namespace CSharpSamples.Text.Search
 				{
 					int i;
 					for (i = keylen; i >= 0; i--)
-						if (p[i] != pattern[i])
+					{
+						if (p[i] != this.pattern[i])
+						{
 							break;
+						}
+					}
 
 					// すべて一致
 					if (i < 0)
+					{
 						return (int)(p - st) / 2;
+					}
 
 					// テーブルから移動量を求める(負数なら2文字分移動)	
-					int move = skip[p[i]] - (keylen - i);
+					int move = this.skip[p[i]] - (keylen - i);
 					p += (move > 0) ? move : 4;
 				}
 			}

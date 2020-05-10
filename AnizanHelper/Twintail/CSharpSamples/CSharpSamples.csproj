@@ -1,39 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net472</TargetFrameworks>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    
-    <LangVersion>preview</LangVersion>
-    <RootNamespace>CSharpSamples</RootNamespace>
-    <AssemblyName>CSharpSamples</AssemblyName>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-	<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net472</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-  <PropertyGroup>
-    <AssemblyTitle>CSharpSamples</AssemblyTitle>
-    <Product>CSharpSamples</Product>
-    <Copyright>Copyright (C)  2006 nullpo0@yahoo.co.jp</Copyright>
-    <ProductVersion>8.0.50727</ProductVersion>
-  </PropertyGroup>
+		<LangVersion>preview</LangVersion>
+		<RootNamespace>CSharpSamples</RootNamespace>
+		<AssemblyName>CSharpSamples</AssemblyName>
+		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyTitle>CSharpSamples</AssemblyTitle>
+		<Product>CSharpSamples</Product>
+		<Copyright>Copyright (C)  2006 nullpo0@yahoo.co.jp</Copyright>
+		<ProductVersion>8.0.50727</ProductVersion>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="4.7.0" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Design" />
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Resources.Extensions" Version="4.7.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Design" />
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ namespace CSharpSamples
 {
 	using System;
 	using System.Collections;
-	
+
 	/// <summary>
 	/// １つのプロパティを表す
 	/// </summary>
@@ -16,17 +16,19 @@ namespace CSharpSamples
 		/// <summary>
 		/// キャプションを取得または設定
 		/// </summary>
-		public string Caption {
-			set { caption = value; }
-			get { return caption; }
+		public string Caption
+		{
+			set { this.caption = value; }
+			get { return this.caption; }
 		}
 
 		/// <summary>
 		/// データを取得または設定
 		/// </summary>
-		public object Data {
-			set { data = value; }
-			get { return data; }
+		public object Data
+		{
+			set { this.data = value; }
+			get { return this.data; }
 		}
 
 
@@ -40,15 +42,18 @@ namespace CSharpSamples
 			/// <summary>
 			/// indexor
 			/// </summary>
-			public Property this[int index] {
-				get {
-					return (Property)List[index];
+			public Property this[int index]
+			{
+				get
+				{
+					return (Property)this.List[index];
 				}
 			}
 
 			internal PropertyCollection(PropertyDialog owner)
 			{
-				if (owner == null) {
+				if (owner == null)
+				{
 					throw new ArgumentNullException("owner");
 				}
 
@@ -57,26 +62,30 @@ namespace CSharpSamples
 
 			public int Add(Property property)
 			{
-				owner.CreatePage(property);
-				return List.Add(property);
+				this.owner.CreatePage(property);
+				return this.List.Add(property);
 			}
 
 			public void AddRange(PropertyCollection properties)
 			{
 				foreach (Property property in properties)
-					Add(property);
+				{
+					this.Add(property);
+				}
 			}
 
 			public void AddRange(Property[] properties)
 			{
 				foreach (Property property in properties)
-					Add(property);
+				{
+					this.Add(property);
+				}
 			}
 
 			public void Remove(Property property)
 			{
-				owner.RemovePage(property);
-				List.Remove(property);
+				this.owner.RemovePage(property);
+				this.List.Remove(property);
 			}
 		}
 	}

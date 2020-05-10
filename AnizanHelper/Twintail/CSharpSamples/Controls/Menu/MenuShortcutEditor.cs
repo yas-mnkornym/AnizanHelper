@@ -3,9 +3,7 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.Drawing;
 	using System.Collections.Generic;
-	using System.ComponentModel;
 	using System.Windows.Forms;
 
 	/// <summary>
@@ -34,28 +32,28 @@ namespace CSharpSamples
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
-			InitializeComponent();
+			this.InitializeComponent();
 
 			//
 			// TODO: InitializeComponent 呼び出しの後に、コンストラクタ コードを追加してください。
 			//
-			nodeSelected = null;
-			AppendRoots(treeView.Nodes, menu.Items);
+			this.nodeSelected = null;
+			this.AppendRoots(this.treeView.Nodes, menu.Items);
 		}
 
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
+		protected override void Dispose(bool disposing)
 		{
-			if( disposing )
+			if (disposing)
 			{
-				if(components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+					this.components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows Form Designer generated code
@@ -119,8 +117,8 @@ namespace CSharpSamples
 			// 
 			// propertyGrid
 			// 
-			this.propertyGrid.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			this.propertyGrid.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right);
 			this.propertyGrid.CommandsVisibleIfAvailable = true;
 			this.propertyGrid.LargeButtons = false;
@@ -191,7 +189,9 @@ namespace CSharpSamples
 					node.ImageIndex = node.SelectedImageIndex = submenu.HasDropDownItems ? 0 : 1;
 
 					if (submenu.HasDropDownItems)
+					{
 						node.Nodes.Add(new TreeNode("dummy"));
+					}
 
 					list.Add(node);
 				}
@@ -205,15 +205,15 @@ namespace CSharpSamples
 			node.Nodes.Clear();
 
 			ToolStripMenuItem menu = (ToolStripMenuItem)node.Tag;
-			AppendRoots(node.Nodes, menu.DropDownItems);
+			this.AppendRoots(node.Nodes, menu.DropDownItems);
 		}
 
 		private void treeView_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			ToolStripMenuItem menu = (ToolStripMenuItem)e.Node.Tag;
 
-			propertyGrid.SelectedObject = menu;
-			nodeSelected = e.Node;
+			this.propertyGrid.SelectedObject = menu;
+			this.nodeSelected = e.Node;
 		}
 
 		private void treeView_BeforeExpandCollapse(object sender, System.Windows.Forms.TreeViewCancelEventArgs e)
@@ -223,17 +223,20 @@ namespace CSharpSamples
 				e.Node.Nodes.Clear();
 				e.Node.Nodes.Add(new TreeNode("dummy"));
 			}
-			else {
-				AppendChilds(e.Node);
+			else
+			{
+				this.AppendChilds(e.Node);
 			}
 		}
 
 		private void propertyGrid_PropertyValueChanged(object s, System.Windows.Forms.PropertyValueChangedEventArgs e)
 		{
-			if (nodeSelected == null)
+			if (this.nodeSelected == null)
+			{
 				throw new NullReferenceException("nodeSelected is null");
+			}
 
-			nodeSelected.Text = ((ToolStripMenuItem)nodeSelected.Tag).Text;
+			this.nodeSelected.Text = ((ToolStripMenuItem)this.nodeSelected.Tag).Text;
 		}
 	}
 }

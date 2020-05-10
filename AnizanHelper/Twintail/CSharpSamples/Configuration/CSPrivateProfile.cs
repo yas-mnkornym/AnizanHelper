@@ -3,12 +3,12 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.IO;
-	using System.Text;
-	using System.ComponentModel;
-	using System.Drawing;
 	using System.Collections;
 	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Drawing;
+	using System.IO;
+	using System.Text;
 
 	/// <summary>
 	/// Windowsのiniファイル形式を読み書きするクラス。
@@ -31,9 +31,11 @@ namespace CSharpSamples
 		/// <summary>
 		/// セクションのコレクションを取得
 		/// </summary>
-		public CSPrivateProfileSectionCollection Sections {
-			get {
-				return sections;
+		public CSPrivateProfileSectionCollection Sections
+		{
+			get
+			{
+				return this.sections;
 			}
 		}
 
@@ -45,7 +47,7 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			sections = new CSPrivateProfileSectionCollection();
+			this.sections = new CSPrivateProfileSectionCollection();
 		}
 
 		/// <summary>
@@ -76,11 +78,12 @@ namespace CSharpSamples
 		/// <param name="filePath"></param>
 		public virtual void Read(string filePath)
 		{
-			if (filePath == null) {
+			if (filePath == null)
+			{
 				throw new ArgumentNullException("filePath");
 			}
 
-			RemoveAll();
+			this.RemoveAll();
 
 			if (File.Exists(filePath))
 			{
@@ -89,24 +92,25 @@ namespace CSharpSamples
 				string text = null;
 				List<string> comments = new List<string>();
 
-				try {
-					sr = new StreamReader(filePath, Encoding.Default);											
+				try
+				{
+					sr = new StreamReader(filePath, Encoding.Default);
 
 					while ((text = sr.ReadLine()) != null)
 					{
-						if (IsComment(text))
+						if (this.IsComment(text))
 						{
 							comments.Add(text.Substring(1));
 						}
-						else if (IsSpace(text))
+						else if (this.IsSpace(text))
 						{
 							comments.Add(null);
 						}
-						else if (IsSection(text))
+						else if (this.IsSection(text))
 						{
-							string name = text.Substring(1, text.Length-2);
+							string name = text.Substring(1, text.Length - 2);
 							sec = new CSPrivateProfileSection(name, comments);
-							sections.Add(sec);
+							this.sections.Add(sec);
 
 							comments.Clear();
 						}
@@ -115,9 +119,9 @@ namespace CSharpSamples
 							int token = text.IndexOf('=');
 							if (token >= 0)
 							{
-								CSPrivateProfileKeyValue kv = 
-									new CSPrivateProfileKeyValue(text.Substring(0, token), text.Substring(token+1), comments);
-								
+								CSPrivateProfileKeyValue kv =
+									new CSPrivateProfileKeyValue(text.Substring(0, token), text.Substring(token + 1), comments);
+
 								comments.Clear();
 
 								sec.Add(kv);
@@ -125,9 +129,12 @@ namespace CSharpSamples
 						}
 					}
 				}
-				finally {
+				finally
+				{
 					if (sr != null)
+					{
 						sr.Close();
+					}
 				}
 			}
 		}
@@ -138,20 +145,22 @@ namespace CSharpSamples
 		/// <param name="filePath"></param>
 		public virtual void Write(string filePath)
 		{
-			if (filePath == null) {
+			if (filePath == null)
+			{
 				throw new ArgumentNullException("filePath");
 			}
 
 			StreamWriter sw = null;
 
-			try {
+			try
+			{
 				sw = new StreamWriter(filePath, false, Encoding.Default);
 
-				foreach (CSPrivateProfileSection sec in sections)
+				foreach (CSPrivateProfileSection sec in this.sections)
 				{
 					if (sec.Count > 0)
 					{
-						WriteComments(sw, sec.Comments);
+						this.WriteComments(sw, sec.Comments);
 
 						sw.Write('[');
 						sw.Write(sec.Name);
@@ -159,7 +168,7 @@ namespace CSharpSamples
 
 						foreach (CSPrivateProfileKeyValue v in sec)
 						{
-							WriteComments(sw, v.Comments);
+							this.WriteComments(sw, v.Comments);
 
 							sw.Write(v.Key);
 							sw.Write('=');
@@ -168,7 +177,8 @@ namespace CSharpSamples
 					}
 				}
 			}
-			finally {
+			finally
+			{
 				if (sw != null)
 				{
 					sw.Flush();
@@ -199,7 +209,7 @@ namespace CSharpSamples
 		/// </summary>
 		public void RemoveAll()
 		{
-			sections.Clear();
+			this.sections.Clear();
 		}
 
 		/// <summary>
@@ -211,18 +221,24 @@ namespace CSharpSamples
 		public void SetValue(string section, string key, object value)
 		{
 			if (section == null)
+			{
 				throw new ArgumentNullException("section");
-			if (key == null)
-				throw new ArgumentNullException("key");
+			}
 
-			CSPrivateProfileSection sec = sections[section];
+			if (key == null)
+			{
+				throw new ArgumentNullException("key");
+			}
+
+			CSPrivateProfileSection sec = this.sections[section];
 
 			if (value != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(value);
 				sec[key] = con.ConvertToString(value);
 			}
-			else {
+			else
+			{
 				sec[key] = null;
 			}
 		}
@@ -236,7 +252,7 @@ namespace CSharpSamples
 		public void SetBase64(string section, string key, byte[] data)
 		{
 			string base64 = Convert.ToBase64String(data);
-			SetValue(section, key, base64);
+			this.SetValue(section, key, base64);
 		}
 
 		/// <summary>
@@ -249,14 +265,21 @@ namespace CSharpSamples
 		protected string GetValueInternal(string section, string key)
 		{
 			if (section == null)
+			{
 				throw new ArgumentNullException("section");
+			}
+
 			if (key == null)
+			{
 				throw new ArgumentNullException("key");
+			}
 
-			if (!sections.ContainsSection(section))
+			if (!this.sections.ContainsSection(section))
+			{
 				return null;
+			}
 
-			CSPrivateProfileSection sec = sections[section];
+			CSPrivateProfileSection sec = this.sections[section];
 			return (sec.ContainsKey(key) ? sec[key] : null);
 		}
 
@@ -268,7 +291,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合はnullを返す</returns>
 		public string GetString(string section, string key)
 		{
-			return GetString(section, key, null);
+			return this.GetString(section, key, null);
 		}
 
 		/// <summary>
@@ -280,7 +303,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public string GetString(string section, string key, string def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? r : def;
 		}
 
@@ -292,7 +315,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は0を返す</returns>
 		public int GetInt(string section, string key)
 		{
-			return GetInt(section, key, 0);
+			return this.GetInt(section, key, 0);
 		}
 
 		/// <summary>
@@ -304,7 +327,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public int GetInt(string section, string key, int def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.ToInt32(r, 10) : def;
 		}
 
@@ -316,7 +339,7 @@ namespace CSharpSamples
 		/// <returns>大河存在しない場合は false を返す</returns>
 		public bool GetBool(string section, string key)
 		{
-			return GetBool(section, key, false);
+			return this.GetBool(section, key, false);
 		}
 
 		/// <summary>
@@ -328,7 +351,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public bool GetBool(string section, string key, bool def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.ToBoolean(r) : def;
 		}
 
@@ -340,7 +363,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は0を返す</returns>
 		public float GetFloat(string section, string key)
 		{
-			return GetFloat(section, key, 0.0f);
+			return this.GetFloat(section, key, 0.0f);
 		}
 
 
@@ -353,7 +376,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public float GetFloat(string section, string key, float def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.ToSingle(r) : def;
 		}
 
@@ -365,7 +388,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は\0を返す</returns>
 		public char GetChar(string section, string key)
 		{
-			return GetChar(section, key, '\0');
+			return this.GetChar(section, key, '\0');
 		}
 
 		/// <summary>
@@ -377,7 +400,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public char GetChar(string section, string key, char def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.ToChar(r) : def;
 		}
 
@@ -389,7 +412,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は0を返す</returns>
 		public byte GetByte(string section, string key)
 		{
-			return GetByte(section, key, 0);
+			return this.GetByte(section, key, 0);
 		}
 
 		/// <summary>
@@ -401,7 +424,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public byte GetByte(string section, string key, byte def)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.ToByte(r) : def;
 		}
 
@@ -413,7 +436,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は DateTime.MinValue を返す</returns>
 		public DateTime GetDateTime(string section, string key)
 		{
-			return GetDateTime(section, key, DateTime.MinValue);
+			return this.GetDateTime(section, key, DateTime.MinValue);
 		}
 
 		/// <summary>
@@ -425,13 +448,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public DateTime GetDateTime(string section, string key, DateTime def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(typeof(DateTime));
 
 				if (con != null && con.IsValid(val))
+				{
 					return (DateTime)con.ConvertFromString(val);
+				}
 			}
 
 			return def;
@@ -445,7 +470,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は Point.Empty を返す</returns>
 		public Point GetPoint(string section, string key)
 		{
-			return GetPoint(section, key, Point.Empty);
+			return this.GetPoint(section, key, Point.Empty);
 		}
 
 		/// <summary>
@@ -457,13 +482,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public Point GetPoint(string section, string key, Point def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(typeof(Point));
 
 				if (con != null && con.IsValid(val))
+				{
 					return (Point)con.ConvertFromString(val);
+				}
 			}
 			return def;
 		}
@@ -476,7 +503,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は Size.Empty を返す</returns>
 		public Size GetSize(string section, string key)
 		{
-			return GetSize(section, key, Size.Empty);
+			return this.GetSize(section, key, Size.Empty);
 		}
 
 		/// <summary>
@@ -488,13 +515,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public Size GetSize(string section, string key, Size def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(typeof(Size));
 
 				if (con != null && con.IsValid(val))
+				{
 					return (Size)con.ConvertFromString(val);
+				}
 			}
 			return def;
 		}
@@ -507,7 +536,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は Rectangle.Empty を返す</returns>
 		public Rectangle GetRect(string section, string key)
 		{
-			return GetRect(section, key, Rectangle.Empty);
+			return this.GetRect(section, key, Rectangle.Empty);
 		}
 
 		/// <summary>
@@ -519,13 +548,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public Rectangle GetRect(string section, string key, Rectangle def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(typeof(Rectangle));
 
 				if (con != null && con.IsValid(val))
+				{
 					return (Rectangle)con.ConvertFromString(val);
+				}
 			}
 			return def;
 		}
@@ -538,7 +569,7 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は Color.Empty を返す</returns>
 		public Color GetColor(string section, string key)
 		{
-			return GetColor(section, key, Color.Empty);
+			return this.GetColor(section, key, Color.Empty);
 		}
 
 		/// <summary>
@@ -550,13 +581,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public Color GetColor(string section, string key, Color def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(typeof(Color));
 
 				if (con != null && con.IsValid(val))
+				{
 					return (Color)con.ConvertFromString(val);
+				}
 			}
 			return def;
 		}
@@ -570,13 +603,15 @@ namespace CSharpSamples
 		/// <returns>値が存在しない場合は def を返す</returns>
 		public Enum GetEnum(string section, string key, Enum def)
 		{
-			string val = GetValueInternal(section, key);
+			string val = this.GetValueInternal(section, key);
 			if (val != null)
 			{
 				TypeConverter con = TypeDescriptor.GetConverter(def.GetType());
 
 				if (con != null && con.IsValid(val))
+				{
 					return (Enum)con.ConvertFrom(val);
+				}
 			}
 			return def;
 		}
@@ -590,7 +625,7 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public byte[] GetBase64(string section, string key)
 		{
-			string r = GetValueInternal(section, key);
+			string r = this.GetValueInternal(section, key);
 			return (r != null) ? Convert.FromBase64String(r) : null;
 		}
 
@@ -648,42 +683,51 @@ namespace CSharpSamples
 		/// <summary>
 		/// 登録されているキー数を取得
 		/// </summary>
-		public int Count {
-			get {
-				return values.Count;
+		public int Count
+		{
+			get
+			{
+				return this.values.Count;
 			}
 		}
 
-		public List<string> Comments {
-			get {
-				return comments;
+		public List<string> Comments
+		{
+			get
+			{
+				return this.comments;
 			}
 		}
 
 		/// <summary>
 		/// 指定したキーの値を取得または設定
 		/// </summary>
-		public string this[string key] {
-			set {
-				CSPrivateProfileKeyValue kv = GetKeyValue(key);
-				
+		public string this[string key]
+		{
+			set
+			{
+				CSPrivateProfileKeyValue kv = this.GetKeyValue(key);
+
 				if (kv == null)
 				{
 					kv = new CSPrivateProfileKeyValue(key, value);
-					values.Add(kv);
+					this.values.Add(kv);
 				}
-				else {
+				else
+				{
 					kv.Value = value;
 				}
 			}
-			get {
-				CSPrivateProfileKeyValue kv = GetKeyValue(key);
-				
+			get
+			{
+				CSPrivateProfileKeyValue kv = this.GetKeyValue(key);
+
 				if (kv == null)
 				{
 					return null;
 				}
-				else {
+				else
+				{
 					return kv.Value;
 				}
 			}
@@ -692,22 +736,28 @@ namespace CSharpSamples
 		/// <summary>
 		/// セクション名を取得または設定
 		/// </summary>
-		public string Name {
-			set {
+		public string Name
+		{
+			set
+			{
 				if (value == null)
+				{
 					throw new ArgumentNullException("Name");
+				}
 
-				name = value;
+				this.name = value;
 			}
-			get { return name; }
+			get { return this.name; }
 		}
 
 		/// <summary>
 		/// すべてのキーを取得
 		/// </summary>
-		public List<string> Keys {
-			get {
-				return values.ConvertAll<string>(delegate(CSPrivateProfileKeyValue v)
+		public List<string> Keys
+		{
+			get
+			{
+				return this.values.ConvertAll<string>(delegate (CSPrivateProfileKeyValue v)
 				{
 					return v.Key;
 				});
@@ -717,9 +767,11 @@ namespace CSharpSamples
 		/// <summary>
 		/// すべての値を取得
 		/// </summary>
-		public List<string> Values {
-			get {
-				return values.ConvertAll<string>(delegate(CSPrivateProfileKeyValue v)
+		public List<string> Values
+		{
+			get
+			{
+				return this.values.ConvertAll<string>(delegate (CSPrivateProfileKeyValue v)
 				{
 					return v.Value;
 				});
@@ -731,9 +783,9 @@ namespace CSharpSamples
 		/// </summary>
 		public CSPrivateProfileSection()
 		{
-			name = String.Empty;
-			values = new List<CSPrivateProfileKeyValue>();
-			comments = new List<string>();
+			this.name = string.Empty;
+			this.values = new List<CSPrivateProfileKeyValue>();
+			this.comments = new List<string>();
 		}
 
 		/// <summary>
@@ -749,21 +801,22 @@ namespace CSharpSamples
 		{
 			this.comments.AddRange(comments);
 		}
- 
+
 		public void Add(CSPrivateProfileKeyValue kv)
 		{
-			values.Add(kv);
+			this.values.Add(kv);
 		}
 
 		public void SetKeyValue(CSPrivateProfileKeyValue kv)
 		{
-			CSPrivateProfileKeyValue temp = GetKeyValue(kv.Key);
+			CSPrivateProfileKeyValue temp = this.GetKeyValue(kv.Key);
 
 			if (temp == null)
 			{
-				values.Add(kv);
+				this.values.Add(kv);
 			}
-			else {
+			else
+			{
 				temp.Value = kv.Value;
 				temp.Comments.Clear();
 				temp.Comments.AddRange(kv.Comments);
@@ -772,7 +825,7 @@ namespace CSharpSamples
 
 		public CSPrivateProfileKeyValue GetKeyValue(string key)
 		{
-			return values.Find(delegate(CSPrivateProfileKeyValue v)
+			return this.values.Find(delegate (CSPrivateProfileKeyValue v)
 			{
 				return (v.Key == key);
 			});
@@ -785,14 +838,15 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public bool ContainsKey(string key)
 		{
-			return values.Exists(delegate (CSPrivateProfileKeyValue v) {
+			return this.values.Exists(delegate (CSPrivateProfileKeyValue v)
+			{
 				return (v.Key == key);
 			});
 		}
 
 		public IEnumerator GetEnumerator()
 		{
-			return values.GetEnumerator();
+			return this.values.GetEnumerator();
 		}
 	}
 
@@ -806,25 +860,30 @@ namespace CSharpSamples
 		/// <summary>
 		/// 登録されているセクション数を取得
 		/// </summary>
-		public int Count {
-			get {
-				return sections.Count;
+		public int Count
+		{
+			get
+			{
+				return this.sections.Count;
 			}
 		}
 
 		/// <summary>
 		/// 指定したキーを持つセクションを取得
 		/// </summary>
-		public CSPrivateProfileSection this[string key] {
-			get {
-				CSPrivateProfileSection sec = sections.Find(delegate (CSPrivateProfileSection s) {
+		public CSPrivateProfileSection this[string key]
+		{
+			get
+			{
+				CSPrivateProfileSection sec = this.sections.Find(delegate (CSPrivateProfileSection s)
+				{
 					return (s.Name == key);
 				});
 
 				if (sec == null)
 				{
 					sec = new CSPrivateProfileSection(key);
-					sections.Add(sec);
+					this.sections.Add(sec);
 				}
 				return sec;
 			}
@@ -835,7 +894,7 @@ namespace CSharpSamples
 		/// </summary>
 		public CSPrivateProfileSectionCollection()
 		{
-			sections = new List<CSPrivateProfileSection>();
+			this.sections = new List<CSPrivateProfileSection>();
 		}
 
 		/// <summary>
@@ -846,9 +905,11 @@ namespace CSharpSamples
 		public void Add(CSPrivateProfileSection obj)
 		{
 			if (obj == null)
+			{
 				throw new ArgumentNullException("obj");
+			}
 
-			sections.Add(obj);
+			this.sections.Add(obj);
 		}
 
 		/// <summary>
@@ -858,9 +919,11 @@ namespace CSharpSamples
 		public void AddRange(CSPrivateProfileSection[] array)
 		{
 			if (array == null)
+			{
 				throw new ArgumentNullException("array");
+			}
 
-			sections.AddRange(array);
+			this.sections.AddRange(array);
 		}
 
 		/// <summary>
@@ -869,7 +932,8 @@ namespace CSharpSamples
 		/// <param name="key"></param>
 		public void Remove(string key)
 		{
-			sections.RemoveAll(delegate (CSPrivateProfileSection s) {
+			this.sections.RemoveAll(delegate (CSPrivateProfileSection s)
+			{
 				return (s.Name == key);
 			});
 		}
@@ -881,7 +945,8 @@ namespace CSharpSamples
 		/// <returns></returns>
 		public bool ContainsSection(string key)
 		{
-			return sections.Exists(delegate (CSPrivateProfileSection s) {
+			return this.sections.Exists(delegate (CSPrivateProfileSection s)
+			{
 				return (s.Name == key);
 			});
 		}
@@ -891,7 +956,7 @@ namespace CSharpSamples
 		/// </summary>
 		public void Clear()
 		{
-			sections.Clear();
+			this.sections.Clear();
 		}
 
 		/// <summary>
@@ -899,7 +964,7 @@ namespace CSharpSamples
 		/// </summary>
 		public System.Collections.IEnumerator GetEnumerator()
 		{
-			return sections.GetEnumerator();
+			return this.sections.GetEnumerator();
 		}
 	}
 
@@ -911,21 +976,27 @@ namespace CSharpSamples
 		private List<string> comments = new List<string>();
 		private string key, value;
 
-		public string Key {
-			set {
-				key = value;
+		public string Key
+		{
+			set
+			{
+				this.key = value;
 			}
-			get {
-				return key;
+			get
+			{
+				return this.key;
 			}
 		}
 
-		public string Value {
-			set {
+		public string Value
+		{
+			set
+			{
 				this.value = value;
 			}
-			get {
-				return value;
+			get
+			{
+				return this.value;
 			}
 		}
 
@@ -933,13 +1004,13 @@ namespace CSharpSamples
 		{
 			get
 			{
-				return comments;
+				return this.comments;
 			}
 		}
 
 		public CSPrivateProfileKeyValue()
 		{
-			key = value = String.Empty;
+			this.key = this.value = string.Empty;
 		}
 
 		public CSPrivateProfileKeyValue(string key, string value)
@@ -952,6 +1023,6 @@ namespace CSharpSamples
 			: this(key, value)
 		{
 			this.comments.AddRange(comments);
-		} 
+		}
 	}
 }

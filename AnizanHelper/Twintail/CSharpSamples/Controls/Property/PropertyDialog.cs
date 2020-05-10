@@ -3,8 +3,6 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.Drawing;
-	using System.Collections;
 	using System.ComponentModel;
 	using System.Windows.Forms;
 
@@ -28,18 +26,22 @@ namespace CSharpSamples
 		/// データが変更されたかどうかを表す値を取得
 		/// </summary>
 		[Browsable(false)]
-		public bool Modified {
-			get {
-				return modified;
+		public bool Modified
+		{
+			get
+			{
+				return this.modified;
 			}
 		}
 
 		/// <summary>
 		/// プロパティのページコレクションを取得
 		/// </summary>
-		public Property.PropertyCollection Pages {
-			get {
-				return pages;
+		public Property.PropertyCollection Pages
+		{
+			get
+			{
+				return this.pages;
 			}
 		}
 
@@ -48,7 +50,7 @@ namespace CSharpSamples
 			//
 			// Windows フォーム デザイナ サポートに必要です。
 			//
-			InitializeComponent();
+			this.InitializeComponent();
 
 			//
 			// TODO: InitializeComponent 呼び出しの後に、コンストラクタ コードを追加してください。
@@ -60,16 +62,16 @@ namespace CSharpSamples
 		/// <summary>
 		/// 使用されているリソースに後処理を実行します。
 		/// </summary>
-		protected override void Dispose( bool disposing )
+		protected override void Dispose(bool disposing)
 		{
-			if( disposing )
+			if (disposing)
 			{
-				if(components != null)
+				if (this.components != null)
 				{
-					components.Dispose();
+					this.components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows Form Designer generated code
@@ -106,8 +108,8 @@ namespace CSharpSamples
 			// 
 			// tabControl
 			// 
-			this.tabControl.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			this.tabControl.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
@@ -133,12 +135,13 @@ namespace CSharpSamples
 
 		internal void CreatePage(Property property)
 		{
-			if (property == null) {
+			if (property == null)
+			{
 				throw new ArgumentNullException("property");
 			}
 
 			PropertyGrid grid = new PropertyGrid();
-			grid.PropertyValueChanged += new PropertyValueChangedEventHandler(propertyGrid_PropertyValueChanged);
+			grid.PropertyValueChanged += new PropertyValueChangedEventHandler(this.propertyGrid_PropertyValueChanged);
 			grid.Dock = DockStyle.Fill;
 			grid.SelectedObject = property.Data;
 
@@ -147,18 +150,18 @@ namespace CSharpSamples
 			tab.Tag = property;
 			tab.Controls.Add(grid);
 
-			tabControl.TabPages.Add(tab);
+			this.tabControl.TabPages.Add(tab);
 		}
 
 		internal void RemovePage(Property property)
 		{
-			for (int i = 0; i < tabControl.TabCount; i++)
+			for (int i = 0; i < this.tabControl.TabCount; i++)
 			{
-				TabPage tab = tabControl.TabPages[i];
+				TabPage tab = this.tabControl.TabPages[i];
 
 				if (tab.Tag == property)
 				{
-					tabControl.TabPages.Remove(tab);
+					this.tabControl.TabPages.Remove(tab);
 					break;
 				}
 			}
@@ -166,7 +169,7 @@ namespace CSharpSamples
 
 		private void propertyGrid_PropertyValueChanged(object sender, System.Windows.Forms.PropertyValueChangedEventArgs e)
 		{
-			modified = true;
+			this.modified = true;
 		}
 	}
 }

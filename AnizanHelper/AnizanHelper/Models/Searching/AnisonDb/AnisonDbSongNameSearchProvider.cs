@@ -164,7 +164,7 @@ namespace AnizanHelper.Models.Searching.AnisonDb
 						Series = WebUtility.HtmlDecode(tds[3].InnerText),
 						SeriesUrl = (serisA != null ? this.GetSeriesUri(serisA.GetAttributeValue("href", (string)null)) : null),
 						SongType = WebUtility.HtmlDecode(tds[4].InnerText.Replace(" ", "")),
-						Score = string.Compare(title, searchTerm, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreSymbols| CompareOptions.IgnoreWidth) == 0
+						Score = string.Compare(title, searchTerm, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreSymbols | CompareOptions.IgnoreWidth) == 0
 						? 4
 						: 3,
 					};

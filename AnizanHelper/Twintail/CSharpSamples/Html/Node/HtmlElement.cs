@@ -3,8 +3,8 @@
 namespace CSharpSamples.Html
 {
 	using System;
-	using System.Text;
 	using System.Collections;
+	using System.Text;
 
 	/// <summary>
 	/// HtmlElement の概要の説明です。
@@ -21,93 +21,114 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// 子ノードコレクションを取得
 		/// </summary>
-		public HtmlNodeCollection Nodes {
-			get {
-				return nodes;
+		public HtmlNodeCollection Nodes
+		{
+			get
+			{
+				return this.nodes;
 			}
 		}
 
 		/// <summary>
 		/// 属性コレクションを取得
 		/// </summary>
-		public HtmlAttributeCollection Attributes {
-			get {
-				return attributes;
+		public HtmlAttributeCollection Attributes
+		{
+			get
+			{
+				return this.attributes;
 			}
 		}
 
 		/// <summary>
 		/// １つのタグで完結するタグかどうかを取得または設定
 		/// </summary>
-		public bool IsEmptyElementTag {
-			set {
-				isEmptyElementTag = value;
+		public bool IsEmptyElementTag
+		{
+			set
+			{
+				this.isEmptyElementTag = value;
 			}
-			get {
-				return isEmptyElementTag && nodes.Count == 0;
+			get
+			{
+				return this.isEmptyElementTag && this.nodes.Count == 0;
 			}
 		}
 
 		/// <summary>
 		/// 挟む形式のタグかどうかを取得または設定
 		/// </summary>
-		public bool IsTerminated {
-			set {
-				isTerminated = value;
+		public bool IsTerminated
+		{
+			set
+			{
+				this.isTerminated = value;
 			}
-			get {
-				return isTerminated || Nodes.Count > 0;
+			get
+			{
+				return this.isTerminated || this.Nodes.Count > 0;
 			}
 		}
 
 		/// <summary>
 		/// タグの名前を取得または設定
 		/// </summary>
-		public string Name {
-			set {
+		public string Name
+		{
+			set
+			{
 				if (value == null)
+				{
 					throw new ArgumentNullException("Name");
+				}
 
-				name = value;
+				this.name = value;
 			}
-			get {
-				return name;
+			get
+			{
+				return this.name;
 			}
 		}
 
 		/// <summary>
 		/// このノードを子ノードも含めHtml形式に変換
 		/// </summary>
-		public override string Html {
-			get {
+		public override string Html
+		{
+			get
+			{
 				StringBuilder sb = new StringBuilder();
 
-				sb.Append("<").Append(Name);
+				sb.Append("<").Append(this.Name);
 
-				foreach (HtmlAttribute attr in attributes)
+				foreach (HtmlAttribute attr in this.attributes)
 				{
 					sb.Append(" ").Append(attr.Html);
 				}
 
-				if (nodes.Count > 0)
+				if (this.nodes.Count > 0)
 				{
 					sb.Append(">");
 
-					foreach (HtmlNode child in nodes)
+					foreach (HtmlNode child in this.nodes)
+					{
 						sb.Append(child.Html);
+					}
 
-					sb.Append("</").Append(Name).Append(">");
+					sb.Append("</").Append(this.Name).Append(">");
 				}
-				else {
-					if (IsEmptyElementTag)
+				else
+				{
+					if (this.IsEmptyElementTag)
 					{
 						sb.Append("/>");
 					}
-					else if (IsTerminated)
+					else if (this.IsTerminated)
 					{
-						sb.Append("></").Append(Name).Append(">");
+						sb.Append("></").Append(this.Name).Append(">");
 					}
-					else {
+					else
+					{
 						sb.Append(">");
 					}
 				}
@@ -119,12 +140,16 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// このノードの内部Htmlを取得
 		/// </summary>
-		public override string InnerHtml {
-			get {
+		public override string InnerHtml
+		{
+			get
+			{
 				StringBuilder sb = new StringBuilder();
 
-				foreach (HtmlNode child in nodes)
+				foreach (HtmlNode child in this.nodes)
+				{
 					sb.Append(child.InnerHtml);
+				}
 
 				return sb.ToString();
 			}
@@ -133,12 +158,16 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// このノードの内部テキストを取得
 		/// </summary>
-		public override string InnerText {
-			get {
+		public override string InnerText
+		{
+			get
+			{
 				StringBuilder sb = new StringBuilder();
-				
-				foreach (HtmlNode child in nodes)
+
+				foreach (HtmlNode child in this.nodes)
+				{
 					sb.Append(child.InnerText);
+				}
 
 				return sb.ToString();
 			}
@@ -163,7 +192,7 @@ namespace CSharpSamples.Html
 		/// <summary>
 		/// HtmlElementクラスのインスタンスを初期化
 		/// </summary>
-		public HtmlElement() : this(String.Empty)
+		public HtmlElement() : this(string.Empty)
 		{
 		}
 
@@ -177,10 +206,12 @@ namespace CSharpSamples.Html
 			while (node != null)
 			{
 				if (this == node.Parent)
+				{
 					return true;
+				}
 
 				node = node.Parent;
-			}	
+			}
 			return false;
 		}
 
@@ -202,7 +233,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public HtmlElement[] GetElementsByName(string tagName)
 		{
-			return Sta_GetElementsByName(nodes, tagName);
+			return Sta_GetElementsByName(this.nodes, tagName);
 		}
 
 		/// <summary>
@@ -212,7 +243,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		public HtmlElement GetElementById(string id)
 		{
-			return Sta_GetElementById(nodes, id);
+			return Sta_GetElementById(this.nodes, id);
 		}
 
 		/// <summary>
@@ -231,8 +262,10 @@ namespace CSharpSamples.Html
 
 				if (elem != null)
 				{
-					if (String.Compare(elem.name, tagName, true) == 0)
+					if (string.Compare(elem.name, tagName, true) == 0)
+					{
 						arrayList.Add(elem);
+					}
 
 					HtmlElement[] array = elem.GetElementsByName(tagName);
 					arrayList.AddRange(array);
@@ -258,11 +291,16 @@ namespace CSharpSamples.Html
 				{
 					string val = element.Attributes["id"];
 
-					if (String.Compare(id, val, true) == 0)
+					if (string.Compare(id, val, true) == 0)
+					{
 						return element;
+					}
 
 					HtmlElement sub = element.GetElementById(id);
-					if (sub != null) return sub;
+					if (sub != null)
+					{
+						return sub;
+					}
 				}
 			}
 

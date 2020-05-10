@@ -3,10 +3,9 @@
 namespace CSharpSamples.Html
 {
 	using System;
+	using System.Collections;
 	using System.Text;
 	using System.Text.RegularExpressions;
-	using System.Collections;
-	using System.Diagnostics;
 
 	/// <summary>
 	/// HtmlParser の概要の説明です。
@@ -34,10 +33,12 @@ namespace CSharpSamples.Html
 		public HtmlNodeCollection Parse(string html)
 		{
 			if (html == null)
+			{
 				throw new ArgumentNullException("html");
+			}
 
 			// 改行文字などを削除
-			html = RemoveWhiteSpace(html);
+			html = this.RemoveWhiteSpace(html);
 
 			HtmlNodeCollection root = new HtmlNodeCollection(null);
 			int index = 0;
@@ -45,14 +46,14 @@ namespace CSharpSamples.Html
 			while (index < html.Length)
 			{
 				// コメントは無視する
-				if (is_match(html, index, "<!--"))
+				if (this.is_match(html, index, "<!--"))
 				{
 					index += 4;
 
 					// コメントが終わるまでindexを進める
 					while (index < html.Length)
 					{
-						if (is_match(html, index, "-->"))
+						if (this.is_match(html, index, "-->"))
 						{
 							index += 3;
 							break;
@@ -61,45 +62,48 @@ namespace CSharpSamples.Html
 					}
 				}
 				// 閉じるタグの場合
-				else if (is_match(html, index, "</"))
+				else if (this.is_match(html, index, "</"))
 				{
 					index += 2;
 
 					// 空白読み飛ばし
-					SkipWhiteSpace(html, ref index);
+					this.SkipWhiteSpace(html, ref index);
 
 					// タグ名を取得
-					Match m = rexTagName.Match(html, index);
+					Match m = this.rexTagName.Match(html, index);
 					if (m.Success)
 					{
 						// 同じ名前の開始タグを取得
-						int nodeidx = BackFindOpenElement(root, m.Value);
+						int nodeidx = this.BackFindOpenElement(root, m.Value);
 						if (nodeidx != -1)
 						{
-							NodesDown(root, nodeidx+1, (HtmlElement)root[nodeidx]);
+							this.NodesDown(root, nodeidx + 1, (HtmlElement)root[nodeidx]);
 						}
-						else {
+						else
+						{
 							// throw new HtmlException();
 						}
 						index += m.Length;
 					}
 
 					// 終了タグが来るまでスキップ
-					SkipChars(html, ref index, "<>".ToCharArray());
+					this.SkipChars(html, ref index, "<>".ToCharArray());
 
-					if (is_match(html, index, ">"))
+					if (this.is_match(html, index, ">"))
+					{
 						index++;
+					}
 				}
 				// 開始タグの場合
-				else if (is_match(html, index, "<"))
+				else if (this.is_match(html, index, "<"))
 				{
 					index += 1;
 
 					// 空白読み飛ばし
-					SkipWhiteSpace(html, ref index);
+					this.SkipWhiteSpace(html, ref index);
 
 					// タグ名を取得
-					Match m = rexTagName.Match(html, index);
+					Match m = this.rexTagName.Match(html, index);
 					if (m.Success)
 					{
 						HtmlElement e = new HtmlElement(m.Value.ToLower());
@@ -108,30 +112,31 @@ namespace CSharpSamples.Html
 						index = m.Index + m.Length;
 
 						// 空白読み飛ばし
-						SkipWhiteSpace(html, ref index);
+						this.SkipWhiteSpace(html, ref index);
 
 						// 属性の読み込み
-						if (not_match(html, index, "/>") &&
-							not_match(html, index, ">"))
+						if (this.not_match(html, index, "/>") &&
+							this.not_match(html, index, ">"))
 						{
-							ParseAttributes(html, ref index, e.Attributes);
+							this.ParseAttributes(html, ref index, e.Attributes);
 						}
 
 						// １つで完結するタグの処理
-						if (is_match(html, index, "/>"))
+						if (this.is_match(html, index, "/>"))
 						{
 							e.IsEmptyElementTag = true;
 							index += 2;
 						}
 						// 終了タグの場合
-						else if (is_match(html, index, ">"))
+						else if (this.is_match(html, index, ">"))
 						{
 							index++;
 						}
 					}
 				}
 				// テキスト処理
-				else {
+				else
+				{
 
 					// 開始タグを検索し、そこまでをテキストとする
 					int next = html.IndexOf("<", index);
@@ -142,7 +147,8 @@ namespace CSharpSamples.Html
 						text = new HtmlText(html.Substring(index));
 						index = html.Length;
 					}
-					else {
+					else
+					{
 						text = new HtmlText(html.Substring(index, next - index));
 						index = next;
 					}
@@ -162,7 +168,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		private int BackFindOpenElement(HtmlNodeCollection nodes, string name)
 		{
-			for (int i = nodes.Count-1; i >= 0; i--)
+			for (int i = nodes.Count - 1; i >= 0; i--)
 			{
 				HtmlElement e = nodes[i] as HtmlElement;
 
@@ -170,7 +176,9 @@ namespace CSharpSamples.Html
 				{
 					// 大文字小文字は区別しない
 					if (e.Name.ToLower() == name.ToLower())
+					{
 						return i;
+					}
 				}
 			}
 			return -1;
@@ -188,46 +196,51 @@ namespace CSharpSamples.Html
 			while (index < html.Length)
 			{
 				// 空白読み飛ばし
-				SkipWhiteSpace(html, ref index);
+				this.SkipWhiteSpace(html, ref index);
 
 				// タグの終わりなら終了
-				if (is_match(html, index, "/>") || is_match(html, index, ">"))
+				if (this.is_match(html, index, "/>") || this.is_match(html, index, ">"))
+				{
 					break;
+				}
 
 				int attrSt = index;
-				
+
 				// 属性名を検索
-				if (SkipChars(html, ref index, "=".ToCharArray()))
+				if (this.SkipChars(html, ref index, "=".ToCharArray()))
 				{
-					string attrName, attrVal = String.Empty;
-					
+					string attrName, attrVal = string.Empty;
+
 					attrName = html.Substring(attrSt, index - attrSt).ToLower();
 					index++;
 
 					// 空白読み飛ばし
-					SkipWhiteSpace(html, ref index);
+					this.SkipWhiteSpace(html, ref index);
 
 					// クオーテーションから始まる場合は、同じクオーテーションが出るまでを値とする
-					if (index < html.Length && IsQuote(html[index]))
+					if (index < html.Length && this.IsQuote(html[index]))
 					{
 						char quote = html[index];
 						int st = index++;
 
-						SkipChars(html, ref index, new char[] {quote, '>'});
+						this.SkipChars(html, ref index, new char[] { quote, '>' });
 
-						attrVal = html.Substring(st, index - st).Trim(QuoteChars);
-						
-						if (is_match(html, index, quote.ToString()))
+						attrVal = html.Substring(st, index - st).Trim(this.QuoteChars);
+
+						if (this.is_match(html, index, quote.ToString()))
+						{
 							index++;
+						}
 					}
 					// すぐに値が始まっている場合
-					else {
+					else
+					{
 						// 空白かタグの終わりが来るまでindexを進める
 						for (int i = index; i < html.Length; i++)
 						{
-							if (is_match(html, i, " ") ||
-								is_match(html, i, ">") ||
-								is_match(html, i, "/>"))
+							if (this.is_match(html, i, " ") ||
+								this.is_match(html, i, ">") ||
+								this.is_match(html, i, "/>"))
 							{
 								attrVal = html.Substring(index, i - index);
 								index = i;
@@ -240,7 +253,8 @@ namespace CSharpSamples.Html
 					HtmlAttribute attr = new HtmlAttribute(attrName, attrVal);
 					attributes.Add(attr);
 				}
-				else {
+				else
+				{
 					break;
 				}
 			}
@@ -253,10 +267,12 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		private bool IsQuote(char ch)
 		{
-			foreach (char quote in QuoteChars)
+			foreach (char quote in this.QuoteChars)
 			{
 				if (quote == ch)
+				{
 					return true;
+				}
 			}
 			return false;
 		}
@@ -271,10 +287,15 @@ namespace CSharpSamples.Html
 		private bool SkipChars(string input, ref int index, char[] stopChars)
 		{
 			if (index < 0 || index >= input.Length)
+			{
 				throw new ArgumentOutOfRangeException("index");
+			}
 
 			int r = input.IndexOfAny(stopChars, index);
-			if (r != -1) index = r;
+			if (r != -1)
+			{
+				index = r;
+			}
 
 			return (r != -1) ? true : false;
 		}
@@ -288,8 +309,10 @@ namespace CSharpSamples.Html
 		{
 			while (index < input.Length)
 			{
-				if (!Char.IsWhiteSpace(input[index]))
+				if (!char.IsWhiteSpace(input[index]))
+				{
 					break;
+				}
 
 				index++;
 			}
@@ -310,7 +333,9 @@ namespace CSharpSamples.Html
 			}
 
 			foreach (HtmlNode node in children)
+			{
 				parent.Nodes.Add(node);
+			}
 
 			parent.IsTerminated = true;
 		}
@@ -340,10 +365,14 @@ namespace CSharpSamples.Html
 		private bool is_match(string input, int index, string key)
 		{
 			if (index < 0 || index >= input.Length)
+			{
 				throw new ArgumentOutOfRangeException("index");
+			}
 
 			if ((input.Length - index) < key.Length)
+			{
 				return false;
+			}
 
 			string s = input.Substring(index, key.Length);
 			return s.Equals(key);
@@ -358,7 +387,7 @@ namespace CSharpSamples.Html
 		/// <returns></returns>
 		private bool not_match(string input, int index, string key)
 		{
-			return !is_match(input, index, key);
+			return !this.is_match(input, index, key);
 		}
 	}
 }

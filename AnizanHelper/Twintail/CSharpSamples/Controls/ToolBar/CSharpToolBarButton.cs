@@ -5,8 +5,8 @@ namespace CSharpSamples
 	using System;
 	using System.Collections;
 	using System.ComponentModel;
-	using System.Drawing.Design;
 	using System.Drawing;
+	using System.Drawing.Design;
 	using System.Windows.Forms;
 
 	/// <summary>
@@ -31,7 +31,7 @@ namespace CSharpSamples
 			{
 				get
 				{
-					return innerList.Count;
+					return this.innerList.Count;
 				}
 			}
 
@@ -42,7 +42,7 @@ namespace CSharpSamples
 			{
 				get
 				{
-					return innerList[index] as CSharpToolBarButton;
+					return this.innerList[index] as CSharpToolBarButton;
 				}
 			}
 
@@ -53,10 +53,12 @@ namespace CSharpSamples
 			internal CSharpToolBarButtonCollection(CSharpToolBar toolbar)
 			{
 				if (toolbar == null)
+				{
 					throw new ArgumentNullException("toolbar");
+				}
 
-				toolBar = toolbar;
-				innerList = new ArrayList();
+				this.toolBar = toolbar;
+				this.innerList = new ArrayList();
 			}
 
 			/// <summary>
@@ -75,12 +77,12 @@ namespace CSharpSamples
 					throw new ArgumentException("このボタンは既に他のツールバーに登録されています");
 				}
 
-				int index = innerList.Add(button);
+				int index = this.innerList.Add(button);
 
-				button.toolBar = toolBar;
-				button.imageList = toolBar.ImageList;
+				button.toolBar = this.toolBar;
+				button.imageList = this.toolBar.ImageList;
 
-				toolBar.UpdateButtons();
+				this.toolBar.UpdateButtons();
 
 				return index;
 			}
@@ -92,7 +94,9 @@ namespace CSharpSamples
 			public void AddRange(CSharpToolBarButton[] buttons)
 			{
 				foreach (CSharpToolBarButton but in buttons)
-					Add(but);
+				{
+					this.Add(but);
+				}
 			}
 
 			/// <summary>
@@ -102,14 +106,16 @@ namespace CSharpSamples
 			/// <param name="button">挿入するCSharpToolBarButton</param>
 			public void Insert(int index, CSharpToolBarButton button)
 			{
-				if (index < 0 || index > Count)
+				if (index < 0 || index > this.Count)
+				{
 					throw new ArgumentOutOfRangeException("index");
+				}
 
-				button.imageList = toolBar.ImageList;
-				button.toolBar = toolBar;
+				button.imageList = this.toolBar.ImageList;
+				button.toolBar = this.toolBar;
 
-				innerList.Insert(index, button);
-				toolBar.UpdateButtons();
+				this.innerList.Insert(index, button);
+				this.toolBar.UpdateButtons();
 			}
 
 			/// <summary>
@@ -118,14 +124,14 @@ namespace CSharpSamples
 			/// <param name="button">ツールバーから削除するCSharpToolBarButton</param>
 			public void Remove(CSharpToolBarButton button)
 			{
-				int index = innerList.IndexOf(button);
+				int index = this.innerList.IndexOf(button);
 				if (index >= 0)
 				{
 					button.toolBar = null;
 					button.imageList = null;
 
-					innerList.Remove(button);
-					toolBar.UpdateButtons();
+					this.innerList.Remove(button);
+					this.toolBar.UpdateButtons();
 				}
 			}
 
@@ -135,15 +141,17 @@ namespace CSharpSamples
 			/// <param name="index">削除するCSharpToolBarButtonのインデックス</param>
 			public void RemoveAt(int index)
 			{
-				if (index < 0 || index >= Count)
+				if (index < 0 || index >= this.Count)
+				{
 					throw new ArgumentOutOfRangeException("index");
+				}
 
 				CSharpToolBarButton button = this[index];
 				button.toolBar = null;
 				button.imageList = null;
 
-				innerList.RemoveAt(index);
-				toolBar.UpdateButtons();
+				this.innerList.RemoveAt(index);
+				this.toolBar.UpdateButtons();
 			}
 
 			/// <summary>
@@ -151,13 +159,13 @@ namespace CSharpSamples
 			/// </summary>
 			public void Clear()
 			{
-				foreach (CSharpToolBarButton button in innerList)
+				foreach (CSharpToolBarButton button in this.innerList)
 				{
 					button.toolBar = null;
 					button.imageList = null;
 				}
-				innerList.Clear();
-				toolBar.UpdateButtons();
+				this.innerList.Clear();
+				this.toolBar.UpdateButtons();
 			}
 
 			/// <summary>
@@ -168,26 +176,34 @@ namespace CSharpSamples
 			public void ChangeIndex(CSharpToolBarButton button, int newIndex)
 			{
 				if (button.toolBar == null)
+				{
 					throw new ArgumentException("button に親が存在しません");
+				}
 
-				if (newIndex < 0 || newIndex > Count)
+				if (newIndex < 0 || newIndex > this.Count)
+				{
 					throw new ArgumentOutOfRangeException();
+				}
 
 				if (button.Index == newIndex)
+				{
 					return;
+				}
 
 				if (button.Index < newIndex)
+				{
 					newIndex -= 1;
+				}
 
-				innerList.Remove(button);
-				innerList.Insert(newIndex, button);
+				this.innerList.Remove(button);
+				this.innerList.Insert(newIndex, button);
 
-				toolBar.UpdateButtons();
+				this.toolBar.UpdateButtons();
 			}
 
 			public int IndexOf(CSharpToolBarButton button)
 			{
-				return innerList.IndexOf(button);
+				return this.innerList.IndexOf(button);
 			}
 
 			/// <summary>
@@ -196,7 +212,7 @@ namespace CSharpSamples
 			/// <returns>IEnumerator</returns>
 			public IEnumerator GetEnumerator()
 			{
-				return innerList.GetEnumerator();
+				return this.innerList.GetEnumerator();
 			}
 
 			#region ICollection
@@ -207,7 +223,7 @@ namespace CSharpSamples
 			{
 				get
 				{
-					return innerList.IsSynchronized;
+					return this.innerList.IsSynchronized;
 				}
 			}
 
@@ -218,7 +234,7 @@ namespace CSharpSamples
 			{
 				get
 				{
-					return innerList.SyncRoot;
+					return this.innerList.SyncRoot;
 				}
 			}
 
@@ -229,7 +245,7 @@ namespace CSharpSamples
 			/// <param name="index"></param>
 			void ICollection.CopyTo(Array array, int index)
 			{
-				innerList.CopyTo(array, index);
+				this.innerList.CopyTo(array, index);
 			}
 			#endregion
 
@@ -238,14 +254,14 @@ namespace CSharpSamples
 			{
 				get
 				{
-					return innerList.IsReadOnly;
+					return this.innerList.IsReadOnly;
 				}
 			}
 			bool IList.IsFixedSize
 			{
 				get
 				{
-					return innerList.IsFixedSize;
+					return this.innerList.IsFixedSize;
 				}
 			}
 			object IList.this[int index]
@@ -265,7 +281,7 @@ namespace CSharpSamples
 			}
 			bool IList.Contains(object obj)
 			{
-				return innerList.Contains((CSharpToolBarButton)obj);
+				return this.innerList.Contains((CSharpToolBarButton)obj);
 			}
 			int IList.IndexOf(object obj)
 			{
@@ -303,7 +319,7 @@ namespace CSharpSamples
 		{
 			get
 			{
-				return toolBar;
+				return this.toolBar;
 			}
 		}
 
@@ -314,7 +330,7 @@ namespace CSharpSamples
 		{
 			get
 			{
-				return bounds;
+				return this.bounds;
 			}
 		}
 
@@ -325,9 +341,9 @@ namespace CSharpSamples
 		{
 			get
 			{
-				if (toolBar != null)
+				if (this.toolBar != null)
 				{
-					return toolBar.Buttons.IndexOf(this);
+					return this.toolBar.Buttons.IndexOf(this);
 				}
 				return -1;
 			}
@@ -340,15 +356,15 @@ namespace CSharpSamples
 		{
 			set
 			{
-				if (style != value)
+				if (this.style != value)
 				{
-					style = value;
-					Update();
+					this.style = value;
+					this.Update();
 				}
 			}
 			get
 			{
-				return style;
+				return this.style;
 			}
 		}
 
@@ -359,15 +375,17 @@ namespace CSharpSamples
 		{
 			set
 			{
-				if (text == null)
+				if (this.text == null)
+				{
 					throw new ArgumentNullException("Text");
+				}
 
-				text = value;
-				Update();
+				this.text = value;
+				this.Update();
 			}
 			get
 			{
-				return text;
+				return this.text;
 			}
 		}
 
@@ -376,7 +394,7 @@ namespace CSharpSamples
 		{
 			get
 			{
-				return imageList;
+				return this.imageList;
 			}
 		}
 
@@ -390,15 +408,15 @@ namespace CSharpSamples
 		{
 			set
 			{
-				if (imageIndex != value)
+				if (this.imageIndex != value)
 				{
-					imageIndex = value;
-					Update();
+					this.imageIndex = value;
+					this.Update();
 				}
 			}
 			get
 			{
-				return imageIndex;
+				return this.imageIndex;
 			}
 		}
 
@@ -409,11 +427,11 @@ namespace CSharpSamples
 		{
 			set
 			{
-				tag = value;
+				this.tag = value;
 			}
 			get
 			{
-				return tag;
+				return this.tag;
 			}
 		}
 
@@ -425,12 +443,12 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			imageIndex = -1;
-			bounds = Rectangle.Empty;
-			text = String.Empty;
-			style = CSharpToolBarButtonStyle.Button;
-			toolBar = null;
-			tag = null;
+			this.imageIndex = -1;
+			this.bounds = Rectangle.Empty;
+			this.text = string.Empty;
+			this.style = CSharpToolBarButtonStyle.Button;
+			this.toolBar = null;
+			this.tag = null;
 		}
 
 		/// <summary>
@@ -441,7 +459,9 @@ namespace CSharpSamples
 			: this()
 		{
 			if (text == null)
+			{
 				throw new ArgumentNullException("text");
+			}
 
 			this.text = text;
 		}
@@ -465,7 +485,9 @@ namespace CSharpSamples
 			: this()
 		{
 			if (button == null)
+			{
 				throw new ArgumentNullException("button");
+			}
 
 			this.text = button.text;
 			this.imageIndex = button.imageIndex;
@@ -488,8 +510,10 @@ namespace CSharpSamples
 		/// </summary>
 		protected void Update()
 		{
-			if (toolBar != null)
-				toolBar.UpdateButtons();
+			if (this.toolBar != null)
+			{
+				this.toolBar.UpdateButtons();
+			}
 		}
 	}
 }

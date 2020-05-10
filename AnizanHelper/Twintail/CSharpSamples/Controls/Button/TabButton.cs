@@ -1,10 +1,10 @@
 // TabButton.cs
 
 using System;
-using System.Drawing;
-using System.Drawing.Design;
 using System.Collections;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Design;
 using System.Windows.Forms;
 
 namespace CSharpSamples
@@ -27,9 +27,11 @@ namespace CSharpSamples
 			/// <summary>
 			/// コレクションに格納されているタブ数を取得します。
 			/// </summary>
-			public int Count {
-				get {
-					return innerList.Count;
+			public int Count
+			{
+				get
+				{
+					return this.innerList.Count;
 				}
 			}
 
@@ -38,8 +40,9 @@ namespace CSharpSamples
 			/// </summary>
 			public TabButton this[int index]
 			{
-				get {
-					return (TabButton)innerList[index];
+				get
+				{
+					return (TabButton)this.innerList[index];
 				}
 			}
 
@@ -60,16 +63,20 @@ namespace CSharpSamples
 			public int Add(TabButton button)
 			{
 				if (button == null)
+				{
 					throw new ArgumentNullException("button");
-				
+				}
+
 				if (button.parent != null)
+				{
 					throw new ArgumentException("このボタンは既に他のタブコントロールに登録されています。");
+				}
 
-				int index = innerList.Add(button);
+				int index = this.innerList.Add(button);
 
-				button.parent = parent;
-				button.imageList = parent.ImageList;
-				parent.UpdateButtons();
+				button.parent = this.parent;
+				button.imageList = this.parent.ImageList;
+				this.parent.UpdateButtons();
 
 				return index;
 			}
@@ -81,7 +88,9 @@ namespace CSharpSamples
 			public void AddRange(TabButton[] array)
 			{
 				foreach (TabButton button in array)
-					Add(button);
+				{
+					this.Add(button);
+				}
 			}
 
 			/// <summary>
@@ -91,18 +100,22 @@ namespace CSharpSamples
 			/// <param name="button">index 番目に挿入されるボタン。</param>
 			public void Insert(int index, TabButton button)
 			{
-				if (index < 0 || index > Count)
+				if (index < 0 || index > this.Count)
+				{
 					throw new ArgumentOutOfRangeException("index");
+				}
 
 				if (button.parent != null)
+				{
 					throw new ArgumentException("このボタンは既に他のタブコントロールに登録されています。");
+				}
 
-				innerList.Insert(index, button);
-				
-				button.parent = parent;
-				button.imageList = parent.ImageList;
+				this.innerList.Insert(index, button);
 
-				parent.UpdateButtons();
+				button.parent = this.parent;
+				button.imageList = this.parent.ImageList;
+
+				this.parent.UpdateButtons();
 			}
 
 			/// <summary>
@@ -111,13 +124,13 @@ namespace CSharpSamples
 			/// <param name="button">コレクションから削除するボタン。</param>
 			public void Remove(TabButton button)
 			{
-				if (innerList.Contains(button))
+				if (this.innerList.Contains(button))
 				{
 					button.parent = null;
 					button.imageList = null;
-				
-					innerList.Remove(button);
-					parent.UpdateButtons();
+
+					this.innerList.Remove(button);
+					this.parent.UpdateButtons();
 				}
 			}
 
@@ -127,25 +140,27 @@ namespace CSharpSamples
 			/// <param name="index">削除するボタンのインデックス。</param>
 			public void RemoveAt(int index)
 			{
-				if (index < 0 || index >= Count)
+				if (index < 0 || index >= this.Count)
+				{
 					throw new ArgumentOutOfRangeException("index");
+				}
 
 				TabButton button = this[index];
 				button.parent = null;
 				button.imageList = null;
 
-				innerList.RemoveAt(index);
-				parent.UpdateButtons();
+				this.innerList.RemoveAt(index);
+				this.parent.UpdateButtons();
 			}
 
 			public bool Contains(TabButton button)
 			{
-				return innerList.Contains(button);
+				return this.innerList.Contains(button);
 			}
 
 			public int IndexOf(TabButton button)
 			{
-				return innerList.IndexOf(button);
+				return this.innerList.IndexOf(button);
 			}
 
 			/// <summary>
@@ -153,13 +168,13 @@ namespace CSharpSamples
 			/// </summary>
 			public void Clear()
 			{
-				foreach (TabButton button in innerList)
+				foreach (TabButton button in this.innerList)
 				{
 					button.parent = null;
 					button.imageList = null;
 				}
-				innerList.Clear();
-				parent.UpdateButtons();
+				this.innerList.Clear();
+				this.parent.UpdateButtons();
 			}
 
 			/// <summary>
@@ -170,16 +185,24 @@ namespace CSharpSamples
 			public void InsertBefore(TabButton target, TabButton button)
 			{
 				if (target == button)
+				{
 					return;
+				}
 
 				if (target.parent == null)
+				{
 					throw new ArgumentException("target に親が存在しません。");
+				}
 
 				if (button.parent == null)
+				{
 					throw new ArgumentException("button に親が存在しません");
+				}
 
 				if (target.parent != button.parent)
+				{
 					throw new ArgumentException("target と button の親が違います。");
+				}
 
 				int newIndex;
 
@@ -187,14 +210,15 @@ namespace CSharpSamples
 				{
 					newIndex = target.Index;
 				}
-				else {
-					newIndex = target.Index-1;
+				else
+				{
+					newIndex = target.Index - 1;
 				}
 
-				innerList.Remove(button);
-				innerList.Insert(newIndex, button);
+				this.innerList.Remove(button);
+				this.innerList.Insert(newIndex, button);
 
-				parent.UpdateButtons();
+				this.parent.UpdateButtons();
 			}
 
 			/// <summary>
@@ -203,25 +227,29 @@ namespace CSharpSamples
 			/// <returns>IEnumerator</returns>
 			public IEnumerator GetEnumerator()
 			{
-				return innerList.GetEnumerator();
+				return this.innerList.GetEnumerator();
 			}
 
 			#region ICollection
 			/// <summary>
 			/// 子のコレクションへのアクセスが同期されているかどうかを判断します。
 			/// </summary>
-			bool ICollection.IsSynchronized {
-				get {
-					return innerList.IsSynchronized;
+			bool ICollection.IsSynchronized
+			{
+				get
+				{
+					return this.innerList.IsSynchronized;
 				}
 			}
 
 			/// <summary>
 			/// 子のコレクションへのアクセスを同期するために使用するオブジェクトを取得します。
 			/// </summary>
-			object ICollection.SyncRoot {
-				get {
-					return innerList.SyncRoot;
+			object ICollection.SyncRoot
+			{
+				get
+				{
+					return this.innerList.SyncRoot;
 				}
 			}
 
@@ -232,48 +260,55 @@ namespace CSharpSamples
 			/// <param name="index"></param>
 			void ICollection.CopyTo(Array array, int index)
 			{
-				innerList.CopyTo(array, index);
+				this.innerList.CopyTo(array, index);
 			}
 			#endregion
 
 			#region IList
-			bool IList.IsReadOnly {
-				get {
-					return innerList.IsReadOnly;
+			bool IList.IsReadOnly
+			{
+				get
+				{
+					return this.innerList.IsReadOnly;
 				}
 			}
-			bool IList.IsFixedSize {
-				get {
-					return innerList.IsFixedSize;
+			bool IList.IsFixedSize
+			{
+				get
+				{
+					return this.innerList.IsFixedSize;
 				}
 			}
-			object IList.this[int index] {
-				set {
+			object IList.this[int index]
+			{
+				set
+				{
 					throw new NotSupportedException();
 				}
-				get {
+				get
+				{
 					return this[index];
 				}
 			}
 			int IList.Add(object obj)
 			{
-				return Add((TabButton)obj);
+				return this.Add((TabButton)obj);
 			}
 			bool IList.Contains(object obj)
 			{
-				return innerList.Contains(obj);
+				return this.innerList.Contains(obj);
 			}
 			int IList.IndexOf(object obj)
 			{
-				return innerList.IndexOf(obj);
+				return this.innerList.IndexOf(obj);
 			}
 			void IList.Insert(int index, object obj)
 			{
-				Insert(index, (TabButton)obj);
+				this.Insert(index, (TabButton)obj);
 			}
 			void IList.Remove(object obj)
 			{
-				Remove((TabButton)obj);
+				this.Remove((TabButton)obj);
 			}
 			void IList.RemoveAt(int index)
 			{
@@ -285,7 +320,7 @@ namespace CSharpSamples
 
 		internal ImageList imageList;
 		private TabButtonControl parent = null;
-		private string text = String.Empty;
+		private string text = string.Empty;
 		private int imageIndex = -1;
 		private object tag;
 
@@ -305,13 +340,16 @@ namespace CSharpSamples
 		/// タブの表示テキストを取得または設定します。
 		/// </summary>
 		[DefaultValue("")]
-		public string Text {
-			set {
-				text = value;
-				Update(true);
+		public string Text
+		{
+			set
+			{
+				this.text = value;
+				this.Update(true);
 			}
-			get {
-				return text;
+			get
+			{
+				return this.text;
 			}
 		}
 
@@ -319,19 +357,25 @@ namespace CSharpSamples
 		/// このボタンのインデックスを取得します。
 		/// </summary>
 		[Browsable(false)]
-		public int Index {
-			get {
-				if (parent != null)
-					return parent.Buttons.IndexOf(this);
+		public int Index
+		{
+			get
+			{
+				if (this.parent != null)
+				{
+					return this.parent.Buttons.IndexOf(this);
+				}
 
 				return -1;
 			}
 		}
 
 		[Browsable(false)]
-		public ImageList ImageList {
-			get {
-				return imageList;
+		public ImageList ImageList
+		{
+			get
+			{
+				return this.imageList;
 			}
 		}
 
@@ -340,17 +384,20 @@ namespace CSharpSamples
 		/// </summary>
 		[DefaultValue(-1)]
 		[TypeConverter(typeof(ImageIndexConverter))]
-		[Editor("System.Windows.Forms.Design.ImageIndexEditor", typeof(UITypeEditor))]   
-		public int ImageIndex {
-			set {
-				if (imageIndex != value)
+		[Editor("System.Windows.Forms.Design.ImageIndexEditor", typeof(UITypeEditor))]
+		public int ImageIndex
+		{
+			set
+			{
+				if (this.imageIndex != value)
 				{
-					imageIndex = value;
-					Update(false);
+					this.imageIndex = value;
+					this.Update(false);
 				}
 			}
-			get {
-				return imageIndex;
+			get
+			{
+				return this.imageIndex;
 			}
 		}
 
@@ -358,10 +405,14 @@ namespace CSharpSamples
 		/// このボタンが選択されていれば true、そうでなければ false を返します。
 		/// </summary>
 		[Browsable(false)]
-		public bool IsSelected {
-			get {
-				if (parent != null)
-					return parent.Selected.Equals(this);
+		public bool IsSelected
+		{
+			get
+			{
+				if (this.parent != null)
+				{
+					return this.parent.Selected.Equals(this);
+				}
 
 				return false;
 			}
@@ -371,9 +422,11 @@ namespace CSharpSamples
 		/// このボタンの Rectangle 座標を取得します。
 		/// </summary>
 		[Browsable(false)]
-		public Rectangle Bounds {
-			get {
-				return bounds;
+		public Rectangle Bounds
+		{
+			get
+			{
+				return this.bounds;
 			}
 		}
 
@@ -381,13 +434,16 @@ namespace CSharpSamples
 		/// アクティブなタブの文字色を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlText")]
-		public Color ActiveForeColor {
-			set {
-				activeForeColor = value;
-				Update(false);
+		public Color ActiveForeColor
+		{
+			set
+			{
+				this.activeForeColor = value;
+				this.Update(false);
 			}
-			get {
-				return activeForeColor;
+			get
+			{
+				return this.activeForeColor;
 			}
 		}
 
@@ -395,13 +451,16 @@ namespace CSharpSamples
 		/// アクティブなタブの背景色を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlLightLight")]
-		public Color ActiveBackColor {
-			set {
-				activeBackColor = value;
-				Update(false);
+		public Color ActiveBackColor
+		{
+			set
+			{
+				this.activeBackColor = value;
+				this.Update(false);
 			}
-			get {
-				return activeBackColor;
+			get
+			{
+				return this.activeBackColor;
 			}
 		}
 
@@ -409,13 +468,16 @@ namespace CSharpSamples
 		/// 非アクティブなタブの文字色を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(Color), "ControlText")]
-		public Color InactiveForeColor {
-			set {
-				inactiveForeColor = value;
-				Update(false);
+		public Color InactiveForeColor
+		{
+			set
+			{
+				this.inactiveForeColor = value;
+				this.Update(false);
 			}
-			get {
-				return inactiveForeColor;
+			get
+			{
+				return this.inactiveForeColor;
 			}
 		}
 
@@ -423,26 +485,32 @@ namespace CSharpSamples
 		/// 非アクティブなタブの背景色を取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(Color), "Control")]
-		public Color InactiveBackColor {
-			set {
-				inactiveBackColor = value;
-				Update(false);
+		public Color InactiveBackColor
+		{
+			set
+			{
+				this.inactiveBackColor = value;
+				this.Update(false);
 			}
-			get {
-				return inactiveBackColor;
+			get
+			{
+				return this.inactiveBackColor;
 			}
 		}
 
 		/// <summary>
 		/// アクティブな表示テキストのフォントファミリーを取得または設定します。
 		/// </summary>
-		public FontFamily ActiveFontFamily {
-			set {
-				activeFontFamily = value;
-				Update(true);
+		public FontFamily ActiveFontFamily
+		{
+			set
+			{
+				this.activeFontFamily = value;
+				this.Update(true);
 			}
-			get {
-				return activeFontFamily;
+			get
+			{
+				return this.activeFontFamily;
 			}
 		}
 
@@ -450,26 +518,32 @@ namespace CSharpSamples
 		/// アクティブな表示テキストのフォントスタイルを取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(FontStyle), "Regular")]
-		public FontStyle ActiveFontStyle {
-			set {
-				activeFontStyle = value;
-				Update(true);
+		public FontStyle ActiveFontStyle
+		{
+			set
+			{
+				this.activeFontStyle = value;
+				this.Update(true);
 			}
-			get {
-				return activeFontStyle;
+			get
+			{
+				return this.activeFontStyle;
 			}
 		}
 
 		/// <summary>
 		/// 非アクティブな表示テキストのフォントファミリーを取得または設定します。
 		/// </summary>
-		public FontFamily InactiveFontFamily {
-			set {
-				inactiveFontFamily = value;
-				Update(true);
+		public FontFamily InactiveFontFamily
+		{
+			set
+			{
+				this.inactiveFontFamily = value;
+				this.Update(true);
 			}
-			get {
-				return inactiveFontFamily;
+			get
+			{
+				return this.inactiveFontFamily;
 			}
 		}
 
@@ -477,25 +551,31 @@ namespace CSharpSamples
 		/// 非アクティブな表示テキストのフォントスタイルを取得または設定します。
 		/// </summary>
 		[DefaultValue(typeof(FontStyle), "Regular")]
-		public FontStyle InactiveFontStyle {
-			set {
-				inactiveFontStyle = value;
-				Update(true);
+		public FontStyle InactiveFontStyle
+		{
+			set
+			{
+				this.inactiveFontStyle = value;
+				this.Update(true);
 			}
-			get {
-				return inactiveFontStyle;
+			get
+			{
+				return this.inactiveFontStyle;
 			}
 		}
 
 		/// <summary>
 		/// タグを取得または設定します。
 		/// </summary>
-		public object Tag {
-			set {
-				tag = value;
+		public object Tag
+		{
+			set
+			{
+				this.tag = value;
 			}
-			get {
-				return tag;
+			get
+			{
+				return this.tag;
 			}
 		}
 
@@ -505,29 +585,29 @@ namespace CSharpSamples
 
 		public TabButton(string text)
 		{
-			Text = text;
+			this.Text = text;
 		}
 
 		public TabButton(string text, int imageIndex)
 		{
-			Text = text;
-			ImageIndex = imageIndex;
+			this.Text = text;
+			this.ImageIndex = imageIndex;
 		}
 
 		public TabButton(TabButton button)
 		{
-			Text = button.Text;
-			ImageIndex = button.ImageIndex;
+			this.Text = button.Text;
+			this.ImageIndex = button.ImageIndex;
 
-			ActiveForeColor = button.ActiveForeColor;
-			ActiveBackColor = button.ActiveBackColor;
-			ActiveFontFamily = button.ActiveFontFamily;
-			ActiveFontStyle = button.ActiveFontStyle;
+			this.ActiveForeColor = button.ActiveForeColor;
+			this.ActiveBackColor = button.ActiveBackColor;
+			this.ActiveFontFamily = button.ActiveFontFamily;
+			this.ActiveFontStyle = button.ActiveFontStyle;
 
-			InactiveForeColor = button.InactiveForeColor;
-			InactiveBackColor = button.InactiveBackColor;
-			InactiveFontFamily = button.InactiveFontFamily;
-			InactiveFontStyle = button.InactiveFontStyle;
+			this.InactiveForeColor = button.InactiveForeColor;
+			this.InactiveBackColor = button.InactiveBackColor;
+			this.InactiveFontFamily = button.InactiveFontFamily;
+			this.InactiveFontStyle = button.InactiveFontStyle;
 		}
 
 		/// <summary>
@@ -536,11 +616,19 @@ namespace CSharpSamples
 		/// <param name="all"></param>
 		private void Update(bool all)
 		{
-			if (parent == null)
+			if (this.parent == null)
+			{
 				return;
+			}
 
-			if (all) parent.UpdateButtons();
-			else     parent.UpdateButton(this);
+			if (all)
+			{
+				this.parent.UpdateButtons();
+			}
+			else
+			{
+				this.parent.UpdateButton(this);
+			}
 		}
 
 		/// <summary>

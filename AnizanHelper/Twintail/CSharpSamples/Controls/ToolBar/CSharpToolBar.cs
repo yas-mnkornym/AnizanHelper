@@ -3,16 +3,13 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.Windows.Forms;
 	using System.ComponentModel;
 	using System.ComponentModel.Design;
 	using System.Drawing;
 	using System.Drawing.Design;
-
-	using CSharpToolBarButtonCollection = 
+	using System.Windows.Forms;
+	using CSharpToolBarButtonCollection =
 		CSharpToolBarButton.CSharpToolBarButtonCollection;
-	using System.Drawing.Imaging;
-	using System.Runtime.InteropServices;
 
 	/// <summary>
 	/// C#で作ったWindowsのToolBarもどき
@@ -32,20 +29,24 @@ namespace CSharpSamples
 		private bool allowDragButton;
 
 		// ボタンの余白。
-		private Rectangle _Margin = new Rectangle(2,2,2,4);
+		private Rectangle _Margin = new Rectangle(2, 2, 2, 4);
 
 		private CSharpToolBarButton activeButton = null;
 		private Rectangle tempDropLine = Rectangle.Empty;
 
-		protected override Size DefaultSize {
-			get {
+		protected override Size DefaultSize
+		{
+			get
+			{
 				return new Size(100, 50);
 			}
 		}
 
-		protected Rectangle ClientRect {
-			get {
-				Rectangle client = Bounds;
+		protected Rectangle ClientRect
+		{
+			get
+			{
+				Rectangle client = this.Bounds;
 				client.X = client.Y = 0;
 
 				return client;
@@ -57,9 +58,11 @@ namespace CSharpSamples
 		/// </summary>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Editor(typeof(CollectionEditor), typeof(UITypeEditor))]
-		public CSharpToolBarButtonCollection Buttons {
-			get {
-				return buttons;
+		public CSharpToolBarButtonCollection Buttons
+		{
+			get
+			{
+				return this.buttons;
 			}
 		}
 
@@ -67,58 +70,72 @@ namespace CSharpSamples
 		/// ツールバーの境界線を取得または設定
 		/// </summary>
 		[DefaultValue(typeof(Border3DStyle), "Adjust")]
-		public Border3DStyle BorderStyle {
-			set {
-				if (borderStyle != value) {
-					borderStyle = value;
-					UpdateButtons();
+		public Border3DStyle BorderStyle
+		{
+			set
+			{
+				if (this.borderStyle != value)
+				{
+					this.borderStyle = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return borderStyle; }
+			get { return this.borderStyle; }
 		}
 
 		/// <summary>
 		/// ツールバーのボタンスタイルを取得または設定
 		/// </summary>
 		[DefaultValue(typeof(CSharpToolBarAppearance), "Normal")]
-		public CSharpToolBarAppearance Appearance {
-			set {
-				if (appearance != value) {
-					appearance = value;
-					Refresh();
+		public CSharpToolBarAppearance Appearance
+		{
+			set
+			{
+				if (this.appearance != value)
+				{
+					this.appearance = value;
+					this.Refresh();
 				}
 			}
-			get { return appearance; }
+			get { return this.appearance; }
 		}
 
 		/// <summary>
 		/// ボタンテキスト配置の位置を取得または設定
 		/// </summary>
 		[DefaultValue(typeof(ToolBarTextAlign), "Underneath")]
-		public ToolBarTextAlign TextAlign {
-			set {
-				if (textAlign != value) {
-					textAlign = value;
-					UpdateButtons();
+		public ToolBarTextAlign TextAlign
+		{
+			set
+			{
+				if (this.textAlign != value)
+				{
+					this.textAlign = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return textAlign; }
+			get { return this.textAlign; }
 		}
 
 		/// <summary>
 		/// イメージリストを取得または設定
 		/// </summary>
-		public ImageList ImageList {
-			set {
-				imageList = value;
-				
-				foreach (CSharpToolBarButton b in buttons) 
-					b.imageList = value;
+		public ImageList ImageList
+		{
+			set
+			{
+				this.imageList = value;
 
-				UpdateButtons();
+				foreach (CSharpToolBarButton b in this.buttons)
+				{
+					b.imageList = value;
+				}
+
+				this.UpdateButtons();
 			}
-			get {
-				return imageList;
+			get
+			{
+				return this.imageList;
 			}
 		}
 
@@ -127,40 +144,48 @@ namespace CSharpSamples
 		/// このプロパティを有効にするにはautoAdjustSizeプロパティがfalseに設定されている必要がある。
 		/// </summary>
 		[DefaultValue(typeof(Size), "80,25")]
-		public Size ButtonSize {
-			set {
-				buttonSize = value;
-				UpdateButtons();
+		public Size ButtonSize
+		{
+			set
+			{
+				this.buttonSize = value;
+				this.UpdateButtons();
 			}
-			get { return buttonSize; }
+			get { return this.buttonSize; }
 		}
 
 		/// <summary>
 		/// ツールバーのサイズを自動で調整するかどうかを取得または設定
 		/// </summary>
 		[DefaultValue(false)]
-		public bool AutoToolBarSize {
-			set {
-				if (autoToolBarSize != value) {
-					autoToolBarSize = value;
-					UpdateButtons();
+		public bool AutoToolBarSize
+		{
+			set
+			{
+				if (this.autoToolBarSize != value)
+				{
+					this.autoToolBarSize = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return autoToolBarSize; }
+			get { return this.autoToolBarSize; }
 
 		}
 		/// <summary>
 		/// ボタンの幅を自動で調整するかどうかを取得または設定
 		/// </summary>
 		[DefaultValue(true)]
-		public bool AutoAdjustSize {
-			set {
-				if (autoAdjustSize != value) {
-					autoAdjustSize = value;
-					UpdateButtons();
+		public bool AutoAdjustSize
+		{
+			set
+			{
+				if (this.autoAdjustSize != value)
+				{
+					this.autoAdjustSize = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return autoAdjustSize; }
+			get { return this.autoAdjustSize; }
 		}
 
 		/// <summary>
@@ -168,25 +193,30 @@ namespace CSharpSamples
 		/// 次の行に折り返すかどうかを取得または設定
 		/// </summary>
 		[DefaultValue(true)]
-		public bool Wrappable {
-			set {
-				if (wrappable != value) {
-					wrappable = value;
-					UpdateButtons();
+		public bool Wrappable
+		{
+			set
+			{
+				if (this.wrappable != value)
+				{
+					this.wrappable = value;
+					this.UpdateButtons();
 				}
 			}
-			get { return wrappable; }
+			get { return this.wrappable; }
 		}
 
 		/// <summary>
 		/// ボタンをドラッグで移動できるかどうかを示す値を取得または設定。
 		/// </summary>
 		[DefaultValue(false)]
-		public bool AllowDragButton {
-			set {
-				allowDragButton = value;
+		public bool AllowDragButton
+		{
+			set
+			{
+				this.allowDragButton = value;
 			}
-			get { return allowDragButton; }
+			get { return this.allowDragButton; }
 		}
 
 		/// <summary>
@@ -203,19 +233,19 @@ namespace CSharpSamples
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
 
-			buttons = new CSharpToolBarButtonCollection(this);
-			appearance = CSharpToolBarAppearance.Normal;
-			borderStyle = Border3DStyle.Adjust;
-			textAlign = ToolBarTextAlign.Underneath;
-			imageList = null;
-			buttonSize = new Size(80, 25);
-			autoToolBarSize = false;
-			autoAdjustSize = true;
-			wrappable = true;
-			allowDragButton = true;
+			this.buttons = new CSharpToolBarButtonCollection(this);
+			this.appearance = CSharpToolBarAppearance.Normal;
+			this.borderStyle = Border3DStyle.Adjust;
+			this.textAlign = ToolBarTextAlign.Underneath;
+			this.imageList = null;
+			this.buttonSize = new Size(80, 25);
+			this.autoToolBarSize = false;
+			this.autoAdjustSize = true;
+			this.wrappable = true;
+			this.allowDragButton = true;
 
 			// ちらつきを押さえるために各スタイルを設定
-			SetStyle(ControlStyles.AllPaintingInWmPaint |
+			this.SetStyle(ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.DoubleBuffer |
 				ControlStyles.UserPaint, true);
 
@@ -223,7 +253,7 @@ namespace CSharpSamples
 			//Dock = DockStyle.Top;
 		}
 
-		void UpdateRegion()
+		private void UpdateRegion()
 		{/*
 			var region = new Region(this.ClientRectangle);
 			int clientWidth = this.ClientSize.Width;
@@ -268,16 +298,18 @@ namespace CSharpSamples
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
-			
+
 			Graphics g = e.Graphics;
 
-			foreach (CSharpToolBarButton button in buttons)
-				DrawButton(g, button, false, false);
-			
-			// 境界線を描画
-			Rectangle rc = Bounds;
+			foreach (CSharpToolBarButton button in this.buttons)
+			{
+				this.DrawButton(g, button, false, false);
+			}
 
-			ControlPaint.DrawBorder3D(g, ClientRectangle, borderStyle);
+			// 境界線を描画
+			Rectangle rc = this.Bounds;
+
+			ControlPaint.DrawBorder3D(g, this.ClientRectangle, this.borderStyle);
 		}
 
 		protected override void OnMouseEnter(EventArgs e)
@@ -288,56 +320,65 @@ namespace CSharpSamples
 		protected override void OnMouseLeave(EventArgs e)
 		{
 			base.OnMouseLeave(e);
-			UpdateButton(activeButton);
-			activeButton = null;
+			this.UpdateButton(this.activeButton);
+			this.activeButton = null;
 		}
 
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
 
-			CSharpToolBarButton button = ButtonFromPoint(e.X, e.Y);
+			CSharpToolBarButton button = this.ButtonFromPoint(e.X, e.Y);
 
 			// セパレータの場合は何もしない
 			if (button != null && button.Style == CSharpToolBarButtonStyle.Separator)
+			{
 				return;
+			}
 
 			// フラット形式の場合は、浮き出る境界線を描画
 			if (e.Button == MouseButtons.None)
 			{
-				if (button == activeButton)
+				if (button == this.activeButton)
+				{
 					return;
-
-				UpdateButton(activeButton);
-
-				activeButton = button;
-
-				if (appearance == CSharpToolBarAppearance.Flat &&
-					button != null)
-				{
-					using (Graphics g = CreateGraphics())
-						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.RaisedInner);
 				}
-				else if (appearance == CSharpToolBarAppearance.VisualStudio &&
+
+				this.UpdateButton(this.activeButton);
+
+				this.activeButton = button;
+
+				if (this.appearance == CSharpToolBarAppearance.Flat &&
 					button != null)
 				{
-					using (Graphics g = CreateGraphics())
-						DrawButton(g, button, false, true);
+					using (Graphics g = this.CreateGraphics())
+					{
+						ControlPaint.DrawBorder3D(g, button.Bounds, Border3DStyle.RaisedInner);
+					}
+				}
+				else if (this.appearance == CSharpToolBarAppearance.VisualStudio &&
+					button != null)
+				{
+					using (Graphics g = this.CreateGraphics())
+					{
+						this.DrawButton(g, button, false, true);
+					}
 				}
 
 			}
 			// ボタンのドラッグ操作
-			else if (e.Button == MouseButtons.Left && allowDragButton)
+			else if (e.Button == MouseButtons.Left && this.allowDragButton)
 			{
-				if (ClientRect.Contains(e.X, e.Y))
+				if (this.ClientRect.Contains(e.X, e.Y))
 				{
-					DrawHorzLine(GetDropButtonIndex(e.X, e.Y));
-					Cursor = Cursors.Default;
+					this.DrawHorzLine(this.GetDropButtonIndex(e.X, e.Y));
+					this.Cursor = Cursors.Default;
 				}
 				// クライアント領域から出ていればドラッグ操作を中止
-				else {
-					DrawHorzLine(-1);
-					Cursor = Cursors.No;
+				else
+				{
+					this.DrawHorzLine(-1);
+					this.Cursor = Cursors.No;
 				}
 			}
 		}
@@ -346,16 +387,18 @@ namespace CSharpSamples
 		{
 			base.OnMouseDown(e);
 
-			activeButton = ButtonFromPoint(e.X, e.Y);
+			this.activeButton = this.ButtonFromPoint(e.X, e.Y);
 
 			// ボタンが押されたように描画
 			if (e.Button == MouseButtons.Left &&
-				activeButton != null)
+				this.activeButton != null)
 			{
-				if (activeButton.Style != CSharpToolBarButtonStyle.Separator)
+				if (this.activeButton.Style != CSharpToolBarButtonStyle.Separator)
 				{
-					using (Graphics g = CreateGraphics())
-						DrawButton(g, activeButton, true, true);
+					using (Graphics g = this.CreateGraphics())
+					{
+						this.DrawButton(g, this.activeButton, true, true);
+					}
 				}
 			}
 		}
@@ -366,45 +409,47 @@ namespace CSharpSamples
 
 			// ボタンが押されたように描画
 			if (e.Button == MouseButtons.Left &&
-				activeButton != null)
+				this.activeButton != null)
 			{
-				if (activeButton.Style == CSharpToolBarButtonStyle.Separator)
+				if (this.activeButton.Style == CSharpToolBarButtonStyle.Separator)
+				{
 					return;
+				}
 
-				CSharpToolBarButton button = ButtonFromPoint(e.X, e.Y);
+				CSharpToolBarButton button = this.ButtonFromPoint(e.X, e.Y);
 
-				UpdateButton(activeButton);
-				DrawHorzLine(-1);
+				this.UpdateButton(this.activeButton);
+				this.DrawHorzLine(-1);
 
 				// クリックされたボタンと現在のマウス座標にあるボタンが別の物であれば、
 				// activeButtonsを移動
-				if (activeButton != button)
+				if (this.activeButton != button)
 				{
-					if (allowDragButton && ClientRect.Contains(e.X, e.Y))
+					if (this.allowDragButton && this.ClientRect.Contains(e.X, e.Y))
 					{
-						int index = GetDropButtonIndex(e.X, e.Y);
+						int index = this.GetDropButtonIndex(e.X, e.Y);
 
-						if (index >= 0 && index <= buttons.Count)
+						if (index >= 0 && index <= this.buttons.Count)
 						{
-							buttons.ChangeIndex(activeButton, index);
+							this.buttons.ChangeIndex(this.activeButton, index);
 						}
 					}
-					Cursor = Cursors.Default;
+					this.Cursor = Cursors.Default;
 				}
 				else
 				{
 					// クリックイベントを発生させる
-					OnButtonClick(new CSharpToolBarButtonEventArgs(activeButton));
+					this.OnButtonClick(new CSharpToolBarButtonEventArgs(this.activeButton));
 				}
 
-				activeButton = null;
+				this.activeButton = null;
 			}
 		}
 
 		protected override void OnResize(EventArgs e)
 		{
 			base.OnResize(e);
-			UpdateButtons();
+			this.UpdateButtons();
 		}
 		#endregion
 
@@ -416,21 +461,23 @@ namespace CSharpSamples
 			int height = 0;
 
 			// ボタンのRectangle座標を更新
-			using (Graphics g = CreateGraphics())
+			using (Graphics g = this.CreateGraphics())
 			{
-				foreach (CSharpToolBarButton button in buttons)
+				foreach (CSharpToolBarButton button in this.buttons)
 				{
-					button.bounds = GetButtonRect(g, button);
+					button.bounds = this.GetButtonRect(g, button);
 					height = Math.Max(height, button.Bounds.Bottom);
 				}
 			}
 
 			// 高さを調整 (3Dボーダーのサイズも足す)
-			if (AutoToolBarSize)
+			if (this.AutoToolBarSize)
+			{
 				this.Height = height + SystemInformation.Border3DSize.Height;
+			}
 
-			UpdateRegion();
-			Refresh();
+			this.UpdateRegion();
+			this.Refresh();
 		}
 
 		/// <summary>
@@ -441,8 +488,8 @@ namespace CSharpSamples
 		{
 			if (button != null)
 			{
-				Invalidate(button.Bounds, false);
-				Update();
+				this.Invalidate(button.Bounds, false);
+				this.Update();
 			}
 		}
 
@@ -454,8 +501,8 @@ namespace CSharpSamples
 		/// <returns></returns>
 		protected int GetDropButtonIndex(int x, int y)
 		{
-			CSharpToolBarButton button = ButtonFromPoint(x, y);
-			
+			CSharpToolBarButton button = this.ButtonFromPoint(x, y);
+
 			if (button != null)
 			{
 				int x2 = x - button.Bounds.X;
@@ -464,7 +511,8 @@ namespace CSharpSamples
 				{
 					return button.Index + 1;
 				}
-				else {
+				else
+				{
 					return button.Index;
 				}
 			}
@@ -477,27 +525,34 @@ namespace CSharpSamples
 		/// <param name="index">描画するボタンのインデックス (-1なら線を消す)</param>
 		protected void DrawHorzLine(int index)
 		{
-			if (tempDropLine != Rectangle.Empty)
-				ControlPaint.FillReversibleRectangle(tempDropLine, Color.Black);
+			if (this.tempDropLine != Rectangle.Empty)
+			{
+				ControlPaint.FillReversibleRectangle(this.tempDropLine, Color.Black);
+			}
 
 			if (index >= 0)
 			{
-				CSharpToolBarButton button = (index < Buttons.Count) ?
-					Buttons[index] : Buttons[Buttons.Count-1];
+				CSharpToolBarButton button = (index < this.Buttons.Count) ?
+					this.Buttons[index] : this.Buttons[this.Buttons.Count - 1];
 
 				Rectangle rc = button.Bounds;
 				rc.Width = 2;
 
-				if (index >= Buttons.Count)
+				if (index >= this.Buttons.Count)
+				{
 					rc.X = button.Bounds.Right - 2;
+				}
 
-				tempDropLine = RectangleToScreen(rc);
+				this.tempDropLine = this.RectangleToScreen(rc);
 
-				using (Graphics g = CreateGraphics())
-					ControlPaint.FillReversibleRectangle(tempDropLine, Color.Black);
+				using (Graphics g = this.CreateGraphics())
+				{
+					ControlPaint.FillReversibleRectangle(this.tempDropLine, Color.Black);
+				}
 			}
-			else {
-				tempDropLine = Rectangle.Empty;
+			else
+			{
+				this.tempDropLine = Rectangle.Empty;
 			}
 		}
 
@@ -509,23 +564,27 @@ namespace CSharpSamples
 		/// <param name="pushed"></param>
 		protected void DrawButton(Graphics g, CSharpToolBarButton button, bool pushed, bool active)
 		{
-			if (g == null) {
+			if (g == null)
+			{
 				throw new ArgumentNullException("g");
 			}
-			if (button == null) {
+			if (button == null)
+			{
 				throw new ArgumentNullException("button");
 			}
 
 			StringFormat format = StringFormat.GenericDefault;
 			format.Alignment = StringAlignment.Center;
 			format.LineAlignment = StringAlignment.Center;
-			
-			if (textAlign == ToolBarTextAlign.Right)
+
+			if (this.textAlign == ToolBarTextAlign.Right)
+			{
 				format.FormatFlags = StringFormatFlags.NoWrap;
+			}
 
 			Rectangle bounds = button.Bounds;
 			Rectangle imageRect = Rectangle.Empty, textRect = Rectangle.Empty;
-			Size imgSize = (imageList != null) ? imageList.ImageSize : new Size(0, 0);
+			Size imgSize = (this.imageList != null) ? this.imageList.ImageSize : new Size(0, 0);
 
 			if (button.Style == CSharpToolBarButtonStyle.Separator)
 			{
@@ -533,51 +592,52 @@ namespace CSharpSamples
 				Size border = SystemInformation.Border3DSize;
 				Rectangle rect = button.Bounds;
 				rect.X += rect.Width / 2 - border.Width / 2;
-				rect.Y += _Margin.Y;
-				rect.Height -= _Margin.Y;
+				rect.Y += this._Margin.Y;
+				rect.Height -= this._Margin.Y;
 				rect.Width = border.Width;
 				ControlPaint.DrawBorder3D(g, rect, Border3DStyle.Etched, Border3DSide.Right);
 				return;
 			}
 
-			switch (textAlign)
+			switch (this.textAlign)
 			{
 				// イメージを上辺、テキストを下辺に配置
-			case ToolBarTextAlign.Underneath:
-				imageRect = new Rectangle(bounds.X + bounds.Width / 2 - imgSize.Width / 2, bounds.Y+_Margin.Y, imgSize.Width, imgSize.Height);
-				textRect = new Rectangle(bounds.X, imageRect.Bottom, bounds.Width, bounds.Height - imageRect.Height);
-				break;
+				case ToolBarTextAlign.Underneath:
+					imageRect = new Rectangle(bounds.X + bounds.Width / 2 - imgSize.Width / 2, bounds.Y + this._Margin.Y, imgSize.Width, imgSize.Height);
+					textRect = new Rectangle(bounds.X, imageRect.Bottom, bounds.Width, bounds.Height - imageRect.Height);
+					break;
 				// イメージを左辺、テキストを右辺に配置
-			case ToolBarTextAlign.Right:
-				imageRect = new Rectangle(bounds.X+_Margin.X, bounds.Y + bounds.Height / 2 - imgSize.Height / 2, imgSize.Width, imgSize.Height);
-				textRect = new Rectangle(imageRect.Right, bounds.Y, bounds.Width - imageRect.Width, bounds.Height);
-				break;
+				case ToolBarTextAlign.Right:
+					imageRect = new Rectangle(bounds.X + this._Margin.X, bounds.Y + bounds.Height / 2 - imgSize.Height / 2, imgSize.Width, imgSize.Height);
+					textRect = new Rectangle(imageRect.Right, bounds.Y, bounds.Width - imageRect.Width, bounds.Height);
+					break;
 			}
 
-			if (appearance == CSharpToolBarAppearance.Normal)
+			if (this.appearance == CSharpToolBarAppearance.Normal)
 			{
 				if (pushed)
 				{
 					// 通常のボタンが押された状態を描画
-					ControlPaint.DrawButton(g, 
-						activeButton.Bounds, ButtonState.Pushed);
+					ControlPaint.DrawButton(g,
+						this.activeButton.Bounds, ButtonState.Pushed);
 				}
-				else {
+				else
+				{
 					// 通常のボタンを描画
-					ControlPaint.DrawButton(g, 
+					ControlPaint.DrawButton(g,
 						bounds, ButtonState.Normal);
 				}
 			}
-			else if (appearance == CSharpToolBarAppearance.Flat)
+			else if (this.appearance == CSharpToolBarAppearance.Flat)
 			{
 				if (pushed)
 				{
 					// フラットボタンが押された状態を描画
-					ControlPaint.DrawBorder3D(g, 
-						activeButton.Bounds, Border3DStyle.SunkenOuter);
+					ControlPaint.DrawBorder3D(g,
+						this.activeButton.Bounds, Border3DStyle.SunkenOuter);
 				}
 			}
-			else if (appearance == CSharpToolBarAppearance.VisualStudio)
+			else if (this.appearance == CSharpToolBarAppearance.VisualStudio)
 			{
 				if (active)
 				{
@@ -590,25 +650,29 @@ namespace CSharpSamples
 						SystemColors.ControlDark : SystemColors.Highlight;
 
 					using (Brush b = new SolidBrush(Color.FromArgb(50, color)))
+					{
 						g.FillRectangle(b, rc);
+					}
 
 					using (Pen pen = new Pen(color))
+					{
 						g.DrawRectangle(pen, rc);
+					}
 				}
 
 			}
 
-			if (imageList != null &&
-				button.ImageIndex >= 0 && button.ImageIndex < imageList.Images.Count)
+			if (this.imageList != null &&
+				button.ImageIndex >= 0 && button.ImageIndex < this.imageList.Images.Count)
 			{
 				// アイコンを描画
-				g.DrawImage(imageList.Images[button.ImageIndex], imageRect.X, imageRect.Y);
+				g.DrawImage(this.imageList.Images[button.ImageIndex], imageRect.X, imageRect.Y);
 			}
 
 			if (button.Text.Length > 0)
 			{
 				// テキストを描画
-				g.DrawString(button.Text, Font, SystemBrushes.ControlText, textRect, format);
+				g.DrawString(button.Text, this.Font, SystemBrushes.ControlText, textRect, format);
 			}
 		}
 
@@ -620,10 +684,12 @@ namespace CSharpSamples
 		/// <returns>指定した座標に存在するCSharpToolBarButton。見つからなければnullを返す。</returns>
 		public CSharpToolBarButton ButtonFromPoint(int x, int y)
 		{
-			foreach (CSharpToolBarButton button in buttons)
+			foreach (CSharpToolBarButton button in this.buttons)
 			{
 				if (button.Bounds.Contains(x, y))
+				{
 					return button;
+				}
 			}
 
 			return null;
@@ -637,20 +703,21 @@ namespace CSharpSamples
 		/// <returns>buttonのRectangle座標を返す</returns>
 		protected Rectangle GetButtonRect(Graphics g, CSharpToolBarButton button)
 		{
-			Size borderSize = borderStyle == Border3DStyle.Adjust ? new Size(0,0) : SystemInformation.Border3DSize;
-			Rectangle rect = new Rectangle(borderSize.Width, borderSize.Height,0,0);
+			Size borderSize = this.borderStyle == Border3DStyle.Adjust ? new Size(0, 0) : SystemInformation.Border3DSize;
+			Rectangle rect = new Rectangle(borderSize.Width, borderSize.Height, 0, 0);
 			int height = 0;
 
-			foreach (CSharpToolBarButton b in buttons)
+			foreach (CSharpToolBarButton b in this.buttons)
 			{
 				Size size;
-				
+
 				if (b.Style == CSharpToolBarButtonStyle.Separator)
 				{
-					size = GetButtonSize(g, b);
+					size = this.GetButtonSize(g, b);
 				}
-				else {
-					size = autoAdjustSize ? GetButtonSize(g, b) : buttonSize;
+				else
+				{
+					size = this.autoAdjustSize ? this.GetButtonSize(g, b) : this.buttonSize;
 				}
 
 				rect.Width = size.Width;
@@ -659,14 +726,16 @@ namespace CSharpSamples
 
 				// 座標がツールバーの幅をはみ出して、
 				// なおかつWrappableプロパティがtrueの場合
-				if ((rect.X + rect.Width) > ClientSize.Width && Wrappable)
+				if ((rect.X + rect.Width) > this.ClientSize.Width && this.Wrappable)
 				{
 					rect.X = borderSize.Width;
 					rect.Y += height;
 				}
 
 				if (b.Equals(button))
+				{
 					return rect;
+				}
 
 				rect.X += size.Width;
 			}
@@ -682,79 +751,91 @@ namespace CSharpSamples
 		/// <returns>buttonのサイズを返す</returns>
 		protected Size GetButtonSize(Graphics g, CSharpToolBarButton button)
 		{
-			if (g == null) {
+			if (g == null)
+			{
 				throw new ArgumentNullException("g");
 			}
-			if (button == null) {
+			if (button == null)
+			{
 				throw new ArgumentNullException("button");
 			}
 
-			Size size, space = g.MeasureString(" ", Font).ToSize();
-			
+			Size size, space = g.MeasureString(" ", this.Font).ToSize();
+
 			// セパレータ
 			if (button.Style == CSharpToolBarButtonStyle.Separator)
 			{
 				size = space;
 				size.Width = SystemInformation.Border3DSize.Width;
-				
-				if (textAlign == ToolBarTextAlign.Underneath)
+
+				if (this.textAlign == ToolBarTextAlign.Underneath)
+				{
 					size.Height += space.Height;
+				}
 			}
 			// 文字、画像ともに設定されていない
 			else if (button.Text.Length == 0 && button.ImageIndex == -1)
 			{
 				size = space;
-			
-				if (textAlign == ToolBarTextAlign.Underneath)
+
+				if (this.textAlign == ToolBarTextAlign.Underneath)
+				{
 					size.Height += space.Height;
+				}
 			}
 			// 文字のみ設定されている
 			else if (button.Text.Length > 0 && button.ImageIndex == -1)
 			{
-				size = g.MeasureString(button.Text, Font).ToSize();
-			
-				if (textAlign == ToolBarTextAlign.Underneath)
+				size = g.MeasureString(button.Text, this.Font).ToSize();
+
+				if (this.textAlign == ToolBarTextAlign.Underneath)
+				{
 					size.Height += space.Height;
+				}
 			}
 			// 画像のみ設定されている
 			else if (button.Text.Length == 0 && button.ImageIndex != -1)
 			{
-				if (imageList != null)
+				if (this.imageList != null)
 				{
-					size = imageList.ImageSize;
+					size = this.imageList.ImageSize;
 				}
-				else {// 画像が設定されているのに ImageList が無い場合は空白でサイズ調整
+				else
+				{// 画像が設定されているのに ImageList が無い場合は空白でサイズ調整
 					size = space;
 				}
-				if (textAlign == ToolBarTextAlign.Underneath)
-					size.Height += space.Height;
-			}
-			else {
-				size = g.MeasureString(button.Text, Font).ToSize();
-		
-				// アイコンが存在すればアイコンサイズを足す
-				if (imageList != null && button.ImageIndex != -1)
+				if (this.textAlign == ToolBarTextAlign.Underneath)
 				{
-					Size imageSize = imageList.ImageSize;
+					size.Height += space.Height;
+				}
+			}
+			else
+			{
+				size = g.MeasureString(button.Text, this.Font).ToSize();
 
-					switch (textAlign)
+				// アイコンが存在すればアイコンサイズを足す
+				if (this.imageList != null && button.ImageIndex != -1)
+				{
+					Size imageSize = this.imageList.ImageSize;
+
+					switch (this.textAlign)
 					{
 						// テキストがイメージの下に配置される
-					case ToolBarTextAlign.Underneath:
-						size.Width = Math.Max(size.Width, imageSize.Width);
-						size.Height += imageSize.Height;
-						break;
+						case ToolBarTextAlign.Underneath:
+							size.Width = Math.Max(size.Width, imageSize.Width);
+							size.Height += imageSize.Height;
+							break;
 						// テキストがイメージの左に配置される
-					case ToolBarTextAlign.Right:
-						size.Width += imageSize.Width;
-						size.Height = Math.Max(size.Height, imageSize.Height);
-						break;
+						case ToolBarTextAlign.Right:
+							size.Width += imageSize.Width;
+							size.Height = Math.Max(size.Height, imageSize.Height);
+							break;
 					}
 				}
 			}
 
-			size.Width += _Margin.X + _Margin.Width;
-			size.Height += _Margin.Y + _Margin.Height;
+			size.Width += this._Margin.X + this._Margin.Width;
+			size.Height += this._Margin.Y + this._Margin.Height;
 
 			return size;
 		}
@@ -766,7 +847,9 @@ namespace CSharpSamples
 		protected void OnButtonClick(CSharpToolBarButtonEventArgs e)
 		{
 			if (ButtonClick != null)
+			{
 				ButtonClick(this, e);
+			}
 		}
 
 		private void InitializeComponent()

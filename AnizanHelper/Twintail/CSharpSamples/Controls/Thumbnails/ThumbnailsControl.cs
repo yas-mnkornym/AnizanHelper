@@ -3,12 +3,11 @@
 namespace CSharpSamples
 {
 	using System;
-	using System.IO;
-	using System.Drawing;
-	using System.Threading;
 	using System.Collections.Generic;
+	using System.Drawing;
+	using System.IO;
+	using System.Threading;
 	using System.Windows.Forms;
-	using System.Diagnostics;
 	using CSharpSamples.Winapi;
 
 	/// <summary>
@@ -35,13 +34,17 @@ namespace CSharpSamples
 		{
 			set
 			{
-				lock (imageList)
-					imageList.ImageSize = value;
+				lock (this.imageList)
+				{
+					this.imageList.ImageSize = value;
+				}
 			}
 			get
 			{
-				lock (imageList)
-					return imageList.ImageSize;
+				lock (this.imageList)
+				{
+					return this.imageList.ImageSize;
+				}
 			}
 		}
 
@@ -52,10 +55,12 @@ namespace CSharpSamples
 		{
 			set
 			{
-				if (filter != value)
-					filter = value;
+				if (this.filter != value)
+				{
+					this.filter = value;
+				}
 			}
-			get { return filter; }
+			get { return this.filter; }
 		}
 
 		/// <summary>
@@ -65,8 +70,8 @@ namespace CSharpSamples
 		{
 			get
 			{
-				string[] allItems = new string[imageIndices.Count];
-				imageIndices.Keys.CopyTo(allItems, 0);
+				string[] allItems = new string[this.imageIndices.Count];
+				this.imageIndices.Keys.CopyTo(allItems, 0);
 
 				return allItems;
 			}
@@ -81,7 +86,7 @@ namespace CSharpSamples
 			{
 				List<string> list = new List<string>();
 
-				foreach (ListViewItem item in listView.SelectedItems)
+				foreach (ListViewItem item in this.listView.SelectedItems)
 				{
 					list.Add(item.Tag as string);
 				}
@@ -96,11 +101,11 @@ namespace CSharpSamples
 		{
 			set
 			{
-				listView.ContextMenu = value;
+				this.listView.ContextMenu = value;
 			}
 			get
 			{
-				return listView.ContextMenu;
+				return this.listView.ContextMenu;
 			}
 		}
 
@@ -111,8 +116,10 @@ namespace CSharpSamples
 		{
 			get
 			{
-				lock (imageList)
-					return imageList;
+				lock (this.imageList)
+				{
+					return this.imageList;
+				}
 			}
 		}
 
@@ -124,22 +131,22 @@ namespace CSharpSamples
 			// 
 			// TODO: コンストラクタ ロジックをここに追加してください。
 			//
-			imageList = new ImageList();
-			imageList.ColorDepth = ColorDepth.Depth32Bit;
-			imageList.TransparentColor = Color.White;
-			imageList.ImageSize = new Size(100, 100);
+			this.imageList = new ImageList();
+			this.imageList.ColorDepth = ColorDepth.Depth32Bit;
+			this.imageList.TransparentColor = Color.White;
+			this.imageList.ImageSize = new Size(100, 100);
 
-			listView = new ListView();
-			listView.Dock = DockStyle.Fill;
-			listView.View = View.LargeIcon;
-			listView.LargeImageList = listView.SmallImageList = imageList;
-			Controls.Add(listView);
+			this.listView = new ListView();
+			this.listView.Dock = DockStyle.Fill;
+			this.listView.View = View.LargeIcon;
+			this.listView.LargeImageList = this.listView.SmallImageList = this.imageList;
+			this.Controls.Add(this.listView);
 
-			filter = ImageFilter.None;
-			queue = new Queue<ListViewItem>();
-			imageIndices = new Dictionary<string, int>();
+			this.filter = ImageFilter.None;
+			this.queue = new Queue<ListViewItem>();
+			this.imageIndices = new Dictionary<string, int>();
 
-			WinApi.SetWindowTheme(listView.Handle, "explorer", null);  
+			WinApi.SetWindowTheme(this.listView.Handle, "explorer", null);
 		}
 
 		/// <summary>
@@ -148,19 +155,22 @@ namespace CSharpSamples
 		/// <param name="disposing"></param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposed)
+			if (this.disposed)
+			{
 				return;
+			}
+
 			if (disposing)
 			{
-				Abort();
+				this.Abort();
 
-				listView.Items.Clear();
-				listView.LargeImageList = null;
+				this.listView.Items.Clear();
+				this.listView.LargeImageList = null;
 
-				imageList.Dispose();
-				imageList = null;
+				this.imageList.Dispose();
+				this.imageList = null;
 
-				disposed = true;
+				this.disposed = true;
 			}
 			base.Dispose(disposing);
 		}
@@ -172,9 +182,11 @@ namespace CSharpSamples
 		public void Add(string fileName)
 		{
 			if (fileName == null)
+			{
 				throw new ArgumentNullException("fileName");
+			}
 
-			AddRange(new string[] { fileName });
+			this.AddRange(new string[] { fileName });
 		}
 
 		/// <summary>
@@ -184,7 +196,9 @@ namespace CSharpSamples
 		public void AddRange(string[] fileNames)
 		{
 			if (fileNames == null)
+			{
 				throw new ArgumentNullException("fileNames");
+			}
 
 			List<ListViewItem> list = new List<ListViewItem>();
 
@@ -195,20 +209,20 @@ namespace CSharpSamples
 				item.ImageIndex = -1;
 				item.Tag = filename;
 
-				lock (queue)
+				lock (this.queue)
 				{
-					queue.Enqueue(item);
+					this.queue.Enqueue(item);
 				}
 
 				list.Add(item);
 			}
 
-			lock (listView)
+			lock (this.listView)
 			{
-				listView.Items.AddRange(list.ToArray());
+				this.listView.Items.AddRange(list.ToArray());
 			}
 
-			ThreadRun();
+			this.ThreadRun();
 		}
 
 		/// <summary>
@@ -218,14 +232,18 @@ namespace CSharpSamples
 		public void Remove(string filename)
 		{
 			if (filename == null)
-				throw new ArgumentNullException("filename");
-
-			for (int i = listView.Items.Count - 1; i >= 0; i--)
 			{
-				lock (listView)
+				throw new ArgumentNullException("filename");
+			}
+
+			for (int i = this.listView.Items.Count - 1; i >= 0; i--)
+			{
+				lock (this.listView)
 				{
-					if (filename.Equals((string)listView.Items[i].Tag))
-						listView.Items.RemoveAt(i);
+					if (filename.Equals((string)this.listView.Items[i].Tag))
+					{
+						this.listView.Items.RemoveAt(i);
+					}
 				}
 			}
 		}
@@ -235,14 +253,14 @@ namespace CSharpSamples
 		/// </summary>
 		private void ThreadRun()
 		{
-			resetEvent.Set();
-			if (thread == null)
+			this.resetEvent.Set();
+			if (this.thread == null)
 			{
-				thread = new Thread(new ThreadStart(__GenerateThread));
-				thread.Name = "THUMB_CTRL";
-				thread.IsBackground = true;
-				thread.Priority = ThreadPriority.Lowest;
-				thread.Start();
+				this.thread = new Thread(new ThreadStart(this.__GenerateThread));
+				this.thread.Name = "THUMB_CTRL";
+				this.thread.IsBackground = true;
+				this.thread.Priority = ThreadPriority.Lowest;
+				this.thread.Start();
 			}
 		}
 
@@ -251,9 +269,12 @@ namespace CSharpSamples
 		/// </summary>
 		private void Abort()
 		{
-			if (thread != null && thread.IsAlive)
-				thread.Abort();
-			thread = null;
+			if (this.thread != null && this.thread.IsAlive)
+			{
+				this.thread.Abort();
+			}
+
+			this.thread = null;
 		}
 
 		/// <summary>
@@ -261,51 +282,60 @@ namespace CSharpSamples
 		/// </summary>
 		public void Clear()
 		{
-			resetEvent.Reset();
-			listView.Items.Clear();
-			lock (imageIndices) imageIndices.Clear();
-			lock (imageList) imageList.Images.Clear();
+			this.resetEvent.Reset();
+			this.listView.Items.Clear();
+			lock (this.imageIndices)
+			{
+				this.imageIndices.Clear();
+			}
+
+			lock (this.imageList)
+			{
+				this.imageList.Images.Clear();
+			}
 		}
 
 		private void __GenerateThread()
 		{
 			while (true)
 			{
-				resetEvent.WaitOne();
+				this.resetEvent.WaitOne();
 
-				if (queue.Count > 0)
+				if (this.queue.Count > 0)
 				{
 					ListViewItem item;
 
-					lock (queue)
-						item = (ListViewItem)queue.Dequeue();
+					lock (this.queue)
+					{
+						item = (ListViewItem)this.queue.Dequeue();
+					}
 
 					string filename = (string)item.Tag;
 
 					int imageIndex;
-					lock (imageIndices)
+					lock (this.imageIndices)
 					{
 						// 既にサムネイルが作成されていないかどうかをチェック
-						if (imageIndices.ContainsKey(filename))
+						if (this.imageIndices.ContainsKey(filename))
 						{
-							imageIndex = imageIndices[filename];
+							imageIndex = this.imageIndices[filename];
 						}
 						// 新規にサムネイルを作成し、作成されたサムネイルのインデックスを取得。
 						else
 						{
-							imageIndex = CreateThumbnail(filename);
+							imageIndex = this.CreateThumbnail(filename);
 						}
 						// 作成済みサムネイルのインデックス番号を保存
-						imageIndices[filename] = imageIndex;
+						this.imageIndices[filename] = imageIndex;
 					}
 
 					// ImageIndex を設定
 					MethodInvoker m = delegate { item.ImageIndex = imageIndex; };
-					Invoke(m);
+					this.Invoke(m);
 				}
 				else
 				{
-					resetEvent.Reset();
+					this.resetEvent.Reset();
 				}
 			}
 		}
@@ -319,17 +349,17 @@ namespace CSharpSamples
 		{
 			int imageIndex = -1;
 
-			byte[] bytes = LoadData(fileName);
+			byte[] bytes = this.LoadData(fileName);
 			if (bytes == null)
 			{
-				lock (imageList)
+				lock (this.imageList)
 				{
 					MethodInvoker m = delegate
 					{
-						imageIndex = imageList.Images.Add(GetErrorImage(),
-							imageList.TransparentColor);
+						imageIndex = this.imageList.Images.Add(this.GetErrorImage(),
+							this.imageList.TransparentColor);
 					};
-					Invoke(m);
+					this.Invoke(m);
 				}
 				return imageIndex;
 			}
@@ -338,44 +368,44 @@ namespace CSharpSamples
 
 			using (Image source = new Bitmap(mem))
 			{
-				float width = (float)ImageSize.Width / source.Width;
-				float height = (float)ImageSize.Height / source.Height;
+				float width = (float)this.ImageSize.Width / source.Width;
+				float height = (float)this.ImageSize.Height / source.Height;
 				float percent = Math.Min(width, height);
 
 				width = (source.Width * percent);
 				height = (source.Height * percent);
 
 				Rectangle rect = new Rectangle(
-					(int)((ImageSize.Width - width) / 2),
-					(int)((ImageSize.Height - height) / 2),
+					(int)((this.ImageSize.Width - width) / 2),
+					(int)((this.ImageSize.Height - height) / 2),
 					(int)width, (int)height);
 
-				Image buffer = new Bitmap(ImageSize.Width, ImageSize.Height);
+				Image buffer = new Bitmap(this.ImageSize.Width, this.ImageSize.Height);
 
 				using (Graphics g = Graphics.FromImage(buffer))
 				{
 					using (Image thumb = source.GetThumbnailImage((int)width, (int)height,
 							delegate { return false; }, IntPtr.Zero))
 					{
-						_SetFilter(thumb as Bitmap);
+						this._SetFilter(thumb as Bitmap);
 
-						lock (imageList)
+						lock (this.imageList)
 						{
-							g.Clear(imageList.TransparentColor);
+							g.Clear(this.imageList.TransparentColor);
 						}
 
 						g.DrawImage(thumb, rect);
 					}
 				}
 
-				lock (imageList)
+				lock (this.imageList)
 				{
 					MethodInvoker m = delegate
 					{
-						imageIndex = imageList.Images.Add(buffer,
-							imageList.TransparentColor);
+						imageIndex = this.imageList.Images.Add(buffer,
+							this.imageList.TransparentColor);
 					};
-					Invoke(m);
+					this.Invoke(m);
 				}
 			}
 
@@ -384,11 +414,11 @@ namespace CSharpSamples
 
 		private Image GetErrorImage()
 		{
-			Image image = new Bitmap(ImageSize.Width, ImageSize.Height);
+			Image image = new Bitmap(this.ImageSize.Width, this.ImageSize.Height);
 			using (Graphics g = Graphics.FromImage(image))
 			{
-				g.DrawLine(Pens.Red, 0, 0, ImageSize.Width, ImageSize.Height);
-				g.DrawLine(Pens.Red, ImageSize.Width, 0, 0, ImageSize.Height);
+				g.DrawLine(Pens.Red, 0, 0, this.ImageSize.Width, this.ImageSize.Height);
+				g.DrawLine(Pens.Red, this.ImageSize.Width, 0, 0, this.ImageSize.Height);
 			}
 			return image;
 		}
@@ -400,9 +430,11 @@ namespace CSharpSamples
 		private bool _SetFilter(Bitmap image)
 		{
 			if (image == null)
+			{
 				throw new ArgumentNullException("image");
+			}
 
-			switch (filter)
+			switch (this.filter)
 			{
 				case ImageFilter.Alpha:
 					return BitmapFilter.Brightness(image, 100);

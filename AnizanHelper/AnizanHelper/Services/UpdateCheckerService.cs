@@ -58,7 +58,7 @@ namespace AnizanHelper.Services
 				var releaseNote = updateInfo.ReleaseNotes
 					?.FirstOrDefault(x => x.Version == updateInfo.Version);
 
-				if(releaseNote != null)
+				if (releaseNote != null)
 				{
 					sb.AppendLine();
 					sb.AppendLine("【更新内容】");

@@ -1,7 +1,3 @@
-
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace CSharpSamples.Text.Search
@@ -21,7 +17,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return pattern;
+				return this.pattern;
 			}
 		}
 
@@ -29,7 +25,7 @@ namespace CSharpSamples.Text.Search
 		{
 			get
 			{
-				return regex;
+				return this.regex;
 			}
 		}
 
@@ -39,8 +35,8 @@ namespace CSharpSamples.Text.Search
 		/// <param name="key"></param>
 		public RegexSearch(string key, RegexOptions options)
 		{
-			regex = new Regex(key, options);
-			pattern = key;
+			this.regex = new Regex(key, options);
+			this.pattern = key;
 		}
 
 		/// <summary>
@@ -50,7 +46,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string text)
 		{
-			return Search(text, 0);
+			return this.Search(text, 0);
 		}
 
 		/// <summary>
@@ -61,7 +57,7 @@ namespace CSharpSamples.Text.Search
 		/// <returns></returns>
 		public int Search(string text, int index)
 		{
-			Match m = regex.Match(text, index);
+			Match m = this.regex.Match(text, index);
 			return (m.Success ? m.Index : -1);
 		}
 	}

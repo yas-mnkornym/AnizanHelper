@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Reactive.Disposables;
 using Prism.Ioc;
 using Prism.Modularity;
