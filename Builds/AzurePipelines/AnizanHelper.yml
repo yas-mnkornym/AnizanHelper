@@ -38,7 +38,7 @@ stages:
         arguments: "-p:PublishProfile=$(publishProfile) -o $(System.DefaultWorkingDirectory)/AnizanHelper"
         modifyOutputPath: false
 
-    - publish: dist
+    - publish: AnizanHelper
       artifact: app
       displayName: 'Publish artifacts'
 
