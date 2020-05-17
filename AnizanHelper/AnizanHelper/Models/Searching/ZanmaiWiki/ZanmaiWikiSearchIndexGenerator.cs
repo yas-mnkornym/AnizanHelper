@@ -74,7 +74,7 @@ namespace AnizanHelper.Models.Searching.Zanmai
 				.Select(x => WebUtility.HtmlDecode(x.Trim()))
 				.ToArray();
 
-			var regexProgramTitle = new Regex(@"第(?<Number>\d+)部.*\d\d:\d\d.*\[.+\]");
+			var regexProgramTitle = new Regex(@"第(?<Number>\d+)部.*\d{1,2}:\d{1,2}.*\[.+\]");
 			var songInfoParser = new AnizanFormatParser();
 
 			string currentProgram = null;
