@@ -80,3 +80,4 @@ stages:
           targetFolder: "$(SshPublishTargetDirectoryRoot)/files"
           readyTimeout: "20000"
           failOnEmptySource: true
+          overwrite: false
