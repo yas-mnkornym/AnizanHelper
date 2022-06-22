@@ -49,7 +49,7 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
     <PackageReference Include="LazyProperty.Reactive" Version="0.0.2-beta" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
     <PackageReference Include="ReactiveProperty" Version="6.2.0" />
     <PackageReference Include="System.Linq.Async" Version="4.1.1" />
